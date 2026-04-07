@@ -300,6 +300,9 @@
             {%- else -%}
               <span class="h2">{{ shop.name }}</span>
             {%- endif -%}
+            {%- if request.page_type == 'index' -%}
+              <span class="visually-hidden">{{ shop.name }}</span>
+            {%- endif -%}
           </a>
 
           <a
@@ -362,6 +365,9 @@
               </div>
             {%- else -%}
               <span class="h2">{{ shop.name }}</span>
+            {%- endif -%}
+            {%- if request.page_type == 'index' -%}
+              <span class="visually-hidden">{{ shop.name }}</span>
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}

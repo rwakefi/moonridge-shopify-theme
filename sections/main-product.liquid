@@ -200,31 +200,7 @@
                     font-size: {{block.settings.text_size}}px;
                 }
                 </style>
-            {%- when 'review' -%}
-              <script type="text/javascript">
-                  $(document).ready(function(){
-                    $(".getyours").click(function(){
-                      $('html,body').animate({
-                        scrollTop: $('#page5').offset().top
-                      }, 500);
-              
-                      return false;
-                    });
-                  })
-             </script>
-                  <div id="page5" style="margin-bottom:{{ block.settings.margin_bottom }}px;margin-top: {{ block.settings.margin_top }}px;" {{ block.shopify_attributes }}>
-                      <a class="review-link" style=" display: flex;margin-top: 0;column-gap: 10px;column-gap: 10px;align-items: center;font-weight: 500;cursor: pointer;">
-                          <span style="color: rgba(var(--color-base-accent-2), 1);padding: 0;display:flex; align-items: center; column-gap: 5px;">
-                          <span class="stars-rw" style="display:flex !important;">
-                               <svg xmlns="http://www.w3.org/2000/svg" class="svg text-secondary " viewBox="0 0 32 32" version="1.1"><path d="M3.488 13.184l6.272 6.112-1.472 8.608 7.712-4.064 7.712 4.064-1.472-8.608 6.272-6.112-8.64-1.248-3.872-7.808-3.872 7.808z"/></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="svg text-secondary " viewBox="0 0 32 32" version="1.1"><path d="M3.488 13.184l6.272 6.112-1.472 8.608 7.712-4.064 7.712 4.064-1.472-8.608 6.272-6.112-8.64-1.248-3.872-7.808-3.872 7.808z"/></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="svg text-secondary " viewBox="0 0 32 32" version="1.1"><path d="M3.488 13.184l6.272 6.112-1.472 8.608 7.712-4.064 7.712 4.064-1.472-8.608 6.272-6.112-8.64-1.248-3.872-7.808-3.872 7.808z"/></svg>                                              
-                                <svg xmlns="http://www.w3.org/2000/svg" class="svg text-secondary " viewBox="0 0 32 32" version="1.1"><path d="M3.488 13.184l6.272 6.112-1.472 8.608 7.712-4.064 7.712 4.064-1.472-8.608 6.272-6.112-8.64-1.248-3.872-7.808-3.872 7.808z"/></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="svg text-secondary " viewBox="0 0 32 32" version="1.1"><path d="M3.488 13.184l6.272 6.112-1.472 8.608 7.712-4.064 7.712 4.064-1.472-8.608 6.272-6.112-8.64-1.248-3.872-7.808-3.872 7.808z"/></svg>
-                          </span>
-                          <span style="color:{{ block.settings.lrw_color }};text-underline-offset: 1.5px;">{{ block.settings.lrw_text }}</span>
-                      </a>
-               </div>
+
               {%- when 'feature' -%}
             <style>
               .qa-feature-{{ block.id }} {
@@ -1811,47 +1787,6 @@ function updateCountdown() {
     }
        ]
     },
-    {
-      "type": "review",
-      "name": "Lumin Review",
-      "limit": 1,
-       "settings": [
-         {
-          "type": "inline_richtext",
-          "id": "lrw_text",
-          "label": "Review Text",
-          "default": "4.8 From 136 Reviews"
-        },
-         {
-        "type": "color",
-        "id": "lrw_color",
-        "label": {
-          "en": "Text Color"
-        },
-        "default": "#000000"
-      },
-          {
-      "type": "range",
-      "id": "margin_top",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "label": "Margin Top",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "margin_bottom",
-      "min": 0,
-      "max": 30,
-      "step": 1,
-      "unit": "px",
-      "label": "Margin Bottom",
-      "default": 10
-    },
-     {
-    "type": "header",
     "content": "Note",
     "info": "Make sure to add \"Lumin Review\" section in order to work this block correctly"
      }

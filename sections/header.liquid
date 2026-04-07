@@ -628,7 +628,15 @@
       {{ settings.social_youtube_link | json }},
       {{ settings.social_vimeo_link | json }}
     ],
-    "url": {{ request.origin | append: page.url | json }}
+    "url": {{ request.origin | append: page.url | json }},
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "2218 N College Avenue",
+      "addressLocality": "Fayetteville",
+      "addressRegion": "AR",
+      "postalCode": "72703",
+      "addressCountry": "US"
+    }
   }
 </script>
 

@@ -1,0 +1,297 @@
+{% comment %}
+  Travel Blog Menu Section
+  - Displays a grid of blog posts from a selected blog
+  - Heading + Subheading removed so they can be handled in a separate block
+{% endcomment %}
+
+<section class="travel-blog-menu page-width">
+
+  {% if section.settings.blog != blank %}
+    {% assign travel_blog = section.settings.blog %}
+
+    {%- comment -%}
+      DEBUG: Show which blog + how many articles Shopify sees.
+      You can delete this <p> after everything works.
+    {%- endcomment -%}
+    <p class="travel-blog-menu__debug" style="font-size: 12px; opacity: 0.6; margin-bottom: 10px;">
+      Blog: {{ travel_blog.title }} ({{ travel_blog.articles_count }} articles)
+    </p>
+
+    {% assign desktop_columns = section.settings.desktop_columns | default: 3 %}
+    {% assign desktop_rows = section.settings.desktop_rows | default: 2 %}
+    {% assign rows_total = desktop_columns | times: desktop_rows %}
+    {% assign cap_total = section.settings.articles_to_show | default: rows_total %}
+
+    {%- comment -%}
+      Decide how many to show:
+      - rows_total = visible grid (columns × rows)
+      - cap_total = upper cap from settings
+      - max_articles = min(rows_total, cap_total, travel_blog.articles_count)
+    {%- endcomment -%}
+    {% assign max_articles = rows_total %}
+    {% if cap_total < max_articles %}
+      {% assign max_articles = cap_total %}
+    {% endif %}
+    {% if travel_blog.articles_count < max_articles %}
+      {% assign max_articles = travel_blog.articles_count %}
+    {% endif %}
+
+    {% if travel_blog.articles_count > 0 and max_articles > 0 %}
+      <div class="travel-blog-menu__grid">
+        {% for article in travel_blog.articles limit: max_articles %}
+          <article class="travel-blog-menu__card">
+            <a href="{{ article.url }}" class="travel-blog-menu__image-link">
+              {% if article.image %}
+                <div class="travel-blog-menu__image-wrapper">
+                  <img
+                    src="{{ article.image | img_url: '600x400_crop_center' }}
+"
+                    alt="{{ article.image.alt | escape }}"
+                    loading="lazy"
+                  >
+                </div>
+              {% endif %}
+            </a>
+
+            <div class="travel-blog-menu__content">
+              <h2 class="travel-blog-menu__card-title">
+                <a href="{{ article.url }}">
+                  {{ article.title }}
+                </a>
+              </h2>
+
+              {% if section.settings.show_date %}
+                <p class="travel-blog-menu__meta">
+                  {{ article.published_at | date: "%B %e, %Y" }}
+                </p>
+              {% endif %}
+
+              {% if section.settings.show_excerpt %}
+                <p class="travel-blog-menu__excerpt">
+                  {% if article.excerpt != blank %}
+                    {{ article.excerpt | strip_html | truncate: 140 }}
+                  {% else %}
+                    {{ article.content | strip_html | truncate: 140 }}
+                  {% endif %}
+                </p>
+              {% endif %}
+
+              <a href="{{ article.url }}" class="travel-blog-menu__read-more">
+                {{ section.settings.read_more_label }}
+              </a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+    {% else %}
+      <p>No travel stories have been published yet. Check back soon!</p>
+    {% endif %}
+  {% else %}
+    <p>Please select a blog in this section’s settings.</p>
+  {% endif %}
+</section>
+
+<style>
+  :root {
+    --rm-brown: #3b2816;
+  }
+
+  .travel-blog-menu {
+    margin: 2rem auto 4rem;
+  }
+
+  /* GRID */
+  .travel-blog-menu__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 750px) {
+    .travel-blog-menu__grid {
+      grid-template-columns: repeat({{ section.settings.desktop_columns | default: 3 }}, minmax(0, 1fr));
+    }
+  }
+
+  /* CARD */
+  .travel-blog-menu__card {
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
+  }
+
+  .travel-blog-menu__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.09);
+  }
+
+  /* IMAGE */
+  .travel-blog-menu__image-wrapper {
+    position: relative;
+    padding-top: 65%;
+    overflow: hidden;
+  }
+
+  .travel-blog-menu__image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.25s ease-out;
+  }
+
+  .travel-blog-menu__card:hover .travel-blog-menu__image-wrapper img {
+    transform: scale(1.04);
+  }
+
+  /* --- CONTENT AREA --- */
+  .travel-blog-menu__content {
+    padding: 1.5rem 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    height: 100%;
+  }
+
+  /* OPTION B — EDITORIAL TYPOGRAPHY */
+
+  /* Large editorial title */
+  .travel-blog-menu__card-title {
+    font-size: 1.75rem !important;
+    line-height: 1.28 !important;
+    letter-spacing: 0.5px !important;
+    margin: 0;
+  }
+
+  .travel-blog-menu__card-title a {
+    text-decoration: none;
+    color: var(--rm-brown);
+  }
+
+  .travel-blog-menu__card-title a:hover {
+    text-decoration: underline;
+  }
+
+  /* Date line */
+  .travel-blog-menu__meta {
+    font-size: 1.1rem !important;
+    opacity: 0.8 !important;
+    margin: 0.1rem 0 0.2rem;
+  }
+
+  /* Excerpt text */
+  .travel-blog-menu__excerpt {
+    font-size: 1.2rem !important;
+    line-height: 1.7 !important;
+    margin: 0.25rem 0 0.85rem;
+    flex-grow: 1;
+    color: #333;
+  }
+
+  /* Read More */
+  .travel-blog-menu__read-more {
+    font-size: 1.1rem !important;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--rm-brown);
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(59, 40, 22, 0.3);
+    padding-bottom: 3px !important;
+    align-self: flex-start;
+  }
+
+  .travel-blog-menu__read-more:hover {
+    border-bottom-color: var(--rm-brown);
+  }
+
+  /* MOBILE SCALING */
+  @media (max-width: 749px) {
+    .travel-blog-menu__content {
+      padding: 1.25rem 1.1rem 1.4rem;
+    }
+
+    .travel-blog-menu__card-title {
+      font-size: 1.45rem !important;
+    }
+
+    .travel-blog-menu__excerpt {
+      font-size: 1.05rem !important;
+    }
+
+    .travel-blog-menu__read-more {
+      font-size: 1rem !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Travel blog menu",
+  "settings": [
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Travel blog"
+    },
+    {
+      "type": "range",
+      "id": "articles_to_show",
+      "label": "Maximum number of posts to show",
+      "min": 3,
+      "max": 48,
+      "step": 3,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "desktop_columns",
+      "label": "Posts per row on desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "desktop_rows",
+      "label": "Visible rows on desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show publish date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "Show excerpts",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "read_more_label",
+      "label": "Read more button text",
+      "default": "Read the full story"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Travel blog menu"
+    }
+  ]
+}
+{% endschema %}

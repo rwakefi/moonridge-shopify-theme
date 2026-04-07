@@ -1,0 +1,336 @@
+{% comment %}
+  Rafter M – Popup Promo Section (Desktop + Mobile Optimized)
+  Save as: sections/popup-promo.liquid
+{% endcomment %}
+
+{% if section.settings.enable_popup %}
+  {% assign show_on_home_only = section.settings.home_only %}
+  {% if show_on_home_only == false or template == 'index' %}
+    <div
+      class="rm-popup rm-popup-{{ section.id }}"
+      data-rm-popup
+      data-popup-id="rm-popup-{{ section.id }}"
+      data-popup-delay="{{ section.settings.delay_seconds }}"
+      style="display:none;"
+    >
+      <div class="rm-popup-overlay" data-rm-popup-overlay></div>
+
+      <div class="rm-popup-container">
+        <button
+          type="button"
+          class="rm-popup-close"
+          aria-label="Close popup"
+          data-rm-popup-close
+        >
+          &times;
+        </button>
+
+        <div class="rm-popup-content">
+          {% if section.settings.heading != blank %}
+            <h2 class="rm-popup-heading">
+              {{ section.settings.heading }}
+            </h2>
+          {% endif %}
+
+          {% if section.settings.body_text != blank %}
+            <div class="rm-popup-body">
+              {{ section.settings.body_text }}
+            </div>
+          {% endif %}
+
+          {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+            <a
+              href="{{ section.settings.button_link }}"
+              class="rm-popup-button"
+            >
+              {{ section.settings.button_label }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endif %}
+
+{%- style -%}
+/* WRAPPER */
+.rm-popup.rm-popup-{{ section.id }} {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none; /* JS will set to flex when showing */
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body-family, inherit);
+}
+
+/* OVERLAY */
+.rm-popup-{{ section.id }} .rm-popup-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* POPUP BOX */
+.rm-popup-{{ section.id }} .rm-popup-container {
+  position: relative;
+  z-index: 2;
+  max-width: 480px;
+  width: 90%;
+  background-color: {{ section.settings.popup_background }};
+  color: {{ section.settings.popup_text_color }};
+  border-radius: 16px;
+  padding: 28px 24px 24px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+}
+
+/* CLOSE BUTTON */
+.rm-popup-{{ section.id }} .rm-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  color: {{ section.settings.popup_text_color }};
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* CONTENT */
+.rm-popup-{{ section.id }} .rm-popup-content {
+  text-align: center;
+}
+
+.rm-popup-{{ section.id }} .rm-popup-heading {
+  margin: 8px 0 12px;
+  font-family: var(--font-heading-family, var(--font-body-family, inherit));
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.rm-popup-{{ section.id }} .rm-popup-body {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.rm-popup-{{ section.id }} .rm-popup-body p {
+  margin: 0 0 8px;
+}
+
+.rm-popup-{{ section.id }} .rm-popup-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* BUTTON */
+.rm-popup-{{ section.id }} .rm-popup-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  background-color: {{ section.settings.button_background }};
+  color: {{ section.settings.button_text_color }};
+}
+
+.rm-popup-{{ section.id }} .rm-popup-button:hover {
+  opacity: 0.9;
+}
+
+/* MOBILE OPTIMIZATION */
+@media screen and (max-width: 749px) {
+  .rm-popup.rm-popup-{{ section.id }} {
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+  }
+
+  .rm-popup-{{ section.id }} .rm-popup-container {
+    width: 100%;
+    max-width: 380px;
+    padding: 22px 18px 18px;
+    border-radius: 14px;
+  }
+
+  .rm-popup-{{ section.id }} .rm-popup-close {
+    top: 6px;
+    right: 10px;
+    font-size: 24px;
+  }
+
+  .rm-popup-{{ section.id }} .rm-popup-heading {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .rm-popup-{{ section.id }} .rm-popup-body {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .rm-popup-{{ section.id }} .rm-popup-button {
+    width: 100%;
+    padding: 11px 18px;
+    font-size: 13px;
+  }
+}
+{%- endstyle -%}
+
+<script>
+  (function() {
+    var popupId = 'rm-popup-{{ section.id }}';
+    var showOnce = {{ section.settings.show_once | json }};
+    var delaySeconds = {{ section.settings.delay_seconds | default: 3 | json }};
+
+    function showPopup() {
+      var popupEl = document.querySelector('[data-rm-popup][data-popup-id="' + popupId + '"]');
+      if (!popupEl) return;
+
+      popupEl.style.display = 'flex';
+
+      var overlay = popupEl.querySelector('[data-rm-popup-overlay]');
+      var closeBtn = popupEl.querySelector('[data-rm-popup-close]');
+
+      function closePopup() {
+        popupEl.style.display = 'none';
+        if (showOnce) {
+          try {
+            sessionStorage.setItem(popupId + '_dismissed', 'true');
+          } catch (e) {}
+        }
+      }
+
+      if (overlay) {
+        overlay.addEventListener('click', closePopup);
+      }
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closePopup);
+      }
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closePopup();
+        }
+      });
+    }
+
+    function initPopup() {
+      var popupEl = document.querySelector('[data-rm-popup][data-popup-id="' + popupId + '"]');
+      if (!popupEl) return;
+
+      if (showOnce) {
+        try {
+          var dismissed = sessionStorage.getItem(popupId + '_dismissed');
+          if (dismissed === 'true') return;
+        } catch (e) {}
+      }
+
+      var delayMs = (parseInt(delaySeconds, 10) || 0) * 1000;
+      setTimeout(showPopup, delayMs);
+    }
+
+    document.addEventListener('DOMContentLoaded', initPopup);
+    document.addEventListener('shopify:section:load', function(event) {
+      if (event.target.querySelector('[data-rm-popup][data-popup-id="' + popupId + '"]')) {
+        initPopup();
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Popup promo",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_popup",
+      "label": "Enable popup",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "home_only",
+      "label": "Show on home page only",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_once",
+      "label": "Show once per session",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "delay_seconds",
+      "label": "Delay before showing (seconds)",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Welcome to Rafter M Hat Company"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body text",
+      "default": "<p>We shape, size, and customize hats in Fayetteville, Arkansas. Join our list for updates on new arrivals, events, and hat experiences.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop hats"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "popup_background",
+      "label": "Popup background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "popup_text_color",
+      "label": "Popup text color",
+      "default": "#1f1d24"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background color",
+      "default": "#312110"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Popup promo"
+    }
+  ]
+}
+{% endschema %}

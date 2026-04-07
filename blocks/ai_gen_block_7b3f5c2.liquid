@@ -1,0 +1,93 @@
+{% doc %}
+  @prompt
+    Custom Code block
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-custom-code-{{ ai_gen_id }} {
+    width: 100%;
+  }
+
+  .ai-custom-code-container-{{ ai_gen_id }} {
+    width: 100%;
+  }
+{% endstyle %}
+
+<div
+  class="ai-custom-code-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-custom-code-container-{{ ai_gen_id }}">
+    {% if block.settings.custom_html != blank %}
+      {{ block.settings.custom_html }}
+    {% endif %}
+
+    {% if block.settings.custom_liquid != blank %}
+      {{ block.settings.custom_liquid }}
+    {% endif %}
+  </div>
+</div>
+
+{% if block.settings.custom_css != blank %}
+  {% style %}
+    {{ block.settings.custom_css }}
+  {% endstyle %}
+{% endif %}
+
+{% if block.settings.custom_javascript != blank %}
+  <script>
+    (function() {
+      {{ block.settings.custom_javascript }}
+    })();
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Custom code",
+  "settings": [
+    {
+      "type": "header",
+      "content": "HTML"
+    },
+    {
+      "type": "html",
+      "id": "custom_html",
+      "label": "HTML code"
+    },
+    {
+      "type": "header",
+      "content": "Liquid"
+    },
+    {
+      "type": "liquid",
+      "id": "custom_liquid",
+      "label": "Liquid code"
+    },
+    {
+      "type": "header",
+      "content": "CSS"
+    },
+    {
+      "type": "html",
+      "id": "custom_css",
+      "label": "CSS code"
+    },
+    {
+      "type": "header",
+      "content": "JavaScript"
+    },
+    {
+      "type": "html",
+      "id": "custom_javascript",
+      "label": "JavaScript code"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom code"
+    }
+  ]
+}
+{% endschema %}

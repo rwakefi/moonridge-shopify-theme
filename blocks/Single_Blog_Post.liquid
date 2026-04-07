@@ -1,0 +1,234 @@
+{% comment %}
+  Rafter M – Single Blog Post Template
+  Luxury ranch catalog style:
+  - Centered main title
+  - Title above image
+  - Warm, larger body text
+  - Left-aligned "catalog" headings
+  - Next / Previous trip navigation
+{% endcomment %}
+
+<section class="rm-article page-width">
+
+  {%- comment -%} MAIN TITLE (CENTERED) {%- endcomment -%}
+  <header class="rm-article__header">
+    <h1 class="rm-article__title">
+      {{ article.title }}
+    </h1>
+  </header>
+
+  {%- comment -%} FEATURE IMAGE {%- endcomment -%}
+  {% if article.image %}
+    <div class="rm-article__image-wrapper">
+      <img
+        src="{{ article.image | image_url: width: 1600 }}"
+        alt="{{ article.image.alt | escape }}"
+        loading="lazy"
+      >
+    </div>
+  {% endif %}
+
+  {%- comment -%} MAIN CONTENT FROM BLOG EDITOR {%- endcomment -%}
+  <div class="rm-article__content rte">
+    {{ article.content }}
+  </div>
+
+  {%- comment -%} NEXT / PREVIOUS NAVIGATION {%- endcomment -%}
+  {% if article.previous or article.next %}
+    <nav class="rm-article-nav">
+      {% if article.previous %}
+        <a href="{{ article.previous.url }}" class="rm-article-nav__link rm-article-nav__prev">
+          <span class="rm-article-nav__label">Previous Trip</span>
+          <span class="rm-article-nav__title">← {{ article.previous.title }}</span>
+        </a>
+      {% endif %}
+      {% if article.next %}
+        <a href="{{ article.next.url }}" class="rm-article-nav__link rm-article-nav__next">
+          <span class="rm-article-nav__label">Next Trip</span>
+          <span class="rm-article-nav__title">{{ article.next.title }} →</span>
+        </a>
+      {% endif %}
+    </nav>
+  {% endif %}
+
+</section>
+
+<style>
+  :root {
+    --rm-brown: #3b2816;
+  }
+
+  .rm-article {
+    max-width: 840px;
+    margin: 4rem auto 6rem;
+    padding: 0 1.5rem;
+  }
+
+  /* MAIN TITLE – match ACCESSORIES / APPAREL style */
+  .rm-article__header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .rm-article__title {
+    margin: 0;
+    font-family: var(--font-heading-family, "Playfair Display", serif);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    line-height: 1.15;
+    text-align: center;
+    color: var(--rm-brown);
+    font-size: clamp(2.8rem, 3vw + 1rem, 4.2rem);
+  }
+
+  /* FEATURE IMAGE */
+  .rm-article__image-wrapper {
+    width: 100%;
+    max-height: 560px;
+    overflow: hidden;
+    border-radius: 12px;
+    margin: 2.25rem 0 3rem;
+  }
+
+  .rm-article__image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* BODY TEXT */
+  .rm-article__content.rte,
+  .rm-article__content.rte p,
+  .rm-article__content.rte * {
+    font-size: 1.28rem !important;
+    line-height: 1.95 !important;
+    color: #2b241e !important;
+    font-weight: 400 !important;
+  }
+
+  .rm-article__content p {
+    margin-bottom: 1.6rem !important;
+  }
+
+  /* HEADINGS – CATALOG FEEL */
+  .rm-article__content h1,
+  .rm-article__content h2 {
+    font-size: 1.8rem !important;
+    margin-top: 2.8rem !important;
+    margin-bottom: 1.1rem !important;
+    color: var(--rm-brown) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.16em !important;
+    text-transform: uppercase !important;
+    text-align: left !important;
+    line-height: 1.4 !important;
+  }
+
+  .rm-article__content h3 {
+    font-size: 1.6rem !important;
+    margin-top: 2.4rem !important;
+    margin-bottom: 1rem !important;
+    color: var(--rm-brown) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.10em !important;
+    text-transform: uppercase !important;
+    text-align: left !important;
+  }
+
+  .rm-article__content h4,
+  .rm-article__content h5,
+  .rm-article__content h6 {
+    font-size: 1.4rem !important;
+    margin-top: 2rem !important;
+    margin-bottom: 0.7rem !important;
+    color: var(--rm-brown) !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    text-align: left !important;
+  }
+
+  /* LISTS */
+  .rm-article__content ul,
+  .rm-article__content ol {
+    margin-left: 2rem !important;
+    margin-bottom: 1.7rem !important;
+    font-size: 1.22rem !important;
+    line-height: 1.95 !important;
+  }
+
+  .rm-article__content li {
+    margin-bottom: 0.6rem !important;
+  }
+
+  /* LINKS */
+  .rm-article__content a {
+    color: var(--rm-brown) !important;
+    text-decoration: underline;
+  }
+
+  /* NAVIGATION */
+  .rm-article-nav {
+    margin-top: 3.25rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+  }
+
+  .rm-article-nav__link {
+    flex: 1 1 260px;
+    text-decoration: none;
+    color: var(--rm-brown);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .rm-article-nav__label {
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .rm-article-nav__title {
+    font-size: 1.02rem;
+    font-weight: 600;
+  }
+
+  .rm-article-nav__next {
+    text-align: right;
+  }
+
+  .rm-article-nav__link:hover .rm-article-nav__title {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 749px) {
+    .rm-article__content h1,
+    .rm-article__content h2 {
+      font-size: 1.55rem !important;
+    }
+
+    .rm-article__content h3 {
+      font-size: 1.35rem !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "RafterM Article",
+  "settings": [],
+  "presets": [
+    {
+      "name": "RafterM Article"
+    }
+  ]
+}
+{% endschema %}

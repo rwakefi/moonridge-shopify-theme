@@ -1,0 +1,217 @@
+{% doc %}
+  @prompt
+    One Picture Block
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-picture-block-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+  }
+
+  .ai-picture-block-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-picture-block-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: {{ block.settings.image_fit }};
+    {% if block.settings.image_height > 0 %}
+      height: {{ block.settings.image_height }}px;
+    {% endif %}
+  }
+
+  .ai-picture-block-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.placeholder_height }}px;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-picture-block-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 400px;
+  }
+
+  .ai-picture-block-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  {% if block.settings.enable_link %}
+    .ai-picture-block-link-{{ ai_gen_id }} {
+      display: block;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    .ai-picture-block-link-{{ ai_gen_id }}:hover {
+      opacity: {{ block.settings.hover_opacity | divided_by: 100.0 }};
+    }
+  {% endif %}
+{% endstyle %}
+
+<div class="ai-picture-block-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.enable_link and block.settings.link_url != blank %}
+    <a href="{{ block.settings.link_url }}" class="ai-picture-block-link-{{ ai_gen_id }}">
+      <div class="ai-picture-block-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.image %}
+          <img
+            src="{{ block.settings.image | image_url: width: 2000 }}"
+            alt="{{ block.settings.image.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.image.width }}"
+            height="{{ block.settings.image.height }}"
+            class="ai-picture-block-image-{{ ai_gen_id }}"
+          >
+        {% else %}
+          <div class="ai-picture-block-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+            <div class="ai-picture-block-empty-state-{{ ai_gen_id }}">
+              Add an image to get started
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </a>
+  {% else %}
+    <div class="ai-picture-block-wrapper-{{ ai_gen_id }}">
+      {% if block.settings.image %}
+        <img
+          src="{{ block.settings.image | image_url: width: 2000 }}"
+          alt="{{ block.settings.image.alt | escape }}"
+          loading="lazy"
+          width="{{ block.settings.image.width }}"
+          height="{{ block.settings.image.height }}"
+          class="ai-picture-block-image-{{ ai_gen_id }}"
+        >
+      {% else %}
+        <div class="ai-picture-block-placeholder-{{ ai_gen_id }}">
+          {{ 'image' | placeholder_svg_tag }}
+          <div class="ai-picture-block-empty-state-{{ ai_gen_id }}">
+            Add an image to get started
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Picture block",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "fill",
+          "label": "Fill"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "min": 0,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "label": "Image height",
+      "default": 0,
+      "info": "Set to 0 for auto height"
+    },
+    {
+      "type": "range",
+      "id": "placeholder_height",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "label": "Placeholder height",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_link",
+      "label": "Enable link",
+      "default": false
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "range",
+      "id": "hover_opacity",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Hover opacity",
+      "default": 85
+    }
+  ],
+  "presets": [
+    {
+      "name": "Picture block"
+    }
+  ]
+}
+{% endschema %}

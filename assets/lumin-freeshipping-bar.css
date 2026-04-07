@@ -1,0 +1,59 @@
+.fsb {
+  background: var(--bg-color);
+  color: var(--color);
+  font-size: 15px;
+  height: var(--bar-height);
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border-radius: var(--bar-radius);
+}
+.fsb-container {
+    margin: 0rem auto 2rem auto;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+}
+.fsb .fsb-progress {
+  display: flex;
+  padding: 1em;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  position: relative;
+}
+
+.fsb .fsb-progress p {
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+.fsb-paragraph {
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+.fsb .fsb-progress p .fsb--number {
+  color: var(--accent-color);
+}
+.fsb-padding {
+  padding: 10px 20px;
+  background: #f2f2f2;
+  padding-bottom: 0px;
+  margin-bottom: 0;
+}
+.fsb-paragraph .fsb--number {
+  color: var(--accent-color);
+}
+
+.fsb .fsb-progress::before {
+  content: "";
+  width: var(--progress);
+  background: linear-gradient(325deg,var(--progress-color) 0, var(--progress-color-2) 100%);
+  position: absolute;
+  left: 0;
+  height: 100%;
+  transition: width 0.75s ease-in-out;
+  z-index: 1;
+}

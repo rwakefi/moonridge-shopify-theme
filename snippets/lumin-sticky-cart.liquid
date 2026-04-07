@@ -1,0 +1,214 @@
+{% comment %} 
+Lumin Sticky add-to-cart
+© 2023 LuminTheme
+https://wwww.lumintheme.com
+{% endcomment %}
+
+{{ 'lumin-sticky-cart.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'lumin-sticky-cart.js' | asset_url }}" defer="defer"></script>
+
+{% if settings.show_sticky_cart_button and request.page_type == 'product' and product.available %}
+{% liquid 
+assign current_variant = product.selected_or_first_available_variant
+assign product_form_id = 'product-form-' | append: id
+assign image = current_variant.image | default: product.featured_image 
+assign img_size = settings.img_width | append: 'x' | append: settings.img_height
+%}
+
+  {% if product.has_only_default_variant and settings.show_quantity_input != true %}
+<style>
+   @media screen and (max-width: 600px) {
+  #lumin-sticky-atc, .product-form, .quantity-input-wrapper {
+   display: block !important;
+   }
+   }
+  </style>
+{% endif %}
+  <style>
+    {% if settings.show_border %}
+    #lumin-sticky-atc {
+    box-shadow: 0 0 1px 0px #a4a3a3;
+   }
+    {% endif%}
+    
+  .atc-content {
+    display: flex;
+   {% if settings.show_price_under %}
+    flex-direction: column;
+    gap: 2px;
+    {% else %}
+     flex-direction: row-reverse;
+     gap: 20px;
+     align-items: center;
+    {% endif %}
+  }
+    
+    @media screen and (max-width: 750px) {
+  .atc-content {
+    flex-direction: column;
+    gap: 5px;
+   }
+   }
+    
+    {% if settings.sticky_position == 'top' %}
+    #lumin-sticky-atc {
+    position: fixed;
+    top: 0;
+    bottom: auto;
+   }
+    {% endif%}
+    {% if settings.sticky_position_mb == 'top' %}
+     @media (max-width: 740px) {
+   #lumin-sticky-atc {
+    position: fixed;
+    top: 0;
+    bottom: auto;
+      }
+    }
+    {% else %}
+      @media (max-width: 740px) {
+   #lumin-sticky-atc {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+      }
+    }
+    {% endif %}
+  
+    @media screen and (max-width: 750px) {
+  .atc-content {
+    flex-direction: column;
+    gap: 5px;
+   }
+   }
+  </style>
+  {% assign scheme1 = settings.color_schemes | first %}  
+<div id="lumin-sticky-atc" class="color-{{ settings.color_scheme_main }} gradient" aria-hidden="true" data-offset="{{ settings.offset }}"
+      style="padding-top: {{ settings.padding_top }}px; padding-bottom: {{ settings.padding_bottom }}px;">
+   <div class="page-width">
+      <div class="page-width-inner">
+         <div class="product-content">
+           {% if settings.show_img_dt %}
+            <img
+               src="{{ image | img_url: img_size, crop: 'center' }}"
+               class="mobile-hide tablet-hide"
+               width="{{ settings.img_width }}"
+               height="{{ settings.img_height }}"
+               loading="lazy">
+             {% endif %}
+           {% if settings.show_img_mb %}
+            <img
+               src="{{ image | img_url: img_size, crop: 'center' }}"
+               class="medium-up-hide large-up-hide"
+               width="{{ settings.img_width }}"
+               height="{{ settings.img_height }}"
+               loading="lazy">
+             {% endif %}
+            <div class="atc-content">
+               <h3 class="product__title {{ settings.title_size }} {% unless settings.show_title_mb  %} mobile-hide{% endunless %}">
+                  {{ product.title  | truncatewords: 4 }}
+               </h3>
+               <div class="no-js-hidden {% unless settings.show_price_mb  %} mobile-hide{% endunless %}" id="price-{{ id }}" role="status" {{ block.shopify_attributes }}>
+               {%- render 'price', product: product, use_variant: true, show_badges: true, price_class: '' -%}
+            </div>
+         </div>
+      </div>
+      <product-form class="product-form">
+         <div class="product-form__error-message-wrapper" role="alert" hidden>
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+               <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+               <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+               <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+               <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+            </svg>
+            <span class="product-form__error-message"></span>
+         </div>
+         {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+         <div class="quantity-input-wrapper">
+            <div class="select" style="{% if product.has_only_default_variant %}display: none;{% endif %}">
+               <select class="select__select" name="id" aria-label="Select variant">
+               {% for variant in product.variants %}
+               {% assign variant_image = variant.image | default: product.featured_image %}
+               <option 
+               value="{{ variant.id }}"
+               data-img="{{ variant_image | img_url: img_size }}"
+               {% if current_variant.id == variant.id %}selected{% endif %}>
+               {{ variant.title }} - {{ variant.price | money }}
+               </option>
+               {% endfor %}
+               </select>
+               {% render 'icon-caret' %}
+            </div>
+            {% if settings.show_quantity_input %}
+            <quantity-input class="quantity{% unless product.has_only_default_variant %} small-hide{% endunless %}">
+               <button class="quantity__button no-js-hidden" name="minus" type="button">
+               <span class="visually-hidden">
+               {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+               </span>
+               {% render 'icon-minus' %}
+               </button>
+               <input
+                  class="quantity__input"
+                  type="number"
+                  name="quantity"
+                  id="Quantity-{{ id }}"
+                  min="1"
+                  value="1"
+                  >
+               <button class="quantity__button no-js-hidden" name="plus" type="button">
+               <span class="visually-hidden">
+               {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+               </span>
+               {% render 'icon-plus' %}
+               </button>
+            </quantity-input>
+            {% endif %}
+            <div class="product--sticky-form__buttons">
+               <div class="product-form__error-message-wrapper" role="alert" hidden>
+                  <svg
+                     aria-hidden="true"
+                     focusable="false"
+                     role="presentation"
+                     class="icon icon-error"
+                     viewBox="0 0 13 13"
+                     >
+                     <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                     <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                     <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                     <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+                  </svg>
+                  <span class="product-form__error-message"></span>
+               </div>
+               <input
+                  type="hidden"
+                  name="id"
+                  value="{{ product.selected_or_first_available_variant.id }}"
+                  disabled
+                  >
+               <div class="product-form__buttons">
+                  <button
+                  type="submit"
+                  name="add"
+                  class="product-form__submit button button--full-width{% if settings.btn_style == 'primary' %} button--primary{% else %} button--secondary{% endif %}"
+                  {% if product.selected_or_first_available_variant.available == false %}
+                  disabled
+                  {% endif %}
+                  >
+                  <span>
+                  {%- if product.selected_or_first_available_variant.available -%}
+                  {{ 'products.product.add_to_cart' | t }}
+                  {%- else -%}
+                  {{ 'products.product.sold_out' | t }}
+                  {%- endif -%}
+                  </span>
+                  {%- render 'loading-spinner' -%}
+                  </button>
+               </div>
+            </div>
+         </div>
+         {% endform %}
+      </product-form>
+   </div>
+</div>
+</div>
+{% endif %}

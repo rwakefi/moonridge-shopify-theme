@@ -1,0 +1,118 @@
+{% doc %}
+  @prompt
+    a 2 line Ruch text block, a line line rich text block with no padding, make the font the same as the announcement bar in the header
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-richtext-block-{{ ai_gen_id }} {
+    background-color: {{ block.settings.background_color }};
+    text-align: {{ block.settings.text_alignment }};
+    font-family: {{ block.settings.font.family }}, {{ block.settings.font.fallback_families }};
+    font-weight: {{ block.settings.font.weight }};
+    font-style: {{ block.settings.font.style }};
+  }
+
+  .ai-richtext-content-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.font_size }}px;
+    line-height: {{ block.settings.line_height }};
+    margin: 0;
+  }
+{% endstyle %}
+
+<div class="ai-richtext-block-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.content != blank %}
+    <div class="ai-richtext-content-{{ ai_gen_id }}">
+      {{ block.settings.content }}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Rich text block",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Text",
+      "default": "<p>Add your text here</p>"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "font_picker",
+      "id": "font",
+      "label": "Font",
+      "default": "harmonia_sans_n4"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "line_height",
+      "min": 1,
+      "max": 2.5,
+      "step": 0.1,
+      "label": "Line height",
+      "default": 1.5
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#1f1d24"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich text block"
+    }
+  ]
+}
+{% endschema %}

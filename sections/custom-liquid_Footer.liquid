@@ -1,0 +1,580 @@
+{% comment %}
+  Rafter M Custom Footer
+{% endcomment %}
+
+<footer class="rm-footer">
+  <div class="rm-footer-container page-width">
+    <div class="rm-footer-columns">
+
+      <!-- LEFT COLUMN -->
+      <div class="rm-footer-col rm-footer-left">
+        <h3>{{ section.settings.left_heading }}</h3>
+        <p>{{ section.settings.left_body }}</p>
+
+        <div class="rm-contact">
+          {% if section.settings.contact_label != blank %}
+            <span class="rm-contact-label"><b>{{ section.settings.contact_label }}</b></span>
+          {% endif %}
+
+          {% if section.settings.contact_address != blank %}
+            <div class="rm-contact-line">
+              <span class="rm-contact-icon rm-contact-icon-location">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2C8.686 2 6 4.686 6 8c0 4.243 4.5 9.5 5.293 10.414a1 1 0 0 0 1.414 0C13.5 17.5 18 12.243 18 8c0-3.314-2.686-6-6-6zm0 3a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
+                </svg>
+              </span>
+              <span class="rm-contact-text">
+                {% if section.settings.contact_map_link != blank %}
+                  <a href="{{ section.settings.contact_map_link }}" target="_blank" rel="noopener">
+                    {{ section.settings.contact_address | newline_to_br }}
+                  </a>
+                {% else %}
+                  {{ section.settings.contact_address | newline_to_br }}
+                {% endif %}
+              </span>
+            </div>
+          {% endif %}
+
+          {% if section.settings.contact_email != blank %}
+            <div class="rm-contact-line">
+              <span class="rm-contact-icon rm-contact-icon-email">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.01L12 12l8-5.99V6H4zm0 3.236V18h16V9.236l-7.385 4.99a2 2 0 0 1-2.23 0L4 9.236z"/>
+                </svg>
+              </span>
+              <span class="rm-contact-text">
+                <a href="mailto:{{ section.settings.contact_email }}">
+                  {{ section.settings.contact_email }}
+                </a>
+              </span>
+            </div>
+          {% endif %}
+
+          {% if section.settings.contact_phone != blank %}
+            <div class="rm-contact-line">
+              <span class="rm-contact-icon rm-contact-icon-phone">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6.62 3.16a1 1 0 0 1 1.11-.27l3.5 1.4a1 1 0 0 1 .62.93v2.3a1 1 0 0 1-.29.71l-1.2 1.2a10.36 10.36 0 0 0 4.95 4.95l1.2-1.2a1 1 0 0 1 .71-.29h2.3a1 1 0 0 1 .93.62l1.4 3.5a1 1 0 0 1-.27 1.11l-1.6 1.6a2 2 0 0 1-1.79.55A17.53 17.53 0 0 1 4.46 6.55a2 2 0 0 1 .55-1.79l1.6-1.6z"/>
+                </svg>
+              </span>
+              <span class="rm-contact-text">
+                <a href="tel:+1{{ section.settings.contact_phone
+                  | remove: ' '
+                  | remove: '('
+                  | remove: ')'
+                  | remove: '-'
+                }}">
+                  {{ section.settings.contact_phone }}
+                </a>
+              </span>
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="rm-social-icons">
+          {% if section.settings.instagram_url != blank %}
+            <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram" class="rm-social-link rm-social-instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2.5A5.5 5.5 0 1 0 17.5 12 5.507 5.507 0 0 0 12 6.5zm0 2A3.5 3.5 0 1 1 8.5 12 3.504 3.504 0 0 1 12 8.5zm5.75-2.75a1.25 1.25 0 1 0 1.25 1.25 1.251 1.251 0 0 0-1.25-1.25z"/>
+              </svg>
+            </a>
+          {% endif %}
+
+          {% if section.settings.facebook_url != blank %}
+            <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook" class="rm-social-link rm-social-facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M13 3h3a1 1 0 0 1 1 1v3h-3a1 1 0 0 0-1 1v3h4l-1 4h-3v7h-4v-7H7v-4h3V8a5 5 0 0 1 5-5z"/>
+              </svg>
+            </a>
+          {% endif %}
+
+          {% if section.settings.tiktok_url != blank %}
+            <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener" aria-label="TikTok" class="rm-social-link rm-social-tiktok">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M16.5 3a4 4 0 0 0 3 3.9v3.11a7.02 7.02 0 0 1-3.2-.8v5.54A5.25 5.25 0 1 1 11 9.6v3.13a2.26 2.26 0 1 0 1.5 2.13V3.5h4z"/>
+              </svg>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="rm-footer-col rm-footer-right">
+        <h3 class="rm-store-hours-heading">STORE HOURS</h3>
+        <p class="rm-store-hours">
+          {{ section.settings.store_hours | newline_to_br }}
+        </p>
+
+        <h3>{{ section.settings.newsletter_heading }}</h3>
+        <p>{{ section.settings.newsletter_text }}</p>
+
+        {% form 'customer', id: 'rm-footer-newsletter' %}
+          {% if form.errors %}
+            <p class="rm-footer-form-message rm-footer-form-error">
+              {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+            </p>
+          {% endif %}
+
+          {% if form.posted_successfully? %}
+            <p class="rm-footer-form-message rm-footer-form-success">
+              {{ section.settings.newsletter_success }}
+            </p>
+          {% else %}
+            <div class="rm-footer-form-fields">
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <input
+                type="email"
+                name="contact[email]"
+                id="rm-footer-email"
+                aria-label="Email for newsletter signup"
+                placeholder="{{ section.settings.newsletter_placeholder }}"
+                required
+              >
+              <button type="submit">{{ section.settings.newsletter_button_label }}</button>
+            </div>
+          {% endif %}
+        {% endform %}
+      </div>
+
+      <!-- MIDDLE COLUMN -->
+      <div class="rm-footer-col rm-footer-middle">
+        <h3>{{ section.settings.menu_heading }}</h3>
+
+        {% if section.settings.footer_menu != blank %}
+          <ul>
+            {% for link in linklists[section.settings.footer_menu].links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <ul>
+            <li><a href="/pages/our-story">Our Story</a></li>
+            <li><a href="/pages/rafter-m-home">Rafter M Home</a></li>
+            <li><a href="/pages/rafter-m-travel">Rafter M Travel</a></li>
+            <li><a href="/pages/faq">FAQs</a></li>
+            <li><a href="/collections/all">Shop Hats</a></li>
+            <li><a href="/pages/hat-cleaning">Hat Cleaning</a></li>
+            <li><a href="/pages/hat-shaping">Hat Shaping</a></li>
+            <li><a href="/pages/book-an-appointment">Book an Appointment</a></li>
+            <li><a href="/pages/hat-experience">The Rafter M Hat Experience</a></li>
+            <li><a href="/policies/shipping-policy">Shipping Policy</a></li>
+            <li><a href="/policies/refund-policy">Refund Policy</a></li>
+            <li><a href="/policies/privacy-policy">Privacy Policy</a></li>
+          </ul>
+        {% endif %}
+      </div>
+
+    </div>
+
+    <div class="rm-footer-bottom">
+      <p>
+        {{ section.settings.bottom_text }}
+        &nbsp;|&nbsp;
+        <a href="/policies/terms-of-service" target="_blank" rel="noopener">Terms of Service</a>
+        &nbsp;|&nbsp;
+        <a href="/policies/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+{%- style -%}
+/* FOOTER BASE */
+.rm-footer {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  background-color: #3b2816;
+  color: #ffffff;
+  font-family: var(--font-body-family, inherit);
+}
+
+.rm-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.rm-footer-columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* DESKTOP COLUMN SIZING */
+.rm-footer-col {
+  flex: 0 0 calc(33.333% - 40px);
+  max-width: calc(33.333% - 40px);
+  min-width: 260px;
+}
+
+/* FORCE ALL TEXT WHITE */
+.rm-footer,
+.rm-footer * {
+  color: #ffffff !important;
+}
+
+/* HEADINGS */
+.rm-footer h3 {
+  font-family: var(--font-heading-family, inherit);
+  font-weight: 700; 
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* STORE HOURS HEADING */
+.rm-store-hours-heading {
+  margin-top: 0; 
+  margin-bottom: 20px;
+}
+
+/* TEXT */
+.rm-footer-col p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+/* CONTACT BLOCK */
+.rm-contact {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+.rm-contact-label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.rm-contact-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.rm-contact-icon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  margin-top: 3px;
+}
+
+.rm-contact-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.rm-contact-text a {
+  text-decoration: none;
+}
+
+/* LINKS */
+.rm-footer-col a {
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.rm-footer-col a:hover {
+  opacity: 0.7;
+}
+
+/* SOCIAL ICONS */
+.rm-social-icons {
+  margin-top: 10px; 
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.rm-social-link {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+}
+
+.rm-social-link svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* LIST */
+.rm-footer-middle ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.rm-footer-middle ul li {
+  margin-bottom: 8px;
+}
+
+/* NEWSLETTER */
+.rm-footer-form-fields {
+  display: flex;
+  gap: 8px;
+}
+
+#rm-footer-email {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ffffff;
+  background: transparent;
+  color: #ffffff;
+}
+
+#rm-footer-email::placeholder {
+  color: rgba(255,255,255,0.75);
+}
+
+.rm-footer-right button {
+  background: #ffffff;
+  color: #3b2816 !important;
+  padding: 10px 18px;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.rm-footer-right button:hover {
+  opacity: 0.8;
+}
+
+/* BOTTOM BAR */
+.rm-footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.25);
+  padding-top: 20px;
+  margin-top: 40px; 
+  text-align: center;
+}
+
+.rm-footer-bottom p {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.rm-footer-bottom a {
+  color: #ffffff !important;
+  text-decoration: none;
+}
+
+.rm-footer-bottom a:hover {
+  opacity: 0.7;
+}
+
+/* DESKTOP PADDING */
+@media screen and (min-width: 750px) {
+  .rm-footer {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+
+/* MOBILE STYLES */
+@media screen and (max-width: 749px) {
+  .rm-footer-columns {
+    flex-direction: column;
+    gap: 10px; 
+  }
+
+  .rm-footer-col {
+    flex: 1 1 100%; 
+    max-width: 100%;
+    min-width: unset;
+  }
+
+  .rm-footer-col,
+  .rm-footer-col p,
+  .rm-footer-col h3,
+  .rm-footer-middle ul,
+  .rm-footer-middle ul li {
+    text-align: center !important;
+  }
+
+  .rm-contact-line {
+    justify-content: center;
+  }
+
+  .rm-social-icons {
+    justify-content: center;
+    margin: 10px auto 0 auto; 
+  }
+
+  .rm-store-hours-heading {
+    margin-top: 10px !important;
+    margin-bottom: 20px !important; 
+  }
+
+  .rm-footer-form-fields {
+    flex-direction: column; 
+    gap: 10px; 
+  }
+
+  #rm-footer-email {
+    text-align: center; 
+  }
+
+  .rm-footer-right button {
+    width: 100%; 
+  }
+
+  .rm-footer-bottom {
+    margin-top: 20px; 
+  }
+}
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Rafter M – Custom Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "left_heading",
+      "label": "Left heading",
+      "default": "RAFTER M HAT COMPANY | LEGENDARY BRANDS. FITTED. PERSONALIZED."
+    },
+    {
+      "type": "textarea",
+      "id": "left_body",
+      "label": "Left body text",
+      "default": "We love hats — and we love helping you find the one that fits right. Proudly based in Fayetteville, Arkansas."
+    },
+    {
+      "type": "text",
+      "id": "contact_label",
+      "label": "Contact label",
+      "default": "Contact Us:"
+    },
+    {
+      "type": "textarea",
+      "id": "contact_address",
+      "label": "Contact address",
+      "default": "2218 N College Ave\nFayetteville, AR 72703"
+    },
+    {
+      "type": "text",
+      "id": "contact_map_link",
+      "label": "Map link URL",
+      "default": "https://www.google.com/maps?q=2218+N+College+Ave,+Fayetteville,+AR+72703"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Contact email",
+      "default": "info@raftermhatco.com"
+    },
+    {
+      "type": "text",
+      "id": "contact_phone",
+      "label": "Contact phone",
+      "default": "(479) 430-2667"
+    },
+    {
+      "type": "text",
+      "id": "instagram_url",
+      "label": "Instagram URL",
+      "default": "https://instagram.com/raftermhatco"
+    },
+    {
+      "type": "text",
+      "id": "facebook_url",
+      "label": "Facebook URL",
+      "default": "https://facebook.com/raftermhatco"
+    },
+    {
+      "type": "text",
+      "id": "tiktok_url",
+      "label": "TikTok URL",
+      "default": "https://tiktok.com/raftermhatco"
+    },
+    {
+      "type": "textarea",
+      "id": "store_hours",
+      "label": "Store Hours:",
+      "default": "Mon–Fri: 10am–5pm\nSaturday: 10am–2pm\nSunday: Closed"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "STAY IN TOUCH"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_text",
+      "label": "Newsletter text",
+      "default": "Subscribe for updates, new arrivals, and exclusive Rafter M offers."
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "label": "Email placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button_label",
+      "label": "Button label",
+      "default": "SUBSCRIBE"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_success",
+      "label": "Success message",
+      "default": "Thanks for subscribing!"
+    },
+    {
+      "type": "text",
+      "id": "menu_heading",
+      "label": "Quick links heading",
+      "default": "QUICK LINKS"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Quick links menu",
+      "default": "footer"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_text",
+      "label": "Bottom bar text",
+      "default": "© 2025 Rafter M Hat Company"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 28 
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rafter M Footer"
+    }
+  ]
+}
+{% endschema %}

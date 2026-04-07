@@ -1,0 +1,162 @@
+{% comment %}
+  Rafter M – Single Blog Post Template
+  Renders one article using the same simple layout style
+  as your "Tunes, Towns & Timmy: An Irish Ramble" page.
+{% endcomment %}
+
+<section class="rm-article page-width">
+
+  {%- comment -%} FEATURE IMAGE {%- endcomment -%}
+  {% if article.image %}
+    <div class="rm-article__image-wrapper">
+      <img
+        src="{{ article.image | img_url: '1600x' }}"
+        alt="{{ article.image.alt | escape }}"
+        loading="lazy"
+      >
+    </div>
+  {% endif %}
+
+  {%- comment -%} TITLE + DATE {%- endcomment -%}
+  <header class="rm-article__header">
+    <h1 class="rm-article__title">
+      {{ article.title }}
+    </h1>
+
+    <p class="rm-article__date">
+      {{ article.published_at | date: "%B %e, %Y" }}
+    </p>
+  </header>
+
+  {%- comment -%} MAIN CONTENT (from Blog Editor) {%- endcomment -%}
+  <div class="rm-article__content rte">
+    {{ article.content }}
+  </div>
+
+</section>
+
+<style>
+  :root {
+    --rm-brown: #3b2816;
+  }
+
+  .rm-article {
+    max-width: 900px;
+    margin: 3.5rem auto 6rem;
+  }
+
+  /* TITLE — big & centered */
+  .rm-article__header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .rm-article__title {
+    font-size: 3rem; /* was 2.4 → now MUCH more legible */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--rm-brown);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  /* FEATURE IMAGE */
+  .rm-article__image-wrapper {
+    width: 100%;
+    max-height: 600px;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+  }
+
+  .rm-article__image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* BODY CONTENT — increased dramatically */
+  .rm-article__content {
+    font-size: 1.35rem !important;   /* was 1.1 → now +25% */
+    line-height: 2 !important;       /* more whitespace for readability */
+    color: #1a1a1a;
+  }
+
+  /* HEADINGS INSIDE BLOG POST */
+  .rm-article__content h2 {
+    font-size: 2rem !important;      /* was ~1.3 */
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--rm-brown);
+    font-weight: 700;
+  }
+
+  .rm-article__content h3 {
+    font-size: 1.7rem !important;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--rm-brown);
+    font-weight: 600;
+  }
+
+  /* Paragraph spacing */
+  .rm-article__content p {
+    margin-bottom: 1.6rem;
+  }
+
+  /* Lists */
+  .rm-article__content ul,
+  .rm-article__content ol {
+    margin-left: 2rem;
+    margin-bottom: 1.6rem;
+    font-size: 1.32rem !important;
+  }
+
+  .rm-article__content li {
+    margin-bottom: 0.6rem;
+  }
+
+  /* Links */
+  .rm-article__content a {
+    color: var(--rm-brown);
+    text-decoration: underline;
+  }
+
+  /* MOBILE */
+  @media (max-width: 749px) {
+    .rm-article {
+      margin: 2rem auto 4rem;
+      padding: 0 1rem;
+    }
+
+    .rm-article__title {
+      font-size: 2.3rem;
+    }
+
+    .rm-article__content {
+      font-size: 1.22rem !important;
+      line-height: 1.9 !important;
+    }
+
+    .rm-article__content h2 {
+      font-size: 1.7rem !important;
+    }
+
+    .rm-article__content h3 {
+      font-size: 1.45rem !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "RafterM Article",
+  "settings": [],
+  "presets": [
+    {
+      "name": "RafterM Article"
+    }
+  ]
+}
+{% endschema %}

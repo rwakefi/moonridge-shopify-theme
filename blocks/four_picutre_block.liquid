@@ -1,0 +1,342 @@
+{% doc %}
+  @prompt
+    I need a four picture block, on desktop, the four pictures across, on mobile stacked 2 and 2.  I need a title ahe top of this block and I need to be able to click on each picture and go to a specific page, I need to make the background color the same as the slide block above or be able to pick the background color, can you ad border slides to each image so I can have thin boarders if I want
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-four-picture-grid-{{ ai_gen_id }} {
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding_top }}px {{ block.settings.padding_horizontal }}px {{ block.settings.padding_bottom }}px;
+  }
+
+  .ai-four-picture-grid__title-{{ ai_gen_id }} {
+    margin: 0 0 {{ block.settings.title_spacing }}px;
+    text-align: {{ block.settings.title_alignment }};
+    color: {{ block.settings.title_color }};
+    font-size: {{ block.settings.title_size }}px;
+  }
+
+  .ai-four-picture-grid__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: {{ block.settings.spacing }}px;
+  }
+
+  .ai-four-picture-grid__item-{{ ai_gen_id }} {
+    position: relative;
+    overflow: hidden;
+    border-radius: {{ block.settings.border_radius }}px;
+    aspect-ratio: {{ block.settings.aspect_ratio }};
+    border: {{ block.settings.border_thickness }}px solid rgba({{ block.settings.border_color.red }}, {{ block.settings.border_color.green }}, {{ block.settings.border_color.blue }}, {{ block.settings.border_opacity | divided_by: 100.0 }});
+  }
+
+  .ai-four-picture-grid__link-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .ai-four-picture-grid__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-four-picture-grid__link-{{ ai_gen_id }}:hover .ai-four-picture-grid__image-{{ ai_gen_id }} {
+    transform: scale(1.05);
+  }
+
+  .ai-four-picture-grid__placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-four-picture-grid__placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-four-picture-grid__empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  /* ------------------------ */
+  /* MOBILE IMPROVED SIZING   */
+  /* ------------------------ */
+
+  @media screen and (max-width: 749px) {
+    .ai-four-picture-grid-{{ ai_gen_id }} {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .ai-four-picture-grid__container-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px; /* tighten gap to make images larger */
+    }
+  }
+{% endstyle %}
+
+<div class="ai-four-picture-grid-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.title != blank %}
+    <h2 class="ai-four-picture-grid__title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+  {% endif %}
+
+  <div class="ai-four-picture-grid__container-{{ ai_gen_id }}">
+    {% for i in (1..4) %}
+      {% liquid
+        assign image_key = 'image_' | append: i
+        assign link_key = 'link_' | append: i
+        assign image = block.settings[image_key]
+        assign link = block.settings[link_key]
+      %}
+
+      <div class="ai-four-picture-grid__item-{{ ai_gen_id }}">
+        {% if link != blank %}
+          <a href="{{ link }}" class="ai-four-picture-grid__link-{{ ai_gen_id }}">
+        {% else %}
+          <div class="ai-four-picture-grid__link-{{ ai_gen_id }}">
+        {% endif %}
+
+          {% if image %}
+            <img
+              src="{{ image | image_url: width: 800 }}"
+              alt="{{ image.alt | escape }}"
+              loading="lazy"
+              width="{{ image.width }}"
+              height="{{ image.height }}"
+              class="ai-four-picture-grid__image-{{ ai_gen_id }}"
+            >
+          {% else %}
+            <div class="ai-four-picture-grid__placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+              <div class="ai-four-picture-grid__empty-state-{{ ai_gen_id }}">
+                Add image {{ i }}
+              </div>
+            </div>
+          {% endif %}
+
+        {% if link != blank %}
+          </a>
+        {% else %}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Four picture grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Shop by Category"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Title alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#1f1d24"
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Space below title",
+      "default": 24
+    },
+
+    {
+      "type": "header",
+      "content": "Image 1"
+    },
+    { "type": "image_picker", "id": "image_1", "label": "Image" },
+    { "type": "url", "id": "link_1", "label": "Link" },
+
+    {
+      "type": "header",
+      "content": "Image 2"
+    },
+    { "type": "image_picker", "id": "image_2", "label": "Image" },
+    { "type": "url", "id": "link_2", "label": "Link" },
+
+    {
+      "type": "header",
+      "content": "Image 3"
+    },
+    { "type": "image_picker", "id": "image_3", "label": "Image" },
+    { "type": "url", "id": "link_3", "label": "Link" },
+
+    {
+      "type": "header",
+      "content": "Image 4"
+    },
+    { "type": "image_picker", "id": "image_4", "label": "Image" },
+    { "type": "url", "id": "link_4", "label": "Link" },
+
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Space between images",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        { "value": "1 / 1", "label": "Square (1:1)" },
+        { "value": "4 / 3", "label": "Landscape (4:3)" },
+        { "value": "3 / 4", "label": "Portrait (3:4)" },
+        { "value": "16 / 9", "label": "Wide (16:9)" }
+      ],
+      "default": "1 / 1"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Corner radius",
+      "default": 8
+    },
+
+    {
+      "type": "header",
+      "content": "Border"
+    },
+    {
+      "type": "range",
+      "id": "border_thickness",
+      "min": 0,
+      "max": 12,
+      "step": 1,
+      "unit": "px",
+      "label": "Thickness",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "border_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Opacity",
+      "default": 10
+    },
+
+    {
+      "type": "header",
+      "content": "Colors and spacing"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding left/right",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Four picture grid"
+    }
+  ]
+}
+{% endschema %}

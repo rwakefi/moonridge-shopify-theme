@@ -1,0 +1,142 @@
+{% doc %}
+  @prompt
+    A one line Rich text bar that goes all the way across the page, make the font able to go smaller than 12
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-richtext-bar-{{ ai_gen_id }} {
+    width: 100%;
+    padding: {{ block.settings.padding_vertical }}px 0;
+    background-color: {{ block.settings.background_color }};
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-richtext-bar__content-{{ ai_gen_id }} {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 {{ block.settings.padding_horizontal }}px;
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.font_size }}px;
+    line-height: 1.4;
+  }
+
+  .ai-richtext-bar__content-{{ ai_gen_id }} p {
+    margin: 0;
+    display: inline;
+  }
+
+  .ai-richtext-bar__content-{{ ai_gen_id }} a {
+    color: {{ block.settings.link_color }};
+    text-decoration: underline;
+  }
+
+  .ai-richtext-bar__content-{{ ai_gen_id }} a:hover {
+    opacity: 0.8;
+  }
+{% endstyle %}
+
+<div class="ai-richtext-bar-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-richtext-bar__content-{{ ai_gen_id }}">
+    {% if block.settings.text != blank %}
+      {{ block.settings.text }}
+    {% else %}
+      <p>Add your announcement text here</p>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Rich text bar",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Welcome to our store! Free shipping on orders over $50</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#312110"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "min": 4,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich text bar"
+    }
+  ]
+}
+{% endschema %}

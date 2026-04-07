@@ -1,0 +1,719 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+{%- if request.design_mode -%}
+    <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
+
+{% assign scheme1 = settings.color_schemes | first %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $(".getyours").click(function(){
+        $('html,body').animate({
+          scrollTop: $('#page5').offset().top
+        }, 500);
+
+        return false;
+      });
+    })
+  </script>
+<div  id="rw-top" class="rw-main-wrapper color-{{ section.settings.color_scheme }} gradient" >
+	<div class="rw-sub-wrapper page-width content-container isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == scheme1 and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %} section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+		<div class="page-width">
+			<h1 class="rw-title" style="text-align:center;">{{section.settings.header_text}}</h1>
+  {% if section.settings.show_top %}
+            <div class="top-review-box">
+				<div class="rating-box">
+					<p style="margin: 0;font-size:40px; line-height: 1;">{{section.settings.rating}}</p>
+					<p class="stars-rw">
+						 <svg xmlns="http://www.w3.org/2000/svg" class="svg text-secondary " viewBox="0 0 32 32" version="1.1"><path d="M3.488 13.184l6.272 6.112-1.472 8.608 7.712-4.064 7.712 4.064-1.472-8.608 6.272-6.112-8.64-1.248-3.872-7.808-3.872 7.808z"/></svg>
+                         <svg xmlns="http://www.w3.org/2000/svg" class="svg text-secondary " viewBox="0 0 32 32" version="1.1"><path d="M3.488 13.184l6.272 6.112-1.472 8.608 7.712-4.064 7.712 4.064-1.472-8.608 6.272-6.112-8.64-1.248-3.872-7.808-3.872 7.808z"/></svg>
+                         <svg xmlns="http://www.w3.org/2000/svg" class="svg text-secondary " viewBox="0 0 32 32" version="1.1"><path d="M3.488 13.184l6.272 6.112-1.472 8.608 7.712-4.064 7.712 4.064-1.472-8.608 6.272-6.112-8.64-1.248-3.872-7.808-3.872 7.808z"/></svg>                                              
+                         <svg xmlns="http://www.w3.org/2000/svg" class="svg text-secondary " viewBox="0 0 32 32" version="1.1"><path d="M3.488 13.184l6.272 6.112-1.472 8.608 7.712-4.064 7.712 4.064-1.472-8.608 6.272-6.112-8.64-1.248-3.872-7.808-3.872 7.808z"/></svg>
+                         <svg xmlns="http://www.w3.org/2000/svg" class="svg text-secondary " viewBox="0 0 32 32" version="1.1"><path d="M3.488 13.184l6.272 6.112-1.472 8.608 7.712-4.064 7.712 4.064-1.472-8.608 6.272-6.112-8.64-1.248-3.872-7.808-3.872 7.808z"/></svg>
+                    </p>
+                  {% unless section.settings.rating_count == blank %}
+					<p style="margin: 0;">{{section.settings.rating_count}}
+					</p>
+                    {% endunless %}
+				</div>
+			</div>
+			<lr></lr>
+          {% endif %}
+         
+   
+		</div>
+		<div class="rw-container no-js-hidden">
+              {% for block in section.blocks %}
+              
+			<div class="rw-container-contant" {{ block.shopify_attributes }}>
+				<div class="review-wrapper">
+					<div class="main-review">
+						<div class="rw-text">
+							<div class="rw-detail">
+								<div style="display: grid;grid-gap: 14px;">
+									<div style="display: flex;align-items: center;justify-content: space-between;">
+										<span class="rw-text-name h2">{{block.settings.name_text}}</span>
+										<span class="rw-date">{{block.settings.date_text}}</span>
+									</div>
+									<div>
+										<span class="stars-rw" style="display:flex !important;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="svg text-secondary " viewBox="0 0 32 32" version="1.1"><path d="M3.488 13.184l6.272 6.112-1.472 8.608 7.712-4.064 7.712 4.064-1.472-8.608 6.272-6.112-8.64-1.248-3.872-7.808-3.872 7.808z"/></svg>
+											<svg xmlns="http://www.w3.org/2000/svg" class="svg text-secondary " viewBox="0 0 32 32" version="1.1"><path d="M3.488 13.184l6.272 6.112-1.472 8.608 7.712-4.064 7.712 4.064-1.472-8.608 6.272-6.112-8.64-1.248-3.872-7.808-3.872 7.808z"/></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="svg text-secondary " viewBox="0 0 32 32" version="1.1"><path d="M3.488 13.184l6.272 6.112-1.472 8.608 7.712-4.064 7.712 4.064-1.472-8.608 6.272-6.112-8.64-1.248-3.872-7.808-3.872 7.808z"/></svg>                                              
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="svg text-secondary " viewBox="0 0 32 32" version="1.1"><path d="M3.488 13.184l6.272 6.112-1.472 8.608 7.712-4.064 7.712 4.064-1.472-8.608 6.272-6.112-8.64-1.248-3.872-7.808-3.872 7.808z"/></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="svg text-secondary " viewBox="0 0 32 32" version="1.1"><path d="M3.488 13.184l6.272 6.112-1.472 8.608 7.712-4.064 7.712 4.064-1.472-8.608 6.272-6.112-8.64-1.248-3.872-7.808-3.872 7.808z"/></svg>
+                                            </span>
+                </div>
+                              {% if section.settings.verify_text != blank %}
+									<div class="verify-container">
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" class="svg font-size-sm ml-1 text-tsw" style="height: 1em;fill: {{section.settings.section_bg2}};"><path d="M6.506.28a1.49 1.49 0 011.806.051l.107.096.808.793c.137.134.307.226.492.267l.141.021 1.118.081a1.49 1.49 0 011.353 1.214l.019.134.109 1.125c.018.2.095.39.22.545l.08.09.808.792c.474.475.57 1.202.249 1.779l-.075.121-.627.936a1.022 1.022 0 00-.177.532l.004.143.109 1.13a1.492 1.492 0 01-.949 1.54l-.136.045-1.088.3a1.018 1.018 0 00-.494.312l-.073.094-.633.932a1.49 1.49 0 01-1.715.57l-.133-.053-1.029-.468a1.019 1.019 0 00-.554-.082l-.14.028-1.094.317c-.65.18-1.332-.1-1.674-.667l-.068-.126-.486-1.027a1.019 1.019 0 00-.394-.433l-.106-.055-1.029-.468a1.494 1.494 0 01-.858-1.588l.029-.14.283-1.1A1.01 1.01 0 00.693 7.5l-.052-.133-.493-1.019A1.493 1.493 0 01.51 4.576l.113-.089.918-.65c.165-.117.291-.28.363-.467l.037-.115.287-1.097a1.49 1.49 0 011.418-1.121l.144.004 1.124.084c.19.015.38-.025.548-.112l.122-.075.922-.658zm3.756 5.105c.686-.682-.401-1.526-.947-.98l-.334.344-2.872 3.05-.57-.612-.327-.34-.359-.367-.123-.124a.687.687 0 10-.947.985l.45.46 1.078 1.133.798.851 3.29-3.502.796-.83.067-.068z"></path></svg>
+										<span class="verify">{{section.settings.verify_text}}</span>
+									</div>
+                                {% endif %}
+								</div>
+							</div>
+							<div class="rw-detail-main" style="margin-top:24px;">
+								<div class="rw-text-head h4" style="margin-bottom:10px;">{{block.settings.review_head}}</div>
+								<div class="rw-text-main">{{block.settings.review_text}}</div>
+                                 {% if block.settings.img_block != blank %}
+                                   <img src="{{block.settings.img_block.src | img_url: '200x'}}"alt="" loading="lazy">
+                                 {% endif %}
+                                 {% if block.settings.img_block2 != blank %}
+                                  <img src="{{block.settings.img_block2.src | img_url: '200x'}}"alt="" loading="lazy">
+                                 {% endif %}
+
+                                  {% if section.settings.show_footer %}
+										<div class="rw-text-footer">
+											<span style="display: flex;align-items: center;gap: 10px;">
+                                              {% if product.images.size > 0 %}
+                                               <img src="{{ product.images[0] | img_url: '40x' }}" alt="{{ product.title }}" style="border-radius:6px;max-width:40px;">
+                                              {% endif %}
+                                               <span class="lm-text-clip">{{ product.title | escape }}</span>
+												</span>
+                                           {% if block.settings.like_text != blank %}
+												<span> {{block.settings.like_text}} 
+                                                    <svg enable-background="new 0 0 949.3 949.3" style="height:auto;margin:0 2px 0 10px;width:14px" version="1.1" viewBox="0 0 949.3 949.3" xml:space="preserve"
+														xmlns="http://www.w3.org/2000/svg">
+														<path d="m899.3 338.1-355.3-0.4s20.6-84.3 24.3-123.8c2.5-27 3.101-53.9-3.1-80.5-9.2-40-19.5-65-35.9-96-8.8-16.4-25.8-26.6-44.3-26.6h-68.8c-27.7 0-50.101 22.5-50 50.2 0.2 46.3 0.2 108.1-0.8 110.2-27 56.8-58.3 111.3-93.6 163.3-16.1 23.8-33 46.9-52.6 68-8.6 9.2-13.3 21.4-13.3 33.9v437.2c0 12.898 5 25.398 14 34.699 13.4 13.801 37.4 30.199 76.8 30.199 124.3-0.5 325.7-1.6 468.9-0.6 17.9 0.1 34.5-9.299 43.5-24.799l126.3-216.2c8.6-15 13.1-32 13.199-49.299l0.7-259.3c1e-3 -27.7-22.399-50.1-49.999-50.2z"/>
+														<path d="m94.8 409.5h-44.8c-27.6 0-50 22.4-50 50v429c0 27.602 22.4 50 50 50h44.7c27.6 0 50-22.398 50-50v-429c0.1-27.6-22.3-50-49.9-50z"/>
+													</svg>
+                                                 {{block.settings.like_size}}
+                                                    <svg enable-background="new 0 0 512 512" style="height:auto;margin:0 2px 0 10px;width:14px" version="1.1" viewBox="0 0 512 512" xml:space="preserve"
+														xmlns="http://www.w3.org/2000/svg">
+														<path d="m495.97 297.23-24.695 14.225c-9.711 5.598-20.727 8.543-31.945 8.543h-71.329c-8.836 0-16 7.164-16 16v132.16c0 15.375-12.469 27.84-27.844 27.84h-0.094c-11.977 0-22.617-7.668-26.406-19.035l-30.719-80.355c-7.117-18.611-19.844-34.547-36.422-45.598l-70.515-47.012v-240h14.273c11.602 0 22.977-3.152 32.93-9.121l49.594-29.758c9.953-5.969 21.328-9.121 32.93-9.121h136.94c13.852 0 27.32 4.492 38.398 12.801l34.141 25.6c8.054 6.042 12.796 15.527 12.796 25.599v189.5c0 11.443-6.109 22.016-16.031 27.728z"/>
+														<path d="m128 304v-240c0-17.672-14.328-32-32-32h-96v304h96c17.672 0 32-14.326 32-32zm-32-208c0 17.672-14.328 32-32 32s-32-14.328-32-32 14.328-32 32-32 32 14.328 32 32z"/>
+													</svg>
+                                                 {{block.settings.dislike_size}}
+                  
+												</span>
+                                                          {% endif %}
+											</div>
+                                    {% endif %}
+										</div>
+									</div>
+								</div>
+							</div>
+                            {% if section.settings.show_border %}
+							<lr></lr>
+                             {% endif %}
+						</div>
+                      {% endfor %}
+                    
+					</div>
+					<div style="text-align:center;margin-top:20px;">
+						<a href="#" id="loadMore" class="link-review button">{{section.settings.load_text}}</a>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+          $(document).ready(function(){
+            $(".review-link").click(function(){
+              $('html,body').animate({
+                scrollTop: $('#rw-top').offset().top
+              }, 500);
+          
+              return false;
+            });
+          })
+      </script>
+			<script>
+          $(document).ready(function(){
+          $(".rw-container-contant").slice(0, {{section.settings.review_load}}).show();
+          $("#loadMore").on("click", function(e){
+            e.preventDefault();
+            $(".rw-container-contant:hidden").slice(0, {{section.settings.review_load}}).slideDown();
+            if($(".rw-container-contant:hidden").length == 0) {
+              $("#loadMore").text("No Content").addClass("hidden");
+            }
+          });
+          
+          })
+      </script>
+  <style>
+  .checked {
+  color: orange;
+}
+    .top-review-box {
+      margin-bottom:40px;
+    }
+    lr {
+    border: none;
+    height: 0rem;
+    background-color: {{section.settings.rw_border}};
+    display: block;
+    margin: 0rem auto;
+    width: 90%;
+    }
+       .noContent {
+  color: #000 !important;
+  background-color: transparent !important;
+  pointer-events: none;
+}
+  .rw-percent {
+    color: {{section.settings.feature_svg_color}};
+    font-size: 17px;
+    font-weight: 700;
+    padding: 0px 10px 3px 10px;
+    border: 1px solid {{section.settings.feature_svg_color}};
+    border-radius: 4px;
+  }
+    .rw-container {
+    padding: 0px;
+    margin: auto;
+      -webkit-column-count: {{section.settings.review_column_desk}};
+	-webkit-column-gap: 15px;
+	-webkit-column-fill: auto;
+	-moz-column-count: {{section.settings.review_column_desk}};
+	-moz-column-gap: 15px;
+	-moz-column-fill: auto;
+	column-count: {{section.settings.review_column_desk}};
+	column-gap: 15px;
+	    /* column-fill: auto; */
+  }
+  @media screen and (max-width: 600px){
+    .rw-container {
+  column-count: {{section.settings.review_column_mobile}};
+	column-gap: 15px;
+  }
+  }
+  @media only screen and (min-width: 600px) and (max-width: 900px) {
+   .rw-container {
+  column-count: {{section.settings.review_column_tab}};
+	column-gap: 15px;
+  }
+  }
+     @media only screen and (min-width: 900px) and (max-width: 1150px) {
+   .rw-container {
+  column-count: {{section.settings.review_column_desk}};
+	column-gap: 15px;
+  }
+     }
+
+    .rating-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+   .link-review {
+    cursor: pointer !important;
+    white-space: nowrap;
+}
+    .review-wrapper {
+    padding: {{section.settings.review_pd}}px;
+    background:{{section.settings.review_bg}};
+    margin-bottom: 0px;
+    border-radius: {{ section.settings.border_radius }}px;
+      {% if section.settings.show_border %}
+    box-shadow: 0 0 0 1px {{section.settings.rw_border}};{% endif %}
+}
+    @media screen and (max-width: 600px){
+    .review-wrapper {
+    padding: {{section.settings.review_pd_m}}px;
+}
+    }
+    .rw-sub-wrapper{
+      margin-bottom: {{section.settings.rw_margin}}px;
+    }
+    .stars-rw {
+      color: {{section.settings.feature_svg_color}};
+      display: flex !important;
+      gap: 0px;
+    }
+    .stars-rw svg {
+      height: 1.4em;
+      fill:{{section.settings.feature_svg_color}};
+    }
+    .verify-container{
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    }
+    .verify {
+    color: {{section.settings.section_bg3}};
+    font-size: 14px;
+    position: relative;
+    white-space: nowrap;
+    line-height: 1;
+}
+    .rw-date {
+    font-size: {{ section.settings.date_size }}px;
+    color: #8c8a91;
+    white-space: nowrap;
+    line-height: 1;
+    text-transform: uppercase;
+}
+    .rw-text-name {
+    font-size: {{ section.settings.block_name_size}}px;
+    }
+    .rw-text-head {
+    font-size: {{ section.settings.block_head_size}}px;
+    line-height: 120%;
+    letter-spacing: 0px;
+    padding: 5px 0 5px 0;
+    text-align: center;
+    border: none;
+    text-align: left;
+   }
+    .rw-text-main {
+    font-size: {{ section.settings.block_text_size}}px;
+    white-space: pre-wrap;
+    margin-bottom:20px;
+    }
+    .rw-text-footer {
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 20px;
+   }
+    .main-review img {
+    width: 100%;
+    max-width: {{ section.settings.rw_img_size}}px;
+    border-radius: {{ section.settings.rw_img_radius}}px;
+    text-align: center;
+    margin-right: 10px;
+    line-height: 0;
+    overflow: hidden;
+   }
+      .rw-container-contant {
+   -webkit-column-break-inside: avoid;
+	-moz-column-break-inside: avoid;
+	column-break-inside: avoid;
+    padding-bottom: 15px;
+    border-bottom: 0px solid #f3f3f3;
+    display: none;
+  }
+  @media screen and (max-width: 600px){
+    .rw-container-contant {
+  padding-bottom: 15px;
+  }
+  }
+   .rw-container-contant:last-child {
+    border-bottom: 0;
+  }
+     .rw-text-footer {
+    font-size: 14px;
+    font-weight:500;
+    line-height: 1.4;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    grid-gap: 10px;
+   }
+
+   .lm-text-clip {
+    white-space: nowrap; 
+    width: 100px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+   }                               
+
+
+                                  
+   </style>
+          
+{% schema %}
+{
+  "name": "Lumin Review",
+   "disabled_on": {
+  "groups": ["header", "footer", "custom.popup"]
+   },
+ "settings": [
+   {
+        "type": "header",
+        "content": "Note",
+        "info": "This review section is for demostration purpose. If you want to collect reviews from customers, please consider installing any review app from Shopify [App Store](https:\/\/apps.shopify.com\/)"
+      },
+   {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "background-1"
+    },
+   {
+        "type": "header",
+        "content": "Top Head"
+      },
+{
+        "type": "text",
+        "id": "header_text",
+        "label": "Header",
+        "default": "what our customers say about us"
+      },
+   {
+        "type": "checkbox",
+        "id": "show_top",
+        "label": "Show top Head",
+        "default": true
+      },
+    {
+        "type": "checkbox",
+        "id": "show_footer",
+        "label": "Show Review Footer",
+        "default": true
+      },
+{
+        "type": "inline_richtext",
+        "id": "rating",
+        "label": "Rating",
+        "default": "4.9"
+      },
+{
+        "type": "text",
+        "id": "rating_count",
+        "label": "Review count",
+        "default": "Based on 16 Reviews",
+        "info": "Remove to hide"
+      },
+   {
+        "type": "header",
+        "content": "Section Settings"
+      },
+{
+        "type": "text",
+        "id": "review_column_mobile",
+        "label": "Review column Mobile",
+        "default": "1"
+      },
+{
+        "type": "text",
+        "id": "review_column_tab",
+        "label": "Review column Tablet",
+        "default": "1"
+      },
+{
+        "type": "text",
+        "id": "review_column_desk",
+        "label": "Review column Desktop",
+        "default": "1"
+      },
+   {
+        "type": "text",
+        "id": "review_load",
+        "label": "Load more",
+        "default": "4"
+      },
+   {
+        "type": "text",
+        "id": "load_text",
+        "label": "Button Text",
+        "default": "Load More"
+      },
+    {
+        "type": "header",
+        "content": "Sizes"
+      },
+      {
+    "type":      "range",
+    "id":        "rw_img_size",
+    "min":       20,
+    "max":        400,
+    "step":       10,
+    "unit":       "px",
+    "label":     "Review Image size",
+    "default":   140
+ },
+     {
+    "type":      "range",
+    "id":        "rw_img_radius",
+    "min":       0,
+    "max":        100,
+    "step":       1,
+    "unit":       "px",
+    "label":     "Image Radius",
+    "default":   0
+ },
+   {
+    "type":      "range",
+    "id":        "block_name_size",
+    "min":       10,
+    "max":        100,
+    "step":       1,
+    "unit":       "px",
+    "label":     "Customer name size",
+    "default":   20
+},
+        {
+    "type":      "range",
+    "id":        "date_size",
+    "min":       6,
+    "max":        50,
+    "step":       1,
+    "unit":       "px",
+    "label":     "Date size",
+    "default":   16
+},
+ {
+    "type":      "range",
+    "id":        "block_head_size",
+    "min":       10,
+    "max":        100,
+    "step":       1,
+    "unit":       "px",
+    "label":     "Review Heading size",
+    "default":   20
+},
+    {
+    "type":      "range",
+    "id":        "block_text_size",
+    "min":       6,
+    "max":        100,
+    "step":       1,
+    "unit":       "px",
+    "label":     "Review text size",
+    "default":   14
+},
+   {
+        "type": "header",
+        "content": "Colors"
+      },
+   {
+        "type": "checkbox",
+        "id": "show_border",
+        "label": "Show Border",
+        "default": true
+      },
+{
+        "type": "color",
+        "id": "rw_border",
+        "label": "Border",
+        "default": "#f2f2f2"
+      },
+   {
+    "type":      "range",
+    "id":        "border_radius",
+    "min":       0,
+    "max":        100,
+    "step":       1,
+    "unit":       "px",
+    "label":     "Corner Radius",
+    "default":   0
+},
+{
+        "type": "color",
+        "id": "section_bg3",
+        "label": "Verify Text",
+        "default": "#000"
+      },
+{
+        "type": "color",
+        "id": "section_bg2",
+        "label": "Verify Badge",
+        "default": "#000"
+      },
+   {
+        "type": "text",
+        "id": "verify_text",
+        "label": "Verify Text",
+        "default": "Verified Buyer",
+        "info": "Remove to hide"
+      },
+{
+        "type": "color",
+        "id": "review_bg",
+        "label": "Review Background",
+        "default": "#fff"
+      },
+{
+        "type": "color",
+        "id": "feature_svg_color",
+        "label": "Star Color",
+        "default": "#000"
+      },
+   {
+        "type": "color",
+        "id": "feature_acc_color",
+        "label": "Accent Color",
+        "default": "#000"
+      },
+   {
+      "type": "range",
+      "id": "review_pd",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Review Padding",
+      "default": 20
+    },
+   {
+      "type": "range",
+      "id": "review_pd_m",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Review Padding Mobile",
+      "default": 20
+    },
+   {
+      "type": "range",
+      "id": "rw_margin",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin bottom",
+      "default": 0
+    },
+   {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+
+],
+
+  "max_blocks": 30,
+  "blocks": [
+
+
+    {                                         
+        "type": "review",
+        "name": "review",
+        "settings": [
+
+{
+        "type": "image_picker",
+        "id": "img_block",
+        "label": "Image"
+      },
+          {
+        "type": "image_picker",
+        "id": "img_block2",
+        "label": "Image"
+      },
+{
+        "type": "text",
+        "id": "name_text",
+        "label": "Name",
+        "default": "Johan D."
+      },
+          {
+        "type": "text",
+        "id": "date_text",
+        "label": "Date",
+        "default": "July 2023"
+      },
+{
+        "type": "text",
+        "id": "review_head",
+        "label": "Review Title",
+        "default": "Nice Product"
+      },
+{
+        "type": "text",
+        "id": "review_text",
+        "label": "Review Text",
+        "default": "Nice Product. I'm happy with my purchase."
+      },
+    {
+        "type": "text",
+        "id": "like_text",
+        "label": "Like Dislike Text",
+        "default": "Was this helpful?",
+        "info": "Leave blank to hide"
+      },
+          {
+    "type":      "range",
+    "id":        "like_size",
+    "min":       0,
+    "max":        100,
+    "step":       1,
+    "unit":       "px",
+    "label":     "Likes",
+    "default":   0
+},
+                  {
+    "type":      "range",
+    "id":        "dislike_size",
+    "min":       0,
+    "max":        100,
+    "step":       1,
+    "unit":       "px",
+    "label":     "Dislikes",
+    "default":   0
+},
+{
+    "type":      "range",
+    "id":        "feature_font_size",
+    "min":       10,
+    "max":        50,
+    "step":       1,
+    "unit":       "px",
+    "label":     "Font size",
+    "default":   16
+}
+]
+}
+],
+
+  "presets": [
+    {
+      "name": "Lumin Review",
+      "category": "Advanced Video layout",
+      "blocks": [
+        {
+          "type": "review"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

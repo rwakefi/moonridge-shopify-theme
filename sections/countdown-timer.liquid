@@ -1,0 +1,383 @@
+{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .section-{{ section.id }}-margin {
+    padding-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-margin {
+      padding-top: {{ section.settings.margin_top }}px;
+      padding-bottom: {{ section.settings.margin_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+{% assign scheme1 = settings.color_schemes | first %}
+{% assign custom_date = section.settings.date | append: "T23:59:59" %}
+
+ <div class="section-{{ section.id }}-margin isolate{% if section.settings.layout == 'grid' %} page-width {% endif %}">
+   <div class="timer-wrapper content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} rich-text--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
+   <div class="timer-width">
+     <div class="rte ct-text">{{ section.settings.message_main }}</div>
+   <div>
+   <div class="timer" id="timercount-1">
+   <div class="count"><span id="dayss" class="l-font-{{ section.settings.number_size }}">--</span> <span class="timer-clock">Days</span> </div>
+    <div class="count"><span id="hourss" class="l-font-{{ section.settings.number_size }}">--</span> <span class="timer-clock">Hours</span> </div>
+     <div class="count"><span id="minutess" class="l-font-{{ section.settings.number_size }}">--</span> <span class="timer-clock">Minutes</span> </div>
+     <div class="count"><span id="secondss" class="l-font-{{ section.settings.number_size }}">--</span> <span class="timer-clock">Seconds</span> </div>
+   </div>
+   <div class="expired"style="font-size:{{ section.settings.message_size }}px;" id="expired-1"> {{ section.settings.message }}</div>
+   </div>
+   </div>
+ </div>
+ </div>
+
+<script>
+  // Set the target date for the timercount (YYYY-MM-DD format)
+    const finalDate = new Date('{{custom_date}}');
+
+  
+  // Function to update the timercount
+  function updatetimercount1() {
+    const now = new Date();
+    const timeDifference = finalDate - now;
+
+    if (timeDifference > 0) {
+      const dayss = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hourss = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutess = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const secondss = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      // Display the timercount
+      document.getElementById('dayss').innerHTML = `${dayss}`;
+      document.getElementById('hourss').innerHTML = `${hourss}`;
+      document.getElementById('minutess').innerHTML = `${minutess}`;
+      document.getElementById('secondss').innerHTML = `${secondss}`;
+      
+         // Update every second
+      setTimeout(updatetimercount1, 1000);
+    } else {
+      // If the target date has passed, hide the timercount
+      document.getElementById("timercount-1").style.display = "none";
+        document.getElementById("expired-1").style.display = "block";
+    }
+  }
+
+  // Initial call to start the timercount
+  updatetimercount1();
+</script>
+   
+<style>
+  .timer-wrapper  {
+    {% if section.settings.layout == 'grid' %}
+      border-radius:{{ section.settings.video_border }}px;
+    {% endif %}
+    {% if section.settings.show_border %}
+      border:1px solid {{ section.settings.timer_border }};
+    {% endif %}
+     {% unless section.settings.layout == 'grid' %}
+      border-left:none; border-right:none;border-radius:0;
+    {% endunless %}
+  
+  }
+ 
+  .timer-width {
+    max-width: {{section.settings.max_width}}px;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  @media screen and (max-width: 740px){
+  .timer-width{
+    flex-direction: column;
+    row-gap:20px;
+}
+  }
+    .ct-text{
+    text-align:{{ section.settings.text_layout }};
+    align-item:{{ section.settings.text_layout }};
+    width: calc(50% - 20px);
+}
+  
+  @media screen and (max-width: 740px){
+     .ct-text {
+    text-align:{{ section.settings.text_layout_mb }};
+    align-item:{{ section.settings.text_layout_mb }};
+    width: 100%;
+}
+  }
+  
+   .ct-text h1, h2, h3, p {
+    margin:10px 0;
+}
+ .timer-clock {
+    font-size: 12px;
+}
+   
+   .timer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 24px;
+    justify-content: space-evenly;
+}
+  
+ .expired {
+      display:none;
+      font-size: 20px;
+      margin:0;
+    }
+  .count {
+    display: flex;
+    color:{{section.settings.timer_color}};
+    {% if section.settings.head_font %} font-family: var(--font-heading-family);{% endif %}
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.l-font-small {
+    font-size: 16px;
+    font-weight: bold;
+}
+  .l-font-medium {
+    font-size: 24px;
+    font-weight: bold;
+}
+  .l-font-large {
+    font-size: 40px;
+    font-weight: bold;
+}
+</style>
+  
+{% schema %}
+  {
+    "name": "timercount Timer",
+     "disabled_on": {
+  "groups": ["header", "footer", "custom.popup"]
+   },
+    "limit": 1,
+    "settings": [
+      {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:sections.all.colors.label",
+          "default": "background-1"
+        },
+           {
+    "type": "select",
+    "id": "layout",
+    "options": [
+      {
+        "value": "full_bleed",
+        "label": "Full Width"
+      },
+      {
+        "value": "grid",
+        "label": "Grid"
+      }
+    ],
+    "default": "full_bleed",
+    "label": "Layout"
+  },
+      {
+    "type": "range",
+    "id": "max_width",
+    "min": 580,
+    "max": 1600,
+    "step": 20,
+    "unit": "px",
+    "label": "Container Width",
+    "default": 600,
+    "info": "Work on grid layout only"
+  },
+            {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "Show Border",
+      "default": false
+    },
+      {
+        "type": "color",
+        "id": "timer_border",
+        "label": "Border Color",
+        "default": "#eeeeee"
+      },
+    {
+    "type": "range",
+    "id": "video_border",
+    "min": 0,
+    "max": 100,
+    "step": 2,
+    "unit": "px",
+    "label": "Corner Radius",
+    "default": 0,
+    "info": "Work on grid layout only"
+  },
+      {
+          "type": "richtext",
+          "id": "message_main",
+          "label": "Massage",
+          "info": "timercount Massage"
+        },
+              {
+    "type": "select",
+    "id": "text_layout",
+    "info": "Desktop Text Alignment",
+    "options": [
+      {
+        "value": "left",
+        "label": "Left"
+      },
+      {
+        "value": "center",
+        "label": "Center"
+      }
+    ],
+    "default": "left",
+    "label": "Left"
+  },
+                 {
+    "type": "select",
+    "id": "text_layout_mb",
+    "info": "Mobile Text Alignment",
+    "options": [
+      {
+        "value": "left",
+        "label": "Left"
+      },
+      {
+        "value": "center",
+        "label": "Center"
+      }
+    ],
+    "default": "center",
+    "label": "Center"
+  },
+         {
+          "type": "text",
+          "id": "date",
+          "default": "2025-12-31",
+          "label": "t:sections.countdown.settings.date.label",
+          "info": "Format: yyyy-mm-dd (Save after every change to take effect)"
+        },
+        {
+          "type": "select",
+          "id": "number_size",
+          "options": [
+            {
+              "value": "small",
+              "label": "t:sections.countdown.settings.number_size.options__1.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.countdown.settings.number_size.options__2.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.countdown.settings.number_size.options__3.label"
+            }
+          ],
+          "default": "medium",
+          "label": "t:sections.countdown.settings.number_size.label"
+        },
+       {
+        "type": "checkbox",
+        "id": "head_font",
+        "label": "Use Heading Fonts",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "timer_color",
+        "label": "timercount Color",
+        "default": "#212121"
+      },
+        {
+          "type": "richtext",
+          "id": "message",
+          "default": "<p>Sale is end!</p>",
+          "label": "t:sections.countdown.settings.message.label",
+          "info": "t:sections.countdown.settings.message.info"
+        },
+        {
+    "type":      "range",
+    "id":        "message_size",
+    "min":       10,
+    "max":        50,
+    "step":       1,
+    "unit":       "px",
+    "label": "t:sections.countdown.settings.message_size.label",
+    "default":   20
+},
+      {
+    "type": "range",
+    "id": "padding_top",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "Padding Top",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "padding_bottom",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "Padding Bottom",
+    "default": 36
+  },
+    {
+    "type": "range",
+    "id": "margin_top",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "Margin Top",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "margin_bottom",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "Margin Bottom",
+    "default": 36
+  }
+      ],
+     "presets": [
+    {
+      "name": "timercount Timer"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

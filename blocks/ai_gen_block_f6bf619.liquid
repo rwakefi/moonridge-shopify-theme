@@ -1,0 +1,160 @@
+{% doc %}
+  @prompt
+    a section the same size as the lumen slideshow section below, this will just be a single picture, it needs to be 1920 by 1080, add a mobile image that is 1080 by 1350
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-single-image-{{ ai_gen_id }} {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-single-image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+  }
+
+  .ai-single-image-desktop-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .ai-single-image-mobile-{{ ai_gen_id }} {
+    display: none;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .ai-single-image-placeholder-{{ ai_gen_id }} {
+    background-color: #f4f4f4;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ai-single-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    max-height: 500px;
+  }
+
+  .ai-single-image-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-single-image-desktop-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .ai-single-image-mobile-{{ ai_gen_id }} {
+      display: block;
+    }
+
+    .ai-single-image-placeholder-{{ ai_gen_id }} {
+      aspect-ratio: 1080 / 1350;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-single-image-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-single-image-wrapper-{{ ai_gen_id }}">
+    {% if block.settings.desktop_image %}
+      <img
+        src="{{ block.settings.desktop_image | image_url: width: 1920 }}"
+        alt="{{ block.settings.desktop_image.alt | escape }}"
+        loading="lazy"
+        width="1920"
+        height="1080"
+        class="ai-single-image-desktop-{{ ai_gen_id }}"
+      >
+    {% else %}
+      <div class="ai-single-image-placeholder-{{ ai_gen_id }}">
+        {{ 'image' | placeholder_svg_tag }}
+        <div class="ai-single-image-empty-state-{{ ai_gen_id }}">
+          Add a desktop image (1920 x 1080)
+        </div>
+      </div>
+    {% endif %}
+
+    {% if block.settings.mobile_image %}
+      <img
+        src="{{ block.settings.mobile_image | image_url: width: 1080 }}"
+        alt="{{ block.settings.mobile_image.alt | escape }}"
+        loading="lazy"
+        width="1080"
+        height="1350"
+        class="ai-single-image-mobile-{{ ai_gen_id }}"
+      >
+    {% elsif block.settings.desktop_image %}
+      <img
+        src="{{ block.settings.desktop_image | image_url: width: 1080 }}"
+        alt="{{ block.settings.desktop_image.alt | escape }}"
+        loading="lazy"
+        width="1080"
+        height="1350"
+        class="ai-single-image-mobile-{{ ai_gen_id }}"
+      >
+    {% else %}
+      <div class="ai-single-image-placeholder-{{ ai_gen_id }}">
+        {{ 'image' | placeholder_svg_tag }}
+        <div class="ai-single-image-empty-state-{{ ai_gen_id }}">
+          Add a mobile image (1080 x 1350)
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Single image",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image",
+      "info": "Recommended size: 1920 x 1080 pixels"
+    },
+    {
+      "type": "header",
+      "content": "Mobile image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image",
+      "info": "Recommended size: 1080 x 1350 pixels. If not set, desktop image will be used."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Single image"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

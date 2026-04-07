@@ -1,0 +1,356 @@
+{% doc %}
+  @prompt
+    A previous and next arrow for the next or previous blog , Center this somehow, remove the titles
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% if blog %}
+  {% assign current_article = article %}
+  {% assign prev_article = nil %}
+  {% assign next_article = nil %}
+  {% assign found_current = false %}
+  
+  {% for a in blog.articles %}
+    {% if found_current == false %}
+      {% if a.id == current_article.id %}
+        {% assign found_current = true %}
+      {% else %}
+        {% assign prev_article = a %}
+      {% endif %}
+    {% elsif next_article == nil %}
+      {% assign next_article = a %}
+    {% endif %}
+  {% endfor %}
+
+  {% style %}
+    .ai-blog-nav-wrapper-{{ ai_gen_id }} {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .ai-blog-nav-{{ ai_gen_id }} {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: {{ block.settings.padding_top }}px {{ block.settings.padding_horizontal }}px {{ block.settings.padding_bottom }}px;
+      background-color: {{ block.settings.background_color }};
+      border-radius: {{ block.settings.border_radius }}px;
+      max-width: {{ block.settings.max_width }}px;
+      width: 100%;
+    }
+
+    .ai-blog-nav-link-{{ ai_gen_id }} {
+      display: flex;
+      align-items: center;
+      gap: {{ block.settings.arrow_spacing }}px;
+      text-decoration: none;
+      color: {{ block.settings.text_color }};
+      transition: all 0.3s ease;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ai-blog-nav-link-{{ ai_gen_id }}:hover {
+      color: {{ block.settings.text_hover_color }};
+    }
+
+    .ai-blog-nav-link-{{ ai_gen_id }}:hover .ai-blog-nav-arrow-{{ ai_gen_id }} {
+      transform: translateX(var(--ai-arrow-hover-offset-{{ ai_gen_id }}));
+    }
+
+    .ai-blog-nav-link-{{ ai_gen_id }}--prev {
+      justify-content: flex-start;
+    }
+
+    .ai-blog-nav-link-{{ ai_gen_id }}--next {
+      justify-content: flex-end;
+      text-align: right;
+    }
+
+    .ai-blog-nav-link-{{ ai_gen_id }}--disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .ai-blog-nav-arrow-{{ ai_gen_id }} {
+      flex-shrink: 0;
+      width: {{ block.settings.arrow_size }}px;
+      height: {{ block.settings.arrow_size }}px;
+      transition: transform 0.3s ease;
+    }
+
+    .ai-blog-nav-arrow-{{ ai_gen_id }} svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+    }
+
+    .ai-blog-nav-content-{{ ai_gen_id }} {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .ai-blog-nav-label-{{ ai_gen_id }} {
+      font-size: {{ block.settings.label_size }}px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      opacity: 0.7;
+    }
+
+    @media screen and (max-width: 749px) {
+      .ai-blog-nav-{{ ai_gen_id }} {
+        gap: 12px;
+        padding: {{ block.settings.padding_top | times: 0.7 }}px {{ block.settings.padding_horizontal | times: 0.7 }}px {{ block.settings.padding_bottom | times: 0.7 }}px;
+      }
+
+      .ai-blog-nav-arrow-{{ ai_gen_id }} {
+        width: {{ block.settings.arrow_size | times: 0.8 }}px;
+        height: {{ block.settings.arrow_size | times: 0.8 }}px;
+      }
+
+      .ai-blog-nav-label-{{ ai_gen_id }} {
+        font-size: {{ block.settings.label_size | times: 0.9 }}px;
+      }
+
+      {% if block.settings.hide_labels_mobile %}
+        .ai-blog-nav-label-{{ ai_gen_id }} {
+          display: none;
+        }
+      {% endif %}
+    }
+  {% endstyle %}
+
+  <div class="ai-blog-nav-wrapper-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+    <nav class="ai-blog-nav-{{ ai_gen_id }}">
+      {% if prev_article %}
+        <a 
+          href="{{ prev_article.url }}" 
+          class="ai-blog-nav-link-{{ ai_gen_id }} ai-blog-nav-link-{{ ai_gen_id }}--prev"
+          style="--ai-arrow-hover-offset-{{ ai_gen_id }}: -{{ block.settings.arrow_hover_distance }}px;"
+          aria-label="Previous article: {{ prev_article.title }}"
+        >
+          <div class="ai-blog-nav-arrow-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </div>
+          <div class="ai-blog-nav-content-{{ ai_gen_id }}">
+            <span class="ai-blog-nav-label-{{ ai_gen_id }}">{{ block.settings.previous_label }}</span>
+          </div>
+        </a>
+      {% else %}
+        <div class="ai-blog-nav-link-{{ ai_gen_id }} ai-blog-nav-link-{{ ai_gen_id }}--prev ai-blog-nav-link-{{ ai_gen_id }}--disabled">
+          <div class="ai-blog-nav-arrow-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </div>
+          <div class="ai-blog-nav-content-{{ ai_gen_id }}">
+            <span class="ai-blog-nav-label-{{ ai_gen_id }}">{{ block.settings.previous_label }}</span>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if next_article %}
+        <a 
+          href="{{ next_article.url }}" 
+          class="ai-blog-nav-link-{{ ai_gen_id }} ai-blog-nav-link-{{ ai_gen_id }}--next"
+          style="--ai-arrow-hover-offset-{{ ai_gen_id }}: {{ block.settings.arrow_hover_distance }}px;"
+          aria-label="Next article: {{ next_article.title }}"
+        >
+          <div class="ai-blog-nav-content-{{ ai_gen_id }}">
+            <span class="ai-blog-nav-label-{{ ai_gen_id }}">{{ block.settings.next_label }}</span>
+          </div>
+          <div class="ai-blog-nav-arrow-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+        </a>
+      {% else %}
+        <div class="ai-blog-nav-link-{{ ai_gen_id }} ai-blog-nav-link-{{ ai_gen_id }}--next ai-blog-nav-link-{{ ai_gen_id }}--disabled">
+          <div class="ai-blog-nav-content-{{ ai_gen_id }}">
+            <span class="ai-blog-nav-label-{{ ai_gen_id }}">{{ block.settings.next_label }}</span>
+          </div>
+          <div class="ai-blog-nav-arrow-{{ ai_gen_id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+        </div>
+      {% endif %}
+    </nav>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Blog navigation arrows",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Labels"
+    },
+    {
+      "type": "text",
+      "id": "previous_label",
+      "label": "Previous label",
+      "default": "Previous"
+    },
+    {
+      "type": "text",
+      "id": "next_label",
+      "label": "Next label",
+      "default": "Next"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Max width",
+      "default": 800
+    },
+    {
+      "type": "header",
+      "content": "Arrow style"
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Arrow size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "arrow_spacing",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Arrow spacing",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "arrow_hover_distance",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Arrow hover distance",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Label size",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#312110"
+    },
+    {
+      "type": "color",
+      "id": "text_hover_color",
+      "label": "Text hover",
+      "default": "#1f1d24"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding horizontal",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_labels_mobile",
+      "label": "Hide labels on mobile",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog navigation arrows"
+    }
+  ]
+}
+{% endschema %}

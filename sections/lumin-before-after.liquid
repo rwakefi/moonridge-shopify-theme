@@ -1,0 +1,253 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="gradient color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
+<div class="container page-width">
+  <h2>
+    {{ section.settings.before_head }}
+  </h2>
+
+  <div class="wrapper">
+    {%- if section.settings.first_image != blank -%}
+      <p class="button before-after-heading">{{ section.settings.before }}</p>
+    <img src="{{section.settings.second_image | img_url: 'master'}}">
+    {% else %}
+       <p class="button before-after-heading">{{ section.settings.before }}</p>
+        {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+
+     {%- if section.settings.first_image != blank -%}
+             <p class="button after-heading before-after-heading">{{ section.settings.after }}</p>
+    <img src="{{section.settings.first_image | img_url: 'master'}}" class="after">
+    {% else %}
+        <p class="button after-heading before-after-heading">{{ section.settings.after }}</p>
+        {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+
+    <input
+      type="range"
+      min="0"
+      max="100"
+      value="50"
+      id="slider">
+  </div>
+</div>
+</div>
+
+<style>
+  .wrapper{
+    position: relative;
+    width: 100%;
+    height: {{section.settings.block_height}}vh;
+    margin: auto;
+}
+  @media screen and (max-width: 749px) {
+   .wrapper{
+    height: {{section.settings.block_height_mobile}}vh;
+}
+  }
+.wrapper img{
+    width:100%;
+    height:100%;
+    position:absolute;
+    object-fit: cover;
+    border-radius: {{section.settings.video_border}}px;
+}
+  .wrapper svg{
+    width:100%;
+    height:100%;
+    position:absolute;
+    object-fit: cover;
+    border-radius: {{section.settings.video_border}}px;
+}
+.after{
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+
+#slider{
+    position: relative;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 100%;
+    outline:none;
+    background-color: transparent;
+}
+#slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 40px;
+    height: 40px;
+    background: url('https://cdn.shopify.com/s/files/1/0707/2268/3157/files/sliders.png?v=1675068553') rgba(255, 255, 255, 0.3);
+    border:3px solid white;
+    border-radius: 50%;
+    background-size: contain;
+    background-color:#fff;
+}
+  .before-after-heading {
+    position: absolute;
+    z-index: 2;
+    padding: 8px 20px;
+    top: 20px;
+    left: 20px;
+    min-width: 80px;
+    font-weight: 500;
+    text-align: center;
+    text-transform:none;
+    margin: 0;
+    line-height: 1;
+    min-height: 4rem;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .25s ease;
+    box-shadow: 0 21px 24px #00000026;
+    letter-spacing: .05rem;
+    /*color: var(--color-text-body);*/
+    display: flex;
+}
+  .after-heading {
+    left: auto;
+    right: 20px;
+}
+ /* #slider:before {
+    width: 0.5rem;
+    height: 50%;
+    left: 50%;
+    margin-left: -0.25rem;
+    content: "";
+    position: absolute;
+    background-color: #fff;
+    pointer-events: none;
+    top: 0;
+    margin-top: -2rem;
+  }
+  #slider:after {
+    width: 0.5rem;
+    height: 50%;
+    left: 50%;
+    margin-left: -0.25rem;
+}*/
+</style>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+  let slider =  document.querySelector('#slider')
+   slider.addEventListener('input' , (e)=> {
+        let sliderValue =  slider.value;
+        document.querySelector('.after').style.clipPath = `polygon(0 0, ${sliderValue}% 0 , ${sliderValue}% 100%, 0 100% )`
+    
+    })
+});
+</script>
+{% schema %}
+  {
+    "name": "Before and After",
+     "disabled_on": {
+  "groups": ["header", "footer", "custom.popup"]
+   },
+    "settings": [
+      {
+        "id": "before_head",
+        "type": "text",
+        "label": "t:sections.image-with-text.blocks.heading.settings.heading.label",
+        "default": "Before and After"
+      },
+      {
+        "type": "image_picker",
+        "id": "first_image",
+        "label": "First Image"
+      }, 
+      {
+        "id": "before",
+        "type": "text",
+        "label": "Before Text",
+        "default": "Before"
+      },
+      {
+        "type": "image_picker",
+        "id": "second_image",
+        "label": "Second Image"
+      },
+      {
+        "id": "after",
+        "type": "text",
+        "label": "After Text",
+        "default": "After"
+      },
+      {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "background-1"
+    },
+       {
+      "type": "range",
+      "id": "video_border",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Corner Radius",
+      "default": 0
+    },
+      {
+      "type": "range",
+      "id": "block_height",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "unit": "vh",
+      "label": "Block Heaight",
+      "default": 60,
+      "info": "Section Height"
+    },
+      {
+      "type": "range",
+      "id": "block_height_mobile",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "unit": "vh",
+      "label": "Block Heaight",
+      "default": 40,
+      "info": "Section Height on Mobile"
+    },
+      {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+    ],
+    "presets": [
+      {
+        "name": "Before and After",
+        "category": "Images"
+      }
+    ]
+  }
+{% endschema %}

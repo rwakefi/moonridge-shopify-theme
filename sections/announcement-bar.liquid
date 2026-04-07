@@ -1,0 +1,247 @@
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .rm-announcement-bar {
+    background-color: #312110;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 1.6rem;
+    font-size: 17px;
+    line-height: 1.4;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rm-announcement-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  /* TRACK – fixed height so nothing jumps */
+  .rm-announcement-track {
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 1.8em;
+    padding: 0 2.5rem;
+    overflow: hidden;
+  }
+
+  /* SLIDES – fade smoothly, no jump */
+  .rm-announcement-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.65s ease-in-out;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 0 0.25rem;
+  }
+
+  .rm-announcement-slide.is-active {
+    opacity: 1;
+  }
+
+  .rm-announcement-text {
+    font-family: var(--font-body-family);
+    font-size: 15px;
+    letter-spacing: 0.03em;
+  }
+
+  .rm-announcement-link {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  /* ARROWS */
+  .rm-announcement-arrow {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    flex-shrink: 0;
+  }
+
+  .rm-announcement-arrow svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .rm-announcement-arrow--prev { margin-right: 0.25rem; }
+  .rm-announcement-arrow--next { margin-left: 0.25rem; }
+
+  /* MOBILE — improved vertical centering + extra breathing room */
+@media screen and (max-width: 749px) {
+  .rm-announcement-bar {
+    padding: 1rem 0.8rem 0.9rem;  /* MORE balanced vertical padding */
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .rm-announcement-track {
+    padding: 0 1.8rem;
+    min-height: 3.8em !important; /* consistent locked height */
+    display: flex;
+    align-items: center;          /* TRUE VERTICAL CENTERING */
+  }
+
+  .rm-announcement-slide {
+    white-space: normal;
+    overflow: visible;
+  }
+
+  .rm-announcement-text {
+    font-size: 12px;
+    display: inline-block;
+    padding-top: 7px;             /* tiny soft lift for optical centering */
+  }
+}
+
+    .rm-announcement-arrow {
+      width: 1.4rem;
+      height: 1.4rem;
+    }
+  }
+</style>
+
+{% if section.blocks.size > 0 %}
+  <div class="rm-announcement-bar" role="region" aria-label="Store announcements">
+    <div class="rm-announcement-bar-inner">
+
+      {% if section.blocks.size > 1 %}
+        <button
+          type="button"
+          class="rm-announcement-arrow rm-announcement-arrow--prev"
+          aria-label="Previous announcement">
+          <svg viewBox="0 0 10 10"><path d="M6.5 1L2 5l4.5 4" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      {% endif %}
+
+      <div class="rm-announcement-track">
+        {% for block in section.blocks %}
+          <div
+            class="rm-announcement-slide{% if forloop.first %} is-active{% endif %}"
+            data-index="{{ forloop.index0 }}"
+            {{ block.shopify_attributes }}>
+              
+            {% if block.settings.link != blank %}
+              <a href="{{ block.settings.link }}" class="rm-announcement-text rm-announcement-link">
+                {{ block.settings.text | escape }}
+              </a>
+            {% else %}
+              <span class="rm-announcement-text">{{ block.settings.text | escape }}</span>
+            {% endif %}
+
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if section.blocks.size > 1 %}
+        <button
+          type="button"
+          class="rm-announcement-arrow rm-announcement-arrow--next"
+          aria-label="Next announcement">
+          <svg viewBox="0 0 10 10"><path d="M3.5 1L8 5l-4.5 4" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const bar = document.querySelector('.rm-announcement-bar');
+      if (!bar) return;
+
+      const slides = bar.querySelectorAll('.rm-announcement-slide');
+      if (slides.length === 0) return;
+
+      let currentIndex = 0;
+
+      const baseInterval = {{ section.settings.rotation_interval | default: 7000 }};
+      const intervalMs = Math.round(baseInterval * 1.6); // slower, smoother pacing
+
+      let timer = null;
+
+      function showSlide(index) {
+        slides[currentIndex].classList.remove('is-active');
+        currentIndex = (index + slides.length) % slides.length;
+        slides[currentIndex].classList.add('is-active');
+      }
+
+      function next() { showSlide(currentIndex + 1); }
+      function prev() { showSlide(currentIndex - 1); }
+
+      function startLoop() {
+        timer = setTimeout(function loop() {
+          next();
+          timer = setTimeout(loop, intervalMs);
+        }, intervalMs);
+      }
+
+      function resetLoop() {
+        clearTimeout(timer);
+        startLoop();
+      }
+
+      const nextBtn = bar.querySelector('.rm-announcement-arrow--next');
+      const prevBtn = bar.querySelector('.rm-announcement-arrow--prev');
+
+      if (nextBtn) nextBtn.addEventListener('click', () => { next(); resetLoop(); });
+      if (prevBtn) prevBtn.addEventListener('click', () => { prev(); resetLoop(); });
+
+      startLoop();
+    });
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "class": "section-announcement-bar",
+  "settings": [
+    {
+      "type": "range",
+      "id": "rotation_interval",
+      "min": 3000,
+      "max": 9000,
+      "step": 1000,
+      "unit": "ms",
+      "label": "Rotation interval",
+      "default": 7000
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Message" },
+        { "type": "url", "id": "link", "label": "Optional link" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    { "name": "Announcement bar" }
+  ]
+}
+{% endschema %}

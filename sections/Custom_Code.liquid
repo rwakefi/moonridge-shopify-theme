@@ -1,0 +1,244 @@
+{% comment %}
+  Rafter M – About Two Column
+  - Heading centered
+  - Text + image in two columns on desktop
+  - Stacks on mobile
+{% endcomment %}
+
+<section class="rm-about-two-col page-width">
+  <div class="rm-about-two-col__inner">
+
+    {% if section.settings.heading != blank %}
+      <header class="rm-about-two-col__header">
+        <h2 class="rm-about-two-col__title">
+          {{ section.settings.heading }}
+        </h2>
+      </header>
+    {% endif %}
+
+    <div class="rm-about-two-col__columns rm-about-two-col__columns--{{ section.settings.image_position }}">
+      <div class="rm-about-two-col__text">
+        {% if section.settings.subheading != blank %}
+          <p class="rm-about-two-col__subheading">
+            {{ section.settings.subheading }}
+          </p>
+        {% endif %}
+
+        <div class="rm-about-two-col__body rte">
+          {{ section.settings.body }}
+        </div>
+      </div>
+
+      <div class="rm-about-two-col__image-wrap">
+        {% if section.settings.image != blank %}
+          <div class="rm-about-two-col__image-inner">
+            <img
+              src="{{ section.settings.image | img_url: '900x900' }}
+"
+              alt="{{ section.settings.image.alt | escape }}"
+              loading="lazy"
+            >
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  :root {
+    --rm-brown: #3b2816;
+  }
+
+  .rm-about-two-col {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .rm-about-two-col__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* Heading */
+  .rm-about-two-col__header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .rm-about-two-col__title {
+    font-family: var(--font-heading-family, inherit);
+    font-size: 2.1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rm-brown);
+    margin: 0;
+  }
+
+  /* Columns */
+  .rm-about-two-col__columns {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .rm-about-two-col__columns--image_left {
+    flex-direction: row-reverse;
+  }
+
+  .rm-about-two-col__columns--image_right {
+    flex-direction: row;
+  }
+
+  .rm-about-two-col__text,
+  .rm-about-two-col__image-wrap {
+    flex: 1 1 0;
+  }
+
+  /* Text styles */
+  .rm-about-two-col__subheading {
+    font-size: 1rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(59, 40, 22, 0.8);
+    margin: 0 0 0.75rem;
+  }
+
+  .rm-about-two-col__body,
+  .rm-about-two-col__body p,
+  .rm-about-two-col__body * {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #2b241e;
+  }
+
+  .rm-about-two-col__body p {
+    margin-bottom: 1rem;
+  }
+
+  .rm-about-two-col__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Image */
+  .rm-about-two-col__image-inner {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  }
+
+  .rm-about-two-col__image-inner img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Mobile */
+  @media (max-width: 749px) {
+    .rm-about-two-col {
+      padding-top: {{ section.settings.padding_top | times: 0.7 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.7 | round: 0 }}px;
+    }
+
+    .rm-about-two-col__columns {
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .rm-about-two-col__text,
+    .rm-about-two-col__image-wrap {
+      width: 100%;
+    }
+
+    .rm-about-two-col__header {
+      margin-bottom: 1.75rem;
+    }
+
+    .rm-about-two-col__title {
+      font-size: 1.7rem;
+      letter-spacing: 0.1em;
+    }
+
+    .rm-about-two-col__body,
+    .rm-about-two-col__body p,
+    .rm-about-two-col__body * {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About – two column",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "About us"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Eyebrow / subheading",
+      "default": "Our story"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body text",
+      "default": "<p>Tell the story of your brand, your roots, and why you do what you do.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Side image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position on desktop",
+      "default": "image_right",
+      "options": [
+        {
+          "value": "image_left",
+          "label": "Image left, text right"
+        },
+        {
+          "value": "image_right",
+          "label": "Image right, text left"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "About – two column"
+    }
+  ]
+}
+{% endschema %}

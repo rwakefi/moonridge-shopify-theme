@@ -1,0 +1,515 @@
+{% doc %}
+  @prompt
+    A google map bar and store hours, make the hors Monday-Friday and then Saturday and Sunday seperate, Hat Shapers in HouseThursday/Friday 10:00am - 5:00pmSaturday 10:00am- 2:00pmHours may vary based on private events, revert to the update before this didnt come through correctly, below the line below Sunday in this column I need a place to include 2 ones of text into a field, add one more line 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-map-hours-container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-map-hours-container-{{ ai_gen_id }} {
+      grid-template-columns: {{ block.settings.map_width }}% {{ 100 | minus: block.settings.map_width }}%;
+    }
+  }
+
+  .ai-map-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: {{ block.settings.map_height_mobile }}px;
+    background-color: #f4f4f4;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-map-wrapper-{{ ai_gen_id }} {
+      height: {{ block.settings.map_height }}px;
+    }
+  }
+
+  .ai-map-wrapper-{{ ai_gen_id }} iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .ai-map-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+    color: #666;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+  }
+
+  .ai-hours-wrapper-{{ ai_gen_id }} {
+    padding: {{ block.settings.hours_padding_mobile }}px;
+    background-color: {{ block.settings.hours_background_color }};
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-hours-wrapper-{{ ai_gen_id }} {
+      padding: {{ block.settings.hours_padding }}px;
+    }
+  }
+
+  .ai-hours-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 {{ block.settings.heading_spacing }}px 0;
+    font-weight: 600;
+  }
+
+  .ai-hours-list-{{ ai_gen_id }} {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ai-hours-item-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    padding: {{ block.settings.item_spacing }}px 0;
+    border-bottom: 1px solid {{ block.settings.divider_color }};
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-hours-item-{{ ai_gen_id }}:last-child {
+    border-bottom: none;
+  }
+
+  .ai-hours-day-{{ ai_gen_id }} {
+    font-weight: 600;
+  }
+
+  .ai-hours-time-{{ ai_gen_id }} {
+    text-align: right;
+  }
+
+  .ai-additional-info-{{ ai_gen_id }} {
+    margin-top: {{ block.settings.additional_info_spacing }}px;
+    padding-top: {{ block.settings.additional_info_spacing }}px;
+    border-top: 1px solid {{ block.settings.divider_color }};
+  }
+
+  .ai-additional-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.5;
+    margin: 0 0 8px 0;
+  }
+
+  .ai-additional-text-{{ ai_gen_id }}:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-address-wrapper-{{ ai_gen_id }} {
+    margin-top: {{ block.settings.address_spacing }}px;
+    padding-top: {{ block.settings.address_spacing }}px;
+    border-top: 1px solid {{ block.settings.divider_color }};
+  }
+
+  .ai-address-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 8px 0;
+    font-weight: 600;
+  }
+
+  .ai-address-text-{{ ai_gen_id }} {
+    font-size: {{ block.settings.text_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .ai-contact-info-{{ ai_gen_id }} {
+    margin-top: 12px;
+  }
+
+  .ai-contact-link-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    text-decoration: none;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .ai-contact-link-{{ ai_gen_id }}:hover {
+    text-decoration: underline;
+  }
+{% endstyle %}
+
+<div
+  class="ai-map-hours-container-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-map-wrapper-{{ ai_gen_id }}">
+    {% if block.settings.google_maps_embed != blank %}
+      {{ block.settings.google_maps_embed }}
+    {% else %}
+      <div class="ai-map-placeholder-{{ ai_gen_id }}">
+        Next, add your Google Maps embed code
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="ai-hours-wrapper-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h3 class="ai-hours-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h3>
+    {% endif %}
+
+    <ul class="ai-hours-list-{{ ai_gen_id }}">
+      {% if block.settings.weekday_hours != blank %}
+        <li class="ai-hours-item-{{ ai_gen_id }}">
+          <span class="ai-hours-day-{{ ai_gen_id }}">Monday - Friday</span>
+          <span class="ai-hours-time-{{ ai_gen_id }}">{{ block.settings.weekday_hours }}</span>
+        </li>
+      {% endif %}
+
+      {% if block.settings.saturday_hours != blank %}
+        <li class="ai-hours-item-{{ ai_gen_id }}">
+          <span class="ai-hours-day-{{ ai_gen_id }}">Saturday</span>
+          <span class="ai-hours-time-{{ ai_gen_id }}">{{ block.settings.saturday_hours }}</span>
+        </li>
+      {% endif %}
+
+      {% if block.settings.sunday_hours != blank %}
+        <li class="ai-hours-item-{{ ai_gen_id }}">
+          <span class="ai-hours-day-{{ ai_gen_id }}">Sunday</span>
+          <span class="ai-hours-time-{{ ai_gen_id }}">{{ block.settings.sunday_hours }}</span>
+        </li>
+      {% endif %}
+    </ul>
+
+    {% if block.settings.additional_text_1 != blank or block.settings.additional_text_2 != blank or block.settings.additional_text_3 != blank %}
+      <div class="ai-additional-info-{{ ai_gen_id }}">
+        {% if block.settings.additional_text_1 != blank %}
+          <p class="ai-additional-text-{{ ai_gen_id }}">{{ block.settings.additional_text_1 }}</p>
+        {% endif %}
+
+        {% if block.settings.additional_text_2 != blank %}
+          <p class="ai-additional-text-{{ ai_gen_id }}">{{ block.settings.additional_text_2 }}</p>
+        {% endif %}
+
+        {% if block.settings.additional_text_3 != blank %}
+          <p class="ai-additional-text-{{ ai_gen_id }}">{{ block.settings.additional_text_3 }}</p>
+        {% endif %}
+
+        {% if block.settings.additional_text_4 != blank %}
+          <p class="ai-additional-text-{{ ai_gen_id }}">{{ block.settings.additional_text_4 }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_address %}
+      <div class="ai-address-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.address_heading != blank %}
+          <h4 class="ai-address-heading-{{ ai_gen_id }}">{{ block.settings.address_heading }}</h4>
+        {% endif %}
+
+        {% if block.settings.address != blank %}
+          <p class="ai-address-text-{{ ai_gen_id }}">{{ block.settings.address }}</p>
+        {% endif %}
+
+        {% if block.settings.show_contact_info %}
+          <div class="ai-contact-info-{{ ai_gen_id }}">
+            {% if block.settings.phone != blank %}
+              <a href="tel:{{ block.settings.phone }}" class="ai-contact-link-{{ ai_gen_id }}">
+                {{ block.settings.phone }}
+              </a>
+            {% endif %}
+
+            {% if block.settings.email != blank %}
+              <a href="mailto:{{ block.settings.email }}" class="ai-contact-link-{{ ai_gen_id }}">
+                {{ block.settings.email }}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Map and store hours",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Google Maps"
+    },
+    {
+      "type": "html",
+      "id": "google_maps_embed",
+      "label": "Google Maps embed code",
+      "info": "Get embed code from Google Maps: Share > Embed a map > Copy HTML"
+    },
+    {
+      "type": "range",
+      "id": "map_height",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "label": "Map height (desktop)",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "map_height_mobile",
+      "min": 200,
+      "max": 600,
+      "step": 50,
+      "unit": "px",
+      "label": "Map height (mobile)",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "map_width",
+      "min": 30,
+      "max": 70,
+      "step": 5,
+      "unit": "%",
+      "label": "Map width (desktop)",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Store hours"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Store Hours"
+    },
+    {
+      "type": "text",
+      "id": "weekday_hours",
+      "label": "Monday - Friday",
+      "default": "9:00 AM - 6:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "saturday_hours",
+      "label": "Saturday",
+      "default": "10:00 AM - 4:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "sunday_hours",
+      "label": "Sunday",
+      "default": "Closed"
+    },
+    {
+      "type": "header",
+      "content": "Additional information"
+    },
+    {
+      "type": "text",
+      "id": "additional_text_1",
+      "label": "Additional text 1"
+    },
+    {
+      "type": "text",
+      "id": "additional_text_2",
+      "label": "Additional text 2"
+    },
+    {
+      "type": "text",
+      "id": "additional_text_3",
+      "label": "Additional text 3"
+    },
+   {
+      "type": "text",
+      "id": "additional_text_4",
+      "label": "Additional text 4"
+    },
+    {
+      "type": "header",
+      "content": "Address"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_address",
+      "label": "Show address",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "address_heading",
+      "label": "Address heading",
+      "default": "Visit Us"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Address",
+      "default": "123 Main Street\nYour City, ST 12345"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact_info",
+      "label": "Show contact info",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone number",
+      "default": "(555) 123-4567"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Container background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "hours_background_color",
+      "label": "Hours background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#312110"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#1f1d24"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#e6e7e2"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Heading spacing",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "item_spacing",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Item spacing",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "additional_info_spacing",
+      "min": 8,
+      "max": 32,
+      "step": 4,
+      "unit": "px",
+      "label": "Additional info spacing",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "address_spacing",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Address spacing",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "hours_padding",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Hours padding (desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "hours_padding_mobile",
+      "min": 15,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Hours padding (mobile)",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Map and store hours"
+    }
+  ]
+}
+{% endschema %}

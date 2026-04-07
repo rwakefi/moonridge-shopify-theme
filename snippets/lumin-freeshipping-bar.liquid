@@ -1,0 +1,47 @@
+{% assign freeShipping = settings.fsb_goal | times: 100 %}
+{% assign totalPrice = cart.total_price %}
+{% assign shippingDifference = freeShipping | minus: totalPrice %}  
+{% assign shippingDifferencePercentage = shippingDifference | divided_by: 100 %}
+{% assign shippingProgress = totalPrice | times:100 | divided_by:freeShipping | append:'%' %}
+{% assign initial_message = settings.fsb_headline_start %} 
+{% assign middle_message = settings.fsb_headline_middle %}
+{% assign end_message = settings.fsb_headline_end %}
+
+{% if settings.sup_enabled %}
+{% assign shippingGoalWithCurrency = freeShipping | money_without_trailing_zeros | replace: '.','<sup>,' | replace: ',','<sup>,' | prepend:'<span class="fsb--number">'| append:'</span>' %}
+{% assign shippingDifferenceWithCurrency = shippingDifference | money_without_trailing_zeros | replace: '.','<sup>,' | replace: ',','<sup>,' | prepend:'<span class="fsb--number">'| append:'</span>' %}  
+{% else %}
+{% assign shippingGoalWithCurrency = freeShipping | money_without_trailing_zeros | prepend:'<span class="fsb--number">'| append:'</span>' %}
+{% assign shippingDifferenceWithCurrency = shippingDifference | money_without_trailing_zeros | prepend:'<span class="fsb--number">'| append:'</span>' %}
+{% endif %}
+{% assign scheme1 = settings.color_schemes | first %}
+<div class="fsb-container color-{{ settings.bar_color_scheme }} gradient" style="--border-color: {{settings.fsb_border_color}}; --border-radius: {{settings.bar_radius}}px;text-align: {{settings.text_align}};{% unless settings.bar_color_scheme == scheme1 %}padding: 1rem 2rem;{% endunless %}">
+{% if cart.total_price <= 0 %}
+    <p class="fsb-paragraph">
+      {{ initial_message | replace: "(x)",  shippingGoalWithCurrency }}
+    </p>
+    {% elsif cart.total_price > 0 and cart.total_price < freeShipping %}
+    <p class="fsb-paragraph">
+      {{ middle_message | replace: '(x)', shippingDifferenceWithCurrency }}	
+    </p>
+    {% elsif cart.total_price >= freeShipping %}
+    <p class="fsb-paragraph">
+      {{ end_message | replace: "(x)",  shippingGoalWithCurrency }}
+    </p>
+    {% endif %}
+<div id="fsb" class="fsb" style="--bg-color: {{settings.fsb_background_color}};
+                                    --progress-color: {{settings.fsb_progress_color}};
+                                    --progress-color-2: {{settings.fsb_progress_color_2}};
+                                    --color: {{settings.fsb_text_color}};
+                                    --accent-color: {{settings.fsb_accent_color}};
+                                    --progress: {{shippingProgress}};
+                                    --bar-height: {{settings.bar_height}}px;
+                                    --bar-radius: {{settings.in_bar_radius}}px;"
+     data-headline-start="{{settings.fsb_headline_start}}"
+     data-headline-middle="{{settings.fsb_headline_middle}}"
+     data-headline-end="{{settings.fsb_headline_end}}"
+     data-goal="{{freeShipping}}">
+  <div class="fsb-progress">
+  </div>
+</div>
+</div>

@@ -286,6 +286,18 @@ fieldset.product-form__input .form__label {
   margin-bottom: 1rem;
   min-height: calc(4.2rem + var(--buttons-border-width) * 2);
   padding: 0 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+  font-weight: 600;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.product-form__submit:hover {
+  transform: translateY(-1px);
+}
+
+.product__info-container > * + * {
+  margin: 1.2rem 0 !important;
 }
 
 .no-js .product-form__submit.button--secondary {

@@ -24,18 +24,6 @@
 
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
 {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
-<style>
-  .lm-card-price {
-    font-size: {{ settings.card_price_size }}px !important;
-  }
-
-.card-wrapper .product-form__controls-group label.color-swatch {
-    width: {{settings.swatch_size_card}}px;
-    height: {{settings.swatch_size_card}}px;
-  
-}
-  
-</style>
 {%- if card_product and card_product != empty -%}
   {%- liquid
     assign ratio = 1

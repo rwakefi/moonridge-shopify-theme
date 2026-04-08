@@ -304,6 +304,14 @@
           font-size: 1.6rem;
         }
       }
+      .lm-card-price {
+        font-size: {{ settings.card_price_size }}px !important;
+      }
+
+      .card-wrapper .product-form__controls-group label.color-swatch {
+        width: {{ settings.swatch_size_card }}px;
+        height: {{ settings.swatch_size_card }}px;
+      }
     {% endstyle %}
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'lumin.css' | asset_url | stylesheet_tag }}

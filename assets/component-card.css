@@ -134,8 +134,8 @@
 }
 
 .card__content {
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) max-content minmax(0, 1fr);
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
   width: 100%;
   flex-grow: 1;

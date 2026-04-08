@@ -365,6 +365,14 @@
 
 .card-information {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-information .quick-add {
+  margin-top: auto !important;
+  padding-top: 1rem;
 }
 
 .card-information > * {

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -146,6 +155,24 @@
         "padding_bottom": 8
       }
     },
+    "founders_review": {
+      "type": "founders-review",
+      "settings": {
+        "heading": "What Natalie and Zack Think About it:",
+        "heading_size": 24,
+        "intro_text": "<p>This is honest feedback from founders Natalie and Zack, If this section is visible, we are describing the item, not AI.</p>",
+        "show_signature": true,
+        "signature_text": "Natalie & Zack",
+        "signature_alignment": "left",
+        "background_color": "rgba(0,0,0,0)",
+        "heading_color": "#1f1d24",
+        "text_color": "#1f1d24",
+        "max_width": 1200,
+        "border_radius": 0,
+        "padding_top": 16,
+        "padding_bottom": 28
+      }
+    },
     "1775442747a0d0551f": {
       "type": "_blocks",
       "blocks": {
@@ -191,21 +218,6 @@
         "ai_gen_block_8783896_EW84xa"
       ],
       "settings": {}
-    },
-    "founders_review": {
-      "type": "founders-review",
-      "settings": {
-        "heading": "What Natalie and Zack Think About it:",
-        "heading_size": 24,
-        "intro_text": "<p>This is honest feedback from founders Natalie and Zack, If this section is visible, we are describing the item, not AI.</p>",
-        "background_color": "rgba(0,0,0,0)",
-        "heading_color": "#1f1d24",
-        "text_color": "#1f1d24",
-        "max_width": 1200,
-        "border_radius": 0,
-        "padding_top": 16,
-        "padding_bottom": 28
-      }
     },
     "1762310307c9efb84a": {
       "type": "_blocks",
@@ -296,8 +308,8 @@
   },
   "order": [
     "main",
-    "1775442747a0d0551f",
     "founders_review",
+    "1775442747a0d0551f",
     "1762310307c9efb84a",
     "17623102579ae9dead",
     "17623096850b0c569c",

@@ -148,6 +148,9 @@
 .card__information {
   grid-row-start: 2;
   padding: 1.3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .card:not(.ratio) > .card__content {

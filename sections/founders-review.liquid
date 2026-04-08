@@ -25,6 +25,7 @@
 
     .founders-review__heading {
       color: {{ section.settings.heading_color }};
+      font-size: {{ section.settings.heading_size }}px;
       margin: 0 0 1.5rem 0;
       font-family: var(--font-heading-family);
     }
@@ -41,15 +42,25 @@
     .founders-review__content {
       line-height: 1.6;
     }
+    
+    @media screen and (max-width: 749px) {
+      .founders-review__heading {
+        font-size: {{ section.settings.heading_size | times: 0.8 | round: 0 }}px;
+      }
+    }
   {%- endstyle -%}
 
   <div class="founders-review section-{{ section.id }}-padding">
     <div class="founders-review__container page-width">
-      <h2 class="founders-review__heading h1">What Natalie and Zack Think About it:</h2>
+      {%- if section.settings.heading != blank -%}
+        <h2 class="founders-review__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
       
-      <div class="founders-review__intro">
-        This is honest feedback from founders Natalie and Zack about specific items that we have reviewed ourselves in our own words. If this section is visible, we describe what we think about this hat in our own words. This is not AI.
-      </div>
+      {%- if section.settings.intro_text != blank -%}
+        <div class="founders-review__intro rte">
+          {{ section.settings.intro_text }}
+        </div>
+      {%- endif -%}
 
       <div class="founders-review__content rte">
         {{ product.metafields.custom.zack_and_natalie_s_word_s | metafield_tag }}
@@ -64,6 +75,32 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "What Natalie and Zack Think About it:"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 32
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Description / Intro",
+      "default": "<p>This is honest feedback from founders Natalie and Zack about specific items that we have reviewed ourselves in our own words. If this section is visible, we describe what we think about this hat in our own words. This is not AI.</p>"
+    },
     {
       "type": "header",
       "content": "Appearance"

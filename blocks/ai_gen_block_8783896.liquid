@@ -39,6 +39,7 @@
 
   .ai-category-metadata-value-{{ ai_gen_id }} {
     font-size: {{ block.settings.value_size }}px;
+    font-weight: {{ block.settings.value_weight }};
     color: {{ block.settings.value_color }};
     margin: 0;
   }
@@ -320,6 +321,18 @@
       "step": 2,
       "unit": "px",
       "default": 14
+    },
+    {
+      "type": "select",
+      "id": "value_weight",
+      "label": "Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semibold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
     },
     {
       "type": "color",

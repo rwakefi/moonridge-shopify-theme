@@ -206,7 +206,7 @@
       "settings": {
         "heading": "What Natalie and Zack Think About it:",
         "heading_size": 24,
-        "intro_text": "<p>This is honest feedback from founders Natalie and Zack,  in our own words. If this section is visible, we are describing the item in our own words. This is not AI.</p>",
+        "intro_text": "<p>This is honest feedback from founders Natalie and Zack, If this section is visible, we are describing the item, not AI.</p>",
         "background_color": "rgba(0,0,0,0)",
         "heading_color": "#1f1d24",
         "text_color": "#1f1d24",

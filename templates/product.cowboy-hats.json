@@ -212,8 +212,8 @@
         "text_color": "#1f1d24",
         "max_width": 1200,
         "border_radius": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 16,
+        "padding_bottom": 28
       }
     },
     "1762310307c9efb84a": {

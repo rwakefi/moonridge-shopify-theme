@@ -41,6 +41,8 @@
 
     {% if page_description %}
       <meta name="description" content="{{ page_description | escape }}">
+    {% elsif shop.description != blank %}
+      <meta name="description" content="{{ shop.description | escape }}">
     {% endif %}
 
     {% render 'meta-tags' %}

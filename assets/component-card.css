@@ -151,6 +151,13 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  justify-content: flex-start; /* Ensure everything starts at the top */
+}
+
+/* Ensure the title area has its own container or consistent margin */
+.card__heading {
+  margin: 0 0 1.5rem 0;
+  padding: 0;
 }
 
 .card:not(.ratio) > .card__content {

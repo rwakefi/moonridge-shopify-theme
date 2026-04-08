@@ -182,6 +182,7 @@
             "title_color": "#1f1d24",
             "title_spacing": 8,
             "value_size": 14,
+            "value_weight": "400",
             "value_color": "#666666",
             "category_1_title": "Crown Shape",
             "category_1_fallback": "{{ closest.product.metafields.custom.crown_shape | metafield_text }}",
@@ -202,7 +203,18 @@
     },
     "founders_review": {
       "type": "founders-review",
-      "settings": {}
+      "settings": {
+        "heading": "What Natalie and Zack Think About it:",
+        "heading_size": 32,
+        "intro_text": "<p>This is honest feedback from founders Natalie and Zack,  in our own words. If this section is visible, we are describing the item in our own words. This is not AI.</p>",
+        "background_color": "rgba(0,0,0,0)",
+        "heading_color": "#1f1d24",
+        "text_color": "#1f1d24",
+        "max_width": 1200,
+        "border_radius": 0,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     },
     "1762310307c9efb84a": {
       "type": "_blocks",

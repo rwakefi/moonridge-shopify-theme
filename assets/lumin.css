@@ -763,4 +763,33 @@ font-size: 2.2rem!important;
 .variant_button .color-swatch {
   padding: 0 !important;
 }
-/* END CARD COLOR SWATCHES */
+/* BEGIN BUTTON ALIGNMENT FIX */
+.card__content {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.card__information {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+}
+
+.quick-add {
+  margin-top: auto !important;
+}
+
+.card__heading {
+  flex-grow: 0 !important;
+}
+
+.card-information {
+  flex-grow: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.card-information > .quick-add {
+  margin-top: auto !important;
+}
+/* END BUTTON ALIGNMENT FIX */

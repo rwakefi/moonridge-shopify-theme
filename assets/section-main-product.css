@@ -284,6 +284,8 @@ fieldset.product-form__input .form__label {
 
 .product-form__submit {
   margin-bottom: 1rem;
+  min-height: calc(4.2rem + var(--buttons-border-width) * 2);
+  padding: 0 1.5rem;
 }
 
 .no-js .product-form__submit.button--secondary {

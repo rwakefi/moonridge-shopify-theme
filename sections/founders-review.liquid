@@ -18,11 +18,28 @@
       background-color: {{ section.settings.background_color }};
       color: {{ section.settings.text_color }};
       border-radius: {{ section.settings.border_radius }}px;
+      border: 1px solid rgba(var(--color-foreground), 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .founders-review::after {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      bottom: 6px;
+      border: 1px solid rgba(var(--color-foreground), 0.1);
+      border-radius: {{ section.settings.border_radius | minus: 4 | max: 0 }}px;
+      pointer-events: none;
     }
 
     .founders-review__container {
       max-width: {{ section.settings.max_width }}px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     .founders-review__heading {

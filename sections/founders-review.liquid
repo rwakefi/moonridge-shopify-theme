@@ -1,5 +1,7 @@
 {%- if product.metafields.custom.zack_and_natalie_s_word_s != blank -%}
   {%- style -%}
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -41,6 +43,26 @@
 
     .founders-review__content {
       line-height: 1.6;
+      font-size: 1.1em;
+    }
+
+    .founders-review__signature {
+      margin-top: 2.5rem;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.4rem;
+      color: {{ section.settings.heading_color }};
+      text-align: {{ section.settings.signature_alignment }};
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .founders-review__signature-tagline {
+      font-family: var(--font-body-family);
+      font-size: 0.5em;
+      text-transform: uppercase;
+      letter-spacing: 0.2rem;
+      opacity: 0.7;
     }
     
     @media screen and (max-width: 749px) {
@@ -65,6 +87,13 @@
       <div class="founders-review__content rte">
         {{ product.metafields.custom.zack_and_natalie_s_word_s | metafield_tag }}
       </div>
+
+      {%- if section.settings.show_signature -%}
+        <div class="founders-review__signature">
+          <div>{{ section.settings.signature_text }}</div>
+          <div class="founders-review__signature-tagline">Founders, Rafter M Hat Co.</div>
+        </div>
+      {%- endif -%}
     </div>
   </div>
 {%- endif -%}
@@ -100,6 +129,33 @@
       "id": "intro_text",
       "label": "Description / Intro",
       "default": "<p>This is honest feedback from founders Natalie and Zack about specific items that we have reviewed ourselves in our own words. If this section is visible, we describe what we think about this hat in our own words. This is not AI.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Signature"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_signature",
+      "label": "Show handwritten signature",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "signature_text",
+      "label": "Signature Text",
+      "default": "Natalie & Zack"
+    },
+    {
+      "type": "select",
+      "id": "signature_alignment",
+      "label": "Signature Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
     },
     {
       "type": "header",

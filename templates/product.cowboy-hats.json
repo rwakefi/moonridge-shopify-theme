@@ -116,7 +116,7 @@
         "custom_liquid_XDbg47": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": ""
+            "custom_liquid": "{% render 'sizing-chart' %}"
           }
         }
       },
@@ -131,7 +131,6 @@
         "quantity_selector",
         "buy_buttons",
         "collapsible_tab_Rz9b6j",
-        "image_mCjNUw",
         "custom_liquid_XDbg47"
       ],
       "custom_css": [

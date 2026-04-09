@@ -1,186 +1,173 @@
 <style>
-  .rafter-size-chart-container {
-    margin: -10px 0 0 0;
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+  .rafter-chart-wrap {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
     padding: 0;
-    font-family: inherit;
   }
 
-  /* Kill whitespace from surrounding Shopify blocks */
-  .product__accordion + .rafter-size-chart-container,
-  .product__accordion ~ * .rafter-size-chart-container {
-    margin-top: -15px;
-  }
-
-  .rafter-size-chart-container * {
-    box-sizing: border-box;
-  }
-
-  .rafter-size-title {
-    font-family: "Playfair Display SC", "Playfair Display", serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin: 0 0 2px 0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .rafter-size-table .toggle-row td {
-    border: none;
-    padding: 0;
-    vertical-align: bottom;
-  }
-
-  .rafter-unit-toggle {
+  /* Unit toggle */
+  .rafter-chart-toggle {
     display: flex;
-    gap: 12px;
-    font-size: 1rem;
-    font-family: "Playfair Display SC", "Playfair Display", serif;
-    justify-content: flex-start;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display SC', serif;
+    font-size: 0.85rem;
   }
-
-  .rafter-unit-toggle span {
+  .rafter-chart-toggle span {
     cursor: pointer;
-    color: #999;
-    position: relative;
-    transition: color 0.2s ease;
-  }
-
-  .rafter-unit-toggle span.active {
-    color: #4d283b;
-    font-weight: bold;
-    font-style: italic;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-
-  .rafter-size-table-wrapper {
-    overflow-x: auto;
-  }
-
-  .rafter-size-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    font-size: 1.2rem;
-    color: #333;
-    font-family: "Playfair Display SC", "Playfair Display", serif;
-  }
-
-  .rafter-size-table .col-hatsize { width: 22%; }
-  .rafter-size-table .col-measurement { width: 38%; }
-  .rafter-size-table .col-general { width: 40%; }
-
-  .rafter-size-table th {
-    padding: 6px 0;
-    border-bottom: 2px solid #4d283b;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 1rem;
+    color: #bbb;
+    transition: color 0.2s;
     letter-spacing: 0.5px;
+  }
+  .rafter-chart-toggle span.active {
     color: #4d283b;
-    font-family: "Playfair Display SC", "Playfair Display", serif;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .rafter-chart-toggle .sep { color: #ddd; }
+
+  /* Main grid */
+  .rafter-chart-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1.8fr 1fr;
+    border: 2px solid #4d283b;
   }
 
-  .rafter-size-table td {
-    padding: 2px 0;
-    border-bottom: 1px solid #eee;
+  /* Header row */
+  .rafter-chart-grid .rcg-header {
+    background: #4d283b;
+    color: #f5e9d0;
+    font-family: 'Playfair Display SC', serif;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    padding: 10px 14px;
+    font-weight: 400;
+    text-transform: uppercase;
   }
 
-  .rafter-size-tip {
-    margin-top: 10px;
-    font-size: 1.1rem;
-    line-height: 1.3;
+  /* Data cells */
+  .rafter-chart-grid .rcg-cell {
+    padding: 7px 14px;
+    border-bottom: 1px solid #f0e8e0;
+    display: flex;
+    align-items: center;
+  }
+
+  .rafter-chart-grid .rcg-row:last-child .rcg-cell {
+    border-bottom: none;
+  }
+
+  /* Alternating rows */
+  .rafter-chart-grid .rcg-row:nth-child(odd) .rcg-cell {
+    background: #fdfaf7;
+  }
+  .rafter-chart-grid .rcg-row:nth-child(even) .rcg-cell {
+    background: #fff;
+  }
+
+  /* Hat Size — big and bold */
+  .rcg-cell.rcg-hatsize {
+    font-family: 'Playfair Display SC', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #2a1318;
+    border-right: 2px solid #f0e8e0;
+  }
+
+  /* Measurement */
+  .rcg-cell.rcg-measurement {
+    font-size: 1rem;
     color: #444;
-    background: #fafafa;
-    padding: 8px 12px;
-    border-left: 3px solid #1a1a1a;
+    border-right: 1px solid #f0e8e0;
   }
 
-  .rafter-unit-cm {
-    display: none;
+  /* General size — pill badge */
+  .rcg-cell.rcg-general {
+    justify-content: center;
   }
 
-  body.rafter-unit-mode-cm .rafter-unit-cm {
-    display: table-cell;
+  .rcg-size-badge {
+    background: #4d283b;
+    color: #f5e9d0;
+    font-family: 'Playfair Display SC', serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 4px 16px;
+    border-radius: 30px;
+    letter-spacing: 1px;
+    min-width: 44px;
+    text-align: center;
   }
-  body.rafter-unit-mode-cm .rafter-unit-in {
-    display: none;
+
+  /* Sizing tip */
+  .rafter-chart-tip {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: #fdfaf7;
+    border-left: 4px solid #4d283b;
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.5;
+  }
+  .rafter-chart-tip strong {
+    font-family: 'Playfair Display SC', serif;
+    color: #4d283b;
+    font-size: 0.95rem;
   }
 
-  [data-unit="cm"] { display: none; }
-  .unit-cm [data-unit="cm"] { display: inline; }
-  .unit-cm [data-unit="in"] { display: none; }
-
-  .unit-in [data-unit="cm"] { display: none; }
-  .unit-in [data-unit="in"] { display: inline; }
-
+  /* Unit show/hide */
+  .rafter-chart-wrap.unit-cm [data-unit="in"] { display: none; }
+  .rafter-chart-wrap.unit-cm [data-unit="cm"] { display: inline; }
+  .rafter-chart-wrap.unit-in [data-unit="cm"] { display: none; }
+  .rafter-chart-wrap.unit-in [data-unit="in"] { display: inline; }
 </style>
 
-<div class="rafter-size-chart-container unit-in" id="rafterSizeChart">
-  <h3 class="rafter-size-title">Sizing Guide</h3>
+{% assign rows = "6 3/4,21 1/8,54,S|6 7/8,21 1/2,55,S|7,21 7/8,56,M|7 1/8,22 1/4,57,M|7 1/4,22 5/8,58,L|7 3/8,23,59,L|7 1/2,23 1/2,60,XL|7 5/8,23 7/8,61,XL|7 3/4,24 1/4,62,XXL|7 7/8,24 5/8,63,XXL|8,25,64,XXXL" | split: "|" %}
 
-  <div class="rafter-size-table-wrapper">
-    <table class="rafter-size-table">
-      <colgroup>
-        <col class="col-hatsize">
-        <col class="col-measurement">
-        <col class="col-general">
-      </colgroup>
-      <thead>
-        <tr class="toggle-row">
-          <td></td>
-          <td></td>
-          <td>
-            <div class="rafter-unit-toggle" onclick="toggleRafterUnits()">
-              <span id="toggleIn" class="active">Inches</span>
-              <span id="toggleCm">Centimeters</span>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>Hat Size</th>
-          <th>Measurement</th>
-          <th>General Size</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>6 3/4</td><td><span data-unit="in">21 1/8 Inches</span><span data-unit="cm">54 cm</span></td><td>S</td></tr>
-        <tr><td>6 7/8</td><td><span data-unit="in">21 1/2 Inches</span><span data-unit="cm">55 cm</span></td><td>S</td></tr>
-        <tr><td>7</td><td><span data-unit="in">21 7/8 Inches</span><span data-unit="cm">56 cm</span></td><td>M</td></tr>
-        <tr><td>7 1/8</td><td><span data-unit="in">22 1/4 Inches</span><span data-unit="cm">57 cm</span></td><td>M</td></tr>
-        <tr><td>7 1/4</td><td><span data-unit="in">22 5/8 Inches</span><span data-unit="cm">58 cm</span></td><td>L</td></tr>
-        <tr><td>7 3/8</td><td><span data-unit="in">23 Inches</span><span data-unit="cm">59 cm</span></td><td>L</td></tr>
-        <tr><td>7 1/2</td><td><span data-unit="in">23 1/2 Inches</span><span data-unit="cm">60 cm</span></td><td>XL</td></tr>
-        <tr><td>7 5/8</td><td><span data-unit="in">23 7/8 Inches</span><span data-unit="cm">61 cm</span></td><td>XL</td></tr>
-        <tr><td>7 3/4</td><td><span data-unit="in">24 1/4 Inches</span><span data-unit="cm">62 cm</span></td><td>XXL</td></tr>
-        <tr><td>7 7/8</td><td><span data-unit="in">24 5/8 Inches</span><span data-unit="cm">63 cm</span></td><td>XXL</td></tr>
-        <tr><td>8</td><td><span data-unit="in">25 Inches</span><span data-unit="cm">64 cm</span></td><td>XXXL</td></tr>
-      </tbody>
-    </table>
+<div class="rafter-chart-wrap unit-in" id="rafterChartWrap">
+
+  <div class="rafter-chart-toggle">
+    <span id="rcToggleIn" class="active" onclick="rcToggle('in')">Inches</span>
+    <span class="sep">/</span>
+    <span id="rcToggleCm" onclick="rcToggle('cm')">Centimeters</span>
   </div>
 
-  <div class="rafter-size-tip">
-    <strong>Sizing Tip:</strong> If you are in between sizes, go with the larger size! We include free sizing tape with every hat order to help you achieve a perfect custom fit.
+  <div class="rafter-chart-grid">
+    <div class="rcg-header">Hat Size</div>
+    <div class="rcg-header">Measurement</div>
+    <div class="rcg-header" style="text-align:center;">Size</div>
+
+    {% for row in rows %}
+      {% assign cols = row | split: "," %}
+      <div class="rcg-row" style="display:contents;">
+        <div class="rcg-cell rcg-hatsize">{{ cols[0] }}</div>
+        <div class="rcg-cell rcg-measurement">
+          <span data-unit="in">{{ cols[1] }} Inches</span>
+          <span data-unit="cm">{{ cols[2] }} cm</span>
+        </div>
+        <div class="rcg-cell rcg-general">
+          <span class="rcg-size-badge">{{ cols[3] }}</span>
+        </div>
+      </div>
+    {% endfor %}
   </div>
+
+  <div class="rafter-chart-tip">
+    <strong>Sizing Tip:</strong> If you are in between sizes, go with the larger size — we include free sizing tape with every hat to help you get the perfect fit.
+  </div>
+
 </div>
 
 <script>
-  function toggleRafterUnits() {
-    const container = document.getElementById('rafterSizeChart');
-    const toggleIn = document.getElementById('toggleIn');
-    const toggleCm = document.getElementById('toggleCm');
-    
-    if (container.classList.contains('unit-in')) {
-      container.classList.remove('unit-in');
-      container.classList.add('unit-cm');
-      toggleIn.classList.remove('active');
-      toggleCm.classList.add('active');
-    } else {
-      container.classList.remove('unit-cm');
-      container.classList.add('unit-in');
-      toggleCm.classList.remove('active');
-      toggleIn.classList.add('active');
-    }
+  function rcToggle(unit) {
+    const wrap = document.getElementById('rafterChartWrap');
+    wrap.classList.remove('unit-in', 'unit-cm');
+    wrap.classList.add('unit-' + unit);
+    document.getElementById('rcToggleIn').classList.toggle('active', unit === 'in');
+    document.getElementById('rcToggleCm').classList.toggle('active', unit === 'cm');
   }
 </script>

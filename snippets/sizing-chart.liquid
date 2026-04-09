@@ -1,8 +1,18 @@
 <style>
   .rafter-size-chart-container {
-    margin-top: 0;
+    margin: -10px 0 0 0;
     padding: 0;
     font-family: inherit;
+  }
+
+  /* Kill whitespace from surrounding Shopify blocks */
+  .product__accordion + .rafter-size-chart-container,
+  .product__accordion ~ * .rafter-size-chart-container {
+    margin-top: -15px;
+  }
+
+  .rafter-size-chart-container * {
+    box-sizing: border-box;
   }
 
   .rafter-size-title {

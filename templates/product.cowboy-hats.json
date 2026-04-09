@@ -101,18 +101,6 @@
             "page": ""
           }
         },
-        "image_mCjNUw": {
-          "type": "image",
-          "name": "Size Chart",
-          "settings": {
-            "image": "shopify://shop_images/Sizing_Chart_1200_x_400_px_47c23ba6-ea0f-4441-9dc5-8389c372974d.svg",
-            "image_size": 100,
-            "image_border": 0,
-            "img_position": "center",
-            "padding_top": 14,
-            "padding_bottom": 14
-          }
-        },
         "custom_liquid_XDbg47": {
           "type": "custom_liquid",
           "settings": {

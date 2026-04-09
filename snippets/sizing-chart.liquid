@@ -1,5 +1,15 @@
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+  /* Kill Shopify's inherited block spacing around this custom_liquid block */
+  product-info > *:has(.rafter-chart-wrap),
+  product-info > .rafter-chart-wrap,
+  .product__accordion + * {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .rafter-chart-wrap {
+    margin-top: -1.5rem;
+  }
 
   .rafter-chart-wrap {
     font-family: 'Playfair Display', serif;

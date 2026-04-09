@@ -1,47 +1,55 @@
 <style>
   .rafter-size-chart-container {
-    margin-top: 30px;
-    padding: 20px;
-    background: #fbfbfb;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    font-family: 'Inter', sans-serif;
+    margin-top: 20px;
+    padding: 10px 0;
+    font-family: inherit;
   }
 
   .rafter-size-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
+    align-items: flex-end;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
   }
 
   .rafter-size-title {
-    font-family: "Cormorant SC", serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #4d283b;
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a1a;
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
   .rafter-unit-toggle {
     display: flex;
-    background: #eee;
-    padding: 3px;
-    border-radius: 20px;
-    cursor: pointer;
+    gap: 10px;
+    font-size: 0.85rem;
   }
 
   .rafter-unit-toggle span {
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    transition: all 0.3s ease;
+    cursor: pointer;
+    color: #888;
+    position: relative;
+    transition: color 0.2s ease;
   }
 
   .rafter-unit-toggle span.active {
-    background: #4d283b;
-    color: #fff;
+    color: #000;
+    font-weight: bold;
+  }
+
+  .rafter-unit-toggle span.active::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #000;
   }
 
   .rafter-size-table-wrapper {
@@ -52,36 +60,31 @@
     width: 100%;
     border-collapse: collapse;
     text-align: left;
-    font-size: 0.9rem;
-  }
-
-  .rafter-size-table th {
-    padding: 12px;
-    border-bottom: 2px solid #4d283b;
-    color: #4d283b;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .rafter-size-table td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
     color: #333;
   }
 
-  .rafter-size-table tr:hover td {
-    background: #fdf2f6;
+  .rafter-size-table th {
+    padding: 10px 5px;
+    border-bottom: 1px solid #ccc;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+
+  .rafter-size-table td {
+    padding: 10px 5px;
+    border-bottom: 1px solid #eee;
   }
 
   .rafter-size-tip {
     margin-top: 20px;
     font-size: 0.85rem;
-    color: #666;
-    font-style: italic;
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
+    color: #555;
+    background: #fafafa;
+    padding: 15px;
+    border-left: 3px solid #1a1a1a;
   }
 
   .rafter-unit-cm {
@@ -106,10 +109,10 @@
 
 <div class="rafter-size-chart-container unit-in" id="rafterSizeChart">
   <div class="rafter-size-header">
-    <h3 class="rafter-size-title">OFFICIAL HAT SIZING</h3>
+    <h3 class="rafter-size-title">Sizing Guide</h3>
     <div class="rafter-unit-toggle" onclick="toggleRafterUnits()">
-      <span id="toggleIn" class="active">IN</span>
-      <span id="toggleCm">CM</span>
+      <span id="toggleIn" class="active">Inches</span>
+      <span id="toggleCm">Centimeters</span>
     </div>
   </div>
 
@@ -118,29 +121,28 @@
       <thead>
         <tr>
           <th>Hat Size</th>
-          <th>Measurements</th>
-          <th>Letter Size</th>
+          <th>Measurement</th>
+          <th>General Size</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>6 3/4</td><td><span data-unit="in">21 1/8"</span><span data-unit="cm">54 cm</span></td><td>S</td></tr>
-        <tr><td>6 7/8</td><td><span data-unit="in">21 1/2"</span><span data-unit="cm">55 cm</span></td><td>S</td></tr>
-        <tr><td>7</td><td><span data-unit="in">21 7/8"</span><span data-unit="cm">56 cm</span></td><td>M</td></tr>
-        <tr><td>7 1/8</td><td><span data-unit="in">22 1/4"</span><span data-unit="cm">57 cm</span></td><td>M</td></tr>
-        <tr><td>7 1/4</td><td><span data-unit="in">22 5/8"</span><span data-unit="cm">58 cm</span></td><td>L</td></tr>
-        <tr><td>7 3/8</td><td><span data-unit="in">23"</span><span data-unit="cm">59 cm</span></td><td>L</td></tr>
-        <tr><td>7 1/2</td><td><span data-unit="in">23 1/2"</span><span data-unit="cm">60 cm</span></td><td>XL</td></tr>
-        <tr><td>7 5/8</td><td><span data-unit="in">23 7/8"</span><span data-unit="cm">61 cm</span></td><td>XL</td></tr>
-        <tr><td>7 3/4</td><td><span data-unit="in">24 1/4"</span><span data-unit="cm">62 cm</span></td><td>XXL</td></tr>
-        <tr><td>7 7/8</td><td><span data-unit="in">24 5/8"</span><span data-unit="cm">63 cm</span></td><td>XXL</td></tr>
-        <tr><td>8</td><td><span data-unit="in">25"</span><span data-unit="cm">64 cm</span></td><td>XXXL</td></tr>
+        <tr><td>6 3/4</td><td><span data-unit="in">21 1/8 Inches</span><span data-unit="cm">54 cm</span></td><td>S</td></tr>
+        <tr><td>6 7/8</td><td><span data-unit="in">21 1/2 Inches</span><span data-unit="cm">55 cm</span></td><td>S</td></tr>
+        <tr><td>7</td><td><span data-unit="in">21 7/8 Inches</span><span data-unit="cm">56 cm</span></td><td>M</td></tr>
+        <tr><td>7 1/8</td><td><span data-unit="in">22 1/4 Inches</span><span data-unit="cm">57 cm</span></td><td>M</td></tr>
+        <tr><td>7 1/4</td><td><span data-unit="in">22 5/8 Inches</span><span data-unit="cm">58 cm</span></td><td>L</td></tr>
+        <tr><td>7 3/8</td><td><span data-unit="in">23 Inches</span><span data-unit="cm">59 cm</span></td><td>L</td></tr>
+        <tr><td>7 1/2</td><td><span data-unit="in">23 1/2 Inches</span><span data-unit="cm">60 cm</span></td><td>XL</td></tr>
+        <tr><td>7 5/8</td><td><span data-unit="in">23 7/8 Inches</span><span data-unit="cm">61 cm</span></td><td>XL</td></tr>
+        <tr><td>7 3/4</td><td><span data-unit="in">24 1/4 Inches</span><span data-unit="cm">62 cm</span></td><td>XXL</td></tr>
+        <tr><td>7 7/8</td><td><span data-unit="in">24 5/8 Inches</span><span data-unit="cm">63 cm</span></td><td>XXL</td></tr>
+        <tr><td>8</td><td><span data-unit="in">25 Inches</span><span data-unit="cm">64 cm</span></td><td>XXXL</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="rafter-size-tip">
-    <i class="fa-solid fa-circle-info"></i>
-    <span>If you are in between sizes, we always recommend going with the <strong>larger size</strong>. We include free sizers with every hat to help you achieve that perfect custom fit.</span>
+    <strong>Sizing Tip:</strong> If you are in between sizes, go with the larger size! We include free sizing tape with every hat order to help you achieve a perfect custom fit.
   </div>
 </div>
 

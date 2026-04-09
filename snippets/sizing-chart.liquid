@@ -5,36 +5,33 @@
     font-family: inherit;
   }
 
-  .rafter-size-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 8px;
-    border-bottom: 2px solid #000;
-    padding-bottom: 4px;
-  }
-
   .rafter-size-title {
-    font-family: inherit;
+    font-family: "Playfair Display", "Cormorant SC", serif;
     font-size: 1.4rem;
     font-weight: 700;
     color: #1a1a1a;
-    margin: 0;
+    margin: 0 0 6px 0;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-family: "Playfair Display", "Cormorant SC", serif;
+  }
+
+  .rafter-size-table .toggle-row td {
+    border: none;
+    padding: 0 0 4px 0;
+    vertical-align: bottom;
   }
 
   .rafter-unit-toggle {
     display: flex;
-    gap: 15px;
-    font-size: 1.2rem;
+    gap: 12px;
+    font-size: 1rem;
     font-family: "Playfair Display", "Cormorant SC", serif;
+    justify-content: flex-start;
   }
 
   .rafter-unit-toggle span {
     cursor: pointer;
-    color: #888;
+    color: #999;
     position: relative;
     transition: color 0.2s ease;
   }
@@ -43,16 +40,8 @@
     color: #4d283b;
     font-weight: bold;
     font-style: italic;
-  }
-
-  .rafter-unit-toggle span.active::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: #4d283b;
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
 
   .rafter-size-table-wrapper {
@@ -68,8 +57,12 @@
     font-family: "Playfair Display", "Cormorant SC", serif;
   }
 
+  .rafter-size-table .col-hatsize { width: 22%; }
+  .rafter-size-table .col-measurement { width: 38%; }
+  .rafter-size-table .col-general { width: 40%; }
+
   .rafter-size-table th {
-    padding: 6px 2px;
+    padding: 6px 0;
     border-bottom: 2px solid #4d283b;
     font-weight: 700;
     text-transform: uppercase;
@@ -79,7 +72,7 @@
   }
 
   .rafter-size-table td {
-    padding: 4px 2px;
+    padding: 4px 0;
     border-bottom: 1px solid #eee;
   }
 
@@ -114,17 +107,26 @@
 </style>
 
 <div class="rafter-size-chart-container unit-in" id="rafterSizeChart">
-  <div class="rafter-size-header">
-    <h3 class="rafter-size-title">Sizing Guide</h3>
-    <div class="rafter-unit-toggle" onclick="toggleRafterUnits()">
-      <span id="toggleIn" class="active">Inches</span>
-      <span id="toggleCm">Centimeters</span>
-    </div>
-  </div>
+  <h3 class="rafter-size-title">Sizing Guide</h3>
 
   <div class="rafter-size-table-wrapper">
     <table class="rafter-size-table">
+      <colgroup>
+        <col class="col-hatsize">
+        <col class="col-measurement">
+        <col class="col-general">
+      </colgroup>
       <thead>
+        <tr class="toggle-row">
+          <td></td>
+          <td></td>
+          <td>
+            <div class="rafter-unit-toggle" onclick="toggleRafterUnits()">
+              <span id="toggleIn" class="active">Inches</span>
+              <span id="toggleCm">Centimeters</span>
+            </div>
+          </td>
+        </tr>
         <tr>
           <th>Hat Size</th>
           <th>Measurement</th>

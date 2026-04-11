@@ -347,3 +347,32 @@ body:not(.template-index) .header__icon .icon,
   color: var(--rm-gold) !important;
   padding-left: 5px;
 }
+
+/* Visit Us Page Font Overhaul */
+[class*="ai_gen_block"] h2,
+[class*="ai_gen_block"] h3,
+[class*="ai_gen_block"] .heading,
+.rich-text__blocks h2 {
+  font-family: "Canela", "Playfair Display", serif !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.05em !important;
+  color: #312110 !important;
+}
+
+[class*="ai_gen_block"] p,
+[class*="ai_gen_block"] span,
+[class*="ai_gen_block"] td,
+[class*="ai_gen_block"] div,
+[class*="ai_gen_block"] .text-content {
+  font-family: "Canela", "Playfair Display", serif !important;
+  font-size: 1.6rem !important;
+  line-height: 1.8 !important;
+  color: #312110 !important;
+  font-weight: 400 !important;
+}
+
+[class*="ai_gen_block"] strong,
+[class*="ai_gen_block"] b {
+  font-weight: 600 !important;
+  color: #312110 !important;
+}

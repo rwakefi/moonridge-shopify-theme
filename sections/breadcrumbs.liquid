@@ -39,21 +39,22 @@
   .breadcrumbs__item {
     display: inline-flex;
     align-items: center;
-    font-size: 1.3rem;
-    font-family: var(--font-heading-family);
-    color: #312110;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: 1.1rem !important;
+    font-family: "Canela", "Playfair Display", serif !important;
+    color: #312110 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    font-weight: 500 !important;
   }
 
   .breadcrumbs__item a {
     text-decoration: none;
-    color: #312110;
-    transition: color 0.3s ease;
+    color: #312110 !important;
+    transition: all 0.3s ease;
   }
 
   .breadcrumbs__item a:hover {
-    color: #49382b;
+    color: #cca47c !important;
   }
 
   .breadcrumbs__item:not(:last-child):after {
@@ -66,7 +67,7 @@
   }
 
   .breadcrumbs__link[aria-current="page"] {
-    color: rgba(49, 33, 16, 0.5);
+    color: rgba(49, 33, 16, 0.5) !important;
     font-weight: normal;
     text-decoration: none;
   }

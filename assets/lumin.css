@@ -990,6 +990,146 @@ h1, h2, h3, .h1, .h2, .h3, .card__heading, .banner__heading {
 
 /* Header Refinement */
 /* Header Refinement - Corrected Visibility Logic */
+/* 
+  Heritage Luxury Design System for Rafter M 
+  Premium western aesthetics: rich textures, elegant serif typography, and spacious layouts.
+*/
+
+:root {
+  --rm-leather: #312110;
+  --rm-cream: #f9f7f2;
+  --rm-gold: #c9a84c;
+  --rm-tan: #a8947a;
+  --rm-border: rgba(49, 33, 16, 0.12);
+  --rm-shadow: 0 15px 45px rgba(49, 33, 16, 0.08);
+  --rm-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* FADE IN UP ANIMATION */
+@keyframes rm-fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rm-animate {
+  animation: rm-fadeInUp 1s both;
+}
+
+/* 1. TYPOGRAPHY OVERHAUL */
+h1, h2, h3, .h1, .h2, .h3, .card__heading, .banner__heading {
+  font-family: "Canela", "Playfair Display", serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+  /* color: var(--rm-leather) !important; -- Removed to prevent hiding text on dark backgrounds */
+}
+
+.banner__heading {
+  font-size: 5.2rem !important;
+  line-height: 1.1 !important;
+}
+
+.card__heading a {
+  font-size: 1.8rem !important;
+  transition: var(--rm-transition);
+}
+
+/* 2. PRODUCT CARDS - PREMIUM ELEVATION */
+.card-wrapper.product-card-wrapper {
+  background: white;
+  border-radius: 4px; /* Classic, not too rounded */
+  transition: var(--rm-transition);
+  padding: 10px;
+  border: 1px solid transparent;
+}
+
+.card-wrapper.product-card-wrapper:hover {
+  border-color: var(--rm-border);
+  box-shadow: var(--rm-shadow);
+  transform: translateY(-8px);
+}
+
+.card__inner {
+  border-radius: 2px !important;
+  overflow: hidden;
+}
+
+.card__content {
+  padding-top: 1.5rem !important;
+}
+
+.card-price {
+  margin-top: 0.8rem;
+}
+
+.price-item {
+  font-weight: 500 !important;
+  color: var(--rm-leather) !important;
+}
+
+/* 3. BUTTONS - SOPHISTICATED REFINEMENT */
+.button, .shopify-payment-button__button {
+  border-radius: 2px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  font-weight: 600 !important;
+  padding: 1.2rem 2.8rem !important;
+  transition: var(--rm-transition) !important;
+  background-color: var(--rm-leather) !important;
+  border: 1px solid var(--rm-leather) !important;
+}
+
+.button:hover {
+  background-color: transparent !important;
+  color: var(--rm-leather) !important;
+  box-shadow: 0 5px 15px rgba(49, 33, 16, 0.15);
+}
+
+.button--secondary {
+  background-color: transparent !important;
+  color: var(--rm-leather) !important;
+}
+
+.button--secondary:hover {
+  background-color: var(--rm-leather) !important;
+  color: white !important;
+}
+
+/* 4. MICRO-ANIMATIONS */
+.product-card-wrapper .media img {
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.product-card-wrapper:hover .media img {
+  transform: scale(1.08);
+}
+
+/* Section Headings Border Decoration */
+.section-heading-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--rm-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--rm-tan);
+  border-radius: 10px;
+}
+
+/* Header Refinement */
+/* Header Refinement - Corrected Visibility Logic */
 .header-wrapper {
   border-bottom: 1px solid var(--rm-border) !important;
   transition: background 0.4s ease, border-color 0.4s ease;
@@ -998,14 +1138,14 @@ h1, h2, h3, .h1, .h2, .h3, .card__heading, .banner__heading {
 /* 1. Only apply white background on Non-Home pages OR when scrolled on Home */
 body:not(.template-index) .header-wrapper,
 .shopify-section-header-sticky .header-wrapper {
-  background: rgba(255, 255, 255, 0.98) !important;
+  background: var(--rm-leather) !important;
   backdrop-filter: blur(10px);
 }
 
 /* 2. Navigation Link Colors - Only force leather color when header has solid background */
 body:not(.template-index) .header__menu-item,
 .shopify-section-header-sticky .header__menu-item {
-  color: var(--rm-leather) !important;
+  color: white !important;
 }
 
 .header__menu-item {
@@ -1018,6 +1158,12 @@ body:not(.template-index) .header__menu-item,
 
 .header__menu-item:hover {
   color: var(--rm-gold) !important;
+}
+
+/* Ensure Icons and Search are white on the brown header */
+body:not(.template-index) .header__icon .icon,
+.shopify-section-header-sticky .header__icon .icon {
+  color: white !important;
 }
 
 /* 5. PRODUCT PAGE REFINEMENT */

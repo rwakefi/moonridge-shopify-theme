@@ -1137,14 +1137,21 @@ h1, h2, h3, .h1, .h2, .h3, .card__heading, .banner__heading {
 
 /* 1. Only apply white background on Non-Home pages OR when scrolled on Home */
 body:not(.template-index) .header-wrapper,
-.shopify-section-header-sticky .header-wrapper {
+.shopify-section-header-sticky .header-wrapper,
+.header__submenu, 
+.menu-drawer {
   background: var(--rm-leather) !important;
   backdrop-filter: blur(10px);
 }
 
-/* 2. Navigation Link Colors - Only force leather color when header has solid background */
+.header__submenu {
+  border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+/* 2. Navigation Link Colors */
 body:not(.template-index) .header__menu-item,
-.shopify-section-header-sticky .header__menu-item {
+.shopify-section-header-sticky .header__menu-item,
+.menu-drawer__menu-item {
   color: white !important;
 }
 

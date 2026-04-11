@@ -13,6 +13,21 @@
   --rm-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+/* Glassmorphism Utilities */
+.glass-leather {
+  background: rgba(49, 33, 16, 0.75) !important;
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
 /* FADE IN UP ANIMATION */
 @keyframes rm-fadeInUp {
   from {
@@ -80,22 +95,25 @@ h1, h2, h3, .h1, .h2, .h3, .card__heading, .banner__heading {
   color: var(--rm-leather) !important;
 }
 
-/* 3. BUTTONS - SOPHISTICATED REFINEMENT */
+/* 3. BUTTONS - SOPHISTICATED REFINEMENT (GUCCI INSPIRED) */
 .button, .shopify-payment-button__button {
-  border-radius: 2px !important;
+  border-radius: 4px !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.15em !important;
-  font-weight: 600 !important;
-  padding: 1.2rem 2.8rem !important;
+  letter-spacing: 0.18em !important;
+  font-weight: 500 !important;
+  padding: 1.4rem 3.2rem !important;
   transition: var(--rm-transition) !important;
-  background-color: var(--rm-leather) !important;
-  border: 1px solid var(--rm-leather) !important;
+  background-color: rgba(49, 33, 16, 0.82) !important; /* Leather Glass */
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
 }
 
 .button:hover {
-  background-color: transparent !important;
-  color: var(--rm-leather) !important;
-  box-shadow: 0 5px 15px rgba(49, 33, 16, 0.15);
+  background-color: var(--rm-leather) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(49, 33, 16, 0.2);
 }
 
 .button--secondary {
@@ -184,10 +202,10 @@ body:not(.template-index) .header-wrapper,
 }
 
 .header__menu-item {
-  letter-spacing: 0.12em !important;
+  letter-spacing: 0.2em !important;
   text-transform: uppercase !important;
   font-weight: 500 !important;
-  font-size: 1.15rem !important;
+  font-size: 1.1rem !important;
   transition: color 0.3s ease;
 }
 
@@ -242,12 +260,24 @@ body:not(.template-index) .header__icon .icon,
   margin: 1.5rem auto;
 }
 
-/* 6. FOOTER OVERHAUL - HERITAGE LUXURY */
+/* 6. GALLERY SPACING - MUSEUM FEEL */
+.shopify-section {
+  margin-top: 8rem !important;
+  margin-bottom: 8rem !important;
+}
+
+@media screen and (max-width: 749px) {
+  .shopify-section {
+    margin-top: 5rem !important;
+    margin-bottom: 5rem !important;
+  }
+}
+
 .footer {
   background-color: var(--rm-leather) !important;
   color: white !important;
   border-top: 1px solid rgba(255,255,255,0.1) !important;
-  margin-top: 5rem !important;
+  margin-top: 0 !important;
 }
 
 .footer-block__heading {

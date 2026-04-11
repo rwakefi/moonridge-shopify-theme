@@ -1,0 +1,65 @@
+<div id="custom-concierge-trigger" class="glass-leather" onclick="openShopifyInbox()">
+  <span>CHAT WITH A HATTER</span>
+</div>
+
+<script>
+  function openShopifyInbox() {
+    // Standard Shopify Inbox trigger
+    if (window.ShopifyChat && window.ShopifyChat.open) {
+      window.ShopifyChat.open();
+    } else if (window.shopifyInbox && window.shopifyInbox.open) {
+      window.shopifyInbox.open();
+    } else {
+      // Fallback: try to find the button and click it if it's hidden but present
+      const inboxButton = document.querySelector('.shopify-inbox-button') || document.querySelector('#shopify-chat > iframe');
+      if (inboxButton) {
+        inboxButton.click();
+      }
+    }
+  }
+</script>
+
+<style>
+  /* Hide standard Shopify Inbox bubble */
+  #shopify-chat, 
+  .shopify-inbox-button,
+  [id^="shopify-chat-"],
+  iframe[name="app-button-iframe"] { 
+    display: none !important; 
+    visibility: hidden !important;
+  }
+  
+  #custom-concierge-trigger {
+    position: fixed;
+    bottom: 30px;
+    left: 40px;
+    z-index: 9998;
+    padding: 14px 24px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.25em;
+    color: white;
+    transition: transform 0.3s ease, background 0.3s ease;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+
+  #custom-concierge-trigger:hover {
+    transform: translateY(-3px) scale(1.02);
+    background: var(--rm-leather) !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    #custom-concierge-trigger {
+      bottom: 20px;
+      left: 20px;
+      padding: 12px 18px;
+      font-size: 9px;
+    }
+  }
+</style>

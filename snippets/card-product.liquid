@@ -150,7 +150,7 @@ endif
           <div class="card__information">
             <h3
               class="card__heading"
-              style="font-size: {{ settings.card_title_size }}px;
+              style="font-size: {{ settings.card_title_size }}px;"
               {% if card_product.featured_media == null and settings.card_style == 'standard' %}
                 id="title-{{ section_id }}-{{ card_product.id }}"
               {% endif %}
@@ -210,7 +210,7 @@ endif
 			</div>
           <h3
             class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h3{% endif %}"
-            style="font-size: {{ settings.card_title_size }}px;
+            style="font-size: {{ settings.card_title_size }}px;"
             {% if card_product.featured_media or settings.card_style == 'card' %}
               id="title-{{ section_id }}-{{ card_product.id }}"
             {% endif %}

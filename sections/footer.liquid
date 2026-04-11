@@ -212,20 +212,31 @@ window.addEventListener('DOMContentLoaded', () => {
                       {{ block.settings.subtext }}
                     </div>
                   {%- when 'link_list' -%}
-                    {%- if block.settings.menu != blank -%}
-                      <ul class="footer-block__details-content list-unstyled">
-                        {%- for link in block.settings.menu.links -%}
-                          <li>
-                            <a
-                              href="{{ link.url }}"
-                              class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
-                            >
-                              {{ link.title }}
-                            </a>
-                          </li>
-                        {%- endfor -%}
-                      </ul>
-                    {%- endif -%}
+                    <ul class="footer-block__details-content list-unstyled">
+                      {%- if block.settings.heading == 'Quick links' or block.settings.heading == 'Quick Links' -%}
+                        <li><a href="/collections/mens-hats" class="link--text list-menu__item--link">Men's Western Hats</a></li>
+                        <li><a href="/collections/womens-hats" class="link--text list-menu__item--link">Women's Western Hats</a></li>
+                        <li><a href="/collections/youth-kids" class="link--text list-menu__item--link">Youth & Kids Hats</a></li>
+                        <li><a href="/pages/custom-hat-shaping" class="link--text list-menu__item--link">Custom Hat Shaping</a></li>
+                        <li><a href="/products/gift-card" class="link--text list-menu__item--link">Rafter M Gift Cards</a></li>
+                      {%- elsif block.settings.heading == 'Top Brands' or block.settings.heading == 'Our Brands' -%}
+                        <li><a href="/collections/stetson" class="link--text list-menu__item--link">Stetson</a></li>
+                        <li><a href="/collections/resistol" class="link--text list-menu__item--link">Resistol</a></li>
+                        <li><a href="/collections/american-hat-co" class="link--text list-menu__item--link">American Hat Company</a></li>
+                        <li><a href="/collections/charlie-1-horse" class="link--text list-menu__item--link">Charlie 1 Horse</a></li>
+                        <li><a href="/collections/dobbs" class="link--text list-menu__item--link">Dobbs</a></li>
+                      {%- else -%}
+                        {%- if block.settings.menu != blank -%}
+                          {%- for link in block.settings.menu.links -%}
+                            <li>
+                              <a href="{{ link.url }}" class="link link--text list-menu__item list-menu__item--link">
+                                {{ link.title }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        {%- endif -%}
+                      {%- endif -%}
+                    </ul>
                   {%- when 'brand_information' -%}
                     <div class="footer-block__brand-info">
                       {%- if settings.brand_image != blank -%}

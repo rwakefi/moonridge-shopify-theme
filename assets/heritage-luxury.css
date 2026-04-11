@@ -231,3 +231,69 @@ body:not(.template-index) .header__icon .icon,
   background: var(--rm-leather);
   margin: 1.5rem auto;
 }
+
+/* 6. FOOTER OVERHAUL - HERITAGE LUXURY */
+.footer {
+  background-color: var(--rm-leather) !important;
+  color: white !important;
+  border-top: 1px solid rgba(255,255,255,0.1) !important;
+  margin-top: 5rem !important;
+}
+
+.footer-block__heading {
+  color: white !important;
+  font-family: "Canela", "Playfair Display", serif !important;
+  font-size: 2.2rem !important;
+  margin-bottom: 2rem !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+}
+
+.footer .link, 
+.footer .rte,
+.footer .list-menu__item--link,
+.copyright__content,
+.copyright__content a {
+  color: rgba(255,255,255,0.7) !important;
+  font-size: 1.4rem !important;
+  text-decoration: none !important;
+  transition: var(--rm-transition);
+}
+
+.footer .link:hover,
+.copyright__content a:hover {
+  color: var(--rm-gold) !important;
+  padding-left: 5px;
+}
+
+.footer__content-bottom {
+  border-top: 1px solid rgba(255,255,255,0.05) !important;
+  margin-top: 4rem !important;
+}
+
+/* Newsletter in Footer */
+.footer .field__input {
+  background-color: rgba(255,255,255,0.03) !important;
+  color: white !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 0 !important;
+}
+
+.footer .field__label {
+  color: rgba(255,255,255,0.4) !important;
+}
+
+/* Social Icons */
+.footer__list-social .list-social__link {
+  color: white !important;
+  transition: var(--rm-transition) !important;
+}
+
+.footer__list-social .list-social__link:hover {
+  transform: translateY(-5px) scale(1.1);
+  color: var(--rm-gold) !important;
+}
+
+.footer-block-image.center {
+  margin-bottom: 3rem;
+}

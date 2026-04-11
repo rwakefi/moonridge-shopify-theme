@@ -1,32 +1,43 @@
-<div id="custom-concierge-trigger" class="glass-leather" onclick="openShopifyInbox()">
+<div id="custom-concierge-trigger" class="glass-leather">
   <span>CHAT WITH A HATTER</span>
 </div>
 
 <script>
-  function openShopifyInbox() {
-    // Standard Shopify Inbox trigger
-    if (window.ShopifyChat && window.ShopifyChat.open) {
-      window.ShopifyChat.open();
-    } else if (window.shopifyInbox && window.shopifyInbox.open) {
-      window.shopifyInbox.open();
-    } else {
-      // Fallback: try to find the button and click it if it's hidden but present
-      const inboxButton = document.querySelector('.shopify-inbox-button') || document.querySelector('#shopify-chat > iframe');
-      if (inboxButton) {
-        inboxButton.click();
-      }
+  (function() {
+    const trigger = document.getElementById('custom-concierge-trigger');
+    if (trigger) {
+      trigger.addEventListener('click', function() {
+        // High-end trigger logic for Shopify Inbox
+        if (window.ShopifyInbox && typeof window.ShopifyInbox.toggleVisibility === 'function') {
+          window.ShopifyInbox.toggleVisibility();
+        } 
+        else if (window.ShopifyChat && typeof window.ShopifyChat.open === 'function') {
+          window.ShopifyChat.open();
+        } 
+        else {
+          // Final fallback: try to find the hidden button and click it
+          const fallback = document.querySelector('.shopify-inbox-button') || 
+                           document.querySelector('iframe[name="app-button-iframe"]');
+          if (fallback) fallback.click();
+        }
+      });
     }
-  }
+  })();
 </script>
 
 <style>
-  /* Hide standard Shopify Inbox bubble */
+  /* HIDE standard bubble without blocking the actual chat window */
   #shopify-chat, 
   .shopify-inbox-button,
   [id^="shopify-chat-"],
   iframe[name="app-button-iframe"] { 
-    display: none !important; 
+    opacity: 0 !important;
     visibility: hidden !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    width: 0 !important;
+    position: absolute !important;
+    overflow: hidden !important;
   }
   
   #custom-concierge-trigger {
@@ -41,7 +52,7 @@
     line-height: 1;
     letter-spacing: 0.25em;
     color: white;
-    transition: transform 0.3s ease, background 0.3s ease;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
     border-radius: 2px;
     display: flex;
     align-items: center;
@@ -52,6 +63,7 @@
   #custom-concierge-trigger:hover {
     transform: translateY(-3px) scale(1.02);
     background: var(--rm-leather) !important;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
   }
 
   @media screen and (max-width: 749px) {

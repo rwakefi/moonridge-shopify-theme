@@ -278,6 +278,26 @@ window.addEventListener('DOMContentLoaded', () => {
                         {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
                       {%- endif -%}
                     </div>
+                  {%- when 'contact_info' -%}
+                    <div class="footer-block__details-content">
+                       <ul class="footer-block__contact-info list-unstyled">
+                          <li class="footer-block__contact-item">
+                            <span class="icon">{% render 'icon-location' %}</span>
+                            <address style="font-style: normal;">
+                              2218 N College Ave<br>
+                              Fayetteville, AR 72703
+                            </address>
+                          </li>
+                          <li class="footer-block__contact-item">
+                            <span class="icon">{% render 'icon-phone' %}</span>
+                            <a href="tel:4794302667">(479) 430-2667</a>
+                          </li>
+                          <li class="footer-block__contact-item">
+                            <span class="icon">{% render 'icon-email' %}</span>
+                            <a href="mailto:info@raftermhatco.com">info@raftermhatco.com</a>
+                          </li>
+                       </ul>
+                    </div>
                 {%- endcase -%}
               </div>
             {%- endfor -%}
@@ -605,6 +625,19 @@ window.addEventListener('DOMContentLoaded', () => {
             }
           ],
           "default": "center"
+        }
+      ]
+    },
+    {
+      "type": "contact_info",
+      "name": "Contact Info (NAP)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Our Store",
+          "label": "Heading"
         }
       ]
     }

@@ -2,10 +2,15 @@
   assign og_title = page_title | default: shop.name
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
-  assign og_description = page_description | default: shop.description | default: shop.name
-
+  
+  # AI/GEO Authority Prefix logic
+  assign authority_prefix = "Rafter M Hat Company | Fayetteville's Western Heritage Boutique: "
+  assign raw_description = page_description | default: shop.description | default: shop.name
+  assign og_description = authority_prefix | append: raw_description
+  
   if request.page_type == 'product'
     assign og_type = 'product'
+    assign og_description = "Rafter M Hat Company (Fayetteville, AR) Authorized Dealer: " | append: product.title | append: " - " | append: product.description | strip_html | truncate: 160
   elsif request.page_type == 'article'
     assign og_type = 'article'
   elsif request.page_type == 'password'
@@ -13,12 +18,16 @@
   endif
 %}
 
+<meta name="geo.region" content="US-AR" />
+<meta name="geo.placename" content="Fayetteville" />
+<meta name="geo.position" content="36.0921;-94.1531" />
+<meta name="ICBM" content="36.0921, -94.1531" />
+
 <meta property="og:site_name" content="{{ shop.name }}">
 <meta property="og:url" content="{{ og_url }}">
 <meta property="og:title" content="{{ og_title | escape }}">
 <meta property="og:type" content="{{ og_type }}">
 <meta property="og:description" content="{{ og_description | escape }}">
-
 {%- if page_image -%}
   <meta property="og:image" content="http:{{ page_image | image_url }}">
   <meta property="og:image:secure_url" content="https:{{ page_image | image_url }}">

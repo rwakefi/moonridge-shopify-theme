@@ -1488,6 +1488,12 @@ function updateCountdown() {
         "@type": "Brand",
         "name": {{ product.vendor | json }}
       },
+      "category": "Apparel & Accessories > Clothing Accessories > Hats > Cowboy Hats",
+      "material": "{% if product.description contains 'Felt' %}Felt{% elsif product.description contains 'Straw' %}Straw{% elsif product.description contains 'Fur' %}Fur{% endif %}",
+      "audience": {
+        "@type": "PeopleAudience",
+        "suggestedGender": "{% if product.tags contains 'Mens' or product.title contains 'Mens' %}male{% elsif product.tags contains 'Womens' or product.title contains 'Womens' %}female{% else %}unisex{% endif %}"
+      },
       "offers": [
         {%- for variant in product.variants -%}
           {

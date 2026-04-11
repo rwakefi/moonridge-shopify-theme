@@ -260,18 +260,7 @@ body:not(.template-index) .header__icon .icon,
   margin: 1.5rem auto;
 }
 
-/* 6. GALLERY SPACING - MUSEUM FEEL */
-.shopify-section {
-  margin-top: 8rem !important;
-  margin-bottom: 8rem !important;
-}
-
-@media screen and (max-width: 749px) {
-  .shopify-section {
-    margin-top: 5rem !important;
-    margin-bottom: 5rem !important;
-  }
-}
+/* 6. FOOTER OVERHAUL - HERITAGE LUXURY */
 
 .footer {
   background-color: var(--rm-leather) !important;

@@ -137,14 +137,23 @@ h1, h2, h3, .h1, .h2, .h3, .card__heading, .banner__heading {
 }
 
 /* Header Refinement */
-/* Header Refinement - Only apply background when NOT transparent or when scrolled */
+/* Header Refinement - Corrected Visibility Logic */
 .header-wrapper {
   border-bottom: 1px solid var(--rm-border) !important;
+  transition: background 0.4s ease, border-color 0.4s ease;
 }
 
+/* 1. Only apply white background on Non-Home pages OR when scrolled on Home */
+body:not(.template-index) .header-wrapper,
 .shopify-section-header-sticky .header-wrapper {
   background: rgba(255, 255, 255, 0.98) !important;
   backdrop-filter: blur(10px);
+}
+
+/* 2. Navigation Link Colors - Only force leather color when header has solid background */
+body:not(.template-index) .header__menu-item,
+.shopify-section-header-sticky .header__menu-item {
+  color: var(--rm-leather) !important;
 }
 
 .header__menu-item {

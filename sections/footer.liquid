@@ -298,6 +298,13 @@ window.addEventListener('DOMContentLoaded', () => {
                           </li>
                        </ul>
                     </div>
+                  {%- when 'heritage_snippet' -%}
+                    <div class="footer-block__details-content heritage-snippet">
+                        <div class="rm-section-decoration" style="margin-left: 0; margin-bottom: 2rem; background: var(--rm-gold);"></div>
+                        <p class="rte" style="line-height: 1.8; font-size: 1.5rem !important;">
+                          Rafter M Hat Company in Fayetteville, Arkansas, is a premier destination for western heritage and premium headwear. We take pride in our curated selection of classic <strong>Stetson</strong> and <strong>Resistol</strong> cowboy hats, offering expert custom shaping to match your unique style. Whether you're looking for timeless felts or breathable straws, our mission is to provide quality and authenticity for every rider, rancher, and western enthusiast.
+                        </p>
+                    </div>
                 {%- endcase -%}
               </div>
             {%- endfor -%}
@@ -637,6 +644,19 @@ window.addEventListener('DOMContentLoaded', () => {
           "type": "inline_richtext",
           "id": "heading",
           "default": "Our Store",
+          "label": "Heading"
+        }
+      ]
+    },
+    {
+      "type": "heritage_snippet",
+      "name": "Heritage Snippet (SEO)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "The Rafter M Heritage",
           "label": "Heading"
         }
       ]

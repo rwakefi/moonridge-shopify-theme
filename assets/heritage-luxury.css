@@ -145,22 +145,32 @@ h1, h2, h3, .h1, .h2, .h3, .card__heading, .banner__heading {
 
 /* 1. Only apply white background on Non-Home pages OR when scrolled on Home */
 body:not(.template-index) .header-wrapper,
-.shopify-section-header-sticky .header-wrapper,
-.header__submenu, 
-.menu-drawer {
+.shopify-section-header-sticky .header-wrapper {
   background: var(--rm-leather) !important;
   backdrop-filter: blur(10px);
 }
 
+.header__submenu, 
+.menu-drawer {
+  background: white !important;
+}
+
 .header__submenu {
-  border: 1px solid rgba(255,255,255,0.1) !important;
+  border: 1px solid var(--rm-border) !important;
 }
 
 /* 2. Navigation Link Colors */
-body:not(.template-index) .header__menu-item,
-.shopify-section-header-sticky .header__menu-item,
-.menu-drawer__menu-item {
+/* Top-level menu items on the brown header */
+.list-menu--inline > li > .header__menu-item,
+.header__icon .icon {
   color: white !important;
+}
+
+/* Submenu and Drawer items on the white background */
+.header__submenu .header__menu-item,
+.menu-drawer__menu-item,
+.menu-drawer__close-button {
+  color: var(--rm-leather) !important;
 }
 
 .header__menu-item {

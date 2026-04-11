@@ -146,10 +146,10 @@ h1, h2, h3, .h1, .h2, .h3, .card__heading, .banner__heading {
 /* 1. Only apply white background on Non-Home pages OR when scrolled on Home */
 body:not(.template-index) .header-wrapper,
 .shopify-section-header-sticky .header-wrapper {
-  background: rgba(49, 33, 16, 0.75) !important; /* Leather Glass */
-  backdrop-filter: blur(10px) saturate(160%);
-  -webkit-backdrop-filter: blur(10px) saturate(160%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: var(--rm-leather) !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid var(--rm-border) !important;
 }
 
 .header__submenu, 

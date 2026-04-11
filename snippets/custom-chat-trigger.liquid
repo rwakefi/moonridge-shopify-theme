@@ -4,8 +4,10 @@
 
 <script>
   (function() {
-    const trigger = document.getElementById('custom-concierge-trigger');
-    if (trigger) {
+    function initCustomChat() {
+      const trigger = document.getElementById('custom-concierge-trigger');
+      if (!trigger) return;
+
       trigger.addEventListener('click', function() {
         // High-end trigger logic for Shopify Inbox
         if (window.ShopifyInbox && typeof window.ShopifyInbox.toggleVisibility === 'function') {
@@ -15,36 +17,54 @@
           window.ShopifyChat.open();
         } 
         else {
-          // Final fallback: try to find the hidden button and click it
-          const fallback = document.querySelector('.shopify-inbox-button') || 
-                           document.querySelector('iframe[name="app-button-iframe"]');
-          if (fallback) fallback.click();
+          // Final fallback: try to find the hidden button iframe specifically and click it
+          const buttonIframe = document.querySelector('iframe[name="app-button-iframe"]');
+          if (buttonIframe) {
+            // Some iframes require clicking inside them, but a JS trigger is safer
+            buttonIframe.contentWindow.postMessage('shopify_inbox_toggle_visibility', '*');
+            // Try simulated click as well
+            buttonIframe.click(); 
+          }
         }
       });
+    }
+
+    // Wait for everything to be ready
+    if (document.readyState === 'complete') {
+      initCustomChat();
+    } else {
+      window.addEventListener('load', initCustomChat);
     }
   })();
 </script>
 
 <style>
-  /* HIDE standard bubble without blocking the actual chat window */
-  #shopify-chat, 
-  .shopify-inbox-button,
-  [id^="shopify-chat-"],
-  iframe[name="app-button-iframe"] { 
+  /* SURGICAL HIDE - Only target the floating bubble (button), NOT the messenger window */
+  iframe[name="app-button-iframe"],
+  .shopify-inbox-button { 
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
-    height: 0 !important;
     width: 0 !important;
+    height: 0 !important;
     position: absolute !important;
-    overflow: hidden !important;
+  }
+
+  /* ENSURE the messenger iframe is never hidden by our rules */
+  iframe[name="app-messenger-iframe"],
+  #shopify-chat-messenger,
+  .shopify-inbox-messenger {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    display: block !important;
   }
   
   #custom-concierge-trigger {
     position: fixed;
     bottom: 30px;
     left: 40px;
-    z-index: 9998;
+    z-index: 9999;
     padding: 14px 24px;
     cursor: pointer;
     font-size: 10px;

@@ -55,8 +55,8 @@
       >
        
 
-       {%- if card_product.featured_media -%}
-          <div class="card__media">
+        {%- if card_product.featured_media -%}
+          <a href="{{ card_product.url }}" class="card__media">
             <div class="media media--transparent media--hover-effect">
               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
 {% liquid
@@ -143,7 +143,7 @@ endif
 {% endunless %}
               {%- endif -%}
             </div>
-          </div>
+          </a>
         {%- endif -%}
 
         <div class="card__content">

@@ -2,7 +2,7 @@
   .sticky-booking-cta {
     position: fixed;
     bottom: 24px;
-    right: 24px;
+    left: 24px;
     z-index: 999;
     display: flex;
     align-items: center;
@@ -15,13 +15,13 @@
     border: 1px solid #E8D9C8;
     box-shadow: 0 8px 32px rgba(74, 46, 31, 0.12);
     text-decoration: none;
-    transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
     cursor: pointer;
   }
 
   .sticky-booking-cta:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 12px 40px rgba(74, 46, 31, 0.18);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 8px 24px rgba(74, 46, 31, 0.1);
   }
 
   .sticky-booking-cta__icon {
@@ -58,7 +58,7 @@
   @media screen and (max-width: 749px) {
     .sticky-booking-cta {
       bottom: 20px;
-      right: 20px;
+      left: 20px;
       padding: 6px 14px 6px 6px;
     }
     

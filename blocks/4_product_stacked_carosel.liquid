@@ -52,7 +52,8 @@
 .ai-product-carousel-track-{{ ai_gen_id }} {
   display: flex;
   gap: {{ block.settings.product_gap }}px;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
+  will-change: transform;
 }
 
 .ai-product-carousel-track-{{ ai_gen_id }}.is-animating {
@@ -536,7 +537,7 @@
 
           this.calcBaseOffset();
           if (animate) {
-            this.track.style.transition = 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)';
+            this.track.style.transition = 'transform 0.5s cubic-bezier(0.2, 0, 0, 1)';
           } else {
             this.track.style.transition = 'none';
           }
@@ -650,14 +651,19 @@
         }
       }
 
-      continueDrag(clientX) {
-        if (!this.isDragging || this.touchStartX === null || !this.track) return;
-        this.touchDeltaX = clientX - this.touchStartX;
-
         const isMobile = window.innerWidth <= 749;
 
+        // Add resistance if at boundaries
+        let dragDelta = this.touchDeltaX;
+        const atStart = (this.currentPage === 0 && dragDelta > 0);
+        const atEnd = (this.currentPage >= this.totalPages - 1 && dragDelta < 0);
+        
+        if (atStart || (atEnd && !isMobile)) {
+          dragDelta *= 0.35; // Resistance factor
+        }
+
         // On desktop, drag the whole track; on mobile this is a subtle tug effect
-        const dragOffset = (isMobile ? 0 : this.baseOffset) + this.touchDeltaX;
+        const dragOffset = (isMobile ? 0 : this.baseOffset) + dragDelta;
         this.track.style.transform = 'translateX(' + dragOffset + 'px)';
       }
 

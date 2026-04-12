@@ -71,11 +71,36 @@
 </div>
 
 <script>
+  // Aggressive cloaking of the default Shopify Launcher
+  function hideDefaultChat() {
+    const selectors = [
+      '#dummy-chat-button-iframe',
+      '.shopify-chat-button',
+      'iframe[src*="shopifycloud/chat"]',
+      'iframe[id*="chat"]',
+      '#shopify-chat-dummy'
+    ];
+    
+    selectors.forEach(selector => {
+      const el = document.querySelector(selector);
+      if (el) {
+        el.style.setProperty('display', 'none', 'important');
+        el.style.setProperty('visibility', 'hidden', 'important');
+        el.style.setProperty('opacity', '0', 'important');
+        el.style.setProperty('pointer-events', 'none', 'important');
+      }
+    });
+  }
+
+  // Run immediately and then on an interval as Shopify scripts are asynchronous
+  hideDefaultChat();
+  const chatInterval = setInterval(hideDefaultChat, 1000);
+
   function openShopifyChat() {
     if (window.ShopifyChat && window.ShopifyChat.messenger && window.ShopifyChat.messenger.open) {
       window.ShopifyChat.messenger.open();
     } else {
-      // Fallback if not loaded yet
+      // Direct message fallback to the hidden iframe
       const launcher = document.querySelector('iframe[id*="chat"]');
       if (launcher) {
         launcher.contentWindow.postMessage('open_chat', '*');
@@ -83,11 +108,7 @@
     }
   }
 
-  // Optional: Listen for shopify inbox events to show badge
   window.addEventListener('shopify:chat:ready', function() {
-    console.log('Shopify Chat is ready');
-    // Hide default again just in case it pops back
-    const defaultLauncher = document.querySelector('iframe[id*="chat"]');
-    if (defaultLauncher) defaultLauncher.style.display = 'none';
+    hideDefaultChat();
   });
 </script>

@@ -1489,7 +1489,37 @@ function updateCountdown() {
         "name": {{ product.vendor | json }}
       },
       "category": "Apparel & Accessories > Clothing Accessories > Hats > Cowboy Hats",
-      "material": "{% if product.description contains 'Felt' %}Felt{% elsif product.description contains 'Straw' %}Straw{% elsif product.description contains 'Fur' %}Fur{% endif %}",
+      "material": "{% if product.metafields.custom.material != blank %}{{ product.metafields.custom.material }}{% elsif product.description contains 'Felt' %}Felt{% elsif product.description contains 'Straw' %}Straw{% elsif product.description contains 'Fur' %}Fur{% endif %}",
+      "additionalProperty": [
+        {% if product.metafields.custom.crown_shape != blank %}
+        {
+          "@type": "PropertyValue",
+          "name": "Crown Shape",
+          "value": {{ product.metafields.custom.crown_shape | json }}
+        }{% if product.metafields.custom.crown_height or product.metafields.custom.brim_width or product.metafields.custom.origin %},{% endif %}
+        {% endif %}
+        {% if product.metafields.custom.crown_height != blank %}
+        {
+          "@type": "PropertyValue",
+          "name": "Crown Height",
+          "value": {{ product.metafields.custom.crown_height | json }}
+        }{% if product.metafields.custom.brim_width or product.metafields.custom.origin %},{% endif %}
+        {% endif %}
+        {% if product.metafields.custom.brim_width != blank %}
+        {
+          "@type": "PropertyValue",
+          "name": "Brim Width",
+          "value": {{ product.metafields.custom.brim_width | json }}
+        }{% if product.metafields.custom.origin %},{% endif %}
+        {% endif %}
+        {% if product.metafields.custom.origin != blank %}
+        {
+          "@type": "PropertyValue",
+          "name": "Country of Origin",
+          "value": {{ product.metafields.custom.origin | json }}
+        }
+        {% endif %}
+      ],
       "audience": {
         "@type": "PeopleAudience",
         "suggestedGender": "{% if product.tags contains 'Mens' or product.title contains 'Mens' %}male{% elsif product.tags contains 'Womens' or product.title contains 'Womens' %}female{% else %}unisex{% endif %}"

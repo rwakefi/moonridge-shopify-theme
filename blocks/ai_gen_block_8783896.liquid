@@ -93,6 +93,21 @@
         </div>
       {% endif %}
     {% endfor %}
+
+    {% comment %} New Conditional Fields for Rafter M Premium Specs {% endcomment %}
+    {%- if product.metafields.custom.material_quality != blank -%}
+      <div class="ai-category-metadata-item-{{ ai_gen_id }}">
+        <h3 class="ai-category-metadata-title-{{ ai_gen_id }}">Material Quality</h3>
+        <p class="ai-category-metadata-value-{{ ai_gen_id }}">{{ product.metafields.custom.material_quality }}</p>
+      </div>
+    {%- endif -%}
+
+    {%- if product.metafields.custom.origin != blank -%}
+      <div class="ai-category-metadata-item-{{ ai_gen_id }}">
+        <h3 class="ai-category-metadata-title-{{ ai_gen_id }}">Origin</h3>
+        <p class="ai-category-metadata-value-{{ ai_gen_id }}">{{ product.metafields.custom.origin }}</p>
+      </div>
+    {%- endif -%}
   </div>
 </category-metadata-{{ ai_gen_id }}>
 

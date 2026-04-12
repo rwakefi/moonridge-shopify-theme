@@ -210,6 +210,9 @@
 .card__heading {
   margin-top: 0;
   margin-bottom: 0;
+  min-height: 4.5em; /* Normalizes card heights for all titles up to 3 lines */
+  display: flex !important;
+  align-items: center;
 }
 
 .card__heading:last-child {

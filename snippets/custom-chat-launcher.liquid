@@ -1,0 +1,93 @@
+<style>
+  /* Hide the default Shopify Inbox Launcher */
+  #dummy-chat-button-iframe,
+  #shopify-chat-dummy,
+  .shopify-chat-button,
+  iframe[id*="chat"] {
+    display: none !important;
+  }
+
+  .custom-chat-launcher {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+    background-color: #4A2E1F; /* Deep Brown */
+    border: 2px solid #D4AF37; /* Gold Border */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 9998;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  }
+
+  .custom-chat-launcher:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3);
+  }
+
+  .custom-chat-launcher svg {
+    width: 32px;
+    height: 32px;
+    fill: #FDF9F3; /* Warm Ivory */
+  }
+
+  .custom-chat-launcher__badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 20px;
+    height: 20px;
+    background-color: #D4AF37; /* Gold Badge instead of Red */
+    border-radius: 50%;
+    border: 2px solid #FDF9F3;
+    display: none; /* Shown via JS if needed */
+  }
+
+  @media screen and (max-width: 749px) {
+    .custom-chat-launcher {
+      bottom: 20px;
+      right: 20px;
+      width: 54px;
+      height: 54px;
+    }
+    .custom-chat-launcher svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+</style>
+
+<div id="custom-chat-launcher" class="custom-chat-launcher" onclick="openShopifyChat()">
+  <div class="custom-chat-launcher__badge" id="chat-badge"></div>
+  <!-- Cowboy Hat Icon for Chat -->
+  <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+    <path d="M496 352c-44.18 0-80-35.82-80-80 0-8.84-7.16-16-16-16H112c-8.84 0-16 7.16-16 16 0 44.18-35.82 80-80 80-8.84 0-16 7.16-16 16v16c0 44.18 35.82 80 80 80h352c44.18 0 80-35.82 80-80v-16c0-8.84-7.16-16-16-16zm-326.69-64h285.38c-14.86-56.32-66.21-96-126.69-96-60.48 0-111.83 39.68-126.69 96zM256 32c-60.48 0-111.83 39.68-126.69 96h253.38C367.83 71.68 316.48 32 256 32z"/>
+  </svg>
+</div>
+
+<script>
+  function openShopifyChat() {
+    if (window.ShopifyChat && window.ShopifyChat.messenger && window.ShopifyChat.messenger.open) {
+      window.ShopifyChat.messenger.open();
+    } else {
+      // Fallback if not loaded yet
+      const launcher = document.querySelector('iframe[id*="chat"]');
+      if (launcher) {
+        launcher.contentWindow.postMessage('open_chat', '*');
+      }
+    }
+  }
+
+  // Optional: Listen for shopify inbox events to show badge
+  window.addEventListener('shopify:chat:ready', function() {
+    console.log('Shopify Chat is ready');
+    // Hide default again just in case it pops back
+    const defaultLauncher = document.querySelector('iframe[id*="chat"]');
+    if (defaultLauncher) defaultLauncher.style.display = 'none';
+  });
+</script>

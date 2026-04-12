@@ -1,0 +1,98 @@
+{%- style -%}
+  .sticky-booking-cta {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(253, 249, 243, 0.9); /* Warm Ivory Glass */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 8px 16px 8px 8px;
+    border-radius: 100px;
+    border: 1px solid #E8D9C8;
+    box-shadow: 0 8px 32px rgba(74, 46, 31, 0.12);
+    text-decoration: none;
+    transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .sticky-booking-cta:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(74, 46, 31, 0.18);
+  }
+
+  .sticky-booking-cta__icon {
+    width: 44px;
+    height: 44px;
+    background: #4A2E1F;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #F7EFE6;
+  }
+
+  .sticky-booking-cta__text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sticky-booking-cta__label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #7A604A;
+    font-weight: 600;
+  }
+
+  .sticky-booking-cta__title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #4A2E1F;
+    font-family: var(--font-heading-family);
+  }
+
+  @media screen and (max-width: 749px) {
+    .sticky-booking-cta {
+      bottom: 20px;
+      right: 20px;
+      padding: 6px 14px 6px 6px;
+    }
+    
+    .sticky-booking-cta__icon {
+      width: 38px;
+      height: 38px;
+    }
+
+    .sticky-booking-cta__title {
+      font-size: 11px;
+    }
+    
+    .sticky-booking-cta__label {
+      font-size: 8px;
+    }
+  }
+
+  /* Hide on checkout or specific pages if needed */
+  .template-cart .sticky-booking-cta {
+    display: none;
+  }
+{%- endstyle -%}
+
+<a href="https://raftermhatcompany.setmore.com" class="sticky-booking-cta" id="Setmore_button_iframe">
+  <div class="sticky-booking-cta__icon">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+      <line x1="16" y1="2" x2="16" y2="6"></line>
+      <line x1="8" y1="2" x2="8" y2="6"></line>
+      <line x1="3" y1="10" x2="21" y2="10"></line>
+    </svg>
+  </div>
+  <div class="sticky-booking-cta__text">
+    <span class="sticky-booking-cta__label">The Experience</span>
+    <span class="sticky-booking-cta__title">BOOK A FITTING</span>
+  </div>
+</a>

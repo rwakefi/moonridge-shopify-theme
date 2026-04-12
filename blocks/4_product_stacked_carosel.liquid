@@ -72,6 +72,7 @@
   flex: 0 0 calc((100% - ({{ block.settings.products_per_view | minus: 1 }} * {{ block.settings.product_gap }}px)) / {{ block.settings.products_per_view }});
   min-width: 0;
   display: flex;
+  perspective: 1000px; /* Enable 3D space */
 }
 
 .ai-product-card-{{ ai_gen_id }} {
@@ -81,10 +82,19 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-
+  transition: 
+    transform 0.52s cubic-bezier(0.2, 0, 0, 1),
+    box-shadow 0.52s cubic-bezier(0.2, 0, 0, 1);
+  transform-style: preserve-3d;
+  
   /* lock card height so pages don't change height */
   min-height: 300px;  /* tweak up/down to taste */
   height: 100%;
+}
+
+.ai-product-card-{{ ai_gen_id }}:hover {
+  transform: translateY(-8px) rotateX(2deg) rotateY(-1deg);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
 }
 
 /* IMAGE WRAPPER */

@@ -31,12 +31,18 @@
   <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
     <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
       <div
-        class="image-with-text__media image-with-text__media--{{ section.settings.height }} gradient color-{{ section.settings.color_scheme }} global-media-settings {% if section.settings.image != blank %}media{% else %}image-with-text__media--placeholder placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}"
-        {% if section.settings.height == 'adapt' and section.settings.image != blank %}
-          style="padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;"
-        {% endif %}
-      >
-        {%- if section.settings.image != blank -%}
+        {%- if section.settings.video_file != blank -%}
+          <div class="media media--{{ section.settings.height }} video-background">
+            {{ section.settings.video_file | video_tag:
+              autoplay: true,
+              loop: true,
+              muted: true,
+              controls: false,
+              preload: "auto",
+              class: "video-bg"
+            }}
+          </div>
+        {%- elsif section.settings.image != blank -%}
           {%- if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in' -%}
             {%- assign widths = '198, 432, 642, 900, 1284, 1800' -%}
             {%- capture sizes -%}
@@ -216,6 +222,11 @@
       "id": "color_scheme_main",
       "label": "t:sections.all.colors.label",
       "default": "background-1"
+    },
+    {
+      "type": "video",
+      "id": "video_file",
+      "label": "Video Background (Overrides Image)"
     },
     {
       "type": "image_picker",

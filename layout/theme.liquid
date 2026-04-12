@@ -470,6 +470,28 @@ document.addEventListener("DOMContentLoaded", function() {
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    <script>
+      // Magnetic Buttons Luxury Interaction
+      const magneticButtons = document.querySelectorAll('.button, .header-button, .sticky-booking-cta');
+      
+      magneticButtons.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const position = btn.getBoundingClientRect();
+          const x = e.clientX - position.left - position.width / 2;
+          const y = e.clientY - position.top - position.height / 2;
+          
+          btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+          btn.style.transition = 'none';
+        });
+        
+        btn.addEventListener('mouseleave', (e) => {
+          btn.style.transition = 'transform 0.5s cubic-bezier(0.2, 0, 0, 1)';
+          btn.style.transform = 'translate(0px, 0px)';
+        });
+      });
+    </script>
+  {% render 'sticky-booking-cta' %}
   {% render "ai-knowledge-graph" %}
 </body>
 </html>

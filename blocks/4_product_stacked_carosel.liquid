@@ -172,8 +172,13 @@
 
 .ai-product-title-{{ ai_gen_id }} {
   font-size: 16px;
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   color: {{ block.settings.text_color }};
+  min-height: 3.6em; /* Normalizes layout for 1, 2, or 3 line titles */
+  line-height: 1.25;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
 }
 
 .ai-product-title-{{ ai_gen_id }} a {

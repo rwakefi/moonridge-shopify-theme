@@ -83,10 +83,10 @@
         assign value_key = 'category_' | append: i | append: '_value'
         
         assign title = block.settings[title_key]
-        assign value = block.settings[value_key]
+        assign value = block.settings[value_key] | strip
       %}
       
-      {% if title != blank and value != blank %}
+      {% if title != blank and value != blank and value != '-' and value != ' ' %}
         <div class="ai-category-metadata-item-{{ ai_gen_id }}">
           <h3 class="ai-category-metadata-title-{{ ai_gen_id }}">{{ title }}</h3>
           <p class="ai-category-metadata-value-{{ ai_gen_id }}">{{ value }}</p>
@@ -95,17 +95,29 @@
     {% endfor %}
 
     {% comment %} New Conditional Fields for Rafter M Premium Specs {% endcomment %}
-    {%- if product.metafields.custom.material_quality != blank -%}
+    {%- liquid
+      assign mat_quality = product.metafields.custom.material_quality.value | join: ', '
+      if mat_quality == blank
+        assign mat_quality = product.metafields.custom.material_quality
+      endif
+      
+      assign origin = product.metafields.custom.origin.value | join: ', '
+      if origin == blank
+        assign origin = product.metafields.custom.origin
+      endif
+    -%}
+
+    {%- if mat_quality != blank -%}
       <div class="ai-category-metadata-item-{{ ai_gen_id }}">
         <h3 class="ai-category-metadata-title-{{ ai_gen_id }}">Material Quality</h3>
-        <p class="ai-category-metadata-value-{{ ai_gen_id }}">{{ product.metafields.custom.material_quality }}</p>
+        <p class="ai-category-metadata-value-{{ ai_gen_id }}">{{ mat_quality }}</p>
       </div>
     {%- endif -%}
 
-    {%- if product.metafields.custom.origin != blank -%}
+    {%- if origin != blank -%}
       <div class="ai-category-metadata-item-{{ ai_gen_id }}">
         <h3 class="ai-category-metadata-title-{{ ai_gen_id }}">Origin</h3>
-        <p class="ai-category-metadata-value-{{ ai_gen_id }}">{{ product.metafields.custom.origin }}</p>
+        <p class="ai-category-metadata-value-{{ ai_gen_id }}">{{ origin }}</p>
       </div>
     {%- endif -%}
   </div>

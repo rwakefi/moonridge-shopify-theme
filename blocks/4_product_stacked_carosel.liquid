@@ -651,19 +651,14 @@
         }
       }
 
+      continueDrag(clientX) {
+        if (!this.isDragging || this.touchStartX === null || !this.track) return;
+        this.touchDeltaX = clientX - this.touchStartX;
+
         const isMobile = window.innerWidth <= 749;
 
-        // Add resistance if at boundaries
-        let dragDelta = this.touchDeltaX;
-        const atStart = (this.currentPage === 0 && dragDelta > 0);
-        const atEnd = (this.currentPage >= this.totalPages - 1 && dragDelta < 0);
-        
-        if (atStart || (atEnd && !isMobile)) {
-          dragDelta *= 0.35; // Resistance factor
-        }
-
         // On desktop, drag the whole track; on mobile this is a subtle tug effect
-        const dragOffset = (isMobile ? 0 : this.baseOffset) + dragDelta;
+        const dragOffset = (isMobile ? 0 : this.baseOffset) + this.touchDeltaX;
         this.track.style.transform = 'translateX(' + dragOffset + 'px)';
       }
 

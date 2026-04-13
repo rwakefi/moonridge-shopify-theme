@@ -457,7 +457,7 @@
             "title_size_v2": 28,
             "alignment": "center",
             "instafeed_margin_top": 0,
-            "instafeed_margin_bottom": 26,
+            "instafeed_margin_bottom": 0,
             "instafeed_margin_sides": 0,
             "show_instagram_link": false,
             "link_alignment": "left",

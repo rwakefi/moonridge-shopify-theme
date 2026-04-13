@@ -492,7 +492,7 @@
             "border_opacity": 10,
             "background_color": "#e6e7e2",
             "padding_top": 16,
-            "padding_bottom": 24,
+            "padding_bottom": 0,
             "padding_horizontal": 72
           },
           "blocks": {}
@@ -600,7 +600,7 @@
         "show_small_text": false,
         "small_text": "* You can unsubscribe at any time.",
         "padding_top": 24,
-        "padding_bottom": 24,
+        "padding_bottom": 0,
         "margin_top": 0,
         "margin_bottom": 0
       }
@@ -765,7 +765,7 @@
         "link_hover_color": "#1f1d24",
         "background_color": "#ffffff",
         "padding_top": 24,
-        "padding_bottom": 24,
+        "padding_bottom": 0,
         "padding_horizontal": 20,
         "heading_spacing": 16,
         "paragraph_spacing": 16,
@@ -850,7 +850,7 @@
         "swipe_on_mobile": true,
         "navigation_on_mobile": false,
         "padding_top": 12,
-        "padding_bottom": 24
+        "padding_bottom": 0
       }
     },
     "slideshow_yKmXBC": {

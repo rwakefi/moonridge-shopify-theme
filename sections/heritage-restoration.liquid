@@ -1,28 +1,32 @@
 {%- style -%}
   .heritage-restoration {
     background-color: #F7EFE6; /* Soft Ivory */
-    padding: 20px 0; /* Changed from 0 to give some top/bottom breathing room */
-    margin: -1px 0; /* Negative margin to bridge any thin gaps */
+    padding: 50px 0; /* Increased to reach ~420px total height */
+    margin: -1px 0;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
     border: none;
     overflow: hidden;
   }
 
   .heritage-restoration__container {
-    max-width: 1100px; /* Reduced from 1200px */
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 40px;
     display: flex;
     align-items: center;
-    gap: 40px; /* Reduced from 60px */
+    gap: 40px;
+    width: 100%;
   }
 
   .heritage-restoration__image-wrapper {
-    flex: 0 0 320px; /* Fixed smaller width */
+    flex: 0 0 320px;
     position: relative;
     border: 1px solid #D4AF37; /* Gold Frame */
-    padding: 8px; /* Reduced from 12px */
+    padding: 8px;
     background: #fff;
-    display: flex; /* Added to center image */
+    display: flex;
     align-items: center;
     justify-content: center;
   }

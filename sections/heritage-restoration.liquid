@@ -1,0 +1,180 @@
+{%- style -%}
+  .heritage-restoration {
+    background-color: #F7EFE6; /* Soft Ivory */
+    padding: 80px 0;
+    overflow: hidden;
+  }
+
+  .heritage-restoration__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .heritage-restoration__image-wrapper {
+    flex: 1;
+    position: relative;
+    border: 1px solid #D4AF37; /* Gold Frame */
+    padding: 12px;
+    background: #fff;
+  }
+
+  .heritage-restoration__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .heritage-restoration__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .heritage-restoration__label {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #D4AF37;
+    font-weight: 700;
+  }
+
+  .heritage-restoration__title {
+    font-size: 48px;
+    color: #4A2E1F;
+    margin: 0;
+    line-height: 1.1;
+    font-family: var(--font-heading-family);
+  }
+
+  .heritage-restoration__text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #4A2E1F;
+    opacity: 0.9;
+    margin: 0;
+  }
+
+  .heritage-restoration__cta {
+    display: inline-block;
+    background-color: #4D382B;
+    color: #FFFFFF;
+    padding: 16px 40px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    border: 1px solid transparent;
+  }
+
+  .heritage-restoration__cta:hover {
+    background-color: #F7EFE6;
+    color: #4D382B;
+    border-color: #4D382B;
+    transform: translateY(-2px);
+  }
+
+  @media screen and (max-width: 989px) {
+    .heritage-restoration {
+      padding: 60px 0;
+    }
+    .heritage-restoration__container {
+      flex-direction: column;
+      gap: 40px;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .heritage-restoration__content {
+      align-items: center;
+    }
+    .heritage-restoration__title {
+      font-size: 36px;
+    }
+    .heritage-restoration__image-wrapper {
+      width: 100%;
+      max-width: 500px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="heritage-restoration">
+  <div class="heritage-restoration__container">
+    <div class="heritage-restoration__image-wrapper">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1200 | image_tag: 
+          class: 'heritage-restoration__image',
+          loading: 'lazy'
+        }}
+      {%- else -%}
+        <img src="{{ 'hat_restoration_heritage.png' | asset_url }}" class="heritage-restoration__image" alt="Hat Restoration Service">
+      {%- endif -%}
+    </div>
+    
+    <div class="heritage-restoration__content">
+      <span class="heritage-restoration__label">{{ section.settings.label | default: "The Service Ritual" }}</span>
+      <h2 class="heritage-restoration__title">{{ section.settings.title | default: "Your Hat, Restored." }}</h2>
+      <p class="heritage-restoration__text">
+        {{ section.settings.text | default: "We don't just sell hats; we preserve them. Bring in any hat—regardless of brand or age—for professional cleaning and precision reshaping to its original glory." }}
+      </p>
+      <a href="{{ section.settings.button_link | default: 'https://raftermhatcompany.setmore.com' }}" class="heritage-restoration__cta" id="Setmore_button_iframe">
+        {{ section.settings.button_label | default: "Book a Restoration" }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Heritage Restoration",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Section Image"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Small Label",
+      "default": "The Service Ritual"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Heading",
+      "default": "Your Hat, Restored."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Content Text",
+      "default": "We don't just sell hats; we preserve them. Bring in any hat—regardless of brand or age—for professional cleaning and precision reshaping to its original glory."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Book a Restoration"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heritage Restoration"
+    }
+  ]
+}
+{% endschema %}

@@ -1,1 +1,1197 @@
-{"sections": {"slideshow_FGiH4p": {"type": "slideshow", "blocks": {"slide_ka9Vke": {"type": "slide", "settings": {"image": "shopify://shop_images/Desktop_Banner_Out_of_Office.png", "image_mob": "shopify://shop_images/Rename_Mobile_Hero.png", "caption": "", "block_cap_size": 20, "cap_color": "#fcf8f4", "heading": "<strong>Schedule Your Free Hat Sizing</strong>", "block_head_size-2": 33, "block_head_size-mobile": 24, "block_head_line": 1.4, "heading_size": "h1", "subheading": "", "button_label": "Book Now!", "IsBookButton": true, "custom-book-button": "<a \n  class=\"header-button\" \n  id=\"Setmore_button_iframe\" \n  href=\"https://raftermhatcompany.setmore.com\" \n  style=\"\n    display:inline-block;\n    background-color:#4D382B;      /* Main brown */\n    color:#FFFFFF;                 /* White text */\n    text-transform:capitalize;\n    letter-spacing:0;\n    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    font-size:16px;\n    font-weight:600;\n    padding:12px 32px;\n    border-radius:8px;\n    text-decoration:none;\n    line-height:1;\n    transition:\n      background-color .2s cubic-bezier(.2,0,0,1),\n      color .2s cubic-bezier(.2,0,0,1),\n      transform .2s cubic-bezier(.2,0,0,1),\n      box-shadow .2s cubic-bezier(.2,0,0,1);\n  \"\n>\n  Book Now\n</a>\n\n<style>\n  #Setmore_button_iframe:hover {\n    background-color:#7A604A; /* Lighter brown hover */\n    transform: translateY(-2px);\n  }\n\n  #Setmore_button_iframe:active {\n    transform: translateY(0) scale(0.98);\n  }\n\n  #Setmore_button_iframe:focus-visible {\n    outline: none;\n    box-shadow:\n      0 0 0 2px #fff,\n      0 0 0 4px #4D382B;\n  }\n\n  @media (prefers-reduced-motion: reduce) {\n    #Setmore_button_iframe {\n      transition: none;\n    }\n    #Setmore_button_iframe:hover,\n    #Setmore_button_iframe:active {\n      transform: none;\n    }\n  }\n</style>", "link-2": "https://raftermhatcompany.setmore.com/", "IsShopButton": false, "link": "https://raftermhatcompany.setmore.com/", "button_style_secondary": false, "box_align": "bottom-center", "show_text_box": false, "text_alignment": "center", "image_overlay_opacity": 0, "color_scheme": "accent-1", "text_alignment_mobile": "center", "mobile_box_align": "center", "mobile_text_spacing": 0}}, "slide_78bWzg": {"type": "slide", "disabled": true, "settings": {"image": "shopify://shop_images/Website_Heading_2eb4f74c-f1ca-4d88-aaed-b874fa007084.png", "image_mob": "shopify://shop_images/Website_Heading_Mobile_daeb4baf-a11a-4075-8a2d-5b4c2cdfbc18.png", "caption": "", "block_cap_size": 20, "cap_color": "#222222", "heading": "", "block_head_size-2": 33, "block_head_size-mobile": 24, "block_head_line": 1.4, "heading_size": "h1", "subheading": "", "button_label": "Shop Now", "IsBookButton": true, "custom-book-button": "<a class=\"header-button\" id=\"Setmore_button_iframe\" href=\"https://raftermhatcompany.setmore.com\" style=\"display:inline-block;\">\n\n                          Book Now\n                         \n                        </a>", "link-2": "shopify://collections/all", "IsShopButton": false, "link": "shopify://collections/all", "button_style_secondary": false, "box_align": "bottom-center", "show_text_box": false, "text_alignment": "center", "image_overlay_opacity": 0, "color_scheme": "accent-1", "text_alignment_mobile": "center", "mobile_box_align": "flex-end", "mobile_text_spacing": 0}}, "slide_q6NjAW": {"type": "slide", "settings": {"image": "shopify://shop_images/SSS_05.png", "image_mob": "shopify://shop_images/SSS_05.png", "caption": "", "block_cap_size": 20, "cap_color": "#222222", "heading": "Where every Hat Makes a Statement", "block_head_size-2": 33, "block_head_size-mobile": 24, "block_head_line": 1.4, "heading_size": "h1", "subheading": "", "button_label": "Shop Now", "IsBookButton": true, "custom-book-button": "<a \n  id=\"Setmore_button_iframe\"\n  href=\"https://raftermhatcompany.setmore.com\"\n  style=\"\n    display:inline-block;\n    background-color:#4D382B;  /* Same dark brown as Shop Now */\n    color:#FFFFFF;             /* White text */\n    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    font-size:16px;\n    font-weight:600;\n    letter-spacing:0;\n    text-transform:capitalize;\n    line-height:1;\n    padding:12px 32px;\n    border-radius:8px;\n    text-decoration:none;\n    transition:\n      background-color .2s cubic-bezier(.2,0,0,1),\n      color .2s cubic-bezier(.2,0,0,1),\n      transform .2s cubic-bezier(.2,0,0,1),\n      box-shadow .2s cubic-bezier(.2,0,0,1);\n  \"\n>\n  Book Now\n</a>\n\n<style>\n  /* Hover and active states identical to Shop Now */\n  #Setmore_button_iframe:hover {\n    background-color:#7A604A; /* Slightly lighter brown hover */\n    transform: translateY(-2px);\n  }\n\n  #Setmore_button_iframe:active {\n    transform: translateY(0) scale(0.98);\n  }\n\n  #Setmore_button_iframe:focus-visible {\n    outline: none;\n    box-shadow:\n      0 0 0 2px #fff,\n      0 0 0 4px #4D382B;\n  }\n\n  /* Optional: make mobile version match spacing */\n  @media (max-width: 750px) {\n    #Setmore_button_iframe {\n      font-size:16px;\n      padding:14px 24px;\n      min-height:44px;\n      border-radius:8px;\n    }\n  }\n</style>", "link-2": "shopify://collections/hats-for-everyone", "IsShopButton": false, "link": "shopify://collections", "button_style_secondary": false, "box_align": "bottom-center", "show_text_box": false, "text_alignment": "center", "image_overlay_opacity": 0, "color_scheme": "background-2", "text_alignment_mobile": "left", "mobile_box_align": "flex-end", "mobile_text_spacing": 18}}, "slide_ECHWBP": {"type": "slide", "settings": {"image": "shopify://shop_images/SSS_04.png", "image_mob": "shopify://shop_images/Cowboy_Mobile.png", "caption": "", "block_cap_size": 20, "cap_color": "#222222", "heading": "Hats for Every Adventure", "block_head_size-2": 33, "block_head_size-mobile": 24, "block_head_line": 1.4, "heading_size": "h1", "subheading": "", "button_label": "Book Now", "IsBookButton": true, "custom-book-button": "<a \n  id=\"Setmore_button_iframe\"\n  href=\"https://raftermhatcompany.setmore.com\"\n  style=\"\n    display:inline-block;\n    background-color:#4D382B;  /* Same dark brown as Shop Now */\n    color:#FFFFFF;             /* White text */\n    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    font-size:16px;\n    font-weight:600;\n    letter-spacing:0;\n    text-transform:capitalize;\n    line-height:1;\n    padding:12px 32px;\n    border-radius:8px;\n    text-decoration:none;\n    transition:\n      background-color .2s cubic-bezier(.2,0,0,1),\n      color .2s cubic-bezier(.2,0,0,1),\n      transform .2s cubic-bezier(.2,0,0,1),\n      box-shadow .2s cubic-bezier(.2,0,0,1);\n  \"\n>\n  Book Now\n</a>\n\n<style>\n  /* Hover and active states identical to Shop Now */\n  #Setmore_button_iframe:hover {\n    background-color:#7A604A; /* Slightly lighter brown hover */\n    transform: translateY(-2px);\n  }\n\n  #Setmore_button_iframe:active {\n    transform: translateY(0) scale(0.98);\n  }\n\n  #Setmore_button_iframe:focus-visible {\n    outline: none;\n    box-shadow:\n      0 0 0 2px #fff,\n      0 0 0 4px #4D382B;\n  }\n\n  /* Optional: make mobile version match spacing */\n  @media (max-width: 750px) {\n    #Setmore_button_iframe {\n      font-size:16px;\n      padding:14px 24px;\n      min-height:44px;\n      border-radius:8px;\n    }\n  }\n</style>", "link-2": "https://raftermhatcompany.setmore.com/", "IsShopButton": false, "link": "https://raftermhatcompany.setmore.com/", "button_style_secondary": false, "box_align": "bottom-center", "show_text_box": false, "text_alignment": "center", "image_overlay_opacity": 0, "color_scheme": "accent-1", "text_alignment_mobile": "center", "mobile_box_align": "flex-end", "mobile_text_spacing": 0}}, "slide_68kbXt": {"type": "slide", "settings": {"image": "shopify://shop_images/SSS_07.png", "image_mob": "shopify://shop_images/SSS_07.png", "caption": "", "block_cap_size": 20, "cap_color": "#222222", "heading": "Book Us For Your Next Event!", "block_head_size-2": 33, "block_head_size-mobile": 24, "block_head_line": 1.4, "heading_size": "h1", "subheading": "", "button_label": "Book Now", "IsBookButton": true, "custom-book-button": "<a \n  class=\"header-button\" \n  id=\"Setmore_button_iframe\" \n  href=\"https://raftermhatcompany.setmore.com\" \n  style=\"\n    display:inline-block;\n    background-color:#4D382B;      /* Main brown */\n    color:#FFFFFF;                 /* White text */\n    text-transform:capitalize;\n    letter-spacing:0;\n    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    font-size:16px;\n    font-weight:600;\n    padding:12px 32px;\n    border-radius:8px;\n    text-decoration:none;\n    line-height:1;\n    transition:\n      background-color .2s cubic-bezier(.2,0,0,1),\n      color .2s cubic-bezier(.2,0,0,1),\n      transform .2s cubic-bezier(.2,0,0,1),\n      box-shadow .2s cubic-bezier(.2,0,0,1);\n  \"\n>\n  Book Now\n</a>\n\n<style>\n  #Setmore_button_iframe:hover {\n    background-color:#7A604A; /* Lighter brown hover */\n    transform: translateY(-2px);\n  }\n\n  #Setmore_button_iframe:active {\n    transform: translateY(0) scale(0.98);\n  }\n\n  #Setmore_button_iframe:focus-visible {\n    outline: none;\n    box-shadow:\n      0 0 0 2px #fff,\n      0 0 0 4px #4D382B;\n  }\n\n  @media (prefers-reduced-motion: reduce) {\n    #Setmore_button_iframe {\n      transition: none;\n    }\n    #Setmore_button_iframe:hover,\n    #Setmore_button_iframe:active {\n      transform: none;\n    }\n  }\n</style>", "link-2": "https://raftermhatcompany.setmore.com/", "IsShopButton": false, "link": "https://raftermhatcompany.setmore.com/", "button_style_secondary": false, "box_align": "bottom-center", "show_text_box": false, "text_alignment": "center", "image_overlay_opacity": 0, "color_scheme": "accent-1", "text_alignment_mobile": "center", "mobile_box_align": "flex-end", "mobile_text_spacing": 0}}}, "block_order": ["slide_ka9Vke", "slide_78bWzg", "slide_q6NjAW", "slide_ECHWBP", "slide_68kbXt"], "disabled": true, "settings": {"layout": "full_bleed", "banner_border": 0, "slide_height": "adapt_image", "slider_visual": "counter", "auto_rotate": true, "hide_navigation": true, "change_slides_speed": 5, "show_text_below": false, "accessibility_info": "Slideshow about our brand"}}, "1762578087a1ac51c4": {"type": "_blocks", "blocks": {"ai_gen_block_f6bf619_YmLAGm": {"type": "ai_gen_block_f6bf619", "settings": {"desktop_image": "shopify://shop_images/Desktop_HERO_1920_x_1080_px_b0f04b26-275a-46a1-bfe6-6e69020b9a3a.png", "mobile_image": "shopify://shop_images/Mobile_Hero_33366d4e-f22d-45f6-bc32-073baafbe258.png"}, "blocks": {}}, "ai_gen_block_238d094_MdNUpx": {"type": "ai_gen_block_238d094", "name": "Announcement Header", "settings": {"text": "<p><strong>Shop in-store or online \u2014 or book the Rafter M Hat Bar for your event.\u00a0</strong><a href=\"/pages/contact\" title=\"Contact\"><strong>Contact us</strong></a><strong>.</strong></p>", "text_alignment": "center", "font_size": 15, "background_color": "#312110", "text_color": "#ffffff", "link_color": "#ffffff", "padding_vertical": 12, "padding_horizontal": 20}, "blocks": {}}}, "block_order": ["ai_gen_block_f6bf619_YmLAGm", "ai_gen_block_238d094_MdNUpx"], "settings": {}}, "ss_circle_menu_437Hac": {"type": "ss-circle-menu", "blocks": {"image_RzHyzt": {"type": "Image", "settings": {"bubble_img": "shopify://shop_images/Cowboy_Mobile.png", "bubble_text": "HATS", "bubble_link": "shopify://collections/hats-for-everyone"}}, "image_VPVbV8": {"type": "Image", "settings": {"bubble_img": "shopify://shop_images/Marroon.png", "bubble_text": "APPAREL", "bubble_link": "shopify://collections/apparel"}}, "image_ygBdLd": {"type": "Image", "settings": {"bubble_img": "shopify://shop_images/Myo_ther_hats_a_stetson.png", "bubble_text": "BallCaps", "bubble_link": "shopify://collections/ballcaps-truckers"}}, "image_Xpdbqn": {"type": "Image", "settings": {"bubble_img": "shopify://shop_images/Steston_Collection.jpg", "bubble_text": "Featured Items", "bubble_link": "shopify://collections/frontpage"}}, "image_WhAgxY": {"type": "Image", "disabled": true, "settings": {"bubble_text": "Collection", "bubble_link": ""}}}, "block_order": ["image_RzHyzt", "image_VPVbV8", "image_ygBdLd", "image_Xpdbqn", "image_WhAgxY"], "name": "SS - Circle Menu", "settings": {"slider_width": 100, "slider_gap": 60, "slider_gap_mobile": 16, "icon_size": 166, "icon_size_mobile": 74, "icon_space": 4, "icon_space_mobile": 0, "icon_border_thickness": 1, "icon_square": false, "use_hover": true, "text_custom": false, "text_font": "josefin_sans_n4", "text_size": 12, "text_size_mobile": 14, "text_height": 130, "text_mt": 8, "icon_border_color": "#121212", "icon_border_gradient": "", "text_color": "#121212", "background_color": "#ffffff", "background_gradient": "", "border_color": "#312110", "border_gradient": "", "margin_top": 0, "margin_bottom": 0, "padding_top": 36, "padding_bottom": 8, "padding_horizontal": 5, "padding_horizontal_mobile": 1.5, "full_width": true, "content_width": 1500, "border_thickness": 0, "lazy": true, "hide_mobile": false, "hide_desktop": false}}, "176367624771bca92d": {"type": "_blocks", "blocks": {"ai_gen_block_c7fa992_EXxCAN": {"type": "ai_gen_block_c7fa992", "settings": {"heading": "<strong>Your Hat Journey Starts Here!</strong>", "content": "<p>We love hats. We clean hats, shape hats, style hats, and host unforgettable hat parties. We\u2019re here to help you find your style. Visit us in Fayetteville or shop online. Want the full experience? Book a hat session\u2014virtual or in person\u2014for something truly unique and one-of-a-kind.</p>", "max_width": 1200, "text_alignment": "center", "heading_size": 24, "heading_spacing": 20, "text_size": 16, "line_height": 1.6, "paragraph_spacing": 16, "heading_spacing_top": 24, "heading_spacing_bottom": 12, "background_color": "#ffffff", "text_color": "#1f1d24", "heading_color": "#1f1d24", "link_color": "#312110", "link_hover_color": "#1f1d24", "padding_top": 40, "padding_bottom": 16, "padding_horizontal": 20}, "blocks": {}}}, "block_order": ["ai_gen_block_c7fa992_EXxCAN"], "settings": {}}, "176318539650189d04": {"type": "_blocks", "blocks": {"ai_gen_block_757192d_hMggzr": {"type": "4_product_stacked_carosel", "settings": {"collection": "best-sellers", "product_limit": 12, "heading": "Some of Our Favorites", "subheading": "", "heading_alignment": "center", "heading_size": 26, "products_per_view": 4, "products_per_view_tablet": 3, "product_gap": 20, "container_width": 1500, "show_navigation": true, "sale_badge_label": "Sale", "sale_badge_bg": "#d50000", "sale_badge_color": "#ffffff", "badge_border_radius": 4, "background_color": "#ffffff", "heading_color": "#1f1d24", "text_color": "#1f1d24", "price_color": "#312110", "compare_price_color": "#999999", "card_background": "#ffffff", "card_border_color": "#e0e0e0", "button_background": "#312110", "button_color": "#ffffff", "button_hover_background": "#1f1d24", "card_border_radius": 6, "padding_top": 40, "padding_bottom": 20, "dots_padding_bottom": 24}, "blocks": {}}}, "block_order": ["ai_gen_block_757192d_hMggzr"], "settings": {}}, "collection_list_nTLNYY": {"type": "collection-list", "blocks": {"featured_collection_kKaKLt": {"type": "featured_collection", "settings": {"collection": "hats-for-everyone"}}, "featured_collection_qEx7et": {"type": "featured_collection", "settings": {"collection": "apparel"}}, "featured_collection_LyKW9R": {"type": "featured_collection", "settings": {"collection": "ballcaps-truckers"}}}, "block_order": ["featured_collection_kKaKLt", "featured_collection_qEx7et", "featured_collection_LyKW9R"], "disabled": true, "custom_css": [".collection-list {gap: 4px;}", ".collection-list {justify-items: center;}"], "name": "t:sections.collection-list.presets.name", "settings": {"title": "", "heading_size": "h1", "image_ratio": "square", "columns_desktop": 3, "color_scheme": "", "show_view_all": false, "columns_mobile": "1", "swipe_on_mobile": false, "padding_top": 28, "padding_bottom": 36}}, "17631854945b793bb1": {"type": "_blocks", "blocks": {"instafeed_app_block_rrg6Bd": {"type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5", "settings": {"title": "", "title_color": "", "title_size_v2": 28, "alignment": "center", "instafeed_margin_top": 0, "instafeed_margin_bottom": 26, "instafeed_margin_sides": 0, "show_instagram_link": false, "link_alignment": "left", "link_color": "#000000", "background_color": "", "feed_id": "", "html_area": ""}}, "ai_gen_block_002b861_WnqG6D": {"type": "four_picutre_block", "name": "Four Picture Grid", "settings": {"title": "Legendary Brands", "title_size": 28, "title_alignment": "center", "title_color": "#1f1d24", "title_spacing": 24, "image_1": "shopify://shop_images/Stetson_2.webp", "link_1": "shopify://pages/stetson", "image_2": "shopify://shop_images/Resistol_911a3678-5dee-4a84-a061-3ac6b8fff945.webp", "link_2": "shopify://pages/resistol", "image_3": "shopify://shop_images/Goorin_4_00ffe83a-cbf3-4f8e-ba6e-3ff598c39e7d.webp", "link_3": "shopify://pages/goorin-bros", "image_4": "shopify://shop_images/Bigalli_4.webp", "link_4": "shopify://pages/bigalli", "spacing": 16, "aspect_ratio": "1 / 1", "border_radius": 8, "border_thickness": 1, "border_color": "#000000", "border_opacity": 10, "background_color": "#e6e7e2", "padding_top": 16, "padding_bottom": 24, "padding_horizontal": 72}, "blocks": {}}}, "block_order": ["instafeed_app_block_rrg6Bd", "ai_gen_block_002b861_WnqG6D"], "settings": {}}, "featured_collection_Qbbc6i": {"type": "featured-collection", "disabled": true, "settings": {"title": "", "description": "", "show_description": false, "description_style": "body", "collection": "hats-for-everyone", "products_to_show": 13, "columns_desktop": 4, "full_width": false, "show_view_all": true, "view_all_style": "link", "enable_desktop_slider": true, "navigation_on_desk": false, "color_scheme": "scheme-e92940af-9aaf-4f4f-82e9-9ee23178e5fd", "image_ratio": "square", "show_secondary_image": true, "show_vendor": false, "show_rating": false, "enable_quick_desc": false, "quick_desc_legth": 90, "quick_desc_size": 14, "enable_quick_add": false, "show_secondary_add": false, "columns_mobile": "1", "swipe_on_mobile": true, "navigation_on_mobile": false, "padding_top": 12, "padding_bottom": 12}}, "custom_liquid_e8enqT": {"type": "custom-liquid_Footer", "disabled": true, "name": "Book Now Button", "settings": {"left_heading": "RAFTER M HAT COMPANY | CRAFTED. FITTED. PERSONALIZED.", "left_body": "We shape hats, we size hats, we customize hats \u2014 and we take immense pride in being a small, independent business in Fayetteville, Arkansas. No big corporates, no mass production. Just skill, craftsmanship, and a deep passion for helping every customer find the perfect hat.", "contact_label": "Contact Us:", "contact_address": "2218 N College Ave\nFayetteville, AR 72703", "contact_map_link": "https://www.google.com/maps?q=2218+N+College+Ave,+Fayetteville,+AR+72703", "contact_email": "zack@raftermhatco.com", "contact_phone": "479.283.6022", "instagram_url": "https://instagram.com/raftermhatco", "facebook_url": "https://facebook.com/raftermhatco", "tiktok_url": "https://tiktok.com/raftermhatco", "store_hours": "Mon\u2013Fri: 10am\u20135pm\nSaturday: 10am\u20132pm\nSunday: Closed", "newsletter_heading": "STAY IN TOUCH", "newsletter_text": "Subscribe to receive updates, new arrivals, and exclusive Rafter M offers.", "newsletter_placeholder": "Enter your email address", "newsletter_button_label": "SUBSCRIBE", "newsletter_success": "Thanks for subscribing \u2014 we\u2019ll be in touch soon.", "menu_heading": "QUICK LINKS", "footer_menu": "footer", "bottom_text": "\u00a9 2025 RAFTER M HAT COMPANY  |  TERMS OF SERVICE  |  PRIVACY POLICY", "padding_top": 60, "padding_bottom": 28}}, "newsletter_eRQTKh": {"type": "newsletter", "blocks": {"heading_zPkiC8": {"type": "heading", "settings": {"heading": "Subscribe for exclusive updates", "heading_size": "h2"}}, "paragraph_GMBCNH": {"type": "paragraph", "settings": {"text": "<h4>Be the first to know about our new collections.</h4>"}}, "email_form_J7E9ge": {"type": "email_form", "settings": {}}}, "block_order": ["heading_zPkiC8", "paragraph_GMBCNH", "email_form_J7E9ge"], "disabled": true, "settings": {"color_scheme": "accent-1", "full_width": true, "text_align": "left", "news_alignment": "horizontal", "show_small_text": false, "small_text": "* You can unsubscribe at any time.", "padding_top": 24, "padding_bottom": 24, "margin_top": 0, "margin_bottom": 0}}, "lumin_mega_3wBPGR": {"type": "lumin-mega", "blocks": {"heading_P9nzdb": {"type": "heading", "settings": {"heading": "HATS FOR EVERYONE", "heading_size": "h0"}}, "text_WX9pK9": {"type": "text", "settings": {"text": "<p>Our collection has versatile styles that look great on anyone, blending comfort with contemporary fashion.</p>", "text_style": "body"}}, "button_AGw6AN": {"type": "button", "settings": {"button_label": "Shop Now", "button_link": "shopify://collections/hats-for-everyone", "button_style_secondary": false}}}, "block_order": ["heading_P9nzdb", "text_WX9pK9", "button_AGw6AN"], "disabled": true, "name": "Hats For Everyone", "settings": {"color_scheme_main": "", "image": "shopify://shop_images/Rafter_M_Hat_Company-24.png", "height": "adapt", "desktop_image_width": "medium", "layout": "text_first", "desktop_content_position": "middle", "desktop_content_alignment": "right", "content_layout": "no-overlap", "color_scheme": "", "image_behavior": "none", "mobile_content_alignment": "center", "margin_top": 0, "margin_bottom": 0, "padding_top": 0, "padding_bottom": 0}}, "17618020408820ce43": {"type": "apps", "name": "Instafeed App", "settings": {"include_margins": true}}, "1763038602d03ce096": {"type": "_blocks", "settings": {}}, "lumin_mega_A34iND": {"type": "lumin-mega", "blocks": {"heading_NUNnji": {"type": "heading", "settings": {"heading": "MEN'S HATS", "heading_size": "h0"}}, "text_EdwmCX": {"type": "text", "settings": {"text": "<p>Our men's hat collection features a variety of styles, from rugged outdoor hats perfect for adventures to sleek, sophisticated designs ideal for urban settings.</p>", "text_style": "body"}}, "button_xxJR8A": {"type": "button", "settings": {"button_label": "Shop Now", "button_link": "shopify://collections/womens", "button_style_secondary": false}}}, "block_order": ["heading_NUNnji", "text_EdwmCX", "button_xxJR8A"], "settings": {"color_scheme_main": "", "image": "shopify://shop_images/Rafter_M_Hat_Company-14.png", "height": "adapt", "desktop_image_width": "medium", "layout": "image_first", "desktop_content_position": "middle", "desktop_content_alignment": "left", "content_layout": "no-overlap", "color_scheme": "", "image_behavior": "none", "mobile_content_alignment": "center", "margin_top": 0, "margin_bottom": 0, "padding_top": 0, "padding_bottom": 0}}, "featured_collection_Wjrb6i": {"type": "featured-collection", "settings": {"title": "", "description": "", "show_description": false, "description_style": "body", "collection": "womens", "products_to_show": 9, "columns_desktop": 4, "full_width": false, "show_view_all": true, "view_all_style": "link", "enable_desktop_slider": true, "navigation_on_desk": false, "color_scheme": "scheme-e92940af-9aaf-4f4f-82e9-9ee23178e5fd", "image_ratio": "square", "show_secondary_image": true, "show_vendor": false, "show_rating": false, "enable_quick_desc": false, "quick_desc_legth": 90, "quick_desc_size": 14, "enable_quick_add": false, "show_secondary_add": false, "columns_mobile": "1", "swipe_on_mobile": true, "navigation_on_mobile": false, "padding_top": 12, "padding_bottom": 44}}, "rich_text_Mw4cQJ": {"type": "rich-text", "disabled": true, "settings": {"heading": "", "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>", "max_width": 800, "text_alignment": "left", "heading_size": 32, "text_size": 16, "line_height": 1.6, "heading_color": "#1f1d24", "text_color": "#1f1d24", "link_color": "#312110", "link_hover_color": "#1f1d24", "background_color": "#ffffff", "padding_top": 24, "padding_bottom": 24, "padding_horizontal": 20, "heading_spacing": 16, "paragraph_spacing": 16, "border_radius": 0}}, "lumin_mega_GYecDz": {"type": "lumin-mega", "blocks": {"heading_4TXyWn": {"type": "heading", "settings": {"heading": "WOMEN'S HATS", "heading_size": "h1"}}, "text_adXeGi": {"type": "text", "settings": {"text": "<p>Our collection offers an array of fashionable hats that combine elegance with practicality.</p>", "text_style": "body"}}, "button_EpYNxQ": {"type": "button", "settings": {"button_label": "Shop Now", "button_link": "shopify://collections/womens-1", "button_style_secondary": false}}}, "block_order": ["heading_4TXyWn", "text_adXeGi", "button_EpYNxQ"], "settings": {"color_scheme_main": "", "image": "shopify://shop_images/Rafter_M_Hat_Company-15.png", "height": "adapt", "desktop_image_width": "medium", "layout": "text_first", "desktop_content_position": "middle", "desktop_content_alignment": "right", "content_layout": "no-overlap", "color_scheme": "", "image_behavior": "none", "mobile_content_alignment": "center", "margin_top": 0, "margin_bottom": 0, "padding_top": 0, "padding_bottom": 0}}, "featured_collection_9pdd8p": {"type": "featured-collection", "settings": {"title": "", "description": "", "show_description": false, "description_style": "body", "collection": "womens-1", "products_to_show": 14, "columns_desktop": 4, "full_width": false, "show_view_all": true, "view_all_style": "link", "enable_desktop_slider": true, "navigation_on_desk": false, "color_scheme": "scheme-e92940af-9aaf-4f4f-82e9-9ee23178e5fd", "image_ratio": "square", "show_secondary_image": true, "show_vendor": false, "show_rating": false, "enable_quick_desc": false, "quick_desc_legth": 90, "quick_desc_size": 14, "enable_quick_add": false, "show_secondary_add": false, "columns_mobile": "1", "swipe_on_mobile": true, "navigation_on_mobile": false, "padding_top": 12, "padding_bottom": 24}}, "slideshow_yKmXBC": {"type": "slideshow", "settings": {"layout": "full_bleed", "banner_border": 0, "slide_height": "adapt_image", "slider_visual": "counter", "auto_rotate": false, "hide_navigation": true, "change_slides_speed": 5, "show_text_below": false, "accessibility_info": "Slideshow about our brand"}}, "lumin_grids_qnX3eH": {"type": "lumin-grids", "blocks": {"image_6Wpc4f": {"type": "image", "settings": {"large_up_hide": false, "grid_width_desktop": "50", "medium_hide": false, "grid_width_tablet": "50", "small_hide": false, "image": "shopify://shop_images/My_other_hat_is_a_stetson.png", "overlay_opacity": 0, "opacity_color": "#000000", "padding_size": 30, "padding_size_in": 10, "text_border": 0, "bg_color": "rgba(0,0,0,0)", "head": "BULLCAPS/TRUCKERS", "head_color": "#ffffff", "head_size_d": 30, "head_size_m": 24, "margin_bottom": 15, "text": "", "text_color": "#212121", "text_size_d": 16, "text_size_m": 14, "button-text": "", "button_link": "", "desktop_content_alignment": "left", "image_content_position": "bottom-center", "grid-url": "shopify://collections/ballcaps-truckers"}}, "image_T8PLJB": {"type": "image", "settings": {"large_up_hide": false, "grid_width_desktop": "50", "medium_hide": false, "grid_width_tablet": "50", "small_hide": false, "image": "shopify://shop_images/Rafter_M_Hat_Company-22.png", "overlay_opacity": 0, "opacity_color": "#000000", "padding_size": 30, "padding_size_in": 10, "text_border": 0, "bg_color": "rgba(0,0,0,0)", "head": "ACCESSORIES", "head_color": "#ffffff", "head_size_d": 30, "head_size_m": 24, "margin_bottom": 15, "text": "", "text_color": "#212121", "text_size_d": 16, "text_size_m": 14, "button-text": "", "button_link": "", "desktop_content_alignment": "left", "image_content_position": "bottom-center", "grid-url": "shopify://collections/accessories"}}}, "block_order": ["image_6Wpc4f", "image_T8PLJB"], "settings": {"video_border": 0, "grid_gap": 8, "color_scheme": "", "padding_top": 8, "padding_bottom": 8, "margin_top": 8, "margin_bottom": 8}}, "lumin_slidshow_pro_yNeGG6": {"type": "lumin-slidshow-pro", "blocks": {"image_BnRrL9": {"type": "image", "settings": {"image": "shopify://shop_images/Rafter_M_Hat_Company-10.png", "focal_point": "center center", "image_mobile": "shopify://shop_images/Rafter_M_Hat_Company-19.png", "focal_point_mobile": "center center", "title": "", "subtitle": "", "image_link": "", "clickable_image_new_tab": false, "button_text": "Explore Now", "button_link": "shopify://collections/best-sellers", "button_text_2": "", "button_link_2": "shopify://collections/all", "title_font_size": 80, "title_font_size_mobile": 40, "subtitle_font_size": 21, "subtitle_font_size_mobile": 17, "button_text_size": 13, "button_text_size_mobile": 13, "text_shadow": 20, "overlay_opacity": 0, "button_background_color": "", "button_text_color": "#ffffff", "button_border_color": "#ffffff", "button_background_color_2": "", "button_text_color_2": "#ffffff", "button_border_color_2": "#ffffff", "title_color": "#ffffff", "subtitle_color": "#ffffff", "text_shadow_color": "#000000", "overlay_color": "#000000", "text_align": "LuminSlideshow-textbox--center"}}}, "block_order": ["image_BnRrL9"], "custom_css": [], "settings": {"section_height": "natural", "section_height_mobile": "500px", "full_width_images": false, "full_width_images_mobile": false, "parallax": false, "parallax_mobile": false, "dots_style": "bars", "arrows_style": "none", "arrows_style_mobile": "none", "autoplay": true, "autoplay_stop": true, "autoplay_speed": 5, "loader_background_color": "#000000", "dots_color": "#ffffff", "arrow_background_color": "#ffffff", "arrow_chevron_color": "#333333", "dot_size": 6, "dot_size_selected": 9, "arrow_size": 40, "arrow_size_mobile": 40, "arrow_chevron_size": 12, "arrow_chevron_size_mobile": 12, "button_letter_spacing": 0, "button_letter_spacing_mobile": 0, "button_border_radius": 0, "button_border_radius_mobile": 0, "text_animation": true, "fade": true, "zoom_animation": true, "parallax_speed": 80, "parallax_speed_mobile": 70}}, "lumin_review_AbtUAG": {"type": "lumin-review", "blocks": {"review_WAgjrU": {"type": "review", "settings": {"name_text": "Winne", "date_text": "", "review_head": "", "review_text": "This comb has completely transformed my hair routine. It heats up quickly, straightens my hair effortlessly, and leaves it smooth and shiny. I also love that it's gentle on my hair, preventing any damage or frizz", "like_text": "Was this helpful?", "like_size": 36, "dislike_size": 0, "feature_font_size": 16}}, "review_TdayJx": {"type": "review", "settings": {"name_text": "Jack", "date_text": "", "review_head": "", "review_text": "The Hair Straightening tool delivers salon-quality results right at home, and the Hair Trimmer is perfect for quick touch-ups and maintaining a neat hairstyle.", "like_text": "Was this helpful?", "like_size": 15, "dislike_size": 0, "feature_font_size": 16}}, "review_FJyCTn": {"type": "review", "settings": {"name_text": "Jenny", "date_text": "", "review_head": "", "review_text": "I highly recommend Multi Styler Shop to anyone looking for reliable and effective hair styling tools. I'll definitely be a returning customer!", "like_text": "Was this helpful?", "like_size": 22, "dislike_size": 0, "feature_font_size": 16}}}, "block_order": ["review_WAgjrU", "review_TdayJx", "review_FJyCTn"], "disabled": true, "settings": {"color_scheme": "", "header_text": "Our Happy Customers!", "show_top": true, "show_footer": true, "rating": "", "rating_count": "", "review_column_mobile": "1", "review_column_tab": "3", "review_column_desk": "3", "review_load": "", "load_text": "", "rw_img_size": 140, "rw_img_radius": 0, "block_name_size": 20, "date_size": 16, "block_head_size": 20, "block_text_size": 14, "show_border": true, "rw_border": "#f2f2f2", "border_radius": 0, "section_bg3": "#0f8bb6", "section_bg2": "#0f8bb6", "verify_text": "Verified Buyer", "review_bg": "#ffffff", "feature_svg_color": "#e9bf18", "feature_acc_color": "#000000", "review_pd": 20, "review_pd_m": 20, "rw_margin": 0, "padding_top": 36, "padding_bottom": 36}}, "multicolumn_eeM788": {"type": "multicolumn", "blocks": {"column_jCLTXx": {"type": "column", "settings": {"image": "shopify://shop_images/Untitled-10.png", "title": "\u2605\u2605\u2605\u2605\u2605", "text": "<h6>The quality of the hat I received is outstanding it's well-made, comfortable, and perfect for both sunny days and chilly evenings. The material feels durable and the craftsmanship is top-notch.</h6><p><strong>Richal</strong></p>", "link_label": "", "link": ""}}, "column_MHrEix": {"type": "column", "settings": {"image": "shopify://shop_images/Untitled-8.png", "title": "\u2605\u2605\u2605\u2605\u2605", "text": "<h6>I ordered a stylish fedora for my husband and a chic sun hat for myself. Both arrived quickly and exceeded our expectations. The fit was perfect, and the materials felt luxurious. It's clear that Ralter M lakes pride in curating a collection of hats that are both fashionable and well made.</h6><p><strong>Olivia</strong></p>", "link_label": "", "link": ""}}, "column_gXjjLa": {"type": "column", "settings": {"image": "shopify://shop_images/Untitled-2.png", "title": "\u2605\u2605\u2605\u2605\u2605", "text": "<h6>after M Hat Company, and I couldn't be more thrilled with my experience! Their selection of men's and women's hats is impressive, offering everything from classic fedoras to trendy wide brimmed styles. The quality of the hats is top notch, with excellent craftsmanship and al tention to detail.</h6><p><strong>Ammi</strong></p>", "link_label": "", "link": ""}}}, "block_order": ["column_jCLTXx", "column_MHrEix", "column_gXjjLa"], "disabled": true, "settings": {"title": "Our Happy Customers!", "heading_size": "h1", "heading_center": true, "image_width": "forth", "image_ratio": "adapt", "columns_desktop": 3, "column_alignment": "center", "background_style": "primary", "button_label": "", "button_link": "", "color_scheme": "", "columns_mobile": "1", "swipe_on_mobile": true, "navigation_on_mobile": true, "padding_top": 20, "padding_bottom": 20}}, "heritage_restoration_vibe": {"type": "heritage-restoration", "settings": {}}}, "order": ["slideshow_FGiH4p", "1762578087a1ac51c4", "ss_circle_menu_437Hac", "176367624771bca92d", "176318539650189d04", "heritage_restoration_vibe", "collection_list_nTLNYY", "17631854945b793bb1", "featured_collection_Qbbc6i", "custom_liquid_e8enqT", "newsletter_eRQTKh", "lumin_mega_3wBPGR", "17618020408820ce43", "1763038602d03ce096", "lumin_mega_A34iND", "featured_collection_Wjrb6i", "rich_text_Mw4cQJ", "lumin_mega_GYecDz", "featured_collection_9pdd8p", "slideshow_yKmXBC", "lumin_grids_qnX3eH", "lumin_slidshow_pro_yNeGG6", "lumin_review_AbtUAG", "multicolumn_eeM788"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_FGiH4p": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_ka9Vke": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Desktop_Banner_Out_of_Office.png",
+            "image_mob": "shopify://shop_images/Rename_Mobile_Hero.png",
+            "caption": "",
+            "block_cap_size": 20,
+            "cap_color": "#fcf8f4",
+            "heading": "<strong>Schedule Your Free Hat Sizing</strong>",
+            "block_head_size-2": 33,
+            "block_head_size-mobile": 24,
+            "block_head_line": 1.4,
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "Book Now!",
+            "IsBookButton": true,
+            "custom-book-button": "<a \n  class=\"header-button\" \n  id=\"Setmore_button_iframe\" \n  href=\"https://raftermhatcompany.setmore.com\" \n  style=\"\n    display:inline-block;\n    background-color:#4D382B;      /* Main brown */\n    color:#FFFFFF;                 /* White text */\n    text-transform:capitalize;\n    letter-spacing:0;\n    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    font-size:16px;\n    font-weight:600;\n    padding:12px 32px;\n    border-radius:8px;\n    text-decoration:none;\n    line-height:1;\n    transition:\n      background-color .2s cubic-bezier(.2,0,0,1),\n      color .2s cubic-bezier(.2,0,0,1),\n      transform .2s cubic-bezier(.2,0,0,1),\n      box-shadow .2s cubic-bezier(.2,0,0,1);\n  \"\n>\n  Book Now\n</a>\n\n<style>\n  #Setmore_button_iframe:hover {\n    background-color:#7A604A; /* Lighter brown hover */\n    transform: translateY(-2px);\n  }\n\n  #Setmore_button_iframe:active {\n    transform: translateY(0) scale(0.98);\n  }\n\n  #Setmore_button_iframe:focus-visible {\n    outline: none;\n    box-shadow:\n      0 0 0 2px #fff,\n      0 0 0 4px #4D382B;\n  }\n\n  @media (prefers-reduced-motion: reduce) {\n    #Setmore_button_iframe {\n      transition: none;\n    }\n    #Setmore_button_iframe:hover,\n    #Setmore_button_iframe:active {\n      transform: none;\n    }\n  }\n</style>",
+            "link-2": "https://raftermhatcompany.setmore.com/",
+            "IsShopButton": false,
+            "link": "https://raftermhatcompany.setmore.com/",
+            "button_style_secondary": false,
+            "box_align": "bottom-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "accent-1",
+            "text_alignment_mobile": "center",
+            "mobile_box_align": "center",
+            "mobile_text_spacing": 0
+          }
+        },
+        "slide_78bWzg": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Website_Heading_2eb4f74c-f1ca-4d88-aaed-b874fa007084.png",
+            "image_mob": "shopify://shop_images/Website_Heading_Mobile_daeb4baf-a11a-4075-8a2d-5b4c2cdfbc18.png",
+            "caption": "",
+            "block_cap_size": 20,
+            "cap_color": "#222222",
+            "heading": "",
+            "block_head_size-2": 33,
+            "block_head_size-mobile": 24,
+            "block_head_line": 1.4,
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "Shop Now",
+            "IsBookButton": true,
+            "custom-book-button": "<a class=\"header-button\" id=\"Setmore_button_iframe\" href=\"https://raftermhatcompany.setmore.com\" style=\"display:inline-block;\">\n\n                          Book Now\n                         \n                        </a>",
+            "link-2": "shopify://collections/all",
+            "IsShopButton": false,
+            "link": "shopify://collections/all",
+            "button_style_secondary": false,
+            "box_align": "bottom-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "accent-1",
+            "text_alignment_mobile": "center",
+            "mobile_box_align": "flex-end",
+            "mobile_text_spacing": 0
+          }
+        },
+        "slide_q6NjAW": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/SSS_05.png",
+            "image_mob": "shopify://shop_images/SSS_05.png",
+            "caption": "",
+            "block_cap_size": 20,
+            "cap_color": "#222222",
+            "heading": "Where every Hat Makes a Statement",
+            "block_head_size-2": 33,
+            "block_head_size-mobile": 24,
+            "block_head_line": 1.4,
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "Shop Now",
+            "IsBookButton": true,
+            "custom-book-button": "<a \n  id=\"Setmore_button_iframe\"\n  href=\"https://raftermhatcompany.setmore.com\"\n  style=\"\n    display:inline-block;\n    background-color:#4D382B;  /* Same dark brown as Shop Now */\n    color:#FFFFFF;             /* White text */\n    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    font-size:16px;\n    font-weight:600;\n    letter-spacing:0;\n    text-transform:capitalize;\n    line-height:1;\n    padding:12px 32px;\n    border-radius:8px;\n    text-decoration:none;\n    transition:\n      background-color .2s cubic-bezier(.2,0,0,1),\n      color .2s cubic-bezier(.2,0,0,1),\n      transform .2s cubic-bezier(.2,0,0,1),\n      box-shadow .2s cubic-bezier(.2,0,0,1);\n  \"\n>\n  Book Now\n</a>\n\n<style>\n  /* Hover and active states identical to Shop Now */\n  #Setmore_button_iframe:hover {\n    background-color:#7A604A; /* Slightly lighter brown hover */\n    transform: translateY(-2px);\n  }\n\n  #Setmore_button_iframe:active {\n    transform: translateY(0) scale(0.98);\n  }\n\n  #Setmore_button_iframe:focus-visible {\n    outline: none;\n    box-shadow:\n      0 0 0 2px #fff,\n      0 0 0 4px #4D382B;\n  }\n\n  /* Optional: make mobile version match spacing */\n  @media (max-width: 750px) {\n    #Setmore_button_iframe {\n      font-size:16px;\n      padding:14px 24px;\n      min-height:44px;\n      border-radius:8px;\n    }\n  }\n</style>",
+            "link-2": "shopify://collections/hats-for-everyone",
+            "IsShopButton": false,
+            "link": "shopify://collections",
+            "button_style_secondary": false,
+            "box_align": "bottom-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "background-2",
+            "text_alignment_mobile": "left",
+            "mobile_box_align": "flex-end",
+            "mobile_text_spacing": 18
+          }
+        },
+        "slide_ECHWBP": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/SSS_04.png",
+            "image_mob": "shopify://shop_images/Cowboy_Mobile.png",
+            "caption": "",
+            "block_cap_size": 20,
+            "cap_color": "#222222",
+            "heading": "Hats for Every Adventure",
+            "block_head_size-2": 33,
+            "block_head_size-mobile": 24,
+            "block_head_line": 1.4,
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "Book Now",
+            "IsBookButton": true,
+            "custom-book-button": "<a \n  id=\"Setmore_button_iframe\"\n  href=\"https://raftermhatcompany.setmore.com\"\n  style=\"\n    display:inline-block;\n    background-color:#4D382B;  /* Same dark brown as Shop Now */\n    color:#FFFFFF;             /* White text */\n    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    font-size:16px;\n    font-weight:600;\n    letter-spacing:0;\n    text-transform:capitalize;\n    line-height:1;\n    padding:12px 32px;\n    border-radius:8px;\n    text-decoration:none;\n    transition:\n      background-color .2s cubic-bezier(.2,0,0,1),\n      color .2s cubic-bezier(.2,0,0,1),\n      transform .2s cubic-bezier(.2,0,0,1),\n      box-shadow .2s cubic-bezier(.2,0,0,1);\n  \"\n>\n  Book Now\n</a>\n\n<style>\n  /* Hover and active states identical to Shop Now */\n  #Setmore_button_iframe:hover {\n    background-color:#7A604A; /* Slightly lighter brown hover */\n    transform: translateY(-2px);\n  }\n\n  #Setmore_button_iframe:active {\n    transform: translateY(0) scale(0.98);\n  }\n\n  #Setmore_button_iframe:focus-visible {\n    outline: none;\n    box-shadow:\n      0 0 0 2px #fff,\n      0 0 0 4px #4D382B;\n  }\n\n  /* Optional: make mobile version match spacing */\n  @media (max-width: 750px) {\n    #Setmore_button_iframe {\n      font-size:16px;\n      padding:14px 24px;\n      min-height:44px;\n      border-radius:8px;\n    }\n  }\n</style>",
+            "link-2": "https://raftermhatcompany.setmore.com/",
+            "IsShopButton": false,
+            "link": "https://raftermhatcompany.setmore.com/",
+            "button_style_secondary": false,
+            "box_align": "bottom-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "accent-1",
+            "text_alignment_mobile": "center",
+            "mobile_box_align": "flex-end",
+            "mobile_text_spacing": 0
+          }
+        },
+        "slide_68kbXt": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/SSS_07.png",
+            "image_mob": "shopify://shop_images/SSS_07.png",
+            "caption": "",
+            "block_cap_size": 20,
+            "cap_color": "#222222",
+            "heading": "Book Us For Your Next Event!",
+            "block_head_size-2": 33,
+            "block_head_size-mobile": 24,
+            "block_head_line": 1.4,
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "Book Now",
+            "IsBookButton": true,
+            "custom-book-button": "<a \n  class=\"header-button\" \n  id=\"Setmore_button_iframe\" \n  href=\"https://raftermhatcompany.setmore.com\" \n  style=\"\n    display:inline-block;\n    background-color:#4D382B;      /* Main brown */\n    color:#FFFFFF;                 /* White text */\n    text-transform:capitalize;\n    letter-spacing:0;\n    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    font-size:16px;\n    font-weight:600;\n    padding:12px 32px;\n    border-radius:8px;\n    text-decoration:none;\n    line-height:1;\n    transition:\n      background-color .2s cubic-bezier(.2,0,0,1),\n      color .2s cubic-bezier(.2,0,0,1),\n      transform .2s cubic-bezier(.2,0,0,1),\n      box-shadow .2s cubic-bezier(.2,0,0,1);\n  \"\n>\n  Book Now\n</a>\n\n<style>\n  #Setmore_button_iframe:hover {\n    background-color:#7A604A; /* Lighter brown hover */\n    transform: translateY(-2px);\n  }\n\n  #Setmore_button_iframe:active {\n    transform: translateY(0) scale(0.98);\n  }\n\n  #Setmore_button_iframe:focus-visible {\n    outline: none;\n    box-shadow:\n      0 0 0 2px #fff,\n      0 0 0 4px #4D382B;\n  }\n\n  @media (prefers-reduced-motion: reduce) {\n    #Setmore_button_iframe {\n      transition: none;\n    }\n    #Setmore_button_iframe:hover,\n    #Setmore_button_iframe:active {\n      transform: none;\n    }\n  }\n</style>",
+            "link-2": "https://raftermhatcompany.setmore.com/",
+            "IsShopButton": false,
+            "link": "https://raftermhatcompany.setmore.com/",
+            "button_style_secondary": false,
+            "box_align": "bottom-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "accent-1",
+            "text_alignment_mobile": "center",
+            "mobile_box_align": "flex-end",
+            "mobile_text_spacing": 0
+          }
+        }
+      },
+      "block_order": [
+        "slide_ka9Vke",
+        "slide_78bWzg",
+        "slide_q6NjAW",
+        "slide_ECHWBP",
+        "slide_68kbXt"
+      ],
+      "disabled": true,
+      "settings": {
+        "layout": "full_bleed",
+        "banner_border": 0,
+        "slide_height": "adapt_image",
+        "slider_visual": "counter",
+        "auto_rotate": true,
+        "hide_navigation": true,
+        "change_slides_speed": 5,
+        "show_text_below": false,
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "1762578087a1ac51c4": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_f6bf619_YmLAGm": {
+          "type": "ai_gen_block_f6bf619",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Desktop_HERO_1920_x_1080_px_b0f04b26-275a-46a1-bfe6-6e69020b9a3a.png",
+            "mobile_image": "shopify://shop_images/Mobile_Hero_33366d4e-f22d-45f6-bc32-073baafbe258.png"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_238d094_MdNUpx": {
+          "type": "ai_gen_block_238d094",
+          "name": "Announcement Header",
+          "settings": {
+            "text": "<p><strong>Shop in-store or online — or book the Rafter M Hat Bar for your event. </strong><a href=\"/pages/contact\" title=\"Contact\"><strong>Contact us</strong></a><strong>.</strong></p>",
+            "text_alignment": "center",
+            "font_size": 15,
+            "background_color": "#312110",
+            "text_color": "#ffffff",
+            "link_color": "#ffffff",
+            "padding_vertical": 12,
+            "padding_horizontal": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_f6bf619_YmLAGm",
+        "ai_gen_block_238d094_MdNUpx"
+      ],
+      "settings": {}
+    },
+    "ss_circle_menu_437Hac": {
+      "type": "ss-circle-menu",
+      "blocks": {
+        "image_RzHyzt": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Cowboy_Mobile.png",
+            "bubble_text": "HATS",
+            "bubble_link": "shopify://collections/hats-for-everyone"
+          }
+        },
+        "image_VPVbV8": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Marroon.png",
+            "bubble_text": "APPAREL",
+            "bubble_link": "shopify://collections/apparel"
+          }
+        },
+        "image_ygBdLd": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Myo_ther_hats_a_stetson.png",
+            "bubble_text": "BallCaps",
+            "bubble_link": "shopify://collections/ballcaps-truckers"
+          }
+        },
+        "image_Xpdbqn": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Steston_Collection.jpg",
+            "bubble_text": "Featured Items",
+            "bubble_link": "shopify://collections/frontpage"
+          }
+        },
+        "image_WhAgxY": {
+          "type": "Image",
+          "disabled": true,
+          "settings": {
+            "bubble_text": "Collection",
+            "bubble_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_RzHyzt",
+        "image_VPVbV8",
+        "image_ygBdLd",
+        "image_Xpdbqn",
+        "image_WhAgxY"
+      ],
+      "name": "SS - Circle Menu",
+      "settings": {
+        "slider_width": 100,
+        "slider_gap": 60,
+        "slider_gap_mobile": 16,
+        "icon_size": 166,
+        "icon_size_mobile": 74,
+        "icon_space": 4,
+        "icon_space_mobile": 0,
+        "icon_border_thickness": 1,
+        "icon_square": false,
+        "use_hover": true,
+        "text_custom": false,
+        "text_font": "josefin_sans_n4",
+        "text_size": 12,
+        "text_size_mobile": 14,
+        "text_height": 130,
+        "text_mt": 8,
+        "icon_border_color": "#121212",
+        "icon_border_gradient": "",
+        "text_color": "#121212",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#312110",
+        "border_gradient": "",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 36,
+        "padding_bottom": 8,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": true,
+        "content_width": 1500,
+        "border_thickness": 0,
+        "lazy": true,
+        "hide_mobile": false,
+        "hide_desktop": false
+      }
+    },
+    "176367624771bca92d": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_c7fa992_EXxCAN": {
+          "type": "ai_gen_block_c7fa992",
+          "settings": {
+            "heading": "<strong>Your Hat Journey Starts Here!</strong>",
+            "content": "<p>We love hats. We clean hats, shape hats, style hats, and host unforgettable hat parties. We’re here to help you find your style. Visit us in Fayetteville or shop online. Want the full experience? Book a hat session—virtual or in person—for something truly unique and one-of-a-kind.</p>",
+            "max_width": 1200,
+            "text_alignment": "center",
+            "heading_size": 24,
+            "heading_spacing": 20,
+            "text_size": 16,
+            "line_height": 1.6,
+            "paragraph_spacing": 16,
+            "heading_spacing_top": 24,
+            "heading_spacing_bottom": 12,
+            "background_color": "#ffffff",
+            "text_color": "#1f1d24",
+            "heading_color": "#1f1d24",
+            "link_color": "#312110",
+            "link_hover_color": "#1f1d24",
+            "padding_top": 40,
+            "padding_bottom": 16,
+            "padding_horizontal": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_c7fa992_EXxCAN"
+      ],
+      "settings": {}
+    },
+    "176318539650189d04": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_757192d_hMggzr": {
+          "type": "4_product_stacked_carosel",
+          "settings": {
+            "collection": "best-sellers",
+            "product_limit": 12,
+            "heading": "Some of Our Favorites",
+            "subheading": "",
+            "heading_alignment": "center",
+            "heading_size": 26,
+            "products_per_view": 4,
+            "products_per_view_tablet": 3,
+            "product_gap": 20,
+            "container_width": 1500,
+            "show_navigation": true,
+            "sale_badge_label": "Sale",
+            "sale_badge_bg": "#d50000",
+            "sale_badge_color": "#ffffff",
+            "badge_border_radius": 4,
+            "background_color": "#ffffff",
+            "heading_color": "#1f1d24",
+            "text_color": "#1f1d24",
+            "price_color": "#312110",
+            "compare_price_color": "#999999",
+            "card_background": "#ffffff",
+            "card_border_color": "#e0e0e0",
+            "button_background": "#312110",
+            "button_color": "#ffffff",
+            "button_hover_background": "#1f1d24",
+            "card_border_radius": 6,
+            "padding_top": 40,
+            "padding_bottom": 20,
+            "dots_padding_bottom": 24
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_757192d_hMggzr"
+      ],
+      "settings": {}
+    },
+    "heritage_restoration_vibe": {
+      "type": "heritage-restoration",
+      "settings": {
+        "label": "The Service Ritual",
+        "title": "Your Hat, Restored.",
+        "text": "We don’t just sell hats—we preserve them. Bring in any hat, regardless of where it was purchased, for our expert cleaning and reshaping services.",
+        "button_label": "Book a Restoration",
+        "button_link": ""
+      }
+    },
+    "collection_list_nTLNYY": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_kKaKLt": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "hats-for-everyone"
+          }
+        },
+        "featured_collection_qEx7et": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "apparel"
+          }
+        },
+        "featured_collection_LyKW9R": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "ballcaps-truckers"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_kKaKLt",
+        "featured_collection_qEx7et",
+        "featured_collection_LyKW9R"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".collection-list {gap: 4px;}",
+        ".collection-list {justify-items: center;}"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 28,
+        "padding_bottom": 36
+      }
+    },
+    "17631854945b793bb1": {
+      "type": "_blocks",
+      "blocks": {
+        "instafeed_app_block_rrg6Bd": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 28,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 26,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        },
+        "ai_gen_block_002b861_WnqG6D": {
+          "type": "four_picutre_block",
+          "name": "Four Picture Grid",
+          "settings": {
+            "title": "Legendary Brands",
+            "title_size": 28,
+            "title_alignment": "center",
+            "title_color": "#1f1d24",
+            "title_spacing": 24,
+            "image_1": "shopify://shop_images/Stetson_2.webp",
+            "link_1": "shopify://pages/stetson",
+            "image_2": "shopify://shop_images/Resistol_911a3678-5dee-4a84-a061-3ac6b8fff945.webp",
+            "link_2": "shopify://pages/resistol",
+            "image_3": "shopify://shop_images/Goorin_4_00ffe83a-cbf3-4f8e-ba6e-3ff598c39e7d.webp",
+            "link_3": "shopify://pages/goorin-bros",
+            "image_4": "shopify://shop_images/Bigalli_4.webp",
+            "link_4": "shopify://pages/bigalli",
+            "spacing": 16,
+            "aspect_ratio": "1 / 1",
+            "border_radius": 8,
+            "border_thickness": 1,
+            "border_color": "#000000",
+            "border_opacity": 10,
+            "background_color": "#e6e7e2",
+            "padding_top": 16,
+            "padding_bottom": 24,
+            "padding_horizontal": 72
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_rrg6Bd",
+        "ai_gen_block_002b861_WnqG6D"
+      ],
+      "settings": {}
+    },
+    "featured_collection_Qbbc6i": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "hats-for-everyone",
+        "products_to_show": 13,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "link",
+        "enable_desktop_slider": true,
+        "navigation_on_desk": false,
+        "color_scheme": "scheme-e92940af-9aaf-4f4f-82e9-9ee23178e5fd",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_desc": false,
+        "quick_desc_legth": 90,
+        "quick_desc_size": 14,
+        "enable_quick_add": false,
+        "show_secondary_add": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "navigation_on_mobile": false,
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
+    "custom_liquid_e8enqT": {
+      "type": "custom-liquid_Footer",
+      "disabled": true,
+      "name": "Book Now Button",
+      "settings": {
+        "left_heading": "RAFTER M HAT COMPANY | CRAFTED. FITTED. PERSONALIZED.",
+        "left_body": "We shape hats, we size hats, we customize hats — and we take immense pride in being a small, independent business in Fayetteville, Arkansas. No big corporates, no mass production. Just skill, craftsmanship, and a deep passion for helping every customer find the perfect hat.",
+        "contact_label": "Contact Us:",
+        "contact_address": "2218 N College Ave\nFayetteville, AR 72703",
+        "contact_map_link": "https://www.google.com/maps?q=2218+N+College+Ave,+Fayetteville,+AR+72703",
+        "contact_email": "zack@raftermhatco.com",
+        "contact_phone": "479.283.6022",
+        "instagram_url": "https://instagram.com/raftermhatco",
+        "facebook_url": "https://facebook.com/raftermhatco",
+        "tiktok_url": "https://tiktok.com/raftermhatco",
+        "store_hours": "Mon–Fri: 10am–5pm\nSaturday: 10am–2pm\nSunday: Closed",
+        "newsletter_heading": "STAY IN TOUCH",
+        "newsletter_text": "Subscribe to receive updates, new arrivals, and exclusive Rafter M offers.",
+        "newsletter_placeholder": "Enter your email address",
+        "newsletter_button_label": "SUBSCRIBE",
+        "newsletter_success": "Thanks for subscribing — we’ll be in touch soon.",
+        "menu_heading": "QUICK LINKS",
+        "footer_menu": "footer",
+        "bottom_text": "© 2025 RAFTER M HAT COMPANY  |  TERMS OF SERVICE  |  PRIVACY POLICY",
+        "padding_top": 60,
+        "padding_bottom": 28
+      }
+    },
+    "newsletter_eRQTKh": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_zPkiC8": {
+          "type": "heading",
+          "settings": {
+            "heading": "Subscribe for exclusive updates",
+            "heading_size": "h2"
+          }
+        },
+        "paragraph_GMBCNH": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<h4>Be the first to know about our new collections.</h4>"
+          }
+        },
+        "email_form_J7E9ge": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_zPkiC8",
+        "paragraph_GMBCNH",
+        "email_form_J7E9ge"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "accent-1",
+        "full_width": true,
+        "text_align": "left",
+        "news_alignment": "horizontal",
+        "show_small_text": false,
+        "small_text": "* You can unsubscribe at any time.",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "lumin_mega_3wBPGR": {
+      "type": "lumin-mega",
+      "blocks": {
+        "heading_P9nzdb": {
+          "type": "heading",
+          "settings": {
+            "heading": "HATS FOR EVERYONE",
+            "heading_size": "h0"
+          }
+        },
+        "text_WX9pK9": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our collection has versatile styles that look great on anyone, blending comfort with contemporary fashion.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_AGw6AN": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop Now",
+            "button_link": "shopify://collections/hats-for-everyone",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_P9nzdb",
+        "text_WX9pK9",
+        "button_AGw6AN"
+      ],
+      "disabled": true,
+      "name": "Hats For Everyone",
+      "settings": {
+        "color_scheme_main": "",
+        "image": "shopify://shop_images/Rafter_M_Hat_Company-24.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "right",
+        "content_layout": "no-overlap",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "17618020408820ce43": {
+      "type": "apps",
+      "name": "Instafeed App",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "1763038602d03ce096": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "lumin_mega_A34iND": {
+      "type": "lumin-mega",
+      "blocks": {
+        "heading_NUNnji": {
+          "type": "heading",
+          "settings": {
+            "heading": "MEN'S HATS",
+            "heading_size": "h0"
+          }
+        },
+        "text_EdwmCX": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our men's hat collection features a variety of styles, from rugged outdoor hats perfect for adventures to sleek, sophisticated designs ideal for urban settings.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_xxJR8A": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop Now",
+            "button_link": "shopify://collections/womens",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_NUNnji",
+        "text_EdwmCX",
+        "button_xxJR8A"
+      ],
+      "settings": {
+        "color_scheme_main": "",
+        "image": "shopify://shop_images/Rafter_M_Hat_Company-14.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection_Wjrb6i": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "womens",
+        "products_to_show": 9,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "link",
+        "enable_desktop_slider": true,
+        "navigation_on_desk": false,
+        "color_scheme": "scheme-e92940af-9aaf-4f4f-82e9-9ee23178e5fd",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_desc": false,
+        "quick_desc_legth": 90,
+        "quick_desc_size": 14,
+        "enable_quick_add": false,
+        "show_secondary_add": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "navigation_on_mobile": false,
+        "padding_top": 12,
+        "padding_bottom": 44
+      }
+    },
+    "rich_text_Mw4cQJ": {
+      "type": "rich-text",
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>",
+        "max_width": 800,
+        "text_alignment": "left",
+        "heading_size": 32,
+        "text_size": 16,
+        "line_height": 1.6,
+        "heading_color": "#1f1d24",
+        "text_color": "#1f1d24",
+        "link_color": "#312110",
+        "link_hover_color": "#1f1d24",
+        "background_color": "#ffffff",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "padding_horizontal": 20,
+        "heading_spacing": 16,
+        "paragraph_spacing": 16,
+        "border_radius": 0
+      }
+    },
+    "lumin_mega_GYecDz": {
+      "type": "lumin-mega",
+      "blocks": {
+        "heading_4TXyWn": {
+          "type": "heading",
+          "settings": {
+            "heading": "WOMEN'S HATS",
+            "heading_size": "h1"
+          }
+        },
+        "text_adXeGi": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our collection offers an array of fashionable hats that combine elegance with practicality.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_EpYNxQ": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop Now",
+            "button_link": "shopify://collections/womens-1",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_4TXyWn",
+        "text_adXeGi",
+        "button_EpYNxQ"
+      ],
+      "settings": {
+        "color_scheme_main": "",
+        "image": "shopify://shop_images/Rafter_M_Hat_Company-15.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "right",
+        "content_layout": "no-overlap",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection_9pdd8p": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "womens-1",
+        "products_to_show": 14,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "link",
+        "enable_desktop_slider": true,
+        "navigation_on_desk": false,
+        "color_scheme": "scheme-e92940af-9aaf-4f4f-82e9-9ee23178e5fd",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_desc": false,
+        "quick_desc_legth": 90,
+        "quick_desc_size": 14,
+        "enable_quick_add": false,
+        "show_secondary_add": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "navigation_on_mobile": false,
+        "padding_top": 12,
+        "padding_bottom": 24
+      }
+    },
+    "slideshow_yKmXBC": {
+      "type": "slideshow",
+      "settings": {
+        "layout": "full_bleed",
+        "banner_border": 0,
+        "slide_height": "adapt_image",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "hide_navigation": true,
+        "change_slides_speed": 5,
+        "show_text_below": false,
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "lumin_grids_qnX3eH": {
+      "type": "lumin-grids",
+      "blocks": {
+        "image_6Wpc4f": {
+          "type": "image",
+          "settings": {
+            "large_up_hide": false,
+            "grid_width_desktop": "50",
+            "medium_hide": false,
+            "grid_width_tablet": "50",
+            "small_hide": false,
+            "image": "shopify://shop_images/My_other_hat_is_a_stetson.png",
+            "overlay_opacity": 0,
+            "opacity_color": "#000000",
+            "padding_size": 30,
+            "padding_size_in": 10,
+            "text_border": 0,
+            "bg_color": "rgba(0,0,0,0)",
+            "head": "BULLCAPS/TRUCKERS",
+            "head_color": "#ffffff",
+            "head_size_d": 30,
+            "head_size_m": 24,
+            "margin_bottom": 15,
+            "text": "",
+            "text_color": "#212121",
+            "text_size_d": 16,
+            "text_size_m": 14,
+            "button-text": "",
+            "button_link": "",
+            "desktop_content_alignment": "left",
+            "image_content_position": "bottom-center",
+            "grid-url": "shopify://collections/ballcaps-truckers"
+          }
+        },
+        "image_T8PLJB": {
+          "type": "image",
+          "settings": {
+            "large_up_hide": false,
+            "grid_width_desktop": "50",
+            "medium_hide": false,
+            "grid_width_tablet": "50",
+            "small_hide": false,
+            "image": "shopify://shop_images/Rafter_M_Hat_Company-22.png",
+            "overlay_opacity": 0,
+            "opacity_color": "#000000",
+            "padding_size": 30,
+            "padding_size_in": 10,
+            "text_border": 0,
+            "bg_color": "rgba(0,0,0,0)",
+            "head": "ACCESSORIES",
+            "head_color": "#ffffff",
+            "head_size_d": 30,
+            "head_size_m": 24,
+            "margin_bottom": 15,
+            "text": "",
+            "text_color": "#212121",
+            "text_size_d": 16,
+            "text_size_m": 14,
+            "button-text": "",
+            "button_link": "",
+            "desktop_content_alignment": "left",
+            "image_content_position": "bottom-center",
+            "grid-url": "shopify://collections/accessories"
+          }
+        }
+      },
+      "block_order": [
+        "image_6Wpc4f",
+        "image_T8PLJB"
+      ],
+      "settings": {
+        "video_border": 0,
+        "grid_gap": 8,
+        "color_scheme": "",
+        "padding_top": 8,
+        "padding_bottom": 8,
+        "margin_top": 8,
+        "margin_bottom": 8
+      }
+    },
+    "lumin_slidshow_pro_yNeGG6": {
+      "type": "lumin-slidshow-pro",
+      "blocks": {
+        "image_BnRrL9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Rafter_M_Hat_Company-10.png",
+            "focal_point": "center center",
+            "image_mobile": "shopify://shop_images/Rafter_M_Hat_Company-19.png",
+            "focal_point_mobile": "center center",
+            "title": "",
+            "subtitle": "",
+            "image_link": "",
+            "clickable_image_new_tab": false,
+            "button_text": "Explore Now",
+            "button_link": "shopify://collections/best-sellers",
+            "button_text_2": "",
+            "button_link_2": "shopify://collections/all",
+            "title_font_size": 80,
+            "title_font_size_mobile": 40,
+            "subtitle_font_size": 21,
+            "subtitle_font_size_mobile": 17,
+            "button_text_size": 13,
+            "button_text_size_mobile": 13,
+            "text_shadow": 20,
+            "overlay_opacity": 0,
+            "button_background_color": "",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#ffffff",
+            "button_background_color_2": "",
+            "button_text_color_2": "#ffffff",
+            "button_border_color_2": "#ffffff",
+            "title_color": "#ffffff",
+            "subtitle_color": "#ffffff",
+            "text_shadow_color": "#000000",
+            "overlay_color": "#000000",
+            "text_align": "LuminSlideshow-textbox--center"
+          }
+        }
+      },
+      "block_order": [
+        "image_BnRrL9"
+      ],
+      "custom_css": [],
+      "settings": {
+        "section_height": "natural",
+        "section_height_mobile": "500px",
+        "full_width_images": false,
+        "full_width_images_mobile": false,
+        "parallax": false,
+        "parallax_mobile": false,
+        "dots_style": "bars",
+        "arrows_style": "none",
+        "arrows_style_mobile": "none",
+        "autoplay": true,
+        "autoplay_stop": true,
+        "autoplay_speed": 5,
+        "loader_background_color": "#000000",
+        "dots_color": "#ffffff",
+        "arrow_background_color": "#ffffff",
+        "arrow_chevron_color": "#333333",
+        "dot_size": 6,
+        "dot_size_selected": 9,
+        "arrow_size": 40,
+        "arrow_size_mobile": 40,
+        "arrow_chevron_size": 12,
+        "arrow_chevron_size_mobile": 12,
+        "button_letter_spacing": 0,
+        "button_letter_spacing_mobile": 0,
+        "button_border_radius": 0,
+        "button_border_radius_mobile": 0,
+        "text_animation": true,
+        "fade": true,
+        "zoom_animation": true,
+        "parallax_speed": 80,
+        "parallax_speed_mobile": 70
+      }
+    },
+    "lumin_review_AbtUAG": {
+      "type": "lumin-review",
+      "blocks": {
+        "review_WAgjrU": {
+          "type": "review",
+          "settings": {
+            "name_text": "Winne",
+            "date_text": "",
+            "review_head": "",
+            "review_text": "This comb has completely transformed my hair routine. It heats up quickly, straightens my hair effortlessly, and leaves it smooth and shiny. I also love that it's gentle on my hair, preventing any damage or frizz",
+            "like_text": "Was this helpful?",
+            "like_size": 36,
+            "dislike_size": 0,
+            "feature_font_size": 16
+          }
+        },
+        "review_TdayJx": {
+          "type": "review",
+          "settings": {
+            "name_text": "Jack",
+            "date_text": "",
+            "review_head": "",
+            "review_text": "The Hair Straightening tool delivers salon-quality results right at home, and the Hair Trimmer is perfect for quick touch-ups and maintaining a neat hairstyle.",
+            "like_text": "Was this helpful?",
+            "like_size": 15,
+            "dislike_size": 0,
+            "feature_font_size": 16
+          }
+        },
+        "review_FJyCTn": {
+          "type": "review",
+          "settings": {
+            "name_text": "Jenny",
+            "date_text": "",
+            "review_head": "",
+            "review_text": "I highly recommend Multi Styler Shop to anyone looking for reliable and effective hair styling tools. I'll definitely be a returning customer!",
+            "like_text": "Was this helpful?",
+            "like_size": 22,
+            "dislike_size": 0,
+            "feature_font_size": 16
+          }
+        }
+      },
+      "block_order": [
+        "review_WAgjrU",
+        "review_TdayJx",
+        "review_FJyCTn"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "header_text": "Our Happy Customers!",
+        "show_top": true,
+        "show_footer": true,
+        "rating": "",
+        "rating_count": "",
+        "review_column_mobile": "1",
+        "review_column_tab": "3",
+        "review_column_desk": "3",
+        "review_load": "",
+        "load_text": "",
+        "rw_img_size": 140,
+        "rw_img_radius": 0,
+        "block_name_size": 20,
+        "date_size": 16,
+        "block_head_size": 20,
+        "block_text_size": 14,
+        "show_border": true,
+        "rw_border": "#f2f2f2",
+        "border_radius": 0,
+        "section_bg3": "#0f8bb6",
+        "section_bg2": "#0f8bb6",
+        "verify_text": "Verified Buyer",
+        "review_bg": "#ffffff",
+        "feature_svg_color": "#e9bf18",
+        "feature_acc_color": "#000000",
+        "review_pd": 20,
+        "review_pd_m": 20,
+        "rw_margin": 0,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_eeM788": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_jCLTXx": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Untitled-10.png",
+            "title": "★★★★★",
+            "text": "<h6>The quality of the hat I received is outstanding it's well-made, comfortable, and perfect for both sunny days and chilly evenings. The material feels durable and the craftsmanship is top-notch.</h6><p><strong>Richal</strong></p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_MHrEix": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Untitled-8.png",
+            "title": "★★★★★",
+            "text": "<h6>I ordered a stylish fedora for my husband and a chic sun hat for myself. Both arrived quickly and exceeded our expectations. The fit was perfect, and the materials felt luxurious. It's clear that Ralter M lakes pride in curating a collection of hats that are both fashionable and well made.</h6><p><strong>Olivia</strong></p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_gXjjLa": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Untitled-2.png",
+            "title": "★★★★★",
+            "text": "<h6>after M Hat Company, and I couldn't be more thrilled with my experience! Their selection of men's and women's hats is impressive, offering everything from classic fedoras to trendy wide brimmed styles. The quality of the hats is top notch, with excellent craftsmanship and al tention to detail.</h6><p><strong>Ammi</strong></p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_jCLTXx",
+        "column_MHrEix",
+        "column_gXjjLa"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Our Happy Customers!",
+        "heading_size": "h1",
+        "heading_center": true,
+        "image_width": "forth",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "navigation_on_mobile": true,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "slideshow_FGiH4p",
+    "1762578087a1ac51c4",
+    "ss_circle_menu_437Hac",
+    "176367624771bca92d",
+    "heritage_restoration_vibe",
+    "collection_list_nTLNYY",
+    "17631854945b793bb1",
+    "176318539650189d04",
+    "featured_collection_Qbbc6i",
+    "custom_liquid_e8enqT",
+    "newsletter_eRQTKh",
+    "lumin_mega_3wBPGR",
+    "17618020408820ce43",
+    "1763038602d03ce096",
+    "lumin_mega_A34iND",
+    "featured_collection_Wjrb6i",
+    "rich_text_Mw4cQJ",
+    "lumin_mega_GYecDz",
+    "featured_collection_9pdd8p",
+    "slideshow_yKmXBC",
+    "lumin_grids_qnX3eH",
+    "lumin_slidshow_pro_yNeGG6",
+    "lumin_review_AbtUAG",
+    "multicolumn_eeM788"
+  ]
+}

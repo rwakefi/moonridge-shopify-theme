@@ -1,8 +1,9 @@
 {%- style -%}
   .heritage-restoration {
     background-color: #F7EFE6; /* Soft Ivory */
-    padding: 0; /* Fully flushed */
-    margin: 0;
+    padding: 20px 0; /* Changed from 0 to give some top/bottom breathing room */
+    margin: -1px 0; /* Negative margin to bridge any thin gaps */
+    border: none;
     overflow: hidden;
   }
 
@@ -21,6 +22,9 @@
     border: 1px solid #D4AF37; /* Gold Frame */
     padding: 8px; /* Reduced from 12px */
     background: #fff;
+    display: flex; /* Added to center image */
+    align-items: center;
+    justify-content: center;
   }
 
   .heritage-restoration__image {

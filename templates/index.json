@@ -392,6 +392,7 @@
     },
     "heritage_restoration_vibe": {
       "type": "heritage-restoration",
+      "disabled": true,
       "settings": {
         "label": "The Service Ritual",
         "title": "Your Hat, Restored.",

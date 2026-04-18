@@ -155,7 +155,9 @@
                   {% endif %}
                 >
                   {% assign is_boots_collection = false %}
-                  {% if collection.handle contains 'boot' %}
+                  {% assign collection_handle_downcase = collection.handle | downcase %}
+                  {% assign collection_title_downcase = collection.title | downcase %}
+                  {% if collection_handle_downcase contains 'boot' or collection_title_downcase contains 'boot' %}
                     {% assign is_boots_collection = true %}
                   {% endif %}
                   {% render 'card-product',

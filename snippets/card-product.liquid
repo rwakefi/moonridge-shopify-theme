@@ -41,13 +41,13 @@
     assign is_boots_collection_context = false
     if is_boots_collection
       assign is_boots_collection_context = true
-    elsif collection and collection.handle contains 'boot'
+    elsif collection and (collection.handle contains 'boot' or collection.title downcase contains 'boot')
       assign is_boots_collection_context = true
     endif
 
     unless is_boots_collection_context
       for product_collection in card_product.collections
-        if product_collection.handle contains 'boot'
+        if product_collection.handle contains 'boot' or product_collection.title downcase contains 'boot'
           assign is_boots_collection_context = true
           break
         endif
@@ -379,11 +379,11 @@ endif
                       {%- if card_product.selected_or_first_available_variant.available -%}
                         {{ 'products.product.add_to_cart' | t }}
                       {%- else -%}
-                        {{ 'products.product.sold_out' | t }}
+                        {{ sold_out_badge_text }}
                       {%- endif -%}
                     </span>
                     <span class="sold-out-message hidden">
-                      {{ 'products.product.sold_out' | t }}
+                      {{ sold_out_badge_text }}
                     </span>
                     {%- if horizontal_quick_add -%}
                       <span class="icon-wrap">{% render 'icon-plus' %}</span>

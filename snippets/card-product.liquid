@@ -37,7 +37,21 @@
     endif
 
     assign sold_out_badge_text = 'products.product.sold_out' | t
+    assign is_boots_collection = false
     if collection and collection.handle contains 'boot'
+      assign is_boots_collection = true
+    endif
+
+    unless is_boots_collection
+      for product_collection in card_product.collections
+        if product_collection.handle contains 'boot'
+          assign is_boots_collection = true
+          break
+        endif
+      endfor
+    endunless
+
+    if is_boots_collection
       assign sold_out_badge_text = 'Call Store For Availability'
     endif
   -%}

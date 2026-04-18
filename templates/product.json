@@ -9,15 +9,6 @@
  */
 {
   "sections": {
-    "breadcrumbs_JDDDX8": {
-      "type": "breadcrumbs",
-      "settings": {
-        "padding_top": 20,
-        "padding_bottom": 0,
-        "margin_top": 0,
-        "margin_bottom": 0
-      }
-    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -107,10 +98,6 @@
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": true
           }
-        },
-        "payment_GNLD3k": {
-          "type": "payment",
-          "settings": {}
         }
       },
       "block_order": [
@@ -123,8 +110,7 @@
         "inventory_status_nPFgBc",
         "shipping_CBekAR",
         "quantity_selector",
-        "buy_buttons",
-        "payment_GNLD3k"
+        "buy_buttons"
       ],
       "custom_css": [],
       "settings": {
@@ -146,7 +132,21 @@
     },
     "founders_review": {
       "type": "founders-review",
-      "settings": {}
+      "settings": {
+        "heading": "What Natalie and Zack Think About it:",
+        "heading_size": 32,
+        "intro_text": "<p>This is honest feedback from founders Natalie and Zack about specific items that we have reviewed ourselves in our own words. If this section is visible, we describe what we think about this hat in our own words. This is not AI.</p>",
+        "show_signature": true,
+        "signature_text": "Natalie & Zack",
+        "signature_alignment": "left",
+        "background_color": "rgba(0,0,0,0)",
+        "heading_color": "#1f1d24",
+        "text_color": "#1f1d24",
+        "max_width": 1200,
+        "border_radius": 0,
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
     },
     "177400781857d7ac00": {
       "type": "apps",
@@ -166,9 +166,9 @@
             "border_color": "#000000",
             "border_hover_color": "#000000",
             "background_color": "#000000",
-            "background_hover_color": "#FFFFFF",
+            "background_hover_color": "#ffffff",
             "btn_text": "Measure Your Head",
-            "text_color": "#FFFFFF",
+            "text_color": "#ffffff",
             "text_hover_color": "#000000",
             "font_size": 16
           }
@@ -242,11 +242,16 @@
     },
     "heritage_restoration_product_page": {
       "type": "heritage-restoration",
-      "settings": {}
+      "settings": {
+        "label": "The Service Ritual",
+        "title": "Your Hat, Restored.",
+        "text": "We don't just sell hats; we preserve them. Bring in any hat—regardless of brand or age—for professional cleaning and precision reshaping to its original glory.",
+        "button_label": "Book a Restoration",
+        "button_link": ""
+      }
     }
   },
   "order": [
-    "breadcrumbs_JDDDX8",
     "main",
     "founders_review",
     "177400781857d7ac00",

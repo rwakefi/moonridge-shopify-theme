@@ -35,6 +35,11 @@
     if ratio == 0 or ratio == null
       assign ratio = 1
     endif
+
+    assign sold_out_badge_text = 'products.product.sold_out' | t
+    if collection and collection.handle contains 'boot'
+      assign sold_out_badge_text = 'Call Store For Availability'
+    endif
   -%}
   <div class="card-wrapper product-card-wrapper">
     <div
@@ -171,7 +176,7 @@ endif
                 id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                 class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
               >
-                {{- 'products.product.sold_out' | t -}}
+                {{- sold_out_badge_text -}}
               </span>
             {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
               <span
@@ -382,7 +387,7 @@ endif
               id="Badge-{{ section_id }}-{{ card_product.id }}"
               class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
             >
-              {{- 'products.product.sold_out' | t -}}
+              {{- sold_out_badge_text -}}
             </span>
           {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
             <span

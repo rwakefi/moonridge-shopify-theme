@@ -17,6 +17,7 @@
   - horizontal_class: {Boolean} Add a card--horizontal class if set to true. Default: false (optional)
   - horizontal_quick_add: {Boolean} Changes the quick add button styles when set to true. Default: false (optional)
   - placeholder_image: {String} The placeholder image to use when no product exists. Default: 'product-apparel-2' (optional)
+  - is_boots_collection: {Boolean} Forces boots-specific sold out badge copy (optional)
 
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor, show_quick_desc: section.settings.show_quick_desc %}
@@ -37,21 +38,23 @@
     endif
 
     assign sold_out_badge_text = 'products.product.sold_out' | t
-    assign is_boots_collection = false
-    if collection and collection.handle contains 'boot'
-      assign is_boots_collection = true
+    assign is_boots_collection_context = false
+    if is_boots_collection
+      assign is_boots_collection_context = true
+    elsif collection and collection.handle contains 'boot'
+      assign is_boots_collection_context = true
     endif
 
-    unless is_boots_collection
+    unless is_boots_collection_context
       for product_collection in card_product.collections
         if product_collection.handle contains 'boot'
-          assign is_boots_collection = true
+          assign is_boots_collection_context = true
           break
         endif
       endfor
     endunless
 
-    if is_boots_collection
+    if is_boots_collection_context
       assign sold_out_badge_text = 'Call Store For Availability'
     endif
   -%}

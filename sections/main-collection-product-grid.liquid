@@ -154,6 +154,10 @@
                     style="--animation-order: {{ forloop.index }};"
                   {% endif %}
                 >
+                  {% assign is_boots_collection = false %}
+                  {% if collection.handle contains 'boot' %}
+                    {% assign is_boots_collection = true %}
+                  {% endif %}
                   {% render 'card-product',
                     card_product: product,
                     media_aspect_ratio: section.settings.image_ratio,
@@ -165,7 +169,8 @@
                     show_quick_add: section.settings.enable_quick_add,
                     show_secondary_add: section.settings.show_secondary_add,
                     show_quick_desc: section.settings.enable_quick_desc,
-                    section_id: section.id
+                    section_id: section.id,
+                    is_boots_collection: is_boots_collection
                   %}
                 </li>
               {%- endfor -%}

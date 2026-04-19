@@ -22,6 +22,12 @@
       if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
         assign show_dynamic_checkout = true
       endif
+
+      assign sold_out_button_label = 'products.product.sold_out' | t
+      assign product_template_suffix = product.template_suffix | default: '' | downcase
+      if product_template_suffix == 'boots' or product_template_suffix contains 'boot'
+        assign sold_out_button_label = 'Call Store For Availability'
+      endif
     -%}
 
     <product-form
@@ -86,7 +92,7 @@
           >
             <span>
               {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
-                {{ 'products.product.sold_out' | t }}
+                {{- sold_out_button_label -}}
               {%- else -%}
                 {{ 'products.product.add_to_cart' | t }}
               {%- endif -%}

@@ -149,39 +149,6 @@
         "padding_bottom": 24
       }
     },
-    "177400781857d7ac00": {
-      "type": "apps",
-      "blocks": {
-        "headfit_what_is_my_size_auglio_measurement_btn_ab_YXez7F": {
-          "type": "shopify://apps/headfit-what-is-my-size/blocks/auglio-measurement-btn-ab/aed34d91-49c1-4451-88da-7858e205cec3",
-          "settings": {
-            "extra_classes": "button button--primary",
-            "full_width": true,
-            "height": 35,
-            "margin_top": 10,
-            "margin_bottom": 10,
-            "margin_left": 0,
-            "margin_right": 0,
-            "border_width": 1,
-            "border_radius": 0,
-            "border_color": "#000000",
-            "border_hover_color": "#000000",
-            "background_color": "#000000",
-            "background_hover_color": "#ffffff",
-            "btn_text": "Measure Your Head",
-            "text_color": "#ffffff",
-            "text_hover_color": "#000000",
-            "font_size": 16
-          }
-        }
-      },
-      "block_order": [
-        "headfit_what_is_my_size_auglio_measurement_btn_ab_YXez7F"
-      ],
-      "settings": {
-        "include_margins": true
-      }
-    },
     "featured_collection_xLGdKg": {
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
@@ -255,7 +222,6 @@
   "order": [
     "main",
     "founders_review",
-    "177400781857d7ac00",
     "featured_collection_xLGdKg",
     "176179595271248401",
     "related-products",

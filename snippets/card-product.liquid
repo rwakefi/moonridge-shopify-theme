@@ -59,11 +59,6 @@
     if is_boots_collection_context
       assign sold_out_badge_text = 'Call Store For Availability'
     endif
-
-    assign quick_add_primary_label = 'products.product.choose_options' | t
-    if is_boots_collection_context
-      assign quick_add_primary_label = sold_out_badge_text
-    endif
   -%}
   <div class="card-wrapper product-card-wrapper">
     <div
@@ -328,7 +323,7 @@ endif
                   class="quick-add__submit button button--full-width{% if show_secondary_add %} button--secondary{% endif %}{% if horizontal_quick_add %} card--horizontal__quick-add animate-arrow{% endif %}"
                   aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
                 >
-                  {{- quick_add_primary_label -}}
+                  {{ 'products.product.choose_options' | t }}
                   {%- if horizontal_quick_add -%}
                     <span class="icon-wrap">{% render 'icon-arrow' %}</span>
                   {%- endif -%}
@@ -385,13 +380,9 @@ endif
                   >
                     <span>
                       {%- if card_product.selected_or_first_available_variant.available -%}
-                        {%- if is_boots_collection_context -%}
-                          {{- sold_out_badge_text -}}
-                        {%- else -%}
-                          {{- 'products.product.add_to_cart' | t -}}
-                        {%- endif -%}
+                        {{ 'products.product.add_to_cart' | t }}
                       {%- else -%}
-                        {{- sold_out_badge_text -}}
+                        {{ sold_out_badge_text }}
                       {%- endif -%}
                     </span>
                     <span class="sold-out-message hidden">

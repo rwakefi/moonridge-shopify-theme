@@ -39,15 +39,17 @@
 
     assign sold_out_badge_text = 'products.product.sold_out' | t
     assign is_boots_collection_context = false
-    if is_boots_collection
-      assign is_boots_collection_context = true
-    elsif collection and (collection.handle contains 'boot' or collection.title downcase contains 'boot')
+    assign collection_handle_downcase = collection.handle | default: '' | downcase
+    assign collection_title_downcase = collection.title | default: '' | downcase
+    if is_boots_collection or collection_handle_downcase contains 'boot' or collection_title_downcase contains 'boot'
       assign is_boots_collection_context = true
     endif
 
     unless is_boots_collection_context
       for product_collection in card_product.collections
-        if product_collection.handle contains 'boot' or product_collection.title downcase contains 'boot'
+        assign product_collection_handle_downcase = product_collection.handle | default: '' | downcase
+        assign product_collection_title_downcase = product_collection.title | default: '' | downcase
+        if product_collection_handle_downcase contains 'boot' or product_collection_title_downcase contains 'boot'
           assign is_boots_collection_context = true
           break
         endif

@@ -2,6 +2,14 @@
 
 <script src="{{ 'product-sticky-form.js' | asset_url }}" defer="defer"></script>
 
+{%- liquid
+  assign sold_out_button_label = 'products.product.sold_out' | t
+  assign product_template_suffix = product.template_suffix | default: '' | downcase
+  if product_template_suffix == 'boots' or product_template_suffix contains 'boot'
+    assign sold_out_button_label = 'Call Store For Availability'
+  endif
+-%}
+
 {%- assign sticky_product_form_id = 'product-form-' | append: section.id -%}
 
 <sticky-product-form class="product--sticky-form product--sticky-form__inactive{% if section.settings.hide_sticky_on_mobile %} small-hide{% endif %}{% if section.settings.hide_sticky_on_desk %} large-up-hide{% endif %}">
@@ -199,7 +207,7 @@
                 {%- if product.selected_or_first_available_variant.available -%}
                   {{ 'products.product.add_to_cart' | t }}
                 {%- else -%}
-                  {{ 'products.product.sold_out' | t }}
+                  {{- sold_out_button_label -}}
                 {%- endif -%}
               </span>
                {%- render 'loading-spinner' -%}

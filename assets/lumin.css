@@ -1368,3 +1368,29 @@ body:not(.template-index) .header__icon .icon,
   font-weight: 600 !important;
   color: #312110 !important;
 }
+
+/* Boots collection product grid: reserve badge row so titles/buttons align; slightly tighter row gaps */
+.collection .card.card--boots-collection > .card__content > .card__badge.card__badge--boots-row {
+  min-height: 4.4rem;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+}
+
+.collection .card.card--boots-collection .card__badge--boots-row .badge {
+  max-width: 100%;
+  line-height: 1.25;
+  text-align: left;
+  white-space: normal;
+}
+
+.collection .product-grid .grid__item--boots-collection {
+  padding-bottom: 1.2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .collection .product-grid .grid__item--boots-collection {
+    padding-bottom: 1.6rem;
+  }
+}

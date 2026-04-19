@@ -147,19 +147,19 @@
                 {%- if forloop.index > 2 -%}
                   {%- assign lazy_load = true -%}
                 {%- endif -%}
+                {% assign is_boots_collection = false %}
+                {% assign collection_handle_downcase = collection.handle | downcase %}
+                {% assign collection_title_downcase = collection.title | downcase %}
+                {% if collection_handle_downcase contains 'boot' or collection_title_downcase contains 'boot' %}
+                  {% assign is_boots_collection = true %}
+                {% endif %}
                 <li
-                  class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                  class="grid__item{% if is_boots_collection %} grid__item--boots-collection{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                   {% if settings.animations_reveal_on_scroll %}
                     data-cascade
                     style="--animation-order: {{ forloop.index }};"
                   {% endif %}
                 >
-                  {% assign is_boots_collection = false %}
-                  {% assign collection_handle_downcase = collection.handle | downcase %}
-                  {% assign collection_title_downcase = collection.title | downcase %}
-                  {% if collection_handle_downcase contains 'boot' or collection_title_downcase contains 'boot' %}
-                    {% assign is_boots_collection = true %}
-                  {% endif %}
                   {% render 'card-product',
                     card_product: product,
                     media_aspect_ratio: section.settings.image_ratio,

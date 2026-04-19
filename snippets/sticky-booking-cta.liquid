@@ -38,16 +38,9 @@
   .sticky-booking-cta__text {
     display: flex;
     flex-direction: column;
-    gap: 1.5px; /* Added vertical breathing room */
-    line-height: 1.2;
-  }
-
-  .sticky-booking-cta__label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #7A604A;
-    font-weight: 600;
+    justify-content: center;
+    min-width: 0;
+    line-height: 1.25;
   }
 
   .sticky-booking-cta__title {
@@ -55,26 +48,30 @@
     font-weight: 700;
     color: #4A2E1F;
     font-family: var(--font-heading-family);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 1.25;
   }
 
   @media screen and (max-width: 749px) {
     .sticky-booking-cta {
       bottom: 24px;
-      left: 20px;
-      padding: 8px 18px 8px 8px; /* Increased padding */
+      left: 16px;
+      max-width: calc(100vw - 32px);
+      padding: 10px 16px 10px 10px;
+      gap: 10px;
     }
-    
+
     .sticky-booking-cta__icon {
-      width: 42px; /* Increased icon size */
-      height: 42px;
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
     }
 
     .sticky-booking-cta__title {
-      font-size: 12px; /* Increased font size */
-    }
-    
-    .sticky-booking-cta__label {
-      font-size: 9px; /* Increased label size */
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      line-height: 1.3;
     }
   }
 
@@ -94,7 +91,6 @@
     </svg>
   </div>
   <div class="sticky-booking-cta__text">
-    <span class="sticky-booking-cta__label">The Hat Experience</span>
     <span class="sticky-booking-cta__title">BOOK A FREE FITTING</span>
   </div>
 </a>

@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SHOPIFY_FLAG_FORCE: '1'
+      SHOPIFY_CLI_TTY: '0'
     steps:
       - uses: actions/checkout@v4
 

@@ -253,8 +253,8 @@
           "type": "Image",
           "settings": {
             "bubble_img": "shopify://shop_images/Steston_Collection.jpg",
-            "bubble_text": "Featured Items",
-            "bubble_link": "shopify://collections/frontpage"
+            "bubble_text": "Boots",
+            "bubble_link": "shopify://collections/boots"
           }
         },
         "image_WhAgxY": {

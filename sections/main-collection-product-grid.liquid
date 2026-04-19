@@ -154,6 +154,12 @@
                     style="--animation-order: {{ forloop.index }};"
                   {% endif %}
                 >
+                  {% assign is_boots_collection = false %}
+                  {% assign collection_handle_downcase = collection.handle | downcase %}
+                  {% assign collection_title_downcase = collection.title | downcase %}
+                  {% if collection_handle_downcase contains 'boot' or collection_title_downcase contains 'boot' %}
+                    {% assign is_boots_collection = true %}
+                  {% endif %}
                   {% render 'card-product',
                     card_product: product,
                     media_aspect_ratio: section.settings.image_ratio,
@@ -165,7 +171,8 @@
                     show_quick_add: section.settings.enable_quick_add,
                     show_secondary_add: section.settings.show_secondary_add,
                     show_quick_desc: section.settings.enable_quick_desc,
-                    section_id: section.id
+                    section_id: section.id,
+                    is_boots_collection: is_boots_collection
                   %}
                 </li>
               {%- endfor -%}

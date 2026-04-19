@@ -244,7 +244,7 @@ endif
               href="{{ card_product.url | default: '#' }}"
               id="CardLink-{{ section_id }}-{{ card_product.id }}"
               class="full-unstyled-link"
-              aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }} Badge-{{ section_id }}-{{ card_product.id }}"
+              aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }} {% if card_product.available == false %}NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}{% elsif card_product.compare_at_price > card_product.price and card_product.available %}Badge-{{ section_id }}-{{ card_product.id }}{% endif %}"
             >
               {{ card_product.title | escape }}
             </a>
@@ -402,7 +402,9 @@ endif
         </div>
         </div>
         <div class="card__badge {{ settings.badge_position }}{% if is_boots_collection_context %} card__badge--boots-row{% endif %}">
-          {%- if card_product.available == false -%}
+          {%- if is_boots_collection_context and card_product.available == false -%}
+            <span class="card__badge-spacer" aria-hidden="true"></span>
+          {%- elsif card_product.available == false -%}
             <span
               id="Badge-{{ section_id }}-{{ card_product.id }}"
               class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"

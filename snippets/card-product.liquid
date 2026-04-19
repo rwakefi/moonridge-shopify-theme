@@ -70,6 +70,7 @@
         {% if extend_height %} card--extend-height{% endif %}
         {% if card_product.featured_media == nil and settings.card_style == 'card' %} ratio{% endif %}
         {% if horizontal_class %} card--horizontal{% endif %}
+        {% if is_boots_collection_context %} card--boots-collection{% endif %}
       "
       style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
     >
@@ -400,7 +401,7 @@ endif
         </div>
         </div>
         </div>
-        <div class="card__badge {{ settings.badge_position }}">
+        <div class="card__badge {{ settings.badge_position }}{% if is_boots_collection_context %} card__badge--boots-row{% endif %}">
           {%- if card_product.available == false -%}
             <span
               id="Badge-{{ section_id }}-{{ card_product.id }}"
@@ -415,6 +416,8 @@ endif
             >
               {{- 'products.product.on_sale' | t -}}
             </span>
+          {%- elsif is_boots_collection_context -%}
+            <span class="card__badge-spacer" aria-hidden="true"></span>
           {%- endif -%}
         </div>
       </div>

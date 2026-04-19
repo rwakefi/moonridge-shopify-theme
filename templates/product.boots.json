@@ -56,6 +56,7 @@
         },
         "inventory_status_nPFgBc": {
           "type": "inventory_status",
+          "disabled": true,
           "settings": {
             "text_style": "uppercase",
             "inventory_threshold": 10,

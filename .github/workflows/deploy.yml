@@ -1,17 +1,39 @@
+# Deploys the theme to Shopify when code is merged to main.
+# Requires repository secrets: SHOPIFY_STORE, SHOPIFY_THEME_ID, SHOPIFY_CLI_THEME_TOKEN
+# See: https://shopify.dev/docs/storefronts/themes/tools/cli/ci-cd
+
 name: Deploy to Shopify
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SHOPIFY_FLAG_FORCE: '1'
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy theme to Shopify
-        uses: shopify/cli-action@v1
+      - uses: actions/setup-node@v4
         with:
-          args: theme push --store=${{ secrets.SHOPIFY_STORE }} --theme-id=${{ secrets.SHOPIFY_THEME_ID }} --password=${{ secrets.SHOPIFY_CLI_THEME_TOKEN }} --allow-live
+          node-version: '20'
+
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli
+
+      - name: Push theme to store
+        env:
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+          SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
+        run: |
+          shopify theme push \
+            --json \
+            --theme "${{ secrets.SHOPIFY_THEME_ID }}" \
+            --store "${{ secrets.SHOPIFY_STORE }}" \
+            --password "${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}" \
+            --allow-live \
+            --force

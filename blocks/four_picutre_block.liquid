@@ -1,6 +1,5 @@
 {% doc %}
-  @prompt
-    I need a four picture block, on desktop, the four pictures across, on mobile stacked 2 and 2.  I need a title ahe top of this block and I need to be able to click on each picture and go to a specific page, I need to make the background color the same as the slide block above or be able to pick the background color, can you ad border slides to each image so I can have thin boarders if I want
+  Picture grid: five images in one row on desktop; on smaller screens a 2-column grid with the fifth tile centered below.
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
@@ -20,7 +19,7 @@
 
   .ai-four-picture-grid__container-{{ ai_gen_id }} {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: {{ block.settings.spacing }}px;
   }
 
@@ -92,6 +91,13 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 8px; /* tighten gap to make images larger */
     }
+
+    .ai-four-picture-grid__item-{{ ai_gen_id }}:nth-child(5) {
+      grid-column: 1 / -1;
+      width: calc(50% - 4px);
+      max-width: 100%;
+      margin-inline: auto;
+    }
   }
 {% endstyle %}
 
@@ -101,7 +107,7 @@
   {% endif %}
 
   <div class="ai-four-picture-grid__container-{{ ai_gen_id }}">
-    {% for i in (1..4) %}
+    {% for i in (1..5) %}
       {% liquid
         assign image_key = 'image_' | append: i
         assign link_key = 'link_' | append: i
@@ -146,7 +152,7 @@
 
 {% schema %}
 {
-  "name": "Four picture grid",
+  "name": "Five picture grid",
   "settings": [
     {
       "type": "header",
@@ -223,6 +229,13 @@
     },
     { "type": "image_picker", "id": "image_4", "label": "Image" },
     { "type": "url", "id": "link_4", "label": "Link" },
+
+    {
+      "type": "header",
+      "content": "Image 5"
+    },
+    { "type": "image_picker", "id": "image_5", "label": "Image" },
+    { "type": "url", "id": "link_5", "label": "Link" },
 
     {
       "type": "header",
@@ -335,7 +348,7 @@
   ],
   "presets": [
     {
-      "name": "Four picture grid"
+      "name": "Five picture grid"
     }
   ]
 }

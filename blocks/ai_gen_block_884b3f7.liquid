@@ -1,3 +1,16 @@
+{%- liquid
+  assign ai_gen_id = block.id | replace: '_', '' | downcase
+  assign carousel_collection = block.settings.collection
+  assign carousel_has_products = false
+  if carousel_collection != blank and carousel_collection.all_products_count > 0
+    assign carousel_has_products = true
+  endif
+-%}
+
+{%- unless carousel_has_products -%}
+  <div {{ block.shopify_attributes }} hidden class="ai-product-carousel-empty-placeholder"></div>
+{%- else -%}
+
 {% style %}
 
 /* ------------------------------
@@ -648,6 +661,8 @@
     }
   })();
 </script>
+
+{%- endunless -%}
 
 {% schema %}
 {

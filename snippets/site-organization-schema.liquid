@@ -1,0 +1,93 @@
+{%- liquid
+  assign social_profiles = ''
+  if settings.social_facebook_link != blank
+    assign social_profiles = social_profiles | append: settings.social_facebook_link | json
+  endif
+  if settings.social_instagram_link != blank
+    if social_profiles != blank
+      assign social_profiles = social_profiles | append: ','
+    endif
+    assign social_profiles = social_profiles | append: settings.social_instagram_link | json
+  endif
+  if settings.social_youtube_link != blank
+    if social_profiles != blank
+      assign social_profiles = social_profiles | append: ','
+    endif
+    assign social_profiles = social_profiles | append: settings.social_youtube_link | json
+  endif
+  if settings.social_twitter_link != blank
+    if social_profiles != blank
+      assign social_profiles = social_profiles | append: ','
+    endif
+    assign social_profiles = social_profiles | append: settings.social_twitter_link | json
+  endif
+  if settings.social_pinterest_link != blank
+    if social_profiles != blank
+      assign social_profiles = social_profiles | append: ','
+    endif
+    assign social_profiles = social_profiles | append: settings.social_pinterest_link | json
+  endif
+  if settings.social_tiktok_link != blank
+    if social_profiles != blank
+      assign social_profiles = social_profiles | append: ','
+    endif
+    assign social_profiles = social_profiles | append: settings.social_tiktok_link | json
+  endif
+  if settings.social_snapchat_link != blank
+    if social_profiles != blank
+      assign social_profiles = social_profiles | append: ','
+    endif
+    assign social_profiles = social_profiles | append: settings.social_snapchat_link | json
+  endif
+  if settings.social_tumblr_link != blank
+    if social_profiles != blank
+      assign social_profiles = social_profiles | append: ','
+    endif
+    assign social_profiles = social_profiles | append: settings.social_tumblr_link | json
+  endif
+  if settings.social_vimeo_link != blank
+    if social_profiles != blank
+      assign social_profiles = social_profiles | append: ','
+    endif
+    assign social_profiles = social_profiles | append: settings.social_vimeo_link | json
+  endif
+-%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  "url": {{ request.origin | json }},
+  {% if settings.logo != blank %}
+    "logo": {{ settings.logo | image_url: width: 600 | prepend: "https:" | json }},
+  {% endif %}
+  {% if shop.phone != blank %}
+    "telephone": {{ shop.phone | json }},
+  {% endif %}
+  {% if social_profiles != blank %}
+    "sameAs": [{{ social_profiles }}],
+  {% endif %}
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "url": {{ request.origin | append: routes.contact_url | json }}
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ shop.name | json }},
+  "url": {{ request.origin | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {{ request.origin | append: routes.search_url | append: "?q={search_term_string}" | json }},
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>

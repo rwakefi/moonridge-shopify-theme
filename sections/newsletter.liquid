@@ -183,6 +183,11 @@
                     {{ section.settings.small_text }}
                   </small>
                 {% endif %}
+                {%- if section.settings.incentive_text != blank -%}
+                  <small class="newsletter-form__message form__message small-text newsletter-incentive">
+                    {{ section.settings.incentive_text }}
+                  </small>
+                {%- endif -%}
                 {%- if form.errors -%}
                   <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
                     {%- render 'icon-error' -%}
@@ -274,6 +279,13 @@
       "id": "show_small_text",
       "default": true,
       "label": "Show Small Text Under Form"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "incentive_text",
+      "default": "<p>Get early access to new drops, limited releases, and in-store event invites.</p>",
+      "label": "Incentive text",
+      "info": "Shown near email signup to improve subscribe conversion."
     },
     {
           "type": "inline_richtext",

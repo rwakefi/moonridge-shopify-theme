@@ -40,6 +40,13 @@
             "answer": "<p>Visit us in Fayetteville for an in-person fitting, or use the sizing resources on each hat product page. You can also book a virtual consultation for one-on-one help.</p>"
           }
         },
+        "q_stock": {
+          "type": "item",
+          "settings": {
+            "question": "How can I confirm an item is in stock?",
+            "answer": "<p>We stock some pretty unique pieces and they go fast. For that reason, we ask that you reach out by <a href=\"mailto:info@raftermhatco.com\">email</a> or <a href=\"tel:+14794302667\">phone</a> so we can tell you our exact stock at that moment. We want to make sure we do not get your hopes up if we are not able to deliver. We strive to answer quickly—just reach out!</p>"
+          }
+        },
         "cat_returns": {
           "type": "category",
           "settings": {
@@ -58,6 +65,7 @@
         "cat_shopping",
         "q_ship",
         "q_size",
+        "q_stock",
         "cat_returns",
         "q_returns"
       ]

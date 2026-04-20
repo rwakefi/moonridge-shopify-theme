@@ -1394,3 +1394,29 @@ body:not(.template-index) .header__icon .icon,
     padding-bottom: 1.6rem;
   }
 }
+
+/* Boots collection cards: long CTA fits on narrow columns (mobile) */
+@media screen and (max-width: 749px) {
+  .collection .card--boots-collection .quick-add .quick-add__submit {
+    white-space: normal !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
+    padding: 1rem 0.65rem !important;
+    letter-spacing: 0.06em !important;
+    font-size: 1rem !important;
+    min-height: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    hyphens: auto;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .collection .card--boots-collection .quick-add .quick-add__submit > span {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    white-space: normal !important;
+    text-align: center;
+  }
+}

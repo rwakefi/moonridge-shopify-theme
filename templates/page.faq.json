@@ -49,6 +49,19 @@
             "answer": "<p>Visit us in Fayetteville for an in-person fitting, or use the sizing resources on each hat product page. You can also book a virtual consultation for one-on-one help.</p>"
           }
         },
+        "cat_events": {
+          "type": "category",
+          "settings": {
+            "title": "Private events & parties"
+          }
+        },
+        "q_private_events": {
+          "type": "item",
+          "settings": {
+            "question": "Do you host private events or hat parties?",
+            "answer": "<p>We love private events — both <strong>in our store</strong> and <strong>off-site</strong>. We host weddings, bachelor and bachelorette parties, and corporate events for groups from about 10 up to 500.</p><p>We also host special get-togethers in the shop for <strong>10 guests or fewer</strong> — perfect for birthdays and other celebrations.</p><p>To start planning, visit <a href=\"/pages/book-a-hat-party\">Book a hat party</a> or reach out through <a href=\"/pages/contact\">Contact</a> / <a href=\"mailto:info@raftermhatco.com\">info@raftermhatco.com</a>.</p>"
+          }
+        },
         "cat_returns": {
           "type": "category",
           "settings": {
@@ -67,6 +80,8 @@
         "cat_shopping",
         "q_ship",
         "q_size",
+        "cat_events",
+        "q_private_events",
         "cat_returns",
         "q_returns"
       ]

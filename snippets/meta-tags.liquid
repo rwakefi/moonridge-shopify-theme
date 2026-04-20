@@ -5,12 +5,13 @@
   
   # AI/GEO Authority Prefix logic
   assign authority_prefix = "Rafter M Hat Company | Fayetteville's Western Heritage Boutique: "
-  assign raw_description = page_description | default: shop.description | default: shop.name
-  assign og_description = authority_prefix | append: raw_description
+  assign raw_description = page_description | default: shop.description | default: shop.name | strip_html | strip
+  assign og_description = authority_prefix | append: raw_description | truncate: 200
   
   if request.page_type == 'product'
     assign og_type = 'product'
-    assign og_description = "Rafter M Hat Company (Fayetteville, AR) Authorized Dealer: " | append: product.title | append: " - " | append: product.description | strip_html | truncate: 160
+    assign product_summary = product.description | strip_html | strip | truncate: 120
+    assign og_description = "Rafter M Hat Company (Fayetteville, AR) Authorized Dealer: " | append: product.title | append: " - " | append: product_summary | truncate: 200
   elsif request.page_type == 'article'
     assign og_type = 'article'
   elsif request.page_type == 'password'
@@ -29,7 +30,7 @@
 <meta property="og:type" content="{{ og_type }}">
 <meta property="og:description" content="{{ og_description | escape }}">
 {%- if page_image -%}
-  <meta property="og:image" content="http:{{ page_image | image_url }}">
+  <meta property="og:image" content="https:{{ page_image | image_url }}">
   <meta property="og:image:secure_url" content="https:{{ page_image | image_url }}">
   <meta property="og:image:width" content="{{ page_image.width }}">
   <meta property="og:image:height" content="{{ page_image.height }}">
@@ -46,3 +47,6 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title | escape }}">
 <meta name="twitter:description" content="{{ og_description | escape }}">
+{%- if page_image -%}
+  <meta name="twitter:image" content="https:{{ page_image | image_url }}">
+{%- endif -%}

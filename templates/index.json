@@ -241,20 +241,20 @@
             "bubble_link": "shopify://collections/apparel"
           }
         },
-        "image_ygBdLd": {
-          "type": "Image",
-          "settings": {
-            "bubble_img": "shopify://shop_images/Myo_ther_hats_a_stetson.png",
-            "bubble_text": "BallCaps",
-            "bubble_link": "shopify://collections/ballcaps-truckers"
-          }
-        },
         "image_Xpdbqn": {
           "type": "Image",
           "settings": {
             "bubble_img": "shopify://shop_images/Steston_Collection.jpg",
             "bubble_text": "Boots",
             "bubble_link": "shopify://collections/boots"
+          }
+        },
+        "image_ygBdLd": {
+          "type": "Image",
+          "settings": {
+            "bubble_img": "shopify://shop_images/Myo_ther_hats_a_stetson.png",
+            "bubble_text": "BallCaps",
+            "bubble_link": "shopify://collections/ballcaps-truckers"
           }
         },
         "image_WhAgxY": {
@@ -269,8 +269,8 @@
       "block_order": [
         "image_RzHyzt",
         "image_VPVbV8",
-        "image_ygBdLd",
         "image_Xpdbqn",
+        "image_ygBdLd",
         "image_WhAgxY"
       ],
       "name": "SS - Circle Menu",

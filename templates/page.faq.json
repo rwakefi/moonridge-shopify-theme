@@ -1,0 +1,67 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 0
+      }
+    },
+    "faq_accordion": {
+      "type": "collapsible-content",
+      "settings": {
+        "heading": "",
+        "heading_alignment": "center",
+        "heading_size": 36,
+        "intro": "",
+        "content_max_width": 900,
+        "color_scheme": "background-1",
+        "padding_top": 8,
+        "padding_bottom": 56
+      },
+      "blocks": {
+        "cat_shopping": {
+          "type": "category",
+          "settings": {
+            "title": "Shopping with us"
+          }
+        },
+        "q_ship": {
+          "type": "item",
+          "settings": {
+            "question": "Do you ship hats?",
+            "answer": "<p>Yes — we ship nationwide. Shipping options appear at checkout, and we pack hats carefully so they arrive ready to wear.</p>"
+          }
+        },
+        "q_size": {
+          "type": "item",
+          "settings": {
+            "question": "How do I find my hat size?",
+            "answer": "<p>Visit us in Fayetteville for an in-person fitting, or use the sizing resources on each hat product page. You can also book a virtual consultation for one-on-one help.</p>"
+          }
+        },
+        "cat_returns": {
+          "type": "category",
+          "settings": {
+            "title": "Returns & exchanges"
+          }
+        },
+        "q_returns": {
+          "type": "item",
+          "settings": {
+            "question": "What is your return or exchange policy?",
+            "answer": "<p>Replace this with your store policy. Link to your <a href=\"/policies/refund-policy\">refund policy</a> if you have one.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "cat_shopping",
+        "q_ship",
+        "q_size",
+        "cat_returns",
+        "q_returns"
+      ]
+    }
+  },
+  "order": ["main", "faq_accordion"]
+}

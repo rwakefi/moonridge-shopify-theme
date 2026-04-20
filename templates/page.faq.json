@@ -30,7 +30,14 @@
           "type": "item",
           "settings": {
             "question": "Do you ship hats?",
-            "answer": "<p>Yes — we ship nationwide. Shipping options appear at checkout, and we pack hats carefully so they arrive ready to wear.</p>"
+            "answer": "<p>Yes — we ship to addresses within the United States. Shipping options appear at checkout, and we pack hats carefully so they arrive ready to wear.</p>"
+          }
+        },
+        "q_ship_intl": {
+          "type": "item",
+          "settings": {
+            "question": "Do you ship outside the United States?",
+            "answer": "<p>No — we ship within the US only.</p>"
           }
         },
         "q_size": {
@@ -57,6 +64,7 @@
       "block_order": [
         "cat_shopping",
         "q_ship",
+        "q_ship_intl",
         "q_size",
         "cat_returns",
         "q_returns"

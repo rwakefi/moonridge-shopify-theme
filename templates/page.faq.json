@@ -50,7 +50,7 @@
           "type": "item",
           "settings": {
             "question": "What is your return or exchange policy?",
-            "answer": "<p>Replace this with your store policy. Link to your <a href=\"/policies/refund-policy\">refund policy</a> if you have one.</p>"
+            "answer": "<p>Returns and exchanges follow the rules on our official Refund policy page (timelines, eligible items, and how to start a request). For the full, up-to-date policy, see <a href=\"/policies/refund-policy\">Refund policy</a>.</p>"
           }
         }
       },

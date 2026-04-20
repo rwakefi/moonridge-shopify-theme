@@ -503,6 +503,7 @@
         "instafeed_app_block_rrg6Bd",
         "ai_gen_block_002b861_WnqG6D"
       ],
+      "name": "Legendary Brands",
       "settings": {}
     },
     "featured_collection_Qbbc6i": {
@@ -604,57 +605,6 @@
         "padding_bottom": 24,
         "margin_top": 0,
         "margin_bottom": 0
-      }
-    },
-    "lumin_mega_3wBPGR": {
-      "type": "lumin-mega",
-      "blocks": {
-        "heading_P9nzdb": {
-          "type": "heading",
-          "settings": {
-            "heading": "HATS FOR EVERYONE",
-            "heading_size": "h0"
-          }
-        },
-        "text_WX9pK9": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Our collection has versatile styles that look great on anyone, blending comfort with contemporary fashion.</p>",
-            "text_style": "body"
-          }
-        },
-        "button_AGw6AN": {
-          "type": "button",
-          "settings": {
-            "button_label": "Shop Now",
-            "button_link": "shopify://collections/hats-for-everyone",
-            "button_style_secondary": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_P9nzdb",
-        "text_WX9pK9",
-        "button_AGw6AN"
-      ],
-      "disabled": true,
-      "name": "Hats For Everyone",
-      "settings": {
-        "color_scheme_main": "",
-        "image": "shopify://shop_images/Rafter_M_Hat_Company-24.png",
-        "height": "adapt",
-        "desktop_image_width": "medium",
-        "layout": "text_first",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "right",
-        "content_layout": "no-overlap",
-        "color_scheme": "",
-        "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "margin_top": 0,
-        "margin_bottom": 0,
-        "padding_top": 24,
-        "padding_bottom": 24
       }
     },
     "17618020408820ce43": {
@@ -1181,7 +1131,6 @@
     "featured_collection_Qbbc6i",
     "custom_liquid_e8enqT",
     "newsletter_eRQTKh",
-    "lumin_mega_3wBPGR",
     "17618020408820ce43",
     "1763038602d03ce096",
     "lumin_mega_A34iND",

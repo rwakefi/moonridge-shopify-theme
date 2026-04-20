@@ -96,10 +96,9 @@
       "blocks": {
         "ai_gen_block_298bf2e_G4fdk7": {
           "type": "ai_gen_block_298bf2e",
-          "disabled": true,
           "settings": {
-            "title": "Best Selling Stetson's",
-            "collection": "stetson",
+            "title": "Best Selling {{ closest.collection.metafields.custom.brand_name.value }}s",
+            "collection": "best-selling-pendleton-copy",
             "products_to_show": 16,
             "container_width": 1200,
             "product_gap": 16,

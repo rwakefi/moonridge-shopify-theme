@@ -26,7 +26,7 @@
       assign sold_out_button_label = 'products.product.sold_out' | t
       assign product_template_suffix = product.template_suffix | default: '' | downcase
       if product_template_suffix == 'boots' or product_template_suffix contains 'boot'
-        assign sold_out_button_label = 'Call Store For Availability'
+        assign sold_out_button_label = 'Contact Store For Availability'
       endif
     -%}
 

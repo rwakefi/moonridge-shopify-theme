@@ -35,11 +35,25 @@
             "title": "Shopping with us"
           }
         },
+        "q_walkins": {
+          "type": "item",
+          "settings": {
+            "question": "Do I need an appointment to visit?",
+            "answer": "<p>We love making sure we have time to help you find your perfect hat or pair of boots. Walk-ins are always welcome. Booking an appointment is the best way to have the full Rafter M Hat Experience with us.</p>"
+          }
+        },
         "q_ship": {
           "type": "item",
           "settings": {
             "question": "Do you ship hats?",
-            "answer": "<p>Yes — we ship nationwide. Shipping options appear at checkout, and we pack hats carefully so they arrive ready to wear.</p>"
+            "answer": "<p>Yes — we ship to addresses within the United States. Shipping options appear at checkout, and we pack hats carefully so they arrive ready to wear.</p>"
+          }
+        },
+        "q_ship_intl": {
+          "type": "item",
+          "settings": {
+            "question": "Do you ship outside the United States?",
+            "answer": "<p>No — we ship within the US only.</p>"
           }
         },
         "q_size": {
@@ -47,6 +61,86 @@
           "settings": {
             "question": "How do I find my hat size?",
             "answer": "<p>Visit us in Fayetteville for an in-person fitting, or use the sizing resources on each hat product page. You can also book a virtual consultation for one-on-one help.</p>"
+          }
+        },
+        "q_stock": {
+          "type": "item",
+          "settings": {
+            "question": "How can I confirm an item is in stock?",
+            "answer": "<p>We stock some pretty unique pieces and they go fast. For that reason, we ask that you reach out by <a href=\"mailto:info@raftermhatco.com\">email</a> or <a href=\"tel:+14794302667\">phone</a> so we can tell you our exact stock at that moment. We want to make sure we do not get your hopes up if we are not able to deliver. We strive to answer quickly—just reach out!</p>"
+          }
+        },
+        "q_payment": {
+          "type": "item",
+          "settings": {
+            "question": "What payment methods do you accept?",
+            "answer": "<p>We accept major credit and debit cards, Shop Pay, Apple Pay, and cash. Online, use the payment options shown at checkout; in store, we can take cards, Apple Pay, and cash at the register.</p>"
+          }
+        },
+        "cat_gift_cards": {
+          "type": "category",
+          "settings": {
+            "title": "Gift cards"
+          }
+        },
+        "q_gift_cards": {
+          "type": "item",
+          "settings": {
+            "question": "Can I buy or use a gift card online and in store?",
+            "answer": "<p>Yes. You can purchase a gift card online or in store, and gift cards can be redeemed both ways as well. Online gift cards can be printed at home. In-store purchases include a branded plastic card and envelope. If you would like us to mail you a physical card, reach out by <a href=\"mailto:info@raftermhatco.com\">email</a> or <a href=\"tel:+14794302667\">phone</a> and we can arrange it.</p>"
+          }
+        },
+        "q_price_match": {
+          "type": "item",
+          "settings": {
+            "question": "Do you price-match other websites or stores?",
+            "answer": "<p>Most of the time, no. Many of our products use minimum advertised price (MAP) rules from the brand, so we sell them at the price the brand sets.</p><p>If you have a question about a specific item, email us at <a href=\"mailto:info@raftermhatco.com\">info@raftermhatco.com</a> and we will take a look.</p>"
+          }
+        },
+        "q_military_discount": {
+          "type": "item",
+          "settings": {
+            "question": "Do you offer military or first responder discounts?",
+            "answer": "<p>Yes — we offer a 10% discount for military and first responders. Thank you for your service! Show valid ID at checkout in store, or email <a href=\"mailto:info@raftermhatco.com\">info@raftermhatco.com</a> before you place an online order so we can help apply it.</p>"
+          }
+        },
+        "cat_services": {
+          "type": "category",
+          "settings": {
+            "title": "In-store services"
+          }
+        },
+        "q_hat_clean_shape": {
+          "type": "item",
+          "settings": {
+            "question": "Do you offer hat cleaning and reshaping in store?",
+            "answer": "<p>Yes — we offer both <a href=\"/pages/hat-cleaning\">hat cleaning</a> and <a href=\"/pages/hat-shaping\">reshaping</a> in store. We perform cleaning and shaping work Thursday through Saturday, and most hats are back with you within a couple of days.</p><p>Monday through Wednesday, you can still drop off your hat at the shop — our team is always able to check it in for you. We then get right to work on it Thursday, Friday, and Saturday.</p>"
+          }
+        },
+        "cat_brands": {
+          "type": "category",
+          "settings": {
+            "title": "Brands & authenticity"
+          }
+        },
+        "q_authentic": {
+          "type": "item",
+          "settings": {
+            "question": "Are your products authentic?",
+            "answer": "<p>Everything we sell is 100% authentic. We are authorized retailers for Stetson, Resistol, Lucchese, Pendleton, and many other brands. We value our relationships with our suppliers — they trust us, and we trust them.</p>"
+          }
+        },
+        "cat_events": {
+          "type": "category",
+          "settings": {
+            "title": "Private events & parties"
+          }
+        },
+        "q_private_events": {
+          "type": "item",
+          "settings": {
+            "question": "Do you host private events or hat parties?",
+            "answer": "<p>We love private events — both <strong>in our store</strong> and <strong>off-site</strong>. We host weddings, bachelor and bachelorette parties, and corporate events for groups from about 10 up to 500.</p><p>We also host special get-togethers in the shop for <strong>10 guests or fewer</strong> — perfect for birthdays and other celebrations.</p><p>To start planning, visit <a href=\"/pages/book-a-hat-party\">Book a hat party</a>, <a href=\"https://raftermhatcompany.setmore.com\" rel=\"noopener noreferrer\">book a free consultation</a> on our booking calendar, or reach out through <a href=\"/pages/contact\">Contact</a> / <a href=\"mailto:info@raftermhatco.com\">info@raftermhatco.com</a>.</p>"
           }
         },
         "cat_returns": {
@@ -59,14 +153,28 @@
           "type": "item",
           "settings": {
             "question": "What is your return or exchange policy?",
-            "answer": "<p>Replace this with your store policy. Link to your <a href=\"/policies/refund-policy\">refund policy</a> if you have one.</p>"
+            "answer": "<p>Returns and exchanges follow the rules on our official Refund policy page (timelines, eligible items, and how to start a request). For the full, up-to-date policy, see <a href=\"/policies/refund-policy\">Refund policy</a>.</p>"
           }
         }
       },
       "block_order": [
         "cat_shopping",
+        "q_walkins",
         "q_ship",
+        "q_ship_intl",
         "q_size",
+        "q_stock",
+        "q_payment",
+        "cat_gift_cards",
+        "q_gift_cards",
+        "q_price_match",
+        "q_military_discount",
+        "cat_services",
+        "q_hat_clean_shape",
+        "cat_brands",
+        "q_authentic",
+        "cat_events",
+        "q_private_events",
         "cat_returns",
         "q_returns"
       ]

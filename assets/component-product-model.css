@@ -42,3 +42,47 @@
   width: 1.4rem;
   margin-right: 1rem;
 }
+
+.product-form__trust {
+  margin-top: 1.2rem;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  color: rgba(var(--color-foreground), 0.85);
+}
+
+.product-form__trust-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.product-form__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.product-form__trust-item::before {
+  content: '✓';
+  font-weight: 700;
+  color: rgb(var(--color-button));
+}
+
+.collection-ctr-note {
+  margin: 0 0 1.2rem;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: rgba(var(--color-foreground), 0.9);
+}
+
+.product-form__low-stock {
+  margin: 1rem 0 0;
+  color: rgb(var(--color-foreground));
+}
+
+.product-form__reassurance {
+  margin: 0.6rem 0 0;
+  color: rgba(var(--color-foreground), 0.85);
+}

@@ -1467,11 +1467,22 @@ function updateCountdown() {
     else
       assign seo_media = product.featured_media
     endif
+    assign product_description = product.description | strip_html | strip
+    assign product_material = blank
+    if product.metafields.custom.material != blank
+      assign product_material = product.metafields.custom.material
+    elsif product_description contains 'Felt'
+      assign product_material = 'Felt'
+    elsif product_description contains 'Straw'
+      assign product_material = 'Straw'
+    elsif product_description contains 'Fur'
+      assign product_material = 'Fur'
+    endif
   -%}
 
   <script type="application/ld+json">
     {
-      "@context": "http://schema.org/",
+      "@context": "https://schema.org",
       "@type": "Product",
       "name": {{ product.title | json }},
       "url": {{ request.origin | append: product.url | json }},
@@ -1480,7 +1491,7 @@ function updateCountdown() {
           {{ seo_media | image_url: width: 1920 | prepend: "https:" | json }}
         ],
       {%- endif %}
-      "description": {{ product.description | strip_html | json }},
+      "description": {{ product_description | truncate: 5000 | json }},
       {% if product.selected_or_first_available_variant.sku != blank -%}
         "sku": {{ product.selected_or_first_available_variant.sku | json }},
       {%- endif %}
@@ -1488,8 +1499,10 @@ function updateCountdown() {
         "@type": "Brand",
         "name": {{ product.vendor | json }}
       },
-      "category": "Apparel & Accessories > Clothing Accessories > Hats > Cowboy Hats",
-      "material": "{% if product.metafields.custom.material != blank %}{{ product.metafields.custom.material }}{% elsif product.description contains 'Felt' %}Felt{% elsif product.description contains 'Straw' %}Straw{% elsif product.description contains 'Fur' %}Fur{% endif %}",
+      "category": "Apparel & Accessories > Clothing Accessories > Hats",
+      {% if product_material != blank %}
+        "material": {{ product_material | json }},
+      {% endif %}
       "additionalProperty": [
         {% if product.metafields.custom.crown_shape != blank %}
         {
@@ -1540,10 +1553,11 @@ function updateCountdown() {
             {%- if variant.barcode.size == 14 -%}
               "gtin14": {{ variant.barcode }},
             {%- endif -%}
-            "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+            "availability" : "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
             "price" : {{ variant.price | divided_by: 100.00 | json }},
             "priceCurrency" : {{ cart.currency.iso_code | json }},
-            "url" : {{ request.origin | append: variant.url | json }}
+            "url" : {{ request.origin | append: variant.url | json }},
+            "itemCondition": "https://schema.org/NewCondition"
           }{% unless forloop.last %},{% endunless %}
         {%- endfor -%}
       ]
@@ -2461,6 +2475,39 @@ function updateCountdown() {
       "name": "t:sections.main-product.blocks.buy_buttons.name",
       "limit": 1,
       "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_trust_copy",
+          "default": true,
+          "label": "Show trust microcopy"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "trust_copy",
+          "default": "<p>Secure checkout. Fast shipping from Fayetteville, AR.</p>",
+          "label": "Trust microcopy"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_low_stock_notice",
+          "default": true,
+          "label": "Show low stock notice"
+        },
+        {
+          "type": "range",
+          "id": "low_stock_threshold",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "default": 5,
+          "label": "Low stock threshold"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "conversion_reassurance",
+          "default": "<p>Need help choosing your size? Contact us for a guided fit recommendation.</p>",
+          "label": "Conversion reassurance copy"
+        },
         {
           "type": "checkbox",
           "id": "show_dynamic_checkout",

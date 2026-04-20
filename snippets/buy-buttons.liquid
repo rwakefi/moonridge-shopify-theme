@@ -80,6 +80,13 @@
             if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
               assign quantity_rule_soldout = true
             endif
+            assign low_stock_inventory = product.selected_or_first_available_variant.inventory_quantity
+            assign show_low_stock_notice = false
+            if block.settings.enable_low_stock_notice
+              if check_against_inventory and product.selected_or_first_available_variant.available and low_stock_inventory > 0 and low_stock_inventory <= block.settings.low_stock_threshold
+                assign show_low_stock_notice = true
+              endif
+            endif
           -%}
           <button
             id="ProductSubmitButton-{{ section_id }}"
@@ -105,6 +112,21 @@
             
           {%- endif -%}
         </div>
+        {%- if show_low_stock_notice -%}
+          <p class="product-form__low-stock caption-large" role="status">
+            {{- 'Only ' | append: low_stock_inventory | append: ' left in stock - order soon.' -}}
+          </p>
+        {%- endif -%}
+        {%- if block.settings.show_trust_copy and block.settings.trust_copy != blank -%}
+          <div class="product-form__trust rte">
+            {{ block.settings.trust_copy }}
+          </div>
+        {%- endif -%}
+        {%- if block.settings.conversion_reassurance != blank -%}
+          <p class="product-form__reassurance caption-large">
+            {{ block.settings.conversion_reassurance }}
+          </p>
+        {%- endif -%}
       {%- endform -%}
     </product-form>
   {%- else -%}

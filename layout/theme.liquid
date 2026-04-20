@@ -11,7 +11,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8X2EKTPE8N"></script>
 
 {% comment %} booking pop up script tag  {% endcomment %}
-<script id="setmore_script" type="text/javascript" src="https://assets.setmore.com/integration/static/setmoreIframeLive.js"></script>
+<script id="setmore_script" defer="defer" type="text/javascript" src="https://assets.setmore.com/integration/static/setmoreIframeLive.js"></script>
 
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -24,7 +24,30 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="">
+    <meta name="theme-color" content="#ffffff">
+    {%- liquid
+      assign robots_content = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
+      if request.page_type == 'search'
+        assign robots_content = 'noindex,follow'
+      elsif request.page_type == 'cart'
+        assign robots_content = 'noindex,nofollow'
+      elsif request.page_type == 'account'
+        assign robots_content = 'noindex,nofollow'
+      elsif request.page_type == 'activate_account'
+        assign robots_content = 'noindex,nofollow'
+      elsif request.page_type == 'addresses'
+        assign robots_content = 'noindex,nofollow'
+      elsif request.page_type == 'login'
+        assign robots_content = 'noindex,nofollow'
+      elsif request.page_type == 'order'
+        assign robots_content = 'noindex,nofollow'
+      elsif request.page_type == 'register'
+        assign robots_content = 'noindex,nofollow'
+      elsif request.page_type == 'reset_password'
+        assign robots_content = 'noindex,nofollow'
+      endif
+    -%}
+    <meta name="robots" content="{{ robots_content }}">
     <link rel="canonical" href="{{ canonical_url }}">
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
@@ -47,6 +70,7 @@
     {% endif %}
 
     {% render 'meta-tags' %}
+    {% render 'site-organization-schema' %}
     
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>

@@ -13,6 +13,7 @@
   - show_quick_add: {Boolean} Show the quick add button.
   - show_secondary_add: {Boolean} Show the secondary add button.
   - show_quick_desc: {Boolean} Show the short description.
+  - show_review_count: {Boolean} Show review count with rating. Default: true (optional)
   - section_id: {String} The ID of the section that contains this card.
   - horizontal_class: {Boolean} Add a card--horizontal class if set to true. Default: false (optional)
   - horizontal_quick_add: {Boolean} Changes the quick add button styles when set to true. Default: false (optional)
@@ -27,6 +28,10 @@
 {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
 {%- if card_product and card_product != empty -%}
   {%- liquid
+    assign show_review_count_value = show_review_count
+    if show_review_count_value == blank
+      assign show_review_count_value = true
+    endif
     assign ratio = 1
     if card_product.featured_media and media_aspect_ratio == 'portrait'
       assign ratio = 0.8
@@ -114,7 +119,7 @@ endif
                 "
                 src="{{ card_product.featured_media | image_url: width: 533 }}"
                 sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                alt="{{ card_product.featured_media.alt | escape }}"
+                alt="{% if card_product.featured_media.alt != blank %}{{ card_product.featured_media.alt | escape }}{% else %}{{ card_product.title | escape }}{% endif %}"
                 class="motion-reduce"
                 {% unless lazy_load == false %}
                   loading="lazy"
@@ -157,7 +162,7 @@ endif
                   "
                   src="{{ card_product.media[1] | image_url: width: 533 }}"
                   sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                  alt=""
+                  alt="{% if card_product.media[1].alt != blank %}{{ card_product.media[1].alt | escape }}{% else %}{{ card_product.title | append: ' alternate image' | escape }}{% endif %}"
                   class="motion-reduce"
                   loading="lazy"
                   width="{{ card_product.media[1].width }}"
@@ -303,13 +308,15 @@ endif
                   {{ card_product.metafields.reviews.rating.value.scale_max -}}
                 </span>
               </p>
-              <p class="rating-count caption">
-                <span aria-hidden="true">({{ card_product.metafields.reviews.rating_count }})</span>
-                <span class="visually-hidden">
-                  {{- card_product.metafields.reviews.rating_count }}
-                  {{ 'accessibility.total_reviews' | t -}}
-                </span>
-              </p>
+              {%- if show_review_count_value -%}
+                <p class="rating-count caption">
+                  <span aria-hidden="true">({{ card_product.metafields.reviews.rating_count }})</span>
+                  <span class="visually-hidden">
+                    {{- card_product.metafields.reviews.rating_count }}
+                    {{ 'accessibility.total_reviews' | t -}}
+                  </span>
+                </p>
+              {%- endif -%}
             {%- endif -%}
                {%- if show_quick_desc -%}
                 <div class="card__description" style="margin: 24px 0;font-size: {{ section.settings.quick_desc_size }}px;">

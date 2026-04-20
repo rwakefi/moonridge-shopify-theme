@@ -52,7 +52,7 @@
           "settings": {
             "collection": "best-selling-stetsons-copy-1",
             "product_limit": 12,
-            "heading": "Best Selling {{ closest.collection.metafields.custom.brand_name.value }}s",
+            "heading": "Best Selling {{ closest.collection.metafields.custom.brand_name.value }}",
             "subheading": "",
             "heading_alignment": "center",
             "heading_size": 28,

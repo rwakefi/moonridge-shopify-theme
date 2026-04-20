@@ -49,6 +49,19 @@
             "answer": "<p>Visit us in Fayetteville for an in-person fitting, or use the sizing resources on each hat product page. You can also book a virtual consultation for one-on-one help.</p>"
           }
         },
+        "cat_brands": {
+          "type": "category",
+          "settings": {
+            "title": "Brands & authenticity"
+          }
+        },
+        "q_authentic": {
+          "type": "item",
+          "settings": {
+            "question": "Are your products authentic?",
+            "answer": "<p>Everything we sell is 100% authentic. We are authorized retailers for Stetson, Resistol, Lucchese, Pendleton, and many other brands. We value our relationships with our suppliers — they trust us, and we trust them.</p>"
+          }
+        },
         "cat_returns": {
           "type": "category",
           "settings": {
@@ -67,6 +80,8 @@
         "cat_shopping",
         "q_ship",
         "q_size",
+        "cat_brands",
+        "q_authentic",
         "cat_returns",
         "q_returns"
       ]

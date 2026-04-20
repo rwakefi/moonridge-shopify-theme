@@ -26,6 +26,13 @@
             "title": "Shopping with us"
           }
         },
+        "q_walkins": {
+          "type": "item",
+          "settings": {
+            "question": "Do I need an appointment to visit?",
+            "answer": "<p>We love making sure we have time to help you find your perfect hat or pair of boots. Walk-ins are always welcome. Booking an appointment is the best way to have the full Rafter M Hat Experience with us.</p>"
+          }
+        },
         "q_ship": {
           "type": "item",
           "settings": {
@@ -56,6 +63,7 @@
       },
       "block_order": [
         "cat_shopping",
+        "q_walkins",
         "q_ship",
         "q_size",
         "cat_returns",

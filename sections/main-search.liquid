@@ -41,6 +41,26 @@
   .search__button .icon {
     height: 1.8rem;
   }
+
+  .template-search__intent-hint {
+    margin-top: 1rem;
+    color: rgba(var(--color-foreground), 0.85);
+  }
+
+  .template-search__recovery {
+    margin-top: 1.6rem;
+    text-align: center;
+  }
+
+  .template-search__recovery-links {
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
 </style>
 
 {%- liquid
@@ -131,6 +151,11 @@
         {%- if settings.predictive_search_enabled -%}
           </predictive-search>
         {%- endif -%}
+        {%- if section.settings.search_intent_hint != blank -%}
+          <p class="template-search__intent-hint caption-large center">
+            {{ section.settings.search_intent_hint }}
+          </p>
+        {%- endif -%}
       </div>
       {%- if search.performed -%}
         {%- unless section.settings.enable_filtering or section.settings.enable_sorting -%}
@@ -142,6 +167,39 @@
         {%- endunless -%}
         {%- if search.results_count == 0 and search.filters == empty -%}
           <p role="status">{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
+          {%- if section.settings.show_no_results_recovery -%}
+            <div class="template-search__recovery">
+              {%- if section.settings.no_results_heading != blank -%}
+                <h2 class="h4">{{ section.settings.no_results_heading }}</h2>
+              {%- endif -%}
+              {%- if section.settings.no_results_text != blank -%}
+                <div class="rte">{{ section.settings.no_results_text }}</div>
+              {%- endif -%}
+              <ul class="template-search__recovery-links">
+                {%- if section.settings.recovery_link_1_label != blank and section.settings.recovery_link_1_url != blank -%}
+                  <li>
+                    <a class="button button--secondary" href="{{ section.settings.recovery_link_1_url }}">
+                      {{ section.settings.recovery_link_1_label }}
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if section.settings.recovery_link_2_label != blank and section.settings.recovery_link_2_url != blank -%}
+                  <li>
+                    <a class="button button--secondary" href="{{ section.settings.recovery_link_2_url }}">
+                      {{ section.settings.recovery_link_2_label }}
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if section.settings.recovery_link_3_label != blank and section.settings.recovery_link_3_url != blank -%}
+                  <li>
+                    <a class="button button--secondary" href="{{ section.settings.recovery_link_3_url }}">
+                      {{ section.settings.recovery_link_3_label }}
+                    </a>
+                  </li>
+                {%- endif -%}
+              </ul>
+            </div>
+          {%- endif -%}
         {%- endif -%}
       {%- endif -%}
     </div>
@@ -281,6 +339,7 @@
                           show_secondary_image: section.settings.show_secondary_image,
                           show_vendor: section.settings.show_vendor,
                           show_rating: section.settings.show_rating,
+                          show_review_count: section.settings.show_review_count,
                           lazy_load: lazy_load
                         %}
                       {%- when 'article' -%}
@@ -431,6 +490,73 @@
       "default": false,
       "label": "t:sections.main-search.settings.show_rating.label",
       "info": "t:sections.main-search.settings.show_rating.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_review_count",
+      "default": true,
+      "label": "Show review count with stars"
+    },
+    {
+      "type": "header",
+      "content": "Search conversion settings"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "search_intent_hint",
+      "default": "<p>Try style, brand, color, or shape (example: \"stetson felt hat\").</p>",
+      "label": "Search intent hint"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_no_results_recovery",
+      "default": true,
+      "label": "Show no-results recovery module"
+    },
+    {
+      "type": "text",
+      "id": "no_results_heading",
+      "default": "Need help finding the right hat?",
+      "label": "No-results heading"
+    },
+    {
+      "type": "richtext",
+      "id": "no_results_text",
+      "default": "<p>Browse our top collections or contact us for a personalized recommendation.</p>",
+      "label": "No-results supporting text"
+    },
+    {
+      "type": "text",
+      "id": "recovery_link_1_label",
+      "default": "Shop Best Sellers",
+      "label": "Recovery link 1 label"
+    },
+    {
+      "type": "url",
+      "id": "recovery_link_1_url",
+      "label": "Recovery link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "recovery_link_2_label",
+      "default": "Shop New Arrivals",
+      "label": "Recovery link 2 label"
+    },
+    {
+      "type": "url",
+      "id": "recovery_link_2_url",
+      "label": "Recovery link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "recovery_link_3_label",
+      "default": "Contact Hat Concierge",
+      "label": "Recovery link 3 label"
+    },
+    {
+      "type": "url",
+      "id": "recovery_link_3_url",
+      "label": "Recovery link 3 URL"
     },
     {
       "type": "header",

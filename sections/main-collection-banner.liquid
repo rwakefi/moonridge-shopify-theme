@@ -20,6 +20,25 @@
       {%- if section.settings.show_collection_description -%}
         <div class="collection-hero__description rte">{{ collection.description }}</div>
       {%- endif -%}
+      {%- if section.settings.collection_intro != blank -%}
+        <div class="collection-hero__description rte">
+          {{ section.settings.collection_intro }}
+        </div>
+      {%- endif -%}
+      {%- if section.settings.show_collection_links and section.blocks.size > 0 -%}
+        <div class="collection-hero__description rte">
+          <p><strong>{{ section.settings.collection_links_heading | default: 'Shop by interest' }}</strong></p>
+          <ul>
+            {%- for block in section.blocks -%}
+              {%- if block.settings.link_label != blank and block.settings.link_url != blank -%}
+                <li {{ block.shopify_attributes }}>
+                  <a href="{{ block.settings.link_url }}">{{ block.settings.link_label | escape }}</a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
     </div>
 
     {%- if section.settings.show_collection_image and collection.image -%}
@@ -61,6 +80,24 @@
       "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
     },
     {
+      "type": "richtext",
+      "id": "collection_intro",
+      "label": "SEO intro copy",
+      "info": "Optional supporting copy under collection description for search intent and shopper context."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_links",
+      "default": false,
+      "label": "Show internal collection links"
+    },
+    {
+      "type": "text",
+      "id": "collection_links_heading",
+      "default": "Shop by interest",
+      "label": "Internal links heading"
+    },
+    {
       "type": "checkbox",
       "id": "show_collection_image",
       "default": false,
@@ -72,6 +109,25 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "background-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "internal_link",
+      "name": "Internal link",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        }
+      ]
     }
   ]
 }

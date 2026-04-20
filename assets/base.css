@@ -4261,8 +4261,9 @@ button.gravity-button {
 
 /* custon code  */
 
-@media(max-width: 768px){
-  a#Setmore_button_iframe {
+/* Scoped to header “Book experience” only — do not use bare #Setmore_button_iframe (sticky widget reuses id elsewhere) */
+@media (max-width: 768px) {
+  a.header-button.header-cta-button#Setmore_button_iframe {
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -4270,7 +4271,7 @@ button.gravity-button {
     line-height: 1;
     width: 88px;
     padding: 0 !important;
-}
+  }
 }/* Blog images – framed + soft shadow */
 .block-blog-header img,
 .block-layout img {

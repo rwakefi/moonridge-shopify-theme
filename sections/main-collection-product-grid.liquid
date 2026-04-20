@@ -239,8 +239,8 @@
               {%- else -%}
                 {%- assign boots_grid_index = 0 -%}
                 {%- if boots_count_ladies > 0 -%}
-                  <li class="boots-gender-heading" id="BootsGenderHeading-ladies-{{ section.id }}">
-                    <h2 class="boots-gender-heading__title">Ladies</h2>
+                  <li class="boots-gender-heading" id="BootsGenderHeading-women-{{ section.id }}">
+                    <h2 class="boots-gender-heading__title">Women</h2>
                   </li>
                   {%- for product in collection.products -%}
                     {%- capture boots_gender_blob -%}
@@ -289,8 +289,8 @@
                 {%- endif -%}
 
                 {%- if boots_count_mens > 0 -%}
-                  <li class="boots-gender-heading" id="BootsGenderHeading-mens-{{ section.id }}">
-                    <h2 class="boots-gender-heading__title">Men's</h2>
+                  <li class="boots-gender-heading" id="BootsGenderHeading-men-{{ section.id }}">
+                    <h2 class="boots-gender-heading__title">Men</h2>
                   </li>
                   {%- for product in collection.products -%}
                     {%- capture boots_gender_blob -%}

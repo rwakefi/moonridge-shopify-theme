@@ -49,6 +49,13 @@
             "answer": "<p>Visit us in Fayetteville for an in-person fitting, or use the sizing resources on each hat product page. You can also book a virtual consultation for one-on-one help.</p>"
           }
         },
+        "q_price_match": {
+          "type": "item",
+          "settings": {
+            "question": "Do you price-match other websites or stores?",
+            "answer": "<p>Most of the time, no. Many of our products use minimum advertised price (MAP) rules from the brand, so we sell them at the price the brand sets.</p><p>If you have a question about a specific item, email us at <a href=\"mailto:info@raftermhatco.com\">info@raftermhatco.com</a> and we will take a look.</p>"
+          }
+        },
         "cat_returns": {
           "type": "category",
           "settings": {
@@ -67,6 +74,7 @@
         "cat_shopping",
         "q_ship",
         "q_size",
+        "q_price_match",
         "cat_returns",
         "q_returns"
       ]

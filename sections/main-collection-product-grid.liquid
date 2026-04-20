@@ -181,7 +181,7 @@
                 if boots_split_by_gender
                   for p in collection.products
                     capture _g
-                      echo p.metafields.shopify['target-gender']
+                      render 'boots-target-gender-label', product: p
                     endcapture
                     assign _g = _g | strip | downcase
                     if _g contains 'female' or _g contains 'woman' or _g contains 'women' or _g contains 'girl' or _g contains 'ladies' or _g contains 'lady'
@@ -243,10 +243,10 @@
                     <h2 class="boots-gender-heading__title">Ladies</h2>
                   </li>
                   {%- for product in collection.products -%}
+                    {%- capture boots_gender_blob -%}
+                      {%- render 'boots-target-gender-label', product: product -%}
+                    {%- endcapture -%}
                     {%- liquid
-                      capture boots_gender_blob
-                        echo product.metafields.shopify['target-gender']
-                      endcapture
                       assign boots_gender_blob = boots_gender_blob | strip | downcase
                       assign boots_gender_bucket = 'mens'
                       if boots_gender_blob contains 'female' or boots_gender_blob contains 'woman' or boots_gender_blob contains 'women' or boots_gender_blob contains 'girl' or boots_gender_blob contains 'ladies' or boots_gender_blob contains 'lady'
@@ -293,10 +293,10 @@
                     <h2 class="boots-gender-heading__title">Mens</h2>
                   </li>
                   {%- for product in collection.products -%}
+                    {%- capture boots_gender_blob -%}
+                      {%- render 'boots-target-gender-label', product: product -%}
+                    {%- endcapture -%}
                     {%- liquid
-                      capture boots_gender_blob
-                        echo product.metafields.shopify['target-gender']
-                      endcapture
                       assign boots_gender_blob = boots_gender_blob | strip | downcase
                       assign boots_gender_bucket = 'mens'
                       if boots_gender_blob contains 'female' or boots_gender_blob contains 'woman' or boots_gender_blob contains 'women' or boots_gender_blob contains 'girl' or boots_gender_blob contains 'ladies' or boots_gender_blob contains 'lady'
@@ -347,10 +347,10 @@
                     <h2 class="boots-gender-heading__title">Other</h2>
                   </li>
                   {%- for product in collection.products -%}
+                    {%- capture boots_gender_blob -%}
+                      {%- render 'boots-target-gender-label', product: product -%}
+                    {%- endcapture -%}
                     {%- liquid
-                      capture boots_gender_blob
-                        echo product.metafields.shopify['target-gender']
-                      endcapture
                       assign boots_gender_blob = boots_gender_blob | strip | downcase
                       assign boots_gender_bucket = 'mens'
                       if boots_gender_blob contains 'female' or boots_gender_blob contains 'woman' or boots_gender_blob contains 'women' or boots_gender_blob contains 'girl' or boots_gender_blob contains 'ladies' or boots_gender_blob contains 'lady'

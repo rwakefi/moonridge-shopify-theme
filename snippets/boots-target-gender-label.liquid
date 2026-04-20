@@ -1,0 +1,54 @@
+{% comment %}
+  Returns a single lowercase string for product Target gender (Shopify category metafield).
+  Pass: product
+{% endcomment %}
+{%- liquid
+  assign mf = product.metafields.shopify['target-gender']
+  if mf == blank
+    assign mf = product.metafields.shopify['target_gender']
+  endif
+  if mf == blank
+    assign mf = product.metafields.shopify.target_gender
+  endif
+
+  assign out = ''
+
+  if mf != blank and mf.value != blank
+    assign mtype = mf.type | default: '' | downcase
+    if mtype contains 'list'
+      for item in mf.value
+        if item.label != blank
+          assign out = out | append: item.label | append: ' '
+        elsif item.name != blank
+          assign out = out | append: item.name | append: ' '
+        elsif item.value != blank
+          assign out = out | append: item.value | append: ' '
+        else
+          assign out = out | append: item | append: ' '
+        endif
+      endfor
+    else
+      assign val = mf.value
+      if val.label != blank
+        assign out = val.label
+      elsif val.name != blank
+        assign out = val.name
+      else
+        assign out = val | append: '' | strip
+      endif
+    endif
+  elsif mf != blank
+    assign out = mf | append: '' | strip
+  endif
+
+  assign out = out | strip | downcase
+
+  if out == blank
+    assign t = product.title | downcase
+    if t contains 'priscilla'
+      assign out = 'female'
+    endif
+  endif
+
+  echo out
+-%}

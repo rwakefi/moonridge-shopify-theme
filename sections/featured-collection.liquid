@@ -49,6 +49,27 @@
   .slider-dot.is-active {
     background-color: #000000; /* active dot */
   }
+
+  /* Prev/next arrows (theme featured-collection only had dots before) */
+  .fc-slider-arrows-{{ section.id }} {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 0.4rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .fc-slider-arrows-{{ section.id }}.fc-slider-arrows--desktop {
+      display: flex;
+    }
+  }
+
+  @media screen and (max-width: 989px) {
+    .fc-slider-arrows-{{ section.id }}.fc-slider-arrows--mobile {
+      display: flex;
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -68,6 +89,17 @@
   assign show_desktop_slider = false
   if section.settings.enable_desktop_slider and products_to_display > section.settings.columns_desktop
     assign show_desktop_slider = true
+  endif
+
+  # Schema "Hide Navigation": when true, dots are hidden. Show arrows when slider is on and that box is unchecked.
+  assign fc_show_arrows_desktop = false
+  if show_desktop_slider and section.settings.navigation_on_desk == false
+    assign fc_show_arrows_desktop = true
+  endif
+
+  assign fc_show_arrows_mobile = false
+  if show_mobile_slider and section.settings.navigation_on_mobile == false
+    assign fc_show_arrows_mobile = true
   endif
 -%}
 
@@ -164,6 +196,32 @@
           {%- endfor -%}
         </div>
       {%- endif -%}
+
+      {%- if fc_show_arrows_desktop or fc_show_arrows_mobile -%}
+        <div
+          class="fc-slider-arrows-{{ section.id }} no-js-hidden{% if fc_show_arrows_desktop %} fc-slider-arrows--desktop{% endif %}{% if fc_show_arrows_mobile %} fc-slider-arrows--mobile{% endif %}"
+          data-fc-arrows-for="Slider-{{ section.id }}"
+        >
+          <button
+            type="button"
+            class="slider-button slider-button--prev"
+            data-fc-arrow="prev"
+            aria-controls="Slider-{{ section.id }}"
+            aria-label="{{ 'general.slider.previous_slide' | t }}"
+          >
+            {% render 'icon-caret' %}
+          </button>
+          <button
+            type="button"
+            class="slider-button slider-button--next"
+            data-fc-arrow="next"
+            aria-controls="Slider-{{ section.id }}"
+            aria-label="{{ 'general.slider.next_slide' | t }}"
+          >
+            {% render 'icon-caret' %}
+          </button>
+        </div>
+      {%- endif -%}
     </slider-component>
 
     {%- if section.settings.show_view_all and more_in_collection -%}
@@ -253,6 +311,40 @@
 
           updateActiveDot(dotIndex);
         }, 50);
+      });
+    });
+
+    document.querySelectorAll('[data-fc-arrows-for]').forEach(function(arrowWrap) {
+      var sliderId = arrowWrap.getAttribute('data-fc-arrows-for');
+      var slider = document.getElementById(sliderId);
+      if (!slider) return;
+
+      var dotNav = document.querySelector('[data-slider-dots="' + sliderId + '"]');
+      var perPage = dotNav ? parseInt(dotNav.getAttribute('data-per-page'), 10) || 1 : 1;
+
+      function scrollStep(direction) {
+        var slides = slider.querySelectorAll('.grid__item');
+        if (!slides.length) return;
+
+        var step = slides[0].offsetWidth;
+        if (slides.length > 1) {
+          step = Math.abs(slides[1].offsetLeft - slides[0].offsetLeft) * perPage;
+        }
+        if (!step || isNaN(step)) {
+          step = slider.clientWidth * 0.85;
+        }
+
+        slider.scrollBy({
+          left: direction * step,
+          behavior: 'smooth'
+        });
+      }
+
+      arrowWrap.querySelectorAll('[data-fc-arrow]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var dir = btn.getAttribute('data-fc-arrow') === 'next' ? 1 : -1;
+          scrollStep(dir);
+        });
       });
     });
   });

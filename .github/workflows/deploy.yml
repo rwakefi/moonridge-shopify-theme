@@ -29,12 +29,20 @@ jobs:
       - name: Push theme to store
         env:
           SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
-          SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
+          RAW_SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
         run: |
+          set -euo pipefail
+          # Trim whitespace and accidental newlines in SHOPIFY_STORE (breaks CLI HTTP headers if pasted with CR/LF)
+          STORE="$(printf '%s' "$RAW_SHOPIFY_STORE" | head -n1 | tr -d '\r' | xargs)"
+          if [ -z "$STORE" ]; then
+            echo "SHOPIFY_STORE secret is empty after trimming" >&2
+            exit 1
+          fi
+          export SHOPIFY_FLAG_STORE="$STORE"
           shopify theme push \
             --json \
             --theme "${{ secrets.SHOPIFY_THEME_ID }}" \
-            --store "${{ secrets.SHOPIFY_STORE }}" \
-            --password "${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}" \
+            --store "$STORE" \
+            --password "$SHOPIFY_CLI_THEME_TOKEN" \
             --allow-live \
             --force

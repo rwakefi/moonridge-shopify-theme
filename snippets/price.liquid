@@ -35,6 +35,14 @@
   if target == product and product.price_varies
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
+
+  assign hide_sold_out_price_badge = false
+  if template.name == 'product' and template.suffix != blank
+    assign page_suffix = template.suffix | downcase
+    if page_suffix == 'boots' or page_suffix contains 'boot'
+      assign hide_sold_out_price_badge = true
+    endif
+  endif
 -%}
 {% if settings.sup_enabled %}
   <style>
@@ -142,8 +150,14 @@ sup {
       {{ 'products.product.on_sale' | t }}
     </span>
 
-    <span class="badge price__badge-sold-out color-{{ settings.sold_out_badge_color_scheme }}">
-      {{ 'products.product.sold_out' | t }}
-    </span>
+    {%- unless hide_sold_out_price_badge -%}
+      <span class="badge price__badge-sold-out color-{{ settings.sold_out_badge_color_scheme }}">
+        {{ 'products.product.sold_out' | t }}
+      </span>
+    {%- else -%}
+      {%- if available == false -%}
+        <span class="visually-hidden">{{ 'products.product.sold_out' | t }}</span>
+      {%- endif -%}
+    {%- endunless -%}
   {%- endif -%}
 </div>

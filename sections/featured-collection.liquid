@@ -91,7 +91,6 @@
     assign show_desktop_slider = true
   endif
 
-  # Schema "Hide Navigation": when true, dots are hidden. Show arrows when slider is on and that box is unchecked.
   assign fc_show_arrows_desktop = false
   if show_desktop_slider and section.settings.navigation_on_desk == false
     assign fc_show_arrows_desktop = true

@@ -43,7 +43,7 @@
             "price_size": 24,
             "sale_price_color": "#312110",
             "price_bold": true,
-            "badge_hide": false,
+            "badge_hide": true,
             "taxes_hide": false,
             "shipping_hide": true
           }

@@ -1,1 +1,1 @@
-# rafter-m-shopify-theme
+# moonridge-m-shopify-theme

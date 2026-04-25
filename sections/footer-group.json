@@ -13,19 +13,19 @@
   "sections": {
     "custom_liquid_rAWQgq": {
       "type": "custom-liquid_Footer",
-      "name": "Rafter M Footer",
+      "name": "Moon Ridge Footer",
       "settings": {
         "left_heading": "RAFTER M HAT COMPANY | Legendary Brands. FITTED. PERSONALIZED.",
         "left_body": "We love hats — and we love helping you find the one that feels just right. We’re proud to do it as a small business from Fayetteville, Arkansas.",
         "contact_label": "Address/Contact Info",
         "contact_email": "info@raftermhatco.com",
         "contact_phone": "(479) 430-2667",
-        "instagram_url": "https://instagram.com/raftermhatco",
-        "facebook_url": "https://facebook.com/raftermhatco",
-        "tiktok_url": "https://tiktok.com/raftermhatco",
+        "instagram_url": "https://instagram.com/moonridgeco",
+        "facebook_url": "https://facebook.com/moonridgeco",
+        "tiktok_url": "https://tiktok.com/moonridgeco",
         "store_hours": "Mon–Fri: 10am–5pm\nSaturday: 10am–2pm\nSunday: Closed\n\nHat Designers are in store Thursday, Friday, and Saturday.",
         "newsletter_heading": "STAY IN TOUCH",
-        "newsletter_text": "Subscribe to receive updates, new arrivals, and exclusive Rafter M offers.",
+        "newsletter_text": "Subscribe to receive updates, new arrivals, and exclusive Moon Ridge offers.",
         "newsletter_placeholder": "Enter your email address",
         "newsletter_button_label": "SUBSCRIBE",
         "newsletter_success": "Thanks for subscribing — we’ll be in touch soon.",
@@ -85,8 +85,8 @@
         "text_hUiM84": {
           "type": "text",
           "settings": {
-            "heading": "<a href=\"/pages/contact\" title=\"Contact\">Contact Rafter M</a>",
-            "subtext": "<h4>                                  Rafter M Hat Company     </h4><h4>2218 N College Ave, Fayetteville, AR 72703</h4><h4>Phone: ‪(479) 430-2667‬</h4>"
+            "heading": "<a href=\"/pages/contact\" title=\"Contact\">Contact Moon Ridge</a>",
+            "subtext": "<h4>                                  Moon Ridge     </h4><h4>2218 N College Ave, Fayetteville, AR 72703</h4><h4>Phone: ‪(479) 430-2667‬</h4>"
           }
         },
         "link_list_CmhmYR": {

@@ -4,14 +4,14 @@
   assign og_type = 'website'
   
   # AI/GEO Authority Prefix logic
-  assign authority_prefix = "Rafter M Hat Company | Fayetteville's Western Heritage Boutique: "
+  assign authority_prefix = "Moon Ridge | Fayetteville's Western Heritage Boutique: "
   assign raw_description = page_description | default: shop.description | default: shop.name | strip_html | strip
   assign og_description = authority_prefix | append: raw_description | truncate: 200
   
   if request.page_type == 'product'
     assign og_type = 'product'
     assign product_summary = product.description | strip_html | strip | truncate: 120
-    assign og_description = "Rafter M Hat Company (Fayetteville, AR) Authorized Dealer: " | append: product.title | append: " - " | append: product_summary | truncate: 200
+    assign og_description = "Moon Ridge (Fayetteville, AR) Authorized Dealer: " | append: product.title | append: " - " | append: product_summary | truncate: 200
   elsif request.page_type == 'article'
     assign og_type = 'article'
   elsif request.page_type == 'password'

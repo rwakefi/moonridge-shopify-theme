@@ -1,7 +1,3 @@
-# Deploys the theme to Shopify when code is merged to main.
-# Requires repository secrets: SHOPIFY_STORE, SHOPIFY_THEME_ID, SHOPIFY_CLI_THEME_TOKEN
-# See: https://shopify.dev/docs/storefronts/themes/tools/cli/ci-cd
-
 name: Deploy to Shopify
 
 on:
@@ -32,7 +28,6 @@ jobs:
           RAW_SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
         run: |
           set -euo pipefail
-          # Trim whitespace and accidental newlines in SHOPIFY_STORE (breaks CLI HTTP headers if pasted with CR/LF)
           STORE="$(printf '%s' "$RAW_SHOPIFY_STORE" | head -n1 | tr -d '\r' | xargs)"
           if [ -z "$STORE" ]; then
             echo "SHOPIFY_STORE secret is empty after trimming" >&2

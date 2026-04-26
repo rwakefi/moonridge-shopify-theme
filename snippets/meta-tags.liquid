@@ -4,7 +4,7 @@
   assign og_type = 'website'
   
   # AI/GEO Authority Prefix logic
-  assign authority_prefix = "Moon Ridge | Fayetteville's Western Heritage Boutique: "
+  assign authority_prefix = "Moon Ridge | Fayetteville's Hat and Heritage Store: "
   assign raw_description = page_description | default: shop.description | default: shop.name | strip_html | strip
   assign og_description = authority_prefix | append: raw_description | truncate: 200
   

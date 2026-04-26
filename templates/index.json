@@ -546,7 +546,7 @@
       "disabled": true,
       "name": "Book Now Button",
       "settings": {
-        "left_heading": "RAFTER M HAT COMPANY | CRAFTED. FITTED. PERSONALIZED.",
+        "left_heading": "MOON RIDGE COMPANY | CRAFTED. FITTED. PERSONALIZED.",
         "left_body": "We shape hats, we size hats, we customize hats — and we take immense pride in being a small, independent business in Fayetteville, Arkansas. No big corporates, no mass production. Just skill, craftsmanship, and a deep passion for helping every customer find the perfect hat.",
         "contact_label": "Contact Us:",
         "contact_address": "2218 N College Ave\nFayetteville, AR 72703",
@@ -564,7 +564,7 @@
         "newsletter_success": "Thanks for subscribing — we’ll be in touch soon.",
         "menu_heading": "QUICK LINKS",
         "footer_menu": "footer",
-        "bottom_text": "© 2025 RAFTER M HAT COMPANY  |  TERMS OF SERVICE  |  PRIVACY POLICY",
+        "bottom_text": "© 2025 MOON RIDGE COMPANY  |  TERMS OF SERVICE  |  PRIVACY POLICY",
         "padding_top": 60,
         "padding_bottom": 28
       }

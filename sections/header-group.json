@@ -59,19 +59,19 @@
       "blocks": {
         "ai_gen_block_1a40c9d_czwnQC": {
           "type": "ai_gen_block_1a40c9d",
-          "disabled": true,
+          "disabled": false,
           "settings": {
-            "heading": "<p><strong>Your  Shop for Heritage Brands & Custom Hat Shaping  | We Ship Nationwide</strong></p>",
-            "heading_size": 20,
-            "line_height": 1.2,
+            "heading": "<p><strong>Rafter M Hat Company is now Moon Ridge Company.</strong> We are the exact same people you have come to trust, but we are expanding our brands and offerings and expanding our name.</p>",
+            "heading_size": 16,
+            "line_height": 1.4,
             "text_alignment": "center",
             "text_color": "#ffffff",
-            "background_color": "#312110",
-            "margin_top": -36,
-            "margin_bottom": -36,
+            "background_color": "#4D382B",
+            "margin_top": 0,
+            "margin_bottom": 0,
             "padding_top": 12,
-            "padding_bottom": 8,
-            "padding_horizontal": 0,
+            "padding_bottom": 12,
+            "padding_horizontal": 20,
             "border_radius": 0,
             "desktop_width_percent": 100
           },

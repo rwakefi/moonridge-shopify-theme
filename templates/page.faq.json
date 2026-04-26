@@ -67,7 +67,7 @@
           "type": "item",
           "settings": {
             "question": "How can I confirm an item is in stock?",
-            "answer": "<p>We stock some pretty unique pieces and they go fast. For that reason, we ask that you reach out by <a href=\"mailto:info@raftermhatco.com\">email</a> or <a href=\"tel:+14794302667\">phone</a> so we can tell you our exact stock at that moment. We want to make sure we do not get your hopes up if we are not able to deliver. We strive to answer quickly—just reach out!</p>"
+            "answer": "<p>We stock some pretty unique pieces and they go fast. For that reason, we ask that you reach out by <a href=\"mailto:info@moonridgecompany.com\">email</a> or <a href=\"tel:+14794302667\">phone</a> so we can tell you our exact stock at that moment. We want to make sure we do not get your hopes up if we are not able to deliver. We strive to answer quickly—just reach out!</p>"
           }
         },
         "q_payment": {
@@ -87,21 +87,21 @@
           "type": "item",
           "settings": {
             "question": "Can I buy or use a gift card online and in store?",
-            "answer": "<p>Yes. You can purchase a gift card online or in store, and gift cards can be redeemed both ways as well. Online gift cards can be printed at home. In-store purchases include a branded plastic card and envelope. If you would like us to mail you a physical card, reach out by <a href=\"mailto:info@raftermhatco.com\">email</a> or <a href=\"tel:+14794302667\">phone</a> and we can arrange it.</p>"
+            "answer": "<p>Yes. You can purchase a gift card online or in store, and gift cards can be redeemed both ways as well. Online gift cards can be printed at home. In-store purchases include a branded plastic card and envelope. If you would like us to mail you a physical card, reach out by <a href=\"mailto:info@moonridgecompany.com\">email</a> or <a href=\"tel:+14794302667\">phone</a> and we can arrange it.</p>"
           }
         },
         "q_price_match": {
           "type": "item",
           "settings": {
             "question": "Do you price-match other websites or stores?",
-            "answer": "<p>Most of the time, no. Many of our products use minimum advertised price (MAP) rules from the brand, so we sell them at the price the brand sets.</p><p>If you have a question about a specific item, email us at <a href=\"mailto:info@raftermhatco.com\">info@raftermhatco.com</a> and we will take a look.</p>"
+            "answer": "<p>Most of the time, no. Many of our products use minimum advertised price (MAP) rules from the brand, so we sell them at the price the brand sets.</p><p>If you have a question about a specific item, email us at <a href=\"mailto:info@moonridgecompany.com\">info@moonridgecompany.com</a> and we will take a look.</p>"
           }
         },
         "q_military_discount": {
           "type": "item",
           "settings": {
             "question": "Do you offer military or first responder discounts?",
-            "answer": "<p>Yes — we offer a 10% discount for military and first responders. Thank you for your service! Show valid ID at checkout in store, or email <a href=\"mailto:info@raftermhatco.com\">info@raftermhatco.com</a> before you place an online order so we can help apply it.</p>"
+            "answer": "<p>Yes — we offer a 10% discount for military and first responders. Thank you for your service! Show valid ID at checkout in store, or email <a href=\"mailto:info@moonridgecompany.com\">info@moonridgecompany.com</a> before you place an online order so we can help apply it.</p>"
           }
         },
         "cat_services": {
@@ -140,7 +140,7 @@
           "type": "item",
           "settings": {
             "question": "Do you host private events or hat parties?",
-            "answer": "<p>We love private events — both <strong>in our store</strong> and <strong>off-site</strong>. We host weddings, bachelor and bachelorette parties, and corporate events for groups from about 10 up to 500.</p><p>We also host special get-togethers in the shop for <strong>10 guests or fewer</strong> — perfect for birthdays and other celebrations.</p><p>To start planning, visit <a href=\"/pages/book-a-hat-party\">Book a hat party</a>, <a href=\"https://raftermhatcompany.setmore.com\" rel=\"noopener noreferrer\">book a free consultation</a> on our booking calendar, or reach out through <a href=\"/pages/contact\">Contact</a> / <a href=\"mailto:info@raftermhatco.com\">info@raftermhatco.com</a>.</p>"
+            "answer": "<p>We love private events — both <strong>in our store</strong> and <strong>off-site</strong>. We host weddings, bachelor and bachelorette parties, and corporate events for groups from about 10 up to 500.</p><p>We also host special get-togethers in the shop for <strong>10 guests or fewer</strong> — perfect for birthdays and other celebrations.</p><p>To start planning, visit <a href=\"/pages/book-a-hat-party\">Book a hat party</a>, <a href=\"https://raftermhatcompany.setmore.com\" rel=\"noopener noreferrer\">book a free consultation</a> on our booking calendar, or reach out through <a href=\"/pages/contact\">Contact</a> / <a href=\"mailto:info@moonridgecompany.com\">info@moonridgecompany.com</a>.</p>"
           }
         },
         "cat_returns": {

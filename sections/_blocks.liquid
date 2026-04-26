@@ -1,6 +1,4 @@
-{%- for block in section.blocks -%}
-  {% render block %}
-{%- endfor -%}
+{% content_for 'blocks' %}
 
 {% schema %}
 {

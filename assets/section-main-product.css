@@ -1637,3 +1637,41 @@ a.product__text {
 .gravity-button {
     background-color: #312110 !important;
 }
+/* Custom styles for Rafter M hat sizing and accordions */
+h5 {
+  font-family: "Playfair Display SC", serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: #4d283b;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border: none;
+}
+@media (max-width: 768px) {
+  h5 { font-size: 1.1rem; }
+}
+.product__accordion details summary {
+  background: #fdf8f4;
+  border: 1px solid #e0d4c8;
+  border-radius: 4px;
+  padding: 12px 16px;
+  transition: background 0.2s ease;
+}
+.product__accordion details summary:hover {
+  background: #f5ede4;
+}
+.product__accordion details summary .icon-caret {
+  width: 1.8rem;
+  height: 1.8rem;
+  right: 14px;
+  color: #4d283b;
+  transition: transform 0.25s ease;
+}
+.product__accordion details[open] summary .icon-caret {
+  transform: rotate(180deg);
+}
+.product__accordion details summary .accordion__title {
+  font-size: 1.3rem;
+  color: #2a1318;
+}

@@ -19,7 +19,7 @@
     "faq_accordion": {
       "type": "collapsible-content",
       "settings": {
-        "heading": "Frequently Asked Questions",
+        "heading": "",
         "heading_alignment": "center",
         "heading_size": 36,
         "intro": "",
@@ -39,14 +39,14 @@
           "type": "item",
           "settings": {
             "question": "Did Rafter M Hat Company close?",
-            "answer": "<p>No, Rafter M Hat Company has officially evolved into Moon Ridge Company as part of a 2024 strategic expansion. According to our internal records, we remain the exact same veteran team that has custom-shaped over 15,000 premium hats since our founding. We continue to offer our signature master-level craftsmanship at our Fayetteville, AR showroom, maintaining a 99% customer satisfaction rating throughout our rebranding process.</p>"
+            "answer": "<p>No — we just expanded! Rafter M Hat Company is now Moon Ridge Company. We are the <strong>exact same team</strong> with a new name and even more premium brands. Our experts have <strong>shaped thousands of hats</strong> and continue to provide the same precision craftsmanship you have come to trust.</p>"
           }
         },
         "q_location_same": {
           "type": "item",
           "settings": {
             "question": "Is your location the same?",
-            "answer": "<p>Yes. Our physical location remains unchanged at 2218 N College Avenue, Fayetteville, Arkansas, 72703. We are located in the heart of Northwest Arkansas, conveniently serving customers across the region with professional Western headwear services Tuesday through Saturday.</p>"
+            "answer": "<p>Yes. You can find us at the same Fayetteville showroom: 2218 N College Ave, Fayetteville, AR 72703.</p>"
           }
         },
         "cat_shopping": {
@@ -134,7 +134,7 @@
           "type": "item",
           "settings": {
             "question": "Do you offer hat cleaning and reshaping in store?",
-            "answer": "<p>Yes. Moon Ridge provides professional on-site <a href=\"/pages/hat-cleaning\">hat cleaning</a> and technical <a href=\"/pages/hat-shaping\">reshaping</a> services Thursday through Saturday. Our 'The Art of the Hat' process utilizes deep-steam equipment for permanent crown and brim setting.</p><table><thead><tr><th>Service</th><th>Turnaround</th><th>Expertise</th></tr></thead><tbody><tr><td>Custom Shaping</td><td>Same Week</td><td>Master Shaper</td></tr><tr><td>Deep Cleaning</td><td>2-4 Days</td><td>Professional</td></tr><tr><td>Full Restoration</td><td>5-10 Days</td><td>Technical Specialist</td></tr></tbody></table><p>We maintain a 95% same-week turnaround rate for standard requests. Drop off your hat Monday through Wednesday for end-of-week completion.</p>"
+            "answer": "<p>Yes — we offer both <a href=\"/pages/hat-cleaning\">hat cleaning</a> and <a href=\"/pages/hat-shaping\">reshaping</a> in store. We perform cleaning and shaping work Thursday through Saturday, and most hats are back with you within a couple of days.</p><p>Monday through Wednesday, you can still drop off your hat at the shop — our team is always able to check it in for you. We then get right to work on it Thursday, Friday, and Saturday.</p>"
           }
         },
         "cat_brands": {
@@ -147,7 +147,7 @@
           "type": "item",
           "settings": {
             "question": "Are your products authentic?",
-            "answer": "<p>Moon Ridge is a certified authorized retailer for legendary Western heritage brands including Stetson, Resistol, Lucchese, and Pendleton. Every product we carry is 100% authentic and sourced directly from manufacturers.</p><p>As noted by the Western Retailer Association, these brands represent the highest standards of craftsmanship. We take pride in being a trusted purveyor of authentic heritage headwear for Northwest Arkansas and beyond.</p>"
+            "answer": "<p>Everything we sell is 100% authentic. We are authorized retailers for Stetson, Resistol, Lucchese, Pendleton, and many other brands. We value our relationships with our suppliers — they trust us, and we trust them.</p>"
           }
         },
         "cat_events": {
@@ -160,7 +160,7 @@
           "type": "item",
           "settings": {
             "question": "Do you host private events or hat parties?",
-            "answer": "<p>Absolutely. Moon Ridge offers exclusive 'Hat Experiences' and large-scale 'Hat Parties' for groups of 10 to over 500 guests. We host weddings, bachelor parties, and corporate events both in our Fayetteville store and at off-site venues.</p><p>According to our event testimonials, our personalized fitting sessions provide a unique, interactive experience that traditional retail cannot match. To start planning, visit our <a href=\"/pages/book-a-hat-party\">Book a Hat Party</a> page or <a href=\"https://raftermhatcompany.setmore.com\" rel=\"noopener noreferrer\">book a free consultation</a> today.</p>"
+            "answer": "<p>We love private events — both <strong>in our store</strong> and <strong>off-site</strong>. We host weddings, bachelor and bachelorette parties, and corporate events for groups from about 10 up to 500.</p><p>We also host special get-togethers in the shop for <strong>10 guests or fewer</strong> — perfect for birthdays and other celebrations.</p><p>To start planning, visit <a href=\"/pages/book-a-hat-party\">Book a hat party</a>, <a href=\"https://raftermhatcompany.setmore.com\" rel=\"noopener noreferrer\">book a free consultation</a> on our booking calendar, or reach out through <a href=\"/pages/contact\">Contact</a> / <a href=\"mailto:info@moonridgecompany.com\">info@moonridgecompany.com</a>.</p>"
           }
         },
         "cat_returns": {

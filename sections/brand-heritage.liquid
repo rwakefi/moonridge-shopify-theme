@@ -1,0 +1,138 @@
+{%- style -%}
+  .brand-heritage {
+    padding: 60px 20px;
+    background-color: #ffffff;
+    color: #4A2E1F;
+    text-align: center;
+  }
+
+  .brand-heritage-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .rebrand-announcement {
+    background-color: #F7EFE6; /* Ivory */
+    border: 1px solid #D4AF37; /* Gold */
+    padding: 40px;
+    margin-bottom: 60px;
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(74, 46, 31, 0.05);
+  }
+
+  .rebrand-announcement h2 {
+    color: #D4AF37;
+    font-family: var(--font-heading-family);
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .rebrand-announcement p {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  .heritage-manifesto {
+    font-size: 2.2rem;
+    line-height: 1.5;
+    font-style: italic;
+    margin-bottom: 40px;
+    color: #312110;
+    font-family: var(--font-heading-italic);
+  }
+
+  .heritage-story {
+    font-size: 1.7rem;
+    line-height: 1.8;
+    text-align: left;
+    margin-bottom: 30px;
+  }
+
+  .heritage-story p {
+    margin-bottom: 20px;
+  }
+
+  .heritage-signature {
+    margin-top: 50px;
+    text-align: right;
+    font-family: var(--font-heading-italic);
+    font-size: 2rem;
+  }
+
+  .heritage-signature span {
+    display: block;
+    font-weight: 700;
+    font-style: normal;
+    font-family: var(--font-body-family);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 1.4rem;
+    margin-top: 5px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .rebrand-announcement {
+      padding: 25px;
+    }
+    .rebrand-announcement h2 {
+      font-size: 1.8rem;
+    }
+    .rebrand-announcement p {
+      font-size: 1.5rem;
+    }
+    .heritage-manifesto {
+      font-size: 1.8rem;
+    }
+    .heritage-story {
+      font-size: 1.5rem;
+    }
+  }
+{%- endstyle -%}
+
+<section class="brand-heritage">
+  <div class="brand-heritage-container">
+    
+    <div class="rebrand-announcement">
+      <h2>A New Chapter: May 2026</h2>
+      <p>
+        In May 2026, in order to grow and expand our services and offerings to clients, we made the official name change to <strong>Moon Ridge Company</strong>. While our look is evolving to better serve you, we are the exact same veteran team you’ve trusted for years. We want to thank all our customers for helping us get to this point, and we are honored to have you with us as we grow into the future.
+      </p>
+    </div>
+
+    <div class="heritage-content">
+      <div class="heritage-manifesto">
+        “At Rafter M Hat Company, we believe a good hat does more than complete your outfit — it tells your story. It’s the way you carry yourself, the confidence in your step, the look in the mirror when you finally find the one.”
+      </div>
+
+      <div class="heritage-story">
+        <p>Rafter M started on our back deck in Northwest Arkansas, born from a love for hats and helping people feel their best. Natalie Jo Wakefield — a hairstylist and designer — saw how the right hat could transform a look. Her husband, Zack, had spent years leading and growing businesses, but this one stood apart — it was a chance to support his wife and build something they both believed in. Together they created a place where quality hats meet genuine connection.</p>
+        
+        <p>We proudly partner with legendary brands like Stetson, Resistol, Charlie 1 Horse, and Bigalli — doing things the right way, with honesty, authenticity, and craftsmanship you can feel.</p>
+        
+        <p>Whether you shop in store or online, we make it personal — no rush, no gimmicks, just good people helping you find a hat that fits your life.</p>
+      </div>
+
+      <div class="heritage-signature">
+        — The Wakefield Family
+        <span>Moon Ridge Company (Formerly Rafter M)</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Heritage",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Brand Heritage"
+    }
+  ]
+}
+{% endschema %}

@@ -14,6 +14,13 @@
     "announcement_bar_MVm44A": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement_rebrand": {
+          "type": "announcement",
+          "settings": {
+            "text": "Rafter M is now Moon Ridge Company. Same heritage, new name.",
+            "link": ""
+          }
+        },
         "announcement_biBzBi": {
           "type": "announcement",
           "settings": {
@@ -44,6 +51,7 @@
         }
       },
       "block_order": [
+        "announcement_rebrand",
         "announcement_biBzBi",
         "announcement_XtEeHM",
         "announcement_brfPKP",
@@ -107,6 +115,7 @@
         }
       },
       "block_order": [
+        "announcement_rebrand",
         "image_fCCQQy"
       ],
       "settings": {

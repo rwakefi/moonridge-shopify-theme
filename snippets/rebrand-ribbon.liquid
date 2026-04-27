@@ -1,0 +1,37 @@
+{%- style -%}
+  .rebrand-ribbon {
+    background-color: #F7EFE6; /* Ivory */
+    color: #4A2E1F; /* Warm Brown */
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #D4AF37; /* Gold */
+    position: relative;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+  }
+
+  .rebrand-ribbon a {
+    color: #D4AF37;
+    text-decoration: underline;
+    font-weight: 700;
+    transition: color 0.2s ease;
+  }
+
+  .rebrand-ribbon a:hover {
+    color: #4A2E1F;
+  }
+
+  /* Optional: Close button or dismissible logic can be added later */
+{%- endstyle -%}
+
+<div class="rebrand-ribbon" id="rebrand-ribbon">
+  <span>STILL THE RAFTER M QUALITY YOU TRUST. NOW MOON RIDGE COMPANY.</span>
+  <a href="/pages/our-story">LEARN OUR STORY</a>
+</div>

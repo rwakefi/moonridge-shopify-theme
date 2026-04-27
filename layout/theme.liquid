@@ -56,18 +56,37 @@
     {%- unless settings.type_header_font.system? and settings.type_body_font.system? and settings.type_menu_font.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
-    <title>
-      {{ page_title }}
-      {%- if current_tags %} | tagged "{{ current_tags | join: ', ' }}"{% endif -%}
-      {%- if current_page != 1 %} | Page {{ current_page }}{% endif -%}
-      {%- unless page_title contains shop.name %} | {{ shop.name }}{% endunless -%}
-    </title>
+    {%- liquid
+      assign primary_keyword = "Custom Hat Shaping & Western Wear"
+      if request.page_type == 'product'
+        assign primary_keyword = product.title
+      elsif request.page_type == 'collection'
+        assign primary_keyword = collection.title
+      elsif request.page_type == 'article'
+        assign primary_keyword = article.title
+      endif
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
-    {% elsif shop.description != blank %}
-      <meta name="description" content="{{ shop.description | escape }}">
-    {% endif %}
+      assign secondary_keyword = "Expert Hat Restoration"
+      if request.page_type == 'index'
+        assign secondary_keyword = "Fayetteville, AR"
+      endif
+      
+      assign full_title = primary_keyword | append: " - " | append: shop.name | append: " | " | append: secondary_keyword
+      if current_page != 1
+        assign full_title = full_title | append: " | Page " | append: current_page
+      endif
+    -%}
+    <title>{{ full_title }}</title>
+
+    {%- liquid
+      assign meta_description = page_description | default: shop.description | default: shop.name
+      if request.page_type == 'index'
+        assign meta_description = "Moon Ridge Company (formerly Rafter M) in Fayetteville, AR. Premium custom hat shaping, cleaning, and restoration. Authorized Stetson, Resistol, and American Hat dealer."
+      endif
+    -%}
+    <meta name="description" content="{{ meta_description | strip_html | strip | truncate: 160 | escape }}">
+    <meta name="keywords" content="custom hat shaping, western wear, fayetteville ar, stetson, resistol, american hat company, hat restoration, rafter m">
+
 
     {% render 'meta-tags' %}
     {% render 'site-organization-schema' %}
@@ -401,6 +420,7 @@
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+    {% render 'rebrand-ribbon' %}
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -518,5 +538,6 @@ document.addEventListener("DOMContentLoaded", function() {
     </script>
   {% render 'sticky-booking-cta' %}
   {% render "ai-knowledge-graph" %}
+  {% render 'ai-authority-facts' %}
   </body>
 </html>

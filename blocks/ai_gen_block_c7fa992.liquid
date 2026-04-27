@@ -84,8 +84,13 @@
 
 <div class="ai-rich-text-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   {% if block.settings.heading != blank %}
-    <h2 class="ai-rich-text-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+    {% if block.settings.heading_tag == 'h1' %}
+      <h1 class="ai-rich-text-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h1>
+    {% else %}
+      <h2 class="ai-rich-text-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+    {% endif %}
   {% endif %}
+
   
   <div class="ai-rich-text-content-{{ ai_gen_id }}">
     {% if block.settings.content != blank %}
@@ -107,11 +112,28 @@
       "default": "Rich text"
     },
     {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        }
+      ],
+      "default": "h2"
+    },
+    {
       "type": "richtext",
       "id": "content",
       "label": "Content",
       "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
     },
+
     {
       "type": "header",
       "content": "Layout"

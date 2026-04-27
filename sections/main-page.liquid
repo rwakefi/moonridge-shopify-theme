@@ -29,6 +29,19 @@
     {{ page.content }}
   </div>
 </div>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": {{ page.title | json }},
+    "description": {{ page.description | default: page.content | strip_html | truncate: 160 | json }},
+    "url": {{ request.origin | append: page.url | json }},
+    "mainEntity": {
+      "@type": "{% if page.handle contains 'about' or page.handle contains 'heritage' %}Organization{% else %}WebPage{% endif %}",
+      "name": {{ page.title | json }}
+    }
+  }
+</script>
 
 {% schema %}
 {

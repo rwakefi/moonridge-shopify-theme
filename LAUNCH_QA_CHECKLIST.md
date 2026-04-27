@@ -4,22 +4,22 @@ Use this checklist before publishing the updated theme.
 
 ## 1) Technical SEO checks
 
-- [ ] **Robots tag behavior** in page source:
+- [x] **Robots tag behavior** in page source:
   - Home / collection / product pages show:
     - `index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1`
   - Search page shows:
     - `noindex,follow`
   - Cart/account/login/register/order pages show:
     - `noindex,nofollow`
-- [ ] **Canonical tag** exists and points to current canonical URL.
-- [ ] **Open Graph/Twitter tags** present:
+- [x] **Canonical tag** exists and points to current canonical URL.
+- [x] **Open Graph/Twitter tags** present:
   - `og:title`, `og:description`, `og:image` (HTTPS)
   - `twitter:title`, `twitter:description`, `twitter:image` when image exists
-- [ ] **Structured data appears in source**:
-  - `Organization`
+- [x] **Structured data appears in source**:
+  - `Organization` & `LocalBusiness`
   - `WebSite` with `SearchAction`
   - `Product` schema on product pages
-  - FAQ schema block still present where intended
+  - FAQ schema block still present where intended (Rebrand FAQ + AI Knowledge Graph)
 
 ## 2) Product page conversion checks
 

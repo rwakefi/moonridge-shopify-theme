@@ -84,8 +84,13 @@
 <div class="ai-rich-text-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   <div class="ai-rich-text-container-{{ ai_gen_id }}">
     {% if block.settings.heading != blank %}
-      <h2 class="ai-rich-text-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+      {% if block.settings.heading_tag == 'h1' %}
+        <h1 class="ai-rich-text-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h1>
+      {% else %}
+        <h2 class="ai-rich-text-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+      {% endif %}
     {% endif %}
+
     {% if block.settings.content != blank %}
       <div class="ai-rich-text-content-{{ ai_gen_id }}">
         {{ block.settings.content }}
@@ -129,6 +134,26 @@
     },
     {
       "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
       "id": "text_alignment",
       "label": "Text alignment",
       "options": [
@@ -147,6 +172,7 @@
       ],
       "default": "left"
     },
+
     {
       "type": "header",
       "content": "Style"

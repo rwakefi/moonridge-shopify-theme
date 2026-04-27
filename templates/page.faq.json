@@ -29,6 +29,26 @@
         "padding_bottom": 56
       },
       "blocks": {
+        "cat_rebranding": {
+          "type": "category",
+          "settings": {
+            "title": "Our Evolution (Rafter M to Moon Ridge)"
+          }
+        },
+        "q_rebrand": {
+          "type": "item",
+          "settings": {
+            "question": "Did Rafter M Hat Company close?",
+            "answer": "<p>No — we just expanded! Rafter M Hat Company is now Moon Ridge Company. We are the <strong>exact same team</strong> with a new name and even more premium brands. Our experts have <strong>shaped thousands of hats</strong> and continue to provide the same precision craftsmanship you have come to trust.</p>"
+          }
+        },
+        "q_location_same": {
+          "type": "item",
+          "settings": {
+            "question": "Is your location the same?",
+            "answer": "<p>Yes. You can find us at the same Fayetteville showroom: 2218 N College Ave, Fayetteville, AR 72703.</p>"
+          }
+        },
         "cat_shopping": {
           "type": "category",
           "settings": {
@@ -158,6 +178,9 @@
         }
       },
       "block_order": [
+        "cat_rebranding",
+        "q_rebrand",
+        "q_location_same",
         "cat_shopping",
         "q_walkins",
         "q_ship",

@@ -1,1 +1,62 @@
-{"sections":{"17653910051ed52623":{"type":"_blocks","blocks":{"ai_gen_block_9276253_JNKPJG":{"type":"ai_gen_block_9276253","name":"Title and Body Block","settings":{"title":"Moon Ridge Travel","content":"<p>Moon Ridge Travel is our collection of real trips and real stories—honest insights from the places we’ve explored and the moments that made them unforgettable. Hats are our passion, and so is travel, and what’s interesting is how naturally the two go together. From airports to mountaintops, our hats have become part of the journey itself.<\/p><p>We share where we stayed, what we loved, what we’d skip, and the insider tips that make every adventure better. We also offer a personalized travel service to help you plan and book a trip—curating exceptional hotels, unique experiences, and custom itineraries designed around the way <em>you<\/em> love to explore. And just like our high-quality, personally curated hats, the journeys we take reflect the same commitment to craftsmanship, style, and thoughtful detail.<\/p><p><br\/>Our Moon Ridge hats have joined us on every adventure, becoming part of the memories, the photos, and the stories that make travel worth sharing. It’s all part of the Moon Ridge Lifestyle: living fully, traveling well, and making every moment one worth remembering. For more information, email <strong>zack@moonridgecompany.com<\/strong>.<\/p><p>Adventure with us, one destination at a time.<\/p>","max_width":1200,"text_alignment":"center","title_size":32,"title_spacing":24,"text_size":16,"line_height":1.6,"background_color":"#ffffff","title_color":"#312110","text_color":"#1f1d24","heading_color":"#312110","link_color":"#312110","link_hover_color":"#1f1d24","padding_top":40,"padding_bottom":40,"padding_horizontal":20},"blocks":{}}},"block_order":["ai_gen_block_9276253_JNKPJG"],"settings":{}},"main":{"type":"main-blog","settings":{"blog":"rafter-m-travel","articles_to_show":24,"desktop_columns":3,"desktop_rows":4,"show_date":false,"show_excerpt":true,"read_more_label":"Read the full story"}}},"order":["17653910051ed52623","main"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "17653910051ed52623": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_9276253_JNKPJG": {
+          "type": "ai_gen_block_9276253",
+          "name": "Title and Body Block",
+          "settings": {
+            "title": "Moon Ridge Travel",
+            "content": "<p>Moon Ridge Travel is our collection of real trips and real stories—honest insights from the places we’ve explored and the moments that made them unforgettable. Hats are our passion, and so is travel, and what’s interesting is how naturally the two go together. From airports to mountaintops, our hats have become part of the journey itself.</p><p>We share where we stayed, what we loved, what we’d skip, and the insider tips that make every adventure better. We also offer a personalized travel service to help you plan and book a trip—curating exceptional hotels, unique experiences, and custom itineraries designed around the way <em>you</em> love to explore. And just like our high-quality, personally curated hats, the journeys we take reflect the same commitment to craftsmanship, style, and thoughtful detail.</p><p><br/>Our Moon Ridge hats have joined us on every adventure, becoming part of the memories, the photos, and the stories that make travel worth sharing. It’s all part of the Moon Ridge Lifestyle: living fully, traveling well, and making every moment one worth remembering. For more information, email <strong>zack@moonridgecompany.com</strong>.</p><p>Adventure with us, one destination at a time.</p>",
+            "max_width": 1200,
+            "text_alignment": "center",
+            "title_size": 32,
+            "title_spacing": 24,
+            "text_size": 16,
+            "line_height": 1.6,
+            "background_color": "#ffffff",
+            "title_color": "#312110",
+            "text_color": "#1f1d24",
+            "heading_color": "#312110",
+            "link_color": "#312110",
+            "link_hover_color": "#1f1d24",
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_9276253_JNKPJG"
+      ],
+      "settings": {}
+    },
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "blog": "rafter-m-travel",
+        "articles_to_show": 24,
+        "desktop_columns": 3,
+        "desktop_rows": 4,
+        "show_date": false,
+        "show_excerpt": true,
+        "read_more_label": "Read the full story"
+      }
+    }
+  },
+  "order": [
+    "17653910051ed52623",
+    "main"
+  ]
+}

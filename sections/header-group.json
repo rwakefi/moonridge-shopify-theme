@@ -56,31 +56,6 @@
     },
     "1775539951d5ecae59": {
       "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_1a40c9d_czwnQC": {
-          "type": "ai_gen_block_1a40c9d",
-          "disabled": false,
-          "settings": {
-            "heading": "<p><strong>Rafter M Hat Company is now Moon Ridge Company.</strong> We are the exact same people you have come to trust, but we are expanding our brands and offerings and expanding our name.</p>",
-            "heading_size": 20,
-            "line_height": 1.4,
-            "text_alignment": "center",
-            "text_color": "#ffffff",
-            "background_color": "#4D382B",
-            "margin_top": 0,
-            "margin_bottom": 0,
-            "padding_top": 12,
-            "padding_bottom": 12,
-            "padding_horizontal": 20,
-            "border_radius": 0,
-            "desktop_width_percent": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_1a40c9d_czwnQC"
-      ],
       "settings": {}
     },
     "header": {
@@ -140,6 +115,7 @@
     },
     "1775539906bf4288c6": {
       "type": "_blocks",
+      "disabled": true,
       "settings": {}
     }
   },

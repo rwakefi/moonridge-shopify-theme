@@ -1,1 +1,52 @@
-{"sections":{"single_blog_post_YVityF":{"type":"Single_Blog_Post","name":"Moon Ridge Blog Post","settings":{}},"17654578171ec1f36d":{"type":"_blocks","blocks":{"ai_gen_block_0570847_Ekgxfb":{"type":"ai_gen_block_0570847","settings":{"previous_label":"Previous","next_label":"Next","max_width":800,"arrow_size":24,"arrow_spacing":12,"arrow_hover_distance":4,"label_size":12,"background_color":"#ffffff","text_color":"#312110","text_hover_color":"#1f1d24","padding_top":24,"padding_bottom":24,"padding_horizontal":24,"border_radius":6,"hide_labels_mobile":false},"blocks":{}}},"block_order":["ai_gen_block_0570847_Ekgxfb"],"settings":{}}},"order":["single_blog_post_YVityF","17654578171ec1f36d"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "single_blog_post_YVityF": {
+      "type": "Single_Blog_Post",
+      "name": "Moon Ridge Blog Post",
+      "settings": {}
+    },
+    "17654578171ec1f36d": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_0570847_Ekgxfb": {
+          "type": "ai_gen_block_0570847",
+          "settings": {
+            "previous_label": "Previous",
+            "next_label": "Next",
+            "max_width": 800,
+            "arrow_size": 24,
+            "arrow_spacing": 12,
+            "arrow_hover_distance": 4,
+            "label_size": 12,
+            "background_color": "#ffffff",
+            "text_color": "#312110",
+            "text_hover_color": "#1f1d24",
+            "padding_top": 24,
+            "padding_bottom": 24,
+            "padding_horizontal": 24,
+            "border_radius": 6,
+            "hide_labels_mobile": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_0570847_Ekgxfb"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "single_blog_post_YVityF",
+    "17654578171ec1f36d"
+  ]
+}

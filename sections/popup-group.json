@@ -1,1 +1,123 @@
-{"type":"custom.popup","name":"Popup Group","sections":{"popup_promo_xFyMya":{"type":"Popup_promo","name":"Popup promo","settings":{"enable_popup":false,"home_only":true,"show_once":true,"delay_seconds":2,"heading":"We’re taking our hats to the Arkansas Derby 🏇🔥.Our online store is still open and shipping as usual.","body_text":"<p>Our <strong>Fayetteville Showroom<\/strong> will be closed <strong>March 24th - March 28th, <\/strong><\/p><p>Come find us Friday at Oak Boutique in Hot Springs!<\/p><p>We will be back to normal hours next week to help you find your perfect hat.<\/p>","button_label":"Shop hats","button_link":"","popup_background":"#ffffff","popup_text_color":"#1f1d24","button_background":"#312110","button_text_color":"#ffffff"}},"b55bc64e-33dd-40a4-8194-d0d1a6769639":{"type":"popup","blocks":{"sections--17173569142996__b55bc64e-33dd-40a4-8194-d0d1a6769639-popup_heading-1":{"type":"popup_heading","disabled":true,"settings":{"heading":"Our Retail Location will be closed for a much-needed family vacation until January 3rd.  We are still accepting online orders and you can book your hat experience above.  Also,  message us anytime at info@moonridgecompany.com.  Thank you for supporting Moon Ridge throughout 2025 — we’re grateful for every customer and look forward to an even better 2026. We’ll see you soon.”"}},"sections--17173569142996__b55bc64e-33dd-40a4-8194-d0d1a6769639-subscribe_form-1":{"type":"subscribe_form","disabled":true,"settings":{"field-color":"#ffffff","field-border":"#232323","field-text":"#232323","placeholder_input":"E-mail","button_label":"Booking Info","button_style":"primary","description":""}},"sections--17173569142996__b55bc64e-33dd-40a4-8194-d0d1a6769639-social_links-1":{"type":"social_links","disabled":true,"settings":{"icon-color":"#262626","icon-color-hover":"#747474","show_twitter":false,"show_facebook":true,"show_pinterest":false,"show_instagram":true,"show_tiktok":false,"show_tumblr":false,"show_snapchat":false,"show_youtube":false,"show_vimeo":false}}},"block_order":["sections--17173569142996__b55bc64e-33dd-40a4-8194-d0d1a6769639-popup_heading-1","sections--17173569142996__b55bc64e-33dd-40a4-8194-d0d1a6769639-subscribe_form-1","sections--17173569142996__b55bc64e-33dd-40a4-8194-d0d1a6769639-social_links-1"],"disabled":true,"settings":{"image":"shopify:\/\/shop_images\/Popup_logo.png","image_layout":"bottom","image_fit":"cover","limit-display":2,"limit-cache":2,"position":"center","popup-id":"","trigger-open":"delay","trigger-open-delay":2,"open-scroll-type":"%","open-scroll-position":50,"manual-selector":"","trigger-close":"none","trigger-close-delay":20,"close-scroll-type":"%","close-scroll-position":29,"width":280,"background-color":"#ffffff","heading-color":"#262626","text-color":"#262626","icon-color":"#262626","open-animation":"SlideFade","exit-animation":"SlideFade","show-overlay":true,"mobile":false,"scrolling":false,"overlay-close":true,"esc-close":true,"f4-close":true}},"1724910121dbcfb207":{"type":"apps","settings":{"include_margins":true}}},"order":["popup_promo_xFyMya","b55bc64e-33dd-40a4-8194-d0d1a6769639","1724910121dbcfb207"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "custom.popup",
+  "name": "Popup Group",
+  "sections": {
+    "popup_promo_xFyMya": {
+      "type": "Popup_promo",
+      "name": "Popup promo",
+      "settings": {
+        "enable_popup": false,
+        "home_only": true,
+        "show_once": true,
+        "delay_seconds": 2,
+        "heading": "We’re taking our hats to the Arkansas Derby 🏇🔥.Our online store is still open and shipping as usual.",
+        "body_text": "<p>Our <strong>Fayetteville Showroom</strong> will be closed <strong>March 24th - March 28th, </strong></p><p>Come find us Friday at Oak Boutique in Hot Springs!</p><p>We will be back to normal hours next week to help you find your perfect hat.</p>",
+        "button_label": "Shop hats",
+        "button_link": "",
+        "popup_background": "#ffffff",
+        "popup_text_color": "#1f1d24",
+        "button_background": "#312110",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "b55bc64e-33dd-40a4-8194-d0d1a6769639": {
+      "type": "popup",
+      "blocks": {
+        "sections--17173569142996__b55bc64e-33dd-40a4-8194-d0d1a6769639-popup_heading-1": {
+          "type": "popup_heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Our Retail Location will be closed for a much-needed family vacation until January 3rd.  We are still accepting online orders and you can book your hat experience above.  Also,  message us anytime at info@moonridgecompany.com.  Thank you for supporting Moon Ridge throughout 2025 — we’re grateful for every customer and look forward to an even better 2026. We’ll see you soon.”"
+          }
+        },
+        "sections--17173569142996__b55bc64e-33dd-40a4-8194-d0d1a6769639-subscribe_form-1": {
+          "type": "subscribe_form",
+          "disabled": true,
+          "settings": {
+            "field-color": "#ffffff",
+            "field-border": "#232323",
+            "field-text": "#232323",
+            "placeholder_input": "E-mail",
+            "button_label": "Booking Info",
+            "button_style": "primary",
+            "description": ""
+          }
+        },
+        "sections--17173569142996__b55bc64e-33dd-40a4-8194-d0d1a6769639-social_links-1": {
+          "type": "social_links",
+          "disabled": true,
+          "settings": {
+            "icon-color": "#262626",
+            "icon-color-hover": "#747474",
+            "show_twitter": false,
+            "show_facebook": true,
+            "show_pinterest": false,
+            "show_instagram": true,
+            "show_tiktok": false,
+            "show_tumblr": false,
+            "show_snapchat": false,
+            "show_youtube": false,
+            "show_vimeo": false
+          }
+        }
+      },
+      "block_order": [
+        "sections--17173569142996__b55bc64e-33dd-40a4-8194-d0d1a6769639-popup_heading-1",
+        "sections--17173569142996__b55bc64e-33dd-40a4-8194-d0d1a6769639-subscribe_form-1",
+        "sections--17173569142996__b55bc64e-33dd-40a4-8194-d0d1a6769639-social_links-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/Popup_logo.png",
+        "image_layout": "bottom",
+        "image_fit": "cover",
+        "limit-display": 2,
+        "limit-cache": 2,
+        "position": "center",
+        "popup-id": "",
+        "trigger-open": "delay",
+        "trigger-open-delay": 2,
+        "open-scroll-type": "%",
+        "open-scroll-position": 50,
+        "manual-selector": "",
+        "trigger-close": "none",
+        "trigger-close-delay": 20,
+        "close-scroll-type": "%",
+        "close-scroll-position": 29,
+        "width": 280,
+        "background-color": "#ffffff",
+        "heading-color": "#262626",
+        "text-color": "#262626",
+        "icon-color": "#262626",
+        "open-animation": "SlideFade",
+        "exit-animation": "SlideFade",
+        "show-overlay": true,
+        "mobile": false,
+        "scrolling": false,
+        "overlay-close": true,
+        "esc-close": true,
+        "f4-close": true
+      }
+    },
+    "1724910121dbcfb207": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "popup_promo_xFyMya",
+    "b55bc64e-33dd-40a4-8194-d0d1a6769639",
+    "1724910121dbcfb207"
+  ]
+}

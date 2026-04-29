@@ -196,7 +196,7 @@
           "type": "ai_gen_block_f6bf619",
           "settings": {
             "desktop_image": "shopify://shop_images/Desktop_HERO_Moon_Ridge_1920_x_1080_px.png",
-            "mobile_image": "shopify://shop_images/Mobile_Hero_33366d4e-f22d-45f6-bc32-073baafbe258.png"
+            "mobile_image": "shopify://shop_images/Mobile_Hero_4f291e1d-b73b-475f-8d6d-10cf6e66107c.png"
           },
           "blocks": {}
         },
@@ -321,7 +321,6 @@
             "heading": "<strong>Custom Hat Shaping & Western Wear - Your Hat Journey Starts Here!</strong>",
             "heading_tag": "h1",
             "content": "<p>We love hats. We clean hats, shape hats, style hats, and host unforgettable hat parties. We are the <strong>exact same team</strong> you have come to trust (formerly Rafter M), and we have <strong>custom-shaped thousands of hats</strong> for people across the country. We’re here to help you find your style. Visit us in Fayetteville or shop online. Want the full experience? Book a hat session—virtual or in person—for something truly unique and one-of-a-kind.</p>",
-
             "max_width": 1200,
             "text_alignment": "center",
             "heading_size": 24,
@@ -711,6 +710,7 @@
         "heading": "",
         "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>",
         "max_width": 800,
+        "heading_tag": "h2",
         "text_alignment": "left",
         "heading_size": 32,
         "text_size": 16,

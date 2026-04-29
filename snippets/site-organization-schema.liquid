@@ -62,17 +62,19 @@
       "@id": {{ request.origin | append: "/#organization" | json }},
       "name": {{ shop.name | json }},
       "url": {{ request.origin | json }},
-      "alternateName": "Rafter M Hat Company",
-      "description": "Moon Ridge Company (formerly Rafter M Hat Company) is Fayetteville's premier luxury Western headwear boutique, featuring master-level custom hat shaping and heritage craftsmanship.",
+      "alternateName": ["Rafter M Hat Company", "Rafter M", "Moon Ridge"],
+      "description": "Moon Ridge Company, formerly Rafter M Hat Company, is Northwest Arkansas' premier destination for headwear, premium apparel, hat shaping, and hat cleaning. Located in Fayetteville, AR, we carry heritage brands including Stetson, Resistol, and Pendleton. Exact same people, exact same hands — simply expanding our offerings.",
       {% if settings.logo != blank %}
         "logo": {{ settings.logo | image_url: width: 600 | prepend: "https:" | json }},
       {% endif %}
       {% if shop.phone != blank %}
         "telephone": {{ shop.phone | json }},
       {% endif %}
+      "foundingDate": "2019",
       "sameAs": [
         {%- if social_profiles != blank -%}{{ social_profiles }},{%- endif -%}
-        "https://raftermhatcompany.com" 
+        "https://www.raftermhatco.com",
+        "https://raftermhatco.com"
       ],
       "contactPoint": [
         {
@@ -85,12 +87,12 @@
     {
       "@type": "LocalBusiness",
       "name": {{ shop.name | json }},
-      "alternateName": "Rafter M Hat Company",
+      "alternateName": ["Rafter M Hat Company", "Rafter M"],
       "image": {{ "Moon_Ridge_Storefront.jpg" | asset_url | prepend: "https:" | json }},
-
       "@id": {{ request.origin | append: "/#localbusiness" | json }},
       "url": {{ request.origin | json }},
       "telephone": "(479) 430-2667",
+      "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "2218 N College Ave",
@@ -112,7 +114,11 @@
           "closes": "18:00"
         }
       ],
-      "sameAs": [{{ social_profiles }}]
+      "sameAs": [
+        {%- if social_profiles != blank -%}{{ social_profiles }},{%- endif -%}
+        "https://www.raftermhatco.com",
+        "https://raftermhatco.com"
+      ]
     }
   ]
 }

@@ -58,21 +58,40 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
     {%- liquid
-      assign primary_keyword = "Custom Hat Shaping & Western Wear"
-      if request.page_type == 'product'
-        assign primary_keyword = product.title
+      assign brand_suffix = " | Moon Ridge Company – Fayetteville, AR"
+
+      if request.page_type == 'index'
+        assign full_title = "Moon Ridge Company | Custom Hats, Shaping & Western Wear – Fayetteville, AR"
+      elsif request.page_type == 'product'
+        assign full_title = product.title | append: " – Custom Hat Shaping" | append: brand_suffix
       elsif request.page_type == 'collection'
-        assign primary_keyword = collection.title
+        assign full_title = collection.title | append: " – Hats & Western Wear" | append: brand_suffix
       elsif request.page_type == 'article'
-        assign primary_keyword = article.title
+        assign full_title = article.title | append: brand_suffix
+      elsif request.page_type == 'blog'
+        assign full_title = "Hat Care Tips & Style Guide" | append: brand_suffix
+      elsif request.page_type == 'cart'
+        assign full_title = "Your Cart" | append: brand_suffix
+      elsif request.page_type == 'search'
+        assign full_title = "Search Results" | append: brand_suffix
+      elsif page.handle == 'faq'
+        assign full_title = "FAQ – Hat Shaping, Cleaning & Events" | append: brand_suffix
+      elsif page.handle contains 'about'
+        assign full_title = "About Moon Ridge Company (Formerly Rafter M)" | append: brand_suffix
+      elsif page.handle contains 'contact'
+        assign full_title = "Contact Us – Hat Shaping & Booking" | append: brand_suffix
+      elsif page.handle contains 'book'
+        assign full_title = "Book a Hat Experience – Free Consultation" | append: brand_suffix
+      elsif page.handle contains 'restoration' or page.handle contains 'cleaning'
+        assign full_title = "Hat Restoration & Cleaning Service" | append: brand_suffix
+      elsif page.handle contains 'event' or page.handle contains 'party'
+        assign full_title = "Private Hat Parties & Corporate Events" | append: brand_suffix
+      elsif page.handle contains 'home'
+        assign full_title = "Moon Ridge Home & Interiors by Natalie Jo" | append: brand_suffix
+      else
+        assign full_title = page.title | append: brand_suffix
       endif
 
-      assign secondary_keyword = "Expert Hat Restoration"
-      if request.page_type == 'index'
-        assign secondary_keyword = "Fayetteville, AR"
-      endif
-      
-      assign full_title = primary_keyword | append: " - " | append: shop.name | append: " | " | append: secondary_keyword
       if current_page != 1
         assign full_title = full_title | append: " | Page " | append: current_page
       endif

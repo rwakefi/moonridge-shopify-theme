@@ -154,20 +154,31 @@ h1, h2, h3, .h1, .h2, .h3, .card__heading, .banner__heading {
   border-radius: 10px;
 }
 
-/* Header Refinement */
-/* Header Refinement - Corrected Visibility Logic */
+/* ─── MOON RIDGE LUXURY HEADER BAR ──────────────────────────────────── */
+
 .header-wrapper {
-  border-bottom: 1px solid var(--rm-border) !important;
-  transition: background 0.4s ease, border-color 0.4s ease;
+  border-bottom: none !important;
+  transition: background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.5s ease;
 }
 
-/* 1. Only apply white background on Non-Home pages OR when scrolled on Home */
+/* Rich leather header on non-home pages and when sticky/scrolled */
 body:not(.template-index) .header-wrapper,
 .shopify-section-header-sticky .header-wrapper {
-  background: var(--rm-leather) !important;
+  background: linear-gradient(
+    180deg,
+    #2A1A0D 0%,
+    #312110 60%,
+    #281808 100%
+  ) !important;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-  border-bottom: 1px solid var(--rm-border) !important;
+  border-bottom: none !important;
+  /* Subtle inner gold glow on top edge */
+  box-shadow:
+    inset 0 1px 0 rgba(212, 175, 55, 0.25),
+    0 4px 24px rgba(0, 0, 0, 0.45),
+    0 1px 6px rgba(0, 0, 0, 0.3);
 }
 
 .header__submenu, 

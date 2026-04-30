@@ -117,40 +117,67 @@
     }
   }
 
+  /* ─── MOON RIDGE LUXURY NAVIGATION ─────────────────────────────────── */
+
   .header__menu-item {
-    padding: 1.2rem;
+    padding: 1.6rem 1.4rem;
     text-decoration: none;
-    color: rgba(var(--color-foreground), .95);
+    color: rgba(255, 255, 255, 0.92);
     font-family: var(--font-menu-family);
     font-style: var(--font-menu-style);
-    font-weight: var(--font-menu-weight);
     font-size: {{ section.settings.header_menu_size }}px;
     letter-spacing: {{ section.settings.header_spacing }}em;
     text-transform: {{ section.settings.header_menu_transform }};
-    font-weight: 600;
-    transition: color 0.3s ease, letter-spacing 0.3s ease;
+    font-weight: 500;
     position: relative;
+    transition:
+      color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      letter-spacing 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      text-shadow 0.35s ease;
   }
 
-  .header__menu-item:after {
+  /* Animated gold underline — expands from center */
+  .header__menu-item::after {
     content: '';
     position: absolute;
-    bottom: 0.8rem;
+    bottom: 0.9rem;
     left: 50%;
+    transform: translateX(-50%);
     width: 0;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, #D4AF37, #F0D060, #D4AF37, transparent);
+    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 1px;
+  }
+
+  .header__menu-item:hover::after,
+  .header__menu-item:focus::after {
+    width: calc(100% - 1.6rem);
+  }
+
+  .header__menu-item:hover,
+  .header__menu-item:focus {
+    color: #E8C84A !important;
+    letter-spacing: calc({{ section.settings.header_spacing }}em + 0.04em);
+    text-shadow: 0 0 18px rgba(212, 175, 55, 0.35);
+  }
+
+  /* Decorative gold hairline under the full header */
+  .header-wrapper::after {
+    content: '';
+    display: block;
     height: 1px;
-    background: #D4AF37; /* Luxury Gold */
-    transition: width 0.3s ease, left 0.3s ease;
+    background: linear-gradient(90deg, transparent 0%, #D4AF37 20%, #F0D060 50%, #D4AF37 80%, transparent 100%);
+    opacity: 0.5;
   }
 
-  .header__menu-item:hover:after {
-    width: calc(100% - 2.4rem);
-    left: 1.2rem;
+  /* Tighten the active state on open dropdowns */
+  details[open] > .header__menu-item {
+    color: #E8C84A !important;
+    text-shadow: 0 0 18px rgba(212, 175, 55, 0.3);
   }
-
-  .header__menu-item:hover {
-    color: #D4AF37 !important;
-    letter-spacing: calc({{ section.settings.header_spacing }}em + 0.05em);
+  details[open] > .header__menu-item::after {
+    width: calc(100% - 1.6rem);
   }
 
   /* Center logo + CTA vertically stacked on desktop */

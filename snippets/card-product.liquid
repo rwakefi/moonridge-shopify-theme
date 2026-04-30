@@ -119,7 +119,7 @@ endif
                 "
                 src="{{ card_product.featured_media | image_url: width: 533 }}"
                 sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                alt="{% if card_product.featured_media.alt != blank %}{{ card_product.featured_media.alt | escape }}{% else %}{{ card_product.title | escape }}{% endif %}"
+                alt="{{ card_product.featured_media.alt | default: card_product.title | escape }}"
                 class="motion-reduce"
                 {% unless lazy_load == false %}
                   loading="lazy"
@@ -162,7 +162,7 @@ endif
                   "
                   src="{{ card_product.media[1] | image_url: width: 533 }}"
                   sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                  alt="{% if card_product.media[1].alt != blank %}{{ card_product.media[1].alt | escape }}{% else %}{{ card_product.title | append: ' alternate image' | escape }}{% endif %}"
+                  alt="{{ card_product.media[1].alt | default: card_product.title | append: ' alternate view' | escape }}"
                   class="motion-reduce"
                   loading="lazy"
                   width="{{ card_product.media[1].width }}"

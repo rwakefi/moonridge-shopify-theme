@@ -124,7 +124,8 @@
               loading: 'lazy',
               height: height,
               sizes: "100vw",
-              widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+              widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+              alt: block.settings.image.alt | default: block.settings.heading | default: shop.name | escape
             }} 
           {%- else -%}
             {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -138,7 +139,8 @@
               loading: 'lazy',
               height: height,
               sizes: "100vw",
-              widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+              widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+              alt: block.settings.image_mob.alt | default: block.settings.heading | default: shop.name | escape
             }}
           {%- else -%}
             {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}

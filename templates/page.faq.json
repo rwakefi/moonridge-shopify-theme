@@ -62,6 +62,13 @@
             "answer": "<p>We love making sure we have time to help you find your perfect hat or pair of boots. Walk-ins are always welcome. Booking an appointment is the best way to have the full Moon Ridge Hat Experience with us.</p>"
           }
         },
+        "q_external_hats": {
+          "type": "item",
+          "settings": {
+            "question": "Can I bring in a hat I didn't buy there to get worked on?",
+            "answer": "<p>Of course! We love working on all hats and tuning up heritage pieces you have had for a while. We charge $35 for professional cleaning and reshaping.</p>"
+          }
+        },
         "q_ship": {
           "type": "item",
           "settings": {
@@ -183,6 +190,7 @@
         "q_location_same",
         "cat_shopping",
         "q_walkins",
+        "q_external_hats",
         "q_ship",
         "q_ship_intl",
         "q_size",

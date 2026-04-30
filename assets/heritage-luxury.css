@@ -205,7 +205,7 @@ body:not(.template-index) .header-wrapper,
   letter-spacing: 0.2em !important;
   text-transform: uppercase !important;
   font-weight: 500 !important;
-  font-size: 1.1rem !important;
+  /* font-size controlled by Theme Editor: Customize > Header > Menu Size */
   transition: color 0.3s ease;
 }
 

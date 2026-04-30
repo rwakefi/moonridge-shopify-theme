@@ -134,7 +134,7 @@
           "type": "item",
           "settings": {
             "question": "Do you offer hat cleaning and reshaping in store?",
-            "answer": "<p>Yes — we offer both <a href=\"/pages/hat-cleaning\">hat cleaning</a> and <a href=\"/pages/hat-shaping\">reshaping</a> in store. We perform cleaning and shaping work Thursday through Saturday, and most hats are back with you within a couple of days.</p><p>Monday through Wednesday, you can still drop off your hat at the shop — our team is always able to check it in for you. We then get right to work on it Thursday, Friday, and Saturday.</p>"
+            "answer": "<p>Yes — we offer both <a href=\"/pages/contact\">hat cleaning</a> and <a href=\"/pages/contact\">reshaping</a> in store. We perform cleaning and shaping work Thursday through Saturday, and most hats are back with you within a couple of days.</p><p>Monday through Wednesday, you can still drop off your hat at the shop — our team is always able to check it in for you. We then get right to work on it Thursday, Friday, and Saturday.</p>"
           }
         },
         "cat_brands": {
@@ -160,7 +160,7 @@
           "type": "item",
           "settings": {
             "question": "Do you host private events or hat parties?",
-            "answer": "<p>We love private events — both <strong>in our store</strong> and <strong>off-site</strong>. We host weddings, bachelor and bachelorette parties, and corporate events for groups from about 10 up to 500.</p><p>We also host special get-togethers in the shop for <strong>10 guests or fewer</strong> — perfect for birthdays and other celebrations.</p><p>To start planning, visit <a href=\"/pages/book-a-hat-party\">Book a hat party</a>, <a href=\"https://moonridgecompany.setmore.com\" rel=\"noopener noreferrer\">book a free consultation</a> on our booking calendar, or reach out through <a href=\"/pages/contact\">Contact</a> / <a href=\"mailto:info@moonridgecompany.com\">info@moonridgecompany.com</a>.</p>"
+            "answer": "<p>We love private events — both <strong>in our store</strong> and <strong>off-site</strong>. We host weddings, bachelor and bachelorette parties, and corporate events for groups from about 10 up to 500.</p><p>We also host special get-togethers in the shop for <strong>10 guests or fewer</strong> — perfect for birthdays and other celebrations.</p><p>To start planning, visit <a href=\"/pages/contact\">Book a hat party</a>, <a href=\"https://moonridgecompany.setmore.com\" rel=\"noopener noreferrer\">book a free consultation</a> on our booking calendar, or reach out through <a href=\"/pages/contact\">Contact</a> / <a href=\"mailto:info@moonridgecompany.com\">info@moonridgecompany.com</a>.</p>"
           }
         },
         "cat_returns": {

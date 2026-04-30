@@ -58,36 +58,37 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
     {%- liquid
-      assign brand_suffix = " | Moon Ridge Company – Fayetteville, AR"
+      assign brand_suffix = " | Moon Ridge Co."
+      assign geo_suffix = " – Fayetteville, AR"
 
       if request.page_type == 'index'
-        assign full_title = "Moon Ridge Company | Custom Hats, Shaping & Western Wear – Fayetteville, AR"
+        assign full_title = "Moon Ridge Co. | Custom Hats & Shaping – Fayetteville, AR"
       elsif request.page_type == 'product'
-        assign full_title = product.title | append: " – Custom Hat Shaping" | append: brand_suffix
+        assign full_title = product.title | truncate: 35 | append: brand_suffix
       elsif request.page_type == 'collection'
-        assign full_title = collection.title | append: " – Hats & Western Wear" | append: brand_suffix
+        assign full_title = collection.title | append: " | Heritage Hats" | append: brand_suffix
       elsif request.page_type == 'article'
-        assign full_title = article.title | append: brand_suffix
+        assign full_title = article.title | truncate: 40 | append: brand_suffix
       elsif request.page_type == 'blog'
-        assign full_title = "Hat Care Tips & Style Guide" | append: brand_suffix
+        assign full_title = "Hat Care & Style Guide" | append: brand_suffix
       elsif request.page_type == 'cart'
         assign full_title = "Your Cart" | append: brand_suffix
       elsif request.page_type == 'search'
         assign full_title = "Search Results" | append: brand_suffix
       elsif page.handle == 'faq'
-        assign full_title = "FAQ – Hat Shaping, Cleaning & Events" | append: brand_suffix
+        assign full_title = "FAQ: Hat Shaping & Cleaning" | append: brand_suffix
       elsif page.handle contains 'about'
-        assign full_title = "About Moon Ridge Company (Formerly Rafter M)" | append: brand_suffix
+        assign full_title = "About Moon Ridge Co. (Formerly Rafter M) | Fayetteville, AR"
       elsif page.handle contains 'contact'
-        assign full_title = "Contact Us – Hat Shaping & Booking" | append: brand_suffix
+        assign full_title = "Contact & Booking in Fayetteville, AR | Moon Ridge Co."
       elsif page.handle contains 'book'
-        assign full_title = "Book a Hat Experience – Free Consultation" | append: brand_suffix
+        assign full_title = "Book a Hat Experience in Fayetteville | Moon Ridge Co."
       elsif page.handle contains 'restoration' or page.handle contains 'cleaning'
-        assign full_title = "Hat Restoration & Cleaning Service" | append: brand_suffix
+        assign full_title = "Hat Restoration & Cleaning" | append: brand_suffix
       elsif page.handle contains 'event' or page.handle contains 'party'
-        assign full_title = "Private Hat Parties & Corporate Events" | append: brand_suffix
+        assign full_title = "Private Hat Parties & Events" | append: brand_suffix
       elsif page.handle contains 'home'
-        assign full_title = "Moon Ridge Home & Interiors by Natalie Jo" | append: brand_suffix
+        assign full_title = "Moon Ridge Home & Interiors by Natalie Jo"
       else
         assign full_title = page.title | append: brand_suffix
       endif

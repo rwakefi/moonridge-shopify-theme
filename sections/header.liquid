@@ -125,8 +125,32 @@
     font-style: var(--font-menu-style);
     font-weight: var(--font-menu-weight);
     font-size: {{ section.settings.header_menu_size }}px;
-    letter-spacing: {{ section.settings.header_spacing }}px;
+    letter-spacing: {{ section.settings.header_spacing }}em;
     text-transform: {{ section.settings.header_menu_transform }};
+    font-weight: 600;
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+    position: relative;
+  }
+
+  .header__menu-item:after {
+    content: '';
+    position: absolute;
+    bottom: 0.8rem;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: #D4AF37; /* Luxury Gold */
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+
+  .header__menu-item:hover:after {
+    width: calc(100% - 2.4rem);
+    left: 1.2rem;
+  }
+
+  .header__menu-item:hover {
+    color: #D4AF37 !important;
+    letter-spacing: calc({{ section.settings.header_spacing }}em + 0.05em);
   }
 
   /* Center logo + CTA vertically stacked on desktop */
@@ -997,17 +1021,17 @@
       "step": 1,
       "unit": "px",
       "label": "Menu Size",
-      "default": 14
+      "default": 16
     },
     {
       "type": "range",
       "id": "header_spacing",
-      "min": -1,
-      "max": 3,
-      "step": 0.5,
-      "unit": "px",
+      "min": 0,
+      "max": 0.5,
+      "step": 0.05,
+      "unit": "em",
       "label": "Letter Spacing",
-      "default": 0
+      "default": 0.1
     },
     {
       "type": "select",

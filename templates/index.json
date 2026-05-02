@@ -651,7 +651,7 @@
           "type": "button",
           "settings": {
             "button_label": "Shop Now",
-            "button_link": "shopify://collections/womens",
+            "button_link": "shopify://collections/mens",
             "button_style_secondary": false
           }
         }
@@ -686,7 +686,7 @@
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "womens",
+        "collection": "mens",
         "products_to_show": 9,
         "columns_desktop": 4,
         "full_width": false,

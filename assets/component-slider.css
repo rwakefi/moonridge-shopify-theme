@@ -376,17 +376,17 @@ slider-component.slider-component-full-width {
 }
 
 .slider-button--next .icon {
-  transform: rotate(-0deg);
+  transform: rotate(-90deg);
 }
 
 .slider-button--prev .icon {
-  transform: rotate(180deg);
+  transform: rotate(90deg);
 }
 
 .slider-button--next:not([disabled]):hover .icon {
-  transform: rotate(-0deg) scale(1.1);
+  transform: rotate(-90deg) scale(1.1);
 }
 
 .slider-button--prev:not([disabled]):hover .icon {
-  transform: rotate(180deg) scale(1.1);
+  transform: rotate(90deg) scale(1.1);
 }

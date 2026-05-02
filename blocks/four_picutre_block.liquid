@@ -19,20 +19,40 @@
 
   .ai-four-picture-grid__container-{{ ai_gen_id }} {
     display: flex;
-    justify-content: center;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
+    /* Add fade masks to edges for premium feel */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .ai-four-picture-grid__track-{{ ai_gen_id }} {
+    display: flex;
+    flex-shrink: 0;
     align-items: center;
-    flex-wrap: wrap;
-    gap: {{ block.settings.spacing }}px;
+    gap: {{ block.settings.spacing | times: 2 }}px;
+    padding-right: {{ block.settings.spacing | times: 2 }}px;
+    animation: scroll-marquee-{{ ai_gen_id }} 25s linear infinite;
+  }
+
+  .ai-four-picture-grid__container-{{ ai_gen_id }}:hover .ai-four-picture-grid__track-{{ ai_gen_id }} {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll-marquee-{{ ai_gen_id }} {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
   }
 
   .ai-four-picture-grid__item-{{ ai_gen_id }} {
     flex: 0 0 auto;
-    width: calc(20% - {{ block.settings.spacing | times: 0.8 }}px);
-    max-width: 180px;
+    width: 180px;
+    height: 100px;
     position: relative;
     overflow: hidden;
     border-radius: {{ block.settings.border_radius }}px;
-    aspect-ratio: {{ block.settings.aspect_ratio }};
     border: {{ block.settings.border_thickness }}px solid rgba({{ block.settings.border_color.red }}, {{ block.settings.border_color.green }}, {{ block.settings.border_color.blue }}, {{ block.settings.border_opacity | divided_by: 100.0 }});
   }
 
@@ -83,36 +103,21 @@
     white-space: nowrap;
   }
 
-  /* ------------------------ */
-  /* MOBILE IMPROVED SIZING   */
-  /* ------------------------ */
-
   @media screen and (max-width: 749px) {
     .ai-four-picture-grid-{{ ai_gen_id }} {
       padding-left: 0;
       padding-right: 0;
     }
-
-    .ai-four-picture-grid__container-{{ ai_gen_id }} {
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding-bottom: 12px;
-      padding-left: 16px;
-      padding-right: 16px;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; /* Firefox */
-    }
     
-    .ai-four-picture-grid__container-{{ ai_gen_id }}::-webkit-scrollbar {
-      display: none; /* Chrome/Safari */
+    .ai-four-picture-grid__track-{{ ai_gen_id }} {
+      gap: 30px;
+      padding-right: 30px;
+      animation: scroll-marquee-{{ ai_gen_id }} 18s linear infinite;
     }
 
     .ai-four-picture-grid__item-{{ ai_gen_id }} {
-      width: 38%;
-      min-width: 130px;
-      scroll-snap-align: center;
+      width: 130px;
+      height: 80px;
     }
   }
 {% endstyle %}
@@ -123,46 +128,87 @@
   {% endif %}
 
   <div class="ai-four-picture-grid__container-{{ ai_gen_id }}">
-    {% for i in (1..5) %}
-      {% liquid
-        assign image_key = 'image_' | append: i
-        assign link_key = 'link_' | append: i
-        assign image = block.settings[image_key]
-        assign link = block.settings[link_key]
-      %}
+    <!-- First Track -->
+    <div class="ai-four-picture-grid__track-{{ ai_gen_id }}">
+      {% for i in (1..5) %}
+        {% liquid
+          assign image_key = 'image_' | append: i
+          assign link_key = 'link_' | append: i
+          assign image = block.settings[image_key]
+          assign link = block.settings[link_key]
+        %}
 
-      <div class="ai-four-picture-grid__item-{{ ai_gen_id }}">
-        {% if link != blank %}
-          <a href="{{ link }}" class="ai-four-picture-grid__link-{{ ai_gen_id }}">
-        {% else %}
-          <div class="ai-four-picture-grid__link-{{ ai_gen_id }}">
-        {% endif %}
-
-          {% if image %}
-            <img
-              src="{{ image | image_url: width: 800 }}"
-              alt="{{ image.alt | escape }}"
-              loading="lazy"
-              width="{{ image.width }}"
-              height="{{ image.height }}"
-              class="ai-four-picture-grid__image-{{ ai_gen_id }}"
-            >
+        <div class="ai-four-picture-grid__item-{{ ai_gen_id }}">
+          {% if link != blank %}
+            <a href="{{ link }}" class="ai-four-picture-grid__link-{{ ai_gen_id }}">
           {% else %}
-            <div class="ai-four-picture-grid__placeholder-{{ ai_gen_id }}">
-              {{ 'image' | placeholder_svg_tag }}
-              <div class="ai-four-picture-grid__empty-state-{{ ai_gen_id }}">
-                Add image {{ i }}
-              </div>
-            </div>
+            <div class="ai-four-picture-grid__link-{{ ai_gen_id }}">
           {% endif %}
 
-        {% if link != blank %}
-          </a>
-        {% else %}
-          </div>
-        {% endif %}
-      </div>
-    {% endfor %}
+            {% if image %}
+              <img
+                src="{{ image | image_url: width: 400 }}"
+                alt="{{ image.alt | escape }}"
+                loading="lazy"
+                width="{{ image.width }}"
+                height="{{ image.height }}"
+                class="ai-four-picture-grid__image-{{ ai_gen_id }}"
+              >
+            {% else %}
+              <div class="ai-four-picture-grid__placeholder-{{ ai_gen_id }}">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+
+          {% if link != blank %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    
+    <!-- Duplicate Track for Seamless Scrolling -->
+    <div class="ai-four-picture-grid__track-{{ ai_gen_id }}" aria-hidden="true">
+      {% for i in (1..5) %}
+        {% liquid
+          assign image_key = 'image_' | append: i
+          assign link_key = 'link_' | append: i
+          assign image = block.settings[image_key]
+          assign link = block.settings[link_key]
+        %}
+
+        <div class="ai-four-picture-grid__item-{{ ai_gen_id }}">
+          {% if link != blank %}
+            <a href="{{ link }}" class="ai-four-picture-grid__link-{{ ai_gen_id }}" tabindex="-1">
+          {% else %}
+            <div class="ai-four-picture-grid__link-{{ ai_gen_id }}">
+          {% endif %}
+
+            {% if image %}
+              <img
+                src="{{ image | image_url: width: 400 }}"
+                alt="{{ image.alt | escape }}"
+                loading="lazy"
+                width="{{ image.width }}"
+                height="{{ image.height }}"
+                class="ai-four-picture-grid__image-{{ ai_gen_id }}"
+              >
+            {% else %}
+              <div class="ai-four-picture-grid__placeholder-{{ ai_gen_id }}">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+
+          {% if link != blank %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </div>
 

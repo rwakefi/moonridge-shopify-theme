@@ -1112,8 +1112,8 @@
         "faq_2": {
           "type": "faq",
           "settings": {
-            "question": "When can I drop off a hat to be cleaned or shaped?",
-            "answer": "<p>You can drop off your hat anytime during our normal business hours. Our master shaping and cleaning work takes place Thursday through Saturday, so your hat will be perfectly restored and ready during that timeframe.</p>"
+            "question": "When do you shape hats?",
+            "answer": "<p>We have staff in the store Monday through Saturday to help you, but our master hat shapers are in <strong>Thursday through Saturday</strong>. We also host special events that may occasionally affect our hours, so be sure to check our website for the latest updates.</p>"
           }
         },
         "faq_3": {
@@ -1122,9 +1122,17 @@
             "question": "Do I need an appointment for hat shaping?",
             "answer": "<p>Walk-ins are always welcome! However, we highly recommend booking a 'Free Hat Experience' appointment. One-on-one time is our specialty, and booking an appointment ensures we have dedicated time to perfectly fit and shape your hat.</p>"
           }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Where are you located?",
+            "answer": "<p>We are proudly located just 2 doors south of the bowling alley on College Avenue in Fayetteville, Arkansas.</p>"
+          }
         }
       },
       "block_order": [
+        "faq_4",
         "faq_1",
         "faq_2",
         "faq_3"

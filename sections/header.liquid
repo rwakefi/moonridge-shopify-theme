@@ -199,15 +199,17 @@
 
 .header-button {
   display: inline-block;
-  background-color: #F7EFE6; /* Soft Ivory */
-  color: #4A2E1F; /* Warm rich brown text */
-  padding: 1.45rem 2.6rem;
-  font-size: 1.05rem;
-  font-weight: 700; /* <-- added thickness */
-  letter-spacing: 0.10em;
+  background-color: #F1EDE2; /* Creamy off-white */
+  color: #3D2619; /* Dark brown text */
+  padding: 0.8rem 2rem;
+  font-family: "Georgia", "Times New Roman", Times, serif; /* Classic serif */
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
   text-transform: uppercase;
   border-radius: 0;
-  border: 2px solid #D4AF37; /* Gold border */
+  border: 1px solid #A2845E; /* Bronze/brown border */
   text-decoration: none;
   text-align: center;
   cursor: pointer;
@@ -216,23 +218,19 @@
     background-color 0.25s ease,
     color 0.25s ease,
     transform 0.25s cubic-bezier(0.19, 1, 0.22, 1),
-    box-shadow 0.25s cubic-bezier(0.19, 1, 0.22, 1),
-    letter-spacing 0.25s ease,
-    border-color 0.25s ease;
+    box-shadow 0.25s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .header-button:hover,
 .header-button:focus-visible {
-  background-color: #E8D9C8; /* Slightly warmer ivory on hover */
-  color: #3A2317; /* Slightly richer brown */
-  border-color: #E6C979; /* Brighter soft gold */
-  transform: translateY(-3px) scale(1.02);
-  letter-spacing: 0.13em;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.23);
+  background-color: #E6DFCD;
+  color: #24160E;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .header-button:focus-visible {
-  outline: 2px solid rgba(212, 175, 55, 0.7); /* Gold focus ring */
+  outline: 1px solid rgba(162, 132, 94, 0.7);
   outline-offset: 3px;
 }
 
@@ -372,7 +370,7 @@
             target="_blank"
           >
 
-            BOOK A FREE HAT EXPERIENCE
+            BOOK A FREE HAT<br>EXPERIENCE
           </a>
       {%- if request.page_type == 'index' -%}
         </h1>

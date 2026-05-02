@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "slideshow_FGiH4p": {
@@ -204,7 +195,7 @@
           "type": "ai_gen_block_238d094",
           "name": "Announcement Header",
           "settings": {
-            "text": "<p><strong>Shop in-store or online — or book the Moon Ridge Hat Bar for your event. </strong><a href=\"/pages/contact\" title=\"Contact\"><strong>Contact us</strong></a><strong>.</strong></p>",
+            "text": "<p><strong>Shop in-store or online \u2014 or book the Moon Ridge Hat Bar for your event.\u00a0</strong><a href=\"/pages/contact\" title=\"Contact\"><strong>Contact us</strong></a><strong>.</strong></p>",
             "text_alignment": "center",
             "font_size": 15,
             "background_color": "#312110",
@@ -361,7 +352,7 @@
           "settings": {
             "heading": "<strong>Where Hats Meet Heritage </strong>",
             "heading_tag": "h1",
-            "content": "<p>We love hats and the classic brands that compliment them. We sell, clean, shape, and style—preserving the craft along with great service.  We also  host unforgettable hat parties. We are the exact same team you have come to trust, and we have custom-shaped thousands of hats for people across the country. We’re here to help you find your style. Visit us in Fayetteville or shop online. Want the full experience? Book a hat session—virtual or in person—for something truly unique and one-of-a-kind.</p>",
+            "content": "<p>We love hats and the classic brands that compliment them. We sell, clean, shape, and style\u2014preserving the craft along with great service.  We also  host unforgettable hat parties. We are the exact same team you have come to trust, and we have custom-shaped thousands of hats for people across the country. We\u2019re here to help you find your style. Visit us in Fayetteville or shop online. Want the full experience? Book a hat session\u2014virtual or in person\u2014for something truly unique and one-of-a-kind.</p>",
             "max_width": 1200,
             "text_alignment": "center",
             "heading_size": 24,
@@ -438,7 +429,7 @@
       "settings": {
         "label": "The Service Ritual",
         "title": "Your Hat, Restored.",
-        "text": "We don’t just sell hats—we preserve them. Bring in any hat, regardless of where it was purchased, for our expert cleaning and reshaping services.",
+        "text": "We don\u2019t just sell hats\u2014we preserve them. Bring in any hat, regardless of where it was purchased, for our expert cleaning and reshaping services.",
         "button_label": "Book a Restoration",
         "button_link": ""
       }
@@ -556,7 +547,7 @@
       "name": "Book Now Button",
       "settings": {
         "left_heading": "MOON RIDGE COMPANY | CRAFTED. FITTED. PERSONALIZED.",
-        "left_body": "We shape hats, we size hats, we customize hats — and we take immense pride in being a small, independent business in Fayetteville, Arkansas. No big corporates, no mass production. Just skill, craftsmanship, and a deep passion for helping every customer find the perfect hat.",
+        "left_body": "We shape hats, we size hats, we customize hats \u2014 and we take immense pride in being a small, independent business in Fayetteville, Arkansas. No big corporates, no mass production. Just skill, craftsmanship, and a deep passion for helping every customer find the perfect hat.",
         "contact_label": "Contact Us:",
         "contact_address": "2218 N College Ave\nFayetteville, AR 72703",
         "contact_map_link": "https://www.google.com/maps?q=2218+N+College+Ave,+Fayetteville,+AR+72703",
@@ -565,15 +556,15 @@
         "instagram_url": "https://instagram.com/moonridgeco",
         "facebook_url": "https://www.facebook.com/Moonridgecompany/",
         "tiktok_url": "https://tiktok.com/moonridgeco",
-        "store_hours": "Mon–Fri: 10am–5pm\nSaturday: 10am–2pm\nSunday: Closed",
+        "store_hours": "Mon\u2013Fri: 10am\u20135pm\nSaturday: 10am\u20132pm\nSunday: Closed",
         "newsletter_heading": "STAY IN TOUCH",
         "newsletter_text": "Subscribe to receive updates, new arrivals, and exclusive Moon Ridge offers.",
         "newsletter_placeholder": "Enter your email address",
         "newsletter_button_label": "SUBSCRIBE",
-        "newsletter_success": "Thanks for subscribing — we’ll be in touch soon.",
+        "newsletter_success": "Thanks for subscribing \u2014 we\u2019ll be in touch soon.",
         "menu_heading": "QUICK LINKS",
         "footer_menu": "footer",
-        "bottom_text": "© 2026 Moon Ridge Company (formerly Rafter M Hat Co.)  |  TERMS OF SERVICE  |  PRIVACY POLICY",
+        "bottom_text": "\u00a9 2026 Moon Ridge Company (formerly Rafter M Hat Co.)  |  TERMS OF SERVICE  |  PRIVACY POLICY",
         "padding_top": 60,
         "padding_bottom": 28
       }
@@ -1079,7 +1070,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/Untitled-10.png",
-            "title": "★★★★★",
+            "title": "\u2605\u2605\u2605\u2605\u2605",
             "text": "<h6>The quality of the hat I received is outstanding it's well-made, comfortable, and perfect for both sunny days and chilly evenings. The material feels durable and the craftsmanship is top-notch.</h6><p><strong>Richal</strong></p>",
             "link_label": "",
             "link": ""
@@ -1089,7 +1080,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/Untitled-8.png",
-            "title": "★★★★★",
+            "title": "\u2605\u2605\u2605\u2605\u2605",
             "text": "<h6>I ordered a stylish fedora for my husband and a chic sun hat for myself. Both arrived quickly and exceeded our expectations. The fit was perfect, and the materials felt luxurious. It's clear that Ralter M lakes pride in curating a collection of hats that are both fashionable and well made.</h6><p><strong>Olivia</strong></p>",
             "link_label": "",
             "link": ""
@@ -1099,7 +1090,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/Untitled-2.png",
-            "title": "★★★★★",
+            "title": "\u2605\u2605\u2605\u2605\u2605",
             "text": "<h6>after M Hat Company, and I couldn't be more thrilled with my experience! Their selection of men's and women's hats is impressive, offering everything from classic fedoras to trendy wide brimmed styles. The quality of the hats is top notch, with excellent craftsmanship and al tention to detail.</h6><p><strong>Ammi</strong></p>",
             "link_label": "",
             "link": ""
@@ -1130,6 +1121,44 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "faq_accordion": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you shape hats bought from other stores?",
+            "answer": "<p>Yes, absolutely. If you bring in a hat from somewhere else, our expert cleaning and shaping service is $35. (If you purchase a hat at Moon Ridge Co., custom shaping is always complimentary.)</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "When can I drop off a hat to be cleaned or shaped?",
+            "answer": "<p>You can drop off your hat anytime during our normal business hours. Our master shaping and cleaning work takes place Thursday through Saturday, so your hat will be perfectly restored and ready during that timeframe.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need an appointment for hat shaping?",
+            "answer": "<p>Walk-ins are always welcome! However, we highly recommend booking a 'Free Hat Experience' appointment. One-on-one time is our specialty, and booking an appointment ensures we have dedicated time to perfectly fit and shape your hat.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3"
+      ],
+      "settings": {
+        "title": "Frequently Asked Questions",
+        "background_color": "transparent",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_horizontal": 20
+      }
     }
   },
   "order": [
@@ -1156,6 +1185,7 @@
     "lumin_grids_qnX3eH",
     "lumin_slidshow_pro_yNeGG6",
     "lumin_review_AbtUAG",
-    "multicolumn_eeM788"
+    "multicolumn_eeM788",
+    "faq_accordion"
   ]
 }

@@ -1,0 +1,235 @@
+{% style %}
+  .faq-section-{{ section.id }} {
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_horizontal }}px {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
+  }
+  
+  .faq-container-{{ section.id }} {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-title-{{ section.id }} {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #1f1d24;
+    font-weight: normal;
+  }
+
+  .faq-accordion-{{ section.id }} {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .faq-accordion-{{ section.id }} details {
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .faq-accordion-{{ section.id }} summary {
+    padding: 24px 0;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #1f1d24;
+    transition: color 0.2s ease;
+  }
+
+  .faq-accordion-{{ section.id }} summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-accordion-{{ section.id }} summary:hover {
+    color: #666;
+  }
+
+  .faq-accordion-{{ section.id }} summary::after {
+    content: '+';
+    font-size: 24px;
+    font-weight: 300;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-accordion-{{ section.id }} details[open] summary::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-content-{{ section.id }} {
+    padding-bottom: 24px;
+    color: #4a4a4a;
+    line-height: 1.6;
+    font-size: 16px;
+    animation: faq-fade-in 0.3s ease-in-out;
+  }
+
+  .faq-content-{{ section.id }} p {
+    margin: 0;
+  }
+
+  @keyframes faq-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .faq-title-{{ section.id }} {
+      font-size: 26px;
+      margin-bottom: 30px;
+    }
+    .faq-accordion-{{ section.id }} summary {
+      font-size: 16px;
+      padding: 20px 0;
+    }
+    .faq-content-{{ section.id }} {
+      font-size: 15px;
+    }
+  }
+{% endstyle %}
+
+<div class="faq-section-{{ section.id }}" {{ section.shopify_attributes }}>
+  <div class="faq-container-{{ section.id }}">
+    {% if section.settings.title != blank %}
+      <h2 class="faq-title-{{ section.id }}">{{ section.settings.title }}</h2>
+    {% endif %}
+    
+    <div class="faq-accordion-{{ section.id }}">
+      {% for block in section.blocks %}
+        <details {{ block.shopify_attributes }}>
+          <summary>{{ block.settings.question }}</summary>
+          <div class="faq-content-{{ section.id }}">
+            {{ block.settings.answer }}
+          </div>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- FAQPage JSON-LD Schema for SEO/GEO -->
+{% if section.blocks.size > 0 %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for block in section.blocks %}
+    {
+      "@type": "Question",
+      "name": {{ block.settings.question | json }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ block.settings.answer | strip_html | json }}
+      }
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "FAQ Accordion",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Horizontal (Mobile)",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Type your question here"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Provide the answer to the question here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Accordion (AI SEO)",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Do you shape hats bought from other stores?",
+            "answer": "<p>Yes, absolutely. If you bring in a hat from somewhere else, our expert cleaning and shaping service is $35. (If you purchase a hat at Moon Ridge Co., custom shaping is always complimentary.)</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "When can I drop off a hat to be cleaned or shaped?",
+            "answer": "<p>You can drop off your hat anytime during our normal business hours. Our master shaping and cleaning work takes place Thursday through Saturday, so your hat will be perfectly restored and ready during that timeframe.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need an appointment for hat shaping?",
+            "answer": "<p>Walk-ins are always welcome! However, we highly recommend booking a 'Free Hat Experience' appointment. One-on-one time is our specialty, and booking an appointment ensures we have dedicated time to perfectly fit and shape your hat.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

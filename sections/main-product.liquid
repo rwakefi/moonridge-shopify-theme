@@ -1480,6 +1480,7 @@ function updateCountdown() {
     endif
   -%}
 
+  {%- if product != blank -%}
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -1532,11 +1533,6 @@ function updateCountdown() {
           "value": {{ product.metafields.custom.origin | json }}
         }
         {% endif %}
-      ],
-      "audience": {
-        "@type": "PeopleAudience",
-        "suggestedGender": "{% if product.tags contains 'Mens' or product.title contains 'Mens' %}male{% elsif product.tags contains 'Womens' or product.title contains 'Womens' %}female{% else %}unisex{% endif %}"
-      },
       "offers": [
         {%- for variant in product.variants -%}
           {
@@ -1545,19 +1541,18 @@ function updateCountdown() {
               "sku": {{ variant.sku | json }},
             {%- endif -%}
             {%- if variant.barcode.size == 12 -%}
-              "gtin12": {{ variant.barcode }},
+                "gtin12": {{ variant.barcode | json }},
             {%- endif -%}
             {%- if variant.barcode.size == 13 -%}
-              "gtin13": {{ variant.barcode }},
+              "gtin13": {{ variant.barcode | json }},
             {%- endif -%}
             {%- if variant.barcode.size == 14 -%}
-              "gtin14": {{ variant.barcode }},
+              "gtin14": {{ variant.barcode | json }},
             {%- endif -%}
-            "availability" : "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+            "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
             "price" : {{ variant.price | divided_by: 100.00 | json }},
             "priceCurrency" : {{ cart.currency.iso_code | json }},
             "url" : {{ request.origin | append: variant.url | json }},
-            "itemCondition": "https://schema.org/NewCondition",
             "hasMerchantReturnPolicy": {
               "@type": "MerchantReturnPolicy",
               "applicableCountry": "US",
@@ -1571,6 +1566,7 @@ function updateCountdown() {
       ]
     }
   </script>
+  {%- endif -%}
   </div>
 </section>
 

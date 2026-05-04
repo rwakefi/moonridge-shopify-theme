@@ -896,6 +896,7 @@ function updateCountdown() {
   endif
 -%}
 
+{%- if product != blank -%}
 <script type="application/ld+json">
   {
     "@context": "http://schema.org/",
@@ -948,6 +949,7 @@ function updateCountdown() {
     ]
   }
 </script>
+{%- endif -%}
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {

@@ -108,12 +108,14 @@
       endif
     -%}
     <meta name="description" content="{{ meta_description | strip_html | strip | truncate: 160 | escape }}">
-    <meta name="keywords" content="custom hat shaping, fayetteville ar, stetson, resistol, hat restoration, rafter m">
+    <meta name="keywords" content="custom hat shaping, fayetteville ar, stetson, resistol, hat restoration, rafter m, moonridge">
 
 
     {% render 'meta-tags' %}
     {% render 'site-organization-schema' %}
-    {% render 'ai-knowledge-graph' %}
+    {%- if request.page_type == 'index' -%}
+      {% render 'ai-knowledge-graph' %}
+    {%- endif -%}
     
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>

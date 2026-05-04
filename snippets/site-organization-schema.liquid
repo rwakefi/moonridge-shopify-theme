@@ -62,7 +62,7 @@
       "@id": {{ request.origin | append: "/#organization" | json }},
       "name": {{ shop.name | json }},
       "url": {{ request.origin | json }},
-      "alternateName": ["Rafter M Hat Company", "Rafter M", "Moon Ridge"],
+      "alternateName": ["Rafter M Hat Company", "Rafter M", "Moon Ridge", "Moonridge"],
       "description": "Moon Ridge Company, formerly Rafter M Hat Company, is Northwest Arkansas' premier destination for headwear, premium apparel, hat shaping, and hat cleaning. Located in Fayetteville, AR, we carry heritage brands including Stetson, Resistol, and Pendleton. Exact same people, exact same hands — simply expanding our offerings.",
       {% if settings.logo != blank %}
         "logo": {{ settings.logo | image_url: width: 600 | prepend: "https:" | json }},
@@ -88,7 +88,7 @@
     {
       "@type": "LocalBusiness",
       "name": {{ shop.name | json }},
-      "alternateName": ["Rafter M Hat Company", "Rafter M"],
+      "alternateName": ["Rafter M Hat Company", "Rafter M", "Moonridge"],
       "image": {{ "Moon_Ridge_Storefront.jpg" | asset_url | prepend: "https:" | json }},
       "@id": {{ request.origin | append: "/#localbusiness" | json }},
       "url": {{ request.origin | json }},

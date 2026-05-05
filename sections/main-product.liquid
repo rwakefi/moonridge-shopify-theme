@@ -1504,27 +1504,28 @@ function updateCountdown() {
       {% if product_material != blank %}
         "material": {{ product_material | json }},
       {% endif %}
+      {%- if product.metafields.custom.crown_shape != blank or product.metafields.custom.crown_height != blank or product.metafields.custom.brim_width != blank or product.metafields.custom.origin != blank -%}
       "additionalProperty": [
         {% if product.metafields.custom.crown_shape != blank %}
         {
           "@type": "PropertyValue",
           "name": "Crown Shape",
           "value": {{ product.metafields.custom.crown_shape | json }}
-        }{% if product.metafields.custom.crown_height or product.metafields.custom.brim_width or product.metafields.custom.origin %},{% endif %}
+        }{% if product.metafields.custom.crown_height != blank or product.metafields.custom.brim_width != blank or product.metafields.custom.origin != blank %},{% endif %}
         {% endif %}
         {% if product.metafields.custom.crown_height != blank %}
         {
           "@type": "PropertyValue",
           "name": "Crown Height",
           "value": {{ product.metafields.custom.crown_height | json }}
-        }{% if product.metafields.custom.brim_width or product.metafields.custom.origin %},{% endif %}
+        }{% if product.metafields.custom.brim_width != blank or product.metafields.custom.origin != blank %},{% endif %}
         {% endif %}
         {% if product.metafields.custom.brim_width != blank %}
         {
           "@type": "PropertyValue",
           "name": "Brim Width",
           "value": {{ product.metafields.custom.brim_width | json }}
-        }{% if product.metafields.custom.origin %},{% endif %}
+        }{% if product.metafields.custom.origin != blank %},{% endif %}
         {% endif %}
         {% if product.metafields.custom.origin != blank %}
         {
@@ -1533,6 +1534,8 @@ function updateCountdown() {
           "value": {{ product.metafields.custom.origin | json }}
         }
         {% endif %}
+      ],
+      {%- endif -%}
       "offers": [
         {%- for variant in product.variants -%}
           {

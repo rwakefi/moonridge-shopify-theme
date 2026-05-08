@@ -20,7 +20,7 @@
         "show_once": true,
         "delay_seconds": 2,
         "heading": "Our Moon Ridge showroom will be closed tomorrow, May 9th, as we head out for a special event.",
-        "body_text": "<p><strong>Our online store is still OPEN and shipping as usual.</strong></p><p>We will be back to normal hours next week to help you find your perfect hat.</p>",
+        "body_text": "<h1><strong>Our online store is still OPEN and shipping as usual.</strong></h1><p>We will be back to normal hours next week to help you find your perfect hat.</p>",
         "button_label": "Shop hats",
         "button_link": "",
         "popup_background": "#ffffff",

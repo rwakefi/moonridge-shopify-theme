@@ -15,12 +15,12 @@
       "type": "Popup_promo",
       "name": "Popup promo",
       "settings": {
-        "enable_popup": false,
+        "enable_popup": true,
         "home_only": true,
         "show_once": true,
         "delay_seconds": 2,
-        "heading": "We’re taking our hats to the Arkansas Derby 🏇🔥.Our online store is still open and shipping as usual.",
-        "body_text": "<p>Our <strong>Fayetteville Showroom</strong> will be closed <strong>March 24th - March 28th, </strong></p><p>Come find us Friday at Oak Boutique in Hot Springs!</p><p>We will be back to normal hours next week to help you find your perfect hat.</p>",
+        "heading": "Our Moon Ridge showroom will be closed tomorrow, May 9th, as we head out for a special event.",
+        "body_text": "<p><strong>Our online store is still OPEN and shipping as usual.</strong></p><p>We will be back to normal hours next week to help you find your perfect hat.</p>",
         "button_label": "Shop hats",
         "button_link": "",
         "popup_background": "#ffffff",
@@ -34,7 +34,6 @@
       "blocks": {
         "sections--17173569142996__b55bc64e-33dd-40a4-8194-d0d1a6769639-popup_heading-1": {
           "type": "popup_heading",
-          "disabled": true,
           "settings": {
             "heading": "Our Retail Location will be closed for a much-needed family vacation until January 3rd.  We are still accepting online orders and you can book your hat experience above.  Also,  message us anytime at info@moonridgecompany.com.  Thank you for supporting Moon Ridge throughout 2025 — we’re grateful for every customer and look forward to an even better 2026. We’ll see you soon.”"
           }
@@ -75,7 +74,6 @@
         "sections--17173569142996__b55bc64e-33dd-40a4-8194-d0d1a6769639-subscribe_form-1",
         "sections--17173569142996__b55bc64e-33dd-40a4-8194-d0d1a6769639-social_links-1"
       ],
-      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/Popup_logo.png",
         "image_layout": "bottom",

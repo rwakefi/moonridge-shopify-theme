@@ -13,6 +13,7 @@
   "sections": {
     "popup_promo_xFyMya": {
       "type": "Popup_promo",
+      "disabled": true,
       "name": "Popup promo",
       "settings": {
         "enable_popup": true,

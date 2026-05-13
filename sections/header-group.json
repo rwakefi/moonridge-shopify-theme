@@ -11,32 +11,6 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "brand_switcher_xyz123": {
-      "type": "brand-switcher",
-      "blocks": {
-        "tab_1": {
-          "type": "tab",
-          "settings": {
-            "title": "Moon Ridge",
-            "link": "/",
-            "is_active": true
-          }
-        },
-        "tab_2": {
-          "type": "tab",
-          "settings": {
-            "title": "Events",
-            "link": "/pages/book-moonridge",
-            "is_active": false
-          }
-        }
-      },
-      "block_order": [
-        "tab_1",
-        "tab_2"
-      ],
-      "settings": {}
-    },
     "announcement_bar_MVm44A": {
       "type": "announcement-bar",
       "blocks": {
@@ -88,6 +62,35 @@
         "rotation_interval": 7000
       }
     },
+    "brand_switcher_xyz123": {
+      "type": "brand-switcher",
+      "blocks": {
+        "tab_1": {
+          "type": "tab",
+          "settings": {
+            "title": "Moon Ridge",
+            "link": "/",
+            "is_active": true
+          }
+        },
+        "tab_2": {
+          "type": "tab",
+          "settings": {
+            "title": "Events",
+            "link": "/pages/book-moonridge",
+            "is_active": false
+          }
+        }
+      },
+      "block_order": [
+        "tab_1",
+        "tab_2"
+      ],
+      "settings": {
+        "promo_button_text": "Book A Free Hat Experience",
+        "promo_button_link": ""
+      }
+    },
     "1775539951d5ecae59": {
       "type": "_blocks",
       "settings": {}
@@ -98,6 +101,7 @@
         ".header__heading-logo {height: 100%; max-width: 100%;}"
       ],
       "settings": {
+        "podcast_icon_image": "shopify://shop_images/Podcast_Logo.png",
         "logo_position": "middle-left",
         "menu": "lifestyles-menu",
         "menu_type_desktop": "dropdown",

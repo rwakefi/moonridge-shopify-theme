@@ -208,38 +208,49 @@
       <p>{{ section.settings.subtitle }}</p>
       
       <div class="podcast-platforms">
-        {% if section.settings.link_apple != blank %}
-          <a href="{{ section.settings.link_apple }}" target="_blank" class="platform-badge">
+        {% assign apple_link = section.settings.link_apple | default: 'https://podcasts.apple.com/podcast/id1885368774' %}
+        {% if apple_link != blank %}
+          <a href="{{ apple_link }}" target="_blank" class="platform-badge">
             <img src="https://cdn.simpleicons.org/applepodcasts/9933CC" alt="Apple Podcasts">
             Apple Podcasts
           </a>
         {% endif %}
-        {% if section.settings.link_spotify != blank %}
-          <a href="{{ section.settings.link_spotify }}" target="_blank" class="platform-badge">
+        
+        {% assign spotify_link = section.settings.link_spotify | default: 'https://open.spotify.com/show/2qMq6vy5mQpHobuvzFzlmL' %}
+        {% if spotify_link != blank %}
+          <a href="{{ spotify_link }}" target="_blank" class="platform-badge">
             <img src="https://cdn.simpleicons.org/spotify/1DB954" alt="Spotify">
             Spotify
           </a>
         {% endif %}
-        {% if section.settings.link_youtube != blank %}
-          <a href="{{ section.settings.link_youtube }}" target="_blank" class="platform-badge">
+
+        {% assign youtube_link = section.settings.link_youtube | default: 'https://www.youtube.com/playlist?list=PLCHmsY81LB3sWb8zMAiEDMAnex-dfNoc7' %}
+        {% if youtube_link != blank %}
+          <a href="{{ youtube_link }}" target="_blank" class="platform-badge">
             <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube">
             YouTube
           </a>
         {% endif %}
-        {% if section.settings.link_amazon != blank %}
-          <a href="{{ section.settings.link_amazon }}" target="_blank" class="platform-badge">
+
+        {% assign amazon_link = section.settings.link_amazon %}
+        {% if amazon_link != blank %}
+          <a href="{{ amazon_link }}" target="_blank" class="platform-badge">
             <img src="https://cdn.simpleicons.org/amazon/000000" alt="Amazon">
             Amazon
           </a>
         {% endif %}
-        {% if section.settings.link_iheart != blank %}
-          <a href="{{ section.settings.link_iheart }}" target="_blank" class="platform-badge">
+
+        {% assign iheart_link = section.settings.link_iheart | default: 'https://iheart.com/podcast/333528031/' %}
+        {% if iheart_link != blank %}
+          <a href="{{ iheart_link }}" target="_blank" class="platform-badge">
             <img src="https://cdn.simpleicons.org/iheartradio/C6002B" alt="iHeartRadio">
             iHeartRadio
           </a>
         {% endif %}
-        {% if section.settings.link_deezer != blank %}
-          <a href="{{ section.settings.link_deezer }}" target="_blank" class="platform-badge">
+
+        {% assign deezer_link = section.settings.link_deezer | default: 'https://deezer.com/show/1003045091' %}
+        {% if deezer_link != blank %}
+          <a href="{{ deezer_link }}" target="_blank" class="platform-badge">
             <img src="https://cdn.simpleicons.org/deezer/000000" alt="Deezer">
             Deezer
           </a>

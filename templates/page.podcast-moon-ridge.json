@@ -13,9 +13,17 @@
       "type": "main-podcast",
       "settings": {
       }
+    },
+    "bestsellers": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Shop the Podcast",
+        "swipe_on_mobile": true
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "bestsellers"
   ]
 }

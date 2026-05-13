@@ -1,0 +1,340 @@
+{% style %}
+  .podcast-directory {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    font-family: var(--font-body-family);
+    color: #333;
+  }
+
+  /* Header Area */
+  .podcast-header {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .podcast-header__image img {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  .podcast-header__text h1 {
+    font-family: var(--font-heading-family);
+    font-size: 42px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: #111;
+    line-height: 1.1;
+  }
+  .podcast-header__text p {
+    font-size: 18px;
+    color: #555;
+    margin: 0;
+  }
+
+  /* Description Area */
+  .podcast-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 50px;
+  }
+
+  /* Search Area */
+  .podcast-search {
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .podcast-search input {
+    width: 100%;
+    padding: 12px 16px 12px 40px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fafafa;
+    color: #333;
+  }
+  .podcast-search svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: #888;
+  }
+
+  /* Episode List */
+  .podcast-episode {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+  }
+  .podcast-episode:last-child {
+    border-bottom: none;
+  }
+  .podcast-episode__image img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+  .podcast-episode__content {
+    flex: 1;
+  }
+  .podcast-episode__content a {
+    text-decoration: none;
+    color: inherit;
+  }
+  .podcast-episode__title {
+    font-family: var(--font-heading-family);
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #111;
+    transition: color 0.2s;
+  }
+  .podcast-episode__content a:hover .podcast-episode__title {
+    color: #C5A059;
+  }
+  .podcast-episode__meta {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .podcast-episode__badge {
+    border: 1px solid #555;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #555;
+  }
+  .podcast-episode__desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+    margin: 0;
+  }
+
+  /* Mobile Adjustments */
+  @media screen and (max-width: 768px) {
+    .podcast-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .podcast-header__image img {
+      width: 200px;
+      height: 200px;
+    }
+    .podcast-header__text h1 {
+      font-size: 32px;
+    }
+    .podcast-episode {
+      flex-direction: column;
+      gap: 16px;
+    }
+    .podcast-episode__image img {
+      width: 80px;
+      height: 80px;
+    }
+  }
+{% endstyle %}
+
+<div class="podcast-directory">
+  <!-- Header -->
+  <div class="podcast-header">
+    <div class="podcast-header__image">
+      {% if section.settings.podcast_image != blank %}
+        <img src="{{ section.settings.podcast_image | image_url: width: 600 }}" alt="{{ section.settings.title | escape }}">
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+    <div class="podcast-header__text">
+      <h1>{{ section.settings.title }}</h1>
+      <p>{{ section.settings.subtitle }}</p>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="podcast-description">
+    {{ section.settings.description }}
+  </div>
+
+  <!-- Search -->
+  {% if section.settings.show_search %}
+  <div class="podcast-search">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    <input type="text" id="podcastSearchInput" placeholder="Search podcast...">
+  </div>
+  {% endif %}
+
+  <!-- Episodes List -->
+  <div class="podcast-episodes-list" id="podcastEpisodesList">
+    {% for block in section.blocks %}
+      <div class="podcast-episode" data-title="{{ block.settings.title | downcase }}">
+        <div class="podcast-episode__image">
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | image_url: width: 240 }}" alt="{{ block.settings.title | escape }}">
+          {% elsif section.settings.podcast_image != blank %}
+             <img src="{{ section.settings.podcast_image | image_url: width: 240 }}" alt="{{ block.settings.title | escape }}">
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
+        <div class="podcast-episode__content">
+          <a href="{{ block.settings.link }}">
+            <h2 class="podcast-episode__title">{{ block.settings.title }}</h2>
+          </a>
+          <div class="podcast-episode__meta">
+            <span>{{ block.settings.date }}</span>
+            <span>|</span>
+            <span>{{ block.settings.duration }}</span>
+            {% if block.settings.badge_text != blank %}
+              <span class="podcast-episode__badge">{{ block.settings.badge_text }}</span>
+            {% endif %}
+          </div>
+          <div class="podcast-episode__desc">
+            {{ block.settings.description }}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% if section.settings.show_search %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('podcastSearchInput');
+    const episodes = document.querySelectorAll('.podcast-episode');
+
+    if(searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        const term = e.target.value.toLowerCase();
+        episodes.forEach(episode => {
+          const title = episode.getAttribute('data-title');
+          if(title.includes(term)) {
+            episode.style.display = 'flex';
+          } else {
+            episode.style.display = 'none';
+          }
+        });
+      });
+    }
+  });
+</script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Podcast Directory",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "podcast_image",
+      "label": "Podcast Main Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Podcast Title",
+      "default": "The Moon Ridge Podcast"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle / Host",
+      "default": "Hosted by Zack Wakefield"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Podcast Description",
+      "default": "<p>The Moon Ridge Podcast is about the things we love. Travel, hats, interior design, great brands, great friends, and the stories that come from a life well lived.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show Search Bar",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "episode",
+      "name": "Episode",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Episode Image (Optional)",
+          "info": "Leave blank to use main podcast image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Episode Title",
+          "default": "Ep 1: Welcome to the Ridge"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Episode Link (Riverside/Spotify)"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Publish Date",
+          "default": "11/14/2023"
+        },
+        {
+          "type": "text",
+          "id": "duration",
+          "label": "Duration",
+          "default": "45 min"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text (e.g. Latest Episode)"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Short Description",
+          "default": "<p>A brief summary of what this episode covers.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Podcast Directory",
+      "blocks": [
+        {
+          "type": "episode",
+          "settings": {
+            "title": "S1: Ep1 Welcome to the Moon Ridge Podcast",
+            "date": "10/24/2023",
+            "duration": "30 min",
+            "badge_text": "Latest Episode",
+            "description": "<p>Hosted by Zack Wakefield, each episode is a conversation about the places we go, the people we meet, and the experiences that shape the Moon Ridge lifestyle.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

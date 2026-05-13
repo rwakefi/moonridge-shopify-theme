@@ -125,6 +125,11 @@
     color: #555;
     margin: 0;
   }
+  .podcast-loading {
+    text-align: center;
+    padding: 40px;
+    color: #777;
+  }
 
   /* Mobile Adjustments */
   @media screen and (max-width: 768px) {
@@ -151,7 +156,7 @@
   }
 {% endstyle %}
 
-<div class="podcast-directory">
+<div class="podcast-directory" data-rss-url="{{ section.settings.rss_url }}">
   <!-- Header -->
   <div class="podcast-header">
     <div class="podcast-header__image">
@@ -180,67 +185,115 @@
   </div>
   {% endif %}
 
-  <!-- Episodes List -->
+  <!-- Episodes List Container -->
   <div class="podcast-episodes-list" id="podcastEpisodesList">
-    {% for block in section.blocks %}
-      <div class="podcast-episode" data-title="{{ block.settings.title | downcase }}">
-        <div class="podcast-episode__image">
-          {% if block.settings.image != blank %}
-            <img src="{{ block.settings.image | image_url: width: 240 }}" alt="{{ block.settings.title | escape }}">
-          {% elsif section.settings.podcast_image != blank %}
-             <img src="{{ section.settings.podcast_image | image_url: width: 240 }}" alt="{{ block.settings.title | escape }}">
-          {% else %}
-            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-          {% endif %}
-        </div>
-        <div class="podcast-episode__content">
-          <a href="{{ block.settings.link }}">
-            <h2 class="podcast-episode__title">{{ block.settings.title }}</h2>
-          </a>
-          <div class="podcast-episode__meta">
-            <span>{{ block.settings.date }}</span>
-            <span>|</span>
-            <span>{{ block.settings.duration }}</span>
-            {% if block.settings.badge_text != blank %}
-              <span class="podcast-episode__badge">{{ block.settings.badge_text }}</span>
-            {% endif %}
-          </div>
-          <div class="podcast-episode__desc">
-            {{ block.settings.description }}
-          </div>
-        </div>
-      </div>
-    {% endfor %}
+    <div class="podcast-loading">Loading episodes...</div>
   </div>
 </div>
 
-{% if section.settings.show_search %}
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('.podcast-directory');
+    const rssUrl = section.getAttribute('data-rss-url');
+    const listContainer = document.getElementById('podcastEpisodesList');
     const searchInput = document.getElementById('podcastSearchInput');
-    const episodes = document.querySelectorAll('.podcast-episode');
 
-    if(searchInput) {
-      searchInput.addEventListener('input', function(e) {
-        const term = e.target.value.toLowerCase();
-        episodes.forEach(episode => {
-          const title = episode.getAttribute('data-title');
-          if(title.includes(term)) {
-            episode.style.display = 'flex';
-          } else {
-            episode.style.display = 'none';
-          }
-        });
-      });
+    if (!rssUrl) {
+      listContainer.innerHTML = '<div class="podcast-loading">Please configure your RSS URL in the theme settings.</div>';
+      return;
     }
+
+    // Use rss2json API to bypass CORS issues
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        if (data.status !== 'ok') {
+          throw new Error('Failed to load feed');
+        }
+
+        const items = data.items;
+        listContainer.innerHTML = ''; // Clear loading state
+
+        const fallbackImage = `{% if section.settings.podcast_image != blank %}{{ section.settings.podcast_image | image_url: width: 240 }}{% else %}https://cdn.shopify.com/s/images/themes/product-1.png{% endif %}`;
+
+        items.forEach((item, index) => {
+          // Format Date
+          const pubDate = new Date(item.pubDate);
+          const dateString = pubDate.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+
+          // Extract plain text snippet from description
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = item.description;
+          let textSnippet = tempDiv.textContent || tempDiv.innerText || '';
+          if (textSnippet.length > 200) {
+            textSnippet = textSnippet.substring(0, 200) + '...';
+          }
+
+          // Use item image or fallback to main podcast image
+          const episodeImage = item.thumbnail || item.enclosure.link || fallbackImage;
+          const isLatest = index === 0;
+          const badgeHtml = isLatest ? `<span class="podcast-episode__badge">Latest Episode</span>` : '';
+          
+          // Try to get duration if available (rss2json sometimes puts it in enclosure or description, we will just use date for now if duration is complex)
+          
+          const episodeHtml = `
+            <div class="podcast-episode" data-title="${item.title.toLowerCase().replace(/"/g, '&quot;')}">
+              <div class="podcast-episode__image">
+                <img src="${episodeImage}" alt="${item.title.replace(/"/g, '&quot;')}">
+              </div>
+              <div class="podcast-episode__content">
+                <a href="${item.link}" target="_blank" rel="noopener noreferrer">
+                  <h2 class="podcast-episode__title">${item.title}</h2>
+                </a>
+                <div class="podcast-episode__meta">
+                  <span>${dateString}</span>
+                  ${badgeHtml ? '<span>|</span>' + badgeHtml : ''}
+                </div>
+                <div class="podcast-episode__desc">
+                  <p>${textSnippet}</p>
+                </div>
+              </div>
+            </div>
+          `;
+          listContainer.insertAdjacentHTML('beforeend', episodeHtml);
+        });
+
+        // Setup search functionality after episodes are loaded
+        if(searchInput) {
+          searchInput.addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            const episodes = listContainer.querySelectorAll('.podcast-episode');
+            episodes.forEach(episode => {
+              const title = episode.getAttribute('data-title');
+              if(title.includes(term)) {
+                episode.style.display = 'flex';
+              } else {
+                episode.style.display = 'none';
+              }
+            });
+          });
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching podcast feed:', error);
+        listContainer.innerHTML = '<div class="podcast-loading">Unable to load episodes at this time. Please try again later.</div>';
+      });
   });
 </script>
-{% endif %}
 
 {% schema %}
 {
   "name": "Podcast Directory",
   "settings": [
+    {
+      "type": "text",
+      "id": "rss_url",
+      "label": "Podcast RSS Feed URL",
+      "default": "https://api.riverside.com/hosting/PlYr6xeo.rss",
+      "info": "Provide the direct RSS feed URL to automatically load your episodes."
+    },
     {
       "type": "image_picker",
       "id": "podcast_image",
@@ -271,69 +324,12 @@
       "default": true
     }
   ],
-  "blocks": [
-    {
-      "type": "episode",
-      "name": "Episode",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Episode Image (Optional)",
-          "info": "Leave blank to use main podcast image"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Episode Title",
-          "default": "Ep 1: Welcome to the Ridge"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Episode Link (Riverside/Spotify)"
-        },
-        {
-          "type": "text",
-          "id": "date",
-          "label": "Publish Date",
-          "default": "11/14/2023"
-        },
-        {
-          "type": "text",
-          "id": "duration",
-          "label": "Duration",
-          "default": "45 min"
-        },
-        {
-          "type": "text",
-          "id": "badge_text",
-          "label": "Badge Text (e.g. Latest Episode)"
-        },
-        {
-          "type": "richtext",
-          "id": "description",
-          "label": "Short Description",
-          "default": "<p>A brief summary of what this episode covers.</p>"
-        }
-      ]
-    }
-  ],
   "presets": [
     {
       "name": "Podcast Directory",
-      "blocks": [
-        {
-          "type": "episode",
-          "settings": {
-            "title": "S1: Ep1 Welcome to the Moon Ridge Podcast",
-            "date": "10/24/2023",
-            "duration": "30 min",
-            "badge_text": "Latest Episode",
-            "description": "<p>Hosted by Zack Wakefield, each episode is a conversation about the places we go, the people we meet, and the experiences that shape the Moon Ridge lifestyle.</p>"
-          }
-        }
-      ]
+      "settings": {
+        "rss_url": "https://api.riverside.com/hosting/PlYr6xeo.rss"
+      }
     }
   ]
 }

@@ -38,7 +38,7 @@
   .rm-brand-tab.is-active {
     background-color: #ffffff;
     color: #312110;
-    border-top: 3px solid #C5A059; /* CSS fallback - JS slider will appear on top */
+    border-top: 3px solid #C5A059;
     border-bottom: 1px solid #ffffff;
     margin-bottom: -1px;
     font-weight: 600;
@@ -48,26 +48,11 @@
   .rm-brand-tab:hover:not(.is-active) {
     color: #312110;
     background-color: #f0f0f0;
+    border-top: 3px solid rgba(197, 160, 89, 0.4);
   }
 
-  /* The sliding gold indicator bar */
-  .rm-tab-slider {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 3px;
-    background: #C5A059;
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
-    z-index: 10;
-    will-change: transform, width;
-  }
-  @media screen and (max-width: 749px) {
-    .rm-tab-slider {
-      top: auto;
-      bottom: 0;
-    }
-  }
+  /* Slider div kept but hidden — pure CSS handles active state now */
+  .rm-tab-slider { display: none; }
 
   .rm-brand-promo-btn {
     font-family: var(--font-heading-family);
@@ -112,9 +97,10 @@
       font-size: 13px; 
       border-right: 1px solid #e0e0e0;
       border-top: none;
+      padding: 0 !important;
     }
     .rm-brand-tab.is-active {
-      border-top: none !important;
+      /* Keep top border as fallback */
     }
     .rm-brand-tab:last-child {
       border-right: none;
@@ -138,7 +124,7 @@
       width: 22px !important;
       height: 22px !important;
     }
-    .rm-brand-switcher #cart-icon-bubble {
+    .rm-brand-switcher-cart {
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
@@ -148,10 +134,20 @@
       height: auto !important;
       box-shadow: -1px 0 0 #e0e0e0;
       padding: 0 !important;
+      color: #312110 !important;
     }
-    .rm-brand-switcher #cart-icon-bubble svg {
+    .rm-brand-switcher-cart svg {
       width: 22px !important;
       height: 22px !important;
+    }
+    .rm-brand-switcher-cart .cart-count-bubble {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    /* Hide desktop cart on mobile */
+    .header__icon--cart:not(.rm-brand-switcher-cart) {
+      display: none !important;
     }
   }
 </style>
@@ -165,14 +161,22 @@
     </svg>
   </button>
   <div class="rm-brand-tabs" id="rm-brand-tabs">
-    <div class="rm-tab-slider" id="rm-tab-slider"></div>
+    {% assign active_index = 0 %}
+    {% for block in section.blocks %}
+      {% assign tab_link = block.settings.link %}
+      {% if tab_link == request.path %}
+        {% assign active_index = forloop.index0 %}
+      {% elsif tab_link != '/' and request.path contains tab_link %}
+        {% assign active_index = forloop.index0 %}
+      {% endif %}
+    {% endfor %}
     {% for block in section.blocks %}
       <a href="{{ block.settings.link }}"
-         class="rm-brand-tab {% if block.settings.is_active %}is-active{% endif %}"
+         class="rm-brand-tab {% if forloop.index0 == active_index %}is-active{% endif %}"
          data-tab-index="{{ forloop.index0 }}"
          {{ block.shopify_attributes }}>
         {% if block.settings.title == 'Moon Ridge' %}
-          <img src="{{ 'logo-horizontal.png' | asset_url }}" alt="Moon Ridge" style="height: 28px; width: auto; vertical-align: middle;">
+          <img src="{{ 'logo-horizontal.png' | asset_url }}" alt="Moon Ridge" style="height: 38px; width: auto; display: block;">
         {% else %}
           {{ block.settings.title }}
         {% endif %}
@@ -190,84 +194,29 @@
       {{ section.settings.promo_button_text }}
     </button>
   {% endif %}
+
+  {%- comment -%} Mobile Cart Icon (Rendered directly to prevent jerky loading) {%- endcomment -%}
+  <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset rm-brand-switcher-cart" id="cart-icon-bubble-mobile" style="display: none;">
+    {%- render 'icon-cart' -%}
+    <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+    {%- if cart != empty -%}
+      <div class="cart-count-bubble">
+        {%- if cart.item_count < 100 -%}
+          <span aria-hidden="true">{{ cart.item_count }}</span>
+        {%- endif -%}
+        <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+      </div>
+    {%- endif -%}
+  </a>
 </div>
 
 <script>
+  // Show the mobile cart icon on mobile devices
   (function() {
-    function initTabSlider() {
-      var tabs      = document.querySelectorAll('#rm-brand-tabs .rm-brand-tab');
-      var slider    = document.getElementById('rm-tab-slider');
-      var container = document.getElementById('rm-brand-tabs');
-      if (!slider || !tabs.length) return;
-
-      function moveSliderTo(tab, instant) {
-        var containerRect = container.getBoundingClientRect();
-        var tabRect       = tab.getBoundingClientRect();
-        var offset = tabRect.left - containerRect.left;
-        if (instant) {
-          slider.style.transition = 'none';
-        }
-        slider.style.transform = 'translateX(' + offset + 'px)';
-        slider.style.width = tabRect.width + 'px';
-      }
-
-      // Determine active tab by matching current URL path
-      var currentPath = window.location.pathname;
-      var activeTab   = null;
-
-      // Find the best matching tab: prefer the tab whose href most closely matches current path
-      var bestMatch = 0;
-      tabs.forEach(function(tab) {
-        var href = tab.getAttribute('href') || '';
-        // Strip domain if present
-        var tabPath = href.replace(/^https?:\/\/[^\/]+/, '');
-        if (tabPath && currentPath.indexOf(tabPath) === 0 && tabPath.length > bestMatch) {
-          bestMatch = tabPath.length;
-          activeTab = tab;
-        }
-      });
-
-      // Fallback to the hardcoded is-active tab, then first tab
-      if (!activeTab) {
-        activeTab = document.querySelector('#rm-brand-tabs .rm-brand-tab.is-active') || tabs[0];
-      }
-
-      // Update visual active state
-      tabs.forEach(function(t) { t.classList.remove('is-active'); });
-      activeTab.classList.add('is-active');
-
-      // Position slider instantly on load (no animation)
-      moveSliderTo(activeTab, true);
-
-      // Re-enable smooth transition after two frames
-      requestAnimationFrame(function() {
-        requestAnimationFrame(function() {
-          slider.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1), width 0.35s cubic-bezier(0.4,0,0.2,1)';
-        });
-      });
-
-      // Slide to hovered tab
-      tabs.forEach(function(tab) {
-        tab.addEventListener('mouseenter', function() { moveSliderTo(tab); });
-      });
-
-      // Return to active tab on mouse leave
-      container.addEventListener('mouseleave', function() { moveSliderTo(activeTab); });
+    if (window.innerWidth < 750) {
+      var mobileCart = document.getElementById('cart-icon-bubble-mobile');
+      if (mobileCart) mobileCart.style.display = 'flex';
     }
-
-    // Wait for full page load so image dimensions are correct
-    window.addEventListener('load', function() {
-      initTabSlider();
-      
-      // Move cart icon on mobile next to Events
-      if (window.innerWidth < 750) {
-        var cartIcon = document.getElementById('cart-icon-bubble');
-        var switcher = document.querySelector('.rm-brand-switcher');
-        if (cartIcon && switcher) {
-          switcher.appendChild(cartIcon);
-        }
-      }
-    });
   })();
 </script>
 
@@ -339,3 +288,4 @@
   ]
 }
 {% endschema %}
+<!-- Force update -->

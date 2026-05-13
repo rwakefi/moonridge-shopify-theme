@@ -1,0 +1,81 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "image-banner",
+      "settings": {
+        "image": "",
+        "image_overlay_opacity": 0,
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "podcast_intro": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "The Moon Ridge Podcast",
+        "content": "<p>Voices of the Ridge. Join us for conversations on heritage, craftsmanship, and the stories that shape our community in Fayetteville and beyond.</p>",
+        "max_width": 800,
+        "text_alignment": "center"
+      }
+    },
+    "episode_list": {
+      "type": "multicolumn",
+      "blocks": {
+        "episode_1": {
+          "type": "column",
+          "settings": {
+            "title": "Episode 1: The Art of the Shape",
+            "text": "<p>A deep dive into the heritage of hat shaping with the Moon Ridge team.</p>",
+            "link_label": "Listen Now",
+            "link": "#"
+          }
+        },
+        "episode_2": {
+          "type": "column",
+          "settings": {
+            "title": "Episode 2: Fayetteville Roots",
+            "text": "<p>Exploring our history in Arkansas and the journey from Rafter M to Moon Ridge.</p>",
+            "link_label": "Listen Now",
+            "link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "episode_1",
+        "episode_2"
+      ],
+      "settings": {
+        "title": "Latest Episodes",
+        "columns_desktop": 2,
+        "column_alignment": "center"
+      }
+    },
+    "subscribe": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Subscribe & Listen",
+        "content": "<p>Find us on Spotify, Apple Podcasts, and wherever you get your stories.</p>",
+        "max_width": 600,
+        "text_alignment": "center"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "podcast_intro",
+    "episode_list",
+    "subscribe"
+  ]
+}

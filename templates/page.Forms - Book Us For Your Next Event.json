@@ -1,1 +1,268 @@
-{"sections":{"c9a6639a-7cdb-4a8f-a3ab-b9cba902d58b":{"type":"main-page","custom_css":[],"settings":{}},"forms":{"type":"apps","blocks":{"d117d225-7e48-4a32-85df-1c16e7176c05":{"type":"shopify:\/\/apps\/forms\/blocks\/inline\/8744a304-fcb1-4347-b211-bb6b4759a76a","settings":{"form_id":"259722","text_color":"#202020","button_background_color":"#202020","button_label_color":"#FFFFFF","links_color":"#1878B9","errors_color":"#E02229","text_alignment":"center","form_alignment":"center","padding_top":0,"padding_bottom":0,"padding_right":0,"padding_left":0}}},"block_order":["d117d225-7e48-4a32-85df-1c16e7176c05"],"settings":{"include_margins":true}}},"order":["c9a6639a-7cdb-4a8f-a3ab-b9cba902d58b","forms"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "video",
+      "settings": {
+        "heading": "Hat Shaping Experiences",
+        "heading_size": "h1",
+        "enable_video_looping": true,
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "description": "Custom Hat Shaping Events & Parties",
+        "full_width": true,
+        "color_scheme": "background-2",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "",
+        "content": "<p>Looking for a unique and unforgettable group experience? Our custom hat shaping events combine creativity, style, and hands-on fun for gatherings of all sizes. From intimate private fittings to large-scale branded activations, every guest leaves with a custom hat and a memorable experience.</p>",
+        "max_width": 900,
+        "heading_tag": "h2",
+        "text_alignment": "center",
+        "heading_size": 32,
+        "text_size": 18,
+        "line_height": 1.6,
+        "heading_color": "#1f1d24",
+        "text_color": "#3f281a",
+        "link_color": "#312110",
+        "link_hover_color": "#1f1d24",
+        "background_color": "transparent",
+        "padding_top": 48,
+        "padding_bottom": 12,
+        "padding_horizontal": 20,
+        "heading_spacing": 16,
+        "paragraph_spacing": 16,
+        "border_radius": 0
+      }
+    },
+    "event_types": {
+      "type": "multicolumn",
+      "blocks": {
+        "weddings": {
+          "type": "column",
+          "settings": {
+            "title": "Weddings",
+            "text": "<p>Create a one-of-a-kind wedding experience with custom hat shaping for bridesmaids, groomsmen, welcome parties, or receptions. Guests can personalize their hats with bands, branding, feathers, and custom details that make the celebration unforgettable.</p>"
+          }
+        },
+        "corporate": {
+          "type": "column",
+          "settings": {
+            "title": "Corporate Events",
+            "text": "<p>Elevate your next corporate event with an interactive custom hat experience. Perfect for client appreciation, retreats, conferences, or team-building events with optional custom branding and large group accommodations.</p>"
+          }
+        },
+        "private": {
+          "type": "column",
+          "settings": {
+            "title": "Private In-Store Parties",
+            "text": "<p>Host an exclusive after-hours experience in our showroom for birthdays, bachelor and bachelorette parties, friend groups, or private celebrations. Enjoy personalized fittings and styling in a relaxed setting.</p>"
+          }
+        },
+        "group": {
+          "type": "column",
+          "settings": {
+            "title": "Group Fittings",
+            "text": "<p>Perfect for smaller groups wanting a more personalized experience. Our expert team helps every guest find, shape, and customize the perfect hat for their style and fit preferences.</p>"
+          }
+        },
+        "popups": {
+          "type": "column",
+          "settings": {
+            "title": "Pop-Ups & Mobile Hat Bars",
+            "text": "<p>We bring the experience directly to your venue. From festivals and brand activations to private ranch events and upscale gatherings, our mobile hat bar creates a memorable centerpiece for any event.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "weddings",
+        "corporate",
+        "private",
+        "group",
+        "popups"
+      ],
+      "settings": {
+        "title": "Our Event Experiences",
+        "heading_size": "h2",
+        "heading_center": true,
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "background-2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "expect_heading": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "What To Expect",
+        "content": "",
+        "max_width": 800,
+        "heading_tag": "h3",
+        "text_alignment": "center",
+        "heading_size": 34,
+        "text_size": 18,
+        "line_height": 1.6,
+        "heading_color": "#1f1d24",
+        "text_color": "#1f1d24",
+        "link_color": "#312110",
+        "link_hover_color": "#1f1d24",
+        "background_color": "transparent",
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "padding_horizontal": 20,
+        "heading_spacing": 16,
+        "paragraph_spacing": 16,
+        "border_radius": 0
+      }
+    },
+    "expect_cols": {
+      "type": "multicolumn",
+      "blocks": {
+        "col1": {
+          "type": "column",
+          "settings": {
+            "title": "Custom Hat Styling",
+            "text": "<p>Every guest receives a personalized shaping and styling experience.</p>"
+          }
+        },
+        "col2": {
+          "type": "column",
+          "settings": {
+            "title": "Hands-On Experience",
+            "text": "<p>Guests participate in shaping, branding, and customizing their hats.</p>"
+          }
+        },
+        "col3": {
+          "type": "column",
+          "settings": {
+            "title": "Expert Guidance",
+            "text": "<p>Our team walks guests through fit, shape, and styling options.</p>"
+          }
+        },
+        "col4": {
+          "type": "column",
+          "settings": {
+            "title": "Custom Branding Options",
+            "text": "<p>Add logos, initials, event marks, or personalized details.</p>"
+          }
+        },
+        "col5": {
+          "type": "column",
+          "settings": {
+            "title": "Flexible Group Sizes",
+            "text": "<p>Available for intimate gatherings or events with 250+ guests.</p>"
+          }
+        },
+        "col6": {
+          "type": "column",
+          "settings": {
+            "title": "Memorable Takeaway",
+            "text": "<p>Every guest leaves with a wearable keepsake from the event.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "col1",
+        "col2",
+        "col3",
+        "col4",
+        "col5",
+        "col6"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "heading_center": true,
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 12,
+        "padding_bottom": 48
+      }
+    },
+    "booking_info": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Booking Information",
+        "content": "<p>Pricing varies depending on hat selection, customization options, event size, and travel requirements. We offer flexible packages designed for weddings, corporate activations, private parties, and large-scale events.</p><p>Our experiences are available for groups ranging from 8 to 250+ guests.</p>",
+        "max_width": 800,
+        "heading_tag": "h3",
+        "text_alignment": "center",
+        "heading_size": 34,
+        "text_size": 18,
+        "line_height": 1.6,
+        "heading_color": "#1f1d24",
+        "text_color": "#3f281a",
+        "link_color": "#312110",
+        "link_hover_color": "#1f1d24",
+        "background_color": "transparent",
+        "padding_top": 48,
+        "padding_bottom": 24,
+        "padding_horizontal": 20,
+        "heading_spacing": 16,
+        "paragraph_spacing": 16,
+        "border_radius": 0
+      }
+    },
+    "forms": {
+      "type": "apps",
+      "blocks": {
+        "d117d225-7e48-4a32-85df-1c16e7176c05": {
+          "type": "shopify:\/\/apps\/forms\/blocks\/inline\/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "259722",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#FFFFFF",
+            "links_color": "#1878B9",
+            "errors_color": "#E02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 0,
+            "padding_bottom": 48,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "d117d225-7e48-4a32-85df-1c16e7176c05"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "intro",
+    "event_types",
+    "expect_heading",
+    "expect_cols",
+    "booking_info",
+    "forms"
+  ]
+}

@@ -43,6 +43,34 @@
     margin: 0;
   }
 
+  .podcast-platforms {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .platform-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #f1f1f1;
+    border-radius: 40px;
+    text-decoration: none;
+    color: #111;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .platform-badge:hover {
+    background: #e5e5e5;
+  }
+  .platform-badge img {
+    width: 20px;
+    height: 20px;
+  }
+
   /* Description Area */
   .podcast-description {
     font-size: 16px;
@@ -178,6 +206,45 @@
     <div class="podcast-header__text">
       <h1>{{ section.settings.title }}</h1>
       <p>{{ section.settings.subtitle }}</p>
+      
+      <div class="podcast-platforms">
+        {% if section.settings.link_apple != blank %}
+          <a href="{{ section.settings.link_apple }}" target="_blank" class="platform-badge">
+            <img src="https://cdn.simpleicons.org/applepodcasts/9933CC" alt="Apple Podcasts">
+            Apple Podcasts
+          </a>
+        {% endif %}
+        {% if section.settings.link_spotify != blank %}
+          <a href="{{ section.settings.link_spotify }}" target="_blank" class="platform-badge">
+            <img src="https://cdn.simpleicons.org/spotify/1DB954" alt="Spotify">
+            Spotify
+          </a>
+        {% endif %}
+        {% if section.settings.link_youtube != blank %}
+          <a href="{{ section.settings.link_youtube }}" target="_blank" class="platform-badge">
+            <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube">
+            YouTube
+          </a>
+        {% endif %}
+        {% if section.settings.link_amazon != blank %}
+          <a href="{{ section.settings.link_amazon }}" target="_blank" class="platform-badge">
+            <img src="https://cdn.simpleicons.org/amazon/000000" alt="Amazon">
+            Amazon
+          </a>
+        {% endif %}
+        {% if section.settings.link_iheart != blank %}
+          <a href="{{ section.settings.link_iheart }}" target="_blank" class="platform-badge">
+            <img src="https://cdn.simpleicons.org/iheartradio/C6002B" alt="iHeartRadio">
+            iHeartRadio
+          </a>
+        {% endif %}
+        {% if section.settings.link_deezer != blank %}
+          <a href="{{ section.settings.link_deezer }}" target="_blank" class="platform-badge">
+            <img src="https://cdn.simpleicons.org/deezer/000000" alt="Deezer">
+            Deezer
+          </a>
+        {% endif %}
+      </div>
     </div>
   </div>
 
@@ -341,13 +408,52 @@
       "id": "show_search",
       "label": "Show Search Bar",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Platform Links"
+    },
+    {
+      "type": "url",
+      "id": "link_apple",
+      "label": "Apple Podcasts URL"
+    },
+    {
+      "type": "url",
+      "id": "link_spotify",
+      "label": "Spotify URL"
+    },
+    {
+      "type": "url",
+      "id": "link_youtube",
+      "label": "YouTube URL"
+    },
+    {
+      "type": "url",
+      "id": "link_amazon",
+      "label": "Amazon Podcasts URL"
+    },
+    {
+      "type": "url",
+      "id": "link_iheart",
+      "label": "iHeartRadio URL"
+    },
+    {
+      "type": "url",
+      "id": "link_deezer",
+      "label": "Deezer URL"
     }
   ],
   "presets": [
     {
       "name": "Podcast Directory",
       "settings": {
-        "rss_url": "https://api.riverside.com/hosting/PlYr6xeo.rss"
+        "rss_url": "https://api.riverside.com/hosting/PlYr6xeo.rss",
+        "link_apple": "https://podcasts.apple.com/podcast/id1885368774",
+        "link_spotify": "https://open.spotify.com/show/2qMq6vy5mQpHobuvzFzlmL",
+        "link_youtube": "https://www.youtube.com/playlist?list=PLCHmsY81LB3sWb8zMAiEDMAnex-dfNoc7",
+        "link_iheart": "https://iheart.com/podcast/333528031/",
+        "link_deezer": "https://deezer.com/show/1003045091"
       }
     }
   ]

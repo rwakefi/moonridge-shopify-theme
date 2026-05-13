@@ -12,6 +12,13 @@
     "main": {
       "type": "main-podcast",
       "settings": {
+        "rss_url": "https://api.riverside.com/hosting/PlYr6xeo.rss",
+        "podcast_image": "shopify://shop_images/Podcast_Logo.png",
+        "logo_width": 140,
+        "title": "The Moon Ridge Podcast",
+        "subtitle": "Hosted by Zack Wakefield",
+        "description": "<p>The Moon Ridge Podcast is about the things we love. Travel, hats, interior design, great brands, great friends, and the stories that come from a life well lived.</p>",
+        "show_search": true
       }
     }
   },

@@ -577,7 +577,7 @@
 
       <a href="/pages/podcast" class="header__icon header__icon--podcast link focus-inset small-hide" aria-label="Moon Ridge Podcast">
         {% if section.settings.podcast_icon_image != blank %}
-          <img src="{{ section.settings.podcast_icon_image | image_url: width: 40 }}" alt="Podcast" class="icon icon-podcast" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;">
+          <img src="{{ section.settings.podcast_icon_image | image_url: width: 80 }}" alt="Podcast" class="icon icon-podcast" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(0,0,0,0.1);">
         {% else %}
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-podcast">
             <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>

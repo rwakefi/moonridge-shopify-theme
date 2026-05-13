@@ -9,10 +9,7 @@
 <meta name="msvalidate.01" content="A70FCC7DBBA7EBF70ACB7FB0F0B8ACE8" />
     
     
-    {%- comment -%}
-    Google Tag (gtag.js) is now managed automatically by the Google & YouTube app. 
-    Manual script removed to prevent duplicate tracking and verification errors.
-    {%- endcomment -%}
+    {{ content_for_header }}
 
     {% comment %} booking pop up script tag  {% endcomment %}
     <script id="setmore_script" defer="defer" type="text/javascript" src="https://assets.setmore.com/integration/static/setmoreIframeLive.js"></script>
@@ -124,7 +121,6 @@
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-    {{ content_for_header }}
 
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'

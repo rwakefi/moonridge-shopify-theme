@@ -119,21 +119,105 @@
 
   /* ─── MOON RIDGE LUXURY NAVIGATION ─────────────────────────────────── */
 
+  .header__menu-item, .header__menu-item * {
+    color: #312110 !important;
+  }
+
   .header__menu-item {
-    padding: 1.6rem 1.4rem;
+    display: flex !important;
+    align-items: center !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: 4.4rem;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.92);
     font-family: var(--font-menu-family);
     font-style: var(--font-menu-style);
-    font-size: {{ section.settings.header_menu_size }}px;
-    letter-spacing: {{ section.settings.header_spacing }}em;
-    text-transform: {{ section.settings.header_menu_transform }};
+    font-size: 1.2rem !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     font-weight: 500;
     position: relative;
-    transition:
-      color 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-      letter-spacing 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-      text-shadow 0.35s ease;
+    transition: color 0.3s ease;
+  }
+
+  .shopify-section-group-header-group,
+  #shopify-section-header,
+  .header-wrapper,
+  .header-wrapper.gradient,
+  .color-inverse,
+  .color-background-2 {
+    --color-background: 247, 247, 247 !important;
+    background-color: #f7f7f7 !important;
+    background-image: none !important;
+    color: #312110 !important;
+  }
+
+  /* Override the Shopify color scheme CSS variable on the header section itself */
+  #shopify-section-header .header-wrapper {
+    background: #f7f7f7 !important;
+  }
+
+  .header {
+    background-color: transparent !important;
+    display: flex !important;
+    align-items: center !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: 52px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .header__inline-menu, .list-menu--inline {
+    display: flex !important;
+    align-items: center !important;
+    height: 100%;
+  }
+
+  @media screen and (max-width: 749px) {
+    .header__inline-menu, .list-menu--inline, .header__icon--menu {
+      display: none !important;
+    }
+  }
+
+  .header__icon, .header__icon * {
+    color: #312110 !important;
+  }
+
+  /* Mobile booking CTA button */
+  .header__mobile-cta {
+    display: none;
+  }
+  @media screen and (max-width: 749px) {
+    .header__mobile-cta {
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+      pointer-events: auto;
+    }
+    .header__mobile-book-btn {
+      font-family: var(--font-heading-family, sans-serif);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #312110;
+      background: transparent;
+      border: 1px solid #C5A059;
+      border-radius: 3px;
+      padding: 6px 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+    }
+    .header__mobile-book-btn:hover,
+    .header__mobile-book-btn:active {
+      background: #C5A059;
+      color: #fff;
+    }
+
   }
 
   /* Animated gold underline — expands from center */
@@ -162,13 +246,8 @@
     text-shadow: 0 0 18px rgba(212, 175, 55, 0.35);
   }
 
-  /* Decorative gold hairline under the full header */
-  .header-wrapper::after {
-    content: '';
-    display: block;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, #D4AF37 20%, #F0D060 50%, #D4AF37 80%, transparent 100%);
-    opacity: 0.5;
+  .header-wrapper::after, .header-wrapper::before {
+    display: none;
   }
 
   /* Tighten the active state on open dropdowns */
@@ -193,6 +272,10 @@
       align-self: center;
       margin: 0;
     }
+
+    .header-button span {
+      display: inline;
+    }
   }
 
  /* --- Moon Ridge CTA Button: Ivory + Gold + Warm Brown (Style #4) --- */
@@ -201,15 +284,15 @@
   display: inline-block;
   background-color: #F1EDE2; /* Creamy off-white */
   color: #3D2619; /* Dark brown text */
-  padding: 0.8rem 2rem;
+  padding: 1rem 3.5rem;
   font-family: "Georgia", "Times New Roman", Times, serif; /* Classic serif */
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: 400;
   letter-spacing: 0.08em;
   line-height: 1.2;
   text-transform: uppercase;
   border-radius: 0;
-  border: 1px solid #A2845E; /* Bronze/brown border */
+  border: 2px solid #D4AF37; /* Brighter gold border */
   text-decoration: none;
   text-align: center;
   cursor: pointer;
@@ -219,6 +302,10 @@
     color 0.25s ease,
     transform 0.25s cubic-bezier(0.19, 1, 0.22, 1),
     box-shadow 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.header-button span {
+  display: block;
 }
 
 .header-button:hover,
@@ -247,10 +334,10 @@
 
     .header-cta-button {
       display: inline-block !important;
-      font-size: 0.95rem !important;
-      padding: 1.1rem 1.75rem !important;
+      font-size: 1.3rem !important;
+      padding: 1rem 3rem !important;
       letter-spacing: 0.08em !important;
-      border-width: 1px !important;
+      border-width: 2px !important;
       min-width: 200px !important;
       text-align: center !important;
       margin-top: 8px !important;
@@ -294,7 +381,7 @@
   endfor
 -%}
 
-<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
+<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}" style="background: #f7f7f7 !important; background-image: none !important; border-top: none !important; box-shadow: none !important;">
   {%- liquid
     assign social_links = false
     assign localization_forms = false
@@ -326,52 +413,9 @@
       {%- else -%}
         <div class="header__heading header__heading--with-cta">
       {%- endif -%}
-          <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
-            {%- if settings.logo != blank -%}
-              <div class="header__heading-logo-wrapper">
-                {%- assign logo_alt = settings.logo.alt | default: shop.name | append: " - moonridge" | escape -%}
-                {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-                {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
-                {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
-                {%- if settings.logo_light != blank -%}
-                  {{ settings.logo_light | image_url: width: 600 | image_tag:
-                    class: 'header__heading-logo motion-reduce header__heading-logo-light logo-light',
-                    widths: widths,
-                    height: logo_height,
-                    width: settings.logo_width,
-                    alt: logo_alt,
-                    sizes: sizes,
-                    preload: true
-                  }}
-                {% endif %}
-                {{ settings.logo | image_url: width: 600 | image_tag:
-                  class: 'header__heading-logo motion-reduce logo',
-                  widths: widths,
-                  height: logo_height,
-                  width: settings.logo_width,
-                  alt: logo_alt,
-                  sizes: sizes,
-                  preload: true
-                }}
-              </div>
-            {%- else -%}
-              <span class="h2">{{ shop.name }}</span>
-            {%- endif -%}
-            {%- if request.page_type == 'index' -%}
-              <span class="visually-hidden">{{ shop.name }}</span>
-            {%- endif -%}
-          </a>
+          {%- comment -%} Logo removed to match Free People layout where tabs act as the logo {%- endcomment -%}
 
-          <a
-            class="header-button header-cta-button"
-            id="Setmore_button_iframe"
-            href="https://moonridgecompany.setmore.com"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
 
-            BOOK A FREE HAT<br>EXPERIENCE
-          </a>
       {%- if request.page_type == 'index' -%}
         </h1>
       {%- else -%}
@@ -388,6 +432,17 @@
         endif
       endif
     %}
+
+    {%- comment -%} Mobile-only CTA booking button in the empty header space {%- endcomment -%}
+    <div class="header__mobile-cta">
+      <button
+        class="anywhere-book-now-button header__mobile-book-btn"
+        data-booking-url="https://moonridgecompany.setmore.com"
+        data-new-tab="false"
+      >
+        BOOK A FREE HAT EXPERIENCE
+      </button>
+    </div>
 
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
@@ -972,7 +1027,7 @@
       "id": "header_spacing",
       "min": 0,
       "max": 0.5,
-      "step": 0.05,
+      "step": 0.1,
       "unit": "em",
       "label": "Letter Spacing",
       "default": 0.1

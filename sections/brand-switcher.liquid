@@ -1,0 +1,341 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap');
+
+  .rm-brand-switcher {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 0;
+    padding-left: 15rem;
+    margin: 0;
+    position: relative;
+  }
+
+  .rm-brand-tabs {
+    display: flex;
+    align-items: stretch;
+    position: relative;
+  }
+
+  .rm-brand-tab {
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    color: #999;
+    text-decoration: none;
+    border-right: 1px solid #e0e0e0;
+    border-top: 3px solid transparent;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .rm-brand-tab.is-active {
+    background-color: #ffffff;
+    color: #312110;
+    border-top: 3px solid #C5A059; /* CSS fallback - JS slider will appear on top */
+    border-bottom: 1px solid #ffffff;
+    margin-bottom: -1px;
+    font-weight: 600;
+    z-index: 2;
+  }
+
+  .rm-brand-tab:hover:not(.is-active) {
+    color: #312110;
+    background-color: #f0f0f0;
+  }
+
+  /* The sliding gold indicator bar */
+  .rm-tab-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: #C5A059;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 10;
+    will-change: transform, width;
+  }
+  @media screen and (max-width: 749px) {
+    .rm-tab-slider {
+      top: auto;
+      bottom: 0;
+    }
+  }
+
+  .rm-brand-promo-btn {
+    font-family: var(--font-heading-family);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #312110;
+    background-color: transparent;
+    border: 1px solid #c5a059;
+    padding: 5px 14px;
+    margin-left: 24px;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+    align-self: center;
+  }
+
+  .rm-brand-promo-btn:hover {
+    background-color: #C5A059;
+    border-color: #C5A059;
+    color: #ffffff;
+  }
+
+  @media screen and (max-width: 749px) {
+    .rm-brand-switcher { 
+      padding-left: 0 !important;
+      display: flex !important;
+      align-items: stretch !important;
+      height: 60px;
+    }
+    .rm-brand-tabs { 
+      flex: 1;
+      display: flex !important; 
+      align-items: stretch;
+    }
+    .rm-brand-tab { 
+      flex: 1; 
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      font-size: 13px; 
+      border-right: 1px solid #e0e0e0;
+      border-top: none;
+    }
+    .rm-brand-tab.is-active {
+      border-top: none !important;
+    }
+    .rm-brand-tab:last-child {
+      border-right: none;
+    }
+    .rm-brand-promo-btn { 
+      display: none !important; 
+    }
+    .rm-brand-hamburger {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 50px;
+      background: none;
+      border: none;
+      border-right: 1px solid #e0e0e0;
+      cursor: pointer;
+      padding: 0;
+    }
+    .rm-brand-hamburger svg {
+      width: 22px !important;
+      height: 22px !important;
+    }
+    .rm-brand-switcher #cart-icon-bubble {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      align-self: stretch;
+      flex-shrink: 0;
+      width: 50px;
+      height: auto !important;
+      box-shadow: -1px 0 0 #e0e0e0;
+      padding: 0 !important;
+    }
+    .rm-brand-switcher #cart-icon-bubble svg {
+      width: 22px !important;
+      height: 22px !important;
+    }
+  }
+</style>
+
+<div class="rm-brand-switcher">
+  <button class="rm-brand-hamburger" onclick="document.querySelector('.header__icon--menu').click();" style="display: none;" aria-label="Menu">
+    <svg class="icon icon-hamburger" aria-hidden="true" focusable="false" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 1H17" stroke="#312110" stroke-width="2" stroke-linecap="round"/>
+      <path d="M1 8H17" stroke="#312110" stroke-width="2" stroke-linecap="round"/>
+      <path d="M1 15H17" stroke="#312110" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <div class="rm-brand-tabs" id="rm-brand-tabs">
+    <div class="rm-tab-slider" id="rm-tab-slider"></div>
+    {% for block in section.blocks %}
+      <a href="{{ block.settings.link }}"
+         class="rm-brand-tab {% if block.settings.is_active %}is-active{% endif %}"
+         data-tab-index="{{ forloop.index0 }}"
+         {{ block.shopify_attributes }}>
+        {% if block.settings.title == 'Moon Ridge' %}
+          <img src="{{ 'logo-horizontal.png' | asset_url }}" alt="Moon Ridge" style="height: 28px; width: auto; vertical-align: middle;">
+        {% else %}
+          {{ block.settings.title }}
+        {% endif %}
+      </a>
+    {% endfor %}
+  </div>
+
+  {% if section.settings.promo_button_text != blank %}
+    <script id="anywhere_book_now_script" src="https://assets.setmore.com/integration/book-now/live/v1/anywhere-book-now.js"></script>
+    <button id="Anywhere_button_iframe" 
+            class="rm-brand-promo-btn anywhere-book-now-button" 
+            data-booking-url="https://moonridgecompany.setmore.com" 
+            data-new-tab="false"
+            style="cursor: pointer;">
+      {{ section.settings.promo_button_text }}
+    </button>
+  {% endif %}
+</div>
+
+<script>
+  (function() {
+    function initTabSlider() {
+      var tabs      = document.querySelectorAll('#rm-brand-tabs .rm-brand-tab');
+      var slider    = document.getElementById('rm-tab-slider');
+      var container = document.getElementById('rm-brand-tabs');
+      if (!slider || !tabs.length) return;
+
+      function moveSliderTo(tab, instant) {
+        var containerRect = container.getBoundingClientRect();
+        var tabRect       = tab.getBoundingClientRect();
+        var offset = tabRect.left - containerRect.left;
+        if (instant) {
+          slider.style.transition = 'none';
+        }
+        slider.style.transform = 'translateX(' + offset + 'px)';
+        slider.style.width = tabRect.width + 'px';
+      }
+
+      // Determine active tab by matching current URL path
+      var currentPath = window.location.pathname;
+      var activeTab   = null;
+
+      // Find the best matching tab: prefer the tab whose href most closely matches current path
+      var bestMatch = 0;
+      tabs.forEach(function(tab) {
+        var href = tab.getAttribute('href') || '';
+        // Strip domain if present
+        var tabPath = href.replace(/^https?:\/\/[^\/]+/, '');
+        if (tabPath && currentPath.indexOf(tabPath) === 0 && tabPath.length > bestMatch) {
+          bestMatch = tabPath.length;
+          activeTab = tab;
+        }
+      });
+
+      // Fallback to the hardcoded is-active tab, then first tab
+      if (!activeTab) {
+        activeTab = document.querySelector('#rm-brand-tabs .rm-brand-tab.is-active') || tabs[0];
+      }
+
+      // Update visual active state
+      tabs.forEach(function(t) { t.classList.remove('is-active'); });
+      activeTab.classList.add('is-active');
+
+      // Position slider instantly on load (no animation)
+      moveSliderTo(activeTab, true);
+
+      // Re-enable smooth transition after two frames
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          slider.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1), width 0.35s cubic-bezier(0.4,0,0.2,1)';
+        });
+      });
+
+      // Slide to hovered tab
+      tabs.forEach(function(tab) {
+        tab.addEventListener('mouseenter', function() { moveSliderTo(tab); });
+      });
+
+      // Return to active tab on mouse leave
+      container.addEventListener('mouseleave', function() { moveSliderTo(activeTab); });
+    }
+
+    // Wait for full page load so image dimensions are correct
+    window.addEventListener('load', function() {
+      initTabSlider();
+      
+      // Move cart icon on mobile next to Events
+      if (window.innerWidth < 750) {
+        var cartIcon = document.getElementById('cart-icon-bubble');
+        var switcher = document.querySelector('.rm-brand-switcher');
+        if (cartIcon && switcher) {
+          switcher.appendChild(cartIcon);
+        }
+      }
+    });
+  })();
+</script>
+
+
+
+
+{% schema %}
+{
+  "name": "Brand Switcher Tabs",
+  "class": "section-brand-switcher",
+  "settings": [
+    {
+      "type": "text",
+      "id": "promo_button_text",
+      "label": "Promo Button Text",
+      "default": "Book A Free Hat Experience"
+    },
+    {
+      "type": "url",
+      "id": "promo_button_link",
+      "label": "Promo Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Brand Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab Name",
+          "default": "Brand Name"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Tab Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_active",
+          "label": "Is Active Tab?",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Switcher Tabs",
+      "blocks": [
+        {
+          "type": "tab",
+          "settings": {
+            "title": "Moon Ridge",
+            "is_active": true
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "title": "Rafter M",
+            "is_active": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

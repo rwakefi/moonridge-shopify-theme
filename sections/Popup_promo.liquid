@@ -27,9 +27,9 @@
 
         <div class="rm-popup-content">
           {% if section.settings.heading != blank %}
-            <h2 class="rm-popup-heading">
+            <div class="rm-popup-heading">
               {{ section.settings.heading }}
-            </h2>
+            </div>
           {% endif %}
 
           {% if section.settings.body_text != blank %}
@@ -45,6 +45,16 @@
             >
               {{ section.settings.button_label }}
             </a>
+          {% endif %}
+
+          {% if section.settings.shop_now_label != blank %}
+            <button
+              type="button"
+              class="rm-popup-shop-now"
+              data-rm-popup-close
+            >
+              {{ section.settings.shop_now_label }}
+            </button>
           {% endif %}
         </div>
       </div>
@@ -145,6 +155,29 @@
   opacity: 0.9;
 }
 
+/* SHOP NOW CLOSE BUTTON */
+.rm-popup-{{ section.id }} .rm-popup-shop-now {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px 22px;
+  border-radius: 999px;
+  border: 2px solid {{ section.settings.shop_now_border_color }};
+  background-color: {{ section.settings.shop_now_background }};
+  color: {{ section.settings.shop_now_text_color }};
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-body-family, inherit);
+  transition: opacity 0.2s ease;
+}
+
+.rm-popup-{{ section.id }} .rm-popup-shop-now:hover {
+  opacity: 0.8;
+}
+
 /* MOBILE OPTIMIZATION */
 @media screen and (max-width: 749px) {
   .rm-popup.rm-popup-{{ section.id }} {
@@ -181,6 +214,11 @@
     padding: 11px 18px;
     font-size: 13px;
   }
+
+  .rm-popup-{{ section.id }} .rm-popup-shop-now {
+    padding: 11px 18px;
+    font-size: 13px;
+  }
 }
 {%- endstyle -%}
 
@@ -197,7 +235,7 @@
       popupEl.style.display = 'flex';
 
       var overlay = popupEl.querySelector('[data-rm-popup-overlay]');
-      var closeBtn = popupEl.querySelector('[data-rm-popup-close]');
+      var closeButtons = popupEl.querySelectorAll('[data-rm-popup-close]');
 
       function closePopup() {
         popupEl.style.display = 'none';
@@ -211,9 +249,9 @@
       if (overlay) {
         overlay.addEventListener('click', closePopup);
       }
-      if (closeBtn) {
-        closeBtn.addEventListener('click', closePopup);
-      }
+      closeButtons.forEach(function(btn) {
+        btn.addEventListener('click', closePopup);
+      });
 
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
@@ -280,10 +318,10 @@
       "default": 3
     },
     {
-      "type": "text",
+      "type": "richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "Welcome to Moon Ridge Company"
+      "default": "<p>Welcome to Moon Ridge Company</p>"
     },
     {
       "type": "richtext",
@@ -301,6 +339,31 @@
       "type": "url",
       "id": "button_link",
       "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "shop_now_label",
+      "label": "Shop Now button label",
+      "default": "Shop Now",
+      "info": "This button closes the popup. Leave blank to hide it."
+    },
+    {
+      "type": "color",
+      "id": "shop_now_background",
+      "label": "Shop Now background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "shop_now_text_color",
+      "label": "Shop Now text color",
+      "default": "#312110"
+    },
+    {
+      "type": "color",
+      "id": "shop_now_border_color",
+      "label": "Shop Now border color",
+      "default": "#312110"
     },
     {
       "type": "color",

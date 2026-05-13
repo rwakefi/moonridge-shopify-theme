@@ -11,6 +11,32 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
+    "brand_switcher_xyz123": {
+      "type": "brand-switcher",
+      "blocks": {
+        "tab_1": {
+          "type": "tab",
+          "settings": {
+            "title": "Moon Ridge",
+            "link": "/",
+            "is_active": true
+          }
+        },
+        "tab_2": {
+          "type": "tab",
+          "settings": {
+            "title": "Events",
+            "link": "/pages/book-moonridge",
+            "is_active": false
+          }
+        }
+      },
+      "block_order": [
+        "tab_1",
+        "tab_2"
+      ],
+      "settings": {}
+    },
     "announcement_bar_MVm44A": {
       "type": "announcement-bar",
       "blocks": {
@@ -72,13 +98,13 @@
         ".header__heading-logo {height: 100%; max-width: 100%;}"
       ],
       "settings": {
-        "logo_position": "top-center",
+        "logo_position": "middle-left",
         "menu": "lifestyles-menu",
         "menu_type_desktop": "dropdown",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": false,
-        "color_scheme": "background-2",
-        "menu_color_scheme": "background-1",
+        "color_scheme": "accent-2",
+        "menu_color_scheme": "accent-2",
         "header_menu_size": 15,
         "header_spacing": 0.5,
         "header_menu_transform": "uppercase",
@@ -129,6 +155,7 @@
   },
   "order": [
     "announcement_bar_MVm44A",
+    "brand_switcher_xyz123",
     "1775539951d5ecae59",
     "header",
     "custom_fonts_NVpMpR",

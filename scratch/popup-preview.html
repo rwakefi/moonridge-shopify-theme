@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moon Ridge — Popup Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Page scaffold ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #1a1209;
+      color: #f5efe6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .preview-label {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.4;
+    }
+
+    .show-popup-btn {
+      padding: 12px 28px;
+      border-radius: 999px;
+      border: none;
+      background: #c9973a;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+    .show-popup-btn:hover { opacity: 0.85; }
+
+    /* ── Popup Variables (mirrors Shopify settings) ── */
+    :root {
+      --popup-bg: #ffffff;
+      --popup-text: #1f1d24;
+      --btn-bg: #312110;
+      --btn-text: #ffffff;
+      --shop-now-bg: #ffffff;
+      --shop-now-text: #312110;
+      --shop-now-border: #312110;
+    }
+
+    /* ── Popup Wrapper ── */
+    .rm-popup {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+    }
+    .rm-popup.open { display: flex; }
+
+    /* ── Overlay ── */
+    .rm-popup-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      animation: fadeIn .25s ease;
+    }
+
+    /* ── Container ── */
+    .rm-popup-container {
+      position: relative;
+      z-index: 2;
+      max-width: 480px;
+      width: 90%;
+      background-color: var(--popup-bg);
+      color: var(--popup-text);
+      border-radius: 16px;
+      padding: 28px 24px 24px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+      animation: slideUp .3s cubic-bezier(.22,.68,0,1.2);
+    }
+
+    /* ── Close ── */
+    .rm-popup-close {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      background: transparent;
+      border: none;
+      color: var(--popup-text);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity .2s;
+    }
+    .rm-popup-close:hover { opacity: 1; }
+
+    /* ── Content ── */
+    .rm-popup-content { text-align: center; }
+
+    .rm-popup-heading {
+      margin: 8px 0 12px;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--popup-text);
+    }
+
+    .rm-popup-body {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 18px;
+      color: var(--popup-text);
+    }
+
+    /* ── Primary CTA (link) ── */
+    .rm-popup-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+      background-color: var(--btn-bg);
+      color: var(--btn-text);
+      transition: opacity .2s;
+    }
+    .rm-popup-button:hover { opacity: 0.9; }
+
+    /* ── Shop Now close button ── */
+    .rm-popup-shop-now {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      padding: 11px 22px;
+      border-radius: 999px;
+      border: 2px solid var(--shop-now-border);
+      background-color: var(--shop-now-bg);
+      color: var(--shop-now-text);
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      transition: opacity .2s;
+    }
+    .rm-popup-shop-now:hover { opacity: 0.8; }
+
+    /* ── Mobile ── */
+    @media (max-width: 749px) {
+      .rm-popup { padding: 0 12px; }
+      .rm-popup-container {
+        width: 100%;
+        max-width: 380px;
+        padding: 22px 18px 18px;
+        border-radius: 14px;
+      }
+      .rm-popup-close { top: 6px; right: 10px; font-size: 24px; }
+      .rm-popup-heading { font-size: 18px; margin-bottom: 10px; }
+      .rm-popup-body { font-size: 13px; margin-bottom: 16px; }
+      .rm-popup-button, .rm-popup-shop-now {
+        width: 100%;
+        padding: 11px 18px;
+        font-size: 13px;
+      }
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(24px) scale(.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* ── Controls panel ── */
+    .controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 12px;
+      color: rgba(255,255,255,.5);
+      backdrop-filter: blur(8px);
+    }
+    .controls p { margin-bottom: 6px; font-weight: 600; color: rgba(255,255,255,.7); }
+    .controls label { display: block; margin-bottom: 8px; cursor: pointer; }
+    .controls input[type=text], .controls input[type=color] {
+      margin-left: 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      padding: 2px 6px;
+      font-size: 11px;
+      width: 120px;
+    }
+    .controls input[type=color] { width: 36px; padding: 1px; height: 22px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <span class="preview-label">Moon Ridge Popup — Local Preview</span>
+  <button class="show-popup-btn" onclick="openPopup()">Show Popup</button>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- POPUP (mirrors Popup_promo.liquid output exactly)  -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="rm-popup" id="rm-popup" role="dialog" aria-modal="true" aria-label="Promo popup">
+    <div class="rm-popup-overlay" id="rm-popup-overlay"></div>
+    <div class="rm-popup-container">
+      <button type="button" class="rm-popup-close" aria-label="Close popup" id="rm-popup-close">&times;</button>
+
+      <div class="rm-popup-content">
+        <h2 class="rm-popup-heading" id="popup-heading">Welcome to Moon Ridge Company</h2>
+
+        <div class="rm-popup-body" id="popup-body">
+          <p>We shape, size, and customize hats in Fayetteville, Arkansas. Join our list for updates on new arrivals, events, and hat experiences.</p>
+        </div>
+
+        <!-- Primary CTA link -->
+        <a href="#" class="rm-popup-button" id="popup-cta">Learn More</a>
+
+        <!-- Shop Now close button (NEW) -->
+        <button type="button" class="rm-popup-shop-now" id="popup-shop-now">Shop Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- Live Controls                                      -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="controls">
+    <p>⚙ Live Controls</p>
+    <label>
+      Heading
+      <input type="text" id="ctrl-heading" value="Welcome to Moon Ridge Company" oninput="updateHeading(this.value)" />
+    </label>
+    <label>
+      Shop Now Label
+      <input type="text" id="ctrl-shop-now" value="Shop Now" oninput="updateShopNow(this.value)" />
+    </label>
+    <label>
+      Popup BG
+      <input type="color" value="#ffffff" oninput="setCssVar('--popup-bg', this.value)" />
+    </label>
+    <label>
+      Popup Text
+      <input type="color" value="#1f1d24" oninput="setCssVar('--popup-text', this.value)" />
+    </label>
+    <label>
+      Button BG
+      <input type="color" value="#312110" oninput="setCssVar('--btn-bg', this.value)" />
+    </label>
+    <label>
+      Shop Now Border
+      <input type="color" value="#312110" oninput="setCssVar('--shop-now-border', this.value)" />
+    </label>
+  </div>
+
+  <script>
+    const popup    = document.getElementById('rm-popup');
+    const overlay  = document.getElementById('rm-popup-overlay');
+    const closeBtn = document.getElementById('rm-popup-close');
+    const shopNow  = document.getElementById('popup-shop-now');
+
+    function openPopup()  { popup.classList.add('open'); }
+    function closePopup() { popup.classList.remove('open'); }
+
+    overlay.addEventListener('click', closePopup);
+    closeBtn.addEventListener('click', closePopup);
+    shopNow.addEventListener('click', closePopup);       // ← Shop Now closes popup
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closePopup();
+    });
+
+    // Live controls
+    function updateHeading(val) {
+      document.getElementById('popup-heading').textContent = val;
+    }
+    function updateShopNow(val) {
+      document.getElementById('popup-shop-now').textContent = val;
+    }
+    function setCssVar(prop, val) {
+      document.documentElement.style.setProperty(prop, val);
+    }
+
+    // Auto-open on load after 1s
+    setTimeout(openPopup, 800);
+  </script>
+</body>
+</html>

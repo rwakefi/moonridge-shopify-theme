@@ -1,31 +1,116 @@
 {% style %}
+  .events-video-banner {
+    position: relative;
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #000;
+  }
+  .events-video-banner__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  .events-video-banner__bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .events-video-banner__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+  }
+  .events-video-banner__content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: #ffffff;
+    max-width: 800px;
+    padding: 0 20px;
+  }
+  .events-video-banner__title {
+    font-family: var(--font-heading-family);
+    font-size: 56px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    color: #fff;
+    line-height: 1.1;
+  }
+  .events-video-banner__text {
+    font-size: 18px;
+    margin: 0 0 32px 0;
+    color: #fff;
+    line-height: 1.5;
+  }
+  .events-video-banner__buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .banner-button {
+    display: inline-block;
+    padding: 14px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .banner-button--primary {
+    background: #ffffff;
+    color: #111111;
+  }
+  .banner-button--primary:hover {
+    background: #e6e6e6;
+  }
+  .banner-button--secondary {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+  }
+  .banner-button--secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
   .events-directory {
     max-width: 1200px;
     margin: 0 auto;
     padding: 60px 20px;
     font-family: var(--font-body-family);
   }
-  .events-header {
-    text-align: center;
-    margin-bottom: 50px;
-  }
-  .events-header h1 {
-    font-family: var(--font-heading-family);
-    font-size: 42px;
-    font-weight: 700;
-    margin: 0 0 16px 0;
-    color: #111;
-  }
-  .events-header p {
-    font-size: 18px;
-    color: #555;
-    max-width: 600px;
-    margin: 0 auto;
-  }
   .events-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
+  }
+  .event-category-header {
+    grid-column: 1 / -1;
+    margin-top: 40px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  .event-category-header h2 {
+    font-family: var(--font-heading-family);
+    font-size: 32px;
+    font-weight: 600;
+    color: #111;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
   }
   .event-card {
     border: 1px solid #eaeaea;
@@ -84,43 +169,64 @@
   }
 
   @media screen and (max-width: 768px) {
-    .events-header h1 {
-      font-size: 32px;
+    .events-video-banner__title {
+      font-size: 36px;
+    }
+    .event-category-header h2 {
+      font-size: 26px;
     }
   }
 {% endstyle %}
 
-<div class="events-directory">
-  <div class="events-header">
-    <h1>{{ section.settings.title }}</h1>
-    <p>{{ section.settings.description }}</p>
+{% if section.settings.hero_video != blank %}
+  <div class="events-video-banner">
+    <div class="events-video-banner__bg">
+      {{ section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: "1600x" }}
+    </div>
+    <div class="events-video-banner__overlay"></div>
+      <div class="events-video-banner__content">
+      {% if section.settings.banner_title != blank %}
+        <h1 class="events-video-banner__title">{{ section.settings.banner_title }}</h1>
+      {% endif %}
+      {% if section.settings.banner_text != blank %}
+        <div class="events-video-banner__text">{{ section.settings.banner_text }}</div>
+      {% endif %}
+    </div>
   </div>
+{% endif %}
 
+<div class="events-directory">
   <div class="events-grid">
     {% for block in section.blocks %}
-      <div class="event-card" {{ block.shopify_attributes }}>
-        {% if block.settings.image != blank %}
-          <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title | escape }}" class="event-card__image">
-        {% else %}
-          {{ 'collection-1' | placeholder_svg_tag: 'event-card__image' }}
-        {% endif %}
-        
-        <div class="event-card__content">
-          {% if block.settings.date != blank %}
-            <div class="event-card__date">{{ block.settings.date }}</div>
-          {% endif %}
-          
-          <h3 class="event-card__title">{{ block.settings.title }}</h3>
-          
-          {% if block.settings.description != blank %}
-            <div class="event-card__desc">{{ block.settings.description }}</div>
-          {% endif %}
-          
-          {% if block.settings.link != blank %}
-            <a href="{{ block.settings.link }}" class="event-card__button">{{ block.settings.button_text }}</a>
-          {% endif %}
+      {% if block.type == 'category_header' %}
+        <div class="event-category-header" id="{{ block.settings.anchor_id | handleize }}" {{ block.shopify_attributes }}>
+          <h2>{{ block.settings.title }}</h2>
         </div>
-      </div>
+      {% elsif block.type == 'event' %}
+        <div class="event-card" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title | escape }}" class="event-card__image">
+          {% else %}
+            {{ 'collection-1' | placeholder_svg_tag: 'event-card__image' }}
+          {% endif %}
+          
+          <div class="event-card__content">
+            {% if block.settings.date != blank %}
+              <div class="event-card__date">{{ block.settings.date }}</div>
+            {% endif %}
+            
+            <h3 class="event-card__title">{{ block.settings.title }}</h3>
+            
+            {% if block.settings.description != blank %}
+              <div class="event-card__desc">{{ block.settings.description }}</div>
+            {% endif %}
+            
+            {% if block.settings.link != blank %}
+              <a href="{{ block.settings.link }}" class="event-card__button">{{ block.settings.button_text }}</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
     {% endfor %}
     
     {% if section.blocks.size == 0 %}
@@ -136,19 +242,44 @@
   "name": "Events Directory",
   "settings": [
     {
+      "type": "video",
+      "id": "hero_video",
+      "label": "Hero Video (Optional)",
+      "info": "Upload a video to Shopify and select it here to display a full-width video at the top."
+    },
+    {
       "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Upcoming Events"
+      "id": "banner_title",
+      "label": "Video Overlay Title",
+      "default": "Book Us For Your Next Event"
     },
     {
       "type": "richtext",
-      "id": "description",
-      "label": "Description",
-      "default": "<p>Join us at Moon Ridge for our upcoming experiences, pop-ups, and community gatherings.</p>"
+      "id": "banner_text",
+      "label": "Video Overlay Text",
+      "default": "<p>Discover the Moon Ridge experience.</p>"
     }
   ],
   "blocks": [
+    {
+      "type": "category_header",
+      "name": "Category Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Name",
+          "default": "Weddings"
+        },
+        {
+          "type": "text",
+          "id": "anchor_id",
+          "label": "Anchor ID",
+          "info": "Used for dropdown links. Example: 'weddings'. The link will be /pages/events#weddings",
+          "default": "weddings"
+        }
+      ]
+    },
     {
       "type": "event",
       "name": "Event",
@@ -195,10 +326,21 @@
       "name": "Events Directory",
       "blocks": [
         {
-          "type": "event"
+          "type": "category_header",
+          "settings": {
+            "title": "Weddings",
+            "anchor_id": "weddings"
+          }
         },
         {
           "type": "event"
+        },
+        {
+          "type": "category_header",
+          "settings": {
+            "title": "In Store",
+            "anchor_id": "in-store"
+          }
         },
         {
           "type": "event"

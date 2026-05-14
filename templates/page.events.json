@@ -17,7 +17,7 @@
           "settings": {
             "title": "Weddings",
             "image": "shopify://shop_images/2B1725F5-8B0B-4779-9360-73AD6A26FF8C_1_105_c.jpg",
-            "description": "<p>Book us for your Wedding</p>",
+            "description": "<p>Make your wedding weekend unforgettable with a custom hat experience designed for brides, grooms, bridal parties, and guests. From custom shaping and branding to personalized bands and accessories, Moon Ridge creates hats that become lasting keepsakes long after the wedding day ends. Whether it’s a welcome party, rehearsal dinner, or day-of activation, we bring a stylish and interactive experience that guests will remember forever.</p>",
             "anchor_id": "weddings"
           }
         },
@@ -62,6 +62,8 @@
         "pop_ups"
       ],
       "settings": {
+        "hero_video": "shopify://files/videos/IMG_0859_774d2080-5022-489c-a286-8e0d88864e29.mov",
+        "video_alignment": "center center",
         "banner_title": "Book Us For Your Next Event",
         "banner_text": "<p>Discover the Moon Ridge experience.</p>"
       }

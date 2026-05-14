@@ -9,10 +9,10 @@
   }
 
   /* Desktop/mobile video swap */
-  .events-video--mobile { display: none; }
+  video.events-video--mobile { display: none !important; }
   @media screen and (max-width: 749px) {
-    .events-video--desktop { display: none; }
-    .events-video--mobile  { display: block; }
+    video.events-video--desktop { display: none !important; }
+    video.events-video--mobile  { display: block !important; }
   }
   .events-video-banner {
     position: relative;
@@ -27,9 +27,9 @@
 
   @media screen and (min-width: 990px) {
     .events-video-banner {
-      min-height: auto;
+      min-height: 600px;
       aspect-ratio: 16 / 9;
-      max-height: 85vh;
+      max-height: 80vh;
     }
   }
   .events-video-banner__bg {
@@ -41,238 +41,11 @@
     z-index: 1;
   }
   .events-video-banner__bg video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
     object-position: var(--video-alignment, center center);
     display: block;
-  }
-  .events-video-banner__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 2;
-  }
-  .events-video-banner__content {
-    position: relative;
-    z-index: 3;
-    text-align: center;
-    color: #ffffff;
-    max-width: 800px;
-    padding: 0 20px;
-  }
-  .events-video-banner__title {
-    font-family: var(--font-heading-family);
-    font-size: 56px;
-    font-weight: 700;
-    margin: 0 0 16px 0;
-    color: #fff;
-    line-height: 1.05;
-    letter-spacing: 0.01em;
-  }
-  .events-video-banner__text {
-    font-size: 18px;
-    margin: 0 0 32px 0;
-    color: #fff;
-    line-height: 1.5;
-  }
-  .events-video-banner__buttons {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .banner-button {
-    display: inline-block;
-    padding: 14px 32px;
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-  .banner-button--primary {
-    background: #ffffff;
-    color: #111111;
-  }
-  .banner-button--primary:hover {
-    background: #e6e6e6;
-  }
-  .banner-button--secondary {
-    background: transparent;
-    color: #ffffff;
-    border: 1px solid #ffffff;
-  }
-  .banner-button--secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  .events-directory {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 20px;
-    font-family: var(--font-body-family);
-  }
-  .events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-  }
-  .event-category-header {
-    grid-column: 1 / -1;
-    margin-top: 60px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    gap: 32px;
-  }
-  .event-category-header__image-container {
-    flex-shrink: 0;
-    width: 180px;
-    height: 180px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 6px solid #fff;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-  }
-  .event-category-header__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .event-category-header__text {
-    flex-grow: 1;
-  }
-  .event-category-header h2 {
-    font-family: var(--font-heading-family);
-    font-size: 36px;
-    font-weight: 600;
-    color: #111;
-    margin: 0 0 8px 0;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-  .event-category-header__desc {
-    font-size: 16px;
-    color: #555;
-    max-width: 700px;
-    line-height: 1.6;
-  }
-  .event-card {
-    border: 1px solid #eaeaea;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .event-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.06);
-  }
-  .event-card__image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    background: #f5f5f5;
-  }
-  .event-card__content {
-    padding: 24px;
-  }
-  .event-card__date {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #C5A059;
-    margin-bottom: 8px;
-    letter-spacing: 0.5px;
-  }
-  .event-card__title {
-    font-family: var(--font-heading-family);
-    font-size: 22px;
-    font-weight: 600;
-    margin: 0 0 12px 0;
-    color: #111;
-  }
-  .event-card__desc {
-    font-size: 15px;
-    color: #555;
-    line-height: 1.5;
-    margin: 0 0 20px 0;
-  }
-  .event-card__button {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #111;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: background 0.2s;
-  }
-  .event-card__button:hover {
-    background: #333;
-  }
-
-  .events-form-wrapper {
-    grid-column: 1 / -1;
-    max-width: 800px;
-    margin: 40px auto 0;
-    width: 100%;
-    padding: 40px;
-    background: #fafafa;
-    border-radius: 8px;
-    border: 1px solid #eaeaea;
-  }
-  .events-form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-  .events-form-grid .field--full-width {
-    grid-column: 1 / -1;
-  }
-
-  @media screen and (min-width: 990px) {
-    .events-video-banner {
-      min-height: 0 !important;
-      height: auto !important;
-      aspect-ratio: auto !important;
-      max-height: none !important;
-      display: block !important;
-    }
-    .events-video-banner__bg {
-      position: relative !important;
-      top: auto !important;
-      left: auto !important;
-      height: auto !important;
-      line-height: 0;
-    }
-    .events-video-banner__bg video {
-      width: 100% !important;
-      height: auto !important;
-      object-fit: contain !important;
-    }
-    .events-video-banner__overlay {
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      height: 100% !important;
-      width: 100% !important;
-    }
-    .events-video-banner__content {
-      position: absolute !important;
-      top: 50% !important;
-      left: 50% !important;
-      transform: translate(-50%, -50%) !important;
-      width: 100% !important;
-      height: auto !important;
-    }
   }
   
   @media screen and (max-width: 768px) {

@@ -12,6 +12,9 @@
     "main": {
       "type": "main-events",
       "settings": {
+        "hero_video": "shopify://files/videos/My Movie_5159bbb4-6c16-4260-9745-b831ce0f449f.mp4",
+        "banner_title": "Book Us For Your Next Event",
+        "banner_text": "<p>Discover the Moon Ridge experience.</p>"
       }
     }
   },

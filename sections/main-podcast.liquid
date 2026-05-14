@@ -1,0 +1,472 @@
+{% style %}
+  .podcast-directory {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    font-family: var(--font-body-family);
+    color: #333;
+  }
+
+  /* Header Area */
+  .podcast-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .podcast-header__image {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  .podcast-header__image img {
+    width: {{ section.settings.logo_width }}px;
+    height: {{ section.settings.logo_width }}px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  .podcast-header__text h1 {
+    font-family: var(--font-heading-family);
+    font-size: 42px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: #111;
+    line-height: 1.1;
+  }
+  .podcast-header__text p {
+    font-size: 18px;
+    color: #555;
+    margin: 0;
+  }
+
+  .podcast-platforms {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .platform-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #f1f1f1;
+    border-radius: 40px;
+    text-decoration: none;
+    color: #111;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .platform-badge:hover {
+    background: #e5e5e5;
+  }
+  .platform-badge img {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Description Area */
+  .podcast-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  /* Search Area */
+  .podcast-search {
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .podcast-search input {
+    width: 100%;
+    padding: 12px 16px 12px 40px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fafafa;
+    color: #333;
+  }
+  .podcast-search svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: #888;
+  }
+
+  /* Episode List */
+  .podcast-episode {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+  }
+  .podcast-episode:last-child {
+    border-bottom: none;
+  }
+  .podcast-episode__image img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+  .podcast-episode__content {
+    flex: 1;
+  }
+  .podcast-episode__content a {
+    text-decoration: none;
+    color: inherit;
+  }
+  .podcast-episode__title {
+    font-family: var(--font-heading-family);
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #111;
+    transition: color 0.2s;
+  }
+  .podcast-episode__content a:hover .podcast-episode__title {
+    color: #C5A059;
+  }
+  .podcast-episode__meta {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .podcast-episode__badge {
+    border: 1px solid #555;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #555;
+  }
+  .podcast-episode__desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+    margin: 0;
+  }
+  .podcast-loading {
+    text-align: center;
+    padding: 40px;
+    color: #777;
+  }
+
+  /* Mobile Adjustments */
+  @media screen and (max-width: 768px) {
+    .podcast-header {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .podcast-header__image img {
+      width: 200px;
+      height: 200px;
+    }
+    .podcast-header__text h1 {
+      font-size: 32px;
+    }
+    .podcast-episode {
+      flex-direction: column;
+      gap: 16px;
+    }
+    .podcast-episode__image img {
+      width: 80px;
+      height: 80px;
+    }
+  }
+{% endstyle %}
+
+<div class="podcast-directory" data-rss-url="{{ section.settings.rss_url }}">
+  <!-- Header -->
+  <div class="podcast-header">
+    <div class="podcast-header__image">
+      {% if section.settings.podcast_image != blank %}
+        <img src="{{ section.settings.podcast_image | image_url: width: 600 }}" alt="{{ section.settings.title | escape }}">
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+    <div class="podcast-header__text">
+      <h1>{{ section.settings.title }}</h1>
+      <p>{{ section.settings.subtitle }}</p>
+      
+      <div class="podcast-platforms">
+        {% assign apple_link = section.settings.link_apple | default: 'https://podcasts.apple.com/podcast/id1885368774' %}
+        {% if apple_link != blank %}
+          <a href="{{ apple_link }}" target="_blank" class="platform-badge">
+            <img src="https://cdn.simpleicons.org/applepodcasts/9933CC" alt="Apple Podcasts">
+            Apple Podcasts
+          </a>
+        {% endif %}
+        
+        {% assign spotify_link = section.settings.link_spotify | default: 'https://open.spotify.com/show/2qMq6vy5mQpHobuvzFzlmL' %}
+        {% if spotify_link != blank %}
+          <a href="{{ spotify_link }}" target="_blank" class="platform-badge">
+            <img src="https://cdn.simpleicons.org/spotify/1DB954" alt="Spotify">
+            Spotify
+          </a>
+        {% endif %}
+
+        {% assign youtube_link = section.settings.link_youtube | default: 'https://www.youtube.com/playlist?list=PLCHmsY81LB3sWb8zMAiEDMAnex-dfNoc7' %}
+        {% if youtube_link != blank %}
+          <a href="{{ youtube_link }}" target="_blank" class="platform-badge">
+            <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube">
+            YouTube
+          </a>
+        {% endif %}
+
+        {% assign amazon_link = section.settings.link_amazon %}
+        {% if amazon_link != blank %}
+          <a href="{{ amazon_link }}" target="_blank" class="platform-badge">
+            <img src="https://cdn.simpleicons.org/amazon/000000" alt="Amazon">
+            Amazon
+          </a>
+        {% endif %}
+
+        {% assign iheart_link = section.settings.link_iheart | default: 'https://iheart.com/podcast/333528031/' %}
+        {% if iheart_link != blank %}
+          <a href="{{ iheart_link }}" target="_blank" class="platform-badge">
+            <img src="https://cdn.simpleicons.org/iheartradio/C6002B" alt="iHeartRadio">
+            iHeartRadio
+          </a>
+        {% endif %}
+
+        {% assign deezer_link = section.settings.link_deezer | default: 'https://deezer.com/show/1003045091' %}
+        {% if deezer_link != blank %}
+          <a href="{{ deezer_link }}" target="_blank" class="platform-badge">
+            <img src="https://cdn.simpleicons.org/deezer/000000" alt="Deezer">
+            Deezer
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="podcast-description">
+    {{ section.settings.description }}
+  </div>
+
+  <!-- Search -->
+  {% if section.settings.show_search %}
+  <div class="podcast-search">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    <input type="text" id="podcastSearchInput" placeholder="Search podcast...">
+  </div>
+  {% endif %}
+
+  <!-- Episodes List Container -->
+  <div class="podcast-episodes-list" id="podcastEpisodesList">
+    <div class="podcast-loading">Loading episodes...</div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('.podcast-directory');
+    const rssUrl = section.getAttribute('data-rss-url');
+    const listContainer = document.getElementById('podcastEpisodesList');
+    const searchInput = document.getElementById('podcastSearchInput');
+
+    if (!rssUrl) {
+      listContainer.innerHTML = '<div class="podcast-loading">Please configure your RSS URL in the theme settings.</div>';
+      return;
+    }
+
+    // Use rss2json API to bypass CORS issues
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        if (data.status !== 'ok') {
+          throw new Error('Failed to load feed');
+        }
+
+        const items = data.items;
+        listContainer.innerHTML = ''; // Clear loading state
+
+        const fallbackImage = `{% if section.settings.podcast_image != blank %}{{ section.settings.podcast_image | image_url: width: 240 }}{% else %}https://cdn.shopify.com/s/images/themes/product-1.png{% endif %}`;
+
+        items.forEach((item, index) => {
+          // Format Date
+          const pubDate = new Date(item.pubDate);
+          const dateString = pubDate.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+
+          // Extract plain text snippet from description
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = item.description;
+          let textSnippet = tempDiv.textContent || tempDiv.innerText || '';
+          if (textSnippet.length > 200) {
+            textSnippet = textSnippet.substring(0, 200) + '...';
+          }
+
+          // Use item image or fallback to main podcast image
+          const episodeImage = item.thumbnail || item.enclosure.link || fallbackImage;
+          const isLatest = index === 0;
+          const badgeHtml = isLatest ? `<span class="podcast-episode__badge">Latest Episode</span>` : '';
+          
+          // Try to get duration if available (rss2json sometimes puts it in enclosure or description, we will just use date for now if duration is complex)
+          
+          const episodeHtml = `
+            <div class="podcast-episode" data-title="${item.title.toLowerCase().replace(/"/g, '&quot;')}">
+              <div class="podcast-episode__image">
+                <img src="${episodeImage}" alt="${item.title.replace(/"/g, '&quot;')}">
+              </div>
+              <div class="podcast-episode__content">
+                <a href="${item.link}" target="_blank" rel="noopener noreferrer">
+                  <h2 class="podcast-episode__title">${item.title}</h2>
+                </a>
+                <div class="podcast-episode__meta">
+                  <span>${dateString}</span>
+                  ${badgeHtml ? '<span>|</span>' + badgeHtml : ''}
+                </div>
+                <div class="podcast-episode__desc">
+                  <p>${textSnippet}</p>
+                </div>
+              </div>
+            </div>
+          `;
+          listContainer.insertAdjacentHTML('beforeend', episodeHtml);
+        });
+
+        // Setup search functionality after episodes are loaded
+        if(searchInput) {
+          searchInput.addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            const episodes = listContainer.querySelectorAll('.podcast-episode');
+            episodes.forEach(episode => {
+              const title = episode.getAttribute('data-title');
+              if(title.includes(term)) {
+                episode.style.display = 'flex';
+              } else {
+                episode.style.display = 'none';
+              }
+            });
+          });
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching podcast feed:', error);
+        listContainer.innerHTML = '<div class="podcast-loading">Unable to load episodes at this time. Please try again later.</div>';
+      });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Podcast Directory",
+  "settings": [
+    {
+      "type": "text",
+      "id": "rss_url",
+      "label": "Podcast RSS Feed URL",
+      "default": "https://api.riverside.com/hosting/PlYr6xeo.rss",
+      "info": "Provide the direct RSS feed URL to automatically load your episodes."
+    },
+    {
+      "type": "image_picker",
+      "id": "podcast_image",
+      "label": "Podcast Main Image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 100,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo Size",
+      "default": 280
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Podcast Title",
+      "default": "The Moon Ridge Podcast"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle / Host",
+      "default": "Hosted by Zack Wakefield"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Podcast Description",
+      "default": "<p>The Moon Ridge Podcast is about the things we love. Travel, hats, interior design, great brands, great friends, and the stories that come from a life well lived.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show Search Bar",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Platform Links"
+    },
+    {
+      "type": "url",
+      "id": "link_apple",
+      "label": "Apple Podcasts URL"
+    },
+    {
+      "type": "url",
+      "id": "link_spotify",
+      "label": "Spotify URL"
+    },
+    {
+      "type": "url",
+      "id": "link_youtube",
+      "label": "YouTube URL"
+    },
+    {
+      "type": "url",
+      "id": "link_amazon",
+      "label": "Amazon Podcasts URL"
+    },
+    {
+      "type": "url",
+      "id": "link_iheart",
+      "label": "iHeartRadio URL"
+    },
+    {
+      "type": "url",
+      "id": "link_deezer",
+      "label": "Deezer URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Podcast Directory",
+      "settings": {
+        "rss_url": "https://api.riverside.com/hosting/PlYr6xeo.rss",
+        "link_apple": "https://podcasts.apple.com/podcast/id1885368774",
+        "link_spotify": "https://open.spotify.com/show/2qMq6vy5mQpHobuvzFzlmL",
+        "link_youtube": "https://www.youtube.com/playlist?list=PLCHmsY81LB3sWb8zMAiEDMAnex-dfNoc7",
+        "link_iheart": "https://iheart.com/podcast/333528031/",
+        "link_deezer": "https://deezer.com/show/1003045091"
+      }
+    }
+  ]
+}
+{% endschema %}

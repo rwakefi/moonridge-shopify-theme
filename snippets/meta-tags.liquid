@@ -6,6 +6,10 @@
     assign primary_keyword = collection.title
   elsif request.page_type == 'article'
     assign primary_keyword = article.title
+  elsif request.page_type == 'page'
+    assign primary_keyword = page.title
+  elsif page_title != blank
+    assign primary_keyword = page_title
   endif
 
   assign secondary_keyword = "Expert Hat Restoration"

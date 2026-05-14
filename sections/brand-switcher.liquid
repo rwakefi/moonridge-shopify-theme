@@ -59,6 +59,12 @@
   /* Slider div kept but hidden — pure CSS handles active state now */
   .rm-tab-slider { display: none; }
 
+  .rm-brand-tab-logo {
+    height: 38px;
+    width: auto;
+    display: block;
+  }
+
   .rm-brand-promo-btn {
     font-family: var(--font-heading-family);
     font-size: 11px;
@@ -106,6 +112,9 @@
       border-top: none;
       padding: 8px 10px !important;
       line-height: 1.4;
+    }
+    .rm-brand-tab-logo {
+      height: 26px !important;
     }
     .rm-brand-tab.is-active {
       /* Keep top border as fallback */
@@ -184,7 +193,7 @@
          data-tab-index="{{ forloop.index0 }}"
          {{ block.shopify_attributes }}>
         {% if block.settings.title == 'Moon Ridge' %}
-          <img src="{{ 'logo-horizontal.png' | asset_url }}" alt="Moon Ridge" style="height: 38px; width: auto; display: block;">
+          <img src="{{ 'logo-horizontal.png' | asset_url }}" alt="Moon Ridge" class="rm-brand-tab-logo">
         {% else %}
           {{ block.settings.title }}
         {% endif %}

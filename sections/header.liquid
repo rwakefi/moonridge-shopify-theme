@@ -164,7 +164,6 @@
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     min-height: 52px;
-    border-bottom: 1px solid #e0e0e0;
   }
 
   .header__inline-menu, .list-menu--inline {
@@ -387,7 +386,7 @@
   endfor
 -%}
 
-<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}" style="background: #ffffff !important; background-image: none !important; border-top: none !important; box-shadow: none !important;">
+<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}" style="background: #ffffff !important; background-image: none !important; border-top: none !important; box-shadow: none !important; border-bottom: 1px solid #e0e0e0 !important;">
   {%- liquid
     assign social_links = false
     assign localization_forms = false

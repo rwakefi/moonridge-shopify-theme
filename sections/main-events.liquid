@@ -8,9 +8,16 @@
     scroll-behavior: smooth;
   }
 
-  /* Desktop/mobile video swap */
-  video.events-video--mobile { display: none !important; }
-  @media screen and (max-width: 749px) {
+  /* Three-way video swap: mobile / laptop / desktop */
+  video.events-video--mobile  { display: none !important; }
+  video.events-video--laptop  { display: none !important; }
+  /* Laptop (990px–1399px) */
+  @media screen and (min-width: 990px) and (max-width: 1399px) {
+    video.events-video--desktop { display: none !important; }
+    video.events-video--laptop  { display: block !important; }
+  }
+  /* Mobile (up to 989px) */
+  @media screen and (max-width: 989px) {
     video.events-video--desktop { display: none !important; }
     video.events-video--mobile  { display: block !important; }
   }
@@ -74,15 +81,25 @@
     <div class="events-video-banner__bg">
       {%- liquid
         assign poster = section.settings.poster_image | image_url: width: 1600
-        assign mobile_video = section.settings.mobile_video | default: section.settings.hero_video
+        assign laptop_video = section.settings.laptop_video | default: section.settings.hero_video
+        assign mobile_video = section.settings.mobile_video | default: laptop_video
       -%}
-      
+
+      {{- '<!-- Desktop video (1400px+) -->' }}
       <video class="events-video--desktop" autoplay loop muted playsinline poster="{{ poster }}">
         {% for source in section.settings.hero_video.sources %}
           <source src="{{ source.url }}" type="{{ source.mime_type }}">
         {% endfor %}
       </video>
-      
+
+      {{- '<!-- Laptop video (990px–1399px): uses laptop_video if set, else falls back to desktop video -->' }}
+      <video class="events-video--laptop" autoplay loop muted playsinline poster="{{ poster }}">
+        {% for source in laptop_video.sources %}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {% endfor %}
+      </video>
+
+      {{- '<!-- Mobile video (up to 989px): uses mobile_video if set, else laptop, else desktop -->' }}
       <video class="events-video--mobile" autoplay loop muted playsinline poster="{{ poster }}">
         {% for source in mobile_video.sources %}
           <source src="{{ source.url }}" type="{{ source.mime_type }}">
@@ -226,9 +243,15 @@
     },
     {
       "type": "video",
+      "id": "laptop_video",
+      "label": "Laptop Video (Optional)",
+      "info": "Upload a landscape video optimized for laptop screens (990px–1399px wide). If left empty, the Desktop video will be used."
+    },
+    {
+      "type": "video",
       "id": "mobile_video",
       "label": "Mobile Video (Optional)",
-      "info": "Upload a vertical/portrait video for mobile screens. If left empty, the desktop video will be used on mobile too."
+      "info": "Upload a vertical/portrait video for mobile screens (under 990px). If left empty, the Laptop video (or Desktop if none) will be used."
     },
     {
       "type": "select",

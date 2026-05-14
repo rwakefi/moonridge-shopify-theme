@@ -84,7 +84,7 @@
   width: 100%;
   height: 100%;
   opacity: 0;
-  cursor: url(cross.svg),url(cross.png),zoom-out;
+  cursor: zoom-out;
   pointer-events: none;
   transition: opacity var(--duration-long) ease;
   background-color: #212326;

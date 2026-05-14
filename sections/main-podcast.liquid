@@ -198,7 +198,14 @@
   <div class="podcast-header">
     <div class="podcast-header__image">
       {% if section.settings.podcast_image != blank %}
-        <img src="{{ section.settings.podcast_image | image_url: width: 600 }}" alt="{{ section.settings.title | escape }}">
+        <img 
+          src="{{ section.settings.podcast_image | image_url: width: 600 }}" 
+          alt="{{ section.settings.title | escape }}"
+          width="300"
+          height="300"
+          loading="eager"
+          fetchpriority="high"
+        >
       {% else %}
         {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
       {% endif %}

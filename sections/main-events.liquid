@@ -1,39 +1,96 @@
 {% style %}
-  .events-hero-video {
+  .events-video-banner {
+    position: relative;
     width: 100%;
-    max-height: 70vh;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
     background: #000;
   }
-  .events-hero-video video {
+  .events-video-banner__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  .events-video-banner__bg video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    opacity: 0.9;
   }
+  .events-video-banner__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+  }
+  .events-video-banner__content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: #ffffff;
+    max-width: 800px;
+    padding: 0 20px;
+  }
+  .events-video-banner__title {
+    font-family: var(--font-heading-family);
+    font-size: 56px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    color: #fff;
+    line-height: 1.1;
+  }
+  .events-video-banner__text {
+    font-size: 18px;
+    margin: 0 0 32px 0;
+    color: #fff;
+    line-height: 1.5;
+  }
+  .events-video-banner__buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .banner-button {
+    display: inline-block;
+    padding: 14px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .banner-button--primary {
+    background: #ffffff;
+    color: #111111;
+  }
+  .banner-button--primary:hover {
+    background: #e6e6e6;
+  }
+  .banner-button--secondary {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+  }
+  .banner-button--secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
   .events-directory {
     max-width: 1200px;
     margin: 0 auto;
     padding: 60px 20px;
     font-family: var(--font-body-family);
-  }
-  .events-header {
-    text-align: center;
-    margin-bottom: 50px;
-  }
-  .events-header h1 {
-    font-family: var(--font-heading-family);
-    font-size: 42px;
-    font-weight: 700;
-    margin: 0 0 16px 0;
-    color: #111;
-  }
-  .events-header p {
-    font-size: 18px;
-    color: #555;
-    max-width: 600px;
-    margin: 0 auto;
   }
   .events-grid {
     display: grid;
@@ -112,8 +169,8 @@
   }
 
   @media screen and (max-width: 768px) {
-    .events-header h1 {
-      font-size: 32px;
+    .events-video-banner__title {
+      font-size: 36px;
     }
     .event-category-header h2 {
       font-size: 26px;
@@ -122,17 +179,23 @@
 {% endstyle %}
 
 {% if section.settings.hero_video != blank %}
-  <div class="events-hero-video">
-    {{ section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: "1600x" }}
+  <div class="events-video-banner">
+    <div class="events-video-banner__bg">
+      {{ section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: "1600x" }}
+    </div>
+    <div class="events-video-banner__overlay"></div>
+      <div class="events-video-banner__content">
+      {% if section.settings.banner_title != blank %}
+        <h1 class="events-video-banner__title">{{ section.settings.banner_title }}</h1>
+      {% endif %}
+      {% if section.settings.banner_text != blank %}
+        <div class="events-video-banner__text">{{ section.settings.banner_text }}</div>
+      {% endif %}
+    </div>
   </div>
 {% endif %}
 
 <div class="events-directory">
-  <div class="events-header">
-    <h1>{{ section.settings.title }}</h1>
-    <p>{{ section.settings.description }}</p>
-  </div>
-
   <div class="events-grid">
     {% for block in section.blocks %}
       {% if block.type == 'category_header' %}
@@ -186,15 +249,15 @@
     },
     {
       "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Upcoming Events"
+      "id": "banner_title",
+      "label": "Video Overlay Title",
+      "default": "Book Us For Your Next Event"
     },
     {
       "type": "richtext",
-      "id": "description",
-      "label": "Description",
-      "default": "<p>Join us at Moon Ridge for our upcoming experiences, pop-ups, and community gatherings.</p>"
+      "id": "banner_text",
+      "label": "Video Overlay Text",
+      "default": "<p>Discover the Moon Ridge experience.</p>"
     }
   ],
   "blocks": [

@@ -146,15 +146,15 @@
   .header-wrapper.gradient,
   .color-inverse,
   .color-background-2 {
-    --color-background: 247, 247, 247 !important;
-    background-color: #f7f7f7 !important;
+    --color-background: 255, 255, 255 !important;
+    background-color: #ffffff !important;
     background-image: none !important;
     color: #312110 !important;
   }
 
   /* Override the Shopify color scheme CSS variable on the header section itself */
   #shopify-section-header .header-wrapper {
-    background: #f7f7f7 !important;
+    background: #ffffff !important;
   }
 
   .header {
@@ -387,7 +387,7 @@
   endfor
 -%}
 
-<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}" style="background: #f7f7f7 !important; background-image: none !important; border-top: none !important; box-shadow: none !important;">
+<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}" style="background: #ffffff !important; background-image: none !important; border-top: none !important; box-shadow: none !important;">
   {%- liquid
     assign social_links = false
     assign localization_forms = false

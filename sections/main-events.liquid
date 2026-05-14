@@ -1,4 +1,17 @@
 {% style %}
+  .events-hero-video {
+    width: 100%;
+    max-height: 70vh;
+    overflow: hidden;
+    background: #000;
+  }
+  .events-hero-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.9;
+  }
   .events-directory {
     max-width: 1200px;
     margin: 0 auto;
@@ -26,6 +39,21 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
+  }
+  .event-category-header {
+    grid-column: 1 / -1;
+    margin-top: 40px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  .event-category-header h2 {
+    font-family: var(--font-heading-family);
+    font-size: 32px;
+    font-weight: 600;
+    color: #111;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
   }
   .event-card {
     border: 1px solid #eaeaea;
@@ -87,8 +115,17 @@
     .events-header h1 {
       font-size: 32px;
     }
+    .event-category-header h2 {
+      font-size: 26px;
+    }
   }
 {% endstyle %}
+
+{% if section.settings.hero_video != blank %}
+  <div class="events-hero-video">
+    {{ section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: "1600x" }}
+  </div>
+{% endif %}
 
 <div class="events-directory">
   <div class="events-header">
@@ -98,29 +135,35 @@
 
   <div class="events-grid">
     {% for block in section.blocks %}
-      <div class="event-card" {{ block.shopify_attributes }}>
-        {% if block.settings.image != blank %}
-          <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title | escape }}" class="event-card__image">
-        {% else %}
-          {{ 'collection-1' | placeholder_svg_tag: 'event-card__image' }}
-        {% endif %}
-        
-        <div class="event-card__content">
-          {% if block.settings.date != blank %}
-            <div class="event-card__date">{{ block.settings.date }}</div>
-          {% endif %}
-          
-          <h3 class="event-card__title">{{ block.settings.title }}</h3>
-          
-          {% if block.settings.description != blank %}
-            <div class="event-card__desc">{{ block.settings.description }}</div>
-          {% endif %}
-          
-          {% if block.settings.link != blank %}
-            <a href="{{ block.settings.link }}" class="event-card__button">{{ block.settings.button_text }}</a>
-          {% endif %}
+      {% if block.type == 'category_header' %}
+        <div class="event-category-header" id="{{ block.settings.anchor_id | handleize }}" {{ block.shopify_attributes }}>
+          <h2>{{ block.settings.title }}</h2>
         </div>
-      </div>
+      {% elsif block.type == 'event' %}
+        <div class="event-card" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title | escape }}" class="event-card__image">
+          {% else %}
+            {{ 'collection-1' | placeholder_svg_tag: 'event-card__image' }}
+          {% endif %}
+          
+          <div class="event-card__content">
+            {% if block.settings.date != blank %}
+              <div class="event-card__date">{{ block.settings.date }}</div>
+            {% endif %}
+            
+            <h3 class="event-card__title">{{ block.settings.title }}</h3>
+            
+            {% if block.settings.description != blank %}
+              <div class="event-card__desc">{{ block.settings.description }}</div>
+            {% endif %}
+            
+            {% if block.settings.link != blank %}
+              <a href="{{ block.settings.link }}" class="event-card__button">{{ block.settings.button_text }}</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
     {% endfor %}
     
     {% if section.blocks.size == 0 %}
@@ -136,6 +179,12 @@
   "name": "Events Directory",
   "settings": [
     {
+      "type": "video",
+      "id": "hero_video",
+      "label": "Hero Video (Optional)",
+      "info": "Upload a video to Shopify and select it here to display a full-width video at the top."
+    },
+    {
       "type": "text",
       "id": "title",
       "label": "Heading",
@@ -149,6 +198,25 @@
     }
   ],
   "blocks": [
+    {
+      "type": "category_header",
+      "name": "Category Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Name",
+          "default": "Weddings"
+        },
+        {
+          "type": "text",
+          "id": "anchor_id",
+          "label": "Anchor ID",
+          "info": "Used for dropdown links. Example: 'weddings'. The link will be /pages/events#weddings",
+          "default": "weddings"
+        }
+      ]
+    },
     {
       "type": "event",
       "name": "Event",
@@ -195,10 +263,21 @@
       "name": "Events Directory",
       "blocks": [
         {
-          "type": "event"
+          "type": "category_header",
+          "settings": {
+            "title": "Weddings",
+            "anchor_id": "weddings"
+          }
         },
         {
           "type": "event"
+        },
+        {
+          "type": "category_header",
+          "settings": {
+            "title": "In Store",
+            "anchor_id": "in-store"
+          }
         },
         {
           "type": "event"

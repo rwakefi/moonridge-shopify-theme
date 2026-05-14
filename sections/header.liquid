@@ -352,6 +352,38 @@
       transform: scale(0.97);
     }
   }
+
+  /* Laptop Menu Refinement: Prevent menu wrapping on smaller desktop screens */
+  @media screen and (min-width: 990px) and (max-width: 1400px) {
+    .header__menu-item {
+      padding-left: 0.7rem !important;
+      padding-right: 0.7rem !important;
+      font-size: 1.15rem !important;
+      letter-spacing: 0.05em !important;
+    }
+    
+    summary.list-menu__item {
+      padding-right: 1.8rem !important;
+    }
+
+    .header__search-bar-container {
+      max-width: 200px !important;
+      margin-left: 0.5rem !important;
+      margin-right: 0.5rem !important;
+    }
+    
+    .header__icon {
+      width: 3.6rem !important;
+    }
+
+    .header__inline-menu {
+      margin-left: -0.5rem !important;
+    }
+
+    .list-menu--inline {
+      flex-wrap: nowrap !important;
+    }
+  }
 {%- endstyle -%}
 
 <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>

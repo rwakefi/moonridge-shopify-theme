@@ -238,6 +238,43 @@
     grid-column: 1 / -1;
   }
 
+  @media screen and (min-width: 990px) {
+    .events-video-banner {
+      min-height: 0 !important;
+      height: auto !important;
+      aspect-ratio: auto !important;
+      max-height: none !important;
+      display: block !important;
+    }
+    .events-video-banner__bg {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      height: auto !important;
+      line-height: 0;
+    }
+    .events-video-banner__bg video {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: contain !important;
+    }
+    .events-video-banner__overlay {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      height: 100% !important;
+      width: 100% !important;
+    }
+    .events-video-banner__content {
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      width: 100% !important;
+      height: auto !important;
+    }
+  }
+  
   @media screen and (max-width: 768px) {
     .events-video-banner__title {
       font-size: 36px;
@@ -266,11 +303,21 @@
         assign poster = section.settings.poster_image | image_url: width: 1600
         assign mobile_video = section.settings.mobile_video | default: section.settings.hero_video
       -%}
-      {{- section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: "1600x", poster: poster, class: 'events-video--desktop' -}}
-      {{- mobile_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: "800x", poster: poster, class: 'events-video--mobile' -}}
+      
+      <video class="events-video--desktop" autoplay loop muted playsinline poster="{{ poster }}">
+        {% for source in section.settings.hero_video.sources %}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {% endfor %}
+      </video>
+      
+      <video class="events-video--mobile" autoplay loop muted playsinline poster="{{ poster }}">
+        {% for source in mobile_video.sources %}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {% endfor %}
+      </video>
     </div>
     <div class="events-video-banner__overlay"></div>
-      <div class="events-video-banner__content">
+    <div class="events-video-banner__content">
       {% if section.settings.banner_title != blank %}
         <h1 class="events-video-banner__title">{{ section.settings.banner_title | newline_to_br }}</h1>
       {% endif %}

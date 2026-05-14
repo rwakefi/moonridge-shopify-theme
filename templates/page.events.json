@@ -16,6 +16,8 @@
           "type": "category_header",
           "settings": {
             "title": "Weddings",
+            "image": "shopify://shop_images/2B1725F5-8B0B-4779-9360-73AD6A26FF8C_1_105_c.jpg",
+            "description": "<p>Make your wedding weekend unforgettable with a custom hat experience designed for brides, grooms, bridal parties, and guests. From custom shaping and branding to personalized bands and accessories, Moon Ridge creates hats that become lasting keepsakes long after the wedding day ends. Whether it’s a welcome party, rehearsal dinner, or day-of activation, we bring a stylish and interactive experience that guests will remember forever.</p>",
             "anchor_id": "weddings"
           }
         },
@@ -23,6 +25,7 @@
           "type": "category_header",
           "settings": {
             "title": "In Store",
+            "description": "<p>Our in-store hat experiences are perfect for smaller groups looking for a hands-on, personalized appointment at Moon Ridge. Guests receive one-on-one attention while selecting, shaping, and customizing their hats with our team. It’s relaxed, elevated, and built around creating the perfect fit and style for every person who walks through the door.</p>",
             "anchor_id": "in-store"
           }
         },
@@ -30,6 +33,7 @@
           "type": "category_header",
           "settings": {
             "title": "Corporate",
+            "description": "<p>Looking for a unique corporate event or client experience? Moon Ridge corporate hat parties combine western-inspired style with high-end hospitality to create an experience your team or clients won’t forget. Perfect for company retreats, brand activations, sales meetings, appreciation events, and conferences, our team provides custom hat fittings, shaping, and personalization that bring people together in a memorable way.</p>",
             "anchor_id": "corporate"
           }
         },
@@ -37,6 +41,7 @@
           "type": "category_header",
           "settings": {
             "title": "Private Parties",
+            "description": "<p>From birthdays and bachelor or bachelorette parties to holiday gatherings and special celebrations, our private hat parties are built to turn any event into an experience. Guests can create fully customized hats while enjoying a fun, interactive atmosphere tailored to your group. Whether hosted in-store or at your location, every party is designed to feel personal, creative, and one-of-a-kind.</p>",
             "anchor_id": "private-parties"
           }
         },
@@ -44,6 +49,7 @@
           "type": "category_header",
           "settings": {
             "title": "Pop Ups",
+            "description": "<p>Bring the Moon Ridge experience directly to your event with our mobile pop-up hat bar. Perfect for festivals, retail activations, markets, sporting events, and community gatherings, our pop-ups create an eye-catching experience where guests can customize hats on-site. We bring the hats, tools, styling, and energy — you bring the crowd.</p>",
             "anchor_id": "pop-ups"
           }
         }
@@ -55,7 +61,12 @@
         "private_parties",
         "pop_ups"
       ],
-      "settings": {}
+      "settings": {
+        "hero_video": "shopify://files/videos/IMG_0859_774d2080-5022-489c-a286-8e0d88864e29.mov",
+        "video_alignment": "center center",
+        "banner_title": "Book Us For Your Next Event",
+        "banner_text": "<p>Discover the Moon Ridge experience.</p>"
+      }
     }
   },
   "order": [

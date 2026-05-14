@@ -16,6 +16,8 @@
           "type": "category_header",
           "settings": {
             "title": "Weddings",
+            "image": "shopify://shop_images/2B1725F5-8B0B-4779-9360-73AD6A26FF8C_1_105_c.jpg",
+            "description": "<p>Book us for your Wedding</p>",
             "anchor_id": "weddings"
           }
         },
@@ -23,6 +25,7 @@
           "type": "category_header",
           "settings": {
             "title": "In Store",
+            "description": "",
             "anchor_id": "in-store"
           }
         },
@@ -30,6 +33,7 @@
           "type": "category_header",
           "settings": {
             "title": "Corporate",
+            "description": "",
             "anchor_id": "corporate"
           }
         },
@@ -37,6 +41,7 @@
           "type": "category_header",
           "settings": {
             "title": "Private Parties",
+            "description": "",
             "anchor_id": "private-parties"
           }
         },
@@ -44,6 +49,7 @@
           "type": "category_header",
           "settings": {
             "title": "Pop Ups",
+            "description": "",
             "anchor_id": "pop-ups"
           }
         }
@@ -55,7 +61,10 @@
         "private_parties",
         "pop_ups"
       ],
-      "settings": {}
+      "settings": {
+        "banner_title": "Book Us For Your Next Event",
+        "banner_text": "<p>Discover the Moon Ridge experience.</p>"
+      }
     }
   },
   "order": [

@@ -213,7 +213,10 @@
 {% if section.settings.hero_video != blank %}
   <div class="events-video-banner" style="--video-alignment: {{ section.settings.video_alignment }};">
     <div class="events-video-banner__bg">
-      {{ section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: "1600x" }}
+      {%- liquid
+        assign poster = section.settings.poster_image | image_url: width: 1600
+        echo section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: "1600x", poster: poster
+      -%}
     </div>
     <div class="events-video-banner__overlay"></div>
       <div class="events-video-banner__content">
@@ -288,6 +291,12 @@
       "id": "hero_video",
       "label": "Hero Video (Optional)",
       "info": "Upload a video to Shopify and select it here to display a full-width video at the top."
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_image",
+      "label": "Video Poster Image",
+      "info": "Displays while the video is loading. Highly recommended for speed."
     },
     {
       "type": "select",

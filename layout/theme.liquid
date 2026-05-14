@@ -7,8 +7,11 @@
 
 <meta name="google-site-verification" content="n84Iz1Q9VvZQmmbrZuyC5nq5zCu8v6nkLASBkoSZ5GM" />
 <meta name="msvalidate.01" content="A70FCC7DBBA7EBF70ACB7FB0F0B8ACE8" />
-    
-    
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    {%- unless settings.type_header_font.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
+
     {{ content_for_header }}
 
     {% comment %} booking pop up script tag  {% endcomment %}

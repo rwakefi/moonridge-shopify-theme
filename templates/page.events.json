@@ -67,9 +67,16 @@
         "banner_title": "Book Us For Your Next Event",
         "banner_text": "<p>Discover the Moon Ridge experience.</p>"
       }
+    },
+    "form_app": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "form_app"
   ]
 }

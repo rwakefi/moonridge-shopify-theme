@@ -13,6 +13,7 @@
       "type": "main-podcast",
       "settings": {
         "rss_url": "https://api.riverside.com/hosting/PlYr6xeo.rss",
+        "podcast_image": "shopify://shop_images/Podcast_Logo.png",
         "logo_width": 280,
         "title": "The Moon Ridge Podcast",
         "subtitle": "Hosted by Zack Wakefield",

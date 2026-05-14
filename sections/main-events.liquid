@@ -190,25 +190,25 @@
         assign mobile_video = section.settings.mobile_video | default: laptop_video
       -%}
 
-      {{- '<!-- Desktop video (1400px+) -->' }}
-      <video class="events-video--desktop" autoplay loop muted playsinline poster="{{ poster }}">
-        {% for source in section.settings.hero_video.sources %}
+      <!-- Desktop video (1400px+) -->
+      <video class="events-video--desktop" autoplay loop muted playsinline{% if poster != blank %} poster="{{ poster }}"{% endif %}>
+        {%- for source in section.settings.hero_video.sources -%}
           <source src="{{ source.url }}" type="{{ source.mime_type }}">
-        {% endfor %}
+        {%- endfor -%}
       </video>
 
-      {{- '<!-- Laptop video (990px–1399px): uses laptop_video if set, else falls back to desktop video -->' }}
-      <video class="events-video--laptop" autoplay loop muted playsinline poster="{{ poster }}">
-        {% for source in laptop_video.sources %}
+      <!-- Laptop video (990px-1399px): falls back to desktop if not set -->
+      <video class="events-video--laptop" autoplay loop muted playsinline{% if poster != blank %} poster="{{ poster }}"{% endif %}>
+        {%- for source in laptop_video.sources -%}
           <source src="{{ source.url }}" type="{{ source.mime_type }}">
-        {% endfor %}
+        {%- endfor -%}
       </video>
 
-      {{- '<!-- Mobile video (up to 989px): uses mobile_video if set, else laptop, else desktop -->' }}
-      <video class="events-video--mobile" autoplay loop muted playsinline poster="{{ poster }}">
-        {% for source in mobile_video.sources %}
+      <!-- Mobile video (under 990px): falls back to laptop then desktop if not set -->
+      <video class="events-video--mobile" autoplay loop muted playsinline{% if poster != blank %} poster="{{ poster }}"{% endif %}>
+        {%- for source in mobile_video.sources -%}
           <source src="{{ source.url }}" type="{{ source.mime_type }}">
-        {% endfor %}
+        {%- endfor -%}
       </video>
     </div>
     <div class="events-video-banner__overlay"></div>

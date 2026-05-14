@@ -11,8 +11,51 @@
   "sections": {
     "main": {
       "type": "main-events",
-      "settings": {
-      }
+      "blocks": {
+        "weddings": {
+          "type": "category_header",
+          "settings": {
+            "title": "Weddings",
+            "anchor_id": "weddings"
+          }
+        },
+        "in_store": {
+          "type": "category_header",
+          "settings": {
+            "title": "In Store",
+            "anchor_id": "in-store"
+          }
+        },
+        "corporate": {
+          "type": "category_header",
+          "settings": {
+            "title": "Corporate",
+            "anchor_id": "corporate"
+          }
+        },
+        "private_parties": {
+          "type": "category_header",
+          "settings": {
+            "title": "Private Parties",
+            "anchor_id": "private-parties"
+          }
+        },
+        "pop_ups": {
+          "type": "category_header",
+          "settings": {
+            "title": "Pop Ups",
+            "anchor_id": "pop-ups"
+          }
+        }
+      },
+      "block_order": [
+        "weddings",
+        "in_store",
+        "corporate",
+        "private_parties",
+        "pop_ups"
+      ],
+      "settings": {}
     }
   },
   "order": [

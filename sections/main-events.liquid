@@ -350,6 +350,14 @@
             <input autocomplete="email" type="email" id="ContactForm-email" class="field__input" name="contact[email]" spellcheck="false" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" aria-required="true" placeholder="Email" required>
             <label class="field__label" for="ContactForm-email">Email</label>
           </div>
+          <div class="field">
+            <input type="text" id="ContactForm-event_type" class="field__input" name="contact[Event Name / Type of Event]" placeholder="Event Name/Type of Event" required>
+            <label class="field__label" for="ContactForm-event_type">Event Name/Type of Event</label>
+          </div>
+          <div class="field">
+            <input type="number" id="ContactForm-headcount" class="field__input" name="contact[Expected Headcount]" placeholder="Expected # of people" required>
+            <label class="field__label" for="ContactForm-headcount">Expected # of people</label>
+          </div>
           <div class="field field--full-width">
             <input type="text" id="ContactForm-location" class="field__input" name="contact[Location of Event]" placeholder="Location of The Event" required>
             <label class="field__label" for="ContactForm-location">Location of The Event</label>

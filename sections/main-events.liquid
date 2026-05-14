@@ -21,6 +21,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: var(--video-alignment, center center);
     display: block;
   }
   .events-video-banner__overlay {
@@ -210,7 +211,7 @@
 {% endstyle %}
 
 {% if section.settings.hero_video != blank %}
-  <div class="events-video-banner">
+  <div class="events-video-banner" style="--video-alignment: {{ section.settings.video_alignment }};">
     <div class="events-video-banner__bg">
       {{ section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: "1600x" }}
     </div>
@@ -287,6 +288,27 @@
       "id": "hero_video",
       "label": "Hero Video (Optional)",
       "info": "Upload a video to Shopify and select it here to display a full-width video at the top."
+    },
+    {
+      "type": "select",
+      "id": "video_alignment",
+      "label": "Video Focal Point",
+      "info": "If the video is cropping, adjust this to focus on the top or bottom.",
+      "options": [
+        {
+          "value": "center top",
+          "label": "Top (e.g., show heads)"
+        },
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "center bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center center"
     },
     {
       "type": "text",

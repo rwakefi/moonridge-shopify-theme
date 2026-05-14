@@ -62,10 +62,9 @@
         "pop_ups"
       ],
       "settings": {
-        "hero_video": "shopify://files/videos/Wedding.mp4",
-        "mobile_video": "shopify://files/videos/IMG_0859_774d2080-5022-489c-a286-8e0d88864e29.mov",
+        "hero_video": "shopify://files/videos/IMG_0859_774d2080-5022-489c-a286-8e0d88864e29.mov",
         "video_alignment": "center center",
-        "banner_title": "Book Us For Your Next Event",
+        "banner_title": "Make Your Event\nSpecial",
         "banner_text": "<p>Discover the Moon Ridge experience.</p>"
       }
     }

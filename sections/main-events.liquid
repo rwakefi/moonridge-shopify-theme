@@ -21,6 +21,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: var(--video-alignment, center center);
     display: block;
   }
   .events-video-banner__overlay {
@@ -99,18 +100,44 @@
   }
   .event-category-header {
     grid-column: 1 / -1;
-    margin-top: 40px;
-    padding-bottom: 12px;
+    margin-top: 60px;
+    padding-bottom: 24px;
     border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .event-category-header__image-container {
+    flex-shrink: 0;
+    width: 180px;
+    height: 180px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 6px solid #fff;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+  .event-category-header__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .event-category-header__text {
+    flex-grow: 1;
   }
   .event-category-header h2 {
     font-family: var(--font-heading-family);
-    font-size: 32px;
+    font-size: 36px;
     font-weight: 600;
     color: #111;
-    margin: 0;
+    margin: 0 0 8px 0;
     text-transform: uppercase;
     letter-spacing: 2px;
+  }
+  .event-category-header__desc {
+    font-size: 16px;
+    color: #555;
+    max-width: 700px;
+    line-height: 1.6;
   }
   .event-card {
     border: 1px solid #eaeaea;
@@ -172,6 +199,11 @@
     .events-video-banner__title {
       font-size: 36px;
     }
+    .event-category-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
     .event-category-header h2 {
       font-size: 26px;
     }
@@ -179,7 +211,7 @@
 {% endstyle %}
 
 {% if section.settings.hero_video != blank %}
-  <div class="events-video-banner">
+  <div class="events-video-banner" style="--video-alignment: {{ section.settings.video_alignment }};">
     <div class="events-video-banner__bg">
       {{ section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: "1600x" }}
     </div>
@@ -200,7 +232,17 @@
     {% for block in section.blocks %}
       {% if block.type == 'category_header' %}
         <div class="event-category-header" id="{{ block.settings.anchor_id | handleize }}" {{ block.shopify_attributes }}>
-          <h2>{{ block.settings.title }}</h2>
+          {% if block.settings.image != blank %}
+            <div class="event-category-header__image-container">
+              <img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.title | escape }}" class="event-category-header__image">
+            </div>
+          {% endif %}
+          <div class="event-category-header__text">
+            <h2>{{ block.settings.title }}</h2>
+            {% if block.settings.description != blank %}
+              <div class="event-category-header__desc">{{ block.settings.description }}</div>
+            {% endif %}
+          </div>
         </div>
       {% elsif block.type == 'event' %}
         <div class="event-card" {{ block.shopify_attributes }}>
@@ -248,6 +290,27 @@
       "info": "Upload a video to Shopify and select it here to display a full-width video at the top."
     },
     {
+      "type": "select",
+      "id": "video_alignment",
+      "label": "Video Focal Point",
+      "info": "If the video is cropping, adjust this to focus on the top or bottom.",
+      "options": [
+        {
+          "value": "center top",
+          "label": "Top (e.g., show heads)"
+        },
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "center bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center center"
+    },
+    {
       "type": "text",
       "id": "banner_title",
       "label": "Video Overlay Title",
@@ -270,6 +333,16 @@
           "id": "title",
           "label": "Category Name",
           "default": "Weddings"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Framed Category Image"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Category Description (Optional)"
         },
         {
           "type": "text",

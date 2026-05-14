@@ -3,6 +3,13 @@
   .breadcrumbs {
     display: none !important;
   }
+
+  /* Desktop/mobile video swap */
+  .events-video--mobile { display: none; }
+  @media screen and (max-width: 749px) {
+    .events-video--desktop { display: none; }
+    .events-video--mobile  { display: block; }
+  }
   .events-video-banner {
     position: relative;
     width: 100%;
@@ -219,8 +226,10 @@
     <div class="events-video-banner__bg">
       {%- liquid
         assign poster = section.settings.poster_image | image_url: width: 1600
-        echo section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: "1600x", poster: poster
+        assign mobile_video = section.settings.mobile_video | default: section.settings.hero_video
       -%}
+      {{- section.settings.hero_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: "1600x", poster: poster, class: 'events-video--desktop' -}}
+      {{- mobile_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: "800x", poster: poster, class: 'events-video--mobile' -}}
     </div>
     <div class="events-video-banner__overlay"></div>
       <div class="events-video-banner__content">
@@ -301,6 +310,12 @@
       "id": "poster_image",
       "label": "Video Poster Image",
       "info": "Displays while the video is loading. Highly recommended for speed."
+    },
+    {
+      "type": "video",
+      "id": "mobile_video",
+      "label": "Mobile Video (Optional)",
+      "info": "Upload a vertical/portrait video for mobile screens. If left empty, the desktop video will be used on mobile too."
     },
     {
       "type": "select",

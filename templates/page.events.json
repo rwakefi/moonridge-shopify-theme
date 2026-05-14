@@ -10,20 +10,12 @@
 {
   "sections": {
     "main": {
-      "type": "main-podcast",
+      "type": "main-events",
       "settings": {
-      }
-    },
-    "bestsellers": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Shop the Podcast",
-        "swipe_on_mobile": true
       }
     }
   },
   "order": [
-    "main",
-    "bestsellers"
+    "main"
   ]
 }

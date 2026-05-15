@@ -75,50 +75,10 @@
     font-family: var(--font-heading-family);
     font-size: 56px;
     font-weight: 700;
-    margin: 0 0 24px 0;
+    margin: 0 0 16px 0;
     color: #fff;
     line-height: 1.05;
     letter-spacing: 0.01em;
-  }
-  .events-video-banner__play-container {
-    margin-bottom: 40px;
-    display: flex;
-    justify-content: center;
-  }
-  .events-video-banner__play-button {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid #fff;
-    border-radius: 50%;
-    width: 72px;
-    height: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: #fff;
-    padding: 0;
-  }
-  .events-video-banner__play-button:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-  }
-  .events-video-banner__play-button svg {
-    width: 24px;
-    height: 24px;
-  }
-  .events-video-banner__play-button .play-icon {
-    margin-left: 4px;
-    display: flex;
-  }
-  .events-video-banner__play-button .pause-icon {
-    display: none;
-  }
-  .events-video-banner__play-button.is-playing .play-icon {
-    display: none;
-  }
-  .events-video-banner__play-button.is-playing .pause-icon {
-    display: flex;
   }
   .events-video-banner__text {
     font-size: 18px;
@@ -146,6 +106,44 @@
   .banner-button--primary:hover { background: #e6e6e6; }
   .banner-button--secondary { background: transparent; color: #ffffff; border: 1px solid #ffffff; }
   .banner-button--secondary:hover { background: rgba(255,255,255,0.1); }
+
+  .events-video-control {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+    padding: 0;
+  }
+  .events-video-control:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.6);
+    transform: scale(1.05);
+  }
+  .events-video-control svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+  @media screen and (max-width: 749px) {
+    .events-video-control {
+      bottom: 20px;
+      right: 20px;
+      width: 38px;
+      height: 38px;
+    }
+  }
 
   /* Events directory body */
   .events-directory {
@@ -212,7 +210,7 @@
   .events-form-grid .field--full-width { grid-column: 1 / -1; }
 
   @media screen and (max-width: 768px) {
-    .events-video-banner__title { font-size: 36px; margin: 0 0 48px 0; }
+    .events-video-banner__title { font-size: 36px; }
     .event-category-header { flex-direction: column; align-items: flex-start; }
     .event-category-header__image-container { width: 100%; margin: 0 0 20px 0; }
     .events-form-wrapper { padding: 24px 20px; }
@@ -256,14 +254,6 @@
       {% if section.settings.banner_title != blank %}
         <h1 class="events-video-banner__title">{{ section.settings.banner_title | newline_to_br }}</h1>
       {% endif %}
-      
-      <div class="events-video-banner__play-container">
-        <button type="button" class="events-video-banner__play-button is-playing" aria-label="Toggle Video">
-          <div class="play-icon">{% render 'icon-play' %}</div>
-          <div class="pause-icon">{% render 'icon-pause' %}</div>
-        </button>
-      </div>
-
       {% if section.settings.banner_text != blank %}
         <div class="events-video-banner__text">{{ section.settings.banner_text }}</div>
       {% endif %}
@@ -271,50 +261,16 @@
         <a href="#event-inquiry-form" class="banner-button banner-button--secondary">Event Form</a>
       </div>
     </div>
+    <button type="button" class="events-video-control" id="EventsVideoToggle" aria-label="Pause Video">
+      <span class="icon-pause">
+        <svg viewBox="0 0 448 512"><path d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"/></svg>
+      </span>
+      <span class="icon-play" style="display: none;">
+        <svg viewBox="0 0 448 512"><path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"/></svg>
+      </span>
+    </button>
   </div>
 {% endif %}
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const playButton = document.querySelector('.events-video-banner__play-button');
-    // Select all video elements within the banner
-    const videos = document.querySelectorAll('.events-video-banner__bg video');
-    
-    if (playButton && videos.length > 0) {
-      const togglePlay = () => {
-        let isAnyPaused = false;
-        
-        // We only care about the visible video, but we can sync all for simplicity
-        videos.forEach(video => {
-          if (video.paused) {
-            video.play();
-          } else {
-            video.pause();
-            isAnyPaused = true;
-          }
-        });
-        
-        if (isAnyPaused) {
-          playButton.classList.remove('is-playing');
-        } else {
-          playButton.classList.add('is-playing');
-        }
-      };
-
-      playButton.addEventListener('click', togglePlay);
-      
-      // Update button state if autoplay works
-      videos.forEach(video => {
-        video.addEventListener('play', () => {
-          playButton.classList.add('is-playing');
-        });
-        video.addEventListener('pause', () => {
-          playButton.classList.remove('is-playing');
-        });
-      });
-    }
-  });
-</script>
 
 <div class="events-directory">
   <div class="events-grid">
@@ -583,3 +539,43 @@
   ]
 }
 {% endschema %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const videoToggle = document.getElementById('EventsVideoToggle');
+    if (!videoToggle) return;
+
+    const videos = document.querySelectorAll('.events-video-banner__bg video');
+    const pauseIcon = videoToggle.querySelector('.icon-pause');
+    const playIcon = videoToggle.querySelector('.icon-play');
+
+    videoToggle.addEventListener('click', function() {
+      // Check first visible video's state
+      let isCurrentlyPaused = false;
+      videos.forEach(v => {
+        if (getComputedStyle(v).display !== 'none') {
+          isCurrentlyPaused = v.paused;
+        }
+      });
+      
+      videos.forEach(video => {
+        if (isCurrentlyPaused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+
+      // Update UI
+      if (isCurrentlyPaused) {
+        pauseIcon.style.display = 'block';
+        playIcon.style.display = 'none';
+        videoToggle.setAttribute('aria-label', 'Pause Video');
+      } else {
+        pauseIcon.style.display = 'none';
+        playIcon.style.display = 'block';
+        videoToggle.setAttribute('aria-label', 'Play Video');
+      }
+    });
+  });
+</script>

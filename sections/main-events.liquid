@@ -75,10 +75,50 @@
     font-family: var(--font-heading-family);
     font-size: 56px;
     font-weight: 700;
-    margin: 0 0 80px 0;
+    margin: 0 0 24px 0;
     color: #fff;
     line-height: 1.05;
     letter-spacing: 0.01em;
+  }
+  .events-video-banner__play-container {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+  }
+  .events-video-banner__play-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #fff;
+    border-radius: 50%;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #fff;
+    padding: 0;
+  }
+  .events-video-banner__play-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+  }
+  .events-video-banner__play-button svg {
+    width: 24px;
+    height: 24px;
+  }
+  .events-video-banner__play-button .play-icon {
+    margin-left: 4px;
+    display: flex;
+  }
+  .events-video-banner__play-button .pause-icon {
+    display: none;
+  }
+  .events-video-banner__play-button.is-playing .play-icon {
+    display: none;
+  }
+  .events-video-banner__play-button.is-playing .pause-icon {
+    display: flex;
   }
   .events-video-banner__text {
     font-size: 18px;
@@ -216,6 +256,14 @@
       {% if section.settings.banner_title != blank %}
         <h1 class="events-video-banner__title">{{ section.settings.banner_title | newline_to_br }}</h1>
       {% endif %}
+      
+      <div class="events-video-banner__play-container">
+        <button type="button" class="events-video-banner__play-button is-playing" aria-label="Toggle Video">
+          <div class="play-icon">{% render 'icon-play' %}</div>
+          <div class="pause-icon">{% render 'icon-pause' %}</div>
+        </button>
+      </div>
+
       {% if section.settings.banner_text != blank %}
         <div class="events-video-banner__text">{{ section.settings.banner_text }}</div>
       {% endif %}
@@ -225,6 +273,48 @@
     </div>
   </div>
 {% endif %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const playButton = document.querySelector('.events-video-banner__play-button');
+    // Select all video elements within the banner
+    const videos = document.querySelectorAll('.events-video-banner__bg video');
+    
+    if (playButton && videos.length > 0) {
+      const togglePlay = () => {
+        let isAnyPaused = false;
+        
+        // We only care about the visible video, but we can sync all for simplicity
+        videos.forEach(video => {
+          if (video.paused) {
+            video.play();
+          } else {
+            video.pause();
+            isAnyPaused = true;
+          }
+        });
+        
+        if (isAnyPaused) {
+          playButton.classList.remove('is-playing');
+        } else {
+          playButton.classList.add('is-playing');
+        }
+      };
+
+      playButton.addEventListener('click', togglePlay);
+      
+      // Update button state if autoplay works
+      videos.forEach(video => {
+        video.addEventListener('play', () => {
+          playButton.classList.add('is-playing');
+        });
+        video.addEventListener('pause', () => {
+          playButton.classList.remove('is-playing');
+        });
+      });
+    }
+  });
+</script>
 
 <div class="events-directory">
   <div class="events-grid">

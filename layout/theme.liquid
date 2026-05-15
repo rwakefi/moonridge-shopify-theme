@@ -58,7 +58,7 @@
       assign geo_suffix = " – Fayetteville, AR"
 
       if request.page_type == 'index'
-        assign full_title = "Moon Ridge Company | Custom Hats, Shaping & Heritage Brands"
+        assign full_title = "Moon Ridge Company | Quality Hats, Custom Shaping & Heritage Brands"
       elsif request.page_type == 'product'
         assign full_title = product.title | truncate: 35 | append: brand_suffix
       elsif request.page_type == 'collection'

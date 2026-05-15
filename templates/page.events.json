@@ -25,14 +25,14 @@
           "type": "category_header",
           "settings": {
             "title": "In Store",
-            "description": "<p>Our in-store hat experiences are perfect for smaller groups looking for a hands-on, personalized appointment at Moon Ridge. Guests receive one-on-one attention while selecting, shaping, and customizing their hats with our team. It’s relaxed, elevated, and built around creating the perfect fit and style for every person who walks through the door.</p>",
+            "description": "<p>Our in-store hat experiences are made for smaller groups who want something a little more personal. We're talking let's have some fun with this — we'll handle the fitting, shaping, and custom design while we create an atmosphere worth remembering. Every guest gets one-on-one time with our team, walks out with a hat that's truly theirs, and has a story to tell about how it got that way. Relaxed, elevated, and unlike anything else you'll find.</p>",
             "anchor_id": "in-store"
           }
         },
         "corporate": {
           "type": "category_header",
           "settings": {
-            "title": "Corporate",
+            "title": "Corporate ReWARD",
             "description": "<p>Looking for a unique corporate event or client experience? Moon Ridge Hat Parties are just fun. This is a great way to reward your team and is perfect for company retreats, brand activations, corporate meetings and conferences.  We do custom hat fittings, shaping, and personalization that gives people a memory and not just another tchotchke.</p>",
             "anchor_id": "corporate"
           }

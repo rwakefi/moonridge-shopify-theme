@@ -266,11 +266,6 @@
         "disabled": false,
         "settings": {}
       },
-      "3509279365430057705": {
-        "type": "shopify://apps/headfit-what-is-my-size/blocks/auglio-core-aeb/aed34d91-49c1-4451-88da-7858e205cec3",
-        "disabled": false,
-        "settings": {}
-      },
       "15683396631634586217": {
         "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
         "disabled": false,
@@ -284,6 +279,11 @@
           "button_vertical_position": "lowest",
           "greeting_message": ""
         }
+      },
+      "16041595021437623014": {
+        "type": "shopify://apps/magic-360/blocks/magic360/7a270f2a-4fa4-43bc-94fa-20b5338c66b9",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {

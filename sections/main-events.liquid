@@ -159,23 +159,59 @@
   }
   .event-category-header {
     grid-column: 1 / -1;
-    margin-top: 60px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid #ddd;
+    margin-top: 80px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #eee;
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 60px;
   }
-  .event-category-header__image-container {
+  .event-category-header__media-group {
+    position: relative;
     flex-shrink: 0;
-    width: 180px;
-    height: 180px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 6px solid #fff;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    width: 280px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .event-category-header__image { width: 100%; height: 100%; object-fit: cover; }
+  .event-category-header__frame {
+    position: relative;
+    background: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    overflow: hidden;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #eee;
+  }
+  .event-category-header__frame video,
+  .event-category-header__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .event-category-header__frame--secondary {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    z-index: 1;
+    top: -20px;
+    right: -40px;
+    transform: rotate(6deg);
+  }
+  .event-category-header__frame--tertiary {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    z-index: 3;
+    bottom: -20px;
+    left: -40px;
+    transform: rotate(-8deg);
+  }
   .event-category-header__text { flex-grow: 1; }
   .event-category-header h2 {
     font-family: var(--font-heading-family);
@@ -211,8 +247,26 @@
 
   @media screen and (max-width: 768px) {
     .events-video-banner__title { font-size: 36px; }
-    .event-category-header { flex-direction: column; align-items: flex-start; }
-    .event-category-header__image-container { width: 100%; margin: 0 0 20px 0; }
+    .event-category-header {
+      flex-direction: column;
+      gap: 40px;
+      text-align: center;
+      padding-bottom: 40px;
+    }
+    .event-category-header__media-group {
+      width: 240px;
+      height: 240px;
+    }
+    .event-category-header__frame--secondary {
+      width: 130px;
+      height: 130px;
+      right: -30px;
+    }
+    .event-category-header__frame--tertiary {
+      width: 110px;
+      height: 110px;
+      left: -30px;
+    }.event-category-header__image-container { width: 100%; margin: 0 0 20px 0; }
     .events-form-wrapper { padding: 24px 20px; }
     .events-form-grid { grid-template-columns: 1fr; }
   }
@@ -277,11 +331,34 @@
     {% for block in section.blocks %}
       {% if block.type == 'category_header' %}
         <div class="event-category-header" id="{{ block.settings.anchor_id | handleize }}" {{ block.shopify_attributes }}>
-          {% if block.settings.image != blank %}
-            <div class="event-category-header__image-container">
-              <img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.title | escape }}" class="event-category-header__image">
+          
+          <div class="event-category-header__media-group">
+            {% comment %} Primary Frame {% endcomment %}
+            <div class="event-category-header__frame">
+              {% if block.settings.video != blank %}
+                {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+              {% elsif block.settings.image != blank %}
+                <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title | escape }}">
+              {% else %}
+                {{ 'image' | placeholder_svg_tag }}
+              {% endif %}
             </div>
-          {% endif %}
+
+            {% comment %} Secondary Frame {% endcomment %}
+            {% if block.settings.image_2 != blank %}
+              <div class="event-category-header__frame event-category-header__frame--secondary">
+                <img src="{{ block.settings.image_2 | image_url: width: 400 }}" alt="{{ block.settings.title | escape }}">
+              </div>
+            {% endif %}
+
+            {% comment %} Tertiary Frame {% endcomment %}
+            {% if block.settings.image_3 != blank %}
+              <div class="event-category-header__frame event-category-header__frame--tertiary">
+                <img src="{{ block.settings.image_3 | image_url: width: 400 }}" alt="{{ block.settings.title | escape }}">
+              </div>
+            {% endif %}
+          </div>
+
           <div class="event-category-header__text">
             <h2>{{ block.settings.title }}</h2>
             {% if block.settings.description != blank %}
@@ -453,7 +530,23 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Framed Category Image"
+          "label": "Primary Category Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Secondary Image (Optional)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Tertiary Image (Optional)"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Category Video (Optional)",
+          "info": "If added, this will replace the primary image with a looping video."
         },
         {
           "type": "richtext",

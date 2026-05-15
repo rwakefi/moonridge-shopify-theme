@@ -175,6 +175,80 @@
     .header__icon--cart:not(.rm-brand-switcher-cart) {
       display: none !important;
     }
+    /* Mobile search icon */
+    .rm-brand-switcher-search {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      align-self: stretch;
+      flex-shrink: 0;
+      width: 46px;
+      height: auto !important;
+      box-shadow: -1px 0 0 #e0e0e0;
+      padding: 0 !important;
+      color: #312110 !important;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .rm-brand-switcher-search svg {
+      width: 20px !important;
+      height: 20px !important;
+    }
+    /* Mobile search overlay */
+    .rm-mobile-search-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 9998;
+    }
+    .rm-mobile-search-overlay.is-open {
+      display: block;
+    }
+    .rm-mobile-search-panel {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: #fff;
+      z-index: 9999;
+      padding: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+    }
+    .rm-mobile-search-panel.is-open {
+      transform: translateY(0);
+    }
+    .rm-mobile-search-form {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .rm-mobile-search-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+      font-family: var(--font-body-family);
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .rm-mobile-search-input:focus {
+      border-color: #312110;
+    }
+    .rm-mobile-search-close {
+      background: none;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      color: #312110;
+    }
+    .rm-mobile-search-close svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 </style>
 
@@ -221,6 +295,13 @@
     </button>
   {% endif %}
 
+  {%- comment -%} Mobile Search Icon {%- endcomment -%}
+  <button class="rm-brand-switcher-search" id="rm-mobile-search-btn" aria-label="Search" style="display: none;">
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M11.03 11.68A5.784 5.784 0 112.85 3.5a5.784 5.784 0 018.18 8.18zm.26 1.12a6.78 6.78 0 11.72-.7l5.4 5.4a.5.5 0 11-.71.7l-5.41-5.4z" fill="currentColor"/>
+    </svg>
+  </button>
+
   {%- comment -%} Mobile Cart Icon (Rendered directly to prevent jerky loading) {%- endcomment -%}
   <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset rm-brand-switcher-cart" id="cart-icon-bubble-mobile" style="display: none;">
     {%- render 'icon-cart' -%}
@@ -237,12 +318,50 @@
 </div>
 
 <script>
-  // Show the mobile cart icon on mobile devices
+  // Show the mobile cart icon + search icon on mobile devices
   (function() {
     if (window.innerWidth < 750) {
       var mobileCart = document.getElementById('cart-icon-bubble-mobile');
       if (mobileCart) mobileCart.style.display = 'flex';
+      var mobileSearch = document.getElementById('rm-mobile-search-btn');
+      if (mobileSearch) mobileSearch.style.display = 'flex';
     }
+  })();
+</script>
+
+{%- comment -%} Mobile Search Overlay {%- endcomment -%}
+<div class="rm-mobile-search-overlay" id="rm-search-overlay"></div>
+<div class="rm-mobile-search-panel" id="rm-search-panel">
+  <form action="{{ routes.search_url }}" method="get" class="rm-mobile-search-form" role="search">
+    <input type="search" name="q" class="rm-mobile-search-input" placeholder="Search hats, brands, accessories..." autocomplete="off" autocorrect="off" autocapitalize="off">
+    <button type="button" class="rm-mobile-search-close" id="rm-search-close" aria-label="Close search">
+      <svg viewBox="0 0 18 17" fill="none"><path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"/></svg>
+    </button>
+  </form>
+</div>
+
+<script>
+  (function() {
+    var searchBtn = document.getElementById('rm-mobile-search-btn');
+    var searchPanel = document.getElementById('rm-search-panel');
+    var searchOverlay = document.getElementById('rm-search-overlay');
+    var searchClose = document.getElementById('rm-search-close');
+    var searchInput = searchPanel ? searchPanel.querySelector('input') : null;
+
+    function openSearch() {
+      searchPanel.classList.add('is-open');
+      searchOverlay.classList.add('is-open');
+      setTimeout(function() { if (searchInput) searchInput.focus(); }, 350);
+    }
+    function closeSearch() {
+      searchPanel.classList.remove('is-open');
+      searchOverlay.classList.remove('is-open');
+      if (searchInput) searchInput.value = '';
+    }
+
+    if (searchBtn) searchBtn.addEventListener('click', openSearch);
+    if (searchClose) searchClose.addEventListener('click', closeSearch);
+    if (searchOverlay) searchOverlay.addEventListener('click', closeSearch);
   })();
 </script>
 

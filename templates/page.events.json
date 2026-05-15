@@ -16,8 +16,8 @@
           "type": "category_header",
           "settings": {
             "title": "Weddings",
-            "image": "shopify://shop_images/2B1725F5-8B0B-4779-9360-73AD6A26FF8C_1_105_c.jpg",
-            "description": "<p>From bachelorette parties before hitting the town to bridal party fittings, groomsmen experiences, and full weddings — Moon Ridge has a custom hat experience for any size group. We use classic brands to create lasting keepsakes, with custom shaping, personalized bands, and accessories all done by us. You just show up and have fun — we'll handle the rest. Ask us about our full packages.</p><p><em>Brides and Grooms— we also love helping you find the perfect Stetson for your photoshoot or as a stunning accent to your wedding day look.</em></p>",
+            "image": "shopify://shop_images/70E739CF-2BC3-46CA-8CD1-6844126B44C6_1_102_o.jpg",
+            "description": "<p>From <strong>bachelorette and bachelor parties </strong>before hitting the town to B<strong>ridal Party </strong>fittings, <strong>Groomsmen experiences</strong>,  to <strong> Full weddings </strong>— Moon Ridge has a custom hat experience for any size group. We use classic brands to create lasting keepsakes, with custom shaping, personalized bands, and accessories all done by us. You just show up and have fun — we'll handle the rest. Ask us about our full packages.</p><p><em>Brides and Grooms— we also love helping you find the perfect Stetson for your photoshoot or as a stunning accent to your wedding day look.</em></p>",
             "anchor_id": "weddings"
           }
         },
@@ -33,6 +33,7 @@
           "type": "category_header",
           "settings": {
             "title": "Corporate ReWARD",
+            "image": "shopify://shop_images/91100604-E385-4820-81AC-E419A46F54A8_1_105_c.jpg",
             "description": "<p>Looking for a unique corporate event or client experience? Moon Ridge Hat Parties are just fun. This is a great way to reward your team and is perfect for company retreats, brand activations, corporate meetings and conferences.  We do custom hat fittings, shaping, and personalization that gives people a memory and not just another tchotchke.</p>",
             "anchor_id": "corporate"
           }
@@ -50,7 +51,8 @@
           "type": "category_header",
           "settings": {
             "title": "Pop Ups",
-            "description": "<p>Bring the Moon Ridge experience directly to your event with our mobile pop-up hat bar. Perfect for festivals, retail activations, markets, sporting events, and community gatherings, our pop-ups create an eye-catching experience where guests can customize hats on-site. We bring the hats, tools, styling, and energy — you bring the crowd.</p>",
+            "image": "shopify://shop_images/C9FDC5CC-4D40-4093-8745-370307341088_1_105_c.jpg",
+            "description": "<p>We love a great event and we love collaborating with other great companies to create once-in-a-lifetime experiences. Whether it's a charity, a concert, or a chance to partner with like-minded businesses, we're always open to it. We'll evaluate every opportunity and do our best to make it work — and if we can't make it happen due to scheduling or other reasons, we apologize in advance. Send us an email and let's brainstorm.</p>",
             "anchor_id": "pop-ups"
           }
         }

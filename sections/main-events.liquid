@@ -157,72 +157,100 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
   }
-  .event-category-header {
+  /* ── Cinematic Category Section ────────────────────── */
+  .event-category-section {
     grid-column: 1 / -1;
-    margin-top: 80px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    align-items: center;
-    gap: 60px;
+    margin-top: 0;
   }
-  .event-category-header__media-group {
+  .event-category-hero {
     position: relative;
-    flex-shrink: 0;
-    width: 280px;
-    height: 280px;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    min-height: 500px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .event-category-header__frame {
-    position: relative;
-    background: #fff;
-    padding: 8px;
-    border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    align-items: flex-end;
     overflow: hidden;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    border: 1px solid #eee;
+    background: #111;
   }
-  .event-category-header__frame video,
-  .event-category-header__frame img {
+  .event-category-hero__media {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+  }
+  .event-category-hero__media img,
+  .event-category-hero__media video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
-  .event-category-header__frame--secondary {
+  .event-category-hero__gradient {
     position: absolute;
-    width: 160px;
-    height: 160px;
+    bottom: 0; left: 0;
+    width: 100%; height: 70%;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
     z-index: 1;
-    top: -20px;
-    right: -40px;
-    transform: rotate(6deg);
   }
-  .event-category-header__frame--tertiary {
-    position: absolute;
-    width: 140px;
-    height: 140px;
-    z-index: 3;
-    bottom: -20px;
-    left: -40px;
-    transform: rotate(-8deg);
+  .event-category-hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    width: 100%;
   }
-  .event-category-header__text { flex-grow: 1; }
-  .event-category-header h2 {
-    font-family: var(--font-heading-family);
-    font-size: 36px;
+  .event-category-hero__label {
+    font-family: var(--font-body-family);
+    font-size: 12px;
     font-weight: 600;
-    color: #111;
-    margin: 0 0 8px 0;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    color: #C5A059;
+    margin-bottom: 16px;
   }
-  .event-category-header__desc { font-size: 16px; color: #555; max-width: 700px; line-height: 1.6; }
+  .event-category-hero h2 {
+    font-family: var(--font-heading-family);
+    font-size: 52px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 1.1;
+  }
+  .event-category-hero__desc {
+    font-size: 17px;
+    color: rgba(255,255,255,0.85);
+    max-width: 650px;
+    line-height: 1.7;
+  }
+  .event-category-hero__desc p { margin: 0; }
+  .event-category-hero__desc strong { color: #fff; }
+  /* Gallery row under the hero */
+  .event-category-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-bottom: 60px;
+  }
+  .event-category-gallery__item {
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background: #f0f0f0;
+  }
+  .event-category-gallery__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .event-category-gallery__item:hover img {
+    transform: scale(1.03);
+  }
   .event-card { border: 1px solid #eaeaea; border-radius: 8px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
   .event-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
   .event-card__image { width: 100%; height: 200px; object-fit: cover; background: #f5f5f5; }
@@ -247,26 +275,23 @@
 
   @media screen and (max-width: 768px) {
     .events-video-banner__title { font-size: 36px; }
-    .event-category-header {
-      flex-direction: column;
-      gap: 40px;
-      text-align: center;
-      padding-bottom: 40px;
+    .event-category-hero {
+      min-height: 400px;
     }
-    .event-category-header__media-group {
-      width: 240px;
-      height: 240px;
+    .event-category-hero h2 {
+      font-size: 32px;
+      letter-spacing: 2px;
     }
-    .event-category-header__frame--secondary {
-      width: 130px;
-      height: 130px;
-      right: -30px;
+    .event-category-hero__content {
+      padding: 40px 24px;
     }
-    .event-category-header__frame--tertiary {
-      width: 110px;
-      height: 110px;
-      left: -30px;
-    }.event-category-header__image-container { width: 100%; margin: 0 0 20px 0; }
+    .event-category-hero__desc {
+      font-size: 15px;
+    }
+    .event-category-gallery {
+      grid-template-columns: 1fr;
+      gap: 3px;
+    }
     .events-form-wrapper { padding: 24px 20px; }
     .events-form-grid { grid-template-columns: 1fr; }
   }
@@ -330,41 +355,38 @@
   <div class="events-grid">
     {% for block in section.blocks %}
       {% if block.type == 'category_header' %}
-        <div class="event-category-header" id="{{ block.settings.anchor_id | handleize }}" {{ block.shopify_attributes }}>
-          
-          <div class="event-category-header__media-group">
-            {% comment %} Primary Frame {% endcomment %}
-            <div class="event-category-header__frame">
+        <div class="event-category-section" id="{{ block.settings.anchor_id | handleize }}" {{ block.shopify_attributes }}>
+          <div class="event-category-hero">
+            <div class="event-category-hero__media">
               {% if block.settings.video != blank %}
                 {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
               {% elsif block.settings.image != blank %}
-                <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title | escape }}">
-              {% else %}
-                {{ 'image' | placeholder_svg_tag }}
+                <img src="{{ block.settings.image | image_url: width: 1600 }}" alt="{{ block.settings.title | escape }}">
               {% endif %}
             </div>
-
-            {% comment %} Secondary Frame {% endcomment %}
-            {% if block.settings.image_2 != blank %}
-              <div class="event-category-header__frame event-category-header__frame--secondary">
-                <img src="{{ block.settings.image_2 | image_url: width: 400 }}" alt="{{ block.settings.title | escape }}">
-              </div>
-            {% endif %}
-
-            {% comment %} Tertiary Frame {% endcomment %}
-            {% if block.settings.image_3 != blank %}
-              <div class="event-category-header__frame event-category-header__frame--tertiary">
-                <img src="{{ block.settings.image_3 | image_url: width: 400 }}" alt="{{ block.settings.title | escape }}">
-              </div>
-            {% endif %}
+            <div class="event-category-hero__gradient"></div>
+            <div class="event-category-hero__content">
+              <div class="event-category-hero__label">Moon Ridge Experience</div>
+              <h2>{{ block.settings.title }}</h2>
+              {% if block.settings.description != blank %}
+                <div class="event-category-hero__desc">{{ block.settings.description }}</div>
+              {% endif %}
+            </div>
           </div>
-
-          <div class="event-category-header__text">
-            <h2>{{ block.settings.title }}</h2>
-            {% if block.settings.description != blank %}
-              <div class="event-category-header__desc">{{ block.settings.description }}</div>
-            {% endif %}
-          </div>
+          {% if block.settings.image_2 != blank or block.settings.image_3 != blank %}
+            <div class="event-category-gallery">
+              {% if block.settings.image_2 != blank %}
+                <div class="event-category-gallery__item">
+                  <img src="{{ block.settings.image_2 | image_url: width: 900 }}" alt="{{ block.settings.title | escape }}">
+                </div>
+              {% endif %}
+              {% if block.settings.image_3 != blank %}
+                <div class="event-category-gallery__item">
+                  <img src="{{ block.settings.image_3 | image_url: width: 900 }}" alt="{{ block.settings.title | escape }}">
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
         </div>
       {% elsif block.type == 'event' %}
         <div class="event-card" {{ block.shopify_attributes }}>

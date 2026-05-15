@@ -56,6 +56,15 @@
     border-top: 3px solid rgba(197, 160, 89, 0.4);
   }
 
+  .rm-brand-tab--gold {
+    color: #C5A059 !important;
+    font-weight: 600;
+  }
+  
+  .rm-brand-tab--gold:hover:not(.is-active) {
+    color: #a88746 !important;
+  }
+
   /* Slider div kept but hidden — pure CSS handles active state now */
   .rm-tab-slider { display: none; }
 
@@ -189,7 +198,7 @@
     {% endfor %}
     {% for block in section.blocks %}
       <a href="{{ block.settings.link }}"
-         class="rm-brand-tab {% if forloop.index0 == active_index %}is-active{% endif %}"
+         class="rm-brand-tab {% if forloop.index0 == active_index %}is-active{% endif %} {% if block.settings.title == 'Make Your Event Special' %}rm-brand-tab--gold{% endif %}"
          data-tab-index="{{ forloop.index0 }}"
          {{ block.shopify_attributes }}>
         {% if block.settings.title == 'Moon Ridge' %}

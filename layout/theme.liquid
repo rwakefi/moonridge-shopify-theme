@@ -62,7 +62,7 @@
       elsif request.page_type == 'product'
         assign full_title = product.title | truncate: 35 | append: brand_suffix
       elsif request.page_type == 'collection'
-        assign full_title = collection.title | append: " | Heritage Hats" | append: brand_suffix
+        assign full_title = collection.title | append: " | Hats & Heritage" | append: brand_suffix
       elsif request.page_type == 'article'
         assign full_title = article.title | truncate: 40 | append: brand_suffix
       elsif request.page_type == 'blog'

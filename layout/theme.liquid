@@ -54,11 +54,11 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
     {%- liquid
-      assign brand_suffix = " | Moon Ridge Company"
+      assign brand_suffix = " | Moon Ridge Hats and Heritage"
       assign geo_suffix = " – Fayetteville, AR"
 
       if request.page_type == 'index'
-        assign full_title = "Moon Ridge Company | Quality Hats, Custom Shaping & Heritage Brands"
+        assign full_title = "Moon Ridge Hats and Heritage | Quality Hats, Custom Shaping & Heritage Brands"
       elsif request.page_type == 'product'
         assign full_title = product.title | truncate: 35 | append: brand_suffix
       elsif request.page_type == 'collection'
@@ -74,11 +74,11 @@
       elsif page.handle == 'faq'
         assign full_title = "FAQ: Hat Shaping & Cleaning" | append: brand_suffix
       elsif page.handle contains 'about'
-        assign full_title = "About Moon Ridge Company (Formerly Rafter M) | Fayetteville, AR"
+        assign full_title = "About Moon Ridge Hats and Heritage (Formerly Rafter M) | Fayetteville, AR"
       elsif page.handle contains 'contact'
-        assign full_title = "Contact & Booking in Fayetteville, AR | Moon Ridge Company"
+        assign full_title = "Contact & Booking in Fayetteville, AR | Moon Ridge Hats and Heritage"
       elsif page.handle contains 'book'
-        assign full_title = "Book a Hat Experience in Fayetteville | Moon Ridge Company"
+        assign full_title = "Book a Hat Experience in Fayetteville | Moon Ridge Hats and Heritage"
       elsif page.handle contains 'restoration' or page.handle contains 'cleaning'
         assign full_title = "Hat Restoration & Cleaning" | append: brand_suffix
       elsif page.handle contains 'event' or page.handle contains 'party'
@@ -98,13 +98,13 @@
     {%- liquid
       assign meta_description = page_description | default: shop.description | default: shop.name
       if request.page_type == 'index'
-        assign meta_description = "Moon Ridge Company (formerly Rafter M) in Fayetteville, AR. Professional hat shaping, cleaning, and restoration. Authorized Stetson and Resistol dealer."
+        assign meta_description = "Moon Ridge Hats and Heritage (formerly Rafter M) in Fayetteville, AR. Professional hat shaping, cleaning, and restoration. Authorized Stetson and Resistol dealer."
       elsif page.handle contains 'about'
-        assign meta_description = "Discover Moon Ridge Company (formerly Rafter M) in Fayetteville. Our veteran team provides master-level hat shaping, cleaning, and restoration with heritage craft."
+        assign meta_description = "Discover Moon Ridge Hats and Heritage (formerly Rafter M) in Fayetteville. Our veteran team provides master-level hat shaping, cleaning, and restoration with heritage craft."
       elsif page.handle contains 'contact' or page.handle contains 'book'
-        assign meta_description = "Book your hat shaping session or private hat party at Moon Ridge Company in Fayetteville, AR. We personalize premium hats from Stetson and Resistol."
+        assign meta_description = "Book your hat shaping session or private hat party at Moon Ridge Hats and Heritage in Fayetteville, AR. We personalize premium hats from Stetson and Resistol."
       elsif request.page_type == 'collection'
-        assign meta_description = "Shop premium heritage hats and goods at Moon Ridge Company. Authorized dealer for Stetson and Resistol. Expertly shaped and styled in Fayetteville, Arkansas."
+        assign meta_description = "Shop premium heritage hats and goods at Moon Ridge Hats and Heritage. Authorized dealer for Stetson and Resistol. Expertly shaped and styled in Fayetteville, Arkansas."
       endif
     -%}
     <meta name="description" content="{{ meta_description | strip_html | strip | truncate: 160 | escape }}">

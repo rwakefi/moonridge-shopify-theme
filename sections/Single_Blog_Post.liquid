@@ -40,13 +40,25 @@
     <nav class="rm-article-nav">
       {% if article.previous %}
         <a href="{{ article.previous.url }}" class="rm-article-nav__link rm-article-nav__prev">
-          <span class="rm-article-nav__label">Previous Trip</span>
+          <span class="rm-article-nav__label">
+            {%- if blog.handle contains 'travel' -%}
+              Previous Trip
+            {%- else -%}
+              Previous Article
+            {%- endif -%}
+          </span>
           <span class="rm-article-nav__title">← {{ article.previous.title }}</span>
         </a>
       {% endif %}
       {% if article.next %}
         <a href="{{ article.next.url }}" class="rm-article-nav__link rm-article-nav__next">
-          <span class="rm-article-nav__label">Next Trip</span>
+          <span class="rm-article-nav__label">
+            {%- if blog.handle contains 'travel' -%}
+              Next Trip
+            {%- else -%}
+              Next Article
+            {%- endif -%}
+          </span>
           <span class="rm-article-nav__title">{{ article.next.title }} →</span>
         </a>
       {% endif %}

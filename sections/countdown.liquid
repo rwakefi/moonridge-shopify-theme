@@ -79,7 +79,8 @@
           class: image_class,
           sizes: sizes,
           widths: widths,
-          fetchpriority: fetch_priority
+          fetchpriority: fetch_priority,
+          alt: section.settings.image.alt | default: shop.name | escape
       }}
     </div>
   {%- elsif section.settings.image_2 == blank -%}
@@ -111,7 +112,8 @@
           class: image_class_2,
           sizes: sizes,
           widths: widths,
-          fetchpriority: fetch_priority
+          fetchpriority: fetch_priority,
+          alt: section.settings.image_2.alt | default: shop.name | escape
       }}
     </div>
   {%- endif -%}

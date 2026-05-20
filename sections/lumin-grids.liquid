@@ -553,7 +553,7 @@
               <div class="lumin-text-container-{{ block.id }} image-text-content-{{ block.id }}--{{ block.settings.image_content_position }}">
                 <div class="lumin-head-{{ block.id }}">
                   {%- if block.settings.icon != blank -%}
-                	<img src="{{ block.settings.icon | img_url: '500x' }}">
+                	<img src="{{ block.settings.icon | img_url: '500x' }}" alt="{{ block.settings.icon.alt | default: block.settings.head | escape }}">
                 	{%- endif -%}
                  {% unless block.settings.head == blank and block.settings.subtitle == blank and block.settings['button-text'] == blank  %}
                    <div {% if block.settings.icon != blank %} style="padding-top:30px; padding-bottom:30px;"{% endif %}>

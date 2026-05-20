@@ -90,17 +90,17 @@
 								<div class="rw-text-head h4" style="margin-bottom:10px;">{{block.settings.review_head}}</div>
 								<div class="rw-text-main">{{block.settings.review_text}}</div>
                                  {% if block.settings.img_block != blank %}
-                                   <img src="{{block.settings.img_block.src | img_url: '200x'}}"alt="" loading="lazy">
+                                   <img src="{{block.settings.img_block.src | img_url: '200x'}}" alt="{{ block.settings.review_head | strip_html | escape }}" loading="lazy">
                                  {% endif %}
                                  {% if block.settings.img_block2 != blank %}
-                                  <img src="{{block.settings.img_block2.src | img_url: '200x'}}"alt="" loading="lazy">
+                                  <img src="{{block.settings.img_block2.src | img_url: '200x'}}" alt="{{ block.settings.review_head | strip_html | escape }}" loading="lazy">
                                  {% endif %}
 
                                   {% if section.settings.show_footer %}
 										<div class="rw-text-footer">
 											<span style="display: flex;align-items: center;gap: 10px;">
                                               {% if product.images.size > 0 %}
-                                               <img src="{{ product.images[0] | img_url: '40x' }}" alt="{{ product.title }}" style="border-radius:6px;max-width:40px;">
+                                               <img src="{{ product.images[0] | img_url: '40x' }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" style="border-radius:6px;max-width:40px;">
                                               {% endif %}
                                                <span class="lm-text-clip">{{ product.title | escape }}</span>
 												</span>

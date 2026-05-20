@@ -254,7 +254,8 @@ window.addEventListener('DOMContentLoaded', () => {
                               loading: 'lazy',
                               widths: '50, 100, 150, 200, 300, 400, 550, 800, 1100',
                               height: brand_image_height,
-                              width: settings.brand_image_width
+                              width: settings.brand_image_width,
+                              alt: settings.brand_image.alt | default: settings.brand_headline | default: shop.name | escape
                           }}
                         </div>
                       {%- endif -%}

@@ -64,7 +64,7 @@
           {{
             section.settings.image
             | image_url: width: 1500
-            | image_tag: loading: 'lazy', sizes: sizes, widths: widths
+            | image_tag: loading: 'lazy', sizes: sizes, widths: widths, alt: section.settings.image.alt | default: shop.name | escape
           }}
         {%- else -%}
           {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -117,7 +117,7 @@
             </style>
             <div class="qa-feature-{{ block.id }} rte" {{ block.shopify_attributes }}>
         	{%- if block.settings.icon != blank -%}
-        	<img src="{{ block.settings.icon | img_url: '100x' }}">
+        	<img src="{{ block.settings.icon | img_url: '100x' }}" alt="{{ block.settings.icon.alt | default: block.settings.heading | escape }}">
         	{%- else -%}
               <?xml version="1.0" encoding="UTF-8"?>
               <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

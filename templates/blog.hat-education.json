@@ -1,0 +1,54 @@
+{
+  "sections": {
+    "17653910051ed52623": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_9276253_JNKPJG": {
+          "type": "ai_gen_block_9276253",
+          "name": "Title and Body Block",
+          "settings": {
+            "title": "Hat Education",
+            "heading_tag": "h1",
+            "content": "<p>Welcome to Hat Education. Learn about how hats are crafted, how to choose the right fit, style guides, and how to care for your hats.</p>",
+            "max_width": 1200,
+            "text_alignment": "center",
+            "title_size": 32,
+            "title_spacing": 24,
+            "text_size": 16,
+            "line_height": 1.6,
+            "background_color": "#ffffff",
+            "title_color": "#312110",
+            "text_color": "#1f1d24",
+            "heading_color": "#312110",
+            "link_color": "#312110",
+            "link_hover_color": "#1f1d24",
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_horizontal": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_9276253_JNKPJG"
+      ],
+      "settings": {}
+    },
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "blog": "hat-education",
+        "articles_to_show": 24,
+        "desktop_columns": 3,
+        "desktop_rows": 4,
+        "show_date": false,
+        "show_excerpt": true,
+        "read_more_label": "Read the full story"
+      }
+    }
+  },
+  "order": [
+    "17653910051ed52623",
+    "main"
+  ]
+}

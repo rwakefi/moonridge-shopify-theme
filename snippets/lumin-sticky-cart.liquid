@@ -91,6 +91,7 @@ assign img_size = settings.img_width | append: 'x' | append: settings.img_height
            {% if settings.show_img_dt %}
             <img
                src="{{ image | img_url: img_size, crop: 'center' }}"
+               alt="{{ product.featured_image.alt | default: product.title | escape }}"
                class="mobile-hide tablet-hide"
                width="{{ settings.img_width }}"
                height="{{ settings.img_height }}"
@@ -99,6 +100,7 @@ assign img_size = settings.img_width | append: 'x' | append: settings.img_height
            {% if settings.show_img_mb %}
             <img
                src="{{ image | img_url: img_size, crop: 'center' }}"
+               alt="{{ product.featured_image.alt | default: product.title | escape }}"
                class="medium-up-hide large-up-hide"
                width="{{ settings.img_width }}"
                height="{{ settings.img_height }}"

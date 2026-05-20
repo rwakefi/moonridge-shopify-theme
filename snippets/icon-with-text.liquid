@@ -47,11 +47,7 @@
       {%- else -%}
         <img
           src="{{ block.settings.image_1 | image_url }}"
-          {% if block.settings.image_1.alt != blank %}
-            alt="{{ block.settings.image_1.alt | escape }}"
-          {% else %}
-            role="presentation"
-          {% endif %}
+          alt="{{ block.settings.image_1.alt | default: block.settings.heading_1 | escape }}"
           height="auto"
           width="auto"
           loading="lazy"
@@ -69,11 +65,7 @@
       {%- else -%}
         <img
           src="{{ block.settings.image_2 | image_url }}"
-          {% if block.settings.image_2.alt != blank %}
-            alt="{{ block.settings.image_2.alt | escape }}"
-          {% else %}
-            role="presentation"
-          {% endif %}
+          alt="{{ block.settings.image_2.alt | default: block.settings.heading_2 | escape }}"
           height="auto"
           width="auto"
           loading="lazy"
@@ -91,11 +83,7 @@
       {%- else -%}
         <img
           src="{{ block.settings.image_3 | image_url }}"
-          {% if block.settings.image_3.alt != blank %}
-            alt="{{ block.settings.image_3.alt | escape }}"
-          {% else %}
-            role="presentation"
-          {% endif %}
+          alt="{{ block.settings.image_3.alt | default: block.settings.heading_3 | escape }}"
           height="auto"
           width="auto"
           loading="lazy"

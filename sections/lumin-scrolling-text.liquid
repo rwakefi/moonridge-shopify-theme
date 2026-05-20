@@ -38,7 +38,7 @@
                 {{ block.shopify_attributes }}
               >
                 {% if block.settings.logo_image != blank %}
-                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy' }}
+                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.logo_image.alt | default: 'Brand logo' | escape }}
                 {%- else -%}
                   <p style="font-size: 40px;margin: 0;">Brand</p>
                 {%- endif -%}
@@ -106,7 +106,7 @@
                 {{ block.shopify_attributes }}
               >
                 {% if block.settings.logo_image != blank %}
-                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy' }}
+                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.logo_image.alt | default: 'Brand logo' | escape }}
                 {%- else -%}
                   <p style="font-size: 40px;margin: 0;">Brand</p>
                 {%- endif -%}
@@ -174,7 +174,7 @@
                 {{ block.shopify_attributes }}
               >
                 {% if block.settings.logo_image != blank %}
-                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy' }}
+                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.logo_image.alt | default: 'Brand logo' | escape }}
                 {%- else -%}
                   <p style="font-size: 40px;margin: 0;">Brand</p>
                 {%- endif -%}
@@ -242,7 +242,7 @@
                 {{ block.shopify_attributes }}
               >
                 {% if block.settings.logo_image != blank %}
-                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy' }}
+                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.logo_image.alt | default: 'Brand logo' | escape }}
                 {%- else -%}
                   <p style="font-size: 40px;margin: 0;">Brand</p>
                 {%- endif -%}
@@ -310,7 +310,7 @@
                 {{ block.shopify_attributes }}
               >
                 {% if block.settings.logo_image != blank %}
-                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy' }}
+                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.logo_image.alt | default: 'Brand logo' | escape }}
                 {%- else -%}
                   <p style="font-size: 40px;margin: 0;">Brand</p>
                 {%- endif -%}
@@ -378,7 +378,7 @@
                 {{ block.shopify_attributes }}
               >
                 {% if block.settings.logo_image != blank %}
-                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy' }}
+                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.logo_image.alt | default: 'Brand logo' | escape }}
                 {%- else -%}
                   <p style="font-size: 40px;margin: 0;">Brand</p>
                 {%- endif -%}
@@ -446,7 +446,7 @@
                 {{ block.shopify_attributes }}
               >
                 {% if block.settings.logo_image != blank %}
-                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy' }}
+                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.logo_image.alt | default: 'Brand logo' | escape }}
                 {%- else -%}
                   <p style="font-size: 40px;margin: 0;">Brand</p>
                 {%- endif -%}
@@ -514,7 +514,7 @@
                 {{ block.shopify_attributes }}
               >
                 {% if block.settings.logo_image != blank %}
-                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy' }}
+                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.logo_image.alt | default: 'Brand logo' | escape }}
                 {%- else -%}
                   <p style="font-size: 40px;margin: 0;">Brand</p>
                 {%- endif -%}
@@ -582,7 +582,7 @@
                 {{ block.shopify_attributes }}
               >
                 {% if block.settings.logo_image != blank %}
-                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy' }}
+                  {{ block.settings.logo_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: block.settings.logo_image.alt | default: 'Brand logo' | escape }}
                 {%- else -%}
                   <p style="font-size: 40px;margin: 0;">Brand</p>
                 {%- endif -%}

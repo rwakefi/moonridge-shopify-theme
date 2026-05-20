@@ -90,7 +90,8 @@
 
 <div class="ai-rich-text-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   {% if block.settings.title != blank %}
-    <h2 class="ai-rich-text-title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+    {% assign heading_tag = block.settings.heading_tag | default: 'h2' %}
+    <{{ heading_tag }} class="ai-rich-text-title-{{ ai_gen_id }}">{{ block.settings.title }}</{{ heading_tag }}>
   {% endif %}
   
   <div class="ai-rich-text-content-{{ ai_gen_id }}">
@@ -111,6 +112,26 @@
       "id": "title",
       "label": "Title",
       "default": "Rich text"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1 (Main Page Title)"
+        },
+        {
+          "value": "h2",
+          "label": "H2 (Section Header)"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2"
     },
     {
       "type": "richtext",

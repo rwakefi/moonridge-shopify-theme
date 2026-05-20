@@ -148,7 +148,7 @@
             {% if image %}
               <img
                 src="{{ image | image_url: width: 400 }}"
-                alt="{{ image.alt | escape }}"
+                alt="{{ image.alt | default: 'Gallery image' | escape }}"
                 loading="lazy"
                 width="{{ image.width }}"
                 height="{{ image.height }}"
@@ -189,7 +189,7 @@
             {% if image %}
               <img
                 src="{{ image | image_url: width: 400 }}"
-                alt="{{ image.alt | escape }}"
+                alt="{{ image.alt | default: 'Gallery image' | escape }}"
                 loading="lazy"
                 width="{{ image.width }}"
                 height="{{ image.height }}"

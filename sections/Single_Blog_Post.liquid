@@ -24,7 +24,7 @@
         src="{{ article.image | image_url: width: 1600 }}"
         width="{{ article.image.width }}"
         height="{{ article.image.height }}"
-        alt="{{ article.image.alt | escape }}"
+        alt="{{ article.image.alt | default: article.title | escape }}"
         loading="lazy"
       >
     </div>

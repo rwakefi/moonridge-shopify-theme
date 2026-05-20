@@ -10,6 +10,41 @@
     {% assign travel_blog = section.settings.blog %}
 
     {%- comment -%}
+      SEO JSON-LD Schema: Tell search engines about this Blog and its articles.
+    {%- endcomment -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "@id": {{ canonical_url | json }},
+      "name": {{ travel_blog.title | json }},
+      "url": {{ canonical_url | json }},
+      "publisher": {
+        "@type": "Organization",
+        "@id": {{ request.origin | append: "/#organization" | json }}
+      },
+      "blogPost": [
+        {% for article in travel_blog.articles limit: 24 %}
+          {
+            "@type": "BlogPosting",
+            "@id": {{ article.url | prepend: request.origin | json }},
+            "headline": {{ article.title | json }},
+            {% if article.image %}
+              "image": {{ article.image | img_url: '600x400_crop_center' | prepend: 'https:' | json }},
+            {% endif %}
+            "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+            "author": {
+              "@type": "Person",
+              "name": {{ article.author | json }}
+            },
+            "url": {{ article.url | prepend: request.origin | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    }
+    </script>
+
+    {%- comment -%}
       DEBUG: Show which blog + how many articles Shopify sees.
       You can delete this <p> after everything works.
     {%- endcomment -%}
@@ -37,52 +72,58 @@
     {% endif %}
 
     {% if travel_blog.articles_count > 0 and max_articles > 0 %}
-      <div class="travel-blog-menu__grid">
-        {% for article in travel_blog.articles limit: max_articles %}
-          <article class="travel-blog-menu__card">
-            <a href="{{ article.url }}" class="travel-blog-menu__image-link">
-              {% if article.image %}
-                <div class="travel-blog-menu__image-wrapper">
-                  <img
-                    src="{{ article.image | img_url: '600x400_crop_center' }}
+      {% paginate travel_blog.articles by max_articles %}
+        <div class="travel-blog-menu__grid">
+          {% for article in travel_blog.articles %}
+            <article class="travel-blog-menu__card">
+              <a href="{{ article.url }}" class="travel-blog-menu__image-link">
+                {% if article.image %}
+                  <div class="travel-blog-menu__image-wrapper">
+                    <img
+                      src="{{ article.image | img_url: '600x400_crop_center' }}
 "
-                    alt="{{ article.image.alt | escape }}"
-                    loading="lazy"
-                  >
-                </div>
-              {% endif %}
-            </a>
-
-            <div class="travel-blog-menu__content">
-              <h2 class="travel-blog-menu__card-title">
-                <a href="{{ article.url }}">
-                  {{ article.title }}
-                </a>
-              </h2>
-
-              {% if section.settings.show_date %}
-                <p class="travel-blog-menu__meta">
-                  {{ article.published_at | date: "%B %e, %Y" }}
-                </p>
-              {% endif %}
-
-              {% if section.settings.show_excerpt %}
-                <p class="travel-blog-menu__excerpt">
-                  {% if article.excerpt != blank %}
-                    {{ article.excerpt | strip_html | truncate: 140 }}
-                  {% else %}
-                    {{ article.content | strip_html | truncate: 140 }}
-                  {% endif %}
-                </p>
-              {% endif %}
-
-              <a href="{{ article.url }}" class="travel-blog-menu__read-more">
-                {{ section.settings.read_more_label }}
+                      alt="{{ article.image.alt | default: article.title | escape }}"
+                      loading="lazy"
+                    >
+                  </div>
+                {% endif %}
               </a>
-            </div>
-          </article>
-        {% endfor %}
-      </div>
+
+              <div class="travel-blog-menu__content">
+                <h2 class="travel-blog-menu__card-title">
+                  <a href="{{ article.url }}">
+                    {{ article.title }}
+                  </a>
+                </h2>
+
+                {% if section.settings.show_date %}
+                  <p class="travel-blog-menu__meta">
+                    {{ article.published_at | date: "%B %e, %Y" }}
+                  </p>
+                {% endif %}
+
+                {% if section.settings.show_excerpt %}
+                  <p class="travel-blog-menu__excerpt">
+                    {% if article.excerpt != blank %}
+                      {{ article.excerpt | strip_html | truncate: 140 }}
+                    {% else %}
+                      {{ article.content | strip_html | truncate: 140 }}
+                    {% endif %}
+                  </p>
+                {% endif %}
+
+                <a href="{{ article.url }}" class="travel-blog-menu__read-more">
+                  {{ section.settings.read_more_label }}
+                </a>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+
+        {%- if paginate.pages > 1 -%}
+          {%- render 'pagination', paginate: paginate -%}
+        {%- endif -%}
+      {% endpaginate %}
 
     {% else %}
       <p>No travel stories have been published yet. Check back soon!</p>

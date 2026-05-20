@@ -172,7 +172,7 @@
               {% if block.settings.image != blank %}
                 <img
                   src="{{ block.settings.image | image_url }}"
-                  alt="rose"
+                  alt="{{ block.settings.image.alt | default: block.settings.head | default: shop.name | escape }}"
                   loading="lazy"
                   width="100%"
                   height="100%"
@@ -536,7 +536,7 @@
               <div class="lumin-text-container-{{ block.id }} image-text-content-{{ block.id }}--{{ block.settings.image_content_position }}">
                 <div class="lumin-head-{{ block.id }} rte">
                   {%- if block.settings.icon != blank -%}
-                	<img src="{{ block.settings.icon | img_url: '500x' }}">
+                	<img src="{{ block.settings.icon | img_url: '500x' }}" alt="{{ block.settings.icon.alt | default: block.settings.head | escape }}">
                 	{%- endif -%}
                   {% if block.settings.head != blank %}
                     <div

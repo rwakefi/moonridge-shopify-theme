@@ -22,7 +22,7 @@
     <div class="rm-article__image-wrapper">
       <img
         src="{{ article.image | image_url: width: 1600 }}"
-        alt="{{ article.image.alt | escape }}"
+        alt="{{ article.image.alt | default: article.title | escape }}"
         loading="lazy"
       >
     </div>

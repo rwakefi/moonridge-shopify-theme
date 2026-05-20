@@ -151,7 +151,8 @@
 							| image_tag:
 								loading: 'lazy',
 								widths: '275, 550, 750',
-								style: style
+								style: style,
+								alt: section.settings.image.alt | default: shop.name | escape
 						}}
 					</div>
 				{% endif %}

@@ -48,7 +48,7 @@
           sizes="100vw"
           src="{{ section.settings.image | image_url: width: 1500 }}"
           loading="lazy"
-          alt="{{ section.settings.image.alt | escape }}"
+          alt="{{ section.settings.image.alt | default: shop.name | escape }}"
           width="{{ section.settings.image.width }}"
           height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
         >

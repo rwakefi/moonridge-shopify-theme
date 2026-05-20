@@ -122,7 +122,8 @@
       {%- if section.settings.image != blank -%}
         {{ section.settings.image | image_url: width: 1200 | image_tag: 
           class: 'heritage-restoration__image',
-          loading: 'lazy'
+          loading: 'lazy',
+          alt: section.settings.image.alt | default: 'Hat Restoration Service' | escape
         }}
       {%- else -%}
         <img src="{{ 'hat_restoration_heritage.png' | asset_url }}" class="heritage-restoration__image" alt="Hat Restoration Service">

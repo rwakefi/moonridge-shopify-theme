@@ -17,10 +17,7 @@
     assign secondary_keyword = "Fayetteville, AR"
   endif
 
-  assign seo_title = primary_keyword
-  unless seo_title contains shop.name
-    assign seo_title = seo_title | append: " - " | append: shop.name
-  endunless
+  assign seo_title = primary_keyword | append: " - " | append: shop.name
   assign seo_description = page_description | default: shop.description | default: shop.name | strip_html | strip | truncate: 160
   
   assign og_title = seo_title

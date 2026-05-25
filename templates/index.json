@@ -651,7 +651,7 @@
           "type": "button",
           "settings": {
             "button_label": "Shop Now",
-            "button_link": "shopify://collections/mens",
+            "button_link": "shopify://collections/womens",
             "button_style_secondary": false
           }
         }
@@ -1102,6 +1102,13 @@
     "faq_accordion": {
       "type": "faq-accordion",
       "blocks": {
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Where are you located?",
+            "answer": "<p>We are proudly located just 2 doors south of the bowling alley on College Avenue in Fayetteville, Arkansas.</p>"
+          }
+        },
         "faq_1": {
           "type": "faq",
           "settings": {
@@ -1121,13 +1128,6 @@
           "settings": {
             "question": "Do I need an appointment for hat shaping?",
             "answer": "<p>Walk-ins are always welcome! However, we highly recommend booking a 'Free Hat Experience' appointment. One-on-one time is our specialty, and booking an appointment ensures we have dedicated time to perfectly fit and shape your hat.</p>"
-          }
-        },
-        "faq_4": {
-          "type": "faq",
-          "settings": {
-            "question": "Where are you located?",
-            "answer": "<p>We are proudly located just 2 doors south of the bowling alley on College Avenue in Fayetteville, Arkansas.</p>"
           }
         }
       },

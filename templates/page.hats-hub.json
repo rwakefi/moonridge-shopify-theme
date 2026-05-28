@@ -15,9 +15,9 @@
         "tile_cowboy": {
           "type": "style_tile",
           "settings": {
-            "title": "Cowboy hats",
-            "image_metafield_key": "western",
-            "collection_all": "felt-hats"
+            "title": "Western hats",
+            "collection_all": "felt-hats",
+            "image_metafield_key": "western"
           }
         },
         "tile_sun": {
@@ -59,6 +59,7 @@
       "settings": {
         "heading": "Shop hats by style",
         "intro": "Browse by style, then narrow to men's or women's. Every hat can be shaped and fitted in store or by appointment.",
+        "metafield_search_collection": "hats-for-everyone",
         "shop_all_collection": "hats-for-everyone",
         "men_fallback_collection": "mens-hats",
         "women_fallback_collection": "womens-hats"

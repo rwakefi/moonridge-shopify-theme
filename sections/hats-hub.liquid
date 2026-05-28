@@ -236,26 +236,30 @@
         {%- liquid
           assign men_collection = block.settings.collection_men
           assign women_collection = block.settings.collection_women
-          assign all_collection = block.settings.collection_all
           assign style_label = block.settings.title | downcase
+          assign all_collection = nil
 
-          if all_collection == blank or all_collection.url == blank
-            if style_label contains 'cowboy'
-              assign all_collection = collections['felt-hats']
-            elsif style_label contains 'sun'
-              assign all_collection = collections['straw-hats']
-            elsif style_label contains 'fedora'
-              assign all_collection = collections['fedoras']
-            elsif style_label contains 'panama'
-              assign all_collection = collections['panamas']
-            elsif style_label contains 'ballcap'
-              assign all_collection = collections['ballcaps-truckers-1']
-            endif
+          if style_label contains 'western' or style_label contains 'cowboy'
+            assign all_collection = collections['felt-hats']
+          elsif style_label contains 'sun'
+            assign all_collection = collections['straw-hats']
+          elsif style_label contains 'fedora'
+            assign all_collection = collections['fedoras']
+          elsif style_label contains 'panama'
+            assign all_collection = collections['panamas']
+          elsif style_label contains 'ballcap'
+            assign all_collection = collections['ballcaps-truckers-1']
+          endif
+
+          if block.settings.collection_all != blank and block.settings.collection_all.handle != blank
+            assign all_collection = block.settings.collection_all
           endif
 
           assign image_mf_key = block.settings.image_metafield_key
-          if image_mf_key == blank and style_label contains 'cowboy'
-            assign image_mf_key = 'western'
+          if image_mf_key == blank
+            if style_label contains 'western' or style_label contains 'cowboy'
+              assign image_mf_key = 'western'
+            endif
           endif
 
           assign metafield_search = section.settings.metafield_search_collection
@@ -481,7 +485,7 @@
           "type": "text",
           "id": "title",
           "label": "Title",
-          "default": "Cowboy hats"
+          "default": "Western hats"
         },
         {
           "type": "image_picker",
@@ -520,7 +524,7 @@
         {
           "type": "style_tile",
           "settings": {
-            "title": "Cowboy hats",
+            "title": "Western hats",
             "collection_all": "felt-hats",
             "image_metafield_key": "western"
           }

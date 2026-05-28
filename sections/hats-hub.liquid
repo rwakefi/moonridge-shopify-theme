@@ -258,17 +258,29 @@
       </button>
     </div>
 
-    {%- assign from_param = '?from=hats-hub' -%}
+    {%- liquid
+      assign from_param = '?from=hats-hub'
+      assign hub_tile_count = 0
+      for block in section.blocks
+        if block.type == 'hub_tile'
+          assign hub_tile_count = hub_tile_count | plus: 1
+        endif
+      endfor
+    -%}
 
     {%- if section.settings.row_hat_type_heading != blank -%}
       <div class="hats-hub__row">
         <h2 class="hats-hub__row-title">{{ section.settings.row_hat_type_heading | escape }}</h2>
         <ul class="hats-hub__grid hats-hub__grid--hat-type" role="list">
-          {%- for block in section.blocks -%}
-            {%- if block.settings.row == 'hat_type' -%}
-              {%- render 'hats-hub-tile', block: block, section: section, from_param: from_param -%}
-            {%- endif -%}
-          {%- endfor -%}
+          {%- if hub_tile_count > 0 -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'hub_tile' and block.settings.row == 'hat_type' -%}
+                {%- render 'hats-hub-tile', block: block, section: section, from_param: from_param -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- else -%}
+            {%- render 'hats-hub-default-tiles', row: 'hat_type', section: section, from_param: from_param -%}
+          {%- endif -%}
         </ul>
       </div>
     {%- endif -%}
@@ -277,11 +289,15 @@
       <div class="hats-hub__row">
         <h2 class="hats-hub__row-title">{{ section.settings.row_style_heading | escape }}</h2>
         <ul class="hats-hub__grid hats-hub__grid--style" role="list">
-          {%- for block in section.blocks -%}
-            {%- if block.settings.row == 'style' -%}
-              {%- render 'hats-hub-tile', block: block, section: section, from_param: from_param -%}
-            {%- endif -%}
-          {%- endfor -%}
+          {%- if hub_tile_count > 0 -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'hub_tile' and block.settings.row == 'style' -%}
+                {%- render 'hats-hub-tile', block: block, section: section, from_param: from_param -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- else -%}
+            {%- render 'hats-hub-default-tiles', row: 'style', section: section, from_param: from_param -%}
+          {%- endif -%}
         </ul>
       </div>
     {%- endif -%}

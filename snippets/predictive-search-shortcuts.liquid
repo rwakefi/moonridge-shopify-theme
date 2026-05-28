@@ -1,0 +1,106 @@
+{% comment %}
+  Empty-state and quick shortcuts for header predictive search.
+  Settings live on the header section.
+{% endcomment %}
+{%- unless section.settings.search_shortcuts_enabled == false -%}
+
+<div class="predictive-search-shortcuts" data-predictive-search-shortcuts hidden>
+  {%- if section.settings.search_popular_heading != blank -%}
+    <p class="predictive-search-shortcuts__heading">{{ section.settings.search_popular_heading | escape }}</p>
+  {%- endif -%}
+
+  <ul class="predictive-search-shortcuts__list list-unstyled" role="list">
+    {%- if section.settings.search_shortcut_cowboy != blank -%}
+      {%- assign shortcut = section.settings.search_shortcut_cowboy -%}
+      <li>
+        <a class="predictive-search-shortcuts__item link" href="{{ shortcut.url }}">
+          {%- if shortcut.featured_image != blank -%}
+            <img
+              src="{{ shortcut.featured_image | image_url: width: 120 }}"
+              alt="{{ shortcut.featured_image.alt | default: shortcut.title | escape }}"
+              width="48"
+              height="48"
+              loading="lazy"
+              class="predictive-search-shortcuts__image"
+            >
+          {%- endif -%}
+          <span class="predictive-search-shortcuts__label">{{ section.settings.search_shortcut_cowboy_label | default: shortcut.title | escape }}</span>
+        </a>
+      </li>
+    {%- endif -%}
+
+    {%- if section.settings.search_shortcut_sun != blank -%}
+      {%- assign shortcut = section.settings.search_shortcut_sun -%}
+      <li>
+        <a class="predictive-search-shortcuts__item link" href="{{ shortcut.url }}">
+          {%- if shortcut.featured_image != blank -%}
+            <img
+              src="{{ shortcut.featured_image | image_url: width: 120 }}"
+              alt="{{ shortcut.featured_image.alt | default: shortcut.title | escape }}"
+              width="48"
+              height="48"
+              loading="lazy"
+              class="predictive-search-shortcuts__image"
+            >
+          {%- endif -%}
+          <span class="predictive-search-shortcuts__label">{{ section.settings.search_shortcut_sun_label | default: shortcut.title | escape }}</span>
+        </a>
+      </li>
+    {%- endif -%}
+
+    {%- if section.settings.search_shortcut_brands != blank -%}
+      {%- assign shortcut = section.settings.search_shortcut_brands -%}
+      <li>
+        <a class="predictive-search-shortcuts__item link" href="{{ shortcut.url }}">
+          {%- if shortcut.featured_image != blank -%}
+            <img
+              src="{{ shortcut.featured_image | image_url: width: 120 }}"
+              alt="{{ shortcut.featured_image.alt | default: shortcut.title | escape }}"
+              width="48"
+              height="48"
+              loading="lazy"
+              class="predictive-search-shortcuts__image"
+            >
+          {%- endif -%}
+          <span class="predictive-search-shortcuts__label">{{ section.settings.search_shortcut_brands_label | default: shortcut.title | escape }}</span>
+        </a>
+      </li>
+    {%- endif -%}
+
+    {%- if section.settings.search_shortcut_shop_all != blank -%}
+      {%- assign shortcut = section.settings.search_shortcut_shop_all -%}
+      <li>
+        <a class="predictive-search-shortcuts__item link" href="{{ shortcut.url }}">
+          {%- if shortcut.featured_image != blank -%}
+            <img
+              src="{{ shortcut.featured_image | image_url: width: 120 }}"
+              alt="{{ shortcut.featured_image.alt | default: shortcut.title | escape }}"
+              width="48"
+              height="48"
+              loading="lazy"
+              class="predictive-search-shortcuts__image"
+            >
+          {%- endif -%}
+          <span class="predictive-search-shortcuts__label">{{ section.settings.search_shortcut_shop_all_label | default: shortcut.title | escape }}</span>
+        </a>
+      </li>
+    {%- endif -%}
+  </ul>
+
+  {%- if section.settings.search_popular_queries != blank -%}
+    <p class="predictive-search-shortcuts__heading predictive-search-shortcuts__heading--queries">{{ section.settings.search_queries_heading | default: 'Popular searches' | escape }}</p>
+    <ul class="predictive-search-shortcuts__queries list-unstyled" role="list">
+      {%- assign queries = section.settings.search_popular_queries | newline_to_br | split: '<br />' -%}
+      {%- for query_line in queries -%}
+        {%- assign query_text = query_line | strip -%}
+        {%- if query_text != blank -%}
+          <li>
+            <a class="predictive-search-shortcuts__query link" href="{{ routes.search_url }}?q={{ query_text | url_param_encode }}">{{ query_text | escape }}</a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>
+
+{%- endunless -%}

@@ -223,3 +223,132 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
   object-fit: contain;
   font-family: 'object-fit: contain';
 }
+
+/* Shortcuts (empty state) */
+.predictive-search-shortcuts {
+  padding: 1.2rem 1.6rem 1.6rem;
+  border-bottom: 1px solid rgba(49, 33, 16, 0.08);
+}
+
+.predictive-search-shortcuts__heading {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(49, 33, 16, 0.65);
+  font-family: var(--font-heading-family);
+}
+
+.predictive-search-shortcuts__heading--queries {
+  margin-top: 1.4rem;
+}
+
+.predictive-search-shortcuts__list {
+  display: grid;
+  gap: 0.6rem;
+}
+
+@media screen and (min-width: 750px) {
+  .predictive-search-shortcuts__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.predictive-search-shortcuts__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid rgba(49, 33, 16, 0.1);
+  border-radius: 4px;
+  text-decoration: none;
+  color: rgb(var(--color-foreground));
+  background: #faf8f5;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.predictive-search-shortcuts__item:hover {
+  border-color: #c5a059;
+  background: #fff;
+}
+
+.predictive-search-shortcuts__image {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.predictive-search-shortcuts__label {
+  font-size: 1.3rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: var(--font-heading-family);
+}
+
+.predictive-search-shortcuts__queries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.predictive-search-shortcuts__query {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(49, 33, 16, 0.15);
+  border-radius: 999px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: rgb(var(--color-foreground));
+  background: #fff;
+}
+
+.predictive-search-shortcuts__query:hover {
+  border-color: #c5a059;
+  color: #312110;
+}
+
+/* Synonym boost */
+.predictive-search-synonym {
+  padding: 1rem 1.6rem 0;
+}
+
+.predictive-search-synonym__link {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #c5a059;
+  border-radius: 4px;
+  background: rgba(197, 160, 89, 0.08);
+  text-decoration: none;
+  color: #312110;
+}
+
+.predictive-search-synonym__image {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.predictive-search-synonym__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.predictive-search-synonym__label {
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: var(--font-heading-family);
+  font-weight: 600;
+}
+
+.predictive-search-synonym__collection {
+  font-size: 1.3rem;
+  opacity: 0.75;
+}

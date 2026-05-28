@@ -8,7 +8,7 @@
   assign synonym_collection = blank
   assign synonym_label = blank
 
-  assign cowboy_collection = collections['cowboy-hats']
+  assign cowboy_collection = collections['western-hats']
   assign sun_collection = collections['sun-hats']
   assign brands_collection = collections['stetson']
   if brands_collection == blank
@@ -20,7 +20,7 @@
 
   if q contains 'cowboy' or q contains 'western' or q contains 'ranch' or q contains 'cattle'
     assign synonym_collection = cowboy_collection
-    assign synonym_label = 'Shop cowboy hats'
+    assign synonym_label = 'Shop western hats'
   elsif q contains 'sun' or q contains 'upf' or q contains 'wide brim' or q contains 'wide-brim'
     assign synonym_collection = sun_collection
     assign synonym_label = 'Shop sun hats'

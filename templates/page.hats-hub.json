@@ -16,7 +16,7 @@
           "type": "style_tile",
           "settings": {
             "title": "Western hats",
-            "collection_all": "felt-hats",
+            "collection_all": "western-hats",
             "image_metafield_key": "western"
           }
         },

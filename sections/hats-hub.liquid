@@ -1,9 +1,16 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  #shopify-section-{{ section.id }},
   .hats-hub-{{ section.id }} {
     --hats-hub-accent: {{ section.settings.accent_color }};
     --hats-hub-ink: #312110;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+
+  .hats-hub-{{ section.id }} {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
@@ -146,7 +153,7 @@
     border-radius: 4px;
     overflow: hidden;
     border: 1px solid rgba(49, 33, 16, 0.1);
-    background: #faf8f5;
+    background: transparent;
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
 
@@ -159,7 +166,7 @@
   .hats-hub-{{ section.id }} .hats-hub__tile-media {
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    background: #e8e2da;
+    background: transparent;
   }
 
   .hats-hub-{{ section.id }} .hats-hub__tile-media img {
@@ -201,7 +208,7 @@
   }
 {%- endstyle -%}
 
-<section class="hats-hub-{{ section.id }} gradient color-{{ section.settings.color_scheme }}" id="hats-hub-{{ section.id }}">
+<section class="hats-hub-{{ section.id }}" id="hats-hub-{{ section.id }}">
   <div class="hats-hub__inner page-width">
     <nav aria-label="Breadcrumb">
       <ol class="hats-hub__crumbs">

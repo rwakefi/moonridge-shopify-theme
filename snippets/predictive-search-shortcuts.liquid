@@ -1,26 +1,13 @@
 {% comment %}
   Empty-state shortcuts for header predictive search.
-  Collection handles are configured on the header section.
+  Three style tiles: Western, City, Outdoors/Sportsman (collection handles in header settings).
 {% endcomment %}
 {%- unless section.settings.search_shortcuts_enabled == false -%}
 
 {%- liquid
-  assign cowboy = collections[section.settings.search_shortcut_cowboy_handle]
-  assign sun = collections[section.settings.search_shortcut_sun_handle]
-  assign brands = collections[section.settings.search_shortcut_brands_handle]
-  assign shop_all = collections[section.settings.search_shortcut_shop_all_handle]
-
-  assign hats_hub_url = '/pages/shop-hats'
-  if section.settings.hats_hub_page != blank
-    assign hats_hub_url = section.settings.hats_hub_page.url
-  elsif pages['shop-hats'] != blank
-    assign hats_hub_url = pages['shop-hats'].url
-  endif
-
-  assign shop_all_url = shop_all.url
-  if section.settings.search_shortcut_shop_all_use_hub != false
-    assign shop_all_url = hats_hub_url
-  endif
+  assign western = collections[section.settings.search_shortcut_cowboy_handle]
+  assign city = collections[section.settings.search_shortcut_sun_handle]
+  assign outdoors = collections[section.settings.search_shortcut_brands_handle]
 -%}
 
 <div class="predictive-search-shortcuts" data-predictive-search-shortcuts hidden>
@@ -29,74 +16,56 @@
   {%- endif -%}
 
   <ul class="predictive-search-shortcuts__list list-unstyled" role="list">
-    {%- if cowboy != blank -%}
+    {%- if western != blank -%}
       <li>
-        <a class="predictive-search-shortcuts__item link" href="{{ cowboy.url }}">
-          {%- if cowboy.featured_image != blank -%}
+        <a class="predictive-search-shortcuts__item link" href="{{ western.url }}">
+          {%- if western.featured_image != blank -%}
             <img
-              src="{{ cowboy.featured_image | image_url: width: 120 }}"
-              alt="{{ cowboy.featured_image.alt | default: cowboy.title | escape }}"
+              src="{{ western.featured_image | image_url: width: 120 }}"
+              alt="{{ western.featured_image.alt | default: western.title | escape }}"
               width="48"
               height="48"
               loading="lazy"
               class="predictive-search-shortcuts__image"
             >
           {%- endif -%}
-          <span class="predictive-search-shortcuts__label">{{ section.settings.search_shortcut_cowboy_label | default: cowboy.title | escape }}</span>
+          <span class="predictive-search-shortcuts__label">{{ section.settings.search_shortcut_cowboy_label | default: 'Western' | escape }}</span>
         </a>
       </li>
     {%- endif -%}
 
-    {%- if sun != blank -%}
+    {%- if city != blank -%}
       <li>
-        <a class="predictive-search-shortcuts__item link" href="{{ sun.url }}">
-          {%- if sun.featured_image != blank -%}
+        <a class="predictive-search-shortcuts__item link" href="{{ city.url }}">
+          {%- if city.featured_image != blank -%}
             <img
-              src="{{ sun.featured_image | image_url: width: 120 }}"
-              alt="{{ sun.featured_image.alt | default: sun.title | escape }}"
+              src="{{ city.featured_image | image_url: width: 120 }}"
+              alt="{{ city.featured_image.alt | default: city.title | escape }}"
               width="48"
               height="48"
               loading="lazy"
               class="predictive-search-shortcuts__image"
             >
           {%- endif -%}
-          <span class="predictive-search-shortcuts__label">{{ section.settings.search_shortcut_sun_label | default: sun.title | escape }}</span>
+          <span class="predictive-search-shortcuts__label">{{ section.settings.search_shortcut_sun_label | default: 'City' | escape }}</span>
         </a>
       </li>
     {%- endif -%}
 
-    {%- if brands != blank -%}
+    {%- if outdoors != blank -%}
       <li>
-        <a class="predictive-search-shortcuts__item link" href="{{ brands.url }}">
-          {%- if brands.featured_image != blank -%}
+        <a class="predictive-search-shortcuts__item link" href="{{ outdoors.url }}">
+          {%- if outdoors.featured_image != blank -%}
             <img
-              src="{{ brands.featured_image | image_url: width: 120 }}"
-              alt="{{ brands.featured_image.alt | default: brands.title | escape }}"
+              src="{{ outdoors.featured_image | image_url: width: 120 }}"
+              alt="{{ outdoors.featured_image.alt | default: outdoors.title | escape }}"
               width="48"
               height="48"
               loading="lazy"
               class="predictive-search-shortcuts__image"
             >
           {%- endif -%}
-          <span class="predictive-search-shortcuts__label">{{ section.settings.search_shortcut_brands_label | default: brands.title | escape }}</span>
-        </a>
-      </li>
-    {%- endif -%}
-
-    {%- if shop_all_url != blank -%}
-      <li>
-        <a class="predictive-search-shortcuts__item link" href="{{ shop_all_url }}">
-          {%- if shop_all.featured_image != blank -%}
-            <img
-              src="{{ shop_all.featured_image | image_url: width: 120 }}"
-              alt="{{ shop_all.featured_image.alt | default: shop_all.title | escape }}"
-              width="48"
-              height="48"
-              loading="lazy"
-              class="predictive-search-shortcuts__image"
-            >
-          {%- endif -%}
-          <span class="predictive-search-shortcuts__label">{{ section.settings.search_shortcut_shop_all_label | default: shop_all.title | escape }}</span>
+          <span class="predictive-search-shortcuts__label">{{ section.settings.search_shortcut_brands_label | default: 'Outdoors/Sportsman' | escape }}</span>
         </a>
       </li>
     {%- endif -%}

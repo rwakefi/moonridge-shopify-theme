@@ -120,7 +120,17 @@
         "mobile_logo_position": "center",
         "margin_bottom": 0,
         "padding_top": 0,
-        "padding_bottom": 24
+        "padding_bottom": 24,
+        "search_shortcuts_enabled": true,
+        "search_popular_heading": "Shop by style",
+        "search_shortcut_cowboy_handle": "western-hats",
+        "search_shortcut_cowboy_label": "Western",
+        "search_shortcut_sun_handle": "city-hats",
+        "search_shortcut_sun_label": "City",
+        "search_shortcut_brands_handle": "outdoors-sportsman-hats",
+        "search_shortcut_brands_label": "Outdoors/Sportsman",
+        "search_queries_heading": "Popular searches",
+        "search_popular_queries": "cowboy hat\nsun hat\nstetson\nresistol\npanama hat"
       }
     },
     "custom_fonts_NVpMpR": {

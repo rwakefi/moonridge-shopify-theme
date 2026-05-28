@@ -396,7 +396,7 @@
           "settings": {
             "collection": "best-sellers",
             "product_limit": 12,
-            "heading": "Some of Our Favorites",
+            "heading": "Best Sellers",
             "subheading": "",
             "heading_alignment": "center",
             "heading_size": 26,

@@ -9,22 +9,22 @@
  */
 {
   "sections": {
-  "main": {
+    "main": {
       "type": "hats-hub",
       "blocks": {
         "tile_cowboy": {
           "type": "style_tile",
           "settings": {
             "title": "Cowboy hats",
-            "collection_all": "cowboy-hats",
-            "image_metafield_key": "western"
+            "image_metafield_key": "western",
+            "collection_all": "felt-hats"
           }
         },
         "tile_sun": {
           "type": "style_tile",
           "settings": {
             "title": "Sun hats",
-            "collection_all": "sun-hats"
+            "collection_all": "straw-hats"
           }
         },
         "tile_fedora": {
@@ -45,7 +45,7 @@
           "type": "style_tile",
           "settings": {
             "title": "Ballcaps",
-            "collection_all": "ballcaps-truckers"
+            "collection_all": "ballcaps-truckers-1"
           }
         }
       },

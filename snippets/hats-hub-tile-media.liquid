@@ -3,6 +3,7 @@
   @param block_image - image_picker from block settings
   @param image_metafield_key - key under custom.* (e.g. western)
   @param collection_all, collection_men, collection_women - collection objects
+  @param metafield_search_collection - section fallback to scan for metafield matches
   @param title - tile label for alt fallback
 {% endcomment %}
 {%- liquid
@@ -10,10 +11,24 @@
   assign mf_key = image_metafield_key | strip
 
   if tile_image == blank and mf_key != blank
+    assign search_collections = collection_all | append: ''
+
     if collection_all != blank
       for product in collection_all.products limit: 50
-        assign product_mf = product.metafields.custom[mf_key]
-        if product_mf.value == true or product_mf.value == 'true' or product_mf.value == 'True'
+        if mf_key == 'western'
+          assign product_mf = product.metafields.custom.western
+        else
+          assign product_mf = product.metafields.custom[mf_key]
+        endif
+
+        assign mf_match = false
+        if product_mf.value == true or product_mf == true
+          assign mf_match = true
+        elsif product_mf != blank and product_mf.value != false and product_mf.value != blank
+          assign mf_match = true
+        endif
+
+        if mf_match
           if product.featured_media != blank
             assign tile_image = product.featured_media.preview_image
             break
@@ -27,8 +42,18 @@
 
     if tile_image == blank and collection_men != blank
       for product in collection_men.products limit: 50
-        assign product_mf = product.metafields.custom[mf_key]
-        if product_mf.value == true or product_mf.value == 'true' or product_mf.value == 'True'
+        if mf_key == 'western'
+          assign product_mf = product.metafields.custom.western
+        else
+          assign product_mf = product.metafields.custom[mf_key]
+        endif
+        assign mf_match = false
+        if product_mf.value == true or product_mf == true
+          assign mf_match = true
+        elsif product_mf != blank and product_mf.value != false and product_mf.value != blank
+          assign mf_match = true
+        endif
+        if mf_match
           if product.featured_media != blank
             assign tile_image = product.featured_media.preview_image
             break
@@ -42,8 +67,43 @@
 
     if tile_image == blank and collection_women != blank
       for product in collection_women.products limit: 50
-        assign product_mf = product.metafields.custom[mf_key]
-        if product_mf.value == true or product_mf.value == 'true' or product_mf.value == 'True'
+        if mf_key == 'western'
+          assign product_mf = product.metafields.custom.western
+        else
+          assign product_mf = product.metafields.custom[mf_key]
+        endif
+        assign mf_match = false
+        if product_mf.value == true or product_mf == true
+          assign mf_match = true
+        elsif product_mf != blank and product_mf.value != false and product_mf.value != blank
+          assign mf_match = true
+        endif
+        if mf_match
+          if product.featured_media != blank
+            assign tile_image = product.featured_media.preview_image
+            break
+          elsif product.featured_image != blank
+            assign tile_image = product.featured_image
+            break
+          endif
+        endif
+      endfor
+    endif
+
+    if tile_image == blank and metafield_search_collection != blank
+      for product in metafield_search_collection.products limit: 50
+        if mf_key == 'western'
+          assign product_mf = product.metafields.custom.western
+        else
+          assign product_mf = product.metafields.custom[mf_key]
+        endif
+        assign mf_match = false
+        if product_mf.value == true or product_mf == true
+          assign mf_match = true
+        elsif product_mf != blank and product_mf.value != false and product_mf.value != blank
+          assign mf_match = true
+        endif
+        if mf_match
           if product.featured_media != blank
             assign tile_image = product.featured_media.preview_image
             break
@@ -62,6 +122,18 @@
     assign tile_image = collection_men.image
   elsif tile_image == blank and collection_women != blank and collection_women.image != blank
     assign tile_image = collection_women.image
+  endif
+
+  if tile_image == blank and collection_all != blank
+    for product in collection_all.products limit: 12
+      if product.featured_media != blank
+        assign tile_image = product.featured_media.preview_image
+        break
+      elsif product.featured_image != blank
+        assign tile_image = product.featured_image
+        break
+      endif
+    endfor
   endif
 -%}
 {%- if tile_image != blank -%}

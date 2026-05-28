@@ -1,0 +1,41 @@
+{% comment %}
+  Fallback tiles when the section has no hub_tile blocks (e.g. old theme editor data).
+  @param row - hat_type | style
+  @param section, from_param - required
+{% endcomment %}
+{%- if row == 'hat_type' -%}
+  {%- assign defaults = 'Felt|felt-hats,Straw|straw-hats,Ballcap|ballcaps-truckers-1,Beanies / Flat cap|beanies-flat-caps' | split: ',' -%}
+{%- else -%}
+  {%- assign defaults = 'Western|western-hats|western,City|city-hats,Outdoors / Sportsman|outdoors-sportsman-hats' | split: ',' -%}
+{%- endif -%}
+
+{%- for entry in defaults -%}
+  {%- assign parts = entry | split: '|' -%}
+  {%- assign tile_title = parts[0] -%}
+  {%- assign tile_handle = parts[1] -%}
+  {%- assign tile_mf = parts[2] | default: '' -%}
+  {%- assign all_collection = collections[tile_handle] -%}
+  <li>
+    <a
+      class="hats-hub__tile"
+      data-hats-tile
+      href="{% if all_collection %}{{ all_collection.url }}{{ from_param }}{% else %}#{% endif %}"
+      data-url-all="{% if all_collection %}{{ all_collection.url }}{{ from_param }}{% endif %}"
+      data-url-men=""
+      data-url-women=""
+    >
+      <div class="hats-hub__tile-media">
+        {%- render 'hats-hub-tile-media',
+          block_image: blank,
+          image_metafield_key: tile_mf,
+          collection_all: all_collection,
+          collection_men: blank,
+          collection_women: blank,
+          metafield_search_collection: section.settings.metafield_search_collection,
+          title: tile_title
+        -%}
+      </div>
+      <span class="hats-hub__tile-label">{{ tile_title | escape }}</span>
+    </a>
+  </li>
+{%- endfor -%}

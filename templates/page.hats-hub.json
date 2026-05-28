@@ -1,55 +1,90 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-  "main": {
+    "main": {
       "type": "hats-hub",
       "blocks": {
-        "tile_cowboy": {
-          "type": "style_tile",
+        "type_felt": {
+          "type": "hub_tile",
           "settings": {
-            "title": "Cowboy hats",
-            "collection_all": "cowboy-hats",
+            "row": "hat_type",
+            "title": "Felt",
+            "collection_handle": "felt-hats"
+          }
+        },
+        "type_straw": {
+          "type": "hub_tile",
+          "settings": {
+            "row": "hat_type",
+            "title": "Straw",
+            "collection_handle": "straw-hats"
+          }
+        },
+        "type_ballcap": {
+          "type": "hub_tile",
+          "settings": {
+            "row": "hat_type",
+            "title": "Ballcap",
+            "collection_handle": "ballcaps-truckers-1"
+          }
+        },
+        "type_beanies": {
+          "type": "hub_tile",
+          "settings": {
+            "row": "hat_type",
+            "title": "Beanies / Flat cap",
+            "collection_handle": "beanies-flat-caps"
+          }
+        },
+        "style_western": {
+          "type": "hub_tile",
+          "settings": {
+            "row": "style",
+            "title": "Western",
+            "collection_handle": "western-hats",
             "image_metafield_key": "western"
           }
         },
-        "tile_sun": {
-          "type": "style_tile",
+        "style_city": {
+          "type": "hub_tile",
           "settings": {
-            "title": "Sun hats",
-            "collection_all": "sun-hats"
+            "row": "style",
+            "title": "City",
+            "collection_handle": "city-hats"
           }
         },
-        "tile_fedora": {
-          "type": "style_tile",
+        "style_outdoors": {
+          "type": "hub_tile",
           "settings": {
-            "title": "Fedoras",
-            "collection_all": "fedoras"
-          }
-        },
-        "tile_panama": {
-          "type": "style_tile",
-          "settings": {
-            "title": "Panamas",
-            "collection_all": "panamas"
-          }
-        },
-        "tile_ballcap": {
-          "type": "style_tile",
-          "settings": {
-            "title": "Ballcaps",
-            "collection_all": "ballcaps-truckers"
+            "row": "style",
+            "title": "Outdoors / Sportsman",
+            "collection_handle": "outdoors-sportsman-hats"
           }
         }
       },
       "block_order": [
-        "tile_cowboy",
-        "tile_sun",
-        "tile_fedora",
-        "tile_panama",
-        "tile_ballcap"
+        "type_felt",
+        "type_straw",
+        "type_ballcap",
+        "type_beanies",
+        "style_western",
+        "style_city",
+        "style_outdoors"
       ],
       "settings": {
-        "heading": "Shop hats by style",
-        "intro": "Browse by style, then narrow to men's or women's. Every hat can be shaped and fitted in store or by appointment.",
+        "heading": "Shop hats",
+        "intro": "Browse by hat type or style. Filter by men's or women's to find your fit faster.",
+        "row_hat_type_heading": "Hat type",
+        "row_style_heading": "Style",
+        "metafield_search_collection": "hats-for-everyone",
         "shop_all_collection": "hats-for-everyone",
         "men_fallback_collection": "mens-hats",
         "women_fallback_collection": "womens-hats"

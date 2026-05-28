@@ -8,6 +8,10 @@
   - Next / Previous trip navigation
 {% endcomment %}
 
+{%- if template.suffix == 'hat-education' -%}
+  {% render 'hat-education-article' %}
+{%- else -%}
+
 <section class="rm-article page-width">
 
   {%- comment -%} MAIN TITLE (CENTERED) {%- endcomment -%}
@@ -66,6 +70,8 @@
   {% endif %}
 
 </section>
+
+{%- endif -%}
 
 <style>
   :root {

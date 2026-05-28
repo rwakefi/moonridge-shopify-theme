@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "hat-education-article",
+      "type": "Single_Blog_Post",
       "settings": {}
     }
   },

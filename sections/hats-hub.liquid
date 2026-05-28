@@ -237,6 +237,31 @@
           assign men_collection = block.settings.collection_men
           assign women_collection = block.settings.collection_women
           assign all_collection = block.settings.collection_all
+          assign style_label = block.settings.title | downcase
+
+          if all_collection == blank
+            if style_label contains 'cowboy'
+              assign all_collection = collections['felt-hats']
+            elsif style_label contains 'sun'
+              assign all_collection = collections['straw-hats']
+            elsif style_label contains 'fedora'
+              assign all_collection = collections['fedoras']
+            elsif style_label contains 'panama'
+              assign all_collection = collections['panamas']
+            elsif style_label contains 'ballcap'
+              assign all_collection = collections['ballcaps-truckers-1']
+            endif
+          endif
+
+          assign image_mf_key = block.settings.image_metafield_key
+          if image_mf_key == blank and style_label contains 'cowboy'
+            assign image_mf_key = 'western'
+          endif
+
+          assign metafield_search = section.settings.metafield_search_collection
+          if metafield_search == blank
+            assign metafield_search = collections['hats-for-everyone']
+          endif
 
           assign from_param = '?from=hats-hub'
 
@@ -265,10 +290,11 @@
             <div class="hats-hub__tile-media">
               {%- render 'hats-hub-tile-media',
                 block_image: block.settings.image,
-                image_metafield_key: block.settings.image_metafield_key,
+                image_metafield_key: image_mf_key,
                 collection_all: all_collection,
                 collection_men: men_collection,
                 collection_women: women_collection,
+                metafield_search_collection: metafield_search,
                 title: block.settings.title
               -%}
             </div>
@@ -386,6 +412,12 @@
     },
     {
       "type": "collection",
+      "id": "metafield_search_collection",
+      "label": "Catalog for metafield tile images",
+      "info": "When a style tile uses a product metafield key, products are scanned here if not found in the tile's own collection(s). Use your main hats catalog (e.g. Hats For Everyone)."
+    },
+    {
+      "type": "collection",
       "id": "shop_all_collection",
       "label": "Shop all collection"
     },
@@ -489,7 +521,7 @@
           "type": "style_tile",
           "settings": {
             "title": "Cowboy hats",
-            "collection_all": "cowboy-hats",
+            "collection_all": "felt-hats",
             "image_metafield_key": "western"
           }
         },
@@ -497,7 +529,7 @@
           "type": "style_tile",
           "settings": {
             "title": "Sun hats",
-            "collection_all": "sun-hats"
+            "collection_all": "straw-hats"
           }
         },
         {
@@ -518,7 +550,7 @@
           "type": "style_tile",
           "settings": {
             "title": "Ballcaps",
-            "collection_all": "ballcaps-truckers"
+            "collection_all": "ballcaps-truckers-1"
           }
         }
       ]

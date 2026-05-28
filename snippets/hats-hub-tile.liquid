@@ -1,0 +1,58 @@
+{% comment %}
+  Single hats hub tile. Requires block + section context via passed vars.
+{% endcomment %}
+{%- liquid
+  assign men_collection = block.settings.collection_men
+  assign women_collection = block.settings.collection_women
+  assign all_collection = block.settings.collection_all
+
+  if all_collection == blank or all_collection.handle == blank
+    assign handle_fallback = block.settings.collection_handle | strip
+    if handle_fallback != blank
+      assign all_collection = collections[handle_fallback]
+    endif
+  endif
+
+  assign image_mf_key = block.settings.image_metafield_key | strip
+
+  assign metafield_search = section.settings.metafield_search_collection
+  if metafield_search == blank
+    assign metafield_search = collections['hats-for-everyone']
+  endif
+
+  assign men_fallback = section.settings.men_fallback_collection
+  assign women_fallback = section.settings.women_fallback_collection
+
+  assign men_url = men_collection.url
+  if men_url == blank and men_fallback != blank
+    assign men_url = men_fallback.url
+  endif
+
+  assign women_url = women_collection.url
+  if women_url == blank and women_fallback != blank
+    assign women_url = women_fallback.url
+  endif
+-%}
+<li {{ block.shopify_attributes }}>
+  <a
+    class="hats-hub__tile"
+    data-hats-tile
+    href="{% if all_collection %}{{ all_collection.url }}{{ from_param }}{% elsif men_url %}{{ men_url }}{{ from_param }}{% elsif women_url %}{{ women_url }}{{ from_param }}{% else %}#{% endif %}"
+    data-url-all="{% if all_collection %}{{ all_collection.url }}{{ from_param }}{% endif %}"
+    data-url-men="{% if men_url %}{{ men_url }}{{ from_param }}{% endif %}"
+    data-url-women="{% if women_url %}{{ women_url }}{{ from_param }}{% endif %}"
+  >
+    <div class="hats-hub__tile-media">
+      {%- render 'hats-hub-tile-media',
+        block_image: block.settings.image,
+        image_metafield_key: image_mf_key,
+        collection_all: all_collection,
+        collection_men: men_collection,
+        collection_women: women_collection,
+        metafield_search_collection: metafield_search,
+        title: block.settings.title
+      -%}
+    </div>
+    <span class="hats-hub__tile-label">{{ block.settings.title | escape }}</span>
+  </a>
+</li>

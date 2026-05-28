@@ -1,13 +1,13 @@
 {% comment %}
-  Travel Blog Menu Section
-  - Displays a grid of blog posts from a selected blog
-  - Heading + Subheading removed so they can be handled in a separate block
+  Blog article grid section
+  - Displays a grid of posts from a selected blog
+  - Page heading/intro can be handled by a separate content block/template
 {% endcomment %}
 
 <section class="travel-blog-menu page-width">
 
   {% if section.settings.blog != blank %}
-    {% assign travel_blog = section.settings.blog %}
+    {% assign selected_blog = section.settings.blog %}
 
     {%- comment -%}
       SEO JSON-LD Schema: Tell search engines about this Blog and its articles.
@@ -17,14 +17,14 @@
       "@context": "https://schema.org",
       "@type": "Blog",
       "@id": {{ canonical_url | json }},
-      "name": {{ travel_blog.title | json }},
+      "name": {{ selected_blog.title | json }},
       "url": {{ canonical_url | json }},
       "publisher": {
         "@type": "Organization",
         "@id": {{ request.origin | append: "/#organization" | json }}
       },
       "blogPost": [
-        {% for article in travel_blog.articles limit: 24 %}
+        {% for article in selected_blog.articles limit: 24 %}
           {
             "@type": "BlogPosting",
             "@id": {{ article.url | prepend: request.origin | json }},
@@ -44,14 +44,6 @@
     }
     </script>
 
-    {%- comment -%}
-      DEBUG: Show which blog + how many articles Shopify sees.
-      You can delete this <p> after everything works.
-    {%- endcomment -%}
-    <p class="travel-blog-menu__debug" style="font-size: 12px; opacity: 0.6; margin-bottom: 10px;">
-      Blog: {{ travel_blog.title }} ({{ travel_blog.articles_count }} articles)
-    </p>
-
     {% assign desktop_columns = section.settings.desktop_columns | default: 3 %}
     {% assign desktop_rows = section.settings.desktop_rows | default: 2 %}
     {% assign rows_total = desktop_columns | times: desktop_rows %}
@@ -61,20 +53,20 @@
       Decide how many to show:
       - rows_total = visible grid (columns × rows)
       - cap_total = upper cap from settings
-      - max_articles = min(rows_total, cap_total, travel_blog.articles_count)
+      - max_articles = min(rows_total, cap_total, selected_blog.articles_count)
     {%- endcomment -%}
     {% assign max_articles = rows_total %}
     {% if cap_total < max_articles %}
       {% assign max_articles = cap_total %}
     {% endif %}
-    {% if travel_blog.articles_count < max_articles %}
-      {% assign max_articles = travel_blog.articles_count %}
+    {% if selected_blog.articles_count < max_articles %}
+      {% assign max_articles = selected_blog.articles_count %}
     {% endif %}
 
-    {% if travel_blog.articles_count > 0 and max_articles > 0 %}
-      {% paginate travel_blog.articles by max_articles %}
+    {% if selected_blog.articles_count > 0 and max_articles > 0 %}
+      {% paginate selected_blog.articles by max_articles %}
         <div class="travel-blog-menu__grid">
-          {% for article in travel_blog.articles %}
+          {% for article in selected_blog.articles %}
             <article class="travel-blog-menu__card">
               <a href="{{ article.url }}" class="travel-blog-menu__image-link">
                 {% if article.image %}
@@ -126,10 +118,10 @@
       {% endpaginate %}
 
     {% else %}
-      <p>No travel stories have been published yet. Check back soon!</p>
+      <p>No articles have been published yet. Check back soon.</p>
     {% endif %}
   {% else %}
-    <p>Please select a blog in this section’s settings.</p>
+    <p>Please select a blog in this section's settings.</p>
   {% endif %}
 </section>
 
@@ -276,12 +268,12 @@
 
 {% schema %}
 {
-  "name": "Travel blog menu",
+  "name": "Blog article grid",
   "settings": [
     {
       "type": "blog",
       "id": "blog",
-      "label": "Travel blog"
+      "label": "Blog"
     },
     {
       "type": "range",

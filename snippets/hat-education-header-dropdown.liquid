@@ -1,14 +1,15 @@
 {% comment %}
   Hat Education nav dropdown: 4 latest guides + link to blog index.
-  Requires hat-education-menu-detect in parent.
 
   Accepts:
-  - variant: {String} 'dropdown' (default) or 'drawer'
-  - link: {Object} parent menu link (for ids)
+  - link: {Object} parent menu link
+  - variant: {String} 'dropdown' or 'drawer'
+  - edu_blog: {Object} blog object
+  - edu_blog_url: {String} blog index URL
 {% endcomment %}
 {%- liquid
   assign menu_variant = variant | default: 'dropdown'
-  assign edu_articles = hat_education_blog.articles
+  assign edu_articles = edu_blog.articles
 -%}
 
 {%- if menu_variant == 'drawer' -%}
@@ -26,10 +27,7 @@
         <a
           id="HeaderMenu-{{ link.handle }}-edu-{{ article.id }}"
           href="{{ article.url }}"
-          class="he-edu-menu__link{% if menu_variant == 'drawer' %} menu-drawer__menu-item link link--text list-menu__item focus-inset{% else %} header__menu-item list-menu__item link link--text focus-inset caption-large{% endif %}{% if article.current %} list-menu__item--active{% endif %}"
-          {% if article.current %}
-            aria-current="page"
-          {% endif %}
+          class="he-edu-menu__link{% if menu_variant == 'drawer' %} menu-drawer__menu-item link link--text list-menu__item focus-inset{% else %} header__menu-item list-menu__item link link--text focus-inset caption-large{% endif %}"
         >
           {{ article.title | escape }}
         </a>
@@ -42,7 +40,7 @@
   {%- endif -%}
   <li class="he-edu-menu__footer">
     <a
-      href="{{ hat_education_blog_url }}"
+      href="{{ edu_blog_url }}"
       class="he-edu-menu__all{% if menu_variant == 'drawer' %} menu-drawer__menu-item link link--text list-menu__item focus-inset{% else %} header__menu-item list-menu__item link link--text focus-inset caption-large{% endif %}"
     >
       All Hat Education →
@@ -66,15 +64,6 @@
     white-space: normal;
   }
 
-  .he-edu-menu__link:hover {
-    opacity: 0.85;
-  }
-
-  .he-edu-menu__empty .he-edu-menu__link {
-    opacity: 0.65;
-    font-style: italic;
-  }
-
   .he-edu-menu__footer {
     margin-top: 0.35rem;
     padding-top: 0.35rem;
@@ -94,9 +83,5 @@
 
   .he-edu-menu__all:hover {
     color: #312110 !important;
-  }
-
-  .he-edu-menu--drawer .he-edu-menu__link {
-    font-size: 1rem !important;
   }
 </style>

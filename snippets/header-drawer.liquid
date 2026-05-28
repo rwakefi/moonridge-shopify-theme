@@ -23,7 +23,7 @@
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
               {%- for link in section.settings.menu.links -%}
                 {%- render 'hats-hub-nav', link: link -%}
-                {%- render 'hat-education-menu-detect', link: link -%}
+                {%- include 'hat-education-menu-detect', link: link -%}
                 <li>
                   {%- if hats_hub_match -%}
                     <a

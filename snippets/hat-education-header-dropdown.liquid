@@ -1,0 +1,102 @@
+{% comment %}
+  Hat Education nav dropdown: 4 latest guides + link to blog index.
+  Requires hat-education-menu-detect in parent.
+
+  Accepts:
+  - variant: {String} 'dropdown' (default) or 'drawer'
+  - link: {Object} parent menu link (for ids)
+{% endcomment %}
+{%- liquid
+  assign menu_variant = variant | default: 'dropdown'
+  assign edu_articles = hat_education_blog.articles
+-%}
+
+{%- if menu_variant == 'drawer' -%}
+  <ul class="menu-drawer__menu list-menu he-edu-menu he-edu-menu--drawer" role="list" tabindex="-1">
+{%- else -%}
+  <ul
+    class="header__submenu list-menu list-menu--disclosure he-edu-menu color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
+    role="list"
+    tabindex="-1"
+  >
+{%- endif -%}
+  {%- if edu_articles.size > 0 -%}
+    {%- for article in edu_articles limit: 4 -%}
+      <li>
+        <a
+          id="HeaderMenu-{{ link.handle }}-edu-{{ article.id }}"
+          href="{{ article.url }}"
+          class="he-edu-menu__link{% if menu_variant == 'drawer' %} menu-drawer__menu-item link link--text list-menu__item focus-inset{% else %} header__menu-item list-menu__item link link--text focus-inset caption-large{% endif %}{% if article.current %} list-menu__item--active{% endif %}"
+          {% if article.current %}
+            aria-current="page"
+          {% endif %}
+        >
+          {{ article.title | escape }}
+        </a>
+      </li>
+    {%- endfor -%}
+  {%- else -%}
+    <li class="he-edu-menu__empty">
+      <span class="he-edu-menu__link{% if menu_variant == 'drawer' %} menu-drawer__menu-item{% else %} header__menu-item caption-large{% endif %}">Guides coming soon</span>
+    </li>
+  {%- endif -%}
+  <li class="he-edu-menu__footer">
+    <a
+      href="{{ hat_education_blog_url }}"
+      class="he-edu-menu__all{% if menu_variant == 'drawer' %} menu-drawer__menu-item link link--text list-menu__item focus-inset{% else %} header__menu-item list-menu__item link link--text focus-inset caption-large{% endif %}"
+    >
+      All Hat Education →
+    </a>
+  </li>
+</ul>
+
+<style>
+  .he-edu-menu {
+    min-width: min(22rem, 90vw);
+    padding: 0.35rem 0 0.25rem;
+  }
+
+  .he-edu-menu__link {
+    display: block;
+    padding: 0.55rem 1.25rem;
+    line-height: 1.35;
+    text-transform: none !important;
+    letter-spacing: 0.02em !important;
+    font-size: 0.95rem !important;
+    white-space: normal;
+  }
+
+  .he-edu-menu__link:hover {
+    opacity: 0.85;
+  }
+
+  .he-edu-menu__empty .he-edu-menu__link {
+    opacity: 0.65;
+    font-style: italic;
+  }
+
+  .he-edu-menu__footer {
+    margin-top: 0.35rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid rgba(49, 33, 16, 0.1);
+  }
+
+  .he-edu-menu__all {
+    display: block;
+    padding: 0.65rem 1.25rem 0.75rem !important;
+    font-size: 0.78rem !important;
+    font-weight: 600;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    color: #c5a059 !important;
+    text-decoration: none;
+  }
+
+  .he-edu-menu__all:hover {
+    color: #312110 !important;
+  }
+
+  .he-edu-menu--drawer .he-edu-menu__link {
+    font-size: 1rem !important;
+  }
+</style>

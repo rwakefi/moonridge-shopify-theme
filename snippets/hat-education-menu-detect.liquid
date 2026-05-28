@@ -1,0 +1,21 @@
+{% comment %}
+  Detects Hat Education nav item and loads the blog.
+  Sets: hat_education_menu_match, hat_education_blog, hat_education_blog_url
+
+  Usage:
+  {% render 'hat-education-menu-detect', link: link %}
+{% endcomment %}
+{%- liquid
+  assign hat_education_menu_match = false
+  assign hat_education_blog = blogs['hat-education']
+  assign hat_education_blog_url = '/blogs/hat-education'
+
+  if hat_education_blog != blank
+    assign hat_education_blog_url = hat_education_blog.url
+  endif
+
+  assign link_title_lc = link.title | downcase | strip
+  if link.handle == 'hat-education' or link_title_lc contains 'hat education'
+    assign hat_education_menu_match = true
+  endif
+-%}

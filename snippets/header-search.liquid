@@ -5,8 +5,19 @@
       align-items: center;
       margin-left: 1rem;
       margin-right: 1rem;
-      flex-grow: 1;
-      max-width: 300px;
+      flex-grow: 0;
+      flex-shrink: 0;
+      max-width: 280px;
+      min-width: 200px;
+      position: relative;
+      overflow: visible;
+      z-index: 5;
+    }
+    .header__search-bar-container .search,
+    .header__search-bar-container predictive-search,
+    .header__search-bar-container search-form {
+      position: relative;
+      overflow: visible;
     }
     .header__search-bar-container .field {
       display: flex;

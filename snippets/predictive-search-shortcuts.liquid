@@ -9,18 +9,6 @@
   assign sun = collections[section.settings.search_shortcut_sun_handle]
   assign brands = collections[section.settings.search_shortcut_brands_handle]
   assign shop_all = collections[section.settings.search_shortcut_shop_all_handle]
-
-  assign hats_hub_url = '/pages/shop-hats'
-  if section.settings.hats_hub_page != blank
-    assign hats_hub_url = section.settings.hats_hub_page.url
-  elsif pages['shop-hats'] != blank
-    assign hats_hub_url = pages['shop-hats'].url
-  endif
-
-  assign shop_all_url = shop_all.url
-  if section.settings.search_shortcut_shop_all_use_hub != false
-    assign shop_all_url = hats_hub_url
-  endif
 -%}
 
 <div class="predictive-search-shortcuts" data-predictive-search-shortcuts hidden>
@@ -83,9 +71,9 @@
       </li>
     {%- endif -%}
 
-    {%- if shop_all_url != blank -%}
+    {%- if shop_all != blank -%}
       <li>
-        <a class="predictive-search-shortcuts__item link" href="{{ shop_all_url }}">
+        <a class="predictive-search-shortcuts__item link" href="{{ shop_all.url }}">
           {%- if shop_all.featured_image != blank -%}
             <img
               src="{{ shop_all.featured_image | image_url: width: 120 }}"

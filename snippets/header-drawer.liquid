@@ -22,8 +22,20 @@
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
               {%- for link in section.settings.menu.links -%}
+                {%- render 'hats-hub-nav', link: link -%}
                 <li>
-                  {%- if link.links != blank -%}
+                  {%- if hats_hub_match -%}
+                    <a
+                      id="HeaderDrawer-{{ link.handle }}"
+                      href="{{ hats_hub_url }}"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      {{ link.title | escape }}
+                    </a>
+                  {%- elsif link.links != blank -%}
                     <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
                       <summary
                         id="HeaderDrawer-{{ link.handle }}"

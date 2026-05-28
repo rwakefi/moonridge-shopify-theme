@@ -1,16 +1,9 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  #shopify-section-{{ section.id }},
   .hats-hub-{{ section.id }} {
     --hats-hub-accent: {{ section.settings.accent_color }};
     --hats-hub-ink: #312110;
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-  }
-
-  .hats-hub-{{ section.id }} {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
@@ -124,25 +117,6 @@
     color: #fff;
   }
 
-  .hats-hub-{{ section.id }} .hats-hub__row {
-    margin-bottom: 3.5rem;
-  }
-
-  .hats-hub-{{ section.id }} .hats-hub__row:last-of-type {
-    margin-bottom: 0;
-  }
-
-  .hats-hub-{{ section.id }} .hats-hub__row-title {
-    margin: 0 0 1.6rem;
-    text-align: center;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--hats-hub-ink);
-    font-weight: 500;
-    font-family: var(--font-heading-family);
-  }
-
   .hats-hub-{{ section.id }} .hats-hub__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -154,15 +128,14 @@
 
   @media screen and (min-width: 750px) {
     .hats-hub-{{ section.id }} .hats-hub__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1.6rem;
     }
+  }
 
-    .hats-hub-{{ section.id }} .hats-hub__grid--hat-type {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .hats-hub-{{ section.id }} .hats-hub__grid--style {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+  @media screen and (min-width: 990px) {
+    .hats-hub-{{ section.id }} .hats-hub__grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
     }
   }
 
@@ -173,7 +146,7 @@
     border-radius: 4px;
     overflow: hidden;
     border: 1px solid rgba(49, 33, 16, 0.1);
-    background: transparent;
+    background: #faf8f5;
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
 
@@ -184,9 +157,9 @@
   }
 
   .hats-hub-{{ section.id }} .hats-hub__tile-media {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 5;
     overflow: hidden;
-    background: transparent;
+    background: #e8e2da;
   }
 
   .hats-hub-{{ section.id }} .hats-hub__tile-media img {
@@ -228,7 +201,7 @@
   }
 {%- endstyle -%}
 
-<section class="hats-hub-{{ section.id }}" id="hats-hub-{{ section.id }}">
+<section class="hats-hub-{{ section.id }} gradient color-{{ section.settings.color_scheme }}" id="hats-hub-{{ section.id }}">
   <div class="hats-hub__inner page-width">
     <nav aria-label="Breadcrumb">
       <ol class="hats-hub__crumbs">
@@ -258,49 +231,52 @@
       </button>
     </div>
 
-    {%- liquid
-      assign from_param = '?from=hats-hub'
-      assign hub_tile_count = 0
-      for block in section.blocks
-        if block.type == 'hub_tile'
-          assign hub_tile_count = hub_tile_count | plus: 1
-        endif
-      endfor
-    -%}
+    <ul class="hats-hub__grid" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign men_collection = block.settings.collection_men
+          assign women_collection = block.settings.collection_women
+          assign all_collection = block.settings.collection_all
 
-    {%- if section.settings.row_hat_type_heading != blank -%}
-      <div class="hats-hub__row">
-        <h2 class="hats-hub__row-title">{{ section.settings.row_hat_type_heading | escape }}</h2>
-        <ul class="hats-hub__grid hats-hub__grid--hat-type" role="list">
-          {%- if hub_tile_count > 0 -%}
-            {%- for block in section.blocks -%}
-              {%- if block.type == 'hub_tile' and block.settings.row == 'hat_type' -%}
-                {%- render 'hats-hub-tile', block: block, section: section, from_param: from_param -%}
-              {%- endif -%}
-            {%- endfor -%}
-          {%- else -%}
-            {%- render 'hats-hub-default-tiles', row: 'hat_type', section: section, from_param: from_param -%}
-          {%- endif -%}
-        </ul>
-      </div>
-    {%- endif -%}
+          assign from_param = '?from=hats-hub'
 
-    {%- if section.settings.row_style_heading != blank -%}
-      <div class="hats-hub__row">
-        <h2 class="hats-hub__row-title">{{ section.settings.row_style_heading | escape }}</h2>
-        <ul class="hats-hub__grid hats-hub__grid--style" role="list">
-          {%- if hub_tile_count > 0 -%}
-            {%- for block in section.blocks -%}
-              {%- if block.type == 'hub_tile' and block.settings.row == 'style' -%}
-                {%- render 'hats-hub-tile', block: block, section: section, from_param: from_param -%}
-              {%- endif -%}
-            {%- endfor -%}
-          {%- else -%}
-            {%- render 'hats-hub-default-tiles', row: 'style', section: section, from_param: from_param -%}
-          {%- endif -%}
-        </ul>
-      </div>
-    {%- endif -%}
+          assign men_fallback = section.settings.men_fallback_collection
+          assign women_fallback = section.settings.women_fallback_collection
+
+          assign men_url = men_collection.url
+          if men_url == blank and men_fallback != blank
+            assign men_url = men_fallback.url
+          endif
+
+          assign women_url = women_collection.url
+          if women_url == blank and women_fallback != blank
+            assign women_url = women_fallback.url
+          endif
+        -%}
+        <li {{ block.shopify_attributes }}>
+          <a
+            class="hats-hub__tile"
+            data-hats-tile
+            href="{% if all_collection %}{{ all_collection.url }}{{ from_param }}{% elsif men_url %}{{ men_url }}{{ from_param }}{% elsif women_url %}{{ women_url }}{{ from_param }}{% else %}#{% endif %}"
+            data-url-all="{% if all_collection %}{{ all_collection.url }}{{ from_param }}{% endif %}"
+            data-url-men="{% if men_url %}{{ men_url }}{{ from_param }}{% endif %}"
+            data-url-women="{% if women_url %}{{ women_url }}{{ from_param }}{% endif %}"
+          >
+            <div class="hats-hub__tile-media">
+              {%- render 'hats-hub-tile-media',
+                block_image: block.settings.image,
+                image_metafield_key: block.settings.image_metafield_key,
+                collection_all: all_collection,
+                collection_men: men_collection,
+                collection_women: women_collection,
+                title: block.settings.title
+              -%}
+            </div>
+            <span class="hats-hub__tile-label">{{ block.settings.title | escape }}</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
 
     {%- assign shop_all = section.settings.shop_all_collection -%}
     {%- if shop_all != blank -%}
@@ -382,25 +358,13 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Shop hats"
+      "default": "Shop hats by style"
     },
     {
       "type": "textarea",
       "id": "intro",
       "label": "Introduction",
-      "default": "Browse by hat type or style. Filter by men's or women's to find your fit faster."
-    },
-    {
-      "type": "text",
-      "id": "row_hat_type_heading",
-      "label": "Hat type row heading",
-      "default": "Hat type"
-    },
-    {
-      "type": "text",
-      "id": "row_style_heading",
-      "label": "Style row heading",
-      "default": "Style"
+      "default": "Choose a style below. Filter by men's or women's to find your fit faster."
     },
     {
       "type": "text",
@@ -419,12 +383,6 @@
       "id": "label_women",
       "label": "Women toggle label",
       "default": "Women"
-    },
-    {
-      "type": "collection",
-      "id": "metafield_search_collection",
-      "label": "Catalog for metafield tile images",
-      "info": "When a style tile uses a product metafield key, products are scanned here if not found in the tile's own collection(s). Use your main hats catalog (e.g. Hats For Everyone)."
     },
     {
       "type": "collection",
@@ -484,42 +442,26 @@
   ],
   "blocks": [
     {
-      "type": "hub_tile",
-      "name": "Hub tile",
+      "type": "style_tile",
+      "name": "Style tile",
       "settings": [
-        {
-          "type": "select",
-          "id": "row",
-          "label": "Row",
-          "options": [
-            { "value": "hat_type", "label": "Hat type" },
-            { "value": "style", "label": "Style" }
-          ],
-          "default": "hat_type"
-        },
         {
           "type": "text",
           "id": "title",
           "label": "Title",
-          "default": "Felt"
-        },
-        {
-          "type": "text",
-          "id": "collection_handle",
-          "label": "Collection handle",
-          "info": "e.g. felt-hats, western-hats. Used when no collection is picked below."
+          "default": "Cowboy hats"
         },
         {
           "type": "image_picker",
           "id": "image",
           "label": "Image (optional)",
-          "info": "1200×1200 recommended. Overrides collection / metafield image."
+          "info": "Overrides automatic image. Leave empty to use product metafield or collection image."
         },
         {
           "type": "text",
           "id": "image_metafield_key",
           "label": "Product metafield key",
-          "info": "Optional. Namespace custom. e.g. western for custom.western."
+          "info": "Namespace is always custom. First product in the linked collection(s) with this metafield set to true is used (e.g. western for custom.western)."
         },
         {
           "type": "collection",
@@ -542,66 +484,41 @@
   "presets": [
     {
       "name": "Hats hub",
-      "settings": {
-        "row_hat_type_heading": "Hat type",
-        "row_style_heading": "Style"
-      },
       "blocks": [
         {
-          "type": "hub_tile",
+          "type": "style_tile",
           "settings": {
-            "row": "hat_type",
-            "title": "Felt",
-            "collection_handle": "felt-hats"
-          }
-        },
-        {
-          "type": "hub_tile",
-          "settings": {
-            "row": "hat_type",
-            "title": "Straw",
-            "collection_handle": "straw-hats"
-          }
-        },
-        {
-          "type": "hub_tile",
-          "settings": {
-            "row": "hat_type",
-            "title": "Ballcap",
-            "collection_handle": "ballcaps-truckers-1"
-          }
-        },
-        {
-          "type": "hub_tile",
-          "settings": {
-            "row": "hat_type",
-            "title": "Beanies / Flat cap",
-            "collection_handle": "beanies-flat-caps"
-          }
-        },
-        {
-          "type": "hub_tile",
-          "settings": {
-            "row": "style",
-            "title": "Western",
-            "collection_handle": "western-hats",
+            "title": "Cowboy hats",
+            "collection_all": "cowboy-hats",
             "image_metafield_key": "western"
           }
         },
         {
-          "type": "hub_tile",
+          "type": "style_tile",
           "settings": {
-            "row": "style",
-            "title": "City",
-            "collection_handle": "city-hats"
+            "title": "Sun hats",
+            "collection_all": "sun-hats"
           }
         },
         {
-          "type": "hub_tile",
+          "type": "style_tile",
           "settings": {
-            "row": "style",
-            "title": "Outdoors / Sportsman",
-            "collection_handle": "outdoors-sportsman-hats"
+            "title": "Fedoras",
+            "collection_all": "fedoras"
+          }
+        },
+        {
+          "type": "style_tile",
+          "settings": {
+            "title": "Panamas",
+            "collection_all": "panamas"
+          }
+        },
+        {
+          "type": "style_tile",
+          "settings": {
+            "title": "Ballcaps",
+            "collection_all": "ballcaps-truckers"
           }
         }
       ]

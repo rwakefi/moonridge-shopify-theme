@@ -1,0 +1,21 @@
+{
+  "name": "moonridge-shopify-theme",
+  "private": true,
+  "description": "Moon Ridge Company Shopify theme",
+  "scripts": {
+    "shopify": "shopify",
+    "dev": "shopify theme dev",
+    "pull": "shopify theme pull",
+    "push": "shopify theme push",
+    "check": "shopify theme check",
+    "list": "shopify theme list",
+    "info": "shopify theme info",
+    "login": "shopify auth login"
+  },
+  "devDependencies": {
+    "@shopify/cli": "^3.84.0"
+  },
+  "engines": {
+    "node": ">=20.10"
+  }
+}

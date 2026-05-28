@@ -45,7 +45,7 @@
                 {% render 'icon-caret' %}
               </summary>
               <div id="HeaderMenu-MenuList-{{ forloop.index }}">
-                {% render 'hat-education-header-dropdown', link: link, variant: 'dropdown' %}
+                {% include 'hat-education-header-dropdown', link: link, variant: 'dropdown' %}
               </div>
             </details>
           </header-menu>

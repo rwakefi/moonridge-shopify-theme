@@ -1,0 +1,70 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+  "main": {
+      "type": "hats-hub",
+      "blocks": {
+        "tile_cowboy": {
+          "type": "style_tile",
+          "settings": {
+            "title": "Cowboy hats",
+            "collection_all": "cowboy-hats"
+          }
+        },
+        "tile_sun": {
+          "type": "style_tile",
+          "settings": {
+            "title": "Sun hats",
+            "collection_all": "sun-hats"
+          }
+        },
+        "tile_fedora": {
+          "type": "style_tile",
+          "settings": {
+            "title": "Fedoras",
+            "collection_all": "fedoras"
+          }
+        },
+        "tile_panama": {
+          "type": "style_tile",
+          "settings": {
+            "title": "Panamas",
+            "collection_all": "panamas"
+          }
+        },
+        "tile_ballcap": {
+          "type": "style_tile",
+          "settings": {
+            "title": "Ballcaps",
+            "collection_all": "ballcaps-truckers"
+          }
+        }
+      },
+      "block_order": [
+        "tile_cowboy",
+        "tile_sun",
+        "tile_fedora",
+        "tile_panama",
+        "tile_ballcap"
+      ],
+      "settings": {
+        "heading": "Shop hats by style",
+        "intro": "Browse by style, then narrow to men's or women's. Every hat can be shaped and fitted in store or by appointment.",
+        "shop_all_collection": "hats-for-everyone",
+        "men_fallback_collection": "mens-hats",
+        "women_fallback_collection": "womens-hats"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

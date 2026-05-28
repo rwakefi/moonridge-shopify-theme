@@ -1,0 +1,507 @@
+{% comment %}
+  Hat Education article layout — guide-style reading experience
+{% endcomment %}
+
+{%- liquid
+  assign edu_blog = blog | default: article.blog
+  assign hub_url = '/pages/shop-hats'
+  if pages['shop-hats'] != blank
+    assign hub_url = pages['shop-hats'].url
+  endif
+-%}
+
+<section class="he-article">
+  <div class="he-article__inner page-width">
+
+    <nav class="he-article__crumbs" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="{{ edu_blog.url }}">Hat Education</a>
+    </nav>
+
+    <header class="he-article__hero">
+      <p class="he-article__eyebrow">Hat Education</p>
+      <h1 class="he-article__title">{{ article.title | escape }}</h1>
+      {%- if article.excerpt != blank -%}
+        <p class="he-article__deck">{{ article.excerpt | strip_html }}</p>
+      {%- endif -%}
+    </header>
+
+    {%- if article.image -%}
+      <figure class="he-article__figure">
+        <img
+          src="{{ article.image | image_url: width: 1400 }}"
+          alt="{{ article.image.alt | default: article.title | escape }}"
+          width="{{ article.image.width }}"
+          height="{{ article.image.height }}"
+          loading="eager"
+          fetchpriority="high"
+        >
+      </figure>
+    {%- endif -%}
+
+    <div class="he-article__body rte">
+      {{ article.content }}
+    </div>
+
+    <aside class="he-article__cta" aria-label="Next steps">
+      <div class="he-article__cta-inner">
+        <div class="he-article__cta-copy">
+          <p class="he-article__cta-label">Ready to find your fit?</p>
+          <p class="he-article__cta-text">Book a free hat fitting in Fayetteville or browse hats online with expert guidance built in.</p>
+        </div>
+        <div class="he-article__cta-actions">
+          <a class="he-article__btn he-article__btn--primary" href="https://moonridgecompany.setmore.com">Book a fitting</a>
+          <a class="he-article__btn he-article__btn--secondary" href="{{ hub_url }}">Shop hats</a>
+        </div>
+      </div>
+    </aside>
+
+    {%- assign related_count = 0 -%}
+    {%- for related in edu_blog.articles limit: 12 -%}
+      {%- unless related.id == article.id -%}
+        {%- assign related_count = related_count | plus: 1 -%}
+      {%- endunless -%}
+    {%- endfor -%}
+
+    {%- if related_count > 0 -%}
+      <aside class="he-article__related">
+        <h2 class="he-article__related-heading">More guides</h2>
+        <ul class="he-article__related-grid" role="list">
+          {%- assign shown = 0 -%}
+          {%- for related in edu_blog.articles -%}
+            {%- unless related.id == article.id -%}
+              {%- if shown < 3 -%}
+                <li>
+                  <a class="he-article__related-card" href="{{ related.url }}">
+                    {%- if related.image -%}
+                      <div class="he-article__related-media">
+                        <img
+                          src="{{ related.image | image_url: width: 600 }}"
+                          alt="{{ related.image.alt | default: related.title | escape }}"
+                          loading="lazy"
+                          width="300"
+                          height="200"
+                        >
+                      </div>
+                    {%- endif -%}
+                    <span class="he-article__related-title">{{ related.title | escape }}</span>
+                  </a>
+                </li>
+                {%- assign shown = shown | plus: 1 -%}
+              {%- endif -%}
+            {%- endunless -%}
+          {%- endfor -%}
+        </ul>
+        <p class="he-article__related-all">
+          <a href="{{ edu_blog.url }}">View all Hat Education guides →</a>
+        </p>
+      </aside>
+    {%- endif -%}
+
+    {%- if article.previous or article.next -%}
+      <nav class="he-article__nav" aria-label="Guide navigation">
+        {%- if article.previous -%}
+          <a href="{{ article.previous.url }}" class="he-article__nav-link he-article__nav-link--prev">
+            <span class="he-article__nav-kicker">Previous</span>
+            <span class="he-article__nav-title">{{ article.previous.title | escape }}</span>
+          </a>
+        {%- else -%}
+          <span class="he-article__nav-spacer"></span>
+        {%- endif -%}
+        {%- if article.next -%}
+          <a href="{{ article.next.url }}" class="he-article__nav-link he-article__nav-link--next">
+            <span class="he-article__nav-kicker">Next guide</span>
+            <span class="he-article__nav-title">{{ article.next.title | escape }}</span>
+          </a>
+        {%- endif -%}
+      </nav>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+  .he-article {
+    --he-ink: #312110;
+    --he-accent: #c5a059;
+    --he-cream: #f6f2ec;
+    background: transparent;
+  }
+
+  .he-article__inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 4rem;
+  }
+
+  .he-article__crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+    margin: 0 0 1.5rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(49, 33, 16, 0.65);
+  }
+
+  .he-article__crumbs a {
+    color: var(--he-ink);
+    text-decoration: none;
+  }
+
+  .he-article__crumbs a:hover {
+    color: var(--he-accent);
+  }
+
+  .he-article__hero {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .he-article__eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--he-accent);
+    font-family: var(--font-heading-family);
+  }
+
+  .he-article__title {
+    margin: 0 0 1rem;
+    font-family: var(--font-heading-family);
+    font-size: clamp(2rem, 4.5vw, 2.75rem);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+    color: var(--he-ink);
+  }
+
+  .he-article__deck {
+    margin: 0 auto;
+    max-width: 36rem;
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: rgba(49, 33, 16, 0.82);
+  }
+
+  .he-article__figure {
+    margin: 0 0 2.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--he-cream);
+  }
+
+  .he-article__figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .he-article__body {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: #2b241e;
+  }
+
+  .he-article__body p {
+    margin: 0 0 1.35rem;
+  }
+
+  .he-article__body h2 {
+    margin: 2.5rem 0 1rem;
+    font-family: var(--font-heading-family);
+    font-size: 1.35rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--he-ink);
+  }
+
+  .he-article__body h3 {
+    margin: 2rem 0 0.75rem;
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--he-ink);
+  }
+
+  .he-article__body h4 {
+    margin: 1.5rem 0 0.5rem;
+    font-weight: 600;
+    color: var(--he-ink);
+  }
+
+  .he-article__body ul,
+  .he-article__body ol {
+    margin: 0 0 1.35rem 1.25rem;
+    padding-left: 1.25rem;
+  }
+
+  .he-article__body li {
+    margin-bottom: 0.45rem;
+  }
+
+  .he-article__body blockquote {
+    margin: 2rem 0;
+    padding: 1.25rem 1.5rem;
+    border-left: 3px solid var(--he-accent);
+    background: var(--he-cream);
+    font-style: italic;
+    color: rgba(49, 33, 16, 0.9);
+  }
+
+  .he-article__body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+  }
+
+  .he-article__body a {
+    color: var(--he-ink);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .he-article__body a:hover {
+    color: var(--he-accent);
+  }
+
+  .he-article__cta {
+    margin: 3rem 0 2.5rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(197, 160, 89, 0.12), rgba(49, 33, 16, 0.06));
+    border: 1px solid rgba(49, 33, 16, 0.1);
+    border-radius: 8px;
+  }
+
+  .he-article__cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  .he-article__cta-label {
+    margin: 0 0 0.35rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--he-accent);
+    font-family: var(--font-heading-family);
+  }
+
+  .he-article__cta-text {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--he-ink);
+  }
+
+  .he-article__cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .he-article__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.35rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: var(--font-heading-family);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .he-article__btn--primary {
+    background: var(--he-ink);
+    color: #fff;
+  }
+
+  .he-article__btn--primary:hover {
+    background: #4a3428;
+  }
+
+  .he-article__btn--secondary {
+    background: transparent;
+    color: var(--he-ink);
+    border: 1px solid rgba(49, 33, 16, 0.35);
+  }
+
+  .he-article__btn--secondary:hover {
+    border-color: var(--he-accent);
+    color: var(--he-accent);
+  }
+
+  .he-article__related {
+    margin-bottom: 2.5rem;
+  }
+
+  .he-article__related-heading {
+    margin: 0 0 1.25rem;
+    text-align: center;
+    font-family: var(--font-heading-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--he-ink);
+  }
+
+  .he-article__related-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media screen and (min-width: 600px) {
+    .he-article__related-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .he-article__related-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: #fff;
+    border: 1px solid rgba(49, 33, 16, 0.08);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .he-article__related-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(49, 33, 16, 0.1);
+  }
+
+  .he-article__related-media {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: var(--he-cream);
+  }
+
+  .he-article__related-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .he-article__related-title {
+    display: block;
+    padding: 0.85rem 0.75rem 1rem;
+    font-size: 0.9rem;
+    line-height: 1.35;
+    color: var(--he-ink);
+    font-family: var(--font-heading-family);
+    letter-spacing: 0.04em;
+  }
+
+  .he-article__related-all {
+    margin: 1.25rem 0 0;
+    text-align: center;
+  }
+
+  .he-article__related-all a {
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--he-accent);
+    text-decoration: none;
+    font-family: var(--font-heading-family);
+  }
+
+  .he-article__nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(49, 33, 16, 0.1);
+  }
+
+  .he-article__nav-link {
+    flex: 1 1 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-decoration: none;
+    color: var(--he-ink);
+  }
+
+  .he-article__nav-link--next {
+    text-align: right;
+    align-items: flex-end;
+  }
+
+  .he-article__nav-kicker {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.65;
+    font-family: var(--font-heading-family);
+  }
+
+  .he-article__nav-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .he-article__nav-link:hover .he-article__nav-title {
+    text-decoration: underline;
+    color: var(--he-accent);
+  }
+
+  .he-article__nav-spacer {
+    flex: 1 1 auto;
+  }
+
+  @media screen and (max-width: 749px) {
+    .he-article__cta-inner {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .he-article__cta-actions {
+      flex-direction: column;
+    }
+
+    .he-article__btn {
+      width: 100%;
+    }
+
+    .he-article__nav {
+      flex-direction: column;
+    }
+
+    .he-article__nav-link--next {
+      text-align: left;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Hat Education article",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Hat Education article"
+    }
+  ]
+}
+{% endschema %}

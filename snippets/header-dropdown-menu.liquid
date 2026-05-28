@@ -50,11 +50,12 @@
                 tabindex="-1"
               >
                 {%- for childlink in link.links -%}
+                  {%- render 'hat-education-nav-url', link: childlink -%}
                   <li>
                     {%- if childlink.links == blank -%}
                       <a
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                        href="{{ childlink.url }}"
+                        href="{{ hat_education_nav_url }}"
                         class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
                         {% if childlink.current %}
                           aria-current="page"

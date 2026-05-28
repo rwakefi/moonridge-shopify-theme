@@ -1,0 +1,19 @@
+{% comment %}
+  Correct Hat Education submenu URLs (admin menu may duplicate the face-shape link).
+  Sets: hat_education_nav_url
+
+  Usage:
+  {% render 'hat-education-nav-url', link: childlink %}
+{% endcomment %}
+{%- liquid
+  assign hat_education_nav_url = link.url
+  assign link_title_lc = link.title | downcase | strip
+  assign link_handle = link.handle | downcase
+
+  if link_handle == 'learn-your-head-shape' or link_title_lc contains 'learn your head'
+    assign hat_education_nav_url = '/blogs/hat-education/learn-your-head-shape'
+  elsif link_handle == 'hats-and-your-face-shape' or link_handle contains 'face-shape' or link_title_lc contains 'face shape'
+    assign hat_education_nav_url = '/blogs/hat-education/finding-the-style-that-fits-your-face'
+  endif
+-%}
+

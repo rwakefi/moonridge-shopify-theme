@@ -246,16 +246,20 @@
     margin-top: 0.5rem;
   }
 
-  .he-article__body > hr:first-of-type ~ p,
-  .he-article__body > p:not(:has(> strong:only-child)) {
-    max-width: 42rem;
-  }
-
   .he-article__body > p:first-of-type:not(:has(> strong:only-child)),
-  .he-article__body > p:first-child:has(> strong:only-child) + p {
+  .he-article__body > p:first-child:has(> strong:only-child) + p,
+  .he-article__body .he-article__lede {
     font-size: 1.35rem;
     line-height: 1.75;
     color: rgba(43, 36, 30, 0.92);
+  }
+
+  @media screen and (min-width: 750px) {
+    .he-article__body > p:first-of-type:not(:has(> strong:only-child)),
+    .he-article__body > p:first-child:has(> strong:only-child) + p,
+    .he-article__body .he-article__lede {
+      font-size: 1.4rem;
+    }
   }
 
   /* Section breaks */
@@ -323,27 +327,45 @@
     margin-top: 0;
   }
 
-  .he-article__body .he-article__lede {
-    font-size: 1.35rem;
-    line-height: 1.75;
-    color: rgba(43, 36, 30, 0.92);
-    max-width: 44rem;
-  }
-
-  @media screen and (min-width: 750px) {
-    .he-article__body .he-article__lede {
-      font-size: 1.4rem;
-    }
-  }
-
   .he-article__body .he-article__see-also {
     margin-bottom: 1.5rem;
     padding: 1rem 1.15rem;
-    max-width: 44rem;
     background: var(--he-cream);
     border-radius: 6px;
     font-size: 1.125rem;
     line-height: 1.6;
+  }
+
+  /* Face shape guide blocks */
+  .he-article__body .he-face-shape {
+    margin: 0 0 0.5rem;
+  }
+
+  .he-article__body .he-face-shape__desc {
+    margin: 0 0 1rem;
+  }
+
+  .he-article__body .he-face-shape__styles {
+    margin: 0 0 0.25rem;
+  }
+
+  .he-article__body .he-face-shape__styles strong {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-family: var(--font-heading-family);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--he-accent);
+  }
+
+  .he-article__body .he-article__closing {
+    margin-top: 0.5rem;
+  }
+
+  .he-article__body .he-article__closing h2 {
+    margin-top: 0;
   }
 
   .he-article__body .he-article__see-also a {
@@ -370,7 +392,6 @@
   .he-article__body ol {
     margin: 0 0 1.25rem;
     padding-left: 1.35rem;
-    max-width: 42rem;
   }
 
   .he-article__body li {
@@ -381,7 +402,6 @@
   .he-article__body blockquote {
     margin: 2rem 0;
     padding: 1.25rem 1.5rem;
-    max-width: 42rem;
     border-left: 3px solid var(--he-accent);
     background: var(--he-cream);
     font-style: italic;

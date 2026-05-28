@@ -27,46 +27,76 @@
     }
   }
 
-  /* DOT NAVIGATION – SMALL, CENTERED DOTS */
-  .slider-dots {
+  /* Slider nav: prev, dots, next on one aligned row */
+  .fc-slider-nav-{{ section.id }} {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 18px;
+  }
+
+  .fc-slider-nav-{{ section.id }} .slider-dots {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 6px;
-    margin-top: 18px;
+    margin: 0;
   }
 
-  .slider-dot {
+  .fc-slider-nav-{{ section.id }} .slider-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
     border: none;
     padding: 0;
-    background-color: #d3d3d3; /* light gray */
+    background-color: rgba(var(--color-foreground), 0.35);
     cursor: pointer;
   }
 
-  .slider-dot.is-active {
-    background-color: #000000; /* active dot */
+  .fc-slider-nav-{{ section.id }} .slider-dot.is-active {
+    background-color: rgb(var(--color-foreground));
   }
 
-  /* Prev/next arrows (theme featured-collection only had dots before) */
-  .fc-slider-arrows-{{ section.id }} {
-    display: none;
-    justify-content: center;
+  .fc-slider-nav-{{ section.id }} .slider-button {
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    display: inline-flex;
     align-items: center;
-    gap: 1.2rem;
-    margin-top: 0.4rem;
+    justify-content: center;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    color: rgb(var(--color-foreground));
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .fc-slider-nav-{{ section.id }} .slider-button .icon {
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin: 0;
+  }
+
+  .fc-slider-nav-{{ section.id }} .slider-button--prev .icon {
+    transform: rotate(90deg);
+  }
+
+  .fc-slider-nav-{{ section.id }} .slider-button--next .icon {
+    transform: rotate(-90deg);
   }
 
   @media screen and (min-width: 990px) {
-    .fc-slider-arrows-{{ section.id }}.fc-slider-arrows--desktop {
+    .fc-slider-nav-{{ section.id }}.fc-slider-nav--desktop {
       display: flex;
     }
   }
 
   @media screen and (max-width: 989px) {
-    .fc-slider-arrows-{{ section.id }}.fc-slider-arrows--mobile {
+    .fc-slider-nav-{{ section.id }}.fc-slider-nav--mobile {
       display: flex;
     }
   }
@@ -182,43 +212,46 @@
         {% assign last_index = pages | minus: 1 %}
 
         <div
-          class="slider-dots"
-          data-slider-dots="Slider-{{ section.id }}"
-          data-per-page="{{ per_page }}"
-        >
-          {%- for page_index in (0..last_index) -%}
-            <button
-              class="slider-dot{% if forloop.first %} is-active{% endif %}"
-              data-page="{{ page_index }}"
-              aria-label="Go to slide page {{ forloop.index }}"
-            ></button>
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
-
-      {%- if fc_show_arrows_desktop or fc_show_arrows_mobile -%}
-        <div
-          class="fc-slider-arrows-{{ section.id }} no-js-hidden{% if fc_show_arrows_desktop %} fc-slider-arrows--desktop{% endif %}{% if fc_show_arrows_mobile %} fc-slider-arrows--mobile{% endif %}"
+          class="fc-slider-nav-{{ section.id }} no-js-hidden{% if show_desktop_slider %} fc-slider-nav--desktop{% endif %}{% if show_mobile_slider %} fc-slider-nav--mobile{% endif %}"
           data-fc-arrows-for="Slider-{{ section.id }}"
         >
-          <button
-            type="button"
-            class="slider-button slider-button--prev"
-            data-fc-arrow="prev"
-            aria-controls="Slider-{{ section.id }}"
-            aria-label="{{ 'general.slider.previous_slide' | t }}"
+          {%- if fc_show_arrows_desktop or fc_show_arrows_mobile -%}
+            <button
+              type="button"
+              class="slider-button slider-button--prev"
+              data-fc-arrow="prev"
+              aria-controls="Slider-{{ section.id }}"
+              aria-label="{{ 'general.slider.previous_slide' | t }}"
+            >
+              {% render 'icon-caret' %}
+            </button>
+          {%- endif -%}
+
+          <div
+            class="slider-dots"
+            data-slider-dots="Slider-{{ section.id }}"
+            data-per-page="{{ per_page }}"
           >
-            {% render 'icon-caret' %}
-          </button>
-          <button
-            type="button"
-            class="slider-button slider-button--next"
-            data-fc-arrow="next"
-            aria-controls="Slider-{{ section.id }}"
-            aria-label="{{ 'general.slider.next_slide' | t }}"
-          >
-            {% render 'icon-caret' %}
-          </button>
+            {%- for page_index in (0..last_index) -%}
+              <button
+                class="slider-dot{% if forloop.first %} is-active{% endif %}"
+                data-page="{{ page_index }}"
+                aria-label="Go to slide page {{ forloop.index }}"
+              ></button>
+            {%- endfor -%}
+          </div>
+
+          {%- if fc_show_arrows_desktop or fc_show_arrows_mobile -%}
+            <button
+              type="button"
+              class="slider-button slider-button--next"
+              data-fc-arrow="next"
+              aria-controls="Slider-{{ section.id }}"
+              aria-label="{{ 'general.slider.next_slide' | t }}"
+            >
+              {% render 'icon-caret' %}
+            </button>
+          {%- endif -%}
         </div>
       {%- endif -%}
     </slider-component>

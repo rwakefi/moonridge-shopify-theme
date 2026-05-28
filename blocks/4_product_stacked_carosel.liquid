@@ -201,42 +201,56 @@
 }
 
 /* ------------------------------
-   ARROWS — CENTERED
+   NAV CONTROLS (arrows + dots, one row)
 --------------------------------*/
-.ai-carousel-prev-{{ ai_gen_id }},
-.ai-carousel-next-{{ ai_gen_id }} {
-  position: absolute !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  z-index: 20 !important;
-
-  width: 26px;
-  height: 26px;
-  display: flex !important;
+.ai-carousel-controls-{{ ai_gen_id }} {
+  display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  padding-bottom: {{ block.settings.dots_padding_bottom }}px;
+}
 
+.ai-carousel-button-{{ ai_gen_id }},
+.ai-carousel-prev-{{ ai_gen_id }},
+.ai-carousel-next-{{ ai_gen_id }} {
+  position: static;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  vertical-align: middle;
   background: #ffffff;
   border: 1px solid #d6d6d6;
   border-radius: 50%;
-  box-shadow: 0px 1px 4px rgba(0,0,0,0.15);
-
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.ai-carousel-prev-{{ ai_gen_id }}:hover,
-.ai-carousel-next-{{ ai_gen_id }}:hover {
-  transform: translateY(-50%) scale(1.1);
+.ai-carousel-button-{{ ai_gen_id }}:hover:not(:disabled),
+.ai-carousel-prev-{{ ai_gen_id }}:hover:not(:disabled),
+.ai-carousel-next-{{ ai_gen_id }}:hover:not(:disabled) {
+  transform: scale(1.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.ai-carousel-prev-{{ ai_gen_id }} { left: -18px !important; }
-.ai-carousel-next-{{ ai_gen_id }} { right: -18px !important; }
+.ai-carousel-button-{{ ai_gen_id }}:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
 
-.ai-carousel-prev-{{ ai_gen_id }} svg,
-.ai-carousel-next-{{ ai_gen_id }} svg {
+.ai-carousel-button-{{ ai_gen_id }} svg {
+  display: block;
   width: 14px;
   height: 14px;
+  color: {{ block.settings.button_background }};
 }
 
 /* ------------------------------
@@ -270,10 +284,11 @@
     margin-top: 0 !important;
   }
 
-  .ai-carousel-prev-{{ ai_gen_id }} { left: 4px !important; }
-  .ai-carousel-next-{{ ai_gen_id }} { right: 4px !important; }
+  .ai-carousel-controls-{{ ai_gen_id }} {
+    gap: 1rem;
+    margin-top: 0.75rem;
+  }
 }
-
 
 /* ------------------------------
    APPLE-STYLE TINY FLOATING DOTS
@@ -283,10 +298,10 @@
   justify-content: center;
   align-items: center;
   gap: 6px;
-
-  /* spacing relative to slider + next section */
-  padding-top: 16px;   /* space BELOW product cards */
-  padding-bottom: 28px; /* space ABOVE next section */
+  flex-wrap: wrap;
+  flex: 0 1 auto;
+  padding: 0;
+  margin: 0;
 }
 
 /* reset default button look and make them tiny circles */
@@ -395,31 +410,34 @@
         </div>
 
         {% if block.settings.show_navigation %}
-          <!-- Arrows overlayed on the sides of the 2x2 grid -->
-          <button
-            class="ai-carousel-button-{{ ai_gen_id }} ai-carousel-prev-{{ ai_gen_id }}"
-            aria-label="Previous products"
-            data-prev
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
+          <div class="ai-carousel-controls-{{ ai_gen_id }}">
+            <button
+              type="button"
+              class="ai-carousel-button-{{ ai_gen_id }} ai-carousel-prev-{{ ai_gen_id }}"
+              aria-label="Previous products"
+              data-prev
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
 
-          <button
-            class="ai-carousel-button-{{ ai_gen_id }} ai-carousel-next-{{ ai_gen_id }}"
-            aria-label="Next products"
-            data-next
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+            <div class="ai-carousel-dots-{{ ai_gen_id }}" data-dots></div>
+
+            <button
+              type="button"
+              class="ai-carousel-button-{{ ai_gen_id }} ai-carousel-next-{{ ai_gen_id }}"
+              aria-label="Next products"
+              data-next
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        {% else %}
+          <div class="ai-carousel-dots-{{ ai_gen_id }}" data-dots></div>
         {% endif %}
-        </div>  {% comment %} closes track container {% endcomment %}
-
-        <!-- Dots now sit under the products, not between arrows -->
-        <div class="ai-carousel-dots-{{ ai_gen_id }}" data-dots></div>
       </div>
     {% else %}
       <div class="ai-carousel-empty-state-{{ ai_gen_id }}">

@@ -239,7 +239,7 @@
           assign all_collection = block.settings.collection_all
           assign style_label = block.settings.title | downcase
 
-          if all_collection == blank
+          if all_collection == blank or all_collection.url == blank
             if style_label contains 'cowboy'
               assign all_collection = collections['felt-hats']
             elsif style_label contains 'sun'

@@ -1,0 +1,30 @@
+{% comment %}
+  Detects HATS nav items and resolves the hub URL.
+  Sets: hats_hub_match, hats_hub_url
+
+  Usage:
+  {% render 'hats-hub-nav', link: link %}
+{% endcomment %}
+{%- liquid
+  assign hats_hub_match = false
+  assign hats_hub_page = pages['shop-hats']
+  assign hats_hub_url = '/pages/shop-hats'
+
+  if section.settings.hats_hub_page != blank
+    assign hats_hub_url = section.settings.hats_hub_page.url
+  elsif hats_hub_page != blank
+    assign hats_hub_url = hats_hub_page.url
+  endif
+
+  assign link_title_lc = link.title | downcase | strip
+  if link_title_lc == 'hats' or link.handle == 'hats'
+    assign hats_hub_match = true
+  endif
+  if link.url contains '/collections/hats-for-everyone'
+    assign hats_hub_match = true
+  endif
+
+  if section.settings.enable_hats_hub == false
+    assign hats_hub_match = false
+  endif
+-%}

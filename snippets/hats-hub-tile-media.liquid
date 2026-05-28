@@ -1,0 +1,79 @@
+{% comment %}
+  Hats hub tile image: manual upload → product metafield match → collection image.
+  @param block_image - image_picker from block settings
+  @param image_metafield_key - key under custom.* (e.g. western)
+  @param collection_all, collection_men, collection_women - collection objects
+  @param title - tile label for alt fallback
+{% endcomment %}
+{%- liquid
+  assign tile_image = block_image
+  assign mf_key = image_metafield_key | strip
+
+  if tile_image == blank and mf_key != blank
+    if collection_all != blank
+      for product in collection_all.products limit: 50
+        assign product_mf = product.metafields.custom[mf_key]
+        if product_mf.value == true or product_mf.value == 'true' or product_mf.value == 'True'
+          if product.featured_media != blank
+            assign tile_image = product.featured_media.preview_image
+            break
+          elsif product.featured_image != blank
+            assign tile_image = product.featured_image
+            break
+          endif
+        endif
+      endfor
+    endif
+
+    if tile_image == blank and collection_men != blank
+      for product in collection_men.products limit: 50
+        assign product_mf = product.metafields.custom[mf_key]
+        if product_mf.value == true or product_mf.value == 'true' or product_mf.value == 'True'
+          if product.featured_media != blank
+            assign tile_image = product.featured_media.preview_image
+            break
+          elsif product.featured_image != blank
+            assign tile_image = product.featured_image
+            break
+          endif
+        endif
+      endfor
+    endif
+
+    if tile_image == blank and collection_women != blank
+      for product in collection_women.products limit: 50
+        assign product_mf = product.metafields.custom[mf_key]
+        if product_mf.value == true or product_mf.value == 'true' or product_mf.value == 'True'
+          if product.featured_media != blank
+            assign tile_image = product.featured_media.preview_image
+            break
+          elsif product.featured_image != blank
+            assign tile_image = product.featured_image
+            break
+          endif
+        endif
+      endfor
+    endif
+  endif
+
+  if tile_image == blank and collection_all != blank and collection_all.image != blank
+    assign tile_image = collection_all.image
+  elsif tile_image == blank and collection_men != blank and collection_men.image != blank
+    assign tile_image = collection_men.image
+  elsif tile_image == blank and collection_women != blank and collection_women.image != blank
+    assign tile_image = collection_women.image
+  endif
+-%}
+{%- if tile_image != blank -%}
+  {{
+    tile_image
+    | image_url: width: 800
+    | image_tag:
+      loading: 'lazy',
+      sizes: '(min-width: 990px) 280px, (min-width: 750px) 33vw, 45vw',
+      widths: '300, 400, 500, 600, 800',
+      alt: tile_image.alt | default: title | escape
+  }}
+{%- else -%}
+  {{ 'collection-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+{%- endif -%}

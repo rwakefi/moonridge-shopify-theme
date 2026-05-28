@@ -164,6 +164,12 @@
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     min-height: 52px;
+    overflow: visible;
+  }
+
+  .header-wrapper,
+  #shopify-section-header {
+    overflow: visible;
   }
 
   .header__inline-menu, .list-menu--inline {
@@ -180,6 +186,10 @@
 
   .header__icon, .header__icon * {
     color: #312110 !important;
+  }
+
+  .header__icons {
+    overflow: visible;
   }
 
   /* Mobile booking CTA button */
@@ -378,7 +388,8 @@
     }
 
     .header__search-bar-container {
-      max-width: 140px !important;
+      max-width: 220px !important;
+      min-width: 180px !important;
       margin-left: 0.5rem !important;
       margin-right: 0.5rem !important;
     }
@@ -1065,6 +1076,101 @@
       "id": "menu",
       "default": "main-menu",
       "label": "t:sections.header.settings.menu.label"
+    },
+    {
+      "type": "header",
+      "content": "Search shortcuts & synonyms"
+    },
+    {
+      "type": "checkbox",
+      "id": "search_shortcuts_enabled",
+      "label": "Show search shortcuts (thumbnails & popular queries)",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "search_popular_heading",
+      "label": "Shortcuts heading",
+      "default": "Shop by style"
+    },
+    {
+      "type": "text",
+      "id": "search_shortcut_cowboy_handle",
+      "label": "Cowboy hats collection handle",
+      "default": "cowboy-hats"
+    },
+    {
+      "type": "text",
+      "id": "search_shortcut_cowboy_label",
+      "label": "Cowboy hats label",
+      "default": "Cowboy hats"
+    },
+    {
+      "type": "text",
+      "id": "search_shortcut_sun_handle",
+      "label": "Sun hats collection handle",
+      "default": "sun-hats"
+    },
+    {
+      "type": "text",
+      "id": "search_shortcut_sun_label",
+      "label": "Sun hats label",
+      "default": "Sun hats"
+    },
+    {
+      "type": "text",
+      "id": "search_shortcut_brands_handle",
+      "label": "Brands collection handle",
+      "default": "stetson",
+      "info": "Collection handle for your brands shortcut (e.g. stetson or hats-for-everyone)."
+    },
+    {
+      "type": "text",
+      "id": "search_shortcut_brands_label",
+      "label": "Brands label",
+      "default": "Brands"
+    },
+    {
+      "type": "text",
+      "id": "search_shortcut_shop_all_handle",
+      "label": "Shop all collection handle (optional)",
+      "default": "hats-for-everyone"
+    },
+    {
+      "type": "text",
+      "id": "search_shortcut_shop_all_label",
+      "label": "Shop all label",
+      "default": "All hats"
+    },
+    {
+      "type": "text",
+      "id": "search_queries_heading",
+      "label": "Popular searches heading",
+      "default": "Popular searches"
+    },
+    {
+      "type": "textarea",
+      "id": "search_popular_queries",
+      "label": "Popular search queries (one per line)",
+      "default": "cowboy hat\nsun hat\nstetson\nresistol\npanama hat",
+      "info": "Shown when the search box is focused and empty."
+    },
+    {
+      "type": "header",
+      "content": "Hats hub navigation"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_hats_hub",
+      "label": "Route HATS menu to hats hub page",
+      "default": true,
+      "info": "Links menu items titled HATS (and hats-for-everyone) to the hats hub page."
+    },
+    {
+      "type": "page",
+      "id": "hats_hub_page",
+      "label": "Hats hub page",
+      "info": "Create a page with handle shop-hats using the hats-hub template, then select it here."
     },
     {
       "type": "select",

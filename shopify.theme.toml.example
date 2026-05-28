@@ -1,0 +1,15 @@
+# Copy to shopify.theme.toml and fill in your theme ID.
+# Find theme IDs: npm run list
+#
+# Auth is handled via: npm run login
+
+[environments.default]
+store = "YOUR-STORE.myshopify.com"
+# theme = "123456789012"  # optional; CLI prompts if omitted
+
+[environments.development]
+store = "YOUR-STORE.myshopify.com"
+# theme = "DEVELOPMENT_THEME_ID"
+
+# Password-protected preview stores only:
+# password = "your-theme-access-token"

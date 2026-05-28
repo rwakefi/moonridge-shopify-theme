@@ -7,6 +7,8 @@ class PredictiveSearch extends SearchForm {
     this.isOpen = false;
     this.abortController = new AbortController();
     this.searchTerm = '';
+    this.shortcutsElement =
+      this.predictiveSearchResults?.querySelector('[data-predictive-search-shortcuts]') || null;
 
     this.setupEventListeners();
   }
@@ -39,10 +41,13 @@ class PredictiveSearch extends SearchForm {
     this.searchTerm = newSearchTerm;
 
     if (!this.searchTerm.length) {
-      this.close(true);
+      this.clearResultsMarkup();
+      this.showShortcuts();
+      this.open();
       return;
     }
 
+    this.hideShortcuts();
     this.getSearchResults(this.searchTerm);
   }
 
@@ -63,7 +68,13 @@ class PredictiveSearch extends SearchForm {
   onFocus() {
     const currentSearchTerm = this.getQuery();
 
-    if (!currentSearchTerm.length) return;
+    if (!currentSearchTerm.length) {
+      this.showShortcuts();
+      this.open();
+      return;
+    }
+
+    this.hideShortcuts();
 
     if (this.searchTerm !== currentSearchTerm) {
       // Search term was changed from other search input, treat it as a user change
@@ -226,11 +237,44 @@ class PredictiveSearch extends SearchForm {
   }
 
   renderSearchResults(resultsMarkup) {
-    this.predictiveSearchResults.innerHTML = resultsMarkup;
+    if (this.shortcutsElement) {
+      this.shortcutsElement.remove();
+      this.shortcutsElement.hidden = true;
+    }
+
+    this.predictiveSearchResults.insertAdjacentHTML('beforeend', resultsMarkup);
+    this.hideShortcuts();
     this.setAttribute('results', true);
 
     this.setLiveRegionResults();
     this.open();
+  }
+
+  clearResultsMarkup() {
+    this.predictiveSearchResults
+      .querySelectorAll(
+        '#predictive-search-results, #predictive-search-option-search-keywords, .predictive-search-status'
+      )
+      .forEach((node) => node.remove());
+    this.removeAttribute('results');
+  }
+
+  showShortcuts() {
+    if (!this.shortcutsElement) {
+      this.shortcutsElement = this.predictiveSearchResults.querySelector('[data-predictive-search-shortcuts]');
+    }
+    if (!this.shortcutsElement) return;
+
+    this.clearResultsMarkup();
+    this.shortcutsElement.hidden = false;
+    if (!this.shortcutsElement.parentElement) {
+      this.predictiveSearchResults.prepend(this.shortcutsElement);
+    }
+    this.removeAttribute('results');
+  }
+
+  hideShortcuts() {
+    if (this.shortcutsElement) this.shortcutsElement.hidden = true;
   }
 
   setLiveRegionResults() {
@@ -260,6 +304,7 @@ class PredictiveSearch extends SearchForm {
     if (clearSearchTerm) {
       this.input.value = '';
       this.removeAttribute('results');
+      this.hideShortcuts();
     }
     const selected = this.querySelector('[aria-selected="true"]');
 

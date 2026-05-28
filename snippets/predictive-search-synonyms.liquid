@@ -1,0 +1,61 @@
+{% comment %}
+  Synonym → collection shortcut at top of predictive search results.
+  Uses collection handles; configure shortcuts in Header theme settings.
+{% endcomment %}
+
+{%- liquid
+  assign q = predictive_search.terms | downcase | strip
+  assign synonym_collection = blank
+  assign synonym_label = blank
+
+  assign cowboy_collection = collections['cowboy-hats']
+  assign sun_collection = collections['sun-hats']
+  assign brands_collection = collections['stetson']
+  if brands_collection == blank
+    assign brands_collection = collections['hats-for-everyone']
+  endif
+  assign panama_collection = collections['panamas']
+  assign fedora_collection = collections['fedoras']
+  assign ballcap_collection = collections['ballcaps-truckers']
+
+  if q contains 'cowboy' or q contains 'western' or q contains 'ranch' or q contains 'cattle'
+    assign synonym_collection = cowboy_collection
+    assign synonym_label = 'Shop cowboy hats'
+  elsif q contains 'sun' or q contains 'upf' or q contains 'wide brim' or q contains 'wide-brim'
+    assign synonym_collection = sun_collection
+    assign synonym_label = 'Shop sun hats'
+  elsif q contains 'panama' or q contains 'straw' or q contains 'summer hat'
+    assign synonym_collection = panama_collection
+    assign synonym_label = 'Shop panama hats'
+  elsif q contains 'fedora' or q contains 'dress hat' or q contains 'formal hat'
+    assign synonym_collection = fedora_collection
+    assign synonym_label = 'Shop fedoras'
+  elsif q contains 'ballcap' or q contains 'ball cap' or q contains 'trucker'
+    assign synonym_collection = ballcap_collection
+    assign synonym_label = 'Shop ballcaps'
+  elsif q contains 'stetson' or q contains 'resistol' or q contains 'brand' or q contains 'lucchese' or q contains 'charlie'
+    assign synonym_collection = brands_collection
+    assign synonym_label = 'Shop brands'
+  endif
+-%}
+
+{%- if synonym_collection != blank -%}
+  <div class="predictive-search-synonym">
+    <a href="{{ synonym_collection.url }}" class="predictive-search-synonym__link link">
+      {%- if synonym_collection.featured_image != blank -%}
+        <img
+          src="{{ synonym_collection.featured_image | image_url: width: 160 }}"
+          alt="{{ synonym_collection.featured_image.alt | default: synonym_collection.title | escape }}"
+          width="56"
+          height="56"
+          loading="lazy"
+          class="predictive-search-synonym__image"
+        >
+      {%- endif -%}
+      <span class="predictive-search-synonym__text">
+        <span class="predictive-search-synonym__label">{{ synonym_label | escape }}</span>
+        <span class="predictive-search-synonym__collection">{{ synonym_collection.title | escape }}</span>
+      </span>
+    </a>
+  </div>
+{%- endif -%}

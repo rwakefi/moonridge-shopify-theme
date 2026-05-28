@@ -74,6 +74,7 @@
 {%- endstyle -%}
 
 {%- unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' -%}
+{%- unless template.name == 'page' and template.suffix == 'hats-hub' -%}
 {%- assign t = template | split: '.' | first -%}
 
 <nav class="breadcrumbs page-width section-{{ section.id }}-padding section-{{ section.id }}-margin" role="navigation" aria-label="breadcrumbs">
@@ -96,6 +97,12 @@
           <a class="breadcrumbs__link" href="{{ product.url }}" aria-current="page">{{ product.title }}</a>
         </li>
       {%- when 'collection' and collection.handle -%}
+        {%- if request.query_string contains 'from=hats-hub' -%}
+          {%- assign hats_hub_breadcrumb_page = pages['shop-hats'] -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{% if hats_hub_breadcrumb_page %}{{ hats_hub_breadcrumb_page.url }}{% else %}/pages/shop-hats{% endif %}">Hats</a>
+          </li>
+        {%- endif -%}
         {%- if current_tags -%}
           <li class="breadcrumbs__item breadcrumbs__link">
             {{ collection.title | link_to: collection.url }}
@@ -137,6 +144,7 @@
     {%- endcase -%}
   </ol>
 </nav>
+{%- endunless -%}
 {%- endunless -%}
 
 {% schema %}

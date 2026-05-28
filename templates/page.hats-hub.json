@@ -16,7 +16,8 @@
           "type": "style_tile",
           "settings": {
             "title": "Cowboy hats",
-            "collection_all": "cowboy-hats"
+            "collection_all": "cowboy-hats",
+            "image_metafield_key": "western"
           }
         },
         "tile_sun": {

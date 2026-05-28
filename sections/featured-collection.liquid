@@ -27,24 +27,19 @@
     }
   }
 
-  /* Slider nav: prev, dots, next on one aligned row */
-  .fc-slider-nav-{{ section.id }} {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    gap: 1.25rem;
-    margin-top: 18px;
+  .fc-slider-stage-{{ section.id }} {
+    position: relative;
   }
 
-  .fc-slider-nav-{{ section.id }} .slider-dots {
+  .slider-dots {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 6px;
-    margin: 0;
+    margin-top: 18px;
   }
 
-  .fc-slider-nav-{{ section.id }} .slider-dot {
+  .slider-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
@@ -54,50 +49,76 @@
     cursor: pointer;
   }
 
-  .fc-slider-nav-{{ section.id }} .slider-dot.is-active {
+  .slider-dot.is-active {
     background-color: rgb(var(--color-foreground));
   }
 
-  .fc-slider-nav-{{ section.id }} .slider-button {
-    flex-shrink: 0;
+  /* Side arrows overlaid on the product slider */
+  .fc-slider-arrows-{{ section.id }} {
+    display: none;
+    pointer-events: none;
+  }
+
+  .fc-slider-arrows-{{ section.id }} .slider-button {
+    pointer-events: auto;
+    position: absolute;
+    top: 50%;
+    z-index: 3;
     width: 2.75rem;
     height: 2.75rem;
+    margin: 0;
+    padding: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     line-height: 0;
-    margin: 0;
-    padding: 0;
     color: rgb(var(--color-foreground));
-    background: transparent;
-    border: none;
+    background: rgba(var(--color-background), 0.92);
+    border: 1px solid rgba(var(--color-foreground), 0.12);
+    border-radius: 50%;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
     cursor: pointer;
+    transform: translateY(-50%);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
   }
 
-  .fc-slider-nav-{{ section.id }} .slider-button .icon {
+  .fc-slider-arrows-{{ section.id }} .slider-button--prev {
+    left: 0.25rem;
+  }
+
+  .fc-slider-arrows-{{ section.id }} .slider-button--next {
+    right: 0.25rem;
+  }
+
+  .fc-slider-arrows-{{ section.id }} .slider-button:hover {
+    transform: translateY(-50%) scale(1.06);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
+  }
+
+  .fc-slider-arrows-{{ section.id }} .slider-button .icon {
     display: block;
     width: 1.2rem;
     height: 1.2rem;
     margin: 0;
   }
 
-  .fc-slider-nav-{{ section.id }} .slider-button--prev .icon {
+  .fc-slider-arrows-{{ section.id }} .slider-button--prev .icon {
     transform: rotate(90deg);
   }
 
-  .fc-slider-nav-{{ section.id }} .slider-button--next .icon {
+  .fc-slider-arrows-{{ section.id }} .slider-button--next .icon {
     transform: rotate(-90deg);
   }
 
   @media screen and (min-width: 990px) {
-    .fc-slider-nav-{{ section.id }}.fc-slider-nav--desktop {
-      display: flex;
+    .fc-slider-arrows-{{ section.id }}.fc-slider-arrows--desktop {
+      display: block;
     }
   }
 
   @media screen and (max-width: 989px) {
-    .fc-slider-nav-{{ section.id }}.fc-slider-nav--mobile {
-      display: flex;
+    .fc-slider-arrows-{{ section.id }}.fc-slider-arrows--mobile {
+      display: block;
     }
   }
 {%- endstyle -%}
@@ -155,6 +176,7 @@
     </div>
 
     <slider-component class="slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if show_desktop_slider == false and section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="fc-slider-stage-{{ section.id }}">
       <ul
         id="Slider-{{ section.id }}"
         class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop{% if section.settings.collection == blank %} grid--2-col-tablet-down{% else %} grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}{% if show_mobile_slider or show_desktop_slider %} slider{% if show_desktop_slider %} slider--desktop{% endif %}{% if show_mobile_slider %} slider--tablet grid--peek{% endif %}{% endif %}"
@@ -202,6 +224,33 @@
         {%- endfor -%}
       </ul>
 
+      {%- if fc_show_arrows_desktop or fc_show_arrows_mobile -%}
+        <div
+          class="fc-slider-arrows-{{ section.id }} no-js-hidden{% if fc_show_arrows_desktop %} fc-slider-arrows--desktop{% endif %}{% if fc_show_arrows_mobile %} fc-slider-arrows--mobile{% endif %}"
+          data-fc-arrows-for="Slider-{{ section.id }}"
+        >
+          <button
+            type="button"
+            class="slider-button slider-button--prev"
+            data-fc-arrow="prev"
+            aria-controls="Slider-{{ section.id }}"
+            aria-label="{{ 'general.slider.previous_slide' | t }}"
+          >
+            {% render 'icon-caret' %}
+          </button>
+          <button
+            type="button"
+            class="slider-button slider-button--next"
+            data-fc-arrow="next"
+            aria-controls="Slider-{{ section.id }}"
+            aria-label="{{ 'general.slider.next_slide' | t }}"
+          >
+            {% render 'icon-caret' %}
+          </button>
+        </div>
+      {%- endif -%}
+      </div>
+
       {%- if show_mobile_slider or show_desktop_slider -%}
         {%- comment %}
           Dots = number of “pages”, not number of products.
@@ -212,46 +261,17 @@
         {% assign last_index = pages | minus: 1 %}
 
         <div
-          class="fc-slider-nav-{{ section.id }} no-js-hidden{% if show_desktop_slider %} fc-slider-nav--desktop{% endif %}{% if show_mobile_slider %} fc-slider-nav--mobile{% endif %}"
-          data-fc-arrows-for="Slider-{{ section.id }}"
+          class="slider-dots"
+          data-slider-dots="Slider-{{ section.id }}"
+          data-per-page="{{ per_page }}"
         >
-          {%- if fc_show_arrows_desktop or fc_show_arrows_mobile -%}
+          {%- for page_index in (0..last_index) -%}
             <button
-              type="button"
-              class="slider-button slider-button--prev"
-              data-fc-arrow="prev"
-              aria-controls="Slider-{{ section.id }}"
-              aria-label="{{ 'general.slider.previous_slide' | t }}"
-            >
-              {% render 'icon-caret' %}
-            </button>
-          {%- endif -%}
-
-          <div
-            class="slider-dots"
-            data-slider-dots="Slider-{{ section.id }}"
-            data-per-page="{{ per_page }}"
-          >
-            {%- for page_index in (0..last_index) -%}
-              <button
-                class="slider-dot{% if forloop.first %} is-active{% endif %}"
-                data-page="{{ page_index }}"
-                aria-label="Go to slide page {{ forloop.index }}"
-              ></button>
-            {%- endfor -%}
-          </div>
-
-          {%- if fc_show_arrows_desktop or fc_show_arrows_mobile -%}
-            <button
-              type="button"
-              class="slider-button slider-button--next"
-              data-fc-arrow="next"
-              aria-controls="Slider-{{ section.id }}"
-              aria-label="{{ 'general.slider.next_slide' | t }}"
-            >
-              {% render 'icon-caret' %}
-            </button>
-          {%- endif -%}
+              class="slider-dot{% if forloop.first %} is-active{% endif %}"
+              data-page="{{ page_index }}"
+              aria-label="Go to slide page {{ forloop.index }}"
+            ></button>
+          {%- endfor -%}
         </div>
       {%- endif -%}
     </slider-component>

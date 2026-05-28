@@ -23,7 +23,18 @@
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
               {%- for link in section.settings.menu.links -%}
                 {%- render 'hats-hub-nav', link: link -%}
-                {%- include 'hat-education-menu-detect', link: link -%}
+                {%- liquid
+                  assign hat_education_menu_match = false
+                  assign hat_education_blog = blogs['hat-education']
+                  assign hat_education_blog_url = '/blogs/hat-education'
+                  if hat_education_blog != blank
+                    assign hat_education_blog_url = hat_education_blog.url
+                  endif
+                  assign link_title_lc = link.title | downcase | strip
+                  if link.handle == 'hat-education' or link_title_lc contains 'hat education'
+                    assign hat_education_menu_match = true
+                  endif
+                -%}
                 <li>
                   {%- if hats_hub_match -%}
                     <a
@@ -56,7 +67,12 @@
                             {% render 'icon-arrow' %}
                             {{ link.title | escape }}
                           </button>
-                          {% include 'hat-education-header-dropdown', link: link, variant: 'drawer' %}
+                          {% render 'hat-education-header-dropdown',
+                            link: link,
+                            variant: 'drawer',
+                            edu_blog: hat_education_blog,
+                            edu_blog_url: hat_education_blog_url
+                          %}
                         </div>
                       </div>
                     </details>

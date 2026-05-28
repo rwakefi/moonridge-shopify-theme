@@ -53,11 +53,11 @@
                   role="list"
                 >
                   {%- for childlink in link.links -%}
-                    {%- render 'hat-education-nav-url', link: childlink -%}
+                    {%- capture hat_education_nav_url -%}{%- render 'hat-education-nav-url', link: childlink -%}{%- endcapture -%}
                     <li>
                       <a
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                        href="{{ hat_education_nav_url }}"
+                        href="{{ hat_education_nav_url | strip }}"
                         class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
                         {% if childlink.current %}
                           aria-current="page"

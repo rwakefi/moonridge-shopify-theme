@@ -34,7 +34,7 @@
   width: 6.8rem;
   position: absolute;
   transform: translate(-3.4rem);
-  background-color: rgb(var(--color-base-text));
+  background-color: rgb(var(--color-background));
   border-radius: 0.2rem;
   animation: initial-loading 1.5s ease infinite;
 }

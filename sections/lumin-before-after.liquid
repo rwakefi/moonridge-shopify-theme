@@ -20,7 +20,7 @@
   <div class="wrapper">
     {%- if section.settings.first_image != blank -%}
       <p class="button before-after-heading">{{ section.settings.before }}</p>
-    <img src="{{section.settings.second_image | img_url: 'master'}}" alt="{{ section.settings.second_image.alt | default: section.settings.before | default: 'Before' | escape }}">
+    <img src="{{ section.settings.second_image | image_url: width: 1200 }}" alt="{{ section.settings.second_image.alt | default: section.settings.before | default: 'Before' | escape }}" loading="lazy" width="{{ section.settings.second_image.width }}" height="{{ section.settings.second_image.height }}">
     {% else %}
        <p class="button before-after-heading">{{ section.settings.before }}</p>
         {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -28,7 +28,7 @@
 
      {%- if section.settings.first_image != blank -%}
              <p class="button after-heading before-after-heading">{{ section.settings.after }}</p>
-    <img src="{{section.settings.first_image | img_url: 'master'}}" alt="{{ section.settings.first_image.alt | default: section.settings.after | default: 'After' | escape }}" class="after">
+    <img src="{{ section.settings.first_image | image_url: width: 1200 }}" alt="{{ section.settings.first_image.alt | default: section.settings.after | default: 'After' | escape }}" class="after" loading="lazy" width="{{ section.settings.first_image.width }}" height="{{ section.settings.first_image.height }}">
     {% else %}
         <p class="button after-heading before-after-heading">{{ section.settings.after }}</p>
         {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}

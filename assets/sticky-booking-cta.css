@@ -1,0 +1,142 @@
+.sticky-booking-cta {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(253, 249, 243, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 16px 8px 8px;
+  border-radius: 100px;
+  border: 1px solid #E8D9C8;
+  box-shadow: 0 8px 32px rgba(74, 46, 31, 0.12);
+  text-decoration: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+.sticky-booking-cta:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 8px 24px rgba(74, 46, 31, 0.1);
+}
+
+.sticky-booking-cta__icon {
+  width: 44px;
+  height: 44px;
+  background: #4A2E1F;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F7EFE6;
+}
+
+.sticky-booking-cta__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.sticky-booking-cta__title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4A2E1F;
+  font-family: var(--font-heading-family);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.25;
+}
+
+.sticky-booking-cta__title-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .sticky-booking-cta {
+    bottom: 24px;
+    left: 16px;
+    right: auto;
+    max-width: min(calc(100vw - 16px), 19rem);
+    padding: 11px 14px 11px 10px;
+    gap: 8px;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 999px;
+  }
+
+  .sticky-booking-cta__icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+
+  .sticky-booking-cta__icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .sticky-booking-cta__text {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 2px 2px 2px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sticky-booking-cta__title-desktop {
+    display: none !important;
+  }
+
+  .sticky-booking-cta__title-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0.2rem;
+    text-align: center;
+    width: 100%;
+    min-width: 8.75rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0 2px;
+  }
+
+  .sticky-booking-cta__title-mobile-line {
+    display: block;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.055em;
+    line-height: 1.15;
+    color: #4A2E1F;
+    font-family: var(--font-heading-family);
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-align: center;
+    padding: 0 1px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .sticky-booking-cta {
+    padding: 10px 12px 10px 9px;
+  }
+
+  .sticky-booking-cta__title-mobile {
+    min-width: 8.25rem;
+  }
+
+  .sticky-booking-cta__title-mobile-line {
+    font-size: 8px;
+    letter-spacing: 0.05em;
+  }
+}
+
+.template-cart .sticky-booking-cta {
+  display: none;
+}

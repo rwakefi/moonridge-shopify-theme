@@ -8,14 +8,16 @@
 <meta name="google-site-verification" content="n84Iz1Q9VvZQmmbrZuyC5nq5zCu8v6nkLASBkoSZ5GM" />
 <meta name="msvalidate.01" content="A70FCC7DBBA7EBF70ACB7FB0F0B8ACE8" />
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-    {%- unless settings.type_header_font.system? -%}
+    {%- unless settings.type_header_font.system? and settings.type_body_font.system? and settings.type_menu_font.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
     {{ content_for_header }}
 
-    {% comment %} booking pop up script tag  {% endcomment %}
-    <script id="setmore_script" defer="defer" type="text/javascript" src="https://assets.setmore.com/integration/static/setmoreIframeLive.js"></script>
+    {%- comment -%} Setmore iframe popup — homepage hero + product heritage CTA only {%- endcomment -%}
+    {%- if template.name == 'index' or template.name == 'product' -%}
+      <script id="setmore_script" defer="defer" type="text/javascript" src="https://assets.setmore.com/integration/static/setmoreIframeLive.js"></script>
+    {%- endif -%}
 
     
     <meta charset="utf-8">
@@ -50,9 +52,6 @@
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
 
-    {%- unless settings.type_header_font.system? and settings.type_body_font.system? and settings.type_menu_font.system? -%}
-      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
-    {%- endunless -%}
     {%- liquid
       assign brand_suffix = " | Moon Ridge Hats and Heritage"
       assign geo_suffix = " – Fayetteville, AR"
@@ -108,8 +107,6 @@
       endif
     -%}
     <meta name="description" content="{{ meta_description | strip_html | strip | truncate: 160 | escape }}">
-    <meta name="keywords" content="hat shaping, hat customization, fayetteville ar, stetson, resistol, hat restoration, rafter m, moonridge">
-
 
     {% render 'meta-tags' %}
     {% render 'site-organization-schema' %}
@@ -385,6 +382,8 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'lumin.css' | asset_url | stylesheet_tag }}
     {{ 'heritage-luxury.css' | asset_url | stylesheet_tag }}
+    {{ 'transition-cover.css' | asset_url | stylesheet_tag }}
+    {{ 'sticky-booking-cta.css' | asset_url | stylesheet_tag }}
     
 
 
@@ -421,8 +420,6 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
-    <script src="{{ 'jquery-3.6.0.js' | asset_url }}" defer="defer"></script>
-	<script src="{{ 'popup.js' | asset_url }}" defer="defer"></script>
       
      {% if settings.fsb_enable %}
       {{ 'lumin-freeshipping-bar.css' | asset_url | stylesheet_tag }}
@@ -444,7 +441,6 @@
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
-    {% render 'rebrand-ribbon' %}
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -511,55 +507,15 @@
         recipientFormCollapsed: `{{ 'recipient.form.collapsed' | t }}`,
       };
     </script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    setTimeout(() => {
-        let shopPayButtons = document.querySelectorAll("gravity-button");
-        
-        shopPayButtons.forEach(button => {
-            let shadowRoot = button.shadowRoot;
-            if (shadowRoot) {
-                let style = document.createElement("style");
-                style.textContent = `
-                    .gravity-button {
-                        background-color: #312110 !important; /* Change color */
-                        color: white !important; /* Change text color */
-                        border-radius: 5px !important;
-                        padding: 12px 20px !important;
-                        font-size: 16px !important;
-                    }
-                `;
-                shadowRoot.appendChild(style);
-            }
-        });
-    }, 2000); // Wait 2 seconds to ensure elements load
-});
-</script>
+    {%- if request.page_type == 'product' -%}
+      <script>window.moonridgeEnableShopPayStyles = true;</script>
+    {%- endif -%}
+    <script src="{{ 'theme-interactions.js' | asset_url }}" defer="defer"></script>
 
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-    <script>
-      // Magnetic Buttons Luxury Interaction
-      const magneticButtons = document.querySelectorAll('.button, .header-button, .sticky-booking-cta');
-      
-      magneticButtons.forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-          const position = btn.getBoundingClientRect();
-          const x = e.clientX - position.left - position.width / 2;
-          const y = e.clientY - position.top - position.height / 2;
-          
-          btn.style.transform = `translate(${x * 0.08}px, ${y * 0.08}px)`;
-          btn.style.transition = 'none';
-        });
-        
-        btn.addEventListener('mouseleave', (e) => {
-          btn.style.transition = 'transform 0.5s cubic-bezier(0.2, 0, 0, 1)';
-          btn.style.transform = 'translate(0px, 0px)';
-        });
-      });
-    </script>
   {% render 'sticky-booking-cta' %}
 
   {% render 'ai-authority-facts' %}

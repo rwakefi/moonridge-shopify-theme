@@ -126,7 +126,14 @@
           alt: section.settings.image.alt | default: 'Hat Restoration Service' | escape
         }}
       {%- else -%}
-        <img src="{{ 'hat_restoration_heritage.png' | asset_url }}" class="heritage-restoration__image" alt="Hat Restoration Service">
+        <img
+          src="{{ 'hat_restoration_heritage.png' | file_img_url: '1200x' }}"
+          class="heritage-restoration__image"
+          alt="Hat Restoration Service"
+          loading="lazy"
+          width="1200"
+          height="800"
+        >
       {%- endif -%}
     </div>
     

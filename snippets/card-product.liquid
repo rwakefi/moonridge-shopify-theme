@@ -24,8 +24,6 @@
   {% render 'card-product', show_vendor: section.settings.show_vendor, show_quick_desc: section.settings.show_quick_desc %}
 {% endcomment %}
 
-{{ 'component-rating.css' | asset_url | stylesheet_tag }}
-{{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
 {%- if card_product and card_product != empty -%}
   {%- liquid
     assign show_review_count_value = show_review_count

@@ -17,19 +17,6 @@
 
 {% assign scheme1 = settings.color_schemes | first %}
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-      $(".getyours").click(function(){
-        $('html,body').animate({
-          scrollTop: $('#page5').offset().top
-        }, 500);
-
-        return false;
-      });
-    })
-  </script>
 <div  id="rw-top" class="rw-main-wrapper color-{{ section.settings.color_scheme }} gradient" >
 	<div class="rw-sub-wrapper page-width content-container isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == scheme1 and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %} section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
 		<div class="page-width">
@@ -139,29 +126,45 @@
 					</div>
 				</div>
 			</div>
-			<script type="text/javascript">
-          $(document).ready(function(){
-            $(".review-link").click(function(){
-              $('html,body').animate({
-                scrollTop: $('#rw-top').offset().top
-              }, 500);
-          
-              return false;
-            });
-          })
-      </script>
 			<script>
-          $(document).ready(function(){
-          $(".rw-container-contant").slice(0, {{section.settings.review_load}}).show();
-          $("#loadMore").on("click", function(e){
-            e.preventDefault();
-            $(".rw-container-contant:hidden").slice(0, {{section.settings.review_load}}).slideDown();
-            if($(".rw-container-contant:hidden").length == 0) {
-              $("#loadMore").text("No Content").addClass("hidden");
-            }
+        document.addEventListener('DOMContentLoaded', function () {
+          function scrollToId(id) {
+            var target = document.getElementById(id);
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+
+          document.querySelectorAll('.getyours, .review-link').forEach(function (link) {
+            link.addEventListener('click', function (event) {
+              event.preventDefault();
+              scrollToId(link.classList.contains('getyours') ? 'page5' : 'rw-top');
+            });
           });
-          
-          })
+
+          var batchSize = {{ section.settings.review_load | default: 3 }};
+          var items = Array.prototype.slice.call(document.querySelectorAll('.rw-container-contant'));
+          var loadMore = document.getElementById('loadMore');
+
+          items.forEach(function (item, index) {
+            if (index < batchSize) item.style.display = '';
+          });
+
+          if (!loadMore) return;
+
+          loadMore.addEventListener('click', function (event) {
+            event.preventDefault();
+            var hiddenItems = items.filter(function (item) {
+              return item.style.display === 'none';
+            });
+
+            hiddenItems.slice(0, batchSize).forEach(function (item) {
+              item.style.display = '';
+            });
+
+            if (items.some(function (item) { return item.style.display === 'none'; })) return;
+            loadMore.textContent = 'No Content';
+            loadMore.classList.add('hidden');
+          });
+        });
       </script>
   <style>
   .checked {

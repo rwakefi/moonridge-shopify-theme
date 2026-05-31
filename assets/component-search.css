@@ -72,3 +72,73 @@ input::-webkit-search-decoration {
 .template-search__results {
   position: relative;
 }
+
+/* Inline header search bar (Moon Ridge) */
+.header__search-bar-container {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+  max-width: 190px;
+  min-width: 150px;
+  position: relative;
+  overflow: visible;
+  z-index: 5;
+}
+
+.header__search-bar-container .search,
+.header__search-bar-container predictive-search,
+.header__search-bar-container search-form {
+  position: relative;
+  overflow: visible;
+}
+
+.header__search-bar-container .field {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  height: 36px;
+  width: 100%;
+}
+
+.header__search-bar-container .search__input {
+  border: none;
+  padding: 0 10px;
+  height: 100%;
+  flex-grow: 1;
+  font-size: 14px;
+  outline: none;
+  background: #ffffff !important;
+}
+
+.header__search-bar-container .search__button {
+  background: none;
+  border: none;
+  height: 100%;
+  padding: 0 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__search-bar-container .search__button svg {
+  width: 16px;
+  height: 16px;
+  fill: #666;
+}
+
+.header__search-bar-container .field__label {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .header__search-bar-container {
+    display: none;
+  }
+}

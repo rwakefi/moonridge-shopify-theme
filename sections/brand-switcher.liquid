@@ -11,6 +11,9 @@
     padding-left: 15rem;
     margin: 0;
     position: relative;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .rm-brand-tabs {
@@ -105,11 +108,19 @@
   }
 
   @media screen and (max-width: 749px) {
+    .section-brand-switcher {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: clip;
+    }
+
     .rm-brand-switcher { 
       padding-left: 0 !important;
       display: flex !important;
       align-items: stretch !important;
       height: 60px;
+      width: 100%;
+      max-width: 100%;
     }
     .rm-brand-tabs { 
       flex: 1;

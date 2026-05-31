@@ -22,6 +22,7 @@
     overflow: hidden;
     white-space: nowrap;
     width: 100%;
+    max-width: 100%;
     position: relative;
     /* Add fade masks to edges for premium feel */
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -107,6 +108,8 @@
     .ai-four-picture-grid-{{ ai_gen_id }} {
       padding-left: 0;
       padding-right: 0;
+      max-width: 100%;
+      overflow-x: clip;
     }
     
     .ai-four-picture-grid__track-{{ ai_gen_id }} {

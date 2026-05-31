@@ -45,12 +45,14 @@
                 width: calc({{ block.settings.grid_width_desktop}}% - {{ section.settings.grid_gap }}px);
                 position:relative;
               }
-                 @media screen and (max-width: 600px) {
+                 @media screen and (max-width: 749px) {
                 .column-{{ block.id }} {
                   width: 100%;
+                  max-width: 100%;
+                  box-sizing: border-box;
                 }
               }
-                @media screen and (min-width: 601px) and (max-width: 990px) {
+                @media screen and (min-width: 750px) and (max-width: 990px) {
                 .column-{{ block.id }} {
                   /*flex: calc({{ block.settings.grid_width_tablet}}% - {{ section.settings.grid_gap }}px);*/
                   width: calc({{ block.settings.grid_width_tablet}}% - {{ section.settings.grid_gap }}px);
@@ -176,11 +178,10 @@
               {% if block.settings.image != blank %}
                 <img
                   src="{{ block.settings.image | image_url }}"
-                  alt="rose"
+                  alt="{{ block.settings.image.alt | default: block.settings.head | escape }}"
                   loading="lazy"
-                  width="100%"
-                  height="100%"
-                  style="object-fit:cover;background-color:#a88467;"
+                  class="lumin-grid-image"
+                  style="object-fit:cover;background-color:#a88467;width:100%;max-width:100%;height:auto;display:block;"
                 >
               {%- else -%}
                 {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -219,12 +220,14 @@
                 width: calc({{ block.settings.grid_width_desktop}}% - {{ section.settings.grid_gap }}px);
                  position:relative;
                }
-                    @media screen and (max-width: 600px) {
+                    @media screen and (max-width: 749px) {
                 .column-{{ block.id }} {
                   width: 100%;
+                  max-width: 100%;
+                  box-sizing: border-box;
                 }
               }
-                 @media screen and (min-width: 601px) and (max-width: 990px) {
+                 @media screen and (min-width: 750px) and (max-width: 990px) {
                  .column-{{ block.id }} {
                    /*flex: calc({{ block.settings.grid_width_tablet}}% - {{ section.settings.grid_gap }}px);*/
                    width: calc({{ block.settings.grid_width_tablet}}% - {{ section.settings.grid_gap }}px);
@@ -342,12 +345,12 @@
               .video-padding-{{ block.id }} {
                  padding-bottom: {{ block.settings.grid_width_desktop}}%;
                }
-                  @media screen and (max-width: 600px) {
+                  @media screen and (max-width: 749px) {
                  .video-padding-{{ block.id }} {
                  padding-bottom: 100%;
                }
                   }
-                 @media screen and (min-width: 601px) and (max-width: 990px) {
+                 @media screen and (min-width: 750px) and (max-width: 990px) {
                  .video-padding-{{ block.id }} {
                  padding-bottom: {{ block.settings.grid_width_tablet}}%;
                }
@@ -424,12 +427,14 @@
                 {% endif %}
               }
                 
-                  @media screen and (max-width: 600px) {
+                  @media screen and (max-width: 749px) {
                 .column-{{ block.id }} {
                   width: 100%;
+                  max-width: 100%;
+                  box-sizing: border-box;
                 }
               }
-                 @media screen and (min-width: 601px) and (max-width: 990px) {
+                 @media screen and (min-width: 750px) and (max-width: 990px) {
                  .column-{{ block.id }} {
                    /*flex: calc({{ block.settings.grid_width_tablet}}% - {{ section.settings.grid_gap }}px);*/
                    width: calc({{ block.settings.grid_width_tablet}}% - {{ section.settings.grid_gap }}px);
@@ -457,10 +462,11 @@
                   {% endif %}
                 }
 
-                @media screen and (max-width: 600px) {
+                @media screen and (max-width: 749px) {
                   .lumin-text-container-{{ block.id }} {
                   position: relative;
                   padding: {{block.settings.padding_size_mobile}}px {{block.settings.padding_left_mobile}}px;
+                  overflow: hidden;
                   }
                 }
 
@@ -614,10 +620,20 @@
           flex-wrap: wrap;
           gap: {{ section.settings.grid_gap }}px;
           margin-right: -{{ section.settings.grid_gap }}px;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+          overflow: hidden;
         }
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 749px) {
                .row-{{ section.id }} {
           margin-right: 0;
+        }
+
+        .section-{{ section.id }}-padding .page-width {
+          padding-left: 0;
+          padding-right: 0;
+          max-width: 100%;
         }
     }
 
@@ -664,6 +680,10 @@
             transition: all 0.5s ease-in;
             margin-bottom: -8px;
             border-radius:{{ section.settings.video_border }}px;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
            }
 
           .lumin-image-{{ section.id }}:hover img {

@@ -431,3 +431,57 @@ body:not(.template-index) .header__icon .icon,
   font-weight: 600 !important;
   color: #312110 !important;
 }
+
+/* ------------------------------------------------------------------
+   Mobile layout: prevent horizontal overflow / right-edge white gap
+   (common on iOS Safari when grids, marquees, or 100vw bleed past the viewport)
+   ------------------------------------------------------------------ */
+html {
+  overflow-x: clip;
+}
+
+body,
+.transition-body,
+#MainContent {
+  overflow-x: clip;
+  max-width: 100%;
+  width: 100%;
+}
+
+@media screen and (max-width: 749px) {
+  .shopify-section,
+  .section-brand-switcher,
+  .rm-brand-switcher {
+    max-width: 100%;
+  }
+
+  .header.page-width {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  [class*="row-template"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: 0 !important;
+    box-sizing: border-box;
+  }
+
+  [class*="column-"] {
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  [class*="lumin-image-"] img,
+  [class*="lumin-image-"] svg,
+  .ai-single-image-wrapper img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+  }
+
+  .ai-four-picture-grid__container {
+    max-width: 100vw;
+  }
+}

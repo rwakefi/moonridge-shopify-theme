@@ -14,9 +14,13 @@
 {%- liquid
   assign addons_collection = settings.cart_addons_collection
   assign limit = settings.cart_addons_limit | default: 6
+  assign addons_enabled = settings.cart_addons_enable
+  if addons_enabled == blank
+    assign addons_enabled = true
+  endif
 -%}
 
-{%- if settings.cart_addons_enable and cart != empty and addons_collection != blank and addons_collection.products_count > 0 -%}
+{%- if addons_enabled and cart != empty and addons_collection != blank and addons_collection.products_count > 0 -%}
   {%- comment -%} Build a lookup of product ids already in the cart {%- endcomment -%}
   {%- assign cart_product_ids = cart.items | map: 'product_id' -%}
 

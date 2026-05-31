@@ -170,6 +170,7 @@
     "show_cart_note": false,
     "cart_drawer_collection": "smileease",
     "cart_color_scheme": "inverse",
+    "cart_addons_collection": "cart-add-ons",
     "checkout_logo_position": "center",
     "checkout_logo_size": "large",
     "checkout_body_background_color": "#ffffff",

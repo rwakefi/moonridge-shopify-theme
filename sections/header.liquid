@@ -68,11 +68,11 @@
 
   .list-menu--inline {
     display: inline-flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
 
   summary.list-menu__item {
-    padding-right: 2.7rem;
+    padding-right: 1.8rem;
   }
 
   .list-menu__item {
@@ -128,16 +128,41 @@
     align-items: center !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
+    padding-left: 1.05rem !important;
+    padding-right: 1.05rem !important;
     min-height: 4.4rem;
     text-decoration: none;
     font-family: var(--font-menu-family);
     font-style: var(--font-menu-style);
-    font-size: 1.2rem !important;
-    letter-spacing: 0.1em;
+    font-size: 1.21rem !important;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     font-weight: 500;
     position: relative;
     transition: color 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .header__menu-item span {
+    white-space: nowrap;
+  }
+
+  /* Products | Informational nav split */
+  .header__menu-divider {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    padding: 0 0.75rem;
+    list-style: none;
+    pointer-events: none;
+  }
+
+  .header__menu-divider span {
+    display: block;
+    width: 2px;
+    height: 1.35rem;
+    background: rgba(197, 160, 89, 0.72);
+    border-radius: 1px;
   }
 
   .shopify-section-group-header-group,
@@ -363,13 +388,13 @@
     }
   }
 
-  /* Laptop Menu Refinement: Prevent menu wrapping on smaller desktop screens */
-  @media screen and (min-width: 990px) and (max-width: 1400px) {
+  /* Laptop Menu Refinement: fit full nav (Hats–Hat Education) without wrapping */
+  @media screen and (min-width: 990px) and (max-width: 1700px) {
     .header__menu-item {
-      padding-left: 0.7rem !important;
-      padding-right: 0.7rem !important;
+      padding-left: 0.85rem !important;
+      padding-right: 0.85rem !important;
       font-size: 1.15rem !important;
-      letter-spacing: 0.05em !important;
+      letter-spacing: 0.04em !important;
       white-space: nowrap !important;
     }
 
@@ -384,18 +409,26 @@
     }
     
     summary.list-menu__item {
-      padding-right: 0.7rem !important;
+      padding-right: 1.4rem !important;
+    }
+
+    .header__menu-divider {
+      padding: 0 0.65rem;
+    }
+
+    .header__menu-divider span {
+      height: 1.2rem;
     }
 
     .header__search-bar-container {
-      max-width: 220px !important;
-      min-width: 180px !important;
-      margin-left: 0.5rem !important;
-      margin-right: 0.5rem !important;
+      max-width: 170px !important;
+      min-width: 140px !important;
+      margin-left: 0.4rem !important;
+      margin-right: 0.4rem !important;
     }
     
     .header__icon {
-      width: 3.6rem !important;
+      width: 3.4rem !important;
     }
 
     .header__inline-menu {
@@ -408,6 +441,56 @@
 
   }
 
+  @media screen and (min-width: 1401px) and (max-width: 1700px) {
+    .header__menu-item {
+      font-size: 1.17rem !important;
+      letter-spacing: 0.05em !important;
+    }
+  }
+
+  @media screen and (min-width: 1701px) {
+    .header__menu-item {
+      font-size: 1.24rem !important;
+      letter-spacing: 0.07em !important;
+      padding-left: 1.1rem !important;
+      padding-right: 1.1rem !important;
+    }
+
+    summary.list-menu__item {
+      padding-right: 1.6rem !important;
+    }
+
+    .header__menu-divider {
+      padding: 0 0.8rem;
+    }
+
+    .header__menu-divider span {
+      height: 1.45rem;
+    }
+  }
+
+  /* Narrow laptop band — extra-tight screens */
+  @media screen and (min-width: 990px) and (max-width: 1280px) {
+    .header__menu-item {
+      padding-left: 0.75rem !important;
+      padding-right: 0.75rem !important;
+      font-size: 1.09rem !important;
+      letter-spacing: 0.03em !important;
+    }
+
+    summary.list-menu__item {
+      padding-right: 1.2rem !important;
+    }
+
+    .header__menu-divider {
+      padding: 0 0.55rem;
+    }
+  }
+
+  .header__icon--cart:has(+ .header__icon--podcast) {
+    margin-right: 0;
+  }
+
   .header__icon--podcast {
     position: relative;
     display: flex !important;
@@ -415,6 +498,7 @@
     justify-content: center;
     width: 48px !important;
     height: 48px !important;
+    margin-left: 1.6rem;
   }
   .header__icon--podcast::after {
     content: "Podcast";
@@ -704,7 +788,7 @@
         {%- endif -%}
       </a>
 
-      <a href="{{ section.settings.podcast_link | default: '/pages/podcast' }}" class="header__icon header__icon--podcast link focus-inset small-hide" aria-label="Moon Ridge Podcast" style="margin-left: 12px;">
+      <a href="{{ section.settings.podcast_link | default: '/pages/podcast' }}" class="header__icon header__icon--podcast link focus-inset small-hide" aria-label="Moon Ridge Podcast">
         {% if section.settings.podcast_icon_image != blank %}
           <img src="{{ section.settings.podcast_icon_image | image_url: width: 100 }}" alt="Podcast" class="icon icon-podcast" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(0,0,0,0.1);">
         {% else %}

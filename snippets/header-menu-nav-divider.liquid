@@ -1,0 +1,18 @@
+{% comment %}
+  Inserts a vertical divider before the first informational nav item (Experiences).
+
+  Usage:
+  {% render 'header-menu-nav-divider', link: link %}
+{% endcomment %}
+
+{%- liquid
+  assign link_title_lc = link.title | downcase | strip
+  assign show_menu_divider = false
+  if link.handle == 'experiences' or link_title_lc == 'experiences'
+    assign show_menu_divider = true
+  endif
+-%}
+
+{%- if show_menu_divider -%}
+  <li class="header__menu-divider" aria-hidden="true"><span></span></li>
+{%- endif -%}

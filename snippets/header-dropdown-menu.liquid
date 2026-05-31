@@ -8,6 +8,7 @@
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
+      {%- render 'header-menu-nav-divider', link: link -%}
       {%- render 'hats-hub-nav', link: link -%}
       {%- liquid
         assign hat_education_menu_match = false

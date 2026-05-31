@@ -1,0 +1,48 @@
+{% comment %}
+  Free-shipping progress bar for the cart drawer.
+  Re-renders with the drawer on every cart change, so it stays in sync
+  without any extra JS. Threshold and copy are merchant-editable in
+  Theme settings > Cart.
+
+  Copy uses the (amount) placeholder for the remaining amount.
+
+  Usage:
+  {% render 'cart-drawer-shipping' %}
+{% endcomment %}
+
+{%- if settings.cart_free_shipping_enable -%}
+  {%- liquid
+    assign threshold_cents = settings.cart_free_shipping_threshold | times: 100
+    assign total = cart.total_price
+    assign remaining = threshold_cents | minus: total
+  -%}
+  {%- if threshold_cents > 0 -%}
+    {%- if remaining > 0 -%}
+      {%- liquid
+        assign progress = total | times: 100 | divided_by: threshold_cents
+        assign amount_html = remaining | money | prepend: '<span class="cart-ship-bar__amount">' | append: '</span>'
+        assign message = settings.cart_free_shipping_message | replace: '(amount)', amount_html
+      -%}
+      <div class="cart-ship-bar">
+        <p class="cart-ship-bar__message">{{ message }}</p>
+        <div class="cart-ship-bar__track">
+          <div class="cart-ship-bar__fill" style="width: {{ progress }}%;"></div>
+        </div>
+      </div>
+    {%- else -%}
+      <div class="cart-ship-bar cart-ship-bar--complete">
+        <p class="cart-ship-bar__message">
+          <span class="cart-ship-bar__icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 10.7a1 1 0 1 1 1.4-1.4l2.8 2.8 6.8-6.8a1 1 0 0 1 1.4 0Z" fill="currentColor"/>
+            </svg>
+          </span>
+          <strong>{{ settings.cart_free_shipping_success }}</strong>
+        </p>
+        <div class="cart-ship-bar__track">
+          <div class="cart-ship-bar__fill" style="width: 100%;"></div>
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}

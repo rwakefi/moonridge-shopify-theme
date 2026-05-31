@@ -12,27 +12,37 @@
 {% endcomment %}
 
 {%- liquid
-  assign addons_collection = settings.cart_addons_collection
   assign limit = settings.cart_addons_limit | default: 6
   assign addons_enabled = settings.cart_addons_enable
   if addons_enabled == blank
     assign addons_enabled = true
   endif
+
+  assign addons_collection = settings.cart_addons_collection
+  if addons_collection == blank or addons_collection.products_count == 0
+    assign addons_collection = collections['cart-add-ons']
+  endif
 -%}
 
 {%- if addons_enabled and cart != empty and addons_collection != blank and addons_collection.products_count > 0 -%}
-  {%- comment -%} Build a lookup of product ids already in the cart {%- endcomment -%}
-  {%- assign cart_product_ids = cart.items | map: 'product_id' -%}
-
   {%- assign rendered = 0 -%}
   {%- capture addon_items -%}
     {%- for product in addons_collection.products -%}
       {%- if rendered >= limit -%}{%- break -%}{%- endif -%}
-      {%- unless cart_product_ids contains product.id -%}
-        {%- unless product.available == false -%}
+
+      {%- assign product_in_cart = false -%}
+      {%- for item in cart.items -%}
+        {%- if item.product_id == product.id -%}
+          {%- assign product_in_cart = true -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- unless product_in_cart -%}
+        {%- assign variant = product.selected_or_first_available_variant -%}
+        {%- if variant and variant.available -%}
           {%- assign rendered = rendered | plus: 1 -%}
           {%- liquid
-            assign variant = product.selected_or_first_available_variant
             assign needs_options = false
             if product.variants.size > 1 or variant.quantity_rule.min > 1 or variant.quantity_rule.max != null or variant.quantity_rule.increment > 1
               assign needs_options = true
@@ -96,7 +106,7 @@
               {%- endif -%}
             </div>
           </li>
-        {%- endunless -%}
+        {%- endif -%}
       {%- endunless -%}
     {%- endfor -%}
   {%- endcapture -%}

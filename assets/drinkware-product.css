@@ -1,0 +1,52 @@
+/* Drinkware product template — optimized for 2048×2048 square product photos */
+
+.template-product.template-suffix-drinkware #MainProduct .product__media-wrapper {
+  align-self: flex-start;
+}
+
+.template-product.template-suffix-drinkware #MainProduct .product-media-container {
+  max-width: min(100%, 72rem);
+  margin-inline: auto;
+}
+
+.template-product.template-suffix-drinkware #MainProduct .product-media-container.media-fit-contain .media img,
+.template-product.template-suffix-drinkware #MainProduct .product-media-container.media-fit-contain .deferred-media__poster img {
+  object-fit: contain;
+  background: #fafafa;
+}
+
+.template-product.template-suffix-drinkware #MainProduct .thumbnail-list__item .thumbnail {
+  aspect-ratio: 1 / 1;
+}
+
+.template-product.template-suffix-drinkware #MainProduct .thumbnail-list__item .thumbnail img {
+  object-fit: contain;
+  background: #fafafa;
+}
+
+.template-product.template-suffix-drinkware #MainProduct .product__media-list .product__media-item {
+  width: 100%;
+}
+
+@media screen and (min-width: 750px) {
+  .template-product.template-suffix-drinkware #MainProduct .product--large:not(.product--no-media) .product__media-wrapper {
+    max-width: 58%;
+    width: calc(58% - var(--grid-desktop-horizontal-spacing) / 2);
+  }
+
+  .template-product.template-suffix-drinkware #MainProduct .product--large:not(.product--no-media) .product__info-wrapper {
+    max-width: 42%;
+    width: calc(42% - var(--grid-desktop-horizontal-spacing) / 2);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .template-product.template-suffix-drinkware #MainProduct .product-media-container {
+    max-width: 100%;
+  }
+
+  .template-product.template-suffix-drinkware #MainProduct .product__media-list .media > * {
+    object-fit: contain;
+    background: #fafafa;
+  }
+}

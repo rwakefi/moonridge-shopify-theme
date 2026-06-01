@@ -43,6 +43,13 @@
   if media.media_type == 'image'
     assign image_class = 'image-magnify-' | append: section.settings.image_zoom
   endif
+
+  assign product_image_max_width = 1946
+  assign product_image_widths = '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946'
+  if template.suffix == 'drinkware' or template.suffix == 'home'
+    assign product_image_max_width = 2048
+    assign product_image_widths = '493, 600, 713, 990, 1206, 1426, 1646, 1946, 2048'
+  endif
 -%}
 
 {%- capture sizes -%}
@@ -57,10 +64,10 @@
     {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
       <span class="product__media-icon motion-reduce quick-add-hidden">{% render 'icon-play' %}</span>
       <div class="product__media media">
-        {{ media.preview_image | image_url: width: 1946 | image_tag:
+        {{ media.preview_image | image_url: width: product_image_max_width | image_tag:
           loading: lazy,
           sizes: sizes,
-          widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946',
+          widths: product_image_widths,
           alt: media.preview_image.alt | default: product.title | escape
         }}
       </div>
@@ -69,10 +76,10 @@
       </a>
     {%- else -%}
       <div class="product__media media">
-        {{ media.preview_image | image_url: width: 1946 | image_tag:
+        {{ media.preview_image | image_url: width: product_image_max_width | image_tag:
           loading: lazy,
           sizes: sizes,
-          widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946',
+          widths: product_image_widths,
           alt: media.preview_image.alt | default: product.title | escape
         }}
       </div>
@@ -94,11 +101,11 @@
     </span>
     {%- render 'loading-spinner' -%}
     <div class="product__media media media--transparent">
-      {{ media.preview_image | image_url: width: 1946 | image_tag:
+      {{ media.preview_image | image_url: width: product_image_max_width | image_tag:
         class: image_class,
         loading: lazy,
         sizes: sizes,
-        widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946',
+        widths: product_image_widths,
         alt: media.preview_image.alt | default: product.title | escape
       }}
     </div>
@@ -114,7 +121,7 @@
       <product-model class="deferred-media media media--transparent no-js-hidden" data-media-id="{{ media.id }}">
      {%- else if media.media_type == 'video' -%}
       {%- liquid
-      echo media | media_tag: image_size: 1946, autoplay: true, loop: loop, controls: false, preload: "none", autoplay: true
+      echo media | media_tag: image_size: product_image_max_width, autoplay: true, loop: loop, controls: false, preload: "none", autoplay: true
   		-%}
     {%- else -%}
       <deferred-media class="deferred-media media media--transparent no-js-hidden" data-media-id="{{ media.id }}">
@@ -130,10 +137,10 @@
           {%- render 'icon-play' -%}
         {%- endif -%}
       </span>
-      {{ media.preview_image | image_url: width: 1946 | image_tag:
+      {{ media.preview_image | image_url: width: product_image_max_width | image_tag:
         loading: lazy,
         sizes: sizes,
-        widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946',
+        widths: product_image_widths,
         alt: media.preview_image.alt | default: product.title | escape
       }}
     </button>
@@ -149,9 +156,9 @@
             echo media | external_video_url: autoplay: true, loop: loop | external_video_tag: class: video_class, loading: "lazy"
           endif
           when 'video_old'
-        echo media | media_tag: image_size: "1946x", autoplay: true, loop: loop, controls: false, preload: "none", autoplay: true
+        echo media | media_tag: image_size: product_image_max_width, autoplay: true, loop: loop, controls: false, preload: "none", autoplay: true
         when 'model'
-          echo media | media_tag: image_size: "1946x", toggleable: true
+          echo media | media_tag: image_size: product_image_max_width, toggleable: true
         endcase
       -%}
     </template>

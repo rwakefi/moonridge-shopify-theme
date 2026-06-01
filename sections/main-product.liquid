@@ -11,6 +11,9 @@
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
   {% if template.suffix == 'home' %}
     {{ 'home-product.css' | asset_url | stylesheet_tag }}
+  {% elsif template.suffix == 'drinkware' %}
+    {{ 'home-product.css' | asset_url | stylesheet_tag }}
+    {{ 'drinkware-product.css' | asset_url | stylesheet_tag }}
   {% endif %}
   {%- if product.quantity_price_breaks_configured? -%}
     {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}

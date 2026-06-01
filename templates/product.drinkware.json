@@ -39,6 +39,10 @@
             "picker_type": "button"
           }
         },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -46,12 +50,16 @@
             "show_gift_card_recipient": false
           }
         },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
         "desc_tab": {
           "type": "collapsible_tab",
           "settings": {
             "heading": "Dimensions & Details",
             "icon": "none",
-            "content": "<p>Materials, dimensions, and special features for this item.</p>",
+            "content": "<p>Materials, capacity, and dimensions for this item.</p>",
             "page": ""
           }
         },
@@ -69,23 +77,9 @@
           "settings": {
             "heading": "Care Instructions",
             "icon": "washing",
-            "content": "<p>Follow care instructions on the product label for best results.</p>",
+            "content": "<p>Follow care instructions on the product label. Most ceramic drinkware is dishwasher safe unless noted.</p>",
             "page": ""
           }
-        },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
-        },
-        "description": {
-          "type": "description",
-          "settings": {}
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
         },
         "complementary": {
           "type": "complementary",
@@ -101,6 +95,12 @@
             "show_vendor": false,
             "show_rating": false,
             "enable_quick_add": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
           }
         }
       },
@@ -127,7 +127,7 @@
         "media_fit": "contain",
         "gallery_layout": "thumbnail_slider",
         "media_position": "left",
-        "image_zoom": "hover",
+        "image_zoom": "lightbox",
         "mobile_thumbnails": "show",
         "hide_variants": true,
         "show_full_image": true,
@@ -140,10 +140,10 @@
         ".product__accordion .accordion__title{letter-spacing:normal;text-transform:none;}"
       ]
     },
-    "featured_home": {
+    "featured_drinkware": {
       "type": "featured-collection",
       "settings": {
-        "title": "Complete the home look",
+        "title": "Shop more drinkware",
         "description": "",
         "show_description": false,
         "description_style": "body",
@@ -195,7 +195,7 @@
   },
   "order": [
     "main",
-    "featured_home",
+    "featured_drinkware",
     "related-products"
   ]
 }

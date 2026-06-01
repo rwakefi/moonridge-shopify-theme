@@ -1,4 +1,8 @@
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{% if template.suffix == 'home' %}
+  {{ 'home-collection.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'home-collection.js' | asset_url }}" defer="defer"></script>
+{% endif %}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
@@ -53,7 +57,7 @@
   }
 {%- endstyle -%}
 
-<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
+<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}{% if template.suffix == 'home' %} home-collection-grid{% endif %}">
   {%- paginate collection.products by section.settings.products_per_page -%}
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
     {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
@@ -127,12 +131,19 @@
           id="main-collection-filters"
           data-id="{{ section.id }}"
         >
+          {% liquid
+            assign home_style = false
+            if template.suffix == 'home'
+              assign home_style = true
+            endif
+          %}
           {% render 'facets',
             results: collection,
             enable_filtering: section.settings.enable_filtering,
             enable_sorting: section.settings.enable_sorting,
             filter_type: section.settings.filter_type,
-            paginate: paginate
+            paginate: paginate,
+            home_style: home_style
           %}
         </aside>
       {%- endif -%}

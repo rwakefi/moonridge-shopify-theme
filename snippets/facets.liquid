@@ -7,10 +7,15 @@
   - enable_sorting: {Boolean} Show sorting when true
   - filter_type: {String} Type of filter
   - paginate: {Object}
+  - home_style: {Boolean} Williams-Sonoma-style horizontal filter bar
 
   Usage:
   {% render 'facets', results: collection, enable_filtering: true, enable_sorting: true, filter_type: 'vertical', paginate: paginate %}
 {% endcomment %}
+
+{%- liquid
+  assign home_style = home_style | default: false
+-%}
 
 {{ 'component-show-more.css' | asset_url | stylesheet_tag }}
 {{ 'component-visual-display.css' | asset_url | stylesheet_tag }}
@@ -26,7 +31,7 @@
   endif
 -%}
 
-<div class="facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+<div class="facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if home_style %} facets-container--home-ws{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
   {%- if filter_type == 'vertical' or filter_type == 'horizontal' -%}
     <facet-filters-form class="facets small-hide">
       <form
@@ -46,10 +51,64 @@
               class="facets__wrapper"
             {% endif %}
           >
-            {%- if filter_type == 'horizontal' and results.filters != empty -%}
+            {%- if filter_type == 'horizontal' and results.filters != empty and home_style == false -%}
               <h2 class="facets__heading caption-large text-body" id="verticalTitle" tabindex="-1">
                 {{ 'products.facets.filter_by_label' | t }}
               </h2>
+            {%- endif -%}
+
+            {%- if home_style and filter_type == 'horizontal' -%}
+              {%- assign home_has_availability = false -%}
+              {%- for filter in results.filters -%}
+                {%- if filter.type == 'boolean' -%}
+                  {%- assign home_has_availability = true -%}
+                  <div class="home-ws-filter home-ws-filter--toggle">
+                    {%- for value in filter.values -%}
+                      <label
+                        class="home-ws-in-stock-label facets__label facet-checkbox{% if value.active %} active{% endif %}{% if value.count == 0 and value.active == false %} facet-checkbox--disabled disabled{% endif %}"
+                        for="HomeFilter-{{ filter.param_name | escape }}-{{ forloop.index }}"
+                      >
+                        <input
+                          type="checkbox"
+                          name="{{ value.param_name }}"
+                          value="{{ value.value }}"
+                          id="HomeFilter-{{ filter.param_name | escape }}-{{ forloop.index }}"
+                          {% if value.active %}
+                            checked
+                          {% endif %}
+                          {% if value.count == 0 and value.active == false %}
+                            disabled
+                          {% endif %}
+                        >
+                        <span class="home-ws-in-stock-label__text">In Stock, Ready to Ship</span>
+                      </label>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+              {%- unless home_has_availability -%}
+                {%- liquid
+                  assign in_stock_url = results.url | append: '?filter.v.availability=1'
+                  assign in_stock_active = false
+                  if request.query_string contains 'filter.v.availability=1'
+                    assign in_stock_active = true
+                  endif
+                -%}
+                <div class="home-ws-filter home-ws-filter--toggle">
+                  <label class="home-ws-in-stock-label{% if in_stock_active %} active{% endif %}">
+                    <input
+                      type="checkbox"
+                      {% if in_stock_active %}
+                        checked
+                      {% endif %}
+                      data-home-in-stock-toggle
+                      data-url-active="{{ in_stock_url | escape }}"
+                      data-url-clear="{{ results.url | escape }}"
+                    >
+                    <span class="home-ws-in-stock-label__text">In Stock, Ready to Ship</span>
+                  </label>
+                </div>
+              {%- endunless -%}
             {%- endif -%}
             {% comment %} Pills are right below the title for filter type vertical {% endcomment %}
             {%- if filter_type == 'vertical' -%}
@@ -112,6 +171,9 @@
             <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
             {% comment %} Filters for both horizontal and vertical filter {% endcomment %}
             {%- for filter in results.filters -%}
+              {%- if home_style and filter.type == 'boolean' -%}
+                {%- continue -%}
+              {%- endif -%}
               {% liquid
                 assign total_active_values = total_active_values | plus: filter.active_values.size
                 case filter.presentation
@@ -517,18 +579,27 @@
         {%- if filter_type == 'horizontal' -%}
           {% comment %} Sorting and product count are the last elements when filter type is horizontal {% endcomment %}
           {%- if enable_sorting -%}
-            <div class="facet-filters sorting caption">
-              <div class="facet-filters__field">
-                <h2 class="facet-filters__label caption-large text-body">
-                  <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
-                </h2>
-                <div class="select">
+            <div class="facet-filters sorting caption{% if home_style %} home-ws-sort-filter{% endif %}">
+              <div class="facet-filters__field{% if home_style %} home-ws-sort-filter__field{% endif %}">
+                {%- unless home_style -%}
+                  <h2 class="facet-filters__label caption-large text-body">
+                    <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
+                  </h2>
+                {%- endunless -%}
+                {%- if home_style -%}
+                  <span class="home-ws-sort-filter__icon" aria-hidden="true">{% render 'icon-filter' %}</span>
+                  <label class="home-ws-sort-filter__label" for="SortBy">Sort &amp; Filter</label>
+                {%- endif -%}
+                <div class="select{% if home_style %} home-ws-sort-filter__select{% endif %}">
                   {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
                   <select
                     name="sort_by"
                     class="facet-filters__sort select__select caption-large"
                     id="SortBy"
                     aria-describedby="a11y-refresh-page-message"
+                    {% if home_style %}
+                      aria-label="Sort and filter"
+                    {% endif %}
                   >
                     {%- for option in results.sort_options -%}
                       <option
@@ -552,7 +623,7 @@
               </noscript>
             </div>
           {%- endif -%}
-          <div class="product-count light" role="status">
+          <div class="product-count light{% if home_style %} home-ws-product-count{% endif %}" role="status">
             <h2 class="product-count__text text-body">
               <span id="ProductCountDesktop">
                 {%- if results.results_count -%}

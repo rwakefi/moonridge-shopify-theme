@@ -1,0 +1,390 @@
+{{ 'visit-us.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign maps_query = section.settings.address | default: '2218 N College Ave, Fayetteville, AR 72703' | url_encode
+  assign phone_href = section.settings.phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' | replace: '.', ''
+  if phone_href != blank and phone_href contains '479'
+    assign phone_href = phone_href | prepend: '+1'
+  endif
+-%}
+
+<section class="visit-us" id="VisitUs-{{ section.id }}">
+  {%- if section.settings.show_hero -%}
+  <div class="visit-us__hero" style="padding-top: {{ section.settings.hero_padding_top }}px;">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="visit-us__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.title != blank -%}
+      <h1 class="visit-us__title">{{ section.settings.title | escape }}</h1>
+    {%- endif -%}
+
+    {%- if section.settings.lead != blank -%}
+      <p class="visit-us__lead">{{ section.settings.lead | escape }}</p>
+    {%- endif -%}
+
+    <div class="visit-us__actions">
+      {%- if section.settings.booking_url != blank -%}
+        <a class="visit-us__button visit-us__button--primary" href="{{ section.settings.booking_url }}">
+          {{ section.settings.booking_label | escape }}
+        </a>
+      {%- endif -%}
+
+      {%- if section.settings.secondary_url != blank -%}
+        <a class="visit-us__button visit-us__button--secondary" href="{{ section.settings.secondary_url }}">
+          {{ section.settings.secondary_label | escape }}
+        </a>
+      {%- elsif phone_href != blank -%}
+        <a class="visit-us__button visit-us__button--secondary" href="tel:{{ phone_href }}">
+          {{ section.settings.secondary_label | default: 'Call the shop' | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+  {%- elsif section.settings.section_heading != blank -%}
+  <div class="visit-us__section-head">
+    <h2 class="visit-us__section-title">{{ section.settings.section_heading | escape }}</h2>
+    {%- if section.settings.section_subheading != blank -%}
+      <p class="visit-us__section-subtitle">{{ section.settings.section_subheading | escape }}</p>
+    {%- endif -%}
+    <div class="visit-us__actions visit-us__actions--compact">
+      {%- if section.settings.booking_url != blank -%}
+        <a class="visit-us__button visit-us__button--primary" href="{{ section.settings.booking_url }}">
+          {{ section.settings.booking_label | escape }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.secondary_url != blank -%}
+        <a class="visit-us__button visit-us__button--secondary" href="{{ section.settings.secondary_url }}">
+          {{ section.settings.secondary_label | escape }}
+        </a>
+      {%- elsif phone_href != blank -%}
+        <a class="visit-us__button visit-us__button--secondary" href="tel:{{ phone_href }}">
+          {{ section.settings.secondary_label | default: 'Call the shop' | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+  {%- endif -%}
+
+  <div class="visit-us__grid-wrap">
+    <div class="visit-us__grid">
+      <div class="visit-us__map">
+        {%- if section.settings.google_maps_embed != blank -%}
+          {{ section.settings.google_maps_embed }}
+        {%- else -%}
+          <iframe
+            title="Moon Ridge map"
+            src="https://maps.google.com/maps?q={{ maps_query }}&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        {%- endif -%}
+      </div>
+
+      <div class="visit-us__panel">
+        <div class="visit-us__card">
+          <h2 class="visit-us__card-title">{{ section.settings.hours_heading | escape }}</h2>
+          <ul class="visit-us__hours">
+            <li>
+              <span class="visit-us__hours-day">Monday – Friday</span>
+              <span class="visit-us__hours-time">{{ section.settings.weekday_hours | escape }}</span>
+            </li>
+            <li>
+              <span class="visit-us__hours-day">Saturday</span>
+              <span class="visit-us__hours-time">{{ section.settings.saturday_hours | escape }}</span>
+            </li>
+            <li>
+              <span class="visit-us__hours-day">Sunday</span>
+              <span class="visit-us__hours-time">{{ section.settings.sunday_hours | escape }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="visit-us__card visit-us__card--accent">
+          <h2 class="visit-us__card-title">{{ section.settings.shapers_heading | escape }}</h2>
+          <ul class="visit-us__hours">
+            <li>
+              <span class="visit-us__hours-day">Thursday &amp; Friday</span>
+              <span class="visit-us__hours-time">{{ section.settings.shaper_weekday_hours | escape }}</span>
+            </li>
+            <li>
+              <span class="visit-us__hours-day">Saturday</span>
+              <span class="visit-us__hours-time">{{ section.settings.shaper_saturday_hours | escape }}</span>
+            </li>
+          </ul>
+          {%- if section.settings.shaper_note != blank -%}
+            <p class="visit-us__note">{{ section.settings.shaper_note | escape }}</p>
+          {%- endif -%}
+        </div>
+
+        <div class="visit-us__card">
+          <h2 class="visit-us__card-title">{{ section.settings.location_heading | escape }}</h2>
+          <p class="visit-us__address">
+            <a href="{{ section.settings.map_link | default: 'https://www.google.com/maps?q=2218+N+College+Ave,+Fayetteville,+AR+72703' }}" rel="noopener noreferrer" target="_blank">
+              {{ section.settings.address | escape }}
+            </a>
+          </p>
+
+          {%- if section.settings.phone != blank -%}
+            <a class="visit-us__contact-link" href="tel:{{ phone_href }}">{{ section.settings.phone | escape }}</a>
+          {%- endif -%}
+
+          {%- if section.settings.email != blank -%}
+            <a class="visit-us__contact-link" href="mailto:{{ section.settings.email | escape }}">{{ section.settings.email | escape }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    {%- if section.settings.show_highlights -%}
+      <div class="visit-us__highlights">
+        {%- if section.settings.highlight_1_title != blank -%}
+          <div class="visit-us__highlight">
+            <strong>{{ section.settings.highlight_1_title | escape }}</strong>
+            <span>{{ section.settings.highlight_1_text | escape }}</span>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.highlight_2_title != blank -%}
+          <div class="visit-us__highlight">
+            <strong>{{ section.settings.highlight_2_title | escape }}</strong>
+            <span>{{ section.settings.highlight_2_text | escape }}</span>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.highlight_3_title != blank -%}
+          <div class="visit-us__highlight">
+            <strong>{{ section.settings.highlight_3_title | escape }}</strong>
+            <span>{{ section.settings.highlight_3_text | escape }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Visit Us page",
+  "tag": "section",
+  "class": "section-visit-us",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hero",
+      "label": "Show hero intro",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "hero_padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Hero top padding",
+      "default": 48
+    },
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section heading (when hero hidden)",
+      "default": "Visit Us"
+    },
+    {
+      "type": "textarea",
+      "id": "section_subheading",
+      "label": "Section subheading (when hero hidden)"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Fayetteville, Arkansas"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Visit Moon Ridge"
+    },
+    {
+      "type": "textarea",
+      "id": "lead",
+      "label": "Intro text",
+      "default": "Book a custom fitting with our hat shapers, drop off a hat for cleaning and shaping, or ask about private hat parties for your next celebration."
+    },
+    {
+      "type": "text",
+      "id": "booking_label",
+      "label": "Primary button label",
+      "default": "Book a Free Fitting"
+    },
+    {
+      "type": "url",
+      "id": "booking_url",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "Plan a Hat Party"
+    },
+    {
+      "type": "url",
+      "id": "secondary_url",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "header",
+      "content": "Map"
+    },
+    {
+      "type": "html",
+      "id": "google_maps_embed",
+      "label": "Custom Google Maps embed",
+      "info": "Leave blank to use the address below."
+    },
+    {
+      "type": "url",
+      "id": "map_link",
+      "label": "Directions link"
+    },
+    {
+      "type": "header",
+      "content": "Store hours"
+    },
+    {
+      "type": "text",
+      "id": "hours_heading",
+      "label": "Hours heading",
+      "default": "Store Hours"
+    },
+    {
+      "type": "text",
+      "id": "weekday_hours",
+      "label": "Monday – Friday",
+      "default": "10:00 AM – 5:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "saturday_hours",
+      "label": "Saturday",
+      "default": "10:00 AM – 2:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "sunday_hours",
+      "label": "Sunday",
+      "default": "Closed"
+    },
+    {
+      "type": "text",
+      "id": "shapers_heading",
+      "label": "Shaper hours heading",
+      "default": "Hat Shapers In House"
+    },
+    {
+      "type": "text",
+      "id": "shaper_weekday_hours",
+      "label": "Shapers Thu – Fri",
+      "default": "10:00 AM – 5:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "shaper_saturday_hours",
+      "label": "Shapers Saturday",
+      "default": "10:00 AM – 2:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "shaper_note",
+      "label": "Shaper note",
+      "default": "Hours may vary based on private events."
+    },
+    {
+      "type": "header",
+      "content": "Contact"
+    },
+    {
+      "type": "text",
+      "id": "location_heading",
+      "label": "Location heading",
+      "default": "Find Us"
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "Address",
+      "default": "2218 N College Ave, Fayetteville, AR 72703"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone",
+      "default": "(479) 430-2667"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "info@moonridgecompany.com"
+    },
+    {
+      "type": "header",
+      "content": "Highlights"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_highlights",
+      "label": "Show highlight cards",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "highlight_1_title",
+      "label": "Highlight 1 title",
+      "default": "Walk-ins welcome"
+    },
+    {
+      "type": "text",
+      "id": "highlight_1_text",
+      "label": "Highlight 1 text",
+      "default": "Stop by during store hours — no appointment required."
+    },
+    {
+      "type": "text",
+      "id": "highlight_2_title",
+      "label": "Highlight 2 title",
+      "default": "Master shapers"
+    },
+    {
+      "type": "text",
+      "id": "highlight_2_text",
+      "label": "Highlight 2 text",
+      "default": "Expert fitting and shaping Thursday through Saturday."
+    },
+    {
+      "type": "text",
+      "id": "highlight_3_title",
+      "label": "Highlight 3 title",
+      "default": "Hat parties"
+    },
+    {
+      "type": "text",
+      "id": "highlight_3_text",
+      "label": "Highlight 3 text",
+      "default": "Birthdays, bridal parties, and corporate events."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Visit Us page"
+    }
+  ]
+}
+{% endschema %}

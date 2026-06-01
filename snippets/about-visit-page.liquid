@@ -1,0 +1,155 @@
+{{ 'about-visit-page.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign maps_query = section.settings.address | default: '2218 N College Ave, Fayetteville, AR 72703' | url_encode
+  assign phone_href = section.settings.phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' | replace: '.', ''
+  if phone_href != blank and phone_href contains '479'
+    assign phone_href = phone_href | prepend: '+1'
+  endif
+-%}
+
+<section class="about-visit-page" id="AboutVisit-{{ section.id }}">
+  <div class="about-visit-page__shell">
+    <header class="about-visit-page__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="about-visit-page__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h1 class="about-visit-page__title">{{ section.settings.title | escape }}</h1>
+      {%- endif -%}
+    </header>
+
+    <div class="about-visit-page__split">
+      <div class="about-visit-page__story">
+        {%- if section.settings.photo != blank -%}
+          <div class="about-visit-page__photo">
+            <img
+              src="{{ section.settings.photo | image_url: width: 1400 }}"
+              alt="{{ section.settings.photo.alt | default: 'Moon Ridge team' | escape }}"
+              loading="eager"
+              width="{{ section.settings.photo.width }}"
+              height="{{ section.settings.photo.height }}"
+            >
+          </div>
+        {%- endif -%}
+
+        <div class="about-visit-page__rebrand">
+          <h2>A New Chapter: May 2026</h2>
+          <p>
+            In May 2026, in order to grow and expand our services and offerings to clients, we made the official name change to <strong>Moon Ridge Company</strong>. While our look is evolving to better serve you, we are the exact same team you've trusted since the beginning. We want to thank all our customers for helping us get to this point, and we are honored to have you with us as we grow into the future.
+          </p>
+        </div>
+
+        <blockquote class="about-visit-page__manifesto">
+          “At Moon Ridge Company, we believe a good hat does more than complete your outfit — it tells your story. It's the way you carry yourself, the confidence in your step, the look in the mirror when you finally find the one.”
+        </blockquote>
+
+        <div class="about-visit-page__story-copy">
+          <p>Rafter M started on our back deck in Northwest Arkansas, born from a love for hats and helping people feel their best. Natalie Jo Wakefield — a hairstylist and designer — saw how the right hat could transform a look. Her husband, Zack, had spent years leading and growing businesses, but this one stood apart — it was a chance to support his wife and build something they both believed in. Together they created a place where quality hats meet genuine connection.</p>
+          <p>We proudly partner with legendary brands like Stetson, Resistol, Charlie 1 Horse, and Bigalli — doing things the right way, with honesty, authenticity, and craftsmanship you can feel.</p>
+          <p>Whether you shop in store or online, we make it personal — no rush, no gimmicks, just good people helping you find a hat that fits your life.</p>
+        </div>
+
+        <div class="about-visit-page__signature">
+          — The Wakefield Family
+          <span>Moon Ridge Company</span>
+        </div>
+      </div>
+
+      <aside class="about-visit-page__location" aria-label="Visit information">
+        {%- if section.settings.location_heading != blank -%}
+          <h2 class="about-visit-page__location-title">{{ section.settings.location_heading | escape }}</h2>
+        {%- endif -%}
+
+        <div class="about-visit-page__map">
+          {%- if section.settings.google_maps_embed != blank -%}
+            {{ section.settings.google_maps_embed }}
+          {%- else -%}
+            <iframe
+              title="Moon Ridge map"
+              src="https://maps.google.com/maps?q={{ maps_query }}&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          {%- endif -%}
+        </div>
+
+        <div class="about-visit-page__card">
+          <h3>Store Hours</h3>
+          <ul class="about-visit-page__hours">
+            <li><span>Mon – Fri</span><span>{{ section.settings.weekday_hours | escape }}</span></li>
+            <li><span>Saturday</span><span>{{ section.settings.saturday_hours | escape }}</span></li>
+            <li><span>Sunday</span><span>{{ section.settings.sunday_hours | escape }}</span></li>
+          </ul>
+        </div>
+
+        <div class="about-visit-page__card about-visit-page__card--accent">
+          <h3>Hat Shapers In House</h3>
+          <ul class="about-visit-page__hours">
+            <li><span>Thu &amp; Fri</span><span>{{ section.settings.shaper_weekday_hours | escape }}</span></li>
+            <li><span>Saturday</span><span>{{ section.settings.shaper_saturday_hours | escape }}</span></li>
+          </ul>
+          {%- if section.settings.shaper_note != blank -%}
+            <p class="about-visit-page__note">{{ section.settings.shaper_note | escape }}</p>
+          {%- endif -%}
+        </div>
+
+        <div class="about-visit-page__card">
+          <h3>Find Us</h3>
+          <p class="about-visit-page__address">
+            <a href="{{ section.settings.map_link | default: 'https://www.google.com/maps?q=2218+N+College+Ave,+Fayetteville,+AR+72703' }}" rel="noopener noreferrer" target="_blank">
+              {{ section.settings.address | escape }}
+            </a>
+          </p>
+          {%- if section.settings.phone != blank -%}
+            <a class="about-visit-page__contact" href="tel:{{ phone_href }}">{{ section.settings.phone | escape }}</a>
+          {%- endif -%}
+          {%- if section.settings.email != blank -%}
+            <a class="about-visit-page__contact" href="mailto:{{ section.settings.email | escape }}">{{ section.settings.email | escape }}</a>
+          {%- endif -%}
+        </div>
+
+        <div class="about-visit-page__actions">
+          {%- if section.settings.booking_url != blank -%}
+            <a class="about-visit-page__button about-visit-page__button--primary" href="{{ section.settings.booking_url }}">
+              {{ section.settings.booking_label | escape }}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.secondary_url != blank -%}
+            <a class="about-visit-page__button about-visit-page__button--secondary" href="{{ section.settings.secondary_url }}">
+              {{ section.settings.secondary_label | escape }}
+            </a>
+          {%- elsif phone_href != blank -%}
+            <a class="about-visit-page__button about-visit-page__button--secondary" href="tel:{{ phone_href }}">
+              {{ section.settings.secondary_label | default: 'Call the shop' | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+      </aside>
+    </div>
+
+    {%- if section.settings.show_highlights -%}
+      <div class="about-visit-page__highlights">
+        {%- if section.settings.highlight_1_title != blank -%}
+          <div class="about-visit-page__highlight">
+            <strong>{{ section.settings.highlight_1_title | escape }}</strong>
+            <span>{{ section.settings.highlight_1_text | escape }}</span>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.highlight_2_title != blank -%}
+          <div class="about-visit-page__highlight">
+            <strong>{{ section.settings.highlight_2_title | escape }}</strong>
+            <span>{{ section.settings.highlight_2_text | escape }}</span>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.highlight_3_title != blank -%}
+          <div class="about-visit-page__highlight">
+            <strong>{{ section.settings.highlight_3_title | escape }}</strong>
+            <span>{{ section.settings.highlight_3_text | escape }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>

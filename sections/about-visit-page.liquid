@@ -1,0 +1,190 @@
+{% comment %}
+  About + Visit combined layout: ~2/3 story, ~1/3 location sidebar starting at the top.
+{% endcomment %}
+{%- render 'about-visit-page' -%}
+
+{% schema %}
+{
+  "name": "About & Visit page",
+  "tag": "section",
+  "class": "section-about-visit-page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Photo"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo",
+      "label": "Team photo"
+    },
+    {
+      "type": "header",
+      "content": "Page intro"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Fayetteville, Arkansas"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page heading",
+      "default": "About Moon Ridge"
+    },
+    {
+      "type": "text",
+      "id": "location_heading",
+      "label": "Location column heading",
+      "default": "Visit Us"
+    },
+    {
+      "type": "text",
+      "id": "booking_label",
+      "label": "Primary button label",
+      "default": "Book a Free Fitting"
+    },
+    {
+      "type": "url",
+      "id": "booking_url",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "Plan a Hat Party"
+    },
+    {
+      "type": "url",
+      "id": "secondary_url",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "header",
+      "content": "Map"
+    },
+    {
+      "type": "html",
+      "id": "google_maps_embed",
+      "label": "Custom Google Maps embed"
+    },
+    {
+      "type": "url",
+      "id": "map_link",
+      "label": "Directions link"
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "Address",
+      "default": "2218 N College Ave, Fayetteville, AR 72703"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone",
+      "default": "(479) 430-2667"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "info@moonridgecompany.com"
+    },
+    {
+      "type": "header",
+      "content": "Store hours"
+    },
+    {
+      "type": "text",
+      "id": "weekday_hours",
+      "label": "Monday – Friday",
+      "default": "10:00 AM – 5:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "saturday_hours",
+      "label": "Saturday",
+      "default": "10:00 AM – 2:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "sunday_hours",
+      "label": "Sunday",
+      "default": "Closed"
+    },
+    {
+      "type": "text",
+      "id": "shaper_weekday_hours",
+      "label": "Shapers Thu – Fri",
+      "default": "10:00 AM – 5:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "shaper_saturday_hours",
+      "label": "Shapers Saturday",
+      "default": "10:00 AM – 2:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "shaper_note",
+      "label": "Shaper note",
+      "default": "Hours may vary based on private events."
+    },
+    {
+      "type": "header",
+      "content": "Highlights"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_highlights",
+      "label": "Show highlight cards",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "highlight_1_title",
+      "label": "Highlight 1 title",
+      "default": "Walk-ins welcome"
+    },
+    {
+      "type": "text",
+      "id": "highlight_1_text",
+      "label": "Highlight 1 text",
+      "default": "Stop by during store hours — no appointment required."
+    },
+    {
+      "type": "text",
+      "id": "highlight_2_title",
+      "label": "Highlight 2 title",
+      "default": "Master shapers"
+    },
+    {
+      "type": "text",
+      "id": "highlight_2_text",
+      "label": "Highlight 2 text",
+      "default": "Expert fitting and shaping Thursday through Saturday."
+    },
+    {
+      "type": "text",
+      "id": "highlight_3_title",
+      "label": "Highlight 3 title",
+      "default": "Hat parties"
+    },
+    {
+      "type": "text",
+      "id": "highlight_3_text",
+      "label": "Highlight 3 text",
+      "default": "Birthdays, bridal parties, and corporate events."
+    }
+  ],
+  "presets": [
+    {
+      "name": "About & Visit page"
+    }
+  ]
+}
+{% endschema %}

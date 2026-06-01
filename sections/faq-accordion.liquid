@@ -11,30 +11,33 @@
 
   .faq-title-{{ section.id }} {
     text-align: center;
-    font-size: 32px;
+    font-family: var(--font-heading-family);
+    font-size: clamp(2.6rem, 4vw, 3.4rem);
     margin-bottom: 40px;
-    color: #1f1d24;
-    font-weight: normal;
+    color: #312110;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
   .faq-accordion-{{ section.id }} {
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(49, 33, 16, 0.12);
   }
 
   .faq-accordion-{{ section.id }} details {
-    border-top: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(49, 33, 16, 0.12);
   }
 
   .faq-accordion-{{ section.id }} summary {
     padding: 24px 0;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 1.8rem;
+    font-weight: 600;
     cursor: pointer;
     list-style: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #1f1d24;
+    color: #312110;
     transition: color 0.2s ease;
   }
 
@@ -43,7 +46,7 @@
   }
 
   .faq-accordion-{{ section.id }} summary:hover {
-    color: #666;
+    color: #c5a059;
   }
 
   .faq-accordion-{{ section.id }} summary::after {
@@ -59,9 +62,9 @@
 
   .faq-content-{{ section.id }} {
     padding-bottom: 24px;
-    color: #4a4a4a;
-    line-height: 1.6;
-    font-size: 16px;
+    color: rgba(49, 33, 16, 0.82);
+    line-height: 1.7;
+    font-size: 1.6rem;
     animation: faq-fade-in 0.3s ease-in-out;
   }
 

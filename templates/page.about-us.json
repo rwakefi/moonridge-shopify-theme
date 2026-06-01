@@ -1,108 +1,85 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "17617663646392ef5c": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_5e8d0a5_cxNYwV": {
-          "type": "ai_gen_block_5e8d0a5",
-          "settings": {
-            "image": "shopify://shop_images/IMG_9242_ed62501f-673f-4930-a8ea-28fa6861f3f0.jpg",
-            "max_width": 400,
-            "padding_desktop": 40,
-            "padding_mobile": 20,
-            "background_color": "#ffffff",
-            "border_radius": 2,
-            "border_thickness": 1,
-            "border_color": "#312110"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_5e8d0a5_cxNYwV"
-      ],
-      "settings": {}
-    },
-    "brand-heritage": {
-      "type": "brand-heritage",
-      "settings": {}
-    },
-    "176174953678519aeb": {
-      "type": "_blocks",
-      "settings": {}
-    },
-    "main": {
-      "type": "main-page",
-      "disabled": true,
+    "about_visit_page": {
+      "type": "about-visit-page",
       "settings": {
-        "padding_top": 36,
-        "padding_bottom": 36
+        "photo": "shopify://shop_images/IMG_9242_ed62501f-673f-4930-a8ea-28fa6861f3f0.jpg",
+        "eyebrow": "Fayetteville, Arkansas",
+        "title": "About Moon Ridge",
+        "location_heading": "Visit Us",
+        "booking_label": "Book a Free Fitting",
+        "booking_url": "https://moonridgecompany.setmore.com",
+        "secondary_label": "Plan a Hat Party",
+        "secondary_url": "/pages/book-a-hat-party",
+        "google_maps_embed": "",
+        "map_link": "https://www.google.com/maps?q=2218+N+College+Ave,+Fayetteville,+AR+72703",
+        "address": "2218 N College Ave, Fayetteville, AR 72703",
+        "phone": "(479) 430-2667",
+        "email": "info@moonridgecompany.com",
+        "weekday_hours": "10:00 AM – 5:00 PM",
+        "saturday_hours": "10:00 AM – 2:00 PM",
+        "sunday_hours": "Closed",
+        "shaper_weekday_hours": "10:00 AM – 5:00 PM",
+        "shaper_saturday_hours": "10:00 AM – 2:00 PM",
+        "shaper_note": "Hours may vary based on private events.",
+        "show_highlights": true,
+        "highlight_1_title": "Walk-ins welcome",
+        "highlight_1_text": "Stop by during store hours — no appointment required.",
+        "highlight_2_title": "Master shapers",
+        "highlight_2_text": "Expert fitting and shaping Thursday through Saturday.",
+        "highlight_3_title": "Hat parties",
+        "highlight_3_text": "Birthdays, bridal parties, and corporate events."
       }
     },
-    "176176716340be886a": {
-      "type": "_blocks",
+    "faq_accordion": {
+      "type": "faq-accordion",
       "blocks": {
-        "ai_gen_block_749df44_Xr4Ehy": {
-          "type": "ai_gen_block_749df44",
+        "faq_4": {
+          "type": "faq",
           "settings": {
-            "heading": "Best Sellers",
-            "subheading": "Shop our most popular products",
-            "collection": "best-sellers",
-            "products_to_show": 12,
-            "show_vendor": false,
-            "sale_badge_text": "Sale",
-            "container_width": 1400,
-            "heading_alignment": "center",
-            "products_per_row_desktop": 4,
-            "product_gap": 16,
-            "show_navigation": true,
-            "show_dots": true,
-            "background_color": "#ffffff",
-            "heading_color": "#1f1d24",
-            "subheading_color": "#666666",
-            "card_background": "#ffffff",
-            "product_title_color": "#1f1d24",
-            "vendor_color": "#666666",
-            "price_color": "#1f1d24",
-            "sale_price_color": "#fd0000",
-            "badge_background": "#fd0000",
-            "badge_text_color": "#ffffff",
-            "nav_button_background": "#312110",
-            "nav_button_color": "#ffffff",
-            "nav_button_hover_background": "#1f1d24",
-            "dot_color": "#312110",
-            "heading_size": 36,
-            "subheading_size": 16,
-            "product_title_size": 16,
-            "price_size": 16,
-            "heading_spacing": 32,
-            "card_border_radius": 8,
-            "padding_top": 40,
-            "padding_bottom": 40
-          },
-          "blocks": {}
+            "question": "Where are you located?",
+            "answer": "<p>We are proudly located just 2 doors south of the bowling alley on College Avenue in Fayetteville, Arkansas.</p>"
+          }
+        },
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you shape hats bought from other stores?",
+            "answer": "<p>Yes, absolutely. If you bring in a hat from somewhere else, our expert cleaning and shaping service is $35. (If you purchase a hat at Moon Ridge Co., custom shaping is always complimentary.)</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "When do you shape hats?",
+            "answer": "<p>We have staff in the store Monday through Saturday to help you, but our master hat shapers are in <strong>Thursday through Saturday</strong>. We also host special events that may occasionally affect our hours, so be sure to check our website for the latest updates.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need an appointment for hat shaping?",
+            "answer": "<p>Walk-ins are always welcome! However, we highly recommend booking a 'Free Hat Experience' appointment. One-on-one time is our specialty, and booking an appointment ensures we have dedicated time to perfectly fit and shape your hat.</p>"
+          }
         }
       },
       "block_order": [
-        "ai_gen_block_749df44_Xr4Ehy"
+        "faq_4",
+        "faq_1",
+        "faq_2",
+        "faq_3"
       ],
-      "settings": {}
+      "settings": {
+        "title": "Frequently Asked Questions",
+        "background_color": "#fdf9f3",
+        "padding_top": 20,
+        "padding_bottom": 72,
+        "padding_horizontal": 20
+      }
     }
   },
   "order": [
-    "17617663646392ef5c",
-    "brand-heritage",
-    "176174953678519aeb",
-    "main",
-    "176176716340be886a"
+    "about_visit_page",
+    "faq_accordion"
   ]
 }

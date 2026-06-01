@@ -1,0 +1,35 @@
+{{ 'visit-us.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.image != blank -%}
+  <div class="about-page-photo">
+    <div class="about-page-photo__frame">
+      <img
+        src="{{ section.settings.image | image_url: width: 1200 }}"
+        alt="{{ section.settings.image.alt | default: 'Moon Ridge team' | escape }}"
+        loading="eager"
+        width="{{ section.settings.image.width }}"
+        height="{{ section.settings.image.height }}"
+      >
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "About photo",
+  "tag": "section",
+  "class": "section-about-photo",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Photo"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About photo"
+    }
+  ]
+}
+{% endschema %}

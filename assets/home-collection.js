@@ -1,10 +1,4 @@
 (function () {
-  document.querySelectorAll('[data-home-in-stock-toggle]').forEach(function (input) {
-    input.addEventListener('change', function () {
-      window.location.href = input.checked ? input.dataset.urlActive : input.dataset.urlClear;
-    });
-  });
-
   document.querySelectorAll('[data-card-variant-thumbs]').forEach(function (row) {
     var card = row.closest('.product-card-wrapper');
     if (!card) return;

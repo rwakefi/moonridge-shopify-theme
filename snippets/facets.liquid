@@ -57,59 +57,6 @@
               </h2>
             {%- endif -%}
 
-            {%- if home_style and filter_type == 'horizontal' -%}
-              {%- assign home_has_availability = false -%}
-              {%- for filter in results.filters -%}
-                {%- if filter.type == 'boolean' -%}
-                  {%- assign home_has_availability = true -%}
-                  <div class="home-ws-filter home-ws-filter--toggle">
-                    {%- for value in filter.values -%}
-                      <label
-                        class="home-ws-in-stock-label facets__label facet-checkbox{% if value.active %} active{% endif %}{% if value.count == 0 and value.active == false %} facet-checkbox--disabled disabled{% endif %}"
-                        for="HomeFilter-{{ filter.param_name | escape }}-{{ forloop.index }}"
-                      >
-                        <input
-                          type="checkbox"
-                          name="{{ value.param_name }}"
-                          value="{{ value.value }}"
-                          id="HomeFilter-{{ filter.param_name | escape }}-{{ forloop.index }}"
-                          {% if value.active %}
-                            checked
-                          {% endif %}
-                          {% if value.count == 0 and value.active == false %}
-                            disabled
-                          {% endif %}
-                        >
-                        <span class="home-ws-in-stock-label__text">In Stock, Ready to Ship</span>
-                      </label>
-                    {%- endfor -%}
-                  </div>
-                {%- endif -%}
-              {%- endfor -%}
-              {%- unless home_has_availability -%}
-                {%- liquid
-                  assign in_stock_url = results.url | append: '?filter.v.availability=1'
-                  assign in_stock_active = false
-                  if request.query_string contains 'filter.v.availability=1'
-                    assign in_stock_active = true
-                  endif
-                -%}
-                <div class="home-ws-filter home-ws-filter--toggle">
-                  <label class="home-ws-in-stock-label{% if in_stock_active %} active{% endif %}">
-                    <input
-                      type="checkbox"
-                      {% if in_stock_active %}
-                        checked
-                      {% endif %}
-                      data-home-in-stock-toggle
-                      data-url-active="{{ in_stock_url | escape }}"
-                      data-url-clear="{{ results.url | escape }}"
-                    >
-                    <span class="home-ws-in-stock-label__text">In Stock, Ready to Ship</span>
-                  </label>
-                </div>
-              {%- endunless -%}
-            {%- endif -%}
             {% comment %} Pills are right below the title for filter type vertical {% endcomment %}
             {%- if filter_type == 'vertical' -%}
               <div class="active-facets active-facets-desktop">
@@ -171,9 +118,6 @@
             <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
             {% comment %} Filters for both horizontal and vertical filter {% endcomment %}
             {%- for filter in results.filters -%}
-              {%- if home_style and filter.type == 'boolean' -%}
-                {%- continue -%}
-              {%- endif -%}
               {% liquid
                 assign total_active_values = total_active_values | plus: filter.active_values.size
                 case filter.presentation

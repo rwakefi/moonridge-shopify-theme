@@ -45,43 +45,6 @@
   display: none;
 }
 
-/* In-stock checkbox — plain, no box */
-.home-collection-grid .home-ws-filter--toggle {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  min-height: 4.4rem;
-  padding: 0 0.4rem 0 0;
-}
-
-.home-collection-grid .home-ws-in-stock-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
-  font-size: 1.4rem;
-  line-height: 1.4;
-  color: var(--home-ws-ink);
-  white-space: nowrap;
-}
-
-.home-collection-grid .home-ws-in-stock-label input[type='checkbox'] {
-  width: 1.6rem;
-  height: 1.6rem;
-  margin: 0;
-  accent-color: var(--home-ws-ink);
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.home-collection-grid .home-ws-in-stock-label__text {
-  font-size: 1.4rem;
-  letter-spacing: normal;
-  text-transform: none;
-}
-
 /* Filter dropdown buttons */
 .home-collection-grid .facets__disclosure {
   margin: 0;

@@ -212,11 +212,19 @@ body:not(.template-index) .header-wrapper,
   color: var(--rm-leather) !important;
 }
 
-.header__menu-item {
-  letter-spacing: 0.2em !important;
+.header__submenu .header__menu-item,
+.menu-drawer__menu-item {
+  letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
   font-weight: 500 !important;
-  /* font-size controlled by Theme Editor: Customize > Header > Menu Size */
+  transition: color 0.3s ease;
+}
+
+/* Top-level bar: tighter tracking so all items (incl. Hat Education) fit */
+.list-menu--inline > li > .header__menu-item {
+  letter-spacing: clamp(0.02em, 0.01em + 0.04vw, 0.06em) !important;
+  text-transform: uppercase !important;
+  font-weight: 500 !important;
   transition: color 0.3s ease;
 }
 

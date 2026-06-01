@@ -49,9 +49,9 @@
         "desc_tab": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Product Details",
+            "heading": "Dimensions & Details",
             "icon": "none",
-            "content": "<p>See full product details above for materials and dimensions.</p>",
+            "content": "<p>Materials, dimensions, and special features for this item.</p>",
             "page": ""
           }
         },
@@ -82,6 +82,26 @@
         "description": {
           "type": "description",
           "settings": {}
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "complementary": {
+          "type": "complementary",
+          "settings": {
+            "block_heading": "Pairs well with",
+            "make_collapsible_row": true,
+            "icon": "none",
+            "products_per_page": 4,
+            "columns_desktop": 1,
+            "color_scheme": "background-1",
+            "image_ratio": "square",
+            "show_secondary_image": false,
+            "show_vendor": false,
+            "show_rating": false,
+            "enable_quick_add": false
+          }
         }
       },
       "block_order": [
@@ -90,11 +110,13 @@
         "sku",
         "price",
         "variant_picker",
+        "quantity_selector",
         "buy_buttons",
         "description",
         "desc_tab",
         "shipping_tab",
         "care_tab",
+        "complementary",
         "share"
       ],
       "settings": {
@@ -114,8 +136,8 @@
         "padding_bottom": 56
       },
       "custom_css": [
-        ".product__title h1 { letter-spacing: normal; text-transform: none; line-height: 1.2; }",
-        ".product__accordion .accordion__title { letter-spacing: normal; text-transform: none; }"
+        ".product__title h1{letter-spacing:normal;text-transform:none;line-height:1.15;}",
+        ".product__accordion .accordion__title{letter-spacing:normal;text-transform:none;}"
       ]
     },
     "featured_home": {

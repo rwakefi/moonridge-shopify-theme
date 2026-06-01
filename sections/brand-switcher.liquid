@@ -107,6 +107,29 @@
     display: none !important;
   }
 
+  @media screen and (max-width: 989px) {
+    .rm-brand-switcher {
+      padding-left: clamp(1rem, 3vw, 2rem) !important;
+    }
+
+    .rm-brand-promo-btn {
+      font-size: 11px;
+      padding: 7px 14px;
+      margin-left: clamp(0.75rem, 2vw, 1.25rem);
+      letter-spacing: 0.08em;
+    }
+
+    .rm-brand-tab {
+      min-width: clamp(120px, 16vw, 170px);
+      padding: 10px 18px;
+      font-size: 11px;
+    }
+
+    .rm-brand-tab-logo {
+      height: 32px !important;
+    }
+  }
+
   @media screen and (max-width: 749px) {
     .section-brand-switcher {
       width: 100%;

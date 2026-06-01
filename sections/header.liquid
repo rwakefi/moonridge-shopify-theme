@@ -130,14 +130,14 @@
     align-items: center !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
-    padding-left: 1.05rem !important;
-    padding-right: 1.05rem !important;
+    padding-left: clamp(0.45rem, 0.75vw, 1.05rem) !important;
+    padding-right: clamp(0.45rem, 0.75vw, 1.05rem) !important;
     min-height: 4.4rem;
     text-decoration: none;
     font-family: var(--font-menu-family);
     font-style: var(--font-menu-style);
-    font-size: 1.21rem !important;
-    letter-spacing: 0.06em;
+    font-size: clamp(0.98rem, 0.72rem + 0.28vw, 1.21rem) !important;
+    letter-spacing: clamp(0.02em, 0.01em + 0.04vw, 0.06em) !important;
     text-transform: uppercase;
     font-weight: 500;
     position: relative;
@@ -154,9 +154,10 @@
     display: flex;
     align-items: center;
     align-self: center;
-    padding: 0 0.75rem;
+    padding: 0 clamp(0.35rem, 0.55vw, 0.75rem);
     list-style: none;
     pointer-events: none;
+    flex-shrink: 0;
   }
 
   .header__menu-divider span {
@@ -199,14 +200,92 @@
     overflow: visible;
   }
 
-  .header__inline-menu, .list-menu--inline {
+  /* Keep search in the icons cluster only (avoid duplicate bar from top-center render). */
+  .header > .header__search-bar-container {
+    display: none !important;
+  }
+
+  .header__icons .header__search-bar-container {
     display: flex !important;
-    align-items: center !important;
-    height: 100%;
+  }
+
+  @media screen and (min-width: 990px) {
+    .header__inline-menu,
+    .header__inline-menu > .list-menu--inline {
+      display: flex !important;
+      align-items: center !important;
+      height: 100%;
+    }
+
+    .header__heading--with-cta {
+      display: none !important;
+    }
+
+    .header {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: clamp(0.5rem, 1.2vw, 1.5rem);
+      width: 100%;
+      padding-left: clamp(1.5rem, 2.5vw, 4rem) !important;
+      padding-right: clamp(1.5rem, 2.5vw, 4rem) !important;
+    }
+
+    .header__inline-menu {
+      flex: 1 1 auto;
+      min-width: 0;
+      margin-left: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    .header__inline-menu > .list-menu--inline {
+      flex: 0 1 auto;
+      flex-wrap: nowrap !important;
+      gap: clamp(0.05rem, 0.35vw, 0.45rem);
+      min-width: 0;
+      justify-content: flex-start !important;
+    }
+
+    .header__inline-menu > .list-menu--inline > li {
+      flex-shrink: 0;
+    }
+
+    .header__icons {
+      flex: 0 0 auto;
+      gap: clamp(0.05rem, 0.25vw, 0.3rem);
+      padding-right: 0;
+      margin-left: auto;
+    }
+  }
+
+  @media screen and (max-width: 989px) {
+    .header__inline-menu,
+    .header__inline-menu > .list-menu--inline {
+      display: none !important;
+    }
+
+    .header {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 1rem;
+      padding-left: clamp(1.25rem, 4vw, 2.5rem) !important;
+      padding-right: clamp(1.25rem, 4vw, 2.5rem) !important;
+    }
+
+    header-drawer {
+      display: flex !important;
+      margin-left: 0;
+      flex-shrink: 0;
+    }
   }
 
   @media screen and (max-width: 749px) {
-    .header__inline-menu, .list-menu--inline, .header__icon--menu {
+    .header__icon--menu {
+      display: none !important;
+    }
+
+    .header__icons .header__search-bar-container {
       display: none !important;
     }
   }
@@ -390,102 +469,50 @@
     }
   }
 
-  /* Laptop Menu Refinement: fit full nav (Hats–Hat Education) without wrapping */
-  @media screen and (min-width: 990px) and (max-width: 1700px) {
-    .header__menu-item {
-      padding-left: 0.85rem !important;
-      padding-right: 0.85rem !important;
-      font-size: 1.15rem !important;
-      letter-spacing: 0.04em !important;
-      white-space: nowrap !important;
-    }
-
+  /* Laptop / narrow desktop — keep full nav on one row */
+  @media screen and (min-width: 990px) {
     .header__menu-item span {
       white-space: nowrap !important;
     }
-    
+
     .header__menu-item .icon-caret {
       position: relative !important;
       right: auto !important;
-      margin-left: 0.1rem !important;
+      margin-left: 0.08rem !important;
+      flex-shrink: 0;
     }
-    
+
     summary.list-menu__item {
-      padding-right: 1.4rem !important;
+      padding-right: clamp(1rem, 0.8rem + 0.35vw, 1.6rem) !important;
     }
 
-    .header__menu-divider {
-      padding: 0 0.65rem;
-    }
-
-    .header__menu-divider span {
-      height: 1.2rem;
-    }
-
-    .header__search-bar-container {
-      max-width: 170px !important;
-      min-width: 140px !important;
-      margin-left: 0.4rem !important;
-      margin-right: 0.4rem !important;
-    }
-    
     .header__icon {
-      width: 3.4rem !important;
-    }
-
-    .header__inline-menu {
-      margin-left: -0.5rem !important;
-    }
-
-    .list-menu--inline {
-      flex-wrap: nowrap !important;
-    }
-
-  }
-
-  @media screen and (min-width: 1401px) and (max-width: 1700px) {
-    .header__menu-item {
-      font-size: 1.17rem !important;
-      letter-spacing: 0.05em !important;
+      width: clamp(3rem, 2.6rem + 0.5vw, 3.6rem) !important;
     }
   }
 
-  @media screen and (min-width: 1701px) {
-    .header__menu-item {
-      font-size: 1.24rem !important;
-      letter-spacing: 0.07em !important;
-      padding-left: 1.1rem !important;
-      padding-right: 1.1rem !important;
+  @media screen and (min-width: 990px) and (max-width: 1199px) {
+    .header__icon--podcast {
+      display: none !important;
     }
 
-    summary.list-menu__item {
-      padding-right: 1.6rem !important;
-    }
-
-    .header__menu-divider {
-      padding: 0 0.8rem;
-    }
-
-    .header__menu-divider span {
-      height: 1.45rem;
+    .header__icons .header__search-bar-container {
+      max-width: clamp(105px, 8vw, 145px) !important;
+      min-width: 100px !important;
+      margin-left: 0.35rem !important;
+      margin-right: 0.35rem !important;
     }
   }
 
-  /* Narrow laptop band — extra-tight screens */
   @media screen and (min-width: 990px) and (max-width: 1280px) {
     .header__menu-item {
-      padding-left: 0.75rem !important;
-      padding-right: 0.75rem !important;
-      font-size: 1.09rem !important;
-      letter-spacing: 0.03em !important;
+      padding-left: clamp(0.35rem, 0.55vw, 0.65rem) !important;
+      padding-right: clamp(0.35rem, 0.55vw, 0.65rem) !important;
+      font-size: clamp(0.92rem, 0.78rem + 0.18vw, 1.05rem) !important;
     }
 
     summary.list-menu__item {
-      padding-right: 1.2rem !important;
-    }
-
-    .header__menu-divider {
-      padding: 0 0.55rem;
+      padding-right: clamp(0.85rem, 0.7rem + 0.25vw, 1.1rem) !important;
     }
   }
 
@@ -498,9 +525,10 @@
     display: flex !important;
     align-items: center;
     justify-content: center;
-    width: 48px !important;
-    height: 48px !important;
-    margin-left: 1.6rem;
+    width: clamp(40px, 36px + 0.6vw, 48px) !important;
+    height: clamp(40px, 36px + 0.6vw, 48px) !important;
+    margin-left: clamp(0.5rem, 0.35rem + 0.5vw, 1.2rem);
+    flex-shrink: 0;
   }
   .header__icon--podcast::after {
     content: "Podcast";

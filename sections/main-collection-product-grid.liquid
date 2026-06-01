@@ -59,6 +59,12 @@
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}{% if template.suffix == 'home' %} home-collection-grid{% endif %}">
   {%- paginate collection.products by section.settings.products_per_page -%}
+    {%- liquid
+      assign show_home_variant_thumbs = false
+      if template.suffix == 'home'
+        assign show_home_variant_thumbs = true
+      endif
+    -%}
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
     {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
       <facet-filters-form class="facets facets-vertical-sort page-width small-hide no-js-hidden">
@@ -245,6 +251,7 @@
                       show_quick_desc: section.settings.enable_quick_desc,
                       show_review_count: section.settings.show_review_count,
                       section_id: section.id,
+                      show_variant_thumbnails: show_home_variant_thumbs,
                       is_boots_collection: is_boots_collection
                     %}
                   </li>
@@ -295,6 +302,7 @@
                         show_quick_desc: section.settings.enable_quick_desc,
                         show_review_count: section.settings.show_review_count,
                         section_id: section.id,
+                        show_variant_thumbnails: show_home_variant_thumbs,
                         is_boots_collection: is_boots_collection
                       %}
                     </li>
@@ -349,6 +357,7 @@
                         show_quick_desc: section.settings.enable_quick_desc,
                         show_review_count: section.settings.show_review_count,
                         section_id: section.id,
+                        show_variant_thumbnails: show_home_variant_thumbs,
                         is_boots_collection: is_boots_collection
                       %}
                     </li>
@@ -403,6 +412,7 @@
                         show_quick_desc: section.settings.enable_quick_desc,
                         show_review_count: section.settings.show_review_count,
                         section_id: section.id,
+                        show_variant_thumbnails: show_home_variant_thumbs,
                         is_boots_collection: is_boots_collection
                       %}
                     </li>

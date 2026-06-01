@@ -19,6 +19,7 @@
   - horizontal_quick_add: {Boolean} Changes the quick add button styles when set to true. Default: false (optional)
   - placeholder_image: {String} The placeholder image to use when no product exists. Default: 'product-apparel-2' (optional)
   - is_boots_collection: {Boolean} Forces boots-specific sold out badge copy (optional)
+  - show_variant_thumbnails: {Boolean} Show variant image row under main image (optional)
 
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor, show_quick_desc: section.settings.show_quick_desc %}
@@ -83,6 +84,7 @@
         {% if card_product.featured_media == nil and settings.card_style == 'card' %} ratio{% endif %}
         {% if horizontal_class %} card--horizontal{% endif %}
         {% if is_boots_collection_context %} card--boots-collection{% endif %}
+        {% if show_variant_thumbnails %} card--with-variant-thumbs card--home-collection{% endif %}
       "
       style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
     >
@@ -231,6 +233,9 @@ endif
           </div>
         </div>
       </div>
+      {%- if show_variant_thumbnails and card_product.featured_media -%}
+        {% render 'card-product-variant-thumbs', card_product: card_product, section_id: section_id %}
+      {%- endif -%}
       <div class="card__content">
         <div class="card__information">
           <div class="product-swatches no-js-hidden">

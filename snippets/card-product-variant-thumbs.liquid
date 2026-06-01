@@ -1,0 +1,126 @@
+{% comment %}
+  Small variant image row for collection product cards.
+  @param card_product - product object
+  @param section_id - section id for unique ids
+{% endcomment %}
+{%- liquid
+  assign seen_ids = '|'
+  assign unique_count = 0
+  assign preview_count = 0
+
+  for variant in card_product.variants
+    if variant.image
+      assign token = '|' | append: variant.image.id | append: '|'
+      unless seen_ids contains token
+        assign seen_ids = seen_ids | append: variant.image.id | append: '|'
+        assign unique_count = unique_count | plus: 1
+      endunless
+    endif
+  endfor
+
+  assign media_preview_count = 0
+  for media in card_product.media
+    if media.media_type == 'image'
+      assign token = '|' | append: media.id | append: '|'
+      unless seen_ids contains token
+        assign media_preview_count = media_preview_count | plus: 1
+      endunless
+    endif
+  endfor
+
+  assign total_previews = unique_count | plus: media_preview_count
+-%}
+
+{%- if total_previews > 1 -%}
+  <ul class="card-variant-thumbs" role="list" data-card-variant-thumbs>
+    {%- assign seen_ids = '|' -%}
+    {%- assign thumb_index = 0 -%}
+    {%- for variant in card_product.variants -%}
+      {%- if thumb_index >= 5 -%}{%- break -%}{%- endif -%}
+      {%- if variant.image -%}
+        {%- assign token = '|' | append: variant.image.id | append: '|' -%}
+        {%- unless seen_ids contains token -%}
+          {%- assign seen_ids = seen_ids | append: variant.image.id | append: '|' -%}
+          {%- assign thumb_index = thumb_index | plus: 1 -%}
+          {%- liquid
+            assign thumb_label = variant.title
+            for option in card_product.options_with_values
+              assign option_index = forloop.index0
+              assign option_key = 'option' | append: option.position
+              assign option_value = variant[option_key]
+              if option_value != blank
+                assign thumb_label = option_value
+                break
+              endif
+            endfor
+          -%}
+          <li class="card-variant-thumbs__item">
+            <button
+              type="button"
+              class="card-variant-thumbs__btn{% if thumb_index == 1 %} is-active{% endif %}"
+              data-src="{{ variant.image | image_url: width: 1066 }}"
+              data-srcset="
+                {%- if variant.image.width >= 360 -%}{{ variant.image | image_url: width: 360 }} 360w,{%- endif -%}
+                {%- if variant.image.width >= 533 -%}{{ variant.image | image_url: width: 533 }} 533w,{%- endif -%}
+                {%- if variant.image.width >= 720 -%}{{ variant.image | image_url: width: 720 }} 720w,{%- endif -%}
+                {%- if variant.image.width >= 940 -%}{{ variant.image | image_url: width: 940 }} 940w,{%- endif -%}
+                {{ variant.image | image_url: width: 1066 }} 1066w
+              "
+              data-url="{{ variant.url }}"
+              aria-label="{{ thumb_label | escape }}"
+              aria-pressed="{% if thumb_index == 1 %}true{% else %}false{% endif %}"
+            >
+              {{
+                variant.image
+                | image_url: width: 120
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '60, 90, 120',
+                  sizes: '60px',
+                  alt: thumb_label
+              }}
+            </button>
+          </li>
+        {%- endunless -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- for media in card_product.media -%}
+      {%- if thumb_index >= 5 -%}{%- break -%}{%- endif -%}
+      {%- if media.media_type == 'image' -%}
+        {%- assign token = '|' | append: media.id | append: '|' -%}
+        {%- unless seen_ids contains token -%}
+          {%- assign seen_ids = seen_ids | append: media.id | append: '|' -%}
+          {%- assign thumb_index = thumb_index | plus: 1 -%}
+          <li class="card-variant-thumbs__item">
+            <button
+              type="button"
+              class="card-variant-thumbs__btn{% if thumb_index == 1 %} is-active{% endif %}"
+              data-src="{{ media | image_url: width: 1066 }}"
+              data-srcset="
+                {%- if media.width >= 360 -%}{{ media | image_url: width: 360 }} 360w,{%- endif -%}
+                {%- if media.width >= 533 -%}{{ media | image_url: width: 533 }} 533w,{%- endif -%}
+                {%- if media.width >= 720 -%}{{ media | image_url: width: 720 }} 720w,{%- endif -%}
+                {%- if media.width >= 940 -%}{{ media | image_url: width: 940 }} 940w,{%- endif -%}
+                {{ media | image_url: width: 1066 }} 1066w
+              "
+              data-url="{{ card_product.url }}"
+              aria-label="{{ card_product.title | append: ' preview' | escape }}"
+              aria-pressed="{% if thumb_index == 1 %}true{% else %}false{% endif %}"
+            >
+              {{
+                media
+                | image_url: width: 120
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '60, 90, 120',
+                  sizes: '60px',
+                  alt: media.alt | default: card_product.title
+              }}
+            </button>
+          </li>
+        {%- endunless -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+{%- endif -%}

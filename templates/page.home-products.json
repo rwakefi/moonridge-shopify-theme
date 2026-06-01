@@ -1,0 +1,62 @@
+{
+  "sections": {
+    "main": {
+      "type": "home-hub",
+      "blocks": {
+        "tile_bath": {
+          "type": "hub_tile",
+          "settings": {
+            "title": "Bath",
+            "collection_handle": "bath"
+          }
+        },
+        "tile_blankets": {
+          "type": "hub_tile",
+          "settings": {
+            "title": "Blankets & throws",
+            "collection_handle": "blankets"
+          }
+        },
+        "tile_mugs": {
+          "type": "hub_tile",
+          "settings": {
+            "title": "Mugs",
+            "collection_handle": "mugs"
+          }
+        },
+        "tile_robes": {
+          "type": "hub_tile",
+          "settings": {
+            "title": "Robes",
+            "collection_handle": "robes"
+          }
+        },
+        "tile_candles": {
+          "type": "hub_tile",
+          "settings": {
+            "title": "Candles",
+            "collection_handle": "candles"
+          }
+        }
+      },
+      "block_order": [
+        "tile_bath",
+        "tile_blankets",
+        "tile_mugs",
+        "tile_robes",
+        "tile_candles"
+      ],
+      "settings": {
+        "breadcrumb_label": "Home goods",
+        "heading": "Shop home",
+        "intro": "Blankets, bath, mugs, and more — curated pieces for everyday living.",
+        "row_heading": "Shop by category",
+        "shop_all_label": "Shop all home goods",
+        "accent_color": "#C5A059"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

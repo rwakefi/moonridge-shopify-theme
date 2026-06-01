@@ -1,0 +1,145 @@
+{{ 'home-collection.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .home-category-filters-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .home-category-filters-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign current_handle = collection.handle | default: ''
+-%}
+
+<section class="home-category-filters home-category-filters-{{ section.id }}" aria-label="{{ section.settings.heading | escape }}">
+  <div class="home-category-filters__inner page-width">
+    {%- if section.settings.heading != blank -%}
+      <p class="home-category-filters__label">{{ section.settings.heading | escape }}</p>
+    {%- endif -%}
+
+    <ul class="home-category-filters__list" role="list">
+      {%- if section.settings.all_collection != blank -%}
+        {%- assign all_col = section.settings.all_collection -%}
+        <li>
+          <a
+            class="home-category-filters__pill{% if current_handle == all_col.handle %} is-active{% endif %}"
+            href="{{ all_col.url }}"
+            {% if current_handle == all_col.handle %}aria-current="page"{% endif %}
+          >
+            {{ section.settings.all_label | default: 'All' | escape }}
+          </a>
+        </li>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign pill_collection = block.settings.collection
+          if pill_collection == blank and block.settings.collection_handle != blank
+            assign pill_collection = collections[block.settings.collection_handle]
+          endif
+        -%}
+        {%- if pill_collection != blank -%}
+          <li {{ block.shopify_attributes }}>
+            <a
+              class="home-category-filters__pill{% if current_handle == pill_collection.handle %} is-active{% endif %}"
+              href="{{ pill_collection.url }}"
+              {% if current_handle == pill_collection.handle %}aria-current="page"{% endif %}
+            >
+              {{ block.settings.label | default: pill_collection.title | escape }}
+            </a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home category filters",
+  "tag": "section",
+  "class": "section-home-category-filters",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Label",
+      "default": "Shop by category"
+    },
+    {
+      "type": "collection",
+      "id": "all_collection",
+      "label": "All products collection"
+    },
+    {
+      "type": "text",
+      "id": "all_label",
+      "label": "All products label",
+      "default": "All home"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 8
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Bath"
+        },
+        {
+          "type": "text",
+          "id": "collection_handle",
+          "label": "Collection handle",
+          "info": "e.g. bath, mugs, blankets"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home category filters",
+      "blocks": [
+        { "type": "category", "settings": { "label": "Bath", "collection_handle": "bath" } },
+        { "type": "category", "settings": { "label": "Blankets", "collection_handle": "blankets" } },
+        { "type": "category", "settings": { "label": "Mugs", "collection_handle": "mugs" } },
+        { "type": "category", "settings": { "label": "Robes", "collection_handle": "robes" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

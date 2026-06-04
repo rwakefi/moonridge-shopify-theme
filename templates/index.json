@@ -881,6 +881,7 @@
     },
     "lumin_slidshow_pro_yNeGG6": {
       "type": "lumin-slidshow-pro",
+      "disabled": true,
       "blocks": {
         "image_BnRrL9": {
           "type": "image",

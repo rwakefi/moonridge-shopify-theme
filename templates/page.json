@@ -58,34 +58,6 @@
         "padding_bottom": 36
       }
     },
-    "blocks_zmLpRe": {
-      "type": "_blocks",
-      "blocks": {
-        "custom_code_ncGP3Y": {
-          "type": "Custom_Code",
-          "settings": {
-            "custom_html": "",
-            "custom_liquid": "<div style=\"max-width: 760px; margin: 0 auto; padding: 0 12px;\">\n  <iframe\n    id=\"natalie40-rsvp\"\n    src=\"https://natalie40.gotravelhelpers.workers.dev\"\n    title=\"Natalie's 40th Redneck Riviera — RSVP\"\n    style=\"width: 100%; border: 0; min-height: 1400px; overflow: hidden; display: block;\"\n    loading=\"lazy\"\n  ></iframe>\n</div>\n<script>\n  window.addEventListener(\"message\", function (e) {\n    if (e.origin !== \"https://natalie40.gotravelhelpers.workers.dev\") return;\n    if (e.data && e.data.type === \"natalie40-height\") {\n      var f = document.getElementById(\"natalie40-rsvp\");\n      if (f && e.data.height) f.style.height = e.data.height + \"px\";\n    }\n  });\n</script>",
-            "container_width": 1200,
-            "background_color": "#ffffff",
-            "padding_top": 40,
-            "padding_bottom": 40,
-            "padding_left": 20,
-            "padding_right": 20,
-            "padding_top_mobile": 24,
-            "padding_bottom_mobile": 24,
-            "padding_left_mobile": 16,
-            "padding_right_mobile": 16
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "custom_code_ncGP3Y"
-      ],
-      "name": "Custom code",
-      "settings": {}
-    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -146,7 +118,6 @@
   },
   "order": [
     "lumin_mega_w9MYWV",
-    "blocks_zmLpRe",
     "main",
     "176546417134fc1ea4",
     "featured_collection_8tBmth"

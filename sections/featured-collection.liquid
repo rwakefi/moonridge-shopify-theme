@@ -4,6 +4,7 @@
 {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
 
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'moonridge-carousel-arrows.css' | asset_url | stylesheet_tag }}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.image_shape == 'blob' %}
@@ -33,8 +34,25 @@
     position: relative;
   }
 
+  .fc-slider-arrows-{{ section.id }}.moonridge-carousel-controls {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+  }
+
+  .fc-slider-arrows-{{ section.id }} .moonridge-carousel-btn {
+    pointer-events: auto;
+  }
+
   .fc-slider-arrows-{{ section.id }} {
     display: none;
+  }
+
+  @media screen and (min-width: 990px) {
+    .collection-{{ section.id }} .slider-dots {
+      display: none;
+    }
   }
 
   @media screen and (min-width: 990px) {
@@ -103,7 +121,7 @@
   endif
 -%}
 
-<div class="color-{{ section.settings.color_scheme }} isolate gradient">
+<div class="color-{{ section.settings.color_scheme }} isolate gradient collection-{{ section.id }}">
   <div class="collection section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}">
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.title != blank -%}
@@ -181,7 +199,7 @@
         >
           <button
             type="button"
-            class="slider-button slider-button--prev moonridge-carousel-btn moonridge-carousel-btn--prev"
+            class="moonridge-carousel-btn moonridge-carousel-btn--prev"
             data-fc-arrow="prev"
             aria-controls="Slider-{{ section.id }}"
             aria-label="{{ 'general.slider.previous_slide' | t }}"
@@ -190,7 +208,7 @@
           </button>
           <button
             type="button"
-            class="slider-button slider-button--next moonridge-carousel-btn moonridge-carousel-btn--next"
+            class="moonridge-carousel-btn moonridge-carousel-btn--next"
             data-fc-arrow="next"
             aria-controls="Slider-{{ section.id }}"
             aria-label="{{ 'general.slider.next_slide' | t }}"

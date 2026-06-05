@@ -107,6 +107,7 @@
   /* Episode List */
   .podcast-episode {
     display: flex;
+    align-items: flex-start;
     gap: 24px;
     margin-bottom: 30px;
     padding-bottom: 30px;
@@ -222,12 +223,18 @@
       font-size: 32px;
     }
     .podcast-episode {
-      flex-direction: column;
       gap: 16px;
+    }
+    .podcast-episode__image {
+      flex-shrink: 0;
     }
     .podcast-episode__image img {
       width: 80px;
       height: 80px;
+    }
+    .podcast-episode__title {
+      font-size: 18px;
+      line-height: 1.25;
     }
   }
 {% endstyle %}

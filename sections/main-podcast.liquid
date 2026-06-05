@@ -410,10 +410,12 @@
       return Array.from(doc.querySelectorAll('item')).map(function (itemNode) {
         const enclosure = itemNode.querySelector('enclosure');
         const descriptionNode = itemNode.querySelector('description');
+        const guidNode = itemNode.querySelector('guid');
         return {
           title: (itemNode.querySelector('title')?.textContent || '').trim(),
           pubDate: itemNode.querySelector('pubDate')?.textContent || '',
           link: (itemNode.querySelector('link')?.textContent || '').trim(),
+          guid: guidNode ? guidNode.textContent.trim() : '',
           description: descriptionNode ? descriptionNode.textContent : '',
           thumbnail: getItunesImage(itemNode),
           enclosure: {
@@ -435,17 +437,59 @@
         });
     }
 
+    function normalizeEpisodeKey(item) {
+      const title = String(item.title || '').toLowerCase().replace(/\s+/g, ' ').trim();
+      if (title) return `title:${title}`;
+
+      const guid = String(item.guid || '').trim();
+      if (guid) return `guid:${guid}`;
+
+      const link = String(item.link || '').trim();
+      if (link) return `link:${link}`;
+
+      const audioLink = item.enclosure && item.enclosure.link ? String(item.enclosure.link).trim() : '';
+      if (audioLink) return `audio:${audioLink}`;
+
+      return '';
+    }
+
+    function getEpisodeTime(item) {
+      const time = new Date(item.pubDate).getTime();
+      return Number.isFinite(time) ? time : 0;
+    }
+
+    function mergeEpisodeData(existing, incoming) {
+      const primary = getEpisodeTime(incoming) >= getEpisodeTime(existing) ? incoming : existing;
+      const secondary = primary === incoming ? existing : incoming;
+      const primaryEnclosure = primary.enclosure && primary.enclosure.link ? primary.enclosure : null;
+      const secondaryEnclosure = secondary.enclosure && secondary.enclosure.link ? secondary.enclosure : null;
+
+      return {
+        ...secondary,
+        ...primary,
+        title: primary.title || secondary.title || '',
+        pubDate: primary.pubDate || secondary.pubDate || '',
+        link: primary.link || secondary.link || '',
+        guid: primary.guid || secondary.guid || '',
+        description: primary.description || secondary.description || '',
+        thumbnail: primary.thumbnail || secondary.thumbnail || '',
+        enclosure: primaryEnclosure || secondaryEnclosure || primary.enclosure || secondary.enclosure || {}
+      };
+    }
+
     function mergeEpisodes() {
       const merged = new Map();
 
       for (let i = 0; i < arguments.length; i++) {
         const list = arguments[i] || [];
         list.forEach(function (item) {
-          const key = item.guid || item.title;
+          const key = normalizeEpisodeKey(item);
           if (!key) return;
 
           const existing = merged.get(key);
-          if (!existing || new Date(item.pubDate).getTime() > new Date(existing.pubDate).getTime()) {
+          if (existing) {
+            merged.set(key, mergeEpisodeData(existing, item));
+          } else {
             merged.set(key, item);
           }
         });
@@ -485,23 +529,16 @@
       return [];
     }
 
-    async function fetchEpisodes(feedUrl) {
-      const assetItems = await fetchEpisodesFromAsset();
+    async function fetchRemoteEpisodes(feedUrl) {
       const remoteResults = await Promise.allSettled([
         fetchEpisodesFromLiveRss(feedUrl),
         fetchEpisodesFromRss2Json(feedUrl)
       ]);
 
-      const remoteItems = remoteResults
+      return remoteResults
         .filter(function (result) { return result.status === 'fulfilled'; })
         .map(function (result) { return result.value; })
         .flat();
-
-      const items = mergeEpisodes(assetItems, remoteItems);
-      if (!items.length) {
-        throw new Error('Failed to load feed');
-      }
-      return items;
     }
 
     function sortEpisodes(items) {
@@ -579,39 +616,64 @@
       return;
     }
 
-    fetchEpisodes(rssUrl)
-      .then(function (items) {
-        const sortedItems = sortEpisodes(items);
-        renderEpisodes(sortedItems);
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', function () {
+        visibleCount += episodesPerPage;
+        updateEpisodeVisibility();
+      });
+    }
 
-        if (loadMoreBtn) {
-          loadMoreBtn.addEventListener('click', function () {
-            visibleCount += episodesPerPage;
-            updateEpisodeVisibility();
-          });
+    if (searchInput) {
+      searchInput.addEventListener('input', function (e) {
+        const term = e.target.value.toLowerCase().trim();
+        const episodes = listContainer.querySelectorAll('.podcast-episode');
+        isSearching = term.length > 0;
+
+        episodes.forEach(function (episode) {
+          const title = episode.getAttribute('data-title') || '';
+          const matches = !isSearching || title.includes(term);
+          episode.classList.toggle('podcast-episode--hidden', !matches);
+        });
+
+        if (loadMoreWrap) {
+          loadMoreWrap.hidden = isSearching || episodes.length <= visibleCount;
         }
+      });
+    }
 
-        if (searchInput) {
-          searchInput.addEventListener('input', function (e) {
-            const term = e.target.value.toLowerCase().trim();
-            const episodes = listContainer.querySelectorAll('.podcast-episode');
-            isSearching = term.length > 0;
+    let assetItems = [];
+    let hasRenderedEpisodes = false;
 
-            episodes.forEach(function (episode) {
-              const title = episode.getAttribute('data-title') || '';
-              const matches = !isSearching || title.includes(term);
-              episode.classList.toggle('podcast-episode--hidden', !matches);
-            });
+    function renderMergedEpisodes() {
+      const items = sortEpisodes(mergeEpisodes.apply(null, arguments));
+      if (!items.length) return false;
 
-            if (loadMoreWrap) {
-              loadMoreWrap.hidden = isSearching || episodes.length <= visibleCount;
-            }
-          });
+      renderEpisodes(items);
+      hasRenderedEpisodes = true;
+      return true;
+    }
+
+    fetchEpisodesFromAsset()
+      .catch(function (error) {
+        console.warn('Unable to load cached podcast episodes:', error);
+        return [];
+      })
+      .then(function (items) {
+        assetItems = items;
+        renderMergedEpisodes(assetItems);
+
+        return fetchRemoteEpisodes(rssUrl);
+      })
+      .then(function (remoteItems) {
+        if (!renderMergedEpisodes(assetItems, remoteItems) && !hasRenderedEpisodes) {
+          throw new Error('Failed to load feed');
         }
       })
       .catch(function (error) {
         console.error('Error fetching podcast feed:', error);
-        listContainer.innerHTML = '<div class="podcast-loading">Unable to load episodes at this time. Please try again later.</div>';
+        if (!hasRenderedEpisodes) {
+          listContainer.innerHTML = '<div class="podcast-loading">Unable to load episodes at this time. Please try again later.</div>';
+        }
       });
   });
 </script>

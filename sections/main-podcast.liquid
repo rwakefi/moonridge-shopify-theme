@@ -162,6 +162,20 @@
     color: #555;
     margin: 0;
   }
+  .podcast-episode__platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .podcast-episode__platforms .platform-badge {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  .podcast-episode__platforms .platform-badge img {
+    width: 16px;
+    height: 16px;
+  }
   .podcast-loading {
     text-align: center;
     padding: 40px;
@@ -193,7 +207,23 @@
   }
 {% endstyle %}
 
-<div class="podcast-directory" data-rss-url="{{ section.settings.rss_url }}">
+{% assign apple_link = section.settings.link_apple | default: 'https://podcasts.apple.com/podcast/id1885368774' %}
+{% assign spotify_link = section.settings.link_spotify | default: 'https://open.spotify.com/show/2qMq6vy5mQpHobuvzFzlmL' %}
+{% assign youtube_link = section.settings.link_youtube | default: 'https://www.youtube.com/playlist?list=PLCHmsY81LB3sWb8zMAiEDMAnex-dfNoc7' %}
+{% assign amazon_link = section.settings.link_amazon %}
+{% assign iheart_link = section.settings.link_iheart | default: 'https://iheart.com/podcast/333528031/' %}
+{% assign deezer_link = section.settings.link_deezer | default: 'https://deezer.com/show/1003045091' %}
+
+<div
+  class="podcast-directory"
+  data-rss-url="{{ section.settings.rss_url }}"
+  data-link-apple="{{ apple_link | escape }}"
+  data-link-spotify="{{ spotify_link | escape }}"
+  data-link-youtube="{{ youtube_link | escape }}"
+  data-link-amazon="{{ amazon_link | escape }}"
+  data-link-iheart="{{ iheart_link | escape }}"
+  data-link-deezer="{{ deezer_link | escape }}"
+>
   <!-- Header -->
   <div class="podcast-header">
     <div class="podcast-header__image">
@@ -215,49 +245,38 @@
       <p>{{ section.settings.subtitle }}</p>
       
       <div class="podcast-platforms">
-        {% assign apple_link = section.settings.link_apple | default: 'https://podcasts.apple.com/podcast/id1885368774' %}
         {% if apple_link != blank %}
-          <a href="{{ apple_link }}" target="_blank" class="platform-badge">
+          <a href="{{ apple_link }}" target="_blank" rel="noopener noreferrer" class="platform-badge">
             <img src="https://cdn.simpleicons.org/applepodcasts/9933CC" alt="Apple Podcasts">
             Apple Podcasts
           </a>
         {% endif %}
-        
-        {% assign spotify_link = section.settings.link_spotify | default: 'https://open.spotify.com/show/2qMq6vy5mQpHobuvzFzlmL' %}
         {% if spotify_link != blank %}
-          <a href="{{ spotify_link }}" target="_blank" class="platform-badge">
+          <a href="{{ spotify_link }}" target="_blank" rel="noopener noreferrer" class="platform-badge">
             <img src="https://cdn.simpleicons.org/spotify/1DB954" alt="Spotify">
             Spotify
           </a>
         {% endif %}
-
-        {% assign youtube_link = section.settings.link_youtube | default: 'https://www.youtube.com/playlist?list=PLCHmsY81LB3sWb8zMAiEDMAnex-dfNoc7' %}
         {% if youtube_link != blank %}
-          <a href="{{ youtube_link }}" target="_blank" class="platform-badge">
+          <a href="{{ youtube_link }}" target="_blank" rel="noopener noreferrer" class="platform-badge">
             <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube">
             YouTube
           </a>
         {% endif %}
-
-        {% assign amazon_link = section.settings.link_amazon %}
         {% if amazon_link != blank %}
-          <a href="{{ amazon_link }}" target="_blank" class="platform-badge">
+          <a href="{{ amazon_link }}" target="_blank" rel="noopener noreferrer" class="platform-badge">
             <img src="https://cdn.simpleicons.org/amazon/000000" alt="Amazon">
             Amazon
           </a>
         {% endif %}
-
-        {% assign iheart_link = section.settings.link_iheart | default: 'https://iheart.com/podcast/333528031/' %}
         {% if iheart_link != blank %}
-          <a href="{{ iheart_link }}" target="_blank" class="platform-badge">
+          <a href="{{ iheart_link }}" target="_blank" rel="noopener noreferrer" class="platform-badge">
             <img src="https://cdn.simpleicons.org/iheartradio/C6002B" alt="iHeartRadio">
             iHeartRadio
           </a>
         {% endif %}
-
-        {% assign deezer_link = section.settings.link_deezer | default: 'https://deezer.com/show/1003045091' %}
         {% if deezer_link != blank %}
-          <a href="{{ deezer_link }}" target="_blank" class="platform-badge">
+          <a href="{{ deezer_link }}" target="_blank" rel="noopener noreferrer" class="platform-badge">
             <img src="https://cdn.simpleicons.org/deezer/000000" alt="Deezer">
             Deezer
           </a>
@@ -291,6 +310,34 @@
     const rssUrl = section.getAttribute('data-rss-url');
     const listContainer = document.getElementById('podcastEpisodesList');
     const searchInput = document.getElementById('podcastSearchInput');
+
+    const platformLinks = [
+      { name: 'Apple Podcasts', url: section.dataset.linkApple, icon: 'https://cdn.simpleicons.org/applepodcasts/9933CC' },
+      { name: 'Spotify', url: section.dataset.linkSpotify, icon: 'https://cdn.simpleicons.org/spotify/1DB954' },
+      { name: 'YouTube', url: section.dataset.linkYoutube, icon: 'https://cdn.simpleicons.org/youtube/FF0000' },
+      { name: 'Amazon', url: section.dataset.linkAmazon, icon: 'https://cdn.simpleicons.org/amazon/000000' },
+      { name: 'iHeartRadio', url: section.dataset.linkIheart, icon: 'https://cdn.simpleicons.org/iheartradio/C6002B' },
+      { name: 'Deezer', url: section.dataset.linkDeezer, icon: 'https://cdn.simpleicons.org/deezer/000000' }
+    ].filter(function (platform) {
+      return platform.url && platform.url.trim() !== '';
+    });
+
+    function buildPlatformLinksHtml() {
+      if (!platformLinks.length) return '';
+
+      return `
+        <div class="podcast-episode__platforms">
+          ${platformLinks.map(function (platform) {
+            return `
+              <a href="${platform.url}" target="_blank" rel="noopener noreferrer" class="platform-badge">
+                <img src="${platform.icon}" alt="${platform.name}">
+                ${platform.name}
+              </a>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
 
     if (!rssUrl) {
       listContainer.innerHTML = '<div class="podcast-loading">Please configure your RSS URL in the theme settings.</div>';
@@ -332,15 +379,18 @@
           
           // Try to get duration if available (rss2json sometimes puts it in enclosure or description, we will just use date for now if duration is complex)
           
+          const episodeLink = item.link && item.link.trim() !== '' ? item.link : '';
+          const titleHtml = episodeLink
+            ? `<a href="${episodeLink}" target="_blank" rel="noopener noreferrer"><h2 class="podcast-episode__title">${item.title}</h2></a>`
+            : `<h2 class="podcast-episode__title">${item.title}</h2>`;
+
           const episodeHtml = `
             <div class="podcast-episode" data-title="${item.title.toLowerCase().replace(/"/g, '&quot;')}">
               <div class="podcast-episode__image">
                 <img src="${episodeImage}" alt="${item.title.replace(/"/g, '&quot;')}">
               </div>
               <div class="podcast-episode__content">
-                <a href="${item.link}" target="_blank" rel="noopener noreferrer">
-                  <h2 class="podcast-episode__title">${item.title}</h2>
-                </a>
+                ${titleHtml}
                 <div class="podcast-episode__meta">
                   <span>${dateString}</span>
                   ${badgeHtml ? '<span>|</span>' + badgeHtml : ''}
@@ -348,6 +398,7 @@
                 <div class="podcast-episode__desc">
                   <p>${textSnippet}</p>
                 </div>
+                ${buildPlatformLinksHtml()}
               </div>
             </div>
           `;

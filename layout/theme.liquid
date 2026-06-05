@@ -113,14 +113,6 @@
     <meta name="description" content="{{ meta_description | strip_html | strip | truncate: 160 | escape }}">
 
     {% render 'meta-tags' %}
-    {%- if template.suffix == 'podcast-moon-ridge' -%}
-      {%- assign podcast_share_image = request.origin | append: '/cdn/shop/files/Podcast_Logo.png?width=1200&height=1200&pad_color=f8f6f2' -%}
-      <meta property="og:image" content="{{ podcast_share_image }}">
-      <meta property="og:image:secure_url" content="{{ podcast_share_image }}">
-      <meta property="og:image:width" content="1200">
-      <meta property="og:image:height" content="1200">
-      <meta name="twitter:image" content="{{ podcast_share_image }}">
-    {%- endif -%}
     {% render 'site-organization-schema' %}
     {%- if request.page_type == 'index' -%}
       {% render 'ai-knowledge-graph' %}

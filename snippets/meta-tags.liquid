@@ -48,25 +48,23 @@
 <meta property="og:title" content="{{ og_title | escape }}">
 <meta property="og:type" content="{{ og_type }}">
 <meta property="og:description" content="{{ og_description | escape }}">
-{%- assign og_image = page_image -%}
-{%- if page.metafields.custom.social_image != blank -%}
-  {%- assign og_image = page.metafields.custom.social_image -%}
-{%- endif -%}
 {%- if template.suffix == 'podcast-moon-ridge' -%}
-  {%- assign og_image = nil -%}
-  {%- assign og_image_asset = request.origin | append: '/cdn/shop/files/Podcast_Logo.png?width=1200&height=1200&pad_color=f8f6f2' -%}
-{%- endif -%}
-
-{%- if og_image_asset != blank -%}
-  <meta property="og:image" content="{{ og_image_asset }}">
-  <meta property="og:image:secure_url" content="{{ og_image_asset }}">
+  {%- assign podcast_og_image = request.origin | append: '/cdn/shop/files/Podcast_Logo.png?width=1200&height=1200&pad_color=f8f6f2' -%}
+  <meta property="og:image" content="{{ podcast_og_image }}">
+  <meta property="og:image:secure_url" content="{{ podcast_og_image }}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="1200">
-{%- elsif og_image -%}
-  <meta property="og:image" content="https:{{ og_image | image_url: width: 1200, height: 630, crop: 'center' }}">
-  <meta property="og:image:secure_url" content="https:{{ og_image | image_url: width: 1200, height: 630, crop: 'center' }}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+{%- else -%}
+  {%- assign og_image = page_image -%}
+  {%- if page.metafields.custom.social_image != blank -%}
+    {%- assign og_image = page.metafields.custom.social_image -%}
+  {%- endif -%}
+  {%- if og_image -%}
+    <meta property="og:image" content="https:{{ og_image | image_url: width: 1200, height: 630, crop: 'center' }}">
+    <meta property="og:image:secure_url" content="https:{{ og_image | image_url: width: 1200, height: 630, crop: 'center' }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+  {%- endif -%}
 {%- endif -%}
 
 {%- if request.page_type == 'product' -%}
@@ -80,8 +78,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title | escape }}">
 <meta name="twitter:description" content="{{ og_description | escape }}">
-{%- if og_image_asset != blank -%}
-  <meta name="twitter:image" content="{{ og_image_asset }}">
+{%- if template.suffix == 'podcast-moon-ridge' -%}
+  <meta name="twitter:image" content="{{ podcast_og_image }}">
 {%- elsif og_image -%}
   <meta name="twitter:image" content="https:{{ og_image | image_url: width: 1200, height: 630, crop: 'center' }}">
 {%- endif -%}

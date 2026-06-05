@@ -528,13 +528,19 @@
     }
 
     function normalizeEpisodeTitle(title) {
-      return (title || '').trim().toLowerCase().replace(/\s+/g, ' ');
+      return (title || '')
+        .normalize('NFKD')
+        .replace(/[\u2018\u2019\u0060\u00B4]/g, "'")
+        .replace(/[\u2013\u2014]/g, '-')
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, ' ');
     }
 
     function getEpisodeKey(item) {
+      if (item.guid) return 'guid:' + item.guid.trim().toLowerCase();
       const normalizedTitle = normalizeEpisodeTitle(item.title);
       if (normalizedTitle) return 'title:' + normalizedTitle;
-      if (item.guid) return 'guid:' + item.guid.trim().toLowerCase();
       return null;
     }
 

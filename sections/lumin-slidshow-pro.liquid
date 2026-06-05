@@ -1868,14 +1868,19 @@ window[slideshowID] = (function() {
       }
       return _loadScript('https://unpkg.com/flickity-fade@2.0.0/flickity-fade.js').then(function () {
         return new Promise(function (resolve) {
+          var attempts = 0;
           (function waitForFade() {
             if (Flickity.prototype.getFadeDragLimitIndexes) {
+              resolve(true);
+            } else if (attempts++ >= 40) {
               resolve(true);
             } else {
               setTimeout(waitForFade, 50);
             }
           })();
         });
+      }).catch(function () {
+        return true;
       });
     }
     /* beautify ignore:end */
@@ -1942,20 +1947,11 @@ window[slideshowID] = (function() {
           const $section = $slider.closest(`.Lumin-slideshow-section`);
 
 
-          window[`LazyLoad--${sectionID}`].update();
-
-          
-          let $image;
-          if (!options.parallax) {
-            $image = $this.querySelector(`.LuminSlideshow-cell:nth-child(1) .LuminSlideshow-image:last-of-type`);
+          if (window[`LazyLoad--${sectionID}`]) {
+            window[`LazyLoad--${sectionID}`].update();
           }
 
-
-
           await _sleep(50);
-
-
-
 
           if (!_isMobile() && options.enableParallax || _isMobile() && options.enableParallaxMobile) {
             parallax()
@@ -1963,50 +1959,28 @@ window[slideshowID] = (function() {
 
           removeLoader();
 
-
-
           if (_isMobile()) {
-
             setInitialSliderHeightForFullWidth();
           }
 
 
         },
-        change: function() {
-
-          alert('ok')
-
-
+        change: async function() {
           if (_isMobile() && options.naturalHeightMobile) {
-
             setInitialSliderHeightForFullWidth();
           }
 
           handleFullWidthSlideChange();
-          window[`LazyLoad--${sectionID}`].update();
-
-
-          if (!_isMobile() && options.enableParallax ||
-            _isMobile() && options.enableParallaxMobile) {
-            parallax()
-          }
-
-
-
-
-        },
-
-        change: async function() {
-
-
 
           await _sleep(50);
-          window[`LazyLoad--${sectionID}`].update();
 
-          if (!options.autoplayStop) {
-            slider.player.play()
+          if (window[`LazyLoad--${sectionID}`]) {
+            window[`LazyLoad--${sectionID}`].update();
           }
 
+          if (!options.autoplayStop && slider.player) {
+            slider.player.play()
+          }
 
           if (!_isMobile() && options.enableParallax ||
             _isMobile() && options.enableParallaxMobile) {
@@ -2017,8 +1991,10 @@ window[slideshowID] = (function() {
         },
         pointerUp: async function() {
           await _sleep(50);
-          window[`LazyLoad--${sectionID}`].update();
-          if (!options.autoplayStop) {
+          if (window[`LazyLoad--${sectionID}`]) {
+            window[`LazyLoad--${sectionID}`].update();
+          }
+          if (!options.autoplayStop && slider.player) {
             slider.player.play()
           }
 
@@ -2027,8 +2003,10 @@ window[slideshowID] = (function() {
         pointerDown: async function() {
 
           await _sleep(50);
-          window[`LazyLoad--${sectionID}`].update();
-          if (!options.autoplayStop) {
+          if (window[`LazyLoad--${sectionID}`]) {
+            window[`LazyLoad--${sectionID}`].update();
+          }
+          if (!options.autoplayStop && slider.player) {
             slider.player.play()
           }
 
@@ -2036,11 +2014,6 @@ window[slideshowID] = (function() {
         }
       }
     });
-
-
-    console.log(slider)
-
-
 
 
     window[flickitySlider] = slider;
@@ -2353,6 +2326,10 @@ padding-bottom: calc(100% / ${aspectRatio}) !important;
 
 
   function initVanillaLazyLoad() {
+    if (typeof LazyLoad === 'undefined') {
+      return;
+    }
+
     window[`LazyLoad--${sectionID}`] = new LazyLoad({
 
       'elements_selector': '.is-selected .LuminSlideshow-image--lazy,.is-selected .LuminSlideshow-parallax--lazy',
@@ -2365,31 +2342,43 @@ padding-bottom: calc(100% / ${aspectRatio}) !important;
 
   }
 
+  function scheduleLoaderFallback() {
+    setTimeout(function () {
+      removeLoader();
+    }, 2500);
+  }
+
 
 
   async function start() {
+    scheduleLoaderFallback();
 
+    try {
+      await loadFlickity();
+      await loadVanillaLazyLoad();
+      initVanillaLazyLoad();
 
-    await loadFlickity();
-    await loadVanillaLazyLoad();
-    initVanillaLazyLoad();
+      checkIfParallax();
 
+      await _sleep(50);
 
-    checkIfParallax();
+      if (typeof Flickity !== 'undefined') {
+        initSlider();
+      } else {
+        removeLoader();
+      }
 
-    await _sleep(50);
+      lazyloadBackgroundImageForParallax();
+      handleArrows();
+      setInitialSliderHeightForFullWidth();
 
-    initSlider();
+      await _sleep(10);
 
-
-    lazyloadBackgroundImageForParallax();
-    handleArrows();
-    setInitialSliderHeightForFullWidth();
-
-    await _sleep(10);
-
-    if (_isMobile()) {
-      handleFullWidthSlideChange();
+      if (_isMobile()) {
+        handleFullWidthSlideChange();
+      }
+    } catch (err) {
+      removeLoader();
     }
   }
 

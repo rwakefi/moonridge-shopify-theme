@@ -45,23 +45,19 @@
     pointer-events: auto;
   }
 
-  .fc-slider-arrows-{{ section.id }} {
-    display: none;
-  }
-
   @media screen and (min-width: 990px) {
     .collection-{{ section.id }} .slider-dots {
       display: none;
     }
 
-    .fc-slider-arrows-{{ section.id }}.fc-slider-arrows--desktop {
-      display: block;
+    .fc-slider-arrows-{{ section.id }}:not(.fc-slider-arrows--desktop) {
+      display: none !important;
     }
   }
 
   @media screen and (max-width: 989px) {
-    .fc-slider-arrows-{{ section.id }}.fc-slider-arrows--mobile {
-      display: block;
+    .fc-slider-arrows-{{ section.id }}:not(.fc-slider-arrows--mobile) {
+      display: none !important;
     }
   }
 

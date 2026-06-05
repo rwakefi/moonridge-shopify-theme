@@ -307,9 +307,11 @@
     .podcast-episode__content {
       display: contents;
     }
-    .podcast-episode__desc,
-    .podcast-episode__platforms {
+    .podcast-episode__body {
       grid-area: body;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
     .podcast-episode__title {
       font-size: 17px;
@@ -656,10 +658,12 @@
                   ${badgeHtml ? '<span>|</span>' + badgeHtml : ''}
                 </div>
               </div>
-              <div class="podcast-episode__desc">
-                <p>${escapeHtml(textSnippet)}</p>
+              <div class="podcast-episode__body">
+                <div class="podcast-episode__desc">
+                  <p>${escapeHtml(textSnippet)}</p>
+                </div>
+                ${buildPlatformLinksHtml()}
               </div>
-              ${buildPlatformLinksHtml()}
             </div>
           </div>
         `;

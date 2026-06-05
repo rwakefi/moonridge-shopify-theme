@@ -84,7 +84,7 @@
         assign full_title = "Private Hat Parties & Events" | append: brand_suffix
       elsif page.handle contains 'home'
         assign full_title = "Moon Ridge Home & Interiors by Natalie Jo"
-      elsif page.handle == 'podcast'
+      elsif template.suffix == 'podcast-moon-ridge'
         assign full_title = "The Moon Ridge Podcast | Hosted by Zack Wakefield"
       else
         assign full_title = page.title | append: brand_suffix
@@ -106,7 +106,7 @@
         assign meta_description = "Book your hat shaping session or private hat party at Moon Ridge Hats and Heritage in Fayetteville, AR. We personalize premium hats from Stetson and Resistol."
       elsif request.page_type == 'collection'
         assign meta_description = "Shop premium heritage hats and goods at Moon Ridge Hats and Heritage. Authorized dealer for Stetson and Resistol. Expertly shaped and styled in Fayetteville, Arkansas."
-      elsif page.handle == 'podcast'
+      elsif template.suffix == 'podcast-moon-ridge'
         assign meta_description = "The Moon Ridge Podcast is about the things we love — travel, hats, interior design, great brands, and stories from a life well lived. Hosted by Zack Wakefield."
       endif
     -%}

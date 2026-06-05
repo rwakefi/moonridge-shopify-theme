@@ -32,7 +32,7 @@
     assign og_type = 'product'
   elsif request.page_type == 'article'
     assign og_type = 'article'
-  elsif request.page_type == 'page' and page.handle == 'podcast'
+  elsif request.page_type == 'page' and template.suffix == 'podcast-moon-ridge'
     assign og_title = 'The Moon Ridge Podcast | Hosted by Zack Wakefield'
     assign og_description = 'Travel, hats, interior design, great brands, and stories from a life well lived. Listen on Apple Podcasts, Spotify, YouTube, and more.'
   endif
@@ -52,7 +52,7 @@
 {%- if page.metafields.custom.social_image != blank -%}
   {%- assign og_image = page.metafields.custom.social_image -%}
 {%- endif -%}
-{%- if request.page_type == 'page' and page.handle == 'podcast' -%}
+{%- if request.page_type == 'page' and template.suffix == 'podcast-moon-ridge' -%}
   {%- assign og_image = nil -%}
   {%- assign og_image_asset = 'podcast-og-preview.png' | asset_url -%}
 {%- endif -%}

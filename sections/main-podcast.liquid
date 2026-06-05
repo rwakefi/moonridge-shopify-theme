@@ -222,12 +222,18 @@
       font-size: 32px;
     }
     .podcast-episode {
-      flex-direction: column;
-      gap: 16px;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .podcast-episode__image {
+      flex: 0 0 72px;
     }
     .podcast-episode__image img {
-      width: 80px;
-      height: 80px;
+      width: 72px;
+      height: 72px;
+    }
+    .podcast-episode__content {
+      min-width: 0;
     }
   }
 {% endstyle %}

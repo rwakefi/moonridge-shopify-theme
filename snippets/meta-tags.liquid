@@ -54,7 +54,7 @@
 {%- endif -%}
 {%- if template.suffix == 'podcast-moon-ridge' -%}
   {%- assign og_image = nil -%}
-  {%- assign og_image_asset = 'podcast-og-preview.png' | asset_url -%}
+  {%- assign og_image_asset = request.origin | append: '/cdn/shop/files/Podcast_Logo.png?width=1200&height=1200&pad_color=f8f6f2' -%}
 {%- endif -%}
 
 {%- if og_image_asset != blank -%}

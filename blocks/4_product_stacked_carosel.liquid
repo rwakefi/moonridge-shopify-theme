@@ -211,38 +211,43 @@
 .ai-carousel-prev-{{ ai_gen_id }},
 .ai-carousel-next-{{ ai_gen_id }} {
   position: absolute;
-  top: 50%;
+  top: 42%;
   z-index: 20;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
   margin: 0;
   padding: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   line-height: 0;
-  background: #ffffff;
-  border: 1px solid #d6d6d6;
-  border-radius: 50%;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  background: {{ block.settings.button_background }};
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
   cursor: pointer;
+  color: {{ block.settings.button_color }};
   transform: translateY(-50%);
-  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition:
+    transform 0.15s ease-in-out,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .ai-carousel-prev-{{ ai_gen_id }} {
-  left: -18px;
+  left: 0;
 }
 
 .ai-carousel-next-{{ ai_gen_id }} {
-  right: -18px;
+  right: 0;
 }
 
-.ai-carousel-button-{{ ai_gen_id }}:hover:not(:disabled),
-.ai-carousel-prev-{{ ai_gen_id }}:hover:not(:disabled),
-.ai-carousel-next-{{ ai_gen_id }}:hover:not(:disabled) {
-  transform: translateY(-50%) scale(1.08);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+.ai-carousel-button-{{ ai_gen_id }} svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
 }
 
 .ai-carousel-button-{{ ai_gen_id }}:disabled {
@@ -250,11 +255,38 @@
   cursor: not-allowed;
 }
 
-.ai-carousel-button-{{ ai_gen_id }} svg {
-  display: block;
-  width: 14px;
-  height: 14px;
-  color: {{ block.settings.button_background }};
+.ai-carousel-button-{{ ai_gen_id }}.is-pressed:not(:disabled) {
+  transform: translateY(-50%) scale(0.96);
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 750px) {
+  .ai-carousel-prev-{{ ai_gen_id }} {
+    transform: translate(-110%, -50%);
+  }
+
+  .ai-carousel-next-{{ ai_gen_id }} {
+    transform: translate(110%, -50%);
+  }
+
+  .ai-product-carousel-wrapper-{{ ai_gen_id }}:hover .ai-carousel-prev-{{ ai_gen_id }},
+  .ai-product-carousel-wrapper-{{ ai_gen_id }}:focus-within .ai-carousel-prev-{{ ai_gen_id }} {
+    transform: translate(0, -50%);
+  }
+
+  .ai-product-carousel-wrapper-{{ ai_gen_id }}:hover .ai-carousel-next-{{ ai_gen_id }},
+  .ai-product-carousel-wrapper-{{ ai_gen_id }}:focus-within .ai-carousel-next-{{ ai_gen_id }} {
+    transform: translate(0, -50%);
+  }
+
+  .ai-product-carousel-wrapper-{{ ai_gen_id }}:hover .ai-carousel-button-{{ ai_gen_id }}.is-pressed:not(:disabled),
+  .ai-product-carousel-wrapper-{{ ai_gen_id }}:focus-within .ai-carousel-button-{{ ai_gen_id }}.is-pressed:not(:disabled) {
+    transform: translate(0, -50%) scale(0.96);
+  }
+
+  .ai-carousel-button-{{ ai_gen_id }}:hover:not(:disabled) {
+    background: {{ block.settings.button_hover_background }};
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  }
 }
 
 /* ------------------------------
@@ -286,6 +318,23 @@
 
   .ai-product-price-{{ ai_gen_id }} {
     margin-top: 0 !important;
+  }
+
+  .ai-carousel-button-{{ ai_gen_id }},
+  .ai-carousel-prev-{{ ai_gen_id }},
+  .ai-carousel-next-{{ ai_gen_id }} {
+    width: 2.25rem;
+    height: 2.25rem;
+    top: 38%;
+    background: #ffffff;
+    border: 1px solid #d6d6d6;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    transform: translateY(-50%);
+  }
+
+  .ai-carousel-button-{{ ai_gen_id }} svg {
+    color: {{ block.settings.button_background }};
   }
 
   .ai-carousel-prev-{{ ai_gen_id }} {
@@ -496,6 +545,20 @@
         if (this.nextButton) {
           this.nextButton.addEventListener('click', () => this.next());
         }
+
+        [this.prevButton, this.nextButton].forEach(function (button) {
+          if (!button) return;
+          button.addEventListener('mousedown', function () {
+            if (button.disabled) return;
+            button.classList.add('is-pressed');
+          });
+          button.addEventListener('mouseup', function () {
+            button.classList.remove('is-pressed');
+          });
+          button.addEventListener('mouseleave', function () {
+            button.classList.remove('is-pressed');
+          });
+        });
 
         this.setupPointerEvents();
 

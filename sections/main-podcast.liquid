@@ -505,6 +505,7 @@
           title: (itemNode.querySelector('title')?.textContent || '').trim(),
           pubDate: itemNode.querySelector('pubDate')?.textContent || '',
           link: (itemNode.querySelector('link')?.textContent || '').trim(),
+          guid: (itemNode.querySelector('guid')?.textContent || '').trim(),
           description: descriptionNode ? descriptionNode.textContent : '',
           thumbnail: getItunesImage(itemNode),
           enclosure: {
@@ -526,18 +527,42 @@
         });
     }
 
+    function normalizeEpisodeTitle(title) {
+      return (title || '').trim().toLowerCase().replace(/\s+/g, ' ');
+    }
+
+    function getEpisodeKey(item) {
+      const normalizedTitle = normalizeEpisodeTitle(item.title);
+      if (normalizedTitle) return 'title:' + normalizedTitle;
+      if (item.guid) return 'guid:' + item.guid.trim().toLowerCase();
+      return null;
+    }
+
     function mergeEpisodes() {
       const merged = new Map();
 
       for (let i = 0; i < arguments.length; i++) {
         const list = arguments[i] || [];
         list.forEach(function (item) {
-          const key = item.guid || item.title;
+          const key = getEpisodeKey(item);
           if (!key) return;
 
           const existing = merged.get(key);
-          if (!existing || new Date(item.pubDate).getTime() > new Date(existing.pubDate).getTime()) {
+          if (!existing) {
             merged.set(key, item);
+            return;
+          }
+
+          const existingDate = new Date(existing.pubDate).getTime();
+          const itemDate = new Date(item.pubDate).getTime();
+          const preferItem = itemDate > existingDate || (!existing.guid && item.guid);
+          if (preferItem) {
+            merged.set(key, Object.assign({}, existing, item, {
+              guid: item.guid || existing.guid,
+              description: item.description || existing.description,
+              link: item.link || existing.link,
+              thumbnail: item.thumbnail || existing.thumbnail
+            }));
           }
         });
       }
@@ -686,9 +711,12 @@
 
         refreshEpisodesFromRemote(rssUrl, sortedItems)
           .then(function (mergedItems) {
-            if (mergedItems.length !== sortedItems.length) {
-              renderEpisodes(sortEpisodes(mergedItems));
-              bindEpisodeInteractions(mergedItems);
+            const mergedSorted = sortEpisodes(mergedItems);
+            const currentKeys = sortedItems.map(getEpisodeKey).join('|');
+            const mergedKeys = mergedSorted.map(getEpisodeKey).join('|');
+            if (mergedKeys !== currentKeys) {
+              renderEpisodes(mergedSorted);
+              bindEpisodeInteractions(mergedSorted);
             }
           })
           .catch(function () {

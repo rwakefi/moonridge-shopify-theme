@@ -150,47 +150,6 @@
     color: {{ block.settings.sale_price_color }};
   }
 
-  .ai-bestsellers-carousel__nav-{{ ai_gen_id }} {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: {{ block.settings.arrow_size }}px;
-    height: {{ block.settings.arrow_size }}px;
-    background-color: {{ block.settings.arrow_background }};
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    transition: background-color 0.3s ease;
-  }
-
-  .ai-bestsellers-carousel__nav-{{ ai_gen_id }}:hover {
-    background-color: {{ block.settings.arrow_hover_background }};
-  }
-
-  .ai-bestsellers-carousel__nav-{{ ai_gen_id }}:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
-
-  .ai-bestsellers-carousel__nav-prev-{{ ai_gen_id }} {
-    left: -{{ block.settings.arrow_offset }}px;
-  }
-
-  .ai-bestsellers-carousel__nav-next-{{ ai_gen_id }} {
-    right: -{{ block.settings.arrow_offset }}px;
-  }
-
-  .ai-bestsellers-carousel__nav-icon-{{ ai_gen_id }} {
-    width: {{ block.settings.arrow_icon_size }}px;
-    height: {{ block.settings.arrow_icon_size }}px;
-    stroke: {{ block.settings.arrow_color }};
-    fill: none;
-  }
-
   .ai-bestsellers-carousel__dots-{{ ai_gen_id }} {
     display: flex;
     justify-content: center;
@@ -237,7 +196,10 @@
       </div>
     {% endif %}
 
-    <div class="ai-bestsellers-carousel__wrapper-{{ ai_gen_id }}">
+    <div
+      class="ai-bestsellers-carousel__wrapper-{{ ai_gen_id }} moonridge-carousel-wrapper"
+      style="--mr-carousel-btn-bg: {{ block.settings.arrow_background }}; --mr-carousel-btn-color: {{ block.settings.arrow_color }}; --mr-carousel-btn-hover-bg: {{ block.settings.arrow_hover_background }};"
+    >
       <div class="ai-bestsellers-carousel__track-{{ ai_gen_id }}" data-track>
         {% if block.settings.collection != blank %}
           {% for product in block.settings.collection.products limit: block.settings.products_to_show %}
@@ -313,37 +275,41 @@
         {% endif %}
       </div>
 
-      <button
-        class="ai-bestsellers-carousel__nav-{{ ai_gen_id }} ai-bestsellers-carousel__nav-prev-{{ ai_gen_id }}"
-        data-prev
-        aria-label="Previous slide"
-      >
-        <svg
-          class="ai-bestsellers-carousel__nav-icon-{{ ai_gen_id }}"
-          viewBox="0 0 24 24"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+      <div class="moonridge-carousel-controls">
+        <button
+          type="button"
+          class="ai-bestsellers-carousel__nav-{{ ai_gen_id }} ai-bestsellers-carousel__nav-prev-{{ ai_gen_id }} moonridge-carousel-btn moonridge-carousel-btn--prev"
+          data-prev
+          aria-label="Previous slide"
         >
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-      </button>
+          <svg
+            class="ai-bestsellers-carousel__nav-icon-{{ ai_gen_id }}"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
 
-      <button
-        class="ai-bestsellers-carousel__nav-{{ ai_gen_id }} ai-bestsellers-carousel__nav-next-{{ ai_gen_id }}"
-        data-next
-        aria-label="Next slide"
-      >
-        <svg
-          class="ai-bestsellers-carousel__nav-icon-{{ ai_gen_id }}"
-          viewBox="0 0 24 24"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+        <button
+          type="button"
+          class="ai-bestsellers-carousel__nav-{{ ai_gen_id }} ai-bestsellers-carousel__nav-next-{{ ai_gen_id }} moonridge-carousel-btn moonridge-carousel-btn--next"
+          data-next
+          aria-label="Next slide"
         >
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </button>
+          <svg
+            class="ai-bestsellers-carousel__nav-icon-{{ ai_gen_id }}"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
     </div>
 
     <div class="ai-bestsellers-carousel__dots-{{ ai_gen_id }}" data-dots></div>

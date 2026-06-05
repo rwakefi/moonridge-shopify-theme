@@ -132,6 +132,13 @@
   z-index: 10;
 }
 
+/* ------------------------------
+   ARROWS — shared moonridge-carousel-arrows.css
+--------------------------------*/
+.ai-product-carousel-stage-{{ ai_gen_id }} {
+  position: relative;
+}
+
 /* TITLE + PRICE */
 .ai-product-info-{{ ai_gen_id }} {
   padding: 15px;
@@ -167,48 +174,6 @@
 }
 
 /* ------------------------------
-   ARROWS — PERFECTLY CENTERED
---------------------------------*/
-.ai-carousel-prev-{{ ai_gen_id }},
-.ai-carousel-next-{{ ai_gen_id }} {
-  position: absolute !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  z-index: 20 !important;
-
-  /* Circle button */
-  width: 26px;
-  height: 26px;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-
-  background: #ffffff;
-  border: 1px solid #d6d6d6;
-  border-radius: 50%;
-  box-shadow: 0px 1px 4px rgba(0,0,0,0.15);
-
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.ai-carousel-prev-{{ ai_gen_id }}:hover,
-.ai-carousel-next-{{ ai_gen_id }}:hover {
-  transform: translateY(-50%) scale(1.1);
-}
-
-/* Arrow positions */
-.ai-carousel-prev-{{ ai_gen_id }} { left: -18px !important; }
-.ai-carousel-next-{{ ai_gen_id }} { right: -18px !important; }
-
-/* Make arrow icons fit */
-.ai-carousel-prev-{{ ai_gen_id }} svg,
-.ai-carousel-next-{{ ai_gen_id }} svg {
-  width: 14px;
-  height: 14px;
-}
-
-/* ------------------------------
    MOBILE GRID (2 x 2)
 --------------------------------*/
 @media screen and (max-width: 749px) {
@@ -239,10 +204,6 @@
     margin-top: 0 !important;
   }
 
-  /* Mobile arrow positions */
-  .ai-carousel-prev-{{ ai_gen_id }} { left: -12px !important; }
-  .ai-carousel-next-{{ ai_gen_id }} { right: -12px !important; }
-}
 
 /* ------------------------------
    DOTS (HIDDEN)
@@ -278,8 +239,11 @@
     {% endif %}
 
     {% if block.settings.collection != blank and block.settings.collection.products.size > 0 %}
-      <div class="ai-product-carousel-wrapper-{{ ai_gen_id }}">
-        <div class="ai-product-carousel-track-container-{{ ai_gen_id }}">
+      <div
+        class="ai-product-carousel-wrapper-{{ ai_gen_id }} moonridge-carousel-wrapper"
+        style="--mr-carousel-btn-bg: {{ block.settings.button_background | default: '#312110' }}; --mr-carousel-btn-color: {{ block.settings.button_color | default: '#ffffff' }}; --mr-carousel-btn-hover-bg: {{ block.settings.button_hover_background | default: '#1f1d24' }};"
+      >
+        <div class="ai-product-carousel-track-container-{{ ai_gen_id }} moonridge-carousel-stage">
           <div class="ai-product-carousel-track-{{ ai_gen_id }}" data-track>
             {% for product in block.settings.collection.products limit: block.settings.product_limit %}
               <div class="ai-product-carousel-slide-{{ ai_gen_id }}">
@@ -321,26 +285,29 @@
         </div>
 
         {% if block.settings.show_navigation %}
-          <!-- Arrows overlayed on the sides of the 2x2 grid -->
-          <button
-            class="ai-carousel-button-{{ ai_gen_id }} ai-carousel-prev-{{ ai_gen_id }}"
-            aria-label="Previous products"
-            data-prev
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
+          <div class="moonridge-carousel-controls">
+            <button
+              type="button"
+              class="ai-carousel-button-{{ ai_gen_id }} ai-carousel-prev-{{ ai_gen_id }} moonridge-carousel-btn moonridge-carousel-btn--prev"
+              aria-label="Previous products"
+              data-prev
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
 
-          <button
-            class="ai-carousel-button-{{ ai_gen_id }} ai-carousel-next-{{ ai_gen_id }}"
-            aria-label="Next products"
-            data-next
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+            <button
+              type="button"
+              class="ai-carousel-button-{{ ai_gen_id }} ai-carousel-next-{{ ai_gen_id }} moonridge-carousel-btn moonridge-carousel-btn--next"
+              aria-label="Next products"
+              data-next
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         {% endif %}
         </div>  {% comment %} closes track container {% endcomment %}
 

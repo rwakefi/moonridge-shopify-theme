@@ -97,10 +97,46 @@
     transform 0.52s cubic-bezier(0.2, 0, 0, 1),
     box-shadow 0.52s cubic-bezier(0.2, 0, 0, 1);
   transform-style: preserve-3d;
-  
-  /* lock card height so pages don't change height */
-  min-height: 300px;  /* tweak up/down to taste */
+  min-height: 300px;
   height: 100%;
+}
+
+@media screen and (min-width: 750px) {
+  .ai-product-carousel-slide-{{ ai_gen_id }} {
+    padding: 0 6px;
+    box-sizing: border-box;
+  }
+
+  .ai-product-card-{{ ai_gen_id }} {
+    min-height: 0;
+    border-radius: 12px;
+  }
+
+  .ai-product-image-wrapper-{{ ai_gen_id }} {
+    padding-bottom: 118%;
+    background-color: #efefef;
+  }
+
+  .ai-product-info-{{ ai_gen_id }} {
+    padding: 12px 14px 16px;
+  }
+
+  .ai-product-title-{{ ai_gen_id }} {
+    font-size: 14px;
+    min-height: 2.6em;
+    margin-bottom: 8px;
+  }
+
+  .ai-product-price-{{ ai_gen_id }} {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 1140px) {
+  .ai-product-carousel-container-{{ ai_gen_id }} {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 }
 
 .ai-product-card-{{ ai_gen_id }}:hover {
@@ -651,10 +687,15 @@
       }
 
       getSlidesPerView() {
-        const width = window.innerWidth;
-        if (width <= 749) return 4;
-        if (width <= 989) return this.productsPerViewTablet + 0.3;
-        return this.productsPerView + 0.3;
+        if (window.innerWidth <= 749) return 4;
+
+        const containerWidth = this.trackContainer
+          ? this.trackContainer.offsetWidth
+          : window.innerWidth;
+
+        if (containerWidth >= 1140) return 4.3;
+        if (containerWidth >= 1000) return 3.3;
+        return 2.5;
       }
 
       refreshLayout(animate) {
@@ -690,6 +731,7 @@
           this.slides.forEach(function (slide) {
             slide.style.removeProperty('flex-basis');
             slide.style.removeProperty('max-width');
+            slide.style.removeProperty('width');
           });
           return;
         }
@@ -700,9 +742,11 @@
         const slideWidthPx = Math.max(slideWidth, 0) + 'px';
 
         this.track.style.setProperty('--ai-slide-width', slideWidthPx);
+        this.track.style.setProperty('--ai-slides-per-view', String(slidesPerView));
         this.slides.forEach(function (slide) {
           slide.style.flexBasis = slideWidthPx;
           slide.style.maxWidth = slideWidthPx;
+          slide.style.width = slideWidthPx;
         });
       }
 

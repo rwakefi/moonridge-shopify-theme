@@ -175,41 +175,6 @@
     color: {{ block.settings.sale_price_color }};
   }
 
-  .ai-bestsellers-carousel__nav-button-{{ ai_gen_id }} {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background-color: {{ block.settings.nav_button_background }};
-    color: {{ block.settings.nav_button_color }};
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    z-index: 10;
-  }
-
-  .ai-bestsellers-carousel__nav-button-{{ ai_gen_id }}:hover:not(:disabled) {
-    background-color: {{ block.settings.nav_button_hover_background }};
-  }
-
-  .ai-bestsellers-carousel__nav-button-{{ ai_gen_id }}:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
-
-  .ai-bestsellers-carousel__nav-button--prev-{{ ai_gen_id }} {
-    left: -22px;
-  }
-
-  .ai-bestsellers-carousel__nav-button--next-{{ ai_gen_id }} {
-    right: -22px;
-  }
-
   .ai-bestsellers-carousel__dots-{{ ai_gen_id }} {
     display: flex;
     gap: 8px;
@@ -252,12 +217,6 @@
     font-weight: 400;
   }
 
-  @media screen and (max-width: 749px) {
-    .ai-bestsellers-carousel__nav-button-{{ ai_gen_id }} {
-      display: none;
-    }
-  }
-
   @media screen and (min-width: 750px) {
     .ai-bestsellers-carousel__slide-{{ ai_gen_id }} {
       flex: 0 0 calc((100% - ({{ block.settings.product_gap }}px * ({{ block.settings.products_per_row_desktop }} - 1))) / {{ block.settings.products_per_row_desktop }});
@@ -288,20 +247,36 @@
     {% endif %}
 
     {% if block.settings.collection != blank and block.settings.collection.products.size > 0 %}
-      <div class="ai-bestsellers-carousel__carousel-wrapper-{{ ai_gen_id }}">
+      <div
+        class="ai-bestsellers-carousel__carousel-wrapper-{{ ai_gen_id }} moonridge-carousel-wrapper"
+        style="--mr-carousel-btn-bg: {{ block.settings.nav_button_background }}; --mr-carousel-btn-color: {{ block.settings.nav_button_color }}; --mr-carousel-btn-hover-bg: {{ block.settings.nav_button_hover_background }};"
+      >
         {% if block.settings.show_navigation %}
-          <button
-            class="ai-bestsellers-carousel__nav-button-{{ ai_gen_id }} ai-bestsellers-carousel__nav-button--prev-{{ ai_gen_id }}"
-            data-prev
-            aria-label="Previous"
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="12 4 6 10 12 16"></polyline>
-            </svg>
-          </button>
+          <div class="moonridge-carousel-controls">
+            <button
+              type="button"
+              class="ai-bestsellers-carousel__nav-button-{{ ai_gen_id }} ai-bestsellers-carousel__nav-button--prev-{{ ai_gen_id }} moonridge-carousel-btn moonridge-carousel-btn--prev"
+              data-prev
+              aria-label="Previous"
+            >
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="12 4 6 10 12 16"></polyline>
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="ai-bestsellers-carousel__nav-button-{{ ai_gen_id }} ai-bestsellers-carousel__nav-button--next-{{ ai_gen_id }} moonridge-carousel-btn moonridge-carousel-btn--next"
+              data-next
+              aria-label="Next"
+            >
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="8 4 14 10 8 16"></polyline>
+              </svg>
+            </button>
+          </div>
         {% endif %}
 
-        <div class="ai-bestsellers-carousel__wrapper-{{ ai_gen_id }}">
+        <div class="ai-bestsellers-carousel__wrapper-{{ ai_gen_id }} moonridge-carousel-stage">
           <div
             class="ai-bestsellers-carousel__track-{{ ai_gen_id }}"
             data-track
@@ -360,17 +335,6 @@
           </div>
         </div>
 
-        {% if block.settings.show_navigation %}
-          <button
-            class="ai-bestsellers-carousel__nav-button-{{ ai_gen_id }} ai-bestsellers-carousel__nav-button--next-{{ ai_gen_id }}"
-            data-next
-            aria-label="Next"
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="8 4 14 10 8 16"></polyline>
-            </svg>
-          </button>
-        {% endif %}
       </div>
 
       {% if block.settings.show_dots %}

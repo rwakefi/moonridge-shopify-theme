@@ -133,46 +133,6 @@
     font-size: {{ block.settings.price_size | times: 0.9 }}px;
   }
 
-  .ai-bestsellers-carousel__nav-{{ ai_gen_id }} {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: {{ block.settings.nav_background }};
-    border: 1px solid {{ block.settings.nav_border_color }};
-    border-radius: 50%;
-    width: {{ block.settings.nav_size }}px;
-    height: {{ block.settings.nav_size }}px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 2;
-    transition: all 0.3s ease;
-  }
-
-  .ai-bestsellers-carousel__nav-{{ ai_gen_id }}:hover {
-    background-color: {{ block.settings.nav_hover_background }};
-  }
-
-  .ai-bestsellers-carousel__nav-{{ ai_gen_id }}:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
-
-  .ai-bestsellers-carousel__nav--prev-{{ ai_gen_id }} {
-    left: -{{ block.settings.nav_offset }}px;
-  }
-
-  .ai-bestsellers-carousel__nav--next-{{ ai_gen_id }} {
-    right: -{{ block.settings.nav_offset }}px;
-  }
-
-  .ai-bestsellers-carousel__nav-icon-{{ ai_gen_id }} {
-    width: 16px;
-    height: 16px;
-    stroke: {{ block.settings.nav_icon_color }};
-  }
-
   .ai-bestsellers-carousel__empty-{{ ai_gen_id }} {
     text-align: center;
     padding: 60px 20px;
@@ -196,14 +156,6 @@
       scroll-snap-align: start;
     }
 
-    .ai-bestsellers-carousel__nav--prev-{{ ai_gen_id }} {
-      left: 10px;
-    }
-
-    .ai-bestsellers-carousel__nav--next-{{ ai_gen_id }} {
-      right: 10px;
-    }
-
     .ai-bestsellers-carousel__title-{{ ai_gen_id }} {
       font-size: {{ block.settings.heading_size | times: 0.8 }}px;
     }
@@ -219,18 +171,35 @@
     {% endif %}
 
     {% if block.settings.collection != blank and block.settings.collection.products.size > 0 %}
-      <div class="ai-bestsellers-carousel__wrapper-{{ ai_gen_id }}">
-        <button
-          class="ai-bestsellers-carousel__nav-{{ ai_gen_id }} ai-bestsellers-carousel__nav--prev-{{ ai_gen_id }}"
-          aria-label="Previous products"
-          data-nav="prev"
-        >
-          <svg class="ai-bestsellers-carousel__nav-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-        </button>
+      <div
+        class="ai-bestsellers-carousel__wrapper-{{ ai_gen_id }} moonridge-carousel-wrapper"
+        style="--mr-carousel-btn-bg: {{ block.settings.nav_background }}; --mr-carousel-btn-color: {{ block.settings.nav_icon_color }}; --mr-carousel-btn-hover-bg: {{ block.settings.nav_hover_background }};"
+      >
+        <div class="moonridge-carousel-controls">
+          <button
+            type="button"
+            class="ai-bestsellers-carousel__nav-{{ ai_gen_id }} ai-bestsellers-carousel__nav--prev-{{ ai_gen_id }} moonridge-carousel-btn moonridge-carousel-btn--prev"
+            aria-label="Previous products"
+            data-nav="prev"
+          >
+            <svg class="ai-bestsellers-carousel__nav-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
 
-        <div class="ai-bestsellers-carousel__track-{{ ai_gen_id }}" data-track>
+          <button
+            type="button"
+            class="ai-bestsellers-carousel__nav-{{ ai_gen_id }} ai-bestsellers-carousel__nav--next-{{ ai_gen_id }} moonridge-carousel-btn moonridge-carousel-btn--next"
+            aria-label="Next products"
+            data-nav="next"
+          >
+            <svg class="ai-bestsellers-carousel__nav-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <div class="ai-bestsellers-carousel__track-{{ ai_gen_id }} moonridge-carousel-stage" data-track>
           {% for product in block.settings.collection.products limit: block.settings.products_to_show %}
             <a href="{{ product.url }}" class="ai-bestsellers-carousel__product-{{ ai_gen_id }}">
               <div class="ai-bestsellers-carousel__image-wrapper-{{ ai_gen_id }}">
@@ -273,16 +242,6 @@
             </a>
           {% endfor %}
         </div>
-
-        <button
-          class="ai-bestsellers-carousel__nav-{{ ai_gen_id }} ai-bestsellers-carousel__nav--next-{{ ai_gen_id }}"
-          aria-label="Next products"
-          data-nav="next"
-        >
-          <svg class="ai-bestsellers-carousel__nav-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
       </div>
     {% else %}
       <div class="ai-bestsellers-carousel__empty-{{ ai_gen_id }}">

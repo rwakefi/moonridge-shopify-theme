@@ -1316,7 +1316,8 @@ function updateCountdown() {
                           {% render 'icon-caret' %}
                         </summary>
                       {%- endif -%}
-                      <slideshow-component class="slider-mobile-gutter">
+                      <slideshow-component class="slider-mobile-gutter moonridge-carousel-wrapper" style="--mr-carousel-btn-bg: #312110; --mr-carousel-btn-color: #ffffff; --mr-carousel-btn-hover-bg: #1f1d24;">
+                        <div class="moonridge-carousel-stage">
                         {%- assign number_of_slides = recommendations.products_count | plus: 0.0 | divided_by: block.settings.products_per_page | ceil -%}
                         <div id="Slider-{{ block.id }}" class="contains-card contains-card--product complementary-slider grid grid--1-col slider slider--everywhere" role="list"{% if number_of_slides > 1 %} aria-label="{{ 'general.slider.name' | t }}"{% endif %}>
                           {%- for i in (1..number_of_slides) -%}
@@ -1341,9 +1342,9 @@ function updateCountdown() {
                           {%- endfor -%}
                         </div>
                         {%- if number_of_slides > 1 -%}
-                          <div class="slider-buttons no-js-hidden">
-                            <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'general.slider.previous_slide' | t }}">{% render 'icon-caret' %}</button>
-                            <div class="slider-counter slider-counter--{{ block.settings.pagination_style }}{% if block.settings.pagination_style == 'counter' or block.settings.pagination_style == 'numbers' %} caption{% endif %}">
+                          <div class="moonridge-carousel-controls slider-buttons no-js-hidden">
+                            <button type="button" class="moonridge-carousel-btn moonridge-carousel-btn--prev" name="previous" aria-label="{{ 'general.slider.previous_slide' | t }}">{% render 'icon-caret' %}</button>
+                            <div class="slider-counter slider-counter--{{ block.settings.pagination_style }}{% if block.settings.pagination_style == 'counter' or block.settings.pagination_style == 'numbers' %} caption{% endif %} visually-hidden">
                               {%- if block.settings.pagination_style == 'counter' -%}
                                 <span class="slider-counter--current">1</span>
                                 <span aria-hidden="true"> / </span>
@@ -1359,9 +1360,10 @@ function updateCountdown() {
                                 </div>
                               {%- endif -%}
                             </div>
-                            <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}">{% render 'icon-caret' %}</button>
+                            <button type="button" class="moonridge-carousel-btn moonridge-carousel-btn--next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}">{% render 'icon-caret' %}</button>
                           </div>
                         {%- endif -%}
+                        </div>
                       </slideshow-component>
                       {%- if block.settings.make_collapsible_row -%}
                         </details>

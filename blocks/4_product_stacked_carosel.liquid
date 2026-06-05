@@ -9,9 +9,15 @@
 }
 
 .ai-product-carousel-container-{{ ai_gen_id }} {
-  max-width: {{ block.settings.container_width }}px;
+  max-width: var(--page-width);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 1.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .ai-product-carousel-container-{{ ai_gen_id }} {
+    padding: 0 5rem;
+  }
 }
 
 /* ------------------------------
@@ -80,8 +86,12 @@
     overflow: hidden;
   }
 
+  .ai-product-carousel-track-{{ ai_gen_id }} {
+    gap: var(--grid-desktop-horizontal-spacing, 16px);
+  }
+
   .ai-product-carousel-slide-{{ ai_gen_id }} {
-    flex: 0 0 var(--ai-slide-width, 23%);
+    flex: 0 0 var(--ai-slide-width, 25%);
     max-width: var(--ai-slide-width, none);
   }
 }
@@ -102,19 +112,8 @@
 }
 
 @media screen and (min-width: 750px) {
-  .ai-product-carousel-slide-{{ ai_gen_id }} {
-    padding: 0 6px;
-    box-sizing: border-box;
-  }
-
   .ai-product-card-{{ ai_gen_id }} {
     min-height: 0;
-    border-radius: 12px;
-  }
-
-  .ai-product-image-wrapper-{{ ai_gen_id }} {
-    padding-bottom: 118%;
-    background-color: #efefef;
   }
 
   .ai-product-info-{{ ai_gen_id }} {
@@ -129,13 +128,6 @@
 
   .ai-product-price-{{ ai_gen_id }} {
     font-size: 16px;
-  }
-}
-
-@media screen and (min-width: 1140px) {
-  .ai-product-carousel-container-{{ ai_gen_id }} {
-    padding-left: 12px;
-    padding-right: 12px;
   }
 }
 
@@ -689,13 +681,18 @@
       getSlidesPerView() {
         if (window.innerWidth <= 749) return 4;
 
-        const containerWidth = this.trackContainer
-          ? this.trackContainer.offsetWidth
-          : window.innerWidth;
+        if (window.innerWidth >= 990) return this.productsPerView;
+        if (window.innerWidth >= 750) return this.productsPerViewTablet;
+        return 2;
+      }
 
-        if (containerWidth >= 1140) return 4.3;
-        if (containerWidth >= 1000) return 3.3;
-        return 2.5;
+      getTrackGap() {
+        if (!this.isDesktopMode()) return this.productGap;
+
+        const gap = parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue('--grid-desktop-horizontal-spacing')
+        );
+        return Number.isFinite(gap) ? gap : 16;
       }
 
       refreshLayout(animate) {
@@ -720,7 +717,7 @@
       getSlideStep() {
         if (!this.slides.length) return 0;
         const slideWidth = this.slides[0].offsetWidth;
-        return slideWidth + this.productGap;
+        return slideWidth + this.getTrackGap();
       }
 
       updateSlideDimensions() {
@@ -738,7 +735,8 @@
 
         const slidesPerView = this.getSlidesPerView();
         const containerWidth = this.trackContainer.offsetWidth;
-        const slideWidth = (containerWidth - this.productGap * (slidesPerView - 1)) / slidesPerView;
+        const gap = this.getTrackGap();
+        const slideWidth = (containerWidth - gap * (slidesPerView - 1)) / slidesPerView;
         const slideWidthPx = Math.max(slideWidth, 0) + 'px';
 
         this.track.style.setProperty('--ai-slide-width', slideWidthPx);

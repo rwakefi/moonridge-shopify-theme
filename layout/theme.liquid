@@ -113,7 +113,7 @@
     <meta name="description" content="{{ meta_description | strip_html | strip | truncate: 160 | escape }}">
 
     {% render 'meta-tags' %}
-    {%- if request.page_type == 'page' and template.suffix == 'podcast-moon-ridge' -%}
+    {%- if template.suffix == 'podcast-moon-ridge' -%}
       {%- assign podcast_share_image = 'podcast-og-preview.png' | asset_url -%}
       <meta property="og:image" content="{{ podcast_share_image }}">
       <meta property="og:image:secure_url" content="{{ podcast_share_image }}">

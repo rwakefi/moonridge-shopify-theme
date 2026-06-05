@@ -32,6 +32,9 @@
     assign og_type = 'product'
   elsif request.page_type == 'article'
     assign og_type = 'article'
+  elsif request.page_type == 'page' and page.handle == 'podcast'
+    assign og_title = 'The Moon Ridge Podcast | Hosted by Zack Wakefield'
+    assign og_description = 'Travel, hats, interior design, great brands, and stories from a life well lived. Listen on Apple Podcasts, Spotify, YouTube, and more.'
   endif
 %}
 
@@ -46,11 +49,22 @@
 <meta property="og:type" content="{{ og_type }}">
 <meta property="og:description" content="{{ og_description | escape }}">
 {%- assign og_image = page_image -%}
+{%- assign og_image_is_file = false -%}
 {%- if page.metafields.custom.social_image != blank -%}
   {%- assign og_image = page.metafields.custom.social_image -%}
 {%- endif -%}
+{%- if request.page_type == 'page' and page.handle == 'podcast' -%}
+  {%- assign og_image = nil -%}
+  {%- assign og_image_file = 'Podcast_Logo.png' -%}
+  {%- assign og_image_is_file = true -%}
+{%- endif -%}
 
-{%- if og_image -%}
+{%- if og_image_is_file -%}
+  <meta property="og:image" content="https:{{ og_image_file | file_img_url: '1200x1200' }}">
+  <meta property="og:image:secure_url" content="https:{{ og_image_file | file_img_url: '1200x1200' }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
+{%- elsif og_image -%}
   <meta property="og:image" content="https:{{ og_image | image_url: width: 1200, height: 630, crop: 'center' }}">
   <meta property="og:image:secure_url" content="https:{{ og_image | image_url: width: 1200, height: 630, crop: 'center' }}">
   <meta property="og:image:width" content="1200">
@@ -68,7 +82,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title | escape }}">
 <meta name="twitter:description" content="{{ og_description | escape }}">
-{%- if og_image -%}
+{%- if og_image_is_file -%}
+  <meta name="twitter:image" content="https:{{ og_image_file | file_img_url: '1200x1200' }}">
+{%- elsif og_image -%}
   <meta name="twitter:image" content="https:{{ og_image | image_url: width: 1200, height: 630, crop: 'center' }}">
 {%- endif -%}
 

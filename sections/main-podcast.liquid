@@ -116,14 +116,22 @@
   .podcast-episode:last-child {
     border-bottom: none;
   }
+  .podcast-episode__image {
+    flex-shrink: 0;
+  }
   .podcast-episode__image img {
     width: 120px;
     height: 120px;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 8px;
+    display: block;
   }
   .podcast-episode__content {
     flex: 1;
+    min-width: 0;
+  }
+  .podcast-episode__headline {
+    margin-bottom: 12px;
   }
   .podcast-episode__content a {
     text-decoration: none;
@@ -136,6 +144,7 @@
     margin: 0 0 8px 0;
     color: #111;
     transition: color 0.2s;
+    line-height: 1.3;
   }
   .podcast-episode__content a:hover .podcast-episode__title {
     color: #C5A059;
@@ -143,8 +152,9 @@
   .podcast-episode__meta {
     font-size: 13px;
     color: #777;
-    margin-bottom: 12px;
+    margin: 0;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 8px;
   }
@@ -156,12 +166,20 @@
     font-weight: 600;
     text-transform: uppercase;
     color: #555;
+    white-space: nowrap;
   }
   .podcast-episode__desc {
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.55;
     color: #555;
     margin: 0;
+  }
+  .podcast-episode__desc p {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
   }
   .podcast-episode__platforms {
     display: flex;
@@ -172,10 +190,49 @@
   .podcast-episode__platforms .platform-badge {
     padding: 6px 12px;
     font-size: 12px;
+    position: relative;
   }
   .podcast-episode__platforms .platform-badge img {
     width: 16px;
     height: 16px;
+  }
+  .platform-badge--icon-only {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    justify-content: center;
+    gap: 0;
+  }
+  .platform-badge--icon-only span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  @media screen and (max-width: 768px) {
+    .podcast-episode__platforms .platform-badge--compact {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      justify-content: center;
+      gap: 0;
+    }
+    .podcast-episode__platforms .platform-badge--compact span {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
   }
   .podcast-loading {
     text-align: center;
@@ -210,6 +267,9 @@
 
   /* Mobile Adjustments */
   @media screen and (max-width: 768px) {
+    .podcast-directory {
+      padding: 40px 16px;
+    }
     .podcast-header {
       flex-direction: column;
       align-items: center;
@@ -223,18 +283,45 @@
       font-size: 32px;
     }
     .podcast-episode {
-      gap: 16px;
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      grid-template-areas:
+        "image headline"
+        "body body";
+      column-gap: 14px;
+      row-gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
     }
     .podcast-episode__image {
-      flex-shrink: 0;
+      grid-area: image;
     }
     .podcast-episode__image img {
-      width: 80px;
-      height: 80px;
+      width: 72px;
+      height: 72px;
+    }
+    .podcast-episode__headline {
+      grid-area: headline;
+      margin-bottom: 0;
+    }
+    .podcast-episode__content {
+      display: contents;
+    }
+    .podcast-episode__desc,
+    .podcast-episode__platforms {
+      grid-area: body;
     }
     .podcast-episode__title {
-      font-size: 18px;
+      font-size: 17px;
       line-height: 1.25;
+    }
+    .podcast-episode__platforms {
+      gap: 6px;
+      margin-top: 0;
+    }
+    .podcast-episode__platforms .platform-badge img {
+      width: 18px;
+      height: 18px;
     }
   }
 {% endstyle %}
@@ -258,6 +345,7 @@
   data-episodes-per-page="{{ section.settings.episodes_per_page }}"
   data-episodes-json="{{ 'podcast-episodes.json' | asset_url }}"
 >
+  <link rel="preload" href="{{ 'podcast-episodes.json' | asset_url }}" as="fetch" crossorigin>
   <!-- Header -->
   <div class="podcast-header">
     <div class="podcast-header__image">
@@ -379,9 +467,9 @@
         <div class="podcast-episode__platforms">
           ${platformLinks.map(function (platform) {
             return `
-              <a href="${platform.url}" target="_blank" rel="noopener noreferrer" class="platform-badge">
-                <img src="${platform.icon}" alt="${platform.name}">
-                ${platform.name}
+              <a href="${platform.url}" target="_blank" rel="noopener noreferrer" class="platform-badge platform-badge--compact">
+                <img src="${platform.icon}" alt="${platform.name}" width="16" height="16" loading="lazy" decoding="async">
+                <span>${platform.name}</span>
               </a>
             `;
           }).join('')}
@@ -488,6 +576,13 @@
 
     async function fetchEpisodes(feedUrl) {
       const assetItems = await fetchEpisodesFromAsset();
+      if (!assetItems.length) {
+        throw new Error('Failed to load feed');
+      }
+      return assetItems;
+    }
+
+    async function refreshEpisodesFromRemote(feedUrl, currentItems) {
       const remoteResults = await Promise.allSettled([
         fetchEpisodesFromLiveRss(feedUrl),
         fetchEpisodesFromRss2Json(feedUrl)
@@ -498,11 +593,10 @@
         .map(function (result) { return result.value; })
         .flat();
 
-      const items = mergeEpisodes(assetItems, remoteItems);
-      if (!items.length) {
-        throw new Error('Failed to load feed');
-      }
-      return items;
+      if (!remoteItems.length) return currentItems;
+
+      const merged = mergeEpisodes(currentItems, remoteItems);
+      return merged.length ? merged : currentItems;
     }
 
     function sortEpisodes(items) {
@@ -537,12 +631,9 @@
         const dateString = pubDate.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = item.description || '';
-        let textSnippet = tempDiv.textContent || tempDiv.innerText || '';
-        if (textSnippet.length > 200) {
-          textSnippet = textSnippet.substring(0, 200) + '...';
-        }
+        const textSnippet = tempDiv.textContent || tempDiv.innerText || '';
 
-        const episodeImage = item.thumbnail || (item.enclosure && item.enclosure.link) || fallbackImage;
+        const episodeImage = fallbackImage;
         const isLatest = index === 0;
         const badgeHtml = isLatest ? '<span class="podcast-episode__badge">Latest Episode</span>' : '';
         const episodeLink = item.link && item.link.trim() !== '' ? item.link : '';
@@ -550,17 +641,20 @@
         const titleHtml = episodeLink
           ? `<a href="${episodeLink}" target="_blank" rel="noopener noreferrer"><h2 class="podcast-episode__title">${safeTitle}</h2></a>`
           : `<h2 class="podcast-episode__title">${safeTitle}</h2>`;
+        const imageLoading = index === 0 ? 'eager' : 'lazy';
 
         const episodeHtml = `
           <div class="podcast-episode" data-index="${index}" data-title="${item.title.toLowerCase().replace(/"/g, '&quot;')}">
             <div class="podcast-episode__image">
-              <img src="${episodeImage}" alt="${safeTitle}">
+              <img src="${episodeImage}" alt="${safeTitle}" width="120" height="120" loading="${imageLoading}" decoding="async">
             </div>
             <div class="podcast-episode__content">
-              ${titleHtml}
-              <div class="podcast-episode__meta">
-                <span>${dateString}</span>
-                ${badgeHtml ? '<span>|</span>' + badgeHtml : ''}
+              <div class="podcast-episode__headline">
+                ${titleHtml}
+                <div class="podcast-episode__meta">
+                  <span>${dateString}</span>
+                  ${badgeHtml ? '<span>|</span>' + badgeHtml : ''}
+                </div>
               </div>
               <div class="podcast-episode__desc">
                 <p>${escapeHtml(textSnippet)}</p>
@@ -584,36 +678,56 @@
       .then(function (items) {
         const sortedItems = sortEpisodes(items);
         renderEpisodes(sortedItems);
+        bindEpisodeInteractions(sortedItems);
 
-        if (loadMoreBtn) {
-          loadMoreBtn.addEventListener('click', function () {
-            visibleCount += episodesPerPage;
-            updateEpisodeVisibility();
-          });
-        }
-
-        if (searchInput) {
-          searchInput.addEventListener('input', function (e) {
-            const term = e.target.value.toLowerCase().trim();
-            const episodes = listContainer.querySelectorAll('.podcast-episode');
-            isSearching = term.length > 0;
-
-            episodes.forEach(function (episode) {
-              const title = episode.getAttribute('data-title') || '';
-              const matches = !isSearching || title.includes(term);
-              episode.classList.toggle('podcast-episode--hidden', !matches);
-            });
-
-            if (loadMoreWrap) {
-              loadMoreWrap.hidden = isSearching || episodes.length <= visibleCount;
+        refreshEpisodesFromRemote(rssUrl, sortedItems)
+          .then(function (mergedItems) {
+            if (mergedItems.length !== sortedItems.length) {
+              renderEpisodes(sortEpisodes(mergedItems));
+              bindEpisodeInteractions(mergedItems);
             }
+          })
+          .catch(function () {
+            /* keep cached asset episodes */
           });
-        }
       })
       .catch(function (error) {
         console.error('Error fetching podcast feed:', error);
         listContainer.innerHTML = '<div class="podcast-loading">Unable to load episodes at this time. Please try again later.</div>';
       });
+
+    function bindEpisodeInteractions(items) {
+      if (loadMoreBtn && !loadMoreBtn.dataset.bound) {
+        loadMoreBtn.dataset.bound = 'true';
+        loadMoreBtn.addEventListener('click', function () {
+          visibleCount += episodesPerPage;
+          updateEpisodeVisibility();
+        });
+      }
+
+      if (searchInput && !searchInput.dataset.bound) {
+        searchInput.dataset.bound = 'true';
+        searchInput.addEventListener('input', function (e) {
+          const term = e.target.value.toLowerCase().trim();
+          const episodes = listContainer.querySelectorAll('.podcast-episode');
+          isSearching = term.length > 0;
+
+          episodes.forEach(function (episode) {
+            const title = episode.getAttribute('data-title') || '';
+            const matches = !isSearching || title.includes(term);
+            episode.classList.toggle('podcast-episode--hidden', !matches);
+          });
+
+          if (loadMoreWrap) {
+            loadMoreWrap.hidden = isSearching || episodes.length <= visibleCount;
+          }
+        });
+      }
+
+      if (loadMoreWrap && items) {
+        loadMoreWrap.hidden = items.length <= visibleCount;
+      }
+    }
   });
 </script>
 

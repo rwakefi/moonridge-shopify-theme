@@ -326,6 +326,108 @@
   transform: scale(1.25);
 }
 
+/* Keep Best Sellers controls locked to the product row even if shared CSS is cached out of order. */
+.ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-controls-{{ ai_gen_id }} {
+  position: absolute !important;
+  top: 50% !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: auto !important;
+  margin-top: calc(-2.75rem / 2) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  overflow-x: hidden !important;
+  pointer-events: none !important;
+  z-index: 20 !important;
+}
+
+.ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-button-{{ ai_gen_id }} {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 2.75rem !important;
+  height: 2.75rem !important;
+  min-width: 2.75rem !important;
+  min-height: 2.75rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: {{ block.settings.button_background }} !important;
+  color: {{ block.settings.button_color }} !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12) !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  transition: transform 0.15s ease-in-out, background 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease !important;
+}
+
+.ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-prev-{{ ai_gen_id }} {
+  transform: translate(-100%, 0) !important;
+}
+
+.ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-next-{{ ai_gen_id }} {
+  transform: translate(100%, 0) !important;
+}
+
+.ai-product-carousel-wrapper-{{ ai_gen_id }}:hover .ai-carousel-prev-{{ ai_gen_id }},
+.ai-product-carousel-wrapper-{{ ai_gen_id }}:focus-within .ai-carousel-prev-{{ ai_gen_id }},
+.ai-product-carousel-wrapper-{{ ai_gen_id }}:hover .ai-carousel-next-{{ ai_gen_id }},
+.ai-product-carousel-wrapper-{{ ai_gen_id }}:focus-within .ai-carousel-next-{{ ai_gen_id }} {
+  transform: translate(0, 0) !important;
+}
+
+.ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-button-{{ ai_gen_id }}:hover:not(:disabled) {
+  background: {{ block.settings.button_hover_background }} !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18) !important;
+}
+
+.ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-button-{{ ai_gen_id }} svg {
+  width: 14px !important;
+  height: 14px !important;
+  display: block !important;
+}
+
+@media screen and (max-width: 749px) {
+  .ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-controls-{{ ai_gen_id }} {
+    position: absolute !important;
+    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin-top: 0 !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  .ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-button-{{ ai_gen_id }} {
+    position: absolute !important;
+    top: 38% !important;
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+    min-width: 2.25rem !important;
+    min-height: 2.25rem !important;
+    background: #ffffff !important;
+    color: {{ block.settings.button_background }} !important;
+    border: 1px solid #d6d6d6 !important;
+    border-radius: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+
+  .ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-prev-{{ ai_gen_id }} {
+    left: 4px !important;
+  }
+
+  .ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-next-{{ ai_gen_id }} {
+    right: 4px !important;
+  }
+}
+
 {% endstyle %}
 
 <product-carousel-{{ ai_gen_id }} class="ai-product-carousel-{{ ai_gen_id }}" {{ block.shopify_attributes }}>

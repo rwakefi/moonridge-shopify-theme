@@ -1,0 +1,25 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "lucchese-experience",
+      "settings": {
+        "eyebrow": "MOON RIDGE & LUCCHESE",
+        "heading": "The Private Boot Fitting Experience",
+        "subheading": "Step into a legacy of craftsmanship. Schedule a one-on-one personal fitting for premium custom and exotic Lucchese boots.",
+        "button_label": "Request an Appointment"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

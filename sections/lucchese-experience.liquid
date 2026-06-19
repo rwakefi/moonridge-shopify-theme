@@ -1,0 +1,295 @@
+{{ 'lucchese-experience.css' | asset_url | stylesheet_tag }}
+
+<section class="lucchese-exp section-{{ section.id }}-padding" id="LuccheseExp-{{ section.id }}">
+  <!-- Hero Section -->
+  <div class="lucchese-exp__hero" style="{% if section.settings.hero_image != blank %}background-image: url('{{ section.settings.hero_image | image_url: width: 2000 }}');{% else %}background-color: #1a1512;{% endif %}">
+    <div class="lucchese-exp__hero-overlay"></div>
+    <div class="lucchese-exp__hero-content page-width">
+      
+      <!-- Combined Logo Badge -->
+      <div class="lucchese-exp__badge animate--fade-in">
+        <div class="lucchese-exp__badge-logos">
+          {%- if section.settings.logo_moonridge_m != blank -%}
+            <img src="{{ section.settings.logo_moonridge_m | image_url: width: 120 }}" alt="Moon Ridge M Logo" class="lucchese-exp__m-logo" loading="lazy">
+          {%- else -%}
+            <span class="lucchese-exp__m-fallback">M</span>
+          {%- endif -%}
+          <span class="lucchese-exp__divider">&times;</span>
+          {%- if section.settings.logo_lucchese != blank -%}
+            <img src="{{ section.settings.logo_lucchese | image_url: width: 240 }}" alt="Lucchese Bootmaker Logo" class="lucchese-exp__lucchese-logo" loading="lazy">
+          {%- else -%}
+            <span class="lucchese-exp__brand-text-fallback">LUCCHESE</span>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <p class="lucchese-exp__hero-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h1 class="lucchese-exp__hero-heading">{{ section.settings.heading | escape }}</h1>
+      <p class="lucchese-exp__hero-subheading">{{ section.settings.subheading | escape }}</p>
+      
+      <a href="#booking-form" class="button button--primary lucchese-exp__hero-btn">
+        {{ section.settings.button_label | escape }}
+      </a>
+    </div>
+  </div>
+
+  <!-- Narrative / Features Section -->
+  <div class="lucchese-exp__narrative page-width">
+    <div class="lucchese-exp__intro">
+      <h2>{{ section.settings.narrative_title | escape }}</h2>
+      <p>{{ section.settings.narrative_text | escape }}</p>
+    </div>
+
+    <div class="lucchese-exp__features-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'feature' -%}
+          <div class="lucchese-exp__feature-card" {{ block.shopify_attributes }}>
+            <div class="lucchese-exp__feature-media">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title }}" loading="lazy">
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            <div class="lucchese-exp__feature-content">
+              <h3>{{ block.settings.title | escape }}</h3>
+              <p>{{ block.settings.description | escape }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <!-- Interactive Booking Form Section -->
+  <div class="lucchese-exp__booking page-width" id="booking-form">
+    <div class="lucchese-exp__booking-container">
+      <div class="lucchese-exp__booking-info">
+        <h2>Reserve Your Private Fitting</h2>
+        <p>Experience the ultimate in personal service. Book an exclusive, after-hours fitting session in our showroom. Browse and try on our ready-to-wear Lucchese collection with a dedicated boot specialist—entirely to yourself.</p>
+        
+        <div class="lucchese-exp__booking-meta">
+          <div class="lucchese-exp__meta-item">
+            <strong>Duration:</strong> 1 Hour (Exclusive After-Hours Session)
+          </div>
+          <div class="lucchese-exp__meta-item">
+            <strong>Access:</strong> Private Showroom, Dedicated Fitting Specialist
+          </div>
+          <div class="lucchese-exp__meta-item">
+            <strong>Fee:</strong> Complimentary (Reservation Required)
+          </div>
+        </div>
+      </div>
+
+      <div class="lucchese-exp__form-wrapper">
+        {%- form 'contact', id: 'LuccheseBookingForm', class: 'lucchese-exp__form' -%}
+          {%- if form.posted_successfully? -%}
+            <div class="lucchese-exp__form-success" tabindex="-1" autofocus>
+              <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="currentColor" d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm-2 15l-5-5 1.41-1.41L8 12.17l7.59-7.59L17 6l-9 9z"/>
+              </svg>
+              <span>{{ section.settings.success_message | default: 'Thank you! Your private booking request has been received. Our team will contact you shortly.' }}</span>
+            </div>
+          {%- elsif form.errors -%}
+            <div class="lucchese-exp__form-errors">
+              <p class="form__message" role="alert" tabindex="-1" autofocus>
+                Please correct the errors below.
+              </p>
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+
+          <div class="lucchese-exp__form-fields">
+            <!-- Hidden context field for email notifications -->
+            <input type="hidden" name="contact[Booking Type]" value="Lucchese Boot Private Fitting Experience">
+
+            <div class="field">
+              <input class="field__input" autocomplete="name" type="text" id="LuccheseForm-name" name="contact[name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="Full Name" required>
+              <label class="field__label" for="LuccheseForm-name">Full Name *</label>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <input autocomplete="email" type="email" id="LuccheseForm-email" class="field__input" name="contact[email]" spellcheck="false" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" placeholder="Email Address" required>
+                <label class="field__label" for="LuccheseForm-email">Email Address *</label>
+              </div>
+
+              <div class="field">
+                <input autocomplete="tel" type="tel" id="LuccheseForm-phone" class="field__input" name="contact[phone]" pattern="[0-9\- \+\(\)]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="Phone Number" required>
+                <label class="field__label" for="LuccheseForm-phone">Phone Number *</label>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <input type="date" id="LuccheseForm-date" class="field__input" name="contact[Preferred Date]" required min="{{ "now" | date: "%Y-%m-%d" }}">
+                <label class="field__label" for="LuccheseForm-date">Preferred Date *</label>
+              </div>
+
+              <div class="field select-wrapper">
+                <select id="LuccheseForm-time" class="select__select field__input" name="contact[Preferred Time]" required style="padding-top: 1.5rem;">
+                  <option value="" disabled selected>Select Preferred Time</option>
+                  <option value="Morning (10:00 AM - 12:00 PM)">Morning (10:00 AM - 12:00 PM)</option>
+                  <option value="Midday (12:00 PM - 2:00 PM)">Midday (12:00 PM - 2:00 PM)</option>
+                  <option value="Afternoon (2:00 PM - 5:00 PM)">Afternoon (2:00 PM - 5:00 PM)</option>
+                </select>
+                <label class="field__label" for="LuccheseForm-time">Preferred Time Slot *</label>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <input type="text" id="LuccheseForm-size" class="field__input" name="contact[Estimated Boot Size]" placeholder="e.g. 10.5 D, 8 B" required>
+                <label class="field__label" for="LuccheseForm-size">Estimated Boot Size *</label>
+              </div>
+
+              <div class="field select-wrapper">
+                <select id="LuccheseForm-style" class="select__select field__input" name="contact[Style Interest]" style="padding-top: 1.5rem;">
+                  <option value="" disabled selected>Leather / Style Interest</option>
+                  <option value="Exotic Skins (Caiman / Alligator)">Exotic Skins (Caiman / Alligator)</option>
+                  <option value="Ostrich / Lizard">Ostrich / Lizard</option>
+                  <option value="Classic Smooth Leather / Calfskin">Classic Smooth Leather / Calfskin</option>
+                  <option value="Bespoke Custom Orders">Bespoke Custom Orders</option>
+                </select>
+                <label class="field__label" for="LuccheseForm-style">Style/Leather Preference</label>
+              </div>
+            </div>
+
+            <div class="field">
+              <textarea rows="4" id="LuccheseForm-notes" class="text-area field__input" name="contact[Custom Fitting Notes]" placeholder="Tell us about what you are looking for, or any special requests..."></textarea>
+              <label class="field__label" for="LuccheseForm-notes">Special Requests or Fitting Notes</label>
+            </div>
+
+            <div class="lucchese-exp__form-actions">
+              <button type="submit" class="button button--primary lucchese-exp__submit-btn">
+                <span>Confirm Request</span>
+                <span class="btn-spinner"></span>
+              </button>
+            </div>
+          </div>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lucchese VIP Fitting",
+  "tag": "section",
+  "class": "section-lucchese-experience",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_moonridge_m",
+      "label": "Moon Ridge Logo (M)"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_lucchese",
+      "label": "Lucchese Logo"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Hero Eyebrow",
+      "default": "MOON RIDGE & LUCCHESE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Hero Heading",
+      "default": "The Private Boot Fitting Experience"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Hero Subheading",
+      "default": "Step into a legacy of craftsmanship. Schedule a one-on-one personal fitting for premium custom and exotic Lucchese boots."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Hero Button Label",
+      "default": "Request an Appointment"
+    },
+    {
+      "type": "text",
+      "id": "narrative_title",
+      "label": "Narrative Title",
+      "default": "Artisanal Heritage. Custom Sized."
+    },
+    {
+      "type": "textarea",
+      "id": "narrative_text",
+      "label": "Narrative Description",
+      "default": "Every pair of Lucchese boots represents a commitment to luxury, fit, and timeless styling. Our certified fitters guide you through the selection process, ensuring your boots are built for absolute comfort and lasting style."
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Form Success Message",
+      "default": "Thank you! Your private booking request has been received. Our team will contact you shortly to finalize your date."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Experience Highlight",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Highlight Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Highlight Title",
+          "default": "Precision Sizing"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Highlight Description",
+          "default": "Our fitters evaluate instep, width, and arch support to match you with your perfect Lucchese fit."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lucchese Private Fitting",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Precision Showroom Fitting",
+            "description": "A dedicated one-on-one session with our fitters to find your exact Lucchese size, width, and instep profile."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Exotic Leather Styles",
+            "description": "Browse and try on ready-to-wear caiman, ostrich, lizard, and premium calfskin boots in our collection."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Private After-Hours Access",
+            "description": "Enjoy completely exclusive use of our showroom after business hours, with our team focused solely on you."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -49,7 +49,7 @@
         "heading": "Find your perfect hat in minutes",
         "subheading": "",
         "button_label": "Launch Hat Finder",
-        "button_link": "shopify://pages/hat-finder",
+        "button_link": "https://hatfinder.moonridgecompany.com",
         "show_secondary_link": false,
         "background_color": "#faf8f5",
         "text_color": "#2d2926",

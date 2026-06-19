@@ -159,4 +159,106 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
+  
+  #HatFinderCta-{{ section.id }} .hat-finder-cta__inner {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  #HatFinderCta-{{ section.id }} .hat-finder-cta__copy {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  
+  #HatFinderCta-{{ section.id }} .hat-finder-cta__eyebrow {
+    margin: 0 0 0.15rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  
+  #HatFinderCta-{{ section.id }} .hat-finder-cta__heading {
+    margin: 0;
+    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  
+  #HatFinderCta-{{ section.id }} .hat-finder-cta__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 0 0 auto;
+  }
+  
+  #HatFinderCta-{{ section.id }} .hat-finder-cta__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  @media screen and (max-width: 749px) {
+    #HatFinderCta-{{ section.id }} .hat-finder-cta__inner {
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem 0.75rem;
+    }
+    
+    #HatFinderCta-{{ section.id }} .hat-finder-cta__copy {
+      flex: 0 1 auto;
+    }
+    
+    #HatFinderCta-{{ section.id }} .hat-finder-cta__eyebrow {
+      display: none !important;
+    }
+    
+    #HatFinderCta-{{ section.id }} .hat-finder-cta__heading {
+      margin: 0;
+      font-size: 0.875rem;
+      display: inline;
+    }
+    
+    #HatFinderCta-{{ section.id }} .hat-finder-cta__actions {
+      display: inline-flex;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+    
+    #HatFinderCta-{{ section.id }} .hat-finder-cta__button {
+      width: auto;
+      min-height: auto;
+      padding: 0;
+      background: transparent !important;
+      border: none !important;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      text-decoration: underline;
+      color: {{ section.settings.text_color }} !important;
+      font-weight: 700;
+    }
+    
+    #HatFinderCta-{{ section.id }} .hat-finder-cta__button:hover {
+      opacity: 0.8;
+    }
+  }
 </style>

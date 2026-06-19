@@ -47,7 +47,7 @@
       "settings": {
         "eyebrow": "Moon Ridge Hat Finder",
         "heading": "Find your perfect hat in minutes",
-        "subheading": "Match crown, brim, and material to your style \u2014 then shop hats that fit.",
+        "subheading": "",
         "button_label": "Launch Hat Finder",
         "button_link": "shopify://pages/hat-finder",
         "show_secondary_link": false,

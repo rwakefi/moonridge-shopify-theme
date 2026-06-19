@@ -55,8 +55,8 @@
         "text_color": "#2d2926",
         "button_background": "#312110",
         "button_text": "#ffffff",
-        "padding_top": 28,
-        "padding_bottom": 28
+        "padding_top": 12,
+        "padding_bottom": 12
       }
     },
     "trust_badges": {

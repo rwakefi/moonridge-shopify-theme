@@ -26,23 +26,32 @@
 
 /* 1. Header Bar (J.Crew style) */
 .lucchese-exp__header-bar {
+  position: relative;
   text-align: center;
-  padding: 5rem 0 3rem 0;
+  padding: 8rem 0;
   border-bottom: 1px solid #eaeaea;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url({{ 'lucchese-header-bg.jpg' | asset_url }});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .lucchese-exp__header-eyebrow {
   display: block;
   font-size: 1.2rem;
   letter-spacing: 0.25em;
-  color: #666666;
+  color: rgba(255, 255, 255, 0.95);
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .lucchese-exp__header-title {
   font-size: calc(var(--font-heading-scale) * 3rem) !important;
   line-height: 1.2;
+  color: #ffffff;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 @media only screen and (min-width: 750px) {

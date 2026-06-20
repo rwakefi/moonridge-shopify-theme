@@ -391,6 +391,56 @@
   margin: 0;
   padding-left: 2rem;
 }
+
+/* 4. Video Gallery Section */
+.lucchese-exp__videos {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  border-top: 1px solid #eaeaea;
+}
+
+.lucchese-exp__videos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media screen and (min-width: 750px) {
+  .lucchese-exp__videos-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.lucchese-exp__video-wrapper {
+  background-color: #faf8f5;
+  border: 1px solid #eaeaea;
+  padding: 1.2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lucchese-exp__video-wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.lucchese-exp__video-aspect {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  overflow: hidden;
+}
+
+.lucchese-exp__video-aspect iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 </style>
 
 <section class="lucchese-exp section-{{ section.id }}-padding" id="LuccheseExp-{{ section.id }}">
@@ -457,6 +507,22 @@
           <img src="{{ 'lucchese-showcase.jpg' | asset_url }}" alt="Lucchese private fitting experience" class="lucchese-exp__main-img" loading="lazy">
         </div>
       {%- endif -%}
+    </div>
+  </div>
+
+  <!-- 4. Video Gallery Section -->
+  <div class="lucchese-exp__videos page-width">
+    <div class="lucchese-exp__videos-grid">
+      <div class="lucchese-exp__video-wrapper">
+        <div class="lucchese-exp__video-aspect">
+          <iframe src="https://lucchese.widen.net/view/video/oqjroy2ruu/Lucchese_Film_FINAL.mp4.crdownload?x.portal_shortcode_generated=zn091gk5&x.app=portals" webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+        </div>
+      </div>
+      <div class="lucchese-exp__video-wrapper">
+        <div class="lucchese-exp__video-aspect">
+          <iframe src="https://lucchese.widen.net/view/video/pzwxjftlmu/Lucchese_60sec_FINAL.mp4.crdownload?x.portal_shortcode_generated=zn091gk5&x.app=portals" webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+        </div>
+      </div>
     </div>
   </div>
 

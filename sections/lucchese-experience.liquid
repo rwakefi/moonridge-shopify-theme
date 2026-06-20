@@ -1,4 +1,381 @@
-{{ 'lucchese-experience.css' | asset_url | stylesheet_tag }}
+<style>
+/* Lucchese Experience Landing Page - J.Crew Inspired Aesthetic */
+
+.section-lucchese-experience {
+  background-color: #ffffff;
+  color: #2c2c2c;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Typography Overrides */
+.lucchese-exp h1,
+.lucchese-exp h2,
+.lucchese-exp h3 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* 1. Header Bar (J.Crew style) */
+.lucchese-exp__header-bar {
+  text-align: center;
+  padding: 5rem 0 3rem 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.lucchese-exp__header-eyebrow {
+  display: block;
+  font-size: 1.2rem;
+  letter-spacing: 0.25em;
+  color: #666666;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.lucchese-exp__header-title {
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem) !important;
+  line-height: 1.2;
+}
+
+/* 2. Narrative & Image Split Layout */
+.lucchese-exp__split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  align-items: center;
+}
+
+@media screen and (min-width: 990px) {
+  .lucchese-exp__split {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 8rem;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+.lucchese-exp__split-heading {
+  font-size: clamp(2rem, 3.5vw, 3.2rem) !important;
+  margin-bottom: 2.5rem !important;
+}
+
+.lucchese-exp__split-text p {
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: #4a4a4a;
+  margin: 0 0 3rem 0;
+}
+
+/* Split Meta Rows */
+.lucchese-exp__split-meta {
+  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
+  padding: 2.5rem 0;
+  margin-bottom: 4rem;
+}
+
+.lucchese-exp__meta-row {
+  display: flex;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+.lucchese-exp__meta-row:last-child {
+  margin-bottom: 0;
+}
+
+.lucchese-exp__meta-label {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  width: 100px;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+.lucchese-exp__meta-value {
+  color: #555555;
+}
+
+/* Action Area with Logos */
+.lucchese-exp__action-badge {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3rem;
+}
+
+.lucchese-exp__action-logos {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.lucchese-exp__m-logo-small {
+  height: 36px;
+  width: auto;
+  opacity: 0.85;
+}
+
+.lucchese-exp__action-divider {
+  font-size: 1.8rem;
+  color: #999999;
+}
+
+.lucchese-exp__lucchese-logo-small {
+  height: 24px;
+  width: auto;
+  opacity: 0.85;
+}
+
+.lucchese-exp__cta-btn {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 1.4rem 3rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: 1px solid #1a1a1a;
+  background-color: transparent;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.lucchese-exp__cta-btn:hover {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Image Column Styling */
+.lucchese-exp__split-media {
+  width: 100%;
+}
+
+.lucchese-exp__media-wrapper {
+  overflow: hidden;
+  background-color: #f7f7f7;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+.lucchese-exp__main-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.placeholder-wrapper {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-wrapper svg {
+  width: 100px;
+  height: 100px;
+  fill: #cccccc;
+}
+
+/* 3. Booking Section (Light Form Sheet) */
+.lucchese-exp__booking {
+  border-top: 1px solid #eaeaea;
+  padding-top: 6rem;
+  padding-bottom: 8rem;
+}
+
+.lucchese-exp__booking-container {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.lucchese-exp__booking-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.lucchese-exp__booking-header h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.1em;
+}
+
+.lucchese-exp__booking-header p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: #666666;
+}
+
+/* Form Styles */
+.lucchese-exp__form-wrapper {
+  background-color: #faf8f5;
+  padding: 4rem 3rem;
+  border: 1px solid #eaeaea;
+}
+
+@media screen and (min-width: 750px) {
+  .lucchese-exp__form-wrapper {
+    padding: 6rem 5rem;
+  }
+}
+
+.lucchese-exp__form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.lucchese-exp__input-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media screen and (min-width: 600px) {
+  .lucchese-exp__input-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Clean Input Groups (Label Above Input - NO Overlapping) */
+.lucchese-exp__input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  text-align: left;
+}
+
+.lucchese-exp__input-group label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+}
+
+.lucchese-exp__input-group input[type="text"],
+.lucchese-exp__input-group input[type="email"],
+.lucchese-exp__input-group input[type="tel"],
+.lucchese-exp__input-group input[type="date"],
+.lucchese-exp__input-group select,
+.lucchese-exp__input-group textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1.4rem;
+  color: #2c2c2c;
+  padding: 1.2rem 1.5rem;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  outline: none;
+  border-radius: 0; /* J.Crew style sharp corners */
+  transition: border-color 0.2s ease;
+}
+
+.lucchese-exp__input-group input:focus,
+.lucchese-exp__input-group select:focus,
+.lucchese-exp__input-group textarea:focus {
+  border-color: #1a1a1a;
+}
+
+/* Date input specific formatting */
+.lucchese-exp__input-group input[type="date"] {
+  min-height: 4.5rem;
+}
+
+/* Select wrapper styling */
+.lucchese-exp__select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.lucchese-exp__select-wrapper select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 4rem !important;
+}
+
+.lucchese-exp__select-wrapper::after {
+  content: '';
+  position: absolute;
+  right: 1.8rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid #1a1a1a;
+  border-bottom: 1.5px solid #1a1a1a;
+  pointer-events: none;
+}
+
+/* Textarea styling */
+.lucchese-exp__input-group textarea {
+  min-height: 10rem;
+  resize: vertical;
+}
+
+/* Form Actions Button */
+.lucchese-exp__submit-btn {
+  width: 100%;
+  padding: 1.6rem 3rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: 1px solid #1a1a1a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+}
+
+.lucchese-exp__submit-btn:hover {
+  background-color: transparent;
+  color: #1a1a1a;
+}
+
+/* Success & Error Messaging */
+.lucchese-exp__form-success {
+  background-color: #f4f8f2;
+  color: #2b5c1a;
+  border: 1px solid #dcebd6;
+  padding: 1.5rem 2rem;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  text-align: left;
+}
+
+.lucchese-exp__form-errors {
+  background-color: #fff5f5;
+  color: #b52a2a;
+  border: 1px solid #ffd6d6;
+  padding: 1.5rem 2rem;
+  font-size: 1.4rem;
+  text-align: left;
+}
+
+.lucchese-exp__form-errors p {
+  margin: 0 0 1rem 0;
+  font-weight: bold;
+}
+
+.lucchese-exp__form-errors ul {
+  margin: 0;
+  padding-left: 2rem;
+}
+</style>
 
 <section class="lucchese-exp section-{{ section.id }}-padding" id="LuccheseExp-{{ section.id }}">
   

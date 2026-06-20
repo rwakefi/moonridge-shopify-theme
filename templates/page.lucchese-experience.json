@@ -12,10 +12,10 @@
     "main": {
       "type": "lucchese-experience",
       "settings": {
-        "eyebrow": "MOON RIDGE & LUCCHESE",
-        "heading": "The Private Boot Fitting Experience",
-        "subheading": "Step into a legacy of craftsmanship. Schedule a one-on-one personal fitting for premium custom and exotic Lucchese boots.",
-        "button_label": "Request an Appointment"
+        "eyebrow": "EXCLUSIVE SERVICES",
+        "heading": "PRIVATE APPOINTMENTS",
+        "narrative_title": "Lucchese Private Fitting",
+        "narrative_text": "<p>Experience the ultimate in personal service. Book an exclusive, after-hours fitting session in our showroom. Browse and try on our ready-to-wear Lucchese collection with a dedicated boot specialist—entirely to yourself.</p>"
       }
     }
   },

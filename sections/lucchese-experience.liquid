@@ -60,8 +60,8 @@
           <img src="{{ section.settings.hero_image | image_url: width: 1200 }}" alt="Lucchese private fitting experience" class="lucchese-exp__main-img" loading="lazy">
         </div>
       {%- else -%}
-        <div class="lucchese-exp__media-wrapper placeholder-wrapper">
-          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        <div class="lucchese-exp__media-wrapper">
+          <img src="{{ 'lucchese-showcase.jpg' | asset_url }}" alt="Lucchese private fitting experience" class="lucchese-exp__main-img" loading="lazy">
         </div>
       {%- endif -%}
     </div>

@@ -10,9 +10,8 @@
     <meta name="theme-color" content="{{ settings.color_background }}">
     <link rel="canonical" href="{{ canonical_url }}">
 
-    {%- if settings.favicon != blank -%}
-      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
-    {%- endif -%}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ 'moonridge-hat-finder-app-icon.png' | asset_url }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ 'moonridge-hat-finder-app-icon.png' | asset_url }}">
 
     {%- unless settings.type_header_font.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>

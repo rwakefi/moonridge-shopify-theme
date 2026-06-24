@@ -45,7 +45,7 @@
     "main": {
       "type": "main-blog",
       "settings": {
-        "blog": "moon-ridge-travel",
+        "blog": "rafter-m-travel",
         "articles_to_show": 24,
         "desktop_columns": 3,
         "desktop_rows": 4,

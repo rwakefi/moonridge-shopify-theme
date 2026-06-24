@@ -4,6 +4,7 @@
 {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
 
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'moonridge-carousel-arrows.css' | asset_url | stylesheet_tag }}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.image_shape == 'blob' %}
@@ -33,6 +34,22 @@
     position: relative;
   }
 
+  @media screen and (min-width: 990px) {
+    .collection-{{ section.id }} .slider-dots {
+      display: none;
+    }
+
+    .fc-slider-arrows-{{ section.id }}:not(.fc-slider-arrows--desktop) {
+      display: none !important;
+    }
+  }
+
+  @media screen and (max-width: 989px) {
+    .fc-slider-arrows-{{ section.id }}:not(.fc-slider-arrows--mobile) {
+      display: none !important;
+    }
+  }
+
   .slider-dots {
     display: flex;
     justify-content: center;
@@ -55,74 +72,6 @@
     background-color: rgb(var(--color-foreground));
   }
 
-  /* Side arrows overlaid on the product slider */
-  .fc-slider-arrows-{{ section.id }} {
-    display: none;
-    pointer-events: none;
-  }
-
-  .fc-slider-arrows-{{ section.id }} .slider-button {
-    pointer-events: auto;
-    position: absolute;
-    top: 50%;
-    z-index: 3;
-    width: 2.75rem;
-    height: 2.75rem;
-    margin: 0;
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 0;
-    color: rgb(var(--color-foreground));
-    background: rgba(var(--color-background), 0.92);
-    border: 1px solid rgba(var(--color-foreground), 0.12);
-    border-radius: 50%;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
-    cursor: pointer;
-    transform: translateY(-50%);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-  }
-
-  .fc-slider-arrows-{{ section.id }} .slider-button--prev {
-    left: 0.25rem;
-  }
-
-  .fc-slider-arrows-{{ section.id }} .slider-button--next {
-    right: 0.25rem;
-  }
-
-  .fc-slider-arrows-{{ section.id }} .slider-button:hover {
-    transform: translateY(-50%) scale(1.06);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
-  }
-
-  .fc-slider-arrows-{{ section.id }} .slider-button .icon {
-    display: block;
-    width: 1.2rem;
-    height: 1.2rem;
-    margin: 0;
-  }
-
-  .fc-slider-arrows-{{ section.id }} .slider-button--prev .icon {
-    transform: rotate(90deg);
-  }
-
-  .fc-slider-arrows-{{ section.id }} .slider-button--next .icon {
-    transform: rotate(-90deg);
-  }
-
-  @media screen and (min-width: 990px) {
-    .fc-slider-arrows-{{ section.id }}.fc-slider-arrows--desktop {
-      display: block;
-    }
-  }
-
-  @media screen and (max-width: 989px) {
-    .fc-slider-arrows-{{ section.id }}.fc-slider-arrows--mobile {
-      display: block;
-    }
-  }
 {%- endstyle -%}
 
 {%- liquid
@@ -155,7 +104,7 @@
   endif
 -%}
 
-<div class="color-{{ section.settings.color_scheme }} isolate gradient">
+<div class="color-{{ section.settings.color_scheme }} isolate gradient collection-{{ section.id }}">
   <div class="collection section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}">
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.title != blank -%}
@@ -177,8 +126,8 @@
       {%- endif -%}
     </div>
 
-    <slider-component class="slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if show_desktop_slider == false and section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-      <div class="fc-slider-stage-{{ section.id }}">
+    <slider-component class="slider-mobile-gutter moonridge-carousel-wrapper moonridge-carousel-wrapper--desktop-990{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if show_desktop_slider == false and section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" style="--mr-carousel-btn-bg: #312110; --mr-carousel-btn-color: #ffffff; --mr-carousel-btn-hover-bg: #1f1d24;">
+      <div class="fc-slider-stage-{{ section.id }} moonridge-carousel-stage">
       <ul
         id="Slider-{{ section.id }}"
         class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop{% if section.settings.collection == blank %} grid--2-col-tablet-down{% else %} grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}{% if show_mobile_slider or show_desktop_slider %} slider{% if show_desktop_slider %} slider--desktop{% endif %}{% if show_mobile_slider %} slider--tablet grid--peek{% endif %}{% endif %}"
@@ -228,12 +177,12 @@
 
       {%- if fc_show_arrows_desktop or fc_show_arrows_mobile -%}
         <div
-          class="fc-slider-arrows-{{ section.id }} no-js-hidden{% if fc_show_arrows_desktop %} fc-slider-arrows--desktop{% endif %}{% if fc_show_arrows_mobile %} fc-slider-arrows--mobile{% endif %}"
+          class="fc-slider-arrows-{{ section.id }} moonridge-carousel-controls no-js-hidden{% if fc_show_arrows_desktop %} fc-slider-arrows--desktop{% endif %}{% if fc_show_arrows_mobile %} fc-slider-arrows--mobile{% endif %}"
           data-fc-arrows-for="Slider-{{ section.id }}"
         >
           <button
             type="button"
-            class="slider-button slider-button--prev"
+            class="moonridge-carousel-btn moonridge-carousel-btn--prev"
             data-fc-arrow="prev"
             aria-controls="Slider-{{ section.id }}"
             aria-label="{{ 'general.slider.previous_slide' | t }}"
@@ -242,7 +191,7 @@
           </button>
           <button
             type="button"
-            class="slider-button slider-button--next"
+            class="moonridge-carousel-btn moonridge-carousel-btn--next"
             data-fc-arrow="next"
             aria-controls="Slider-{{ section.id }}"
             aria-label="{{ 'general.slider.next_slide' | t }}"

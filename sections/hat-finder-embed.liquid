@@ -1,0 +1,139 @@
+{{ 'section-hat-finder-embed.css' | asset_url | stylesheet_tag }}
+
+<section class="hat-finder-embed page-width{% if section.settings.full_width %} hat-finder-embed--full{% endif %}">
+  {%- if section.settings.heading != blank -%}
+    <div class="hat-finder-embed__intro">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="hat-finder-embed__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      <h1 class="hat-finder-embed__heading">{{ section.settings.heading | escape }}</h1>
+      {%- if section.settings.subheading != blank -%}
+        <p class="hat-finder-embed__subheading">{{ section.settings.subheading | escape }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- liquid
+    assign embed_url = section.settings.app_url
+    if embed_url == blank
+      assign embed_url = 'https://hatfinder.moonridgecompany.com/?embed=1'
+    endif
+    assign standalone_url = embed_url | replace: '?embed=1', '' | replace: '&embed=1', ''
+  -%}
+
+  <div
+    class="hat-finder-embed__frame"
+    style="--hat-finder-min-height: {{ section.settings.min_height }}px;"
+  >
+    <iframe
+      class="hat-finder-embed__iframe"
+      src="{{ embed_url | escape }}"
+      title="{{ section.settings.iframe_title | escape }}"
+      loading="lazy"
+      allow="clipboard-write"
+      referrerpolicy="strict-origin-when-cross-origin"
+    ></iframe>
+  </div>
+
+  {%- if section.settings.show_standalone_link -%}
+    <p class="hat-finder-embed__standalone">
+      <a href="{{ standalone_url | escape }}" target="_blank" rel="noopener">
+        {{ section.settings.standalone_link_label | escape }}
+      </a>
+    </p>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Hat Finder embed",
+  "tag": "section",
+  "class": "section-hat-finder-embed",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width frame",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Moon Ridge tools"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Find Your Perfect Hat"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Answer a few quick questions about crown, brim, and style — we’ll match you with hats from our collection."
+    },
+    {
+      "type": "text",
+      "id": "app_url",
+      "label": "Hat Finder embed URL",
+      "default": "https://hatfinder.moonridgecompany.com/?embed=1",
+      "info": "Must include ?embed=1 for iframe layout."
+    },
+    {
+      "type": "text",
+      "id": "iframe_title",
+      "label": "Iframe title (accessibility)",
+      "default": "Moon Ridge Hat Finder"
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "min": 640,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "label": "Minimum iframe height",
+      "default": 920
+    },
+    {
+      "type": "checkbox",
+      "id": "show_standalone_link",
+      "label": "Show open-in-new-tab link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "standalone_link_label",
+      "label": "Standalone link label",
+      "default": "Open Hat Finder in full screen"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hat Finder embed"
+    }
+  ]
+}
+{% endschema %}

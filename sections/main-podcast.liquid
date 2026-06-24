@@ -107,6 +107,7 @@
   /* Episode List */
   .podcast-episode {
     display: flex;
+    align-items: flex-start;
     gap: 24px;
     margin-bottom: 30px;
     padding-bottom: 30px;
@@ -115,14 +116,22 @@
   .podcast-episode:last-child {
     border-bottom: none;
   }
+  .podcast-episode__image {
+    flex-shrink: 0;
+  }
   .podcast-episode__image img {
     width: 120px;
     height: 120px;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 8px;
+    display: block;
   }
   .podcast-episode__content {
     flex: 1;
+    min-width: 0;
+  }
+  .podcast-episode__headline {
+    margin-bottom: 12px;
   }
   .podcast-episode__content a {
     text-decoration: none;
@@ -135,6 +144,7 @@
     margin: 0 0 8px 0;
     color: #111;
     transition: color 0.2s;
+    line-height: 1.3;
   }
   .podcast-episode__content a:hover .podcast-episode__title {
     color: #C5A059;
@@ -142,8 +152,9 @@
   .podcast-episode__meta {
     font-size: 13px;
     color: #777;
-    margin-bottom: 12px;
+    margin: 0;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 8px;
   }
@@ -155,12 +166,20 @@
     font-weight: 600;
     text-transform: uppercase;
     color: #555;
+    white-space: nowrap;
   }
   .podcast-episode__desc {
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.55;
     color: #555;
     margin: 0;
+  }
+  .podcast-episode__desc p {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
   }
   .podcast-episode__platforms {
     display: flex;
@@ -171,10 +190,49 @@
   .podcast-episode__platforms .platform-badge {
     padding: 6px 12px;
     font-size: 12px;
+    position: relative;
   }
   .podcast-episode__platforms .platform-badge img {
     width: 16px;
     height: 16px;
+  }
+  .platform-badge--icon-only {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    justify-content: center;
+    gap: 0;
+  }
+  .platform-badge--icon-only span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  @media screen and (max-width: 768px) {
+    .podcast-episode__platforms .platform-badge--compact {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      justify-content: center;
+      gap: 0;
+    }
+    .podcast-episode__platforms .platform-badge--compact span {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
   }
   .podcast-loading {
     text-align: center;
@@ -209,6 +267,9 @@
 
   /* Mobile Adjustments */
   @media screen and (max-width: 768px) {
+    .podcast-directory {
+      padding: 40px 16px;
+    }
     .podcast-header {
       flex-direction: column;
       align-items: center;
@@ -222,18 +283,47 @@
       font-size: 32px;
     }
     .podcast-episode {
-      align-items: flex-start;
-      gap: 14px;
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      grid-template-areas:
+        "image headline"
+        "body body";
+      column-gap: 14px;
+      row-gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
     }
     .podcast-episode__image {
-      flex: 0 0 72px;
+      grid-area: image;
     }
     .podcast-episode__image img {
       width: 72px;
       height: 72px;
     }
+    .podcast-episode__headline {
+      grid-area: headline;
+      margin-bottom: 0;
+    }
     .podcast-episode__content {
-      min-width: 0;
+      display: contents;
+    }
+    .podcast-episode__body {
+      grid-area: body;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .podcast-episode__title {
+      font-size: 17px;
+      line-height: 1.25;
+    }
+    .podcast-episode__platforms {
+      gap: 6px;
+      margin-top: 0;
+    }
+    .podcast-episode__platforms .platform-badge img {
+      width: 18px;
+      height: 18px;
     }
   }
 {% endstyle %}
@@ -257,6 +347,7 @@
   data-episodes-per-page="{{ section.settings.episodes_per_page }}"
   data-episodes-json="{{ 'podcast-episodes.json' | asset_url }}"
 >
+  <link rel="preload" href="{{ 'podcast-episodes.json' | asset_url }}" as="fetch" crossorigin>
   <!-- Header -->
   <div class="podcast-header">
     <div class="podcast-header__image">
@@ -378,9 +469,9 @@
         <div class="podcast-episode__platforms">
           ${platformLinks.map(function (platform) {
             return `
-              <a href="${platform.url}" target="_blank" rel="noopener noreferrer" class="platform-badge">
-                <img src="${platform.icon}" alt="${platform.name}">
-                ${platform.name}
+              <a href="${platform.url}" target="_blank" rel="noopener noreferrer" class="platform-badge platform-badge--compact">
+                <img src="${platform.icon}" alt="${platform.name}" width="16" height="16" loading="lazy" decoding="async">
+                <span>${platform.name}</span>
               </a>
             `;
           }).join('')}
@@ -410,12 +501,11 @@
       return Array.from(doc.querySelectorAll('item')).map(function (itemNode) {
         const enclosure = itemNode.querySelector('enclosure');
         const descriptionNode = itemNode.querySelector('description');
-        const guidNode = itemNode.querySelector('guid');
         return {
           title: (itemNode.querySelector('title')?.textContent || '').trim(),
           pubDate: itemNode.querySelector('pubDate')?.textContent || '',
           link: (itemNode.querySelector('link')?.textContent || '').trim(),
-          guid: guidNode ? guidNode.textContent.trim() : '',
+          guid: (itemNode.querySelector('guid')?.textContent || '').trim(),
           description: descriptionNode ? descriptionNode.textContent : '',
           thumbnail: getItunesImage(itemNode),
           enclosure: {
@@ -437,44 +527,28 @@
         });
     }
 
-    function normalizeEpisodeKey(item) {
-      const title = String(item.title || '').toLowerCase().replace(/\s+/g, ' ').trim();
-      if (title) return `title:${title}`;
-
-      const guid = String(item.guid || '').trim();
-      if (guid) return `guid:${guid}`;
-
-      const link = String(item.link || '').trim();
-      if (link) return `link:${link}`;
-
-      const audioLink = item.enclosure && item.enclosure.link ? String(item.enclosure.link).trim() : '';
-      if (audioLink) return `audio:${audioLink}`;
-
-      return '';
+    function normalizeEpisodeTitle(title) {
+      return (title || '')
+        .normalize('NFKD')
+        .replace(/[\u2018\u2019\u0060\u00B4]/g, "'")
+        .replace(/[\u2013\u2014]/g, '-')
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, ' ');
     }
 
-    function getEpisodeTime(item) {
-      const time = new Date(item.pubDate).getTime();
-      return Number.isFinite(time) ? time : 0;
-    }
+    function getEpisodeKey(item) {
+      if (item.guid) return 'guid:' + item.guid.trim().toLowerCase();
+      const normalizedTitle = normalizeEpisodeTitle(item.title);
+      if (normalizedTitle) return 'title:' + normalizedTitle;
 
-    function mergeEpisodeData(existing, incoming) {
-      const primary = getEpisodeTime(incoming) >= getEpisodeTime(existing) ? incoming : existing;
-      const secondary = primary === incoming ? existing : incoming;
-      const primaryEnclosure = primary.enclosure && primary.enclosure.link ? primary.enclosure : null;
-      const secondaryEnclosure = secondary.enclosure && secondary.enclosure.link ? secondary.enclosure : null;
+      const link = String(item.link || '').trim().toLowerCase();
+      if (link) return 'link:' + link;
 
-      return {
-        ...secondary,
-        ...primary,
-        title: primary.title || secondary.title || '',
-        pubDate: primary.pubDate || secondary.pubDate || '',
-        link: primary.link || secondary.link || '',
-        guid: primary.guid || secondary.guid || '',
-        description: primary.description || secondary.description || '',
-        thumbnail: primary.thumbnail || secondary.thumbnail || '',
-        enclosure: primaryEnclosure || secondaryEnclosure || primary.enclosure || secondary.enclosure || {}
-      };
+      const audioLink = item.enclosure && item.enclosure.link ? String(item.enclosure.link).trim().toLowerCase() : '';
+      if (audioLink) return 'audio:' + audioLink;
+
+      return null;
     }
 
     function mergeEpisodes() {
@@ -483,14 +557,25 @@
       for (let i = 0; i < arguments.length; i++) {
         const list = arguments[i] || [];
         list.forEach(function (item) {
-          const key = normalizeEpisodeKey(item);
+          const key = getEpisodeKey(item);
           if (!key) return;
 
           const existing = merged.get(key);
-          if (existing) {
-            merged.set(key, mergeEpisodeData(existing, item));
-          } else {
+          if (!existing) {
             merged.set(key, item);
+            return;
+          }
+
+          const existingDate = new Date(existing.pubDate).getTime();
+          const itemDate = new Date(item.pubDate).getTime();
+          const preferItem = itemDate > existingDate || (!existing.guid && item.guid);
+          if (preferItem) {
+            merged.set(key, Object.assign({}, existing, item, {
+              guid: item.guid || existing.guid,
+              description: item.description || existing.description,
+              link: item.link || existing.link,
+              thumbnail: item.thumbnail || existing.thumbnail
+            }));
           }
         });
       }
@@ -586,22 +671,27 @@
         const titleHtml = episodeLink
           ? `<a href="${episodeLink}" target="_blank" rel="noopener noreferrer"><h2 class="podcast-episode__title">${safeTitle}</h2></a>`
           : `<h2 class="podcast-episode__title">${safeTitle}</h2>`;
+        const imageLoading = index === 0 ? 'eager' : 'lazy';
 
         const episodeHtml = `
           <div class="podcast-episode" data-index="${index}" data-title="${item.title.toLowerCase().replace(/"/g, '&quot;')}">
             <div class="podcast-episode__image">
-              <img src="${episodeImage}" alt="${safeTitle}">
+              <img src="${episodeImage}" alt="${safeTitle}" width="120" height="120" loading="${imageLoading}" decoding="async">
             </div>
             <div class="podcast-episode__content">
-              ${titleHtml}
-              <div class="podcast-episode__meta">
-                <span>${dateString}</span>
-                ${badgeHtml ? '<span>|</span>' + badgeHtml : ''}
+              <div class="podcast-episode__headline">
+                ${titleHtml}
+                <div class="podcast-episode__meta">
+                  <span>${dateString}</span>
+                  ${badgeHtml ? '<span>|</span>' + badgeHtml : ''}
+                </div>
               </div>
-              <div class="podcast-episode__desc">
-                <p>${escapeHtml(textSnippet)}</p>
+              <div class="podcast-episode__body">
+                <div class="podcast-episode__desc">
+                  <p>${escapeHtml(textSnippet)}</p>
+                </div>
+                ${buildPlatformLinksHtml()}
               </div>
-              ${buildPlatformLinksHtml()}
             </div>
           </div>
         `;
@@ -616,31 +706,6 @@
       return;
     }
 
-    if (loadMoreBtn) {
-      loadMoreBtn.addEventListener('click', function () {
-        visibleCount += episodesPerPage;
-        updateEpisodeVisibility();
-      });
-    }
-
-    if (searchInput) {
-      searchInput.addEventListener('input', function (e) {
-        const term = e.target.value.toLowerCase().trim();
-        const episodes = listContainer.querySelectorAll('.podcast-episode');
-        isSearching = term.length > 0;
-
-        episodes.forEach(function (episode) {
-          const title = episode.getAttribute('data-title') || '';
-          const matches = !isSearching || title.includes(term);
-          episode.classList.toggle('podcast-episode--hidden', !matches);
-        });
-
-        if (loadMoreWrap) {
-          loadMoreWrap.hidden = isSearching || episodes.length <= visibleCount;
-        }
-      });
-    }
-
     let assetItems = [];
     let hasRenderedEpisodes = false;
 
@@ -649,6 +714,7 @@
       if (!items.length) return false;
 
       renderEpisodes(items);
+      bindEpisodeInteractions(items);
       hasRenderedEpisodes = true;
       return true;
     }
@@ -675,6 +741,39 @@
           listContainer.innerHTML = '<div class="podcast-loading">Unable to load episodes at this time. Please try again later.</div>';
         }
       });
+
+    function bindEpisodeInteractions(items) {
+      if (loadMoreBtn && !loadMoreBtn.dataset.bound) {
+        loadMoreBtn.dataset.bound = 'true';
+        loadMoreBtn.addEventListener('click', function () {
+          visibleCount += episodesPerPage;
+          updateEpisodeVisibility();
+        });
+      }
+
+      if (searchInput && !searchInput.dataset.bound) {
+        searchInput.dataset.bound = 'true';
+        searchInput.addEventListener('input', function (e) {
+          const term = e.target.value.toLowerCase().trim();
+          const episodes = listContainer.querySelectorAll('.podcast-episode');
+          isSearching = term.length > 0;
+
+          episodes.forEach(function (episode) {
+            const title = episode.getAttribute('data-title') || '';
+            const matches = !isSearching || title.includes(term);
+            episode.classList.toggle('podcast-episode--hidden', !matches);
+          });
+
+          if (loadMoreWrap) {
+            loadMoreWrap.hidden = isSearching || episodes.length <= visibleCount;
+          }
+        });
+      }
+
+      if (loadMoreWrap && items) {
+        loadMoreWrap.hidden = items.length <= visibleCount;
+      }
+    }
   });
 </script>
 

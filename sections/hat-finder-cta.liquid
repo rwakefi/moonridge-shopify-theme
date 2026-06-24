@@ -1,0 +1,162 @@
+{{ 'section-hat-finder-cta.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign button_link = section.settings.button_link
+  if button_link == blank
+    assign button_link = '/pages/hat-finder'
+  endif
+-%}
+
+<section class="hat-finder-cta section-{{ section.id }}-padding" id="HatFinderCta-{{ section.id }}">
+  <div class="page-width hat-finder-cta__inner">
+    <div class="hat-finder-cta__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="hat-finder-cta__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="hat-finder-cta__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="hat-finder-cta__subheading">{{ section.settings.subheading | escape }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="hat-finder-cta__actions">
+      <a href="{{ button_link }}" class="hat-finder-cta__button hat-finder-cta__button--primary">
+        {{ section.settings.button_label | escape }}
+      </a>
+      {%- if section.settings.show_secondary_link and section.settings.secondary_label != blank -%}
+        <a
+          href="{{ section.settings.secondary_link | default: 'https://hatfinder.moonridgecompany.com' }}"
+          class="hat-finder-cta__button hat-finder-cta__button--secondary"
+          {% if section.settings.secondary_new_tab %}target="_blank" rel="noopener"{% endif %}
+        >
+          {{ section.settings.secondary_label | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hat Finder CTA",
+  "tag": "section",
+  "class": "section-hat-finder-cta",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Moon Ridge Hat Finder"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Find your perfect hat in minutes"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Match crown, brim, and material to your style — then shop hats that fit."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Launch Hat Finder"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "info": "Use /pages/hat-finder once the page is created in Admin."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_link",
+      "label": "Show secondary link",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary link label",
+      "default": "Open in full screen"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary link URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "secondary_new_tab",
+      "label": "Open secondary link in new tab",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#faf8f5"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#2d2926"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#312110"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 28
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hat Finder CTA"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  #HatFinderCta-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    --hat-finder-cta-btn-bg: {{ section.settings.button_background }};
+    --hat-finder-cta-btn-text: {{ section.settings.button_text }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+</style>

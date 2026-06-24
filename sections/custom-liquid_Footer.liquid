@@ -137,19 +137,25 @@
       </div>
 
       <!-- HAT FINDER APP COLUMN -->
-      <div class="rm-footer-col rm-footer-hat-finder">
-        <h3>{{ section.settings.hat_finder_heading | default: 'HAT FINDER APP' }}</h3>
+      {% if section.settings.show_hat_finder_column %}
+        {% assign hat_finder_body = section.settings.hat_finder_text | default: section.settings.hat_finder_body %}
+        {% assign hat_finder_web_url = section.settings.hat_finder_link | default: section.settings.hat_finder_web_url | default: '/pages/hat-finder' %}
+        {% assign hat_finder_web_label = section.settings.hat_finder_link_label | default: section.settings.hat_finder_web_label | default: 'Try Hat Finder on the web →' %}
 
-        <p class="rm-hat-finder-body">
-          {{ section.settings.hat_finder_text | default: 'Not sure where to start? Answer a few quick questions about crown, brim, and style — our Hat Finder matches you with hats from the Moon Ridge collection. Free on iPhone.' }}
-        </p>
+        <div class="rm-footer-col rm-footer-hat-finder">
+          <h3>{{ section.settings.hat_finder_heading | default: 'HAT FINDER APP' }}</h3>
 
-        <p class="rm-hat-finder-web-link">
-          <a href="{{ section.settings.hat_finder_link | default: '/pages/hat-finder' }}">
-            {{ section.settings.hat_finder_link_label | default: 'Try Hat Finder on the web →' }}
-          </a>
-        </p>
-      </div>
+          {% if hat_finder_body != blank %}
+            <p class="rm-hat-finder-body">{{ hat_finder_body }}</p>
+          {% endif %}
+
+          {% if hat_finder_web_url != blank and hat_finder_web_label != blank %}
+            <p class="rm-hat-finder-web-link">
+              <a href="{{ hat_finder_web_url }}">{{ hat_finder_web_label }}</a>
+            </p>
+          {% endif %}
+        </div>
+      {% endif %}
 
       <!-- MIDDLE COLUMN -->
       <div class="rm-footer-col rm-footer-middle">
@@ -219,8 +225,10 @@
 /* DESKTOP COLUMN SIZING */
 .rm-footer-col {
   flex: 1 1 220px;
-  max-width: 100%;
+  max-width: calc(25% - 30px);
   min-width: 220px;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 /* FORCE ALL TEXT WHITE */
@@ -559,6 +567,12 @@
     {
       "type": "header",
       "content": "Hat Finder App"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hat_finder_column",
+      "label": "Show Hat Finder app column",
+      "default": true
     },
     {
       "type": "text",

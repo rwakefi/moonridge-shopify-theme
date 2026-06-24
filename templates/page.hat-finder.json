@@ -1,0 +1,30 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hat_finder": {
+      "type": "hat-finder-embed",
+      "settings": {
+        "full_width": true,
+        "eyebrow": "Moon Ridge tools",
+        "heading": "Find Your Perfect Hat",
+        "subheading": "Answer a few quick questions about crown, brim, and style — we’ll match you with hats from our collection.",
+        "app_url": "https://hatfinder.moonridgecompany.com/?embed=1",
+        "iframe_title": "Moon Ridge Hat Finder",
+        "min_height": 920,
+        "show_standalone_link": true,
+        "standalone_link_label": "Open Hat Finder in full screen",
+        "padding_top": 36,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": ["hat_finder"]
+}

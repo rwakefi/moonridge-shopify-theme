@@ -9,9 +9,15 @@
 }
 
 .ai-product-carousel-container-{{ ai_gen_id }} {
-  max-width: {{ block.settings.container_width }}px;
+  max-width: var(--page-width);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 1.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .ai-product-carousel-container-{{ ai_gen_id }} {
+    padding: 0 5rem;
+  }
 }
 
 /* ------------------------------
@@ -52,7 +58,7 @@
 .ai-product-carousel-track-{{ ai_gen_id }} {
   display: flex;
   gap: {{ block.settings.product_gap }}px;
-  transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
+  transition: transform 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
   will-change: transform;
 }
 
@@ -72,7 +78,22 @@
   flex: 0 0 calc((100% - ({{ block.settings.products_per_view | minus: 1 }} * {{ block.settings.product_gap }}px)) / {{ block.settings.products_per_view }});
   min-width: 0;
   display: flex;
-  perspective: 1000px; /* Enable 3D space */
+  perspective: 1000px;
+}
+
+@media screen and (min-width: 750px) {
+  .ai-product-carousel-wrapper-{{ ai_gen_id }} {
+    overflow: hidden;
+  }
+
+  .ai-product-carousel-track-{{ ai_gen_id }} {
+    gap: var(--grid-desktop-horizontal-spacing, 16px);
+  }
+
+  .ai-product-carousel-slide-{{ ai_gen_id }} {
+    flex: 0 0 var(--ai-slide-width, 25%);
+    max-width: var(--ai-slide-width, none);
+  }
 }
 
 .ai-product-card-{{ ai_gen_id }} {
@@ -86,10 +107,28 @@
     transform 0.52s cubic-bezier(0.2, 0, 0, 1),
     box-shadow 0.52s cubic-bezier(0.2, 0, 0, 1);
   transform-style: preserve-3d;
-  
-  /* lock card height so pages don't change height */
-  min-height: 300px;  /* tweak up/down to taste */
+  min-height: 300px;
   height: 100%;
+}
+
+@media screen and (min-width: 750px) {
+  .ai-product-card-{{ ai_gen_id }} {
+    min-height: 0;
+  }
+
+  .ai-product-info-{{ ai_gen_id }} {
+    padding: 12px 14px 16px;
+  }
+
+  .ai-product-title-{{ ai_gen_id }} {
+    font-size: 14px;
+    min-height: 2.6em;
+    margin-bottom: 8px;
+  }
+
+  .ai-product-price-{{ ai_gen_id }} {
+    font-size: 16px;
+  }
 }
 
 .ai-product-card-{{ ai_gen_id }}:hover {
@@ -200,61 +239,10 @@
   font-size: 16px;
 }
 
-/* ------------------------------
-   SIDE ARROWS (overlaid on slider)
---------------------------------*/
-.ai-product-carousel-stage-{{ ai_gen_id }} {
-  position: relative;
-}
-
-.ai-carousel-button-{{ ai_gen_id }},
-.ai-carousel-prev-{{ ai_gen_id }},
-.ai-carousel-next-{{ ai_gen_id }} {
-  position: absolute;
-  top: 50%;
-  z-index: 20;
-  width: 2.25rem;
-  height: 2.25rem;
-  margin: 0;
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 0;
-  background: #ffffff;
-  border: 1px solid #d6d6d6;
-  border-radius: 50%;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
-  cursor: pointer;
-  transform: translateY(-50%);
-  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.ai-carousel-prev-{{ ai_gen_id }} {
-  left: -18px;
-}
-
-.ai-carousel-next-{{ ai_gen_id }} {
-  right: -18px;
-}
-
-.ai-carousel-button-{{ ai_gen_id }}:hover:not(:disabled),
-.ai-carousel-prev-{{ ai_gen_id }}:hover:not(:disabled),
-.ai-carousel-next-{{ ai_gen_id }}:hover:not(:disabled) {
-  transform: translateY(-50%) scale(1.08);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.ai-carousel-button-{{ ai_gen_id }}:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-}
-
-.ai-carousel-button-{{ ai_gen_id }} svg {
-  display: block;
-  width: 14px;
-  height: 14px;
-  color: {{ block.settings.button_background }};
+@media screen and (min-width: 750px) {
+  .ai-carousel-dots-{{ ai_gen_id }} {
+    display: none !important;
+  }
 }
 
 /* ------------------------------
@@ -286,14 +274,6 @@
 
   .ai-product-price-{{ ai_gen_id }} {
     margin-top: 0 !important;
-  }
-
-  .ai-carousel-prev-{{ ai_gen_id }} {
-    left: 4px;
-  }
-
-  .ai-carousel-next-{{ ai_gen_id }} {
-    right: 4px;
   }
 }
 
@@ -346,6 +326,108 @@
   transform: scale(1.25);
 }
 
+/* Keep Best Sellers controls locked to the product row even if shared CSS is cached out of order. */
+.ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-controls-{{ ai_gen_id }} {
+  position: absolute !important;
+  top: 50% !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: auto !important;
+  margin-top: calc(-2.75rem / 2) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  overflow-x: hidden !important;
+  pointer-events: none !important;
+  z-index: 20 !important;
+}
+
+.ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-button-{{ ai_gen_id }} {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 2.75rem !important;
+  height: 2.75rem !important;
+  min-width: 2.75rem !important;
+  min-height: 2.75rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: {{ block.settings.button_background }} !important;
+  color: {{ block.settings.button_color }} !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12) !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  transition: transform 0.15s ease-in-out, background 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease !important;
+}
+
+.ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-prev-{{ ai_gen_id }} {
+  transform: translate(-100%, 0) !important;
+}
+
+.ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-next-{{ ai_gen_id }} {
+  transform: translate(100%, 0) !important;
+}
+
+.ai-product-carousel-wrapper-{{ ai_gen_id }}:hover .ai-carousel-prev-{{ ai_gen_id }},
+.ai-product-carousel-wrapper-{{ ai_gen_id }}:focus-within .ai-carousel-prev-{{ ai_gen_id }},
+.ai-product-carousel-wrapper-{{ ai_gen_id }}:hover .ai-carousel-next-{{ ai_gen_id }},
+.ai-product-carousel-wrapper-{{ ai_gen_id }}:focus-within .ai-carousel-next-{{ ai_gen_id }} {
+  transform: translate(0, 0) !important;
+}
+
+.ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-button-{{ ai_gen_id }}:hover:not(:disabled) {
+  background: {{ block.settings.button_hover_background }} !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18) !important;
+}
+
+.ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-button-{{ ai_gen_id }} svg {
+  width: 14px !important;
+  height: 14px !important;
+  display: block !important;
+}
+
+@media screen and (max-width: 749px) {
+  .ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-controls-{{ ai_gen_id }} {
+    position: absolute !important;
+    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin-top: 0 !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  .ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-button-{{ ai_gen_id }} {
+    position: absolute !important;
+    top: 38% !important;
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+    min-width: 2.25rem !important;
+    min-height: 2.25rem !important;
+    background: #ffffff !important;
+    color: {{ block.settings.button_background }} !important;
+    border: 1px solid #d6d6d6 !important;
+    border-radius: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+
+  .ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-prev-{{ ai_gen_id }} {
+    left: 4px !important;
+  }
+
+  .ai-product-carousel-stage-{{ ai_gen_id }} .ai-carousel-next-{{ ai_gen_id }} {
+    right: 4px !important;
+  }
+}
+
 {% endstyle %}
 
 <product-carousel-{{ ai_gen_id }} class="ai-product-carousel-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
@@ -362,8 +444,11 @@
     {% endif %}
 
     {% if block.settings.collection != blank and block.settings.collection.products.size > 0 %}
-      <div class="ai-product-carousel-wrapper-{{ ai_gen_id }}">
-        <div class="ai-product-carousel-stage-{{ ai_gen_id }}">
+      <div
+        class="ai-product-carousel-wrapper-{{ ai_gen_id }} moonridge-carousel-wrapper"
+        style="--mr-carousel-btn-bg: {{ block.settings.button_background }}; --mr-carousel-btn-color: {{ block.settings.button_color }}; --mr-carousel-btn-hover-bg: {{ block.settings.button_hover_background }};"
+      >
+        <div class="ai-product-carousel-stage-{{ ai_gen_id }} moonridge-carousel-stage">
           <div class="ai-product-carousel-track-container-{{ ai_gen_id }}">
             <div class="ai-product-carousel-track-{{ ai_gen_id }}" data-track>
             {% for product in block.settings.collection.products limit: block.settings.product_limit %}
@@ -418,27 +503,29 @@
           </div>
 
           {% if block.settings.show_navigation %}
-            <button
-              type="button"
-              class="ai-carousel-button-{{ ai_gen_id }} ai-carousel-prev-{{ ai_gen_id }}"
-              aria-label="Previous products"
-              data-prev
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
+            <div class="ai-carousel-controls-{{ ai_gen_id }} moonridge-carousel-controls">
+              <button
+                type="button"
+                class="ai-carousel-button-{{ ai_gen_id }} ai-carousel-prev-{{ ai_gen_id }} moonridge-carousel-btn moonridge-carousel-btn--prev"
+                aria-label="Previous products"
+                data-prev
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
 
-            <button
-              type="button"
-              class="ai-carousel-button-{{ ai_gen_id }} ai-carousel-next-{{ ai_gen_id }}"
-              aria-label="Next products"
-              data-next
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+              <button
+                type="button"
+                class="ai-carousel-button-{{ ai_gen_id }} ai-carousel-next-{{ ai_gen_id }} moonridge-carousel-btn moonridge-carousel-btn--next"
+                aria-label="Next products"
+                data-next
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
           {% endif %}
         </div>
 
@@ -458,19 +545,20 @@
       constructor() {
         super();
         this.currentPage = 0;
+        this.currentIndex = 0;
         this.productsPerView = {{ block.settings.products_per_view }};
         this.productsPerViewTablet = {{ block.settings.products_per_view_tablet }};
+        this.productGap = {{ block.settings.product_gap }};
 
         this.currentProductsPerView = this.productsPerView;
         this.totalPages = 1;
 
         this.isTransitioning = false;
 
-        // swipe / drag state
         this.touchStartX = null;
         this.touchDeltaX = 0;
         this.isDragging = false;
-        this.baseOffset = 0; // px offset for current page
+        this.baseOffset = 0;
       }
 
       connectedCallback() {
@@ -485,9 +573,11 @@
         this.slides = Array.from(this.track.children);
         this.totalSlides = this.slides.length;
 
-        this.updateProductsPerView();
-        this.createDots();
-        this.updateCarousel(false); // initial, no animation
+        this.refreshLayout(false);
+        requestAnimationFrame(() => {
+          this.updateSlideDimensions();
+          this.updateCarousel(false);
+        });
 
         if (this.prevButton) {
           this.prevButton.addEventListener('click', () => this.prev());
@@ -499,28 +589,60 @@
 
         this.setupPointerEvents();
 
-        // Handle resize
+        this._lastDesktopMode = this.isDesktopMode();
+
         let resizeTimer;
         window.addEventListener('resize', () => {
           clearTimeout(resizeTimer);
           resizeTimer = setTimeout(() => {
-            const oldPage = this.currentPage;
-            this.updateProductsPerView();
-            if (oldPage >= this.totalPages) {
-              this.currentPage = Math.max(0, this.totalPages - 1);
+            const wasDesktop = this._lastDesktopMode;
+            const isDesktop = this.isDesktopMode();
+
+            if (wasDesktop !== isDesktop) {
+              if (isDesktop) {
+                this.currentIndex = this.currentPage * 4;
+              } else {
+                this.currentPage = Math.floor(this.currentIndex / 4);
+              }
             }
-            this.createDots();
-            this.updateCarousel(false);
+
+            this._lastDesktopMode = isDesktop;
+            this.refreshLayout(false);
           }, 120);
         });
       }
 
-      /* ---------- Pagination / layout ---------- */
+      isDesktopMode() {
+        return window.innerWidth > 749;
+      }
+
+      getSlidesPerView() {
+        if (window.innerWidth <= 749) return 4;
+
+        if (window.innerWidth >= 990) return this.productsPerView;
+        if (window.innerWidth >= 750) return this.productsPerViewTablet;
+        return 2;
+      }
+
+      getTrackGap() {
+        if (!this.isDesktopMode()) return this.productGap;
+
+        const gap = parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue('--grid-desktop-horizontal-spacing')
+        );
+        return Number.isFinite(gap) ? gap : 16;
+      }
+
+      refreshLayout(animate) {
+        this.updateProductsPerView();
+        this.updateSlideDimensions();
+        this.createDots();
+        this.updateCarousel(animate);
+      }
 
       updateProductsPerView() {
         const width = window.innerWidth;
         if (width <= 749) {
-          // Mobile: always show 4 products (2 x 2)
           this.currentProductsPerView = 4;
         } else if (width <= 989) {
           this.currentProductsPerView = this.productsPerViewTablet;
@@ -530,9 +652,42 @@
         this.totalPages = Math.ceil(this.totalSlides / this.currentProductsPerView);
       }
 
+      getSlideStep() {
+        if (!this.slides.length) return 0;
+        const slideWidth = this.slides[0].offsetWidth;
+        return slideWidth + this.getTrackGap();
+      }
+
+      updateSlideDimensions() {
+        if (!this.isDesktopMode() || !this.trackContainer || !this.slides.length) {
+          if (this.track) {
+            this.track.style.removeProperty('--ai-slide-width');
+          }
+          this.slides.forEach(function (slide) {
+            slide.style.removeProperty('flex-basis');
+            slide.style.removeProperty('max-width');
+            slide.style.removeProperty('width');
+          });
+          return;
+        }
+
+        const slidesPerView = this.getSlidesPerView();
+        const containerWidth = this.trackContainer.offsetWidth;
+        const gap = this.getTrackGap();
+        const slideWidth = (containerWidth - gap * (slidesPerView - 1)) / slidesPerView;
+        const slideWidthPx = Math.max(slideWidth, 0) + 'px';
+
+        this.track.style.setProperty('--ai-slide-width', slideWidthPx);
+        this.track.style.setProperty('--ai-slides-per-view', String(slidesPerView));
+        this.slides.forEach(function (slide) {
+          slide.style.flexBasis = slideWidthPx;
+          slide.style.maxWidth = slideWidthPx;
+          slide.style.width = slideWidthPx;
+        });
+      }
+
       calcBaseOffset() {
-        const isMobile = window.innerWidth <= 749;
-        if (isMobile) {
+        if (!this.isDesktopMode()) {
           this.baseOffset = 0;
           return;
         }
@@ -541,23 +696,28 @@
           return;
         }
 
-        const slideWidth = this.slides[0].offsetWidth;
-        const gap = {{ block.settings.product_gap }};
-        const perPage = this.currentProductsPerView;
-
-        const offset = this.currentPage * perPage * (slideWidth + gap);
-        this.baseOffset = -offset;
+        this.baseOffset = -(this.currentIndex * this.getSlideStep());
       }
 
       createDots() {
         if (!this.dotsContainer) return;
         this.dotsContainer.innerHTML = '';
 
-        for (let i = 0; i < this.totalPages; i++) {
+        const dotCount = this.isDesktopMode() ? this.totalSlides : this.totalPages;
+
+        for (let i = 0; i < dotCount; i++) {
           const dot = document.createElement('button');
           dot.className = 'ai-carousel-dot-{{ ai_gen_id }}';
-          dot.setAttribute('aria-label', 'Go to page ' + (i + 1));
-          dot.addEventListener('click', () => this.goToPage(i));
+          dot.setAttribute('aria-label', this.isDesktopMode()
+            ? 'Go to product ' + (i + 1)
+            : 'Go to page ' + (i + 1));
+          dot.addEventListener('click', () => {
+            if (this.isDesktopMode()) {
+              this.goToIndex(i);
+            } else {
+              this.goToPage(i);
+            }
+          });
           this.dotsContainer.appendChild(dot);
         }
 
@@ -567,24 +727,23 @@
       updateDots() {
         if (!this.dotsContainer) return;
         const dots = this.dotsContainer.querySelectorAll('.ai-carousel-dot-{{ ai_gen_id }}');
-        dots.forEach((dot, index) => {
-          dot.classList.toggle('active', index === this.currentPage);
+        const activeIndex = this.isDesktopMode() ? this.currentIndex : this.currentPage;
+        dots.forEach(function (dot, index) {
+          dot.classList.toggle('active', index === activeIndex);
         });
       }
 
       updateCarousel(animate = true) {
         if (!this.track) return;
 
-        // Clamp page
-        if (this.currentPage < 0) this.currentPage = 0;
-        if (this.currentPage >= this.totalPages) {
-          this.currentPage = Math.max(0, this.totalPages - 1);
-        }
-
-        const isMobile = window.innerWidth <= 749;
+        const isMobile = !this.isDesktopMode();
 
         if (isMobile) {
-          // Show only the 4 products for this "page" (2 x 2 grid)
+          if (this.currentPage < 0) this.currentPage = 0;
+          if (this.currentPage >= this.totalPages) {
+            this.currentPage = Math.max(0, this.totalPages - 1);
+          }
+
           this.slides.forEach((slide, index) => {
             const pageIndex = Math.floor(index / this.currentProductsPerView);
             slide.style.display = pageIndex === this.currentPage ? 'block' : 'none';
@@ -597,56 +756,82 @@
             this.track.style.transition = 'none';
           }
           this.track.style.transform = 'translateX(0px)';
+
+          if (this.prevButton) {
+            this.prevButton.disabled = this.currentPage === 0;
+          }
+          if (this.nextButton) {
+            this.nextButton.disabled = this.currentPage >= this.totalPages - 1;
+          }
         } else {
-          // Desktop / tablet: all slides visible, track slides horizontally by page
-          this.slides.forEach(slide => {
+          if (this.currentIndex < 0) this.currentIndex = 0;
+          if (this.currentIndex >= this.totalSlides) {
+            this.currentIndex = Math.max(0, this.totalSlides - 1);
+          }
+
+          this.slides.forEach(function (slide) {
             slide.style.display = 'block';
           });
 
           this.calcBaseOffset();
           if (animate) {
-            this.track.style.transition = 'transform 0.5s cubic-bezier(0.2, 0, 0, 1)';
+            this.track.style.transition = 'transform 0.35s cubic-bezier(0.645, 0.045, 0.355, 1)';
           } else {
             this.track.style.transition = 'none';
           }
           this.track.style.transform = 'translateX(' + this.baseOffset + 'px)';
-        }
 
-        if (this.prevButton) {
-          this.prevButton.disabled = this.currentPage === 0;
-        }
-        if (this.nextButton) {
-          this.nextButton.disabled = this.currentPage >= this.totalPages - 1;
+          if (this.prevButton) this.prevButton.disabled = false;
+          if (this.nextButton) this.nextButton.disabled = false;
         }
 
         this.updateDots();
 
-        // trigger subtle fade animation
         if (animate) {
           this.track.classList.remove('is-animating');
-          void this.track.offsetWidth; // force reflow
+          void this.track.offsetWidth;
           this.track.classList.add('is-animating');
         }
 
         setTimeout(() => {
           this.isTransitioning = false;
-        }, animate ? 320 : 0);
+        }, animate ? 360 : 0);
       }
 
       prev() {
-        if (this.currentPage > 0 && !this.isTransitioning) {
-          this.isTransitioning = true;
+        if (this.isTransitioning) return;
+        this.isTransitioning = true;
+
+        if (this.isDesktopMode()) {
+          this.currentIndex = this.currentIndex <= 0
+            ? this.totalSlides - 1
+            : this.currentIndex - 1;
+        } else if (this.currentPage > 0) {
           this.currentPage--;
-          this.updateCarousel(true);
+        } else {
+          this.isTransitioning = false;
+          return;
         }
+
+        this.updateCarousel(true);
       }
 
       next() {
-        if (this.currentPage < this.totalPages - 1 && !this.isTransitioning) {
-          this.isTransitioning = true;
+        if (this.isTransitioning) return;
+        this.isTransitioning = true;
+
+        if (this.isDesktopMode()) {
+          this.currentIndex = this.currentIndex >= this.totalSlides - 1
+            ? 0
+            : this.currentIndex + 1;
+        } else if (this.currentPage < this.totalPages - 1) {
           this.currentPage++;
-          this.updateCarousel(true);
+        } else {
+          this.isTransitioning = false;
+          return;
         }
+
+        this.updateCarousel(true);
       }
 
       goToPage(page) {
@@ -658,6 +843,19 @@
         ) {
           this.isTransitioning = true;
           this.currentPage = page;
+          this.updateCarousel(true);
+        }
+      }
+
+      goToIndex(index) {
+        if (
+          index >= 0 &&
+          index < this.totalSlides &&
+          index !== this.currentIndex &&
+          !this.isTransitioning
+        ) {
+          this.isTransitioning = true;
+          this.currentIndex = index;
           this.updateCarousel(true);
         }
       }
@@ -723,10 +921,7 @@
         if (!this.isDragging || this.touchStartX === null || !this.track) return;
         this.touchDeltaX = clientX - this.touchStartX;
 
-        const isMobile = window.innerWidth <= 749;
-
-        // On desktop, drag the whole track; on mobile this is a subtle tug effect
-        const dragOffset = (isMobile ? 0 : this.baseOffset) + this.touchDeltaX;
+        const dragOffset = (this.isDesktopMode() ? this.baseOffset : 0) + this.touchDeltaX;
         this.track.style.transform = 'translateX(' + dragOffset + 'px)';
       }
 

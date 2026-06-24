@@ -29,6 +29,7 @@
         "newsletter_placeholder": "Enter your email address",
         "newsletter_button_label": "SUBSCRIBE",
         "newsletter_success": "Thanks for subscribing — we’ll be in touch soon.",
+        "show_hat_finder_column": true,
         "hat_finder_heading": "HAT FINDER APP",
         "hat_finder_text": "Not sure where to start? Answer a few quick questions about crown, brim, and style — our Hat Finder matches you with hats from the Moon Ridge collection. Free on iPhone.",
         "hat_finder_link_label": "Try Hat Finder on the web →",

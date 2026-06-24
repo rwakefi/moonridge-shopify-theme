@@ -48,9 +48,11 @@
     -%}
     <meta name="robots" content="{{ robots_content }}">
     <link rel="canonical" href="{{ canonical_url }}">
-    {%- if settings.favicon != blank -%}
-      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
-    {%- endif -%}
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ 'moonridge-hat-finder-app-icon.png' | asset_url }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ 'moonridge-hat-finder-app-icon.png' | asset_url }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ 'moonridge-hat-finder-app-icon.png' | asset_url }}">
+    <link rel="shortcut icon" type="image/png" href="{{ 'moonridge-hat-finder-app-icon.png' | asset_url }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ 'moonridge-hat-finder-app-icon.png' | asset_url }}">
 
     {%- liquid
       assign brand_suffix = " | Moon Ridge Hats and Heritage"
@@ -121,6 +123,7 @@
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'moonridge-carousel-arrows.js' | asset_url }}" defer="defer"></script>
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
@@ -384,6 +387,7 @@
       }
     {% endstyle %}
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'moonridge-carousel-arrows.css' | asset_url | stylesheet_tag }}
     {{ 'lumin.css' | asset_url | stylesheet_tag }}
     {{ 'heritage-luxury.css' | asset_url | stylesheet_tag }}
     {{ 'transition-cover.css' | asset_url | stylesheet_tag }}

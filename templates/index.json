@@ -9,186 +9,6 @@
  */
 {
   "sections": {
-    "slideshow_FGiH4p": {
-      "type": "slideshow",
-      "blocks": {
-        "slide_ka9Vke": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Desktop_Banner_Out_of_Office.png",
-            "image_mob": "shopify://shop_images/Rename_Mobile_Hero.png",
-            "caption": "",
-            "block_cap_size": 20,
-            "cap_color": "#fcf8f4",
-            "heading": "<strong>Schedule Your Free Hat Sizing</strong>",
-            "block_head_size-2": 33,
-            "block_head_size-mobile": 24,
-            "block_head_line": 1.4,
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "Book Now!",
-            "IsBookButton": true,
-            "custom-book-button": "<a \n  class=\"header-button\" \n  id=\"Setmore_button_iframe\" \n  href=\"https://moonridgecompany.setmore.com\" \n  style=\"\n    display:inline-block;\n    background-color:#4D382B;      \n    color:#FFFFFF;                 \n    text-transform:capitalize;\n    letter-spacing:0;\n    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    font-size:16px;\n    font-weight:600;\n    padding:12px 32px;\n    border-radius:8px;\n    text-decoration:none;\n    line-height:1;\n    transition:\n      background-color .2s cubic-bezier(.2,0,0,1),\n      color .2s cubic-bezier(.2,0,0,1),\n      transform .2s cubic-bezier(.2,0,0,1),\n      box-shadow .2s cubic-bezier(.2,0,0,1);\n  \"\n>\n  Book Now\n</a>\n\n<style>\n  #Setmore_button_iframe:hover {\n    background-color:#7A604A; \n    transform: translateY(-2px);\n  }\n\n  #Setmore_button_iframe:active {\n    transform: translateY(0) scale(0.98);\n  }\n\n  #Setmore_button_iframe:focus-visible {\n    outline: none;\n    box-shadow:\n      0 0 0 2px #fff,\n      0 0 0 4px #4D382B;\n  }\n\n  @media (prefers-reduced-motion: reduce) {\n    #Setmore_button_iframe {\n      transition: none;\n    }\n    #Setmore_button_iframe:hover,\n    #Setmore_button_iframe:active {\n      transform: none;\n    }\n  }\n</style>",
-            "link-2": "https://moonridgecompany.setmore.com/",
-            "IsShopButton": false,
-            "link": "https://moonridgecompany.setmore.com/",
-            "button_style_secondary": false,
-            "box_align": "bottom-center",
-            "show_text_box": false,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "accent-1",
-            "text_alignment_mobile": "center",
-            "mobile_box_align": "center",
-            "mobile_text_spacing": 0
-          }
-        },
-        "slide_78bWzg": {
-          "type": "slide",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Website_Heading_2eb4f74c-f1ca-4d88-aaed-b874fa007084.png",
-            "image_mob": "shopify://shop_images/Website_Heading_Mobile_daeb4baf-a11a-4075-8a2d-5b4c2cdfbc18.png",
-            "caption": "",
-            "block_cap_size": 20,
-            "cap_color": "#222222",
-            "heading": "",
-            "block_head_size-2": 33,
-            "block_head_size-mobile": 24,
-            "block_head_line": 1.4,
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "Shop Now",
-            "IsBookButton": true,
-            "custom-book-button": "<a class=\"header-button\" id=\"Setmore_button_iframe\" href=\"https://moonridgecompany.setmore.com\" style=\"display:inline-block;\">\n\n                          Book Now\n                         \n                        </a>",
-            "link-2": "shopify://collections/all",
-            "IsShopButton": false,
-            "link": "shopify://collections/all",
-            "button_style_secondary": false,
-            "box_align": "bottom-center",
-            "show_text_box": false,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "accent-1",
-            "text_alignment_mobile": "center",
-            "mobile_box_align": "flex-end",
-            "mobile_text_spacing": 0
-          }
-        },
-        "slide_q6NjAW": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/SSS_05.png",
-            "image_mob": "shopify://shop_images/SSS_05.png",
-            "caption": "",
-            "block_cap_size": 20,
-            "cap_color": "#222222",
-            "heading": "Where every Hat Makes a Statement",
-            "block_head_size-2": 33,
-            "block_head_size-mobile": 24,
-            "block_head_line": 1.4,
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "Shop Now",
-            "IsBookButton": true,
-            "custom-book-button": "<a \n  id=\"Setmore_button_iframe\"\n  href=\"https://moonridgecompany.setmore.com\"\n  style=\"\n    display:inline-block;\n    background-color:#4D382B;  \n    color:#FFFFFF;             \n    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    font-size:16px;\n    font-weight:600;\n    letter-spacing:0;\n    text-transform:capitalize;\n    line-height:1;\n    padding:12px 32px;\n    border-radius:8px;\n    text-decoration:none;\n    transition:\n      background-color .2s cubic-bezier(.2,0,0,1),\n      color .2s cubic-bezier(.2,0,0,1),\n      transform .2s cubic-bezier(.2,0,0,1),\n      box-shadow .2s cubic-bezier(.2,0,0,1);\n  \"\n>\n  Book Now\n</a>\n\n<style>\n  \n  #Setmore_button_iframe:hover {\n    background-color:#7A604A; \n    transform: translateY(-2px);\n  }\n\n  #Setmore_button_iframe:active {\n    transform: translateY(0) scale(0.98);\n  }\n\n  #Setmore_button_iframe:focus-visible {\n    outline: none;\n    box-shadow:\n      0 0 0 2px #fff,\n      0 0 0 4px #4D382B;\n  }\n\n  \n  @media (max-width: 750px) {\n    #Setmore_button_iframe {\n      font-size:16px;\n      padding:14px 24px;\n      min-height:44px;\n      border-radius:8px;\n    }\n  }\n</style>",
-            "link-2": "shopify://pages/shop-hats",
-            "IsShopButton": false,
-            "link": "shopify://collections",
-            "button_style_secondary": false,
-            "box_align": "bottom-center",
-            "show_text_box": false,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "background-2",
-            "text_alignment_mobile": "left",
-            "mobile_box_align": "flex-end",
-            "mobile_text_spacing": 18
-          }
-        },
-        "slide_ECHWBP": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/SSS_04.png",
-            "image_mob": "shopify://shop_images/Cowboy_Mobile.png",
-            "caption": "",
-            "block_cap_size": 20,
-            "cap_color": "#222222",
-            "heading": "Hats for Every Adventure",
-            "block_head_size-2": 33,
-            "block_head_size-mobile": 24,
-            "block_head_line": 1.4,
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "Book Now",
-            "IsBookButton": true,
-            "custom-book-button": "<a \n  id=\"Setmore_button_iframe\"\n  href=\"https://moonridgecompany.setmore.com\"\n  style=\"\n    display:inline-block;\n    background-color:#4D382B;  \n    color:#FFFFFF;             \n    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    font-size:16px;\n    font-weight:600;\n    letter-spacing:0;\n    text-transform:capitalize;\n    line-height:1;\n    padding:12px 32px;\n    border-radius:8px;\n    text-decoration:none;\n    transition:\n      background-color .2s cubic-bezier(.2,0,0,1),\n      color .2s cubic-bezier(.2,0,0,1),\n      transform .2s cubic-bezier(.2,0,0,1),\n      box-shadow .2s cubic-bezier(.2,0,0,1);\n  \"\n>\n  Book Now\n</a>\n\n<style>\n  \n  #Setmore_button_iframe:hover {\n    background-color:#7A604A; \n    transform: translateY(-2px);\n  }\n\n  #Setmore_button_iframe:active {\n    transform: translateY(0) scale(0.98);\n  }\n\n  #Setmore_button_iframe:focus-visible {\n    outline: none;\n    box-shadow:\n      0 0 0 2px #fff,\n      0 0 0 4px #4D382B;\n  }\n\n  \n  @media (max-width: 750px) {\n    #Setmore_button_iframe {\n      font-size:16px;\n      padding:14px 24px;\n      min-height:44px;\n      border-radius:8px;\n    }\n  }\n</style>",
-            "link-2": "https://moonridgecompany.setmore.com/",
-            "IsShopButton": false,
-            "link": "https://moonridgecompany.setmore.com/",
-            "button_style_secondary": false,
-            "box_align": "bottom-center",
-            "show_text_box": false,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "accent-1",
-            "text_alignment_mobile": "center",
-            "mobile_box_align": "flex-end",
-            "mobile_text_spacing": 0
-          }
-        },
-        "slide_68kbXt": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/SSS_07.png",
-            "image_mob": "shopify://shop_images/SSS_07.png",
-            "caption": "",
-            "block_cap_size": 20,
-            "cap_color": "#222222",
-            "heading": "Book Us For Your Next Event!",
-            "block_head_size-2": 33,
-            "block_head_size-mobile": 24,
-            "block_head_line": 1.4,
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "Book Now",
-            "IsBookButton": true,
-            "custom-book-button": "<a \n  class=\"header-button\" \n  id=\"Setmore_button_iframe\" \n  href=\"https://moonridgecompany.setmore.com\" \n  style=\"\n    display:inline-block;\n    background-color:#4D382B;      \n    color:#FFFFFF;                 \n    text-transform:capitalize;\n    letter-spacing:0;\n    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    font-size:16px;\n    font-weight:600;\n    padding:12px 32px;\n    border-radius:8px;\n    text-decoration:none;\n    line-height:1;\n    transition:\n      background-color .2s cubic-bezier(.2,0,0,1),\n      color .2s cubic-bezier(.2,0,0,1),\n      transform .2s cubic-bezier(.2,0,0,1),\n      box-shadow .2s cubic-bezier(.2,0,0,1);\n  \"\n>\n  Book Now\n</a>\n\n<style>\n  #Setmore_button_iframe:hover {\n    background-color:#7A604A; \n    transform: translateY(-2px);\n  }\n\n  #Setmore_button_iframe:active {\n    transform: translateY(0) scale(0.98);\n  }\n\n  #Setmore_button_iframe:focus-visible {\n    outline: none;\n    box-shadow:\n      0 0 0 2px #fff,\n      0 0 0 4px #4D382B;\n  }\n\n  @media (prefers-reduced-motion: reduce) {\n    #Setmore_button_iframe {\n      transition: none;\n    }\n    #Setmore_button_iframe:hover,\n    #Setmore_button_iframe:active {\n      transform: none;\n    }\n  }\n</style>",
-            "link-2": "https://moonridgecompany.setmore.com/",
-            "IsShopButton": false,
-            "link": "https://moonridgecompany.setmore.com/",
-            "button_style_secondary": false,
-            "box_align": "bottom-center",
-            "show_text_box": false,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "accent-1",
-            "text_alignment_mobile": "center",
-            "mobile_box_align": "flex-end",
-            "mobile_text_spacing": 0
-          }
-        }
-      },
-      "block_order": [
-        "slide_ka9Vke",
-        "slide_78bWzg",
-        "slide_q6NjAW",
-        "slide_ECHWBP",
-        "slide_68kbXt"
-      ],
-      "disabled": true,
-      "settings": {
-        "layout": "full_bleed",
-        "banner_border": 0,
-        "slide_height": "adapt_image",
-        "slider_visual": "counter",
-        "auto_rotate": true,
-        "hide_navigation": true,
-        "change_slides_speed": 5,
-        "show_text_below": false,
-        "accessibility_info": "Slideshow about our brand"
-      }
-    },
     "1762578087a1ac51c4": {
       "type": "_blocks",
       "blocks": {
@@ -1040,65 +860,6 @@
         "padding_bottom": 36
       }
     },
-    "multicolumn_eeM788": {
-      "type": "multicolumn",
-      "blocks": {
-        "column_jCLTXx": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/Untitled-10.png",
-            "title": "★★★★★",
-            "text": "<h6>The quality of the hat I received is outstanding it's well-made, comfortable, and perfect for both sunny days and chilly evenings. The material feels durable and the craftsmanship is top-notch.</h6><p><strong>Richal</strong></p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_MHrEix": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/Untitled-8.png",
-            "title": "★★★★★",
-            "text": "<h6>I ordered a stylish fedora for my husband and a chic sun hat for myself. Both arrived quickly and exceeded our expectations. The fit was perfect, and the materials felt luxurious. It's clear that Ralter M lakes pride in curating a collection of hats that are both fashionable and well made.</h6><p><strong>Olivia</strong></p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_gXjjLa": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/Untitled-2.png",
-            "title": "★★★★★",
-            "text": "<h6>after M Hat Company, and I couldn't be more thrilled with my experience! Their selection of men's and women's hats is impressive, offering everything from classic fedoras to trendy wide brimmed styles. The quality of the hats is top notch, with excellent craftsmanship and al tention to detail.</h6><p><strong>Ammi</strong></p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column_jCLTXx",
-        "column_MHrEix",
-        "column_gXjjLa"
-      ],
-      "disabled": true,
-      "settings": {
-        "title": "Our Happy Customers!",
-        "heading_size": "h1",
-        "heading_center": true,
-        "image_width": "forth",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "button_label": "",
-        "button_link": "",
-        "color_scheme": "",
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "navigation_on_mobile": true,
-        "padding_top": 20,
-        "padding_bottom": 20
-      }
-    },
     "faq_accordion": {
       "type": "faq-accordion",
       "blocks": {
@@ -1147,7 +908,6 @@
     }
   },
   "order": [
-    "slideshow_FGiH4p",
     "1762578087a1ac51c4",
     "trust_badges",
     "ss_circle_menu_437Hac",
@@ -1169,7 +929,6 @@
     "lumin_grids_qnX3eH",
     "lumin_slidshow_pro_yNeGG6",
     "lumin_review_AbtUAG",
-    "multicolumn_eeM788",
     "faq_accordion"
   ]
 }

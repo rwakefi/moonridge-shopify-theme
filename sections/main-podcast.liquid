@@ -541,6 +541,13 @@
       if (item.guid) return 'guid:' + item.guid.trim().toLowerCase();
       const normalizedTitle = normalizeEpisodeTitle(item.title);
       if (normalizedTitle) return 'title:' + normalizedTitle;
+
+      const link = String(item.link || '').trim().toLowerCase();
+      if (link) return 'link:' + link;
+
+      const audioLink = item.enclosure && item.enclosure.link ? String(item.enclosure.link).trim().toLowerCase() : '';
+      if (audioLink) return 'audio:' + audioLink;
+
       return null;
     }
 
@@ -607,29 +614,16 @@
       return [];
     }
 
-    async function fetchEpisodes(feedUrl) {
-      const assetItems = await fetchEpisodesFromAsset();
-      if (!assetItems.length) {
-        throw new Error('Failed to load feed');
-      }
-      return assetItems;
-    }
-
-    async function refreshEpisodesFromRemote(feedUrl, currentItems) {
+    async function fetchRemoteEpisodes(feedUrl) {
       const remoteResults = await Promise.allSettled([
         fetchEpisodesFromLiveRss(feedUrl),
         fetchEpisodesFromRss2Json(feedUrl)
       ]);
 
-      const remoteItems = remoteResults
+      return remoteResults
         .filter(function (result) { return result.status === 'fulfilled'; })
         .map(function (result) { return result.value; })
         .flat();
-
-      if (!remoteItems.length) return currentItems;
-
-      const merged = mergeEpisodes(currentItems, remoteItems);
-      return merged.length ? merged : currentItems;
     }
 
     function sortEpisodes(items) {
@@ -664,9 +658,12 @@
         const dateString = pubDate.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = item.description || '';
-        const textSnippet = tempDiv.textContent || tempDiv.innerText || '';
+        let textSnippet = tempDiv.textContent || tempDiv.innerText || '';
+        if (textSnippet.length > 200) {
+          textSnippet = textSnippet.substring(0, 200) + '...';
+        }
 
-        const episodeImage = fallbackImage;
+        const episodeImage = item.thumbnail || (item.enclosure && item.enclosure.link) || fallbackImage;
         const isLatest = index === 0;
         const badgeHtml = isLatest ? '<span class="podcast-episode__badge">Latest Episode</span>' : '';
         const episodeLink = item.link && item.link.trim() !== '' ? item.link : '';
@@ -709,29 +706,40 @@
       return;
     }
 
-    fetchEpisodes(rssUrl)
-      .then(function (items) {
-        const sortedItems = sortEpisodes(items);
-        renderEpisodes(sortedItems);
-        bindEpisodeInteractions(sortedItems);
+    let assetItems = [];
+    let hasRenderedEpisodes = false;
 
-        refreshEpisodesFromRemote(rssUrl, sortedItems)
-          .then(function (mergedItems) {
-            const mergedSorted = sortEpisodes(mergedItems);
-            const currentKeys = sortedItems.map(getEpisodeKey).join('|');
-            const mergedKeys = mergedSorted.map(getEpisodeKey).join('|');
-            if (mergedKeys !== currentKeys) {
-              renderEpisodes(mergedSorted);
-              bindEpisodeInteractions(mergedSorted);
-            }
-          })
-          .catch(function () {
-            /* keep cached asset episodes */
-          });
+    function renderMergedEpisodes() {
+      const items = sortEpisodes(mergeEpisodes.apply(null, arguments));
+      if (!items.length) return false;
+
+      renderEpisodes(items);
+      bindEpisodeInteractions(items);
+      hasRenderedEpisodes = true;
+      return true;
+    }
+
+    fetchEpisodesFromAsset()
+      .catch(function (error) {
+        console.warn('Unable to load cached podcast episodes:', error);
+        return [];
+      })
+      .then(function (items) {
+        assetItems = items;
+        renderMergedEpisodes(assetItems);
+
+        return fetchRemoteEpisodes(rssUrl);
+      })
+      .then(function (remoteItems) {
+        if (!renderMergedEpisodes(assetItems, remoteItems) && !hasRenderedEpisodes) {
+          throw new Error('Failed to load feed');
+        }
       })
       .catch(function (error) {
         console.error('Error fetching podcast feed:', error);
-        listContainer.innerHTML = '<div class="podcast-loading">Unable to load episodes at this time. Please try again later.</div>';
+        if (!hasRenderedEpisodes) {
+          listContainer.innerHTML = '<div class="podcast-loading">Unable to load episodes at this time. Please try again later.</div>';
+        }
       });
 
     function bindEpisodeInteractions(items) {

@@ -753,3 +753,220 @@ li[data-address] > h2 {
 .addresses form > div:nth-of-type(7) + div[id] {
   margin-top: 1.5rem;
 }
+
+/* Moon Ridge account polish */
+.customer {
+  color: rgb(var(--color-foreground));
+}
+
+.customer:not(.account):not(.order) {
+  max-width: 56rem;
+}
+
+.customer > h1,
+.customer__title {
+  font-family: var(--font-heading-family);
+  letter-spacing: -0.02em;
+}
+
+.customer.login > div,
+.customer.register form,
+.customer.reset-password form,
+.customer.activate form,
+.addresses > div[data-address] > div[id],
+.addresses li[data-address],
+:is(.account, .order) > div:nth-of-type(2) > div {
+  padding: 2.4rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border-radius: 1.6rem;
+  background: linear-gradient(180deg, rgba(var(--color-foreground), 0.035), rgba(var(--color-foreground), 0.012));
+  box-shadow: 0 1.8rem 4rem rgba(var(--color-foreground), 0.07);
+}
+
+.customer.login > div {
+  margin-top: 2rem;
+}
+
+.customer.register form,
+.customer.reset-password form,
+.customer.activate form {
+  margin-top: 2.4rem;
+}
+
+.customer .field {
+  margin-top: 1.4rem;
+}
+
+.customer .field input,
+.customer select,
+.customer textarea {
+  border-radius: 1rem;
+}
+
+.customer button {
+  min-height: 5rem;
+  margin: 2.4rem 0 1rem;
+  border-radius: 999rem;
+  font-weight: 700;
+  letter-spacing: 0.06rem;
+  text-transform: uppercase;
+  box-shadow: 0 1rem 2rem rgba(var(--color-button), 0.18);
+  transition:
+    transform var(--duration-short) ease,
+    box-shadow var(--duration-short) ease,
+    opacity var(--duration-short) ease;
+}
+
+.customer button:not([disabled]):hover {
+  transform: translateY(-0.1rem);
+  box-shadow: 0 1.3rem 2.8rem rgba(var(--color-button), 0.24);
+}
+
+.activate button[name='decline'],
+.addresses li > button,
+.addresses form button[type='reset'] {
+  box-shadow: none;
+}
+
+.customer a {
+  text-underline-offset: 0.25rem;
+}
+
+.login a[href='#recover'],
+.login .field + a {
+  font-size: 1.4rem;
+  color: rgba(var(--color-foreground), 0.72);
+}
+
+:is(.account, .order) > div:first-of-type {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding-bottom: 2rem;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+
+:is(.account, .order) > div:first-of-type a,
+.addresses > a {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.8rem 1.2rem;
+  border-radius: 999rem;
+  background: rgba(var(--color-foreground), 0.055);
+  color: rgb(var(--color-foreground));
+  text-decoration: none;
+}
+
+:is(.account, .order) > div:nth-of-type(2) {
+  gap: 2rem;
+}
+
+:is(.account, .order) > div:nth-of-type(2) > div:first-of-type {
+  min-width: 0;
+}
+
+:is(.account, .order) > div:nth-of-type(2) > div:last-of-type {
+  height: fit-content;
+}
+
+.account h2,
+.order h2,
+.addresses h2 {
+  font-family: var(--font-heading-family);
+}
+
+.customer table {
+  overflow: hidden;
+  border-radius: 1.2rem;
+  background: rgb(var(--color-background));
+}
+
+@media screen and (min-width: 750px) {
+  .customer table {
+    box-shadow: 0 0 0 0.1rem rgba(var(--color-foreground), 0.08);
+  }
+
+  .customer thead th {
+    background: rgba(var(--color-foreground), 0.045);
+  }
+}
+
+.customer tbody tr {
+  border-top-color: rgba(var(--color-foreground), 0.07);
+}
+
+.account table td:first-of-type a {
+  border-radius: 999rem;
+  background: rgba(var(--color-button), 0.08);
+  box-shadow: none;
+  color: rgb(var(--color-link));
+}
+
+.addresses h1 {
+  margin-bottom: 1rem;
+}
+
+.addresses > div[data-address] {
+  margin-top: 2rem;
+}
+
+.addresses > div[data-address] > button {
+  margin-top: 2rem;
+}
+
+.addresses ul {
+  display: grid;
+  gap: 1.6rem;
+  margin-top: 3rem;
+}
+
+.addresses li[data-address] {
+  margin-top: 0;
+  text-align: left;
+}
+
+li[data-address] > h2 {
+  text-align: left;
+}
+
+.addresses li > button {
+  margin: 2rem 0.5rem 0 0;
+}
+
+.addresses form button:first-of-type {
+  margin-right: 1rem;
+}
+
+@media screen and (max-width: 749px) {
+  .customer.login > div,
+  .customer.register form,
+  .customer.reset-password form,
+  .customer.activate form,
+  .addresses > div[data-address] > div[id],
+  .addresses li[data-address],
+  :is(.account, .order) > div:nth-of-type(2) > div {
+    padding: 1.8rem;
+    border-radius: 1.2rem;
+  }
+
+  .customer table {
+    background: transparent;
+  }
+
+  .customer tbody tr {
+    margin-bottom: 1.2rem;
+    padding: 1.4rem;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+    border-radius: 1.2rem;
+    background: rgb(var(--color-background));
+  }
+
+  .customer tbody td:first-of-type,
+  .customer tbody td:last-of-type {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+  }
+}

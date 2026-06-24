@@ -138,91 +138,26 @@
 
       <!-- HAT FINDER APP COLUMN -->
       {% if section.settings.show_hat_finder_column %}
+        {% assign hat_finder_body = section.settings.hat_finder_text | default: section.settings.hat_finder_body %}
+        {% assign hat_finder_web_url = section.settings.hat_finder_link | default: section.settings.hat_finder_web_url | default: '/pages/hat-finder' %}
+        {% assign hat_finder_web_label = section.settings.hat_finder_link_label | default: section.settings.hat_finder_web_label | default: 'Try Hat Finder on the web →' %}
+
         <div class="rm-footer-col rm-footer-hat-finder">
-          {% assign hat_finder_icon_link = section.settings.hat_finder_web_url | default: '/pages/hat-finder' %}
+          <h3>{{ section.settings.hat_finder_heading | default: 'HAT FINDER APP' }}</h3>
 
-          <div class="rm-hat-finder-heading">
-            <a href="{{ hat_finder_icon_link }}" class="rm-hat-finder-icon-link" aria-label="Moon Ridge Hat Finder">
-              {% if section.settings.hat_finder_icon != blank %}
-                {{
-                  section.settings.hat_finder_icon
-                  | image_url: width: 58
-                  | image_tag:
-                    class: 'rm-hat-finder-icon',
-                    alt: 'Moon Ridge Hat Finder app icon',
-                    width: 29,
-                    height: 29,
-                    loading: 'lazy'
-                }}
-              {% else %}
-                <img
-                  src="{{ 'moonridge-hat-finder-app-icon.png' | asset_url }}"
-                  class="rm-hat-finder-icon"
-                  alt="Moon Ridge Hat Finder app icon"
-                  width="29"
-                  height="29"
-                  loading="lazy"
-                >
-              {% endif %}
-            </a>
+          {% if hat_finder_body != blank %}
+            <p class="rm-hat-finder-body">{{ hat_finder_body }}</p>
+          {% endif %}
 
-            {% if section.settings.hat_finder_heading != blank %}
-              <h3>{{ section.settings.hat_finder_heading }}</h3>
-            {% endif %}
-          </div>
-
-          <div class="rm-hat-finder-main">
-            {% if section.settings.hat_finder_body != blank %}
-              <p class="rm-hat-finder-body">{{ section.settings.hat_finder_body }}</p>
-            {% endif %}
-
-            {% if section.settings.hat_finder_web_url != blank and section.settings.hat_finder_web_label != blank %}
-              <p class="rm-hat-finder-web-link">
-                <a href="{{ section.settings.hat_finder_web_url }}">{{ section.settings.hat_finder_web_label }}</a>
-              </p>
-            {% endif %}
-          </div>
-
-          <div class="rm-hat-finder-badges">
-            {% if section.settings.app_store_url != blank %}
-              <a
-                href="{{ section.settings.app_store_url }}"
-                class="rm-hat-finder-badge rm-hat-finder-badge--app-store"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="{{ section.settings.app_store_aria_label | escape }}"
-              >
-                <img
-                  src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/white/en-us?size=250x83"
-                  alt="{{ section.settings.app_store_aria_label | escape }}"
-                  width="135"
-                  height="45"
-                  loading="lazy"
-                >
-              </a>
-            {% endif %}
-
-            {% if section.settings.show_product_hunt_badge %}
-              <a
-                href="https://www.producthunt.com/products/moon-ridge-hat-finder-ios-app?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-moon-ridge-hat-finder-ios-app"
-                class="rm-hat-finder-badge rm-hat-finder-badge--product-hunt"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1175508&theme=neutral&t=1781810852908"
-                  alt="Moon Ridge Hat Finder iOS App - Find your perfect hat! | Product Hunt"
-                  width="250"
-                  height="54"
-                  loading="lazy"
-                >
-              </a>
-            {% endif %}
-          </div>
+          {% if hat_finder_web_url != blank and hat_finder_web_label != blank %}
+            <p class="rm-hat-finder-web-link">
+              <a href="{{ hat_finder_web_url }}">{{ hat_finder_web_label }}</a>
+            </p>
+          {% endif %}
         </div>
       {% endif %}
 
-      <!-- QUICK LINKS COLUMN -->
+      <!-- MIDDLE COLUMN -->
       <div class="rm-footer-col rm-footer-middle">
         <h3>{{ section.settings.menu_heading }}</h3>
 
@@ -285,7 +220,6 @@
   justify-content: space-between;
   gap: 40px;
   flex-wrap: wrap;
-  align-items: flex-start;
 }
 
 /* DESKTOP COLUMN SIZING */
@@ -303,26 +237,19 @@
   color: #ffffff !important;
 }
 
-/* HEADINGS — shared top edge across all columns */
+/* HEADINGS */
 .rm-footer h3 {
   font-family: var(--font-heading-family, inherit);
-  font-weight: 700;
+  font-weight: 700; 
   font-size: 12px;
   letter-spacing: 2px;
-  line-height: 1.35;
-  margin-top: 0;
   margin-bottom: 20px;
-  padding-top: 0;
   text-transform: uppercase;
-}
-
-.rm-footer-col > :first-child {
-  margin-top: 0;
 }
 
 /* STORE HOURS HEADING */
 .rm-store-hours-heading {
-  margin-top: 0;
+  margin-top: 0; 
   margin-bottom: 20px;
 }
 
@@ -409,79 +336,17 @@
   margin-bottom: 8px;
 }
 
-/* HAT FINDER APP COLUMN */
-.rm-hat-finder-heading {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-.rm-hat-finder-heading h3 {
-  margin-bottom: 0;
-}
-
-.rm-hat-finder-icon-link {
-  display: block;
-  flex-shrink: 0;
-  line-height: 0;
-}
-
-.rm-hat-finder-icon {
-  display: block;
-  width: 29px;
-  height: 29px;
-  border-radius: 6px;
-  object-fit: cover;
-}
-
-.rm-hat-finder-main {
-  margin-bottom: 18px;
-}
-
-.rm-hat-finder-body {
-  margin-bottom: 10px;
-}
-
-.rm-hat-finder-web-link {
-  margin-bottom: 0;
+.rm-footer-hat-finder img,
+.rm-footer-hat-finder svg,
+.rm-footer-hat-finder .rm-hat-finder-badges,
+.rm-footer-hat-finder .rm-hat-finder-icon-link {
+  display: none;
 }
 
 .rm-hat-finder-web-link a {
+  font-weight: 700;
   text-decoration: underline;
-  text-underline-offset: 3px;
-  font-size: 13px;
-}
-
-.rm-hat-finder-badges {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.rm-hat-finder-badge {
-  display: inline-flex;
-  line-height: 0;
-  max-width: 100%;
-}
-
-.rm-hat-finder-badge img {
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-}
-
-.rm-hat-finder-badge--app-store img {
-  width: 120px;
-  height: 40px;
-}
-
-.rm-hat-finder-badge--product-hunt img {
-  width: 210px;
-  height: auto;
+  text-underline-offset: 5px;
 }
 
 /* NEWSLETTER */
@@ -543,24 +408,6 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
-
-  .rm-footer-columns {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 40px;
-    align-items: start;
-  }
-
-  .rm-footer-col {
-    flex: none;
-    max-width: none;
-    min-width: 0;
-  }
-
-  /* Equal heading block height so body text starts on the same line */
-  .rm-footer-col > h3:first-child {
-    min-height: 3.9em;
-  }
 }
 
 /* MOBILE STYLES */
@@ -609,19 +456,6 @@
 
   .rm-footer-right button {
     width: 100%; 
-  }
-
-  .rm-hat-finder-badges {
-    align-items: center;
-  }
-
-  .rm-hat-finder-heading {
-    justify-content: center;
-  }
-
-  .rm-hat-finder-main,
-  .rm-hat-finder-main p {
-    text-align: center !important;
   }
 
   .rm-footer-bottom {
@@ -732,7 +566,7 @@
     },
     {
       "type": "header",
-      "content": "Hat Finder app"
+      "content": "Hat Finder App"
     },
     {
       "type": "checkbox",
@@ -743,51 +577,25 @@
     {
       "type": "text",
       "id": "hat_finder_heading",
-      "label": "Hat Finder column heading",
+      "label": "Hat Finder heading",
       "default": "HAT FINDER APP"
     },
     {
-      "type": "image_picker",
-      "id": "hat_finder_icon",
-      "label": "Hat Finder app icon",
-      "info": "Optional override. Defaults to the bundled Moon Ridge Hat Finder icon."
-    },
-    {
       "type": "textarea",
-      "id": "hat_finder_body",
-      "label": "Hat Finder description",
+      "id": "hat_finder_text",
+      "label": "Hat Finder text",
       "default": "Not sure where to start? Answer a few quick questions about crown, brim, and style — our Hat Finder matches you with hats from the Moon Ridge collection. Free on iPhone."
     },
     {
       "type": "text",
-      "id": "hat_finder_web_url",
-      "label": "Hat Finder web page path or URL",
-      "default": "/pages/hat-finder",
-      "info": "Use a path like /pages/hat-finder or a full URL."
-    },
-    {
-      "type": "text",
-      "id": "hat_finder_web_label",
-      "label": "Hat Finder web link label",
+      "id": "hat_finder_link_label",
+      "label": "Hat Finder link label",
       "default": "Try Hat Finder on the web →"
     },
     {
       "type": "url",
-      "id": "app_store_url",
-      "label": "App Store URL",
-      "info": "Link to the Hat Finder iOS app on the App Store."
-    },
-    {
-      "type": "text",
-      "id": "app_store_aria_label",
-      "label": "App Store badge label",
-      "default": "Download Moon Ridge Hat Finder on the App Store"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_product_hunt_badge",
-      "label": "Show Product Hunt badge",
-      "default": true
+      "id": "hat_finder_link",
+      "label": "Hat Finder link"
     },
     {
       "type": "text",

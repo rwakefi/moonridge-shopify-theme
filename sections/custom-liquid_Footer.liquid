@@ -136,6 +136,21 @@
         {% endform %}
       </div>
 
+      <!-- HAT FINDER APP COLUMN -->
+      <div class="rm-footer-col rm-footer-hat-finder">
+        <h3>{{ section.settings.hat_finder_heading | default: 'HAT FINDER APP' }}</h3>
+
+        <p class="rm-hat-finder-body">
+          {{ section.settings.hat_finder_text | default: 'Not sure where to start? Answer a few quick questions about crown, brim, and style — our Hat Finder matches you with hats from the Moon Ridge collection. Free on iPhone.' }}
+        </p>
+
+        <p class="rm-hat-finder-web-link">
+          <a href="{{ section.settings.hat_finder_link | default: '/pages/hat-finder' }}">
+            {{ section.settings.hat_finder_link_label | default: 'Try Hat Finder on the web →' }}
+          </a>
+        </p>
+      </div>
+
       <!-- MIDDLE COLUMN -->
       <div class="rm-footer-col rm-footer-middle">
         <h3>{{ section.settings.menu_heading }}</h3>
@@ -179,15 +194,6 @@
   </div>
 </footer>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const productHuntBadge = document.querySelector('.rm-hat-finder-badge--product-hunt');
-    if (!productHuntBadge) return;
-
-    productHuntBadge.href = 'https://www.producthunt.com/posts/moon-ridge-hat-finder-ios-app?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-moon-ridge-hat-finder-ios-app';
-  });
-</script>
-
 {%- style -%}
 /* FOOTER BASE */
 .rm-footer {
@@ -212,9 +218,9 @@
 
 /* DESKTOP COLUMN SIZING */
 .rm-footer-col {
-  flex: 0 0 calc(33.333% - 40px);
-  max-width: calc(33.333% - 40px);
-  min-width: 260px;
+  flex: 1 1 220px;
+  max-width: 100%;
+  min-width: 220px;
 }
 
 /* FORCE ALL TEXT WHITE */
@@ -322,12 +328,17 @@
   margin-bottom: 8px;
 }
 
-/* Temporarily hide third-column graphics until the design is refined. */
-.rm-footer-columns > .rm-footer-col:nth-child(3) img,
-.rm-footer-columns > .rm-footer-col:nth-child(3) svg,
-.rm-footer-columns > .rm-footer-col:nth-child(3) .rm-contact-icon,
-.rm-footer-columns > .rm-footer-col:nth-child(3) .rm-social-icons {
+.rm-footer-hat-finder img,
+.rm-footer-hat-finder svg,
+.rm-footer-hat-finder .rm-hat-finder-badges,
+.rm-footer-hat-finder .rm-hat-finder-icon-link {
   display: none;
+}
+
+.rm-hat-finder-web-link a {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 5px;
 }
 
 /* NEWSLETTER */
@@ -544,6 +555,33 @@
       "id": "newsletter_success",
       "label": "Success message",
       "default": "Thanks for subscribing!"
+    },
+    {
+      "type": "header",
+      "content": "Hat Finder App"
+    },
+    {
+      "type": "text",
+      "id": "hat_finder_heading",
+      "label": "Hat Finder heading",
+      "default": "HAT FINDER APP"
+    },
+    {
+      "type": "textarea",
+      "id": "hat_finder_text",
+      "label": "Hat Finder text",
+      "default": "Not sure where to start? Answer a few quick questions about crown, brim, and style — our Hat Finder matches you with hats from the Moon Ridge collection. Free on iPhone."
+    },
+    {
+      "type": "text",
+      "id": "hat_finder_link_label",
+      "label": "Hat Finder link label",
+      "default": "Try Hat Finder on the web →"
+    },
+    {
+      "type": "url",
+      "id": "hat_finder_link",
+      "label": "Hat Finder link"
     },
     {
       "type": "text",

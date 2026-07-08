@@ -98,12 +98,14 @@
     object-fit: cover;
   }
 
-  /* BODY TEXT */
+  /* BODY TEXT – long-form readable size (≈16–18px with 62.5% root) */
   .rm-article__content.rte,
   .rm-article__content.rte p,
-  .rm-article__content.rte * {
-    font-size: 1.28rem !important;
-    line-height: 1.95 !important;
+  .rm-article__content.rte li,
+  .rm-article__content.rte td,
+  .rm-article__content.rte th {
+    font-size: 1.7rem !important;
+    line-height: 1.7 !important;
     color: #2b241e !important;
     font-weight: 400 !important;
   }
@@ -115,7 +117,7 @@
   /* HEADINGS – CATALOG FEEL */
   .rm-article__content h1,
   .rm-article__content h2 {
-    font-size: 1.8rem !important;
+    font-size: 1.9rem !important;
     margin-top: 2.8rem !important;
     margin-bottom: 1.1rem !important;
     color: var(--rm-brown) !important;
@@ -127,7 +129,7 @@
   }
 
   .rm-article__content h3 {
-    font-size: 1.6rem !important;
+    font-size: 1.65rem !important;
     margin-top: 2.4rem !important;
     margin-bottom: 1rem !important;
     color: var(--rm-brown) !important;
@@ -140,7 +142,7 @@
   .rm-article__content h4,
   .rm-article__content h5,
   .rm-article__content h6 {
-    font-size: 1.4rem !important;
+    font-size: 1.5rem !important;
     margin-top: 2rem !important;
     margin-bottom: 0.7rem !important;
     color: var(--rm-brown) !important;
@@ -155,8 +157,6 @@
   .rm-article__content ol {
     margin-left: 2rem !important;
     margin-bottom: 1.7rem !important;
-    font-size: 1.22rem !important;
-    line-height: 1.95 !important;
   }
 
   .rm-article__content li {
@@ -210,13 +210,22 @@
   }
 
   @media (max-width: 749px) {
+    .rm-article__content.rte,
+    .rm-article__content.rte p,
+    .rm-article__content.rte li,
+    .rm-article__content.rte td,
+    .rm-article__content.rte th {
+      font-size: 1.8rem !important;
+      line-height: 1.65 !important;
+    }
+
     .rm-article__content h1,
     .rm-article__content h2 {
-      font-size: 1.55rem !important;
+      font-size: 1.85rem !important;
     }
 
     .rm-article__content h3 {
-      font-size: 1.35rem !important;
+      font-size: 1.65rem !important;
     }
   }
 </style>

@@ -118,11 +118,14 @@
     object-fit: cover;
   }
 
-  /* BODY TEXT – Preserve blog editor formatting */
+  /* BODY TEXT – long-form readable size (≈16–18px with 62.5% root) */
   .rm-article__content.rte,
-  .rm-article__content.rte p {
-    font-size: 1.48rem;
-    line-height: 1.95;
+  .rm-article__content.rte p,
+  .rm-article__content.rte li,
+  .rm-article__content.rte td,
+  .rm-article__content.rte th {
+    font-size: 1.7rem;
+    line-height: 1.7;
     color: #2b241e;
     font-weight: 400;
   }
@@ -215,8 +218,6 @@
   .rm-article__content ol {
     margin-left: 2rem;
     margin-bottom: 1.7rem;
-    font-size: 1.22rem;
-    line-height: 1.95;
   }
 
   .rm-article__content li {
@@ -280,16 +281,32 @@
     color: #20140b;
   }
 
-  /* MOBILE */
+  /* MOBILE – keep body at least ~17–18px; never shrink below desktop */
   @media (max-width: 749px) {
     .rm-article {
       margin: 3rem auto 4.5rem;
+      padding: 0 1.25rem;
     }
 
     .rm-article__content.rte,
-    .rm-article__content.rte p {
-      font-size: 1.15rem;
-      line-height: 1.9;
+    .rm-article__content.rte p,
+    .rm-article__content.rte li,
+    .rm-article__content.rte td,
+    .rm-article__content.rte th {
+      font-size: 1.8rem;
+      line-height: 1.65;
+    }
+
+    .rm-article__content h1 {
+      font-size: 2.2rem;
+    }
+
+    .rm-article__content h2 {
+      font-size: 1.85rem;
+    }
+
+    .rm-article__content h3 {
+      font-size: 1.65rem;
     }
 
     .rm-article-nav {
@@ -302,6 +319,10 @@
     .rm-article-nav__prev {
       text-align: left;
       align-items: flex-start;
+    }
+
+    .rm-article-nav__title {
+      font-size: 1.2rem;
     }
   }
 </style>

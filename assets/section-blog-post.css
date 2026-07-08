@@ -193,3 +193,16 @@
 .article-template__back:last-child {
   margin-bottom: 3.2rem;
 }
+/* MOBILE READABILITY: larger body type for blog articles */
+@media screen and (max-width: 749px) {
+  .article-template__content,
+  .article-template__content p,
+  .article-template__content li,
+  .article-template__content td,
+  .article-template__content th {
+    font-size: 1.8rem !important;
+    line-height: 1.65 !important;
+  }
+  .article-template__content h2 { font-size: 2.4rem !important; }
+  .article-template__content h3 { font-size: 2rem !important; }
+}

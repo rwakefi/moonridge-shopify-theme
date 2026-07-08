@@ -124,10 +124,15 @@
   .rm-article__content.rte li,
   .rm-article__content.rte td,
   .rm-article__content.rte th {
-    font-size: 1.7rem;
-    line-height: 1.7;
+    font-size: 1.7rem !important;
+    line-height: 1.7 !important;
     color: #2b241e;
     font-weight: 400;
+  }
+
+  /* Beat inline font-size from the blog rich-text editor */
+  .rm-article__content.rte [style*="font-size"] {
+    font-size: inherit !important;
   }
 
   .rm-article__content p {
@@ -295,8 +300,8 @@
     .rm-article__content.rte li,
     .rm-article__content.rte td,
     .rm-article__content.rte th {
-      font-size: 2rem;
-      line-height: 1.65;
+      font-size: 2rem !important;
+      line-height: 1.65 !important;
     }
 
     .rm-article__content h1 {

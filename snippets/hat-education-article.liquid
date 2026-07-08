@@ -198,26 +198,39 @@
 
   /* Article body — tuned for pasted guides (p + strong headings, hr breaks) */
   .he-article__body {
-    font-size: 1.25rem;
-    line-height: 1.75;
+    font-size: 1.7rem;
+    line-height: 1.7;
     color: #2b241e;
     letter-spacing: 0.01em;
   }
 
   .he-article__body.rte p,
   .he-article__body.rte li {
-    font-size: 1.25rem;
-    line-height: 1.75;
+    font-size: 1.7rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .he-article__body.rte [style*="font-size"] {
+    font-size: inherit !important;
   }
 
   @media screen and (min-width: 750px) {
     .he-article__body {
-      font-size: 1.3125rem;
+      font-size: 1.7rem;
     }
 
     .he-article__body.rte p,
     .he-article__body.rte li {
-      font-size: 1.3125rem;
+      font-size: 1.7rem !important;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .he-article__body,
+    .he-article__body.rte p,
+    .he-article__body.rte li {
+      font-size: 2rem !important;
+      line-height: 1.65 !important;
     }
   }
 
@@ -249,8 +262,8 @@
   .he-article__body > p:first-of-type:not(:has(> strong:only-child)),
   .he-article__body > p:first-child:has(> strong:only-child) + p,
   .he-article__body .he-article__lede {
-    font-size: 1.35rem;
-    line-height: 1.75;
+    font-size: 1.85rem;
+    line-height: 1.7;
     color: rgba(43, 36, 30, 0.92);
   }
 
@@ -258,7 +271,16 @@
     .he-article__body > p:first-of-type:not(:has(> strong:only-child)),
     .he-article__body > p:first-child:has(> strong:only-child) + p,
     .he-article__body .he-article__lede {
-      font-size: 1.4rem;
+      font-size: 1.85rem;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .he-article__body > p:first-of-type:not(:has(> strong:only-child)),
+    .he-article__body > p:first-child:has(> strong:only-child) + p,
+    .he-article__body .he-article__lede {
+      font-size: 2.1rem !important;
+      line-height: 1.65 !important;
     }
   }
 

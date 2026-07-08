@@ -201,9 +201,28 @@
   }
 
   .he-article__body {
-    font-size: 1.125rem;
-    line-height: 1.75;
+    font-size: 1.7rem;
+    line-height: 1.7;
     color: #2b241e;
+  }
+
+  .he-article__body p,
+  .he-article__body li {
+    font-size: 1.7rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .he-article__body [style*="font-size"] {
+    font-size: inherit !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    .he-article__body,
+    .he-article__body p,
+    .he-article__body li {
+      font-size: 2rem !important;
+      line-height: 1.65 !important;
+    }
   }
 
   .he-article__body p {

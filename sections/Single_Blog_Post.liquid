@@ -130,8 +130,16 @@
     font-weight: 400;
   }
 
-  /* Beat inline font-size from the blog rich-text editor */
-  .rm-article__content.rte [style*="font-size"] {
+  /* Nested editor markup (span/font/div) must inherit — Ischia-style posts
+     paste tiny inline font-size on inner nodes, not on <p>. */
+  .rm-article__content.rte :where(span, font, em, i, strong, b, a, u, div):not([class]) {
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+
+  .rm-article__content.rte [style*="font-size"],
+  .rm-article__content.rte [style*="font-size"] *,
+  .rm-article__content.rte font[size] {
     font-size: inherit !important;
   }
 
@@ -305,25 +313,25 @@
     }
 
     .rm-article__content h1 {
-      font-size: 2.2rem;
-      line-height: 1.4;
+      font-size: 2.2rem !important;
+      line-height: 1.4 !important;
     }
 
     .rm-article__content h2 {
-      font-size: 1.85rem;
-      line-height: 1.4;
+      font-size: 1.85rem !important;
+      line-height: 1.4 !important;
     }
 
     .rm-article__content h3 {
-      font-size: 1.55rem;
-      line-height: 1.4;
+      font-size: 1.55rem !important;
+      line-height: 1.4 !important;
     }
 
     .rm-article__content h4,
     .rm-article__content h5,
     .rm-article__content h6 {
-      font-size: 1.35rem;
-      line-height: 1.4;
+      font-size: 1.35rem !important;
+      line-height: 1.4 !important;
     }
 
     .rm-article-nav {

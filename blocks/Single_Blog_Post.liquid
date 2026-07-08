@@ -98,7 +98,7 @@
     object-fit: cover;
   }
 
-  /* BODY TEXT – long-form readable size (≈16–18px with 62.5% root) */
+  /* BODY TEXT – long-form readable size */
   .rm-article__content.rte,
   .rm-article__content.rte p,
   .rm-article__content.rte li,
@@ -110,8 +110,15 @@
     font-weight: 400 !important;
   }
 
-  /* Beat inline font-size from the blog rich-text editor */
-  .rm-article__content.rte [style*="font-size"] {
+  /* Nested editor markup must inherit (pasted tiny inline font-size) */
+  .rm-article__content.rte :where(span, font, em, i, strong, b, a, u, div):not([class]) {
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+
+  .rm-article__content.rte [style*="font-size"],
+  .rm-article__content.rte [style*="font-size"] *,
+  .rm-article__content.rte font[size] {
     font-size: inherit !important;
   }
 

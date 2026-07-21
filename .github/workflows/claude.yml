@@ -24,6 +24,7 @@ jobs:
       issues: write
       id-token: write
       actions: read
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,9 +33,11 @@ jobs:
 
       - name: Run Claude Code
         id: claude
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           claude_args: |
-            --allowedTools "Bash(git add:*),Bash(git commit:*),Bash(git push:*),Bash(git checkout:*),Bash(git pull:*)"
-            --append-system-prompt "When you make changes, commit them directly to main — do NOT create a branch or open a pull request. After editing files, run: git add -A && git commit -m '<short description>' && git push origin main"
+            --allowedTools "Bash(git add:*),Bash(git commit:*),Bash(git push:*),Bash(gh pr create:*),Bash(gh pr view:*)"
+            --append-system-prompt "Always work on a branch and open a pull request for review — never commit directly to main. After pushing your branch, run `gh pr create --base main --head <branch> --title <title> --body <body>` to open the pull request yourself, instead of just posting a compare link. Do not merge the PR yourself under any circumstances. A separate workflow will automatically deploy the branch to a Shopify preview theme and post the preview link as a PR comment; a human will check that preview and merge when ready."

@@ -4,6 +4,38 @@
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
+{%- liquid
+  assign desktop_img = block.settings.desktop_image
+  assign mobile_img = block.settings.mobile_image
+  if mobile_img == blank
+    assign mobile_img = desktop_img
+  endif
+
+  assign desktop_w = desktop_img.width | default: 1920
+  assign desktop_h = desktop_img.height | default: 1080
+  assign mobile_w = mobile_img.width | default: 1080
+  assign mobile_h = mobile_img.height | default: 1350
+
+  assign desktop_widths = '750,1100,1500,1780,1920' | split: ','
+  assign mobile_widths = '400,550,750,900,1080' | split: ','
+-%}
+
+{%- capture desktop_srcset -%}
+  {%- for w in desktop_widths -%}
+    {%- assign wn = w | plus: 0 -%}
+    {%- if desktop_w >= wn -%}{{ desktop_img | image_url: width: wn }} {{ wn }}w, {% endif -%}
+  {%- endfor -%}
+  {{ desktop_img | image_url }} {{ desktop_w }}w
+{%- endcapture -%}
+
+{%- capture mobile_srcset -%}
+  {%- for w in mobile_widths -%}
+    {%- assign wn = w | plus: 0 -%}
+    {%- if mobile_w >= wn -%}{{ mobile_img | image_url: width: wn }} {{ wn }}w, {% endif -%}
+  {%- endfor -%}
+  {{ mobile_img | image_url }} {{ mobile_w }}w
+{%- endcapture -%}
+
 {% style %}
   .ai-single-image-{{ ai_gen_id }} {
     width: 100%;
@@ -18,20 +50,13 @@
     position: relative;
   }
 
-  .ai-single-image-desktop-{{ ai_gen_id }} {
+  .ai-single-image-media-{{ ai_gen_id }} {
     width: 100%;
     max-width: 100%;
     height: auto;
     display: block;
     object-fit: cover;
-  }
-
-  .ai-single-image-mobile-{{ ai_gen_id }} {
-    display: none;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
+    aspect-ratio: {{ desktop_w }} / {{ desktop_h }};
   }
 
   .ai-single-image-placeholder-{{ ai_gen_id }} {
@@ -64,12 +89,8 @@
   }
 
   @media screen and (max-width: 749px) {
-    .ai-single-image-desktop-{{ ai_gen_id }} {
-      display: none;
-    }
-
-    .ai-single-image-mobile-{{ ai_gen_id }} {
-      display: block;
+    .ai-single-image-media-{{ ai_gen_id }} {
+      aspect-ratio: {{ mobile_w }} / {{ mobile_h }};
     }
 
     .ai-single-image-placeholder-{{ ai_gen_id }} {
@@ -80,47 +101,33 @@
 
 <div class="ai-single-image-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   <div class="ai-single-image-wrapper-{{ ai_gen_id }}">
-    {% if block.settings.desktop_image %}
-      <img
-        src="{{ block.settings.desktop_image | image_url: width: 1920 }}"
-        alt="{{ block.settings.desktop_image.alt | escape }}"
-        loading="lazy"
-        width="1920"
-        height="1080"
-        class="ai-single-image-desktop-{{ ai_gen_id }}"
-      >
+    {% if desktop_img %}
+      <picture>
+        <source
+          media="(max-width: 749px)"
+          srcset="{{ mobile_srcset | strip | strip_newlines }}"
+          sizes="100vw"
+          width="{{ mobile_w }}"
+          height="{{ mobile_h }}"
+        >
+        <img
+          src="{{ desktop_img | image_url: width: 1920 }}"
+          srcset="{{ desktop_srcset | strip | strip_newlines }}"
+          sizes="100vw"
+
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          width="{{ desktop_w }}"
+          height="{{ desktop_h }}"
+          class="ai-single-image-media-{{ ai_gen_id }}"
+        >
+      </picture>
     {% else %}
       <div class="ai-single-image-placeholder-{{ ai_gen_id }}">
         {{ 'image' | placeholder_svg_tag }}
         <div class="ai-single-image-empty-state-{{ ai_gen_id }}">
           Add a desktop image (1920 x 1080)
-        </div>
-      </div>
-    {% endif %}
-
-    {% if block.settings.mobile_image %}
-      <img
-        src="{{ block.settings.mobile_image | image_url: width: 1080 }}"
-        alt="{{ block.settings.mobile_image.alt | escape }}"
-        loading="lazy"
-        width="1080"
-        height="1350"
-        class="ai-single-image-mobile-{{ ai_gen_id }}"
-      >
-    {% elsif block.settings.desktop_image %}
-      <img
-        src="{{ block.settings.desktop_image | image_url: width: 1080 }}"
-        alt="{{ block.settings.desktop_image.alt | escape }}"
-        loading="lazy"
-        width="1080"
-        height="1350"
-        class="ai-single-image-mobile-{{ ai_gen_id }}"
-      >
-    {% else %}
-      <div class="ai-single-image-placeholder-{{ ai_gen_id }}">
-        {{ 'image' | placeholder_svg_tag }}
-        <div class="ai-single-image-empty-state-{{ ai_gen_id }}">
-          Add a mobile image (1080 x 1350)
         </div>
       </div>
     {% endif %}

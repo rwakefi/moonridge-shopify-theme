@@ -1,0 +1,58 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "custom.popup",
+  "name": "Popup Group",
+  "sections": {
+    "popup_promo_xFyMya": {
+      "type": "Popup_promo",
+      "name": "Exit intent — WELCOME10",
+      "settings": {
+        "enable_popup": true,
+        "trigger_mode": "exit",
+        "delay_seconds": 30,
+        "mobile_trigger": "scroll_up",
+        "home_only": false,
+        "exclude_checkout_flow": true,
+        "show_once": true,
+        "cooldown_days": 14,
+        "eyebrow": "Sign up and get",
+        "heading": "<p>10% OFF</p>",
+        "offer_line": "Your first Moon Ridge hat",
+        "body_text": "<p>Join the list for new arrivals, events, and exclusive offers from Fayetteville.</p>",
+        "show_email_form": true,
+        "discount_code": "WELCOME10",
+        "show_code_on_success": true,
+        "email_placeholder": "Email Address",
+        "submit_label": "Yes, sign me up",
+        "decline_label": "No, thanks",
+        "success_heading": "You’re on the list",
+        "success_text": "Thanks for signing up. Use your code below — and watch your inbox for Moon Ridge updates.",
+        "legal_text": "<p>By signing up you agree to receive marketing emails from Moon Ridge. Unsubscribe anytime.</p>",
+        "button_label": "Shop hats",
+        "button_link": "",
+        "popup_background": "#f4efe6",
+        "popup_text_color": "#312110",
+        "button_background": "#312110",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "1724910121dbcfb207": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "popup_promo_xFyMya",
+    "1724910121dbcfb207"
+  ]
+}

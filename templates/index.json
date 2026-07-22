@@ -24,7 +24,7 @@
             "cta_background": "#ffffff",
             "cta_support": "Ready to find yours?",
             "secondary_label": "Try Hat Finder",
-            "secondary_link": "shopify://pages/hat-finder",
+            "secondary_link": "https://hatfinder.moonridgecompany.com",
             "cta_text_color": "#312110",
             "cta_accent_color": "#c4b49a"
           },

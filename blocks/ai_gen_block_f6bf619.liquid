@@ -274,7 +274,7 @@
 
         {%- if block.settings.secondary_label != blank -%}
           <a
-            href="{{ block.settings.secondary_link | default: '/pages/hat-finder' }}"
+            href="{{ block.settings.secondary_link | default: 'https://hatfinder.moonridgecompany.com' }}"
             class="ai-single-image-cta-btn-{{ ai_gen_id }} ai-single-image-cta-btn--secondary-{{ ai_gen_id }}"
           >
             <span>{{ block.settings.secondary_label | escape }}</span>
@@ -341,7 +341,7 @@
       "type": "url",
       "id": "secondary_link",
       "label": "Secondary button link",
-      "info": "Defaults to /pages/hat-finder if blank."
+      "info": "Defaults to https://hatfinder.moonridgecompany.com if blank."
     },
     {
       "type": "color",

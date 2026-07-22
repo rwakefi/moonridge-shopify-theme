@@ -64,40 +64,146 @@
   }
 
   .ai-single-image-cta-{{ ai_gen_id }} {
+    --mr-cta-ink: {{ block.settings.button_text_color | default: '#312110' }};
+    --mr-cta-fill: {{ block.settings.button_background | default: '#f7f1e8' }};
+    --mr-cta-band: {{ block.settings.cta_background | default: '#312110' }};
+    --mr-cta-muted: {{ block.settings.cta_text_color | default: '#d8cbb8' }};
+    --mr-cta-rule: {{ block.settings.cta_accent_color | default: '#a8926c' }};
+
+    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    padding: 18px 20px 20px;
-    background-color: {{ block.settings.cta_background | default: '#ffffff' }};
+    gap: 14px;
+    padding: 28px 24px 30px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 42%),
+      var(--mr-cta-band);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .ai-single-image-cta-{{ ai_gen_id }}::before,
+  .ai-single-image-cta-{{ ai_gen_id }}::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--mr-cta-rule) 18%,
+      var(--mr-cta-rule) 82%,
+      transparent 100%
+    );
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  .ai-single-image-cta-{{ ai_gen_id }}::before {
+    top: 0;
+  }
+
+  .ai-single-image-cta-{{ ai_gen_id }}::after {
+    bottom: 0;
+  }
+
+  .ai-single-image-cta-ornament-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: min(420px, 86vw);
+    color: var(--mr-cta-rule);
+  }
+
+  .ai-single-image-cta-ornament-{{ ai_gen_id }} span {
+    flex: 1;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.65;
+  }
+
+  .ai-single-image-cta-ornament-{{ ai_gen_id }} svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    opacity: 0.9;
+  }
+
+  .ai-single-image-cta-copy-{{ ai_gen_id }} {
+    margin: 0;
+    max-width: 34rem;
+    color: var(--mr-cta-muted);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.45;
   }
 
   .ai-single-image-cta-btn-{{ ai_gen_id }} {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 48px;
-    padding: 12px 28px;
+    gap: 10px;
+    min-height: 52px;
+    padding: 14px 34px;
     font-family: inherit;
     font-size: 15px;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     text-decoration: none;
-    color: {{ block.settings.button_text_color | default: '#ffffff' }};
-    background-color: {{ block.settings.button_background | default: '#312110' }};
-    border: 1px solid {{ block.settings.button_background | default: '#312110' }};
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    color: var(--mr-cta-ink);
+    background-color: var(--mr-cta-fill);
+    border: 1px solid var(--mr-cta-fill);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+    transition:
+      transform 0.25s ease,
+      background-color 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .ai-single-image-cta-btn-{{ ai_gen_id }} svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.25s ease;
   }
 
   .ai-single-image-cta-btn-{{ ai_gen_id }}:hover {
-    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.24);
+  }
+
+  .ai-single-image-cta-btn-{{ ai_gen_id }}:hover svg {
+    transform: translateX(3px);
   }
 
   .ai-single-image-cta-btn-{{ ai_gen_id }}:focus-visible {
-    outline: 2px solid {{ block.settings.button_background | default: '#312110' }};
+    outline: 2px solid var(--mr-cta-fill);
     outline-offset: 3px;
+  }
+
+  .ai-single-image-cta-secondary-{{ ai_gen_id }} {
+    margin: 2px 0 0;
+    color: var(--mr-cta-muted);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+
+  .ai-single-image-cta-secondary-{{ ai_gen_id }} a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+
+  .ai-single-image-cta-secondary-{{ ai_gen_id }} a:hover {
+    color: #ffffff;
   }
 
   @media screen and (max-width: 749px) {
@@ -114,12 +220,33 @@
     }
 
     .ai-single-image-cta-{{ ai_gen_id }} {
-      padding: 16px 16px 18px;
+      gap: 12px;
+      padding: 24px 18px 26px;
+    }
+
+    .ai-single-image-cta-copy-{{ ai_gen_id }} {
+      font-size: 12px;
+      letter-spacing: 0.14em;
     }
 
     .ai-single-image-cta-btn-{{ ai_gen_id }} {
       width: 100%;
       max-width: 360px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ai-single-image-cta-btn-{{ ai_gen_id }},
+    .ai-single-image-cta-btn-{{ ai_gen_id }} svg {
+      transition: none;
+    }
+
+    .ai-single-image-cta-btn-{{ ai_gen_id }}:hover {
+      transform: none;
+    }
+
+    .ai-single-image-cta-btn-{{ ai_gen_id }}:hover svg {
+      transform: none;
     }
   }
 {% endstyle %}
@@ -177,12 +304,33 @@
 
   {%- if block.settings.button_label != blank -%}
     <div class="ai-single-image-cta-{{ ai_gen_id }}">
+      <div class="ai-single-image-cta-ornament-{{ ai_gen_id }}" aria-hidden="true">
+        <span></span>
+        <svg viewBox="0 0 12 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 0.75L11.25 6L6 11.25L0.75 6L6 0.75Z" />
+        </svg>
+        <span></span>
+      </div>
+
+      {%- if block.settings.cta_support != blank -%}
+        <p class="ai-single-image-cta-copy-{{ ai_gen_id }}">{{ block.settings.cta_support | escape }}</p>
+      {%- endif -%}
+
       <a
         href="{{ block.settings.button_link | default: '/pages/shop-hats' }}"
         class="ai-single-image-cta-btn-{{ ai_gen_id }}"
       >
-        {{ block.settings.button_label | escape }}
+        <span>{{ block.settings.button_label | escape }}</span>
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </a>
+
+      {%- if block.settings.secondary_label != blank and block.settings.secondary_link != blank -%}
+        <p class="ai-single-image-cta-secondary-{{ ai_gen_id }}">
+          <a href="{{ block.settings.secondary_link }}">{{ block.settings.secondary_label | escape }}</a>
+        </p>
+      {%- endif -%}
     </div>
   {%- endif -%}
 </div>
@@ -217,6 +365,12 @@
     },
     {
       "type": "text",
+      "id": "cta_support",
+      "label": "Supporting line",
+      "default": "Find the hat that fits"
+    },
+    {
+      "type": "text",
       "id": "button_label",
       "label": "Button label",
       "default": "Shop hats",
@@ -228,22 +382,45 @@
       "label": "Button link"
     },
     {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary link label",
+      "default": "Book a free fitting"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary link"
+    },
+    {
+      "type": "color",
+      "id": "cta_background",
+      "label": "CTA band background",
+      "default": "#312110"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "Supporting text color",
+      "default": "#d8cbb8"
+    },
+    {
+      "type": "color",
+      "id": "cta_accent_color",
+      "label": "Ornament / rule color",
+      "default": "#a8926c"
+    },
+    {
       "type": "color",
       "id": "button_background",
       "label": "Button background",
-      "default": "#312110"
+      "default": "#f7f1e8"
     },
     {
       "type": "color",
       "id": "button_text_color",
       "label": "Button text",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "cta_background",
-      "label": "CTA bar background",
-      "default": "#ffffff"
+      "default": "#312110"
     }
   ],
   "presets": [

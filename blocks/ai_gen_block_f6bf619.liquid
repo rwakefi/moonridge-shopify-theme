@@ -152,7 +152,25 @@
     border-color: var(--mr-cta-ink);
   }
 
-  .ai-single-image-cta-btn-{{ ai_gen_id }}:focus-visible {
+  .ai-single-image-cta-appstore-{{ ai_gen_id }} {
+    display: none;
+    margin: 2px 0 0;
+    color: var(--mr-cta-ink);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    opacity: 0.72;
+  }
+
+  .ai-single-image-cta-appstore-{{ ai_gen_id }}:hover {
+    opacity: 1;
+  }
+
+  .ai-single-image-cta-btn-{{ ai_gen_id }}:focus-visible,
+  .ai-single-image-cta-appstore-{{ ai_gen_id }}:focus-visible {
     outline: 2px solid var(--mr-btn-bg);
     outline-offset: 3px;
   }
@@ -183,6 +201,10 @@
     .ai-single-image-cta-btn-{{ ai_gen_id }} {
       width: 100%;
       max-width: 360px;
+    }
+
+    .ai-single-image-cta-appstore-{{ ai_gen_id }} {
+      display: inline-flex;
     }
   }
 
@@ -253,7 +275,7 @@
     {% endif %}
   </div>
 
-  {%- if block.settings.button_label != blank or block.settings.secondary_label != blank -%}
+  {%- if block.settings.button_label != blank or block.settings.secondary_label != blank or block.settings.app_store_link != blank -%}
     <div class="ai-single-image-cta-{{ ai_gen_id }}">
       {%- if block.settings.cta_support != blank -%}
         <p class="ai-single-image-cta-copy-{{ ai_gen_id }}">{{ block.settings.cta_support | escape }}</p>
@@ -281,6 +303,17 @@
           </a>
         {%- endif -%}
       </div>
+
+      {%- if block.settings.app_store_link != blank and block.settings.app_store_label != blank -%}
+        <a
+          href="{{ block.settings.app_store_link }}"
+          class="ai-single-image-cta-appstore-{{ ai_gen_id }}"
+          target="_blank"
+          rel="noopener"
+        >
+          {{ block.settings.app_store_label | escape }}
+        </a>
+      {%- endif -%}
     </div>
   {%- endif -%}
 </div>
@@ -342,6 +375,19 @@
       "id": "secondary_link",
       "label": "Secondary button link",
       "info": "Defaults to https://hatfinder.moonridgecompany.com if blank."
+    },
+    {
+      "type": "text",
+      "id": "app_store_label",
+      "label": "App Store link label (mobile only)",
+      "default": "Get the iPhone app",
+      "info": "Only shows on mobile. Leave blank to hide."
+    },
+    {
+      "type": "url",
+      "id": "app_store_link",
+      "label": "App Store link (mobile only)",
+      "info": "Paste the App Store URL. Hidden on desktop."
     },
     {
       "type": "color",

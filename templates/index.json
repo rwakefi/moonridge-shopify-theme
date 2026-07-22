@@ -25,6 +25,8 @@
             "cta_support": "Ready to find yours?",
             "secondary_label": "Try Hat Finder",
             "secondary_link": "https://hatfinder.moonridgecompany.com",
+            "app_store_label": "Get the iPhone app",
+            "app_store_link": "https://apps.apple.com/us/app/hat-finder/id6767718895",
             "cta_text_color": "#312110",
             "cta_accent_color": "#c4b49a"
           },

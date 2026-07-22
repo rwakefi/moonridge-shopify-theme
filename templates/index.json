@@ -608,7 +608,8 @@
         "swipe_on_mobile": true,
         "navigation_on_mobile": false,
         "padding_top": 12,
-        "padding_bottom": 24
+        "padding_bottom": 24,
+        "hide_sold_out": true
       }
     },
     "slideshow_yKmXBC": {

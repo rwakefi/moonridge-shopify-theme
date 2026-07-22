@@ -1,100 +1,177 @@
 {% comment %}
-  Moon Ridge – Popup Promo Section (Desktop + Mobile Optimized)
-  Save as: sections/popup-promo.liquid
+  Moon Ridge – Exit-intent / promo popup (theme-native, no third-party apps)
 {% endcomment %}
 
-{% if section.settings.enable_popup %}
-  {% assign show_on_home_only = section.settings.home_only %}
-  {% if show_on_home_only == false or template == 'index' %}
-    <div
-      class="rm-popup rm-popup-{{ section.id }}"
-      data-rm-popup
-      data-popup-id="rm-popup-{{ section.id }}"
-      data-popup-delay="{{ section.settings.delay_seconds }}"
-      style="display:none;"
-    >
-      <div class="rm-popup-overlay" data-rm-popup-overlay></div>
+{% liquid
+  assign enable_popup = section.settings.enable_popup
+  assign home_only = section.settings.home_only
+  assign exclude_checkout_flow = section.settings.exclude_checkout_flow
+  assign show_email_form = section.settings.show_email_form
+  assign discount_code = section.settings.discount_code | strip
+  assign trigger_mode = section.settings.trigger_mode | default: 'exit'
 
-      <div class="rm-popup-container">
-        <button
-          type="button"
-          class="rm-popup-close"
-          aria-label="Close popup"
-          data-rm-popup-close
-        >
-          &times;
-        </button>
+  assign blocked_template = false
+  if exclude_checkout_flow
+    if template.name == 'cart' or template.name == 'login' or template.name == 'register' or template.name == 'order' or template.name contains 'customers'
+      assign blocked_template = true
+    endif
+  endif
 
-        <div class="rm-popup-content">
-          {% if section.settings.heading != blank %}
-            <div class="rm-popup-heading">
-              {{ section.settings.heading }}
-            </div>
-          {% endif %}
+  assign show_popup = false
+  if enable_popup and blocked_template == false
+    if home_only == false or template.name == 'index'
+      assign show_popup = true
+    endif
+  endif
+%}
 
-          {% if section.settings.body_text != blank %}
-            <div class="rm-popup-body">
-              {{ section.settings.body_text }}
-            </div>
-          {% endif %}
+{% if show_popup %}
+  <div
+    class="rm-popup rm-popup-{{ section.id }}"
+    data-rm-popup
+    data-popup-id="rm-popup-{{ section.id }}"
+    data-trigger-mode="{{ trigger_mode }}"
+    data-popup-delay="{{ section.settings.delay_seconds }}"
+    data-show-once="{{ section.settings.show_once }}"
+    data-cooldown-days="{{ section.settings.cooldown_days }}"
+    data-mobile-trigger="{{ section.settings.mobile_trigger }}"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="rm-popup-heading-{{ section.id }}"
+    hidden
+  >
+    <div class="rm-popup-overlay" data-rm-popup-overlay></div>
 
-          {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-            <a
-              href="{{ section.settings.button_link }}"
-              class="rm-popup-button"
-            >
-              {{ section.settings.button_label }}
-            </a>
-          {% endif %}
+    <div class="rm-popup-container" tabindex="-1">
+      <button
+        type="button"
+        class="rm-popup-close"
+        aria-label="Close popup"
+        data-rm-popup-close
+      >
+        &times;
+      </button>
 
-          {% if section.settings.shop_now_label != blank %}
-            <button
-              type="button"
-              class="rm-popup-shop-now"
-              data-rm-popup-close
-            >
-              {{ section.settings.shop_now_label }}
-            </button>
-          {% endif %}
-        </div>
+      <div class="rm-popup-content">
+        {% if section.settings.heading != blank %}
+          <div class="rm-popup-heading" id="rm-popup-heading-{{ section.id }}">
+            {{ section.settings.heading }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.body_text != blank %}
+          <div class="rm-popup-body">
+            {{ section.settings.body_text }}
+          </div>
+        {% endif %}
+
+        {% if show_email_form %}
+          {% form 'customer', class: 'rm-popup-form' %}
+            <input type="hidden" name="contact[tags]" value="newsletter,exit-popup{% if discount_code != blank %},{{ discount_code }}{% endif %}">
+
+            {% if form.posted_successfully? %}
+              <div class="rm-popup-success" id="rm-popup-success-{{ section.id }}" data-rm-popup-force-open tabindex="-1">
+                <p class="rm-popup-success-title">{{ section.settings.success_heading | default: 'You’re in — here’s your code' }}</p>
+                {% if discount_code != blank %}
+                  <div class="rm-popup-code-wrap">
+                    <code class="rm-popup-code" data-rm-popup-code>{{ discount_code }}</code>
+                    <button type="button" class="rm-popup-copy" data-rm-popup-copy data-code="{{ discount_code | escape }}">
+                      Copy
+                    </button>
+                  </div>
+                  <p class="rm-popup-success-note">{{ section.settings.success_text | default: 'Use this code at checkout for 10% off your first order.' }}</p>
+                {% else %}
+                  <p class="rm-popup-success-note">{{ section.settings.success_text | default: 'Thanks for subscribing — we’ll be in touch soon.' }}</p>
+                {% endif %}
+              </div>
+            {% else %}
+              <div class="rm-popup-form-fields">
+                <label class="visually-hidden" for="rm-popup-email-{{ section.id }}">Email</label>
+                <input
+                  id="rm-popup-email-{{ section.id }}"
+                  class="rm-popup-email"
+                  type="email"
+                  name="contact[email]"
+                  value="{{ form.email }}"
+                  placeholder="{{ section.settings.email_placeholder | default: 'Enter your email' }}"
+                  autocomplete="email"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  required
+                  {% if form.errors %}
+                    aria-invalid="true"
+                    aria-describedby="rm-popup-error-{{ section.id }}"
+                  {% endif %}
+                >
+                <button type="submit" class="rm-popup-button" name="commit">
+                  {{ section.settings.submit_label | default: 'Send me my code' }}
+                </button>
+              </div>
+
+              {% if form.errors %}
+                <p class="rm-popup-error" id="rm-popup-error-{{ section.id }}" data-rm-popup-force-open role="alert">
+                  {{ form.errors.translated_fields.email | capitalize }}
+                  {{ form.errors.messages.email }}
+                </p>
+              {% endif %}
+
+              {% if discount_code != blank %}
+                <p class="rm-popup-code-hint">
+                  Code: <strong>{{ discount_code }}</strong> · 10% off · once per customer
+                </p>
+              {% endif %}
+            {% endif %}
+          {% endform %}
+        {% elsif section.settings.button_label != blank and section.settings.button_link != blank %}
+          <a href="{{ section.settings.button_link }}" class="rm-popup-button">
+            {{ section.settings.button_label }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.decline_label != blank %}
+          <button type="button" class="rm-popup-decline" data-rm-popup-close>
+            {{ section.settings.decline_label }}
+          </button>
+        {% endif %}
       </div>
     </div>
-  {% endif %}
+  </div>
 {% endif %}
 
 {%- style -%}
-/* WRAPPER */
 .rm-popup.rm-popup-{{ section.id }} {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  display: none; /* JS will set to flex when showing */
+  display: none;
   align-items: center;
   justify-content: center;
   font-family: var(--font-body-family, inherit);
+  padding: 16px;
 }
 
-/* OVERLAY */
+.rm-popup.rm-popup-{{ section.id }}[data-open="true"] {
+  display: flex;
+}
+
 .rm-popup-{{ section.id }} .rm-popup-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.45);
 }
 
-/* POPUP BOX */
 .rm-popup-{{ section.id }} .rm-popup-container {
   position: relative;
   z-index: 2;
-  max-width: 480px;
-  width: 90%;
+  max-width: 440px;
+  width: 100%;
   background-color: {{ section.settings.popup_background }};
   color: {{ section.settings.popup_text_color }};
   border-radius: 16px;
-  padding: 28px 24px 24px;
+  padding: 28px 24px 22px;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
 }
 
-/* CLOSE BUTTON */
 .rm-popup-{{ section.id }} .rm-popup-close {
   position: absolute;
   top: 10px;
@@ -102,12 +179,12 @@
   background: transparent;
   border: none;
   color: {{ section.settings.popup_text_color }};
-  font-size: 22px;
+  font-size: 26px;
   line-height: 1;
   cursor: pointer;
+  padding: 4px 8px;
 }
 
-/* CONTENT */
 .rm-popup-{{ section.id }} .rm-popup-content {
   text-align: center;
 }
@@ -121,9 +198,13 @@
   text-transform: uppercase;
 }
 
+.rm-popup-{{ section.id }} .rm-popup-heading p {
+  margin: 0;
+}
+
 .rm-popup-{{ section.id }} .rm-popup-body {
   font-size: 14px;
-  line-height: 1.7;
+  line-height: 1.6;
   margin-bottom: 18px;
 }
 
@@ -135,18 +216,44 @@
   margin-bottom: 0;
 }
 
-/* BUTTON */
+.rm-popup-{{ section.id }} .rm-popup-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rm-popup-{{ section.id }} .rm-popup-email {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(49, 33, 16, 0.25);
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  color: {{ section.settings.popup_text_color }};
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.rm-popup-{{ section.id }} .rm-popup-email:focus {
+  outline: 2px solid {{ section.settings.button_background }};
+  outline-offset: 1px;
+}
+
 .rm-popup-{{ section.id }} .rm-popup-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 22px;
+  width: 100%;
+  padding: 12px 22px;
+  border: none;
   border-radius: 999px;
   text-decoration: none;
   font-size: 13px;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
   background-color: {{ section.settings.button_background }};
   color: {{ section.settings.button_text_color }};
 }
@@ -155,130 +262,295 @@
   opacity: 0.9;
 }
 
-/* SHOP NOW CLOSE BUTTON */
-.rm-popup-{{ section.id }} .rm-popup-shop-now {
+.rm-popup-{{ section.id }} .rm-popup-code-hint {
+  margin: 12px 0 0;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.rm-popup-{{ section.id }} .rm-popup-error {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: #9b1c1c;
+}
+
+.rm-popup-{{ section.id }} .rm-popup-success-title {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.rm-popup-{{ section.id }} .rm-popup-code-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.rm-popup-{{ section.id }} .rm-popup-code {
+  display: inline-block;
+  padding: 10px 16px;
+  border: 1px dashed {{ section.settings.button_background }};
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: rgba(49, 33, 16, 0.04);
+}
+
+.rm-popup-{{ section.id }} .rm-popup-copy {
+  padding: 10px 14px;
+  border: 1px solid {{ section.settings.button_background }};
+  border-radius: 8px;
+  background: transparent;
+  color: {{ section.settings.popup_text_color }};
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.rm-popup-{{ section.id }} .rm-popup-success-note {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.rm-popup-{{ section.id }} .rm-popup-decline {
   display: block;
   width: 100%;
-  margin-top: 12px;
-  padding: 11px 22px;
-  border-radius: 999px;
-  border: 2px solid {{ section.settings.shop_now_border_color }};
-  background-color: {{ section.settings.shop_now_background }};
-  color: {{ section.settings.shop_now_text_color }};
+  margin-top: 14px;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  color: {{ section.settings.popup_text_color }};
   font-size: 13px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: 600;
+  text-decoration: underline;
+  opacity: 0.7;
   cursor: pointer;
-  font-family: var(--font-body-family, inherit);
-  transition: opacity 0.2s ease;
+  font-family: inherit;
 }
 
-.rm-popup-{{ section.id }} .rm-popup-shop-now:hover {
-  opacity: 0.8;
+.rm-popup-{{ section.id }} .rm-popup-decline:hover {
+  opacity: 1;
 }
 
-/* MOBILE OPTIMIZATION */
 @media screen and (max-width: 749px) {
   .rm-popup.rm-popup-{{ section.id }} {
-    align-items: center;
-    justify-content: center;
-    padding: 0 12px;
+    align-items: flex-end;
+    padding: 0;
   }
 
   .rm-popup-{{ section.id }} .rm-popup-container {
+    max-width: none;
     width: 100%;
-    max-width: 380px;
-    padding: 22px 18px 18px;
-    border-radius: 14px;
-  }
-
-  .rm-popup-{{ section.id }} .rm-popup-close {
-    top: 6px;
-    right: 10px;
-    font-size: 24px;
+    border-radius: 16px 16px 0 0;
+    padding: 22px 18px 20px;
   }
 
   .rm-popup-{{ section.id }} .rm-popup-heading {
     font-size: 18px;
-    margin-bottom: 10px;
   }
 
   .rm-popup-{{ section.id }} .rm-popup-body {
-    font-size: 13px;
-    margin-bottom: 16px;
-  }
-
-  .rm-popup-{{ section.id }} .rm-popup-button {
-    width: 100%;
-    padding: 11px 18px;
-    font-size: 13px;
-  }
-
-  .rm-popup-{{ section.id }} .rm-popup-shop-now {
-    padding: 11px 18px;
     font-size: 13px;
   }
 }
 {%- endstyle -%}
 
 <script>
-  (function() {
+  (function () {
     var popupId = 'rm-popup-{{ section.id }}';
-    var showOnce = {{ section.settings.show_once | json }};
-    var delaySeconds = {{ section.settings.delay_seconds | default: 3 | json }};
+    var storageKey = popupId + '_dismissed_at';
+    var convertedKey = popupId + '_converted';
+    var bound = false;
 
-    function showPopup() {
-      var popupEl = document.querySelector('[data-rm-popup][data-popup-id="' + popupId + '"]');
-      if (!popupEl) return;
+    function getPopup() {
+      return document.querySelector('[data-rm-popup][data-popup-id="' + popupId + '"]');
+    }
 
+    function isMobile() {
+      return window.matchMedia('(max-width: 749px)').matches || 'ontouchstart' in window;
+    }
+
+    function wasDismissed(popupEl) {
+      var showOnce = popupEl.getAttribute('data-show-once') === 'true';
+      if (!showOnce) return false;
+
+      try {
+        if (localStorage.getItem(convertedKey) === 'true') return true;
+
+        var dismissedAt = parseInt(localStorage.getItem(storageKey) || '0', 10);
+        if (!dismissedAt) return false;
+
+        var cooldownDays = parseInt(popupEl.getAttribute('data-cooldown-days') || '14', 10);
+        var cooldownMs = Math.max(cooldownDays, 0) * 24 * 60 * 60 * 1000;
+        return Date.now() - dismissedAt < cooldownMs;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function markDismissed() {
+      try {
+        localStorage.setItem(storageKey, String(Date.now()));
+      } catch (e) {}
+    }
+
+    function markConverted() {
+      try {
+        localStorage.setItem(convertedKey, 'true');
+        localStorage.setItem(storageKey, String(Date.now()));
+      } catch (e) {}
+    }
+
+    function openPopup(popupEl) {
+      if (!popupEl || popupEl.getAttribute('data-open') === 'true') return;
+      popupEl.hidden = false;
+      popupEl.setAttribute('data-open', 'true');
       popupEl.style.display = 'flex';
+      document.documentElement.style.overflow = 'hidden';
+
+      var container = popupEl.querySelector('.rm-popup-container');
+      if (container) container.focus({ preventScroll: true });
+
+      var success = popupEl.querySelector('.rm-popup-success');
+      if (success) {
+        markConverted();
+        success.focus({ preventScroll: true });
+      }
+    }
+
+    function closePopup(popupEl) {
+      if (!popupEl) return;
+      popupEl.setAttribute('data-open', 'false');
+      popupEl.hidden = true;
+      popupEl.style.display = 'none';
+      document.documentElement.style.overflow = '';
+      markDismissed();
+    }
+
+    function bindClose(popupEl) {
+      if (bound) return;
+      bound = true;
 
       var overlay = popupEl.querySelector('[data-rm-popup-overlay]');
-      var closeButtons = popupEl.querySelectorAll('[data-rm-popup-close]');
+      if (overlay) {
+        overlay.addEventListener('click', function () {
+          closePopup(popupEl);
+        });
+      }
 
-      function closePopup() {
-        popupEl.style.display = 'none';
-        if (showOnce) {
+      popupEl.querySelectorAll('[data-rm-popup-close]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          closePopup(popupEl);
+        });
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && popupEl.getAttribute('data-open') === 'true') {
+          closePopup(popupEl);
+        }
+      });
+
+      var copyBtn = popupEl.querySelector('[data-rm-popup-copy]');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function () {
+          var code = copyBtn.getAttribute('data-code') || '';
+          if (!code || !navigator.clipboard) return;
+          navigator.clipboard.writeText(code).then(function () {
+            copyBtn.textContent = 'Copied';
+            setTimeout(function () {
+              copyBtn.textContent = 'Copy';
+            }, 1600);
+          });
+        });
+      }
+    }
+
+    function armTriggers(popupEl) {
+      var shown = false;
+      var mode = popupEl.getAttribute('data-trigger-mode') || 'exit';
+      var delaySeconds = parseInt(popupEl.getAttribute('data-popup-delay') || '0', 10);
+      var mobileTrigger = popupEl.getAttribute('data-mobile-trigger') || 'scroll_up';
+
+      function tryShow() {
+        if (shown || wasDismissed(popupEl)) return;
+        shown = true;
+        openPopup(popupEl);
+      }
+
+      if (popupEl.querySelector('[data-rm-popup-force-open]')) {
+        shown = true;
+        openPopup(popupEl);
+        return;
+      }
+
+      if (wasDismissed(popupEl)) return;
+
+      if (mode === 'delay' || mode === 'both') {
+        setTimeout(tryShow, Math.max(delaySeconds, 0) * 1000);
+      }
+
+      if (mode === 'exit' || mode === 'both') {
+        if (!isMobile()) {
+          document.addEventListener('mouseout', function (e) {
+            if (shown) return;
+            if (e.clientY > 0) return;
+            if (e.relatedTarget || e.toElement) return;
+            tryShow();
+          });
+        } else if (mobileTrigger === 'scroll_up') {
+          var lastY = window.scrollY || 0;
+          var armed = false;
+
+          setTimeout(function () {
+            armed = true;
+          }, 4000);
+
+          window.addEventListener(
+            'scroll',
+            function () {
+              if (!armed || shown) return;
+              var y = window.scrollY || 0;
+              if (y < 80 && lastY - y > 60) tryShow();
+              lastY = y;
+            },
+            { passive: true }
+          );
+        } else if (mobileTrigger === 'back') {
           try {
-            sessionStorage.setItem(popupId + '_dismissed', 'true');
+            history.pushState({ rmExitPopup: true }, '');
+            window.addEventListener('popstate', function () {
+              if (shown) return;
+              history.pushState({ rmExitPopup: true }, '');
+              tryShow();
+            });
           } catch (e) {}
         }
       }
-
-      if (overlay) {
-        overlay.addEventListener('click', closePopup);
-      }
-      closeButtons.forEach(function(btn) {
-        btn.addEventListener('click', closePopup);
-      });
-
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          closePopup();
-        }
-      });
     }
 
-    function initPopup() {
-      var popupEl = document.querySelector('[data-rm-popup][data-popup-id="' + popupId + '"]');
+    function init() {
+      var popupEl = getPopup();
       if (!popupEl) return;
-
-      if (showOnce) {
-        try {
-          var dismissed = sessionStorage.getItem(popupId + '_dismissed');
-          if (dismissed === 'true') return;
-        } catch (e) {}
-      }
-
-      var delayMs = (parseInt(delaySeconds, 10) || 0) * 1000;
-      setTimeout(showPopup, delayMs);
+      bindClose(popupEl);
+      armTriggers(popupEl);
     }
 
-    document.addEventListener('DOMContentLoaded', initPopup);
-    document.addEventListener('shopify:section:load', function(event) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+    document.addEventListener('shopify:section:load', function (event) {
       if (event.target.querySelector('[data-rm-popup][data-popup-id="' + popupId + '"]')) {
-        initPopup();
+        bound = false;
+        init();
       }
     });
   })();
@@ -297,37 +569,127 @@
       "default": true
     },
     {
-      "type": "checkbox",
-      "id": "home_only",
-      "label": "Show on home page only",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_once",
-      "label": "Show once per session",
-      "default": true
+      "type": "select",
+      "id": "trigger_mode",
+      "label": "When to show",
+      "options": [
+        { "value": "exit", "label": "Exit intent (recommended)" },
+        { "value": "delay", "label": "After delay" },
+        { "value": "both", "label": "Exit intent or delay (whichever first)" }
+      ],
+      "default": "exit"
     },
     {
       "type": "range",
       "id": "delay_seconds",
       "label": "Delay before showing (seconds)",
       "min": 0,
+      "max": 60,
+      "step": 1,
+      "default": 30,
+      "info": "Used when trigger is Delay or Both."
+    },
+    {
+      "type": "select",
+      "id": "mobile_trigger",
+      "label": "Mobile exit alternative",
+      "options": [
+        { "value": "scroll_up", "label": "Scroll up near top" },
+        { "value": "back", "label": "Back button / gesture" },
+        { "value": "none", "label": "None (desktop exit only)" }
+      ],
+      "default": "scroll_up"
+    },
+    {
+      "type": "checkbox",
+      "id": "home_only",
+      "label": "Show on home page only",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "exclude_checkout_flow",
+      "label": "Hide on cart, login, and account pages",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_once",
+      "label": "Respect dismiss / convert cooldown",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "cooldown_days",
+      "label": "Days before showing again after dismiss",
+      "min": 1,
       "max": 30,
       "step": 1,
-      "default": 3
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Content"
     },
     {
       "type": "richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "<p>Welcome to Moon Ridge Company</p>"
+      "default": "<p>Wait — before you go</p>"
     },
     {
       "type": "richtext",
       "id": "body_text",
       "label": "Body text",
-      "default": "<p>We shape, size, and customize hats in Fayetteville, Arkansas. Join our list for updates on new arrivals, events, and hat experiences.</p>"
+      "default": "<p>Get 10% off your first Moon Ridge hat. Enter your email and we’ll send your code.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_email_form",
+      "label": "Show email capture form",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "discount_code",
+      "label": "Discount code to display",
+      "default": "WELCOME10",
+      "info": "Must match an active Shopify discount code."
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit button label",
+      "default": "Send me my code"
+    },
+    {
+      "type": "text",
+      "id": "decline_label",
+      "label": "Decline link label",
+      "default": "No thanks",
+      "info": "Leave blank to hide."
+    },
+    {
+      "type": "text",
+      "id": "success_heading",
+      "label": "Success heading",
+      "default": "You’re in — here’s your code"
+    },
+    {
+      "type": "text",
+      "id": "success_text",
+      "label": "Success text",
+      "default": "Use this code at checkout for 10% off your first order."
+    },
+    {
+      "type": "header",
+      "content": "Fallback button (if email form is off)"
     },
     {
       "type": "text",
@@ -341,29 +703,8 @@
       "label": "Button link"
     },
     {
-      "type": "text",
-      "id": "shop_now_label",
-      "label": "Shop Now button label",
-      "default": "Shop Now",
-      "info": "This button closes the popup. Leave blank to hide it."
-    },
-    {
-      "type": "color",
-      "id": "shop_now_background",
-      "label": "Shop Now background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "shop_now_text_color",
-      "label": "Shop Now text color",
-      "default": "#312110"
-    },
-    {
-      "type": "color",
-      "id": "shop_now_border_color",
-      "label": "Shop Now border color",
-      "default": "#312110"
+      "type": "header",
+      "content": "Colors"
     },
     {
       "type": "color",

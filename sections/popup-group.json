@@ -23,6 +23,7 @@
         "exclude_checkout_flow": true,
         "show_once": true,
         "cooldown_days": 14,
+        "image": "shopify://shop_images/instagram-image_596efd74-c1dc-44e3-97c9-4c343728a3ca.jpg",
         "eyebrow": "Sign up and get",
         "heading": "<p>10% OFF</p>",
         "offer_line": "Your first Moon Ridge hat",

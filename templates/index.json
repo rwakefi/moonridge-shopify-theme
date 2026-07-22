@@ -19,9 +19,14 @@
             "mobile_image": "shopify://shop_images/Mobile_Hero_4f291e1d-b73b-475f-8d6d-10cf6e66107c.png",
             "button_label": "Shop hats",
             "button_link": "shopify://pages/shop-hats",
-            "button_background": "#f7f1e8",
-            "button_text_color": "#312110",
-            "cta_background": "#312110"
+            "button_background": "#312110",
+            "button_text_color": "#ffffff",
+            "cta_background": "#ffffff",
+            "cta_support": "Ready to find yours?",
+            "secondary_label": "Try Hat Finder",
+            "secondary_link": "shopify://pages/hat-finder",
+            "cta_text_color": "#312110",
+            "cta_accent_color": "#c4b49a"
           },
           "blocks": {}
         },
@@ -186,7 +191,7 @@
           "settings": {
             "heading": "<strong>Where Hats Meet Heritage</strong>",
             "heading_tag": "h1",
-            "content": "<p>We love hats and the classic brands that compliment them. We sell, clean, shape, and style—preserving the craft along with great service. We also host unforgettable hat parties. We’re here to help you find your style. Visit us in Fayetteville or shop online. Want the full experience? Book a hat session—virtual or in person—for something truly unique and one-of-a-kind.</p><p>New to hats? Visit <a href=\"/blogs/hat-education\"><strong>Hat Education</strong></a> for quick guides on X-rating, materials, and care.</p>",
+            "content": "<p>We love hats and the classic brands that compliment them. We sell, clean, shape, and style\u2014preserving the craft along with great service. We also host unforgettable hat parties. We\u2019re here to help you find your style. Visit us in Fayetteville or shop online. Want the full experience? Book a hat session\u2014virtual or in person\u2014for something truly unique and one-of-a-kind.</p><p>New to hats? Visit <a href=\"/blogs/hat-education\"><strong>Hat Education</strong></a> for quick guides on X-rating, materials, and care.</p>",
             "max_width": 1200,
             "text_alignment": "center",
             "heading_size": 24,
@@ -221,7 +226,6 @@
           "settings": {
             "collection": "best-sellers",
             "product_limit": 12,
-            "hide_sold_out": true,
             "heading": "Best Sellers",
             "subheading": "",
             "heading_alignment": "center",
@@ -248,7 +252,8 @@
             "card_border_radius": 6,
             "padding_top": 40,
             "padding_bottom": 20,
-            "dots_padding_bottom": 24
+            "dots_padding_bottom": 24,
+            "hide_sold_out": true
           },
           "blocks": {}
         }
@@ -264,7 +269,7 @@
       "settings": {
         "label": "The Service Ritual",
         "title": "Your Hat, Restored.",
-        "text": "We don’t just sell hats—we preserve them. Bring in any hat, regardless of where it was purchased, for our expert cleaning and reshaping services.",
+        "text": "We don\u2019t just sell hats\u2014we preserve them. Bring in any hat, regardless of where it was purchased, for our expert cleaning and reshaping services.",
         "button_label": "Book a Restoration",
         "button_link": ""
       }
@@ -382,7 +387,7 @@
       "name": "Book Now Button",
       "settings": {
         "left_heading": "MOON RIDGE COMPANY | CRAFTED. FITTED. PERSONALIZED.",
-        "left_body": "We shape hats, we size hats, we customize hats — and we take immense pride in being a small, independent business in Fayetteville, Arkansas. No big corporates, no mass production. Just skill, craftsmanship, and a deep passion for helping every customer find the perfect hat.",
+        "left_body": "We shape hats, we size hats, we customize hats \u2014 and we take immense pride in being a small, independent business in Fayetteville, Arkansas. No big corporates, no mass production. Just skill, craftsmanship, and a deep passion for helping every customer find the perfect hat.",
         "contact_label": "Contact Us:",
         "contact_address": "2218 N College Ave\nFayetteville, AR 72703",
         "contact_map_link": "https://www.google.com/maps?q=2218+N+College+Ave,+Fayetteville,+AR+72703",
@@ -391,15 +396,15 @@
         "instagram_url": "https://instagram.com/moonridgeco",
         "facebook_url": "https://www.facebook.com/Moonridgecompany/",
         "tiktok_url": "https://tiktok.com/moonridgeco",
-        "store_hours": "Mon–Fri: 10am–5pm\nSaturday: 10am–2pm\nSunday: Closed",
+        "store_hours": "Mon\u2013Fri: 10am\u20135pm\nSaturday: 10am\u20132pm\nSunday: Closed",
         "newsletter_heading": "STAY IN TOUCH",
         "newsletter_text": "Subscribe to receive updates, new arrivals, and exclusive Moon Ridge offers.",
         "newsletter_placeholder": "Enter your email address",
         "newsletter_button_label": "SUBSCRIBE",
-        "newsletter_success": "Thanks for subscribing — we’ll be in touch soon.",
+        "newsletter_success": "Thanks for subscribing \u2014 we\u2019ll be in touch soon.",
         "menu_heading": "QUICK LINKS",
         "footer_menu": "footer",
-        "bottom_text": "© 2026 Moon Ridge Company (formerly Rafter M Hat Co.)  |  TERMS OF SERVICE  |  PRIVACY POLICY",
+        "bottom_text": "\u00a9 2026 Moon Ridge Company (formerly Rafter M Hat Co.)  |  TERMS OF SERVICE  |  PRIVACY POLICY",
         "padding_top": 60,
         "padding_bottom": 28
       }
@@ -588,7 +593,6 @@
         "description_style": "body",
         "collection": "womens-hats",
         "products_to_show": 14,
-        "hide_sold_out": true,
         "columns_desktop": 4,
         "full_width": false,
         "show_view_all": true,
@@ -609,7 +613,8 @@
         "swipe_on_mobile": true,
         "navigation_on_mobile": false,
         "padding_top": 12,
-        "padding_bottom": 24
+        "padding_bottom": 24,
+        "hide_sold_out": true
       }
     },
     "slideshow_yKmXBC": {

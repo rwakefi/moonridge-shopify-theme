@@ -456,13 +456,15 @@
               assign carousel_limit = block.settings.product_limit | default: 12
             -%}
             {% for product in block.settings.collection.products %}
-              {%- if block.settings.hide_sold_out and product.available == false -%}
-                {%- continue -%}
-              {%- endif -%}
-              {%- if carousel_shown >= carousel_limit -%}
-                {%- break -%}
-              {%- endif -%}
-              {%- assign carousel_shown = carousel_shown | plus: 1 -%}
+              {%- liquid
+                assign carousel_skip = false
+                if block.settings.hide_sold_out and product.available == false
+                  assign carousel_skip = true
+                endif
+              -%}
+              {%- unless carousel_skip -%}
+                {%- if carousel_shown < carousel_limit -%}
+                  {%- assign carousel_shown = carousel_shown | plus: 1 -%}
               <div class="ai-product-carousel-slide-{{ ai_gen_id }}">
                 <div class="ai-product-card-{{ ai_gen_id }}">
                   <div class="ai-product-image-wrapper-{{ ai_gen_id }}">
@@ -509,6 +511,8 @@
                   </div>
                 </div>
               </div>
+                {%- endif -%}
+              {%- endunless -%}
             {% endfor %}
             </div>
           </div>

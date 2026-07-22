@@ -1,11 +1,44 @@
+{{ 'component-search.css' | asset_url | stylesheet_tag }}
+
 <style type="text/css">
+  .template-404 {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+  }
+
   .template-404 .title + * {
     margin-top: 1rem;
   }
 
+  .template-404__search {
+    max-width: 42rem;
+    margin: 2.4rem auto 0;
+    text-align: left;
+  }
+
+  .template-404__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .template-404__actions .button {
+    margin: 0;
+  }
+
   @media screen and (min-width: 750px) {
+    .template-404 {
+      padding-top: 6rem;
+    }
+
     .template-404 .title + * {
       margin-top: 2rem;
+    }
+
+    .template-404__search {
+      margin-top: 3rem;
     }
   }
 </style>
@@ -17,7 +50,68 @@
   <h1 class="title">
     {{ 'templates.404.title' | t }}
   </h1>
-  <a href="{{ routes.all_products_collection_url }}" class="button">
-    {{ 'general.continue_shopping' | t }}
-  </a>
+
+  <div class="template-404__search">
+    {%- if settings.predictive_search_enabled -%}
+      <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
+    {%- endif -%}
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search">
+      <div class="field">
+        <input
+          class="search__input field__input"
+          id="Search-404"
+          type="search"
+          name="q"
+          value=""
+          placeholder="{{ 'general.search.search' | t }}"
+          {%- if settings.predictive_search_enabled -%}
+            role="combobox"
+            aria-expanded="false"
+            aria-owns="predictive-search-results"
+            aria-controls="predictive-search-results"
+            aria-haspopup="listbox"
+            aria-autocomplete="list"
+            autocorrect="off"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+          {%- endif -%}
+        >
+        <label class="field__label" for="Search-404">{{ 'general.search.search' | t }}</label>
+        <input name="options[prefix]" type="hidden" value="last">
+
+        {%- if settings.predictive_search_enabled -%}
+          <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
+            {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+          </div>
+          <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+        {%- endif -%}
+
+        <button type="submit" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+          <svg class="icon icon-search" aria-hidden="true" focusable="false">
+            <use href="#icon-search">
+          </svg>
+        </button>
+      </div>
+    </form>
+    {%- if settings.predictive_search_enabled -%}
+      </predictive-search>
+    {%- endif -%}
+  </div>
+
+  <div class="template-404__actions">
+    <a href="{{ routes.all_products_collection_url }}" class="button">
+      {{ 'general.continue_shopping' | t }}
+    </a>
+    <a href="/pages/shop-hats" class="button button--secondary">
+      Shop hats
+    </a>
+  </div>
 </div>
+
+{% schema %}
+{
+  "name": "404 page",
+  "settings": []
+}
+{% endschema %}

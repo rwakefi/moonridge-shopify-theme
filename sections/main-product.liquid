@@ -807,43 +807,46 @@ function updateCountdown() {
                  {%- when 'inventory_status' -%}
 
               {% liquid
-                  assign low_stock_count      = block.settings.inventory_threshold
-              
-                  assign text_stock_normal    = 'Currently, <b>[count] items</b> are in stock!'
-                  assign color_stock_normal   = block.settings.normal_color
-                  assign width_stock_normal   = '70%'
-
-                  assign text_stock_always    = 'In stock!'
-                  assign color_stock_always   = block.settings.normal_color
-                  assign width_stock_always   = '100%'
-              
-                  assign text_stock_low       = 'Only, <b>[count] items</b> are left in stock!'
-                  assign color_stock_low      = block.settings.low_color
-                  assign width_stock_low      = '10%'
-              
-                  assign text_stock_none      = 'Unfortunately, this item is sold-out!'
-                  assign color_stock_none     = '#D32F2F'
-                  assign width_stock_none     = '0%'
-              %}
-              
-              
-              {% liquid
+                  assign low_stock_count = block.settings.inventory_threshold
                   assign current_variant = product.selected_or_first_available_variant
-              
-                  if current_variant.inventory_quantity <= 0
+                  assign stock_qty = current_variant.inventory_quantity
+
+                  assign color_stock_normal = block.settings.normal_color
+                  assign width_stock_normal = '70%'
+                  assign color_stock_always = block.settings.normal_color
+                  assign width_stock_always = '100%'
+                  assign color_stock_low = block.settings.low_color
+                  assign width_stock_low = '10%'
+                  assign color_stock_none = '#D32F2F'
+                  assign width_stock_none = '0%'
+
+                  if stock_qty == 1
+                    assign text_stock_low = 'Only <b>1</b> left in stock'
+                    assign text_stock_normal = '<b>1</b> in stock'
+                  else
+                    assign text_stock_low = 'Only <b>[count]</b> left in stock'
+                    assign text_stock_normal = '<b>[count]</b> in stock'
+                  endif
+
+                  assign text_stock_always = 'In stock'
+                  assign text_stock_none = 'Sold out'
+              %}
+
+              {% liquid
+                  if stock_qty <= 0
                       assign text = text_stock_none
                       assign color = color_stock_none
                       assign width = width_stock_none
-                  elsif block.settings.inventory_threshold  == 0
+                  elsif block.settings.inventory_threshold == 0
                       assign text = text_stock_always
                       assign color = color_stock_always
                       assign width = width_stock_always
-                  elsif current_variant.inventory_quantity <= low_stock_count
-                      assign text = text_stock_low | replace: '[count]', current_variant.inventory_quantity
+                  elsif stock_qty <= low_stock_count
+                      assign text = text_stock_low | replace: '[count]', stock_qty
                       assign color = color_stock_low
                       assign width = width_stock_low
                   else
-                      assign text = text_stock_normal | replace: '[count]', current_variant.inventory_quantity
+                      assign text = text_stock_normal | replace: '[count]', stock_qty
                       assign color = color_stock_normal
                       assign width = width_stock_normal
                   endif
@@ -2500,8 +2503,9 @@ function updateCountdown() {
         {
           "type": "checkbox",
           "id": "enable_low_stock_notice",
-          "default": true,
-          "label": "Show low stock notice"
+          "default": false,
+          "label": "Show low stock notice under Add to cart",
+          "info": "Turn off if the Inventory status block above already shows stock levels."
         },
         {
           "type": "range",

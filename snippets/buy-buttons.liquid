@@ -114,22 +114,17 @@
         </div>
         {%- if show_low_stock_notice -%}
           <p class="product-form__low-stock caption-large" role="status">
-            {{- 'Only ' | append: low_stock_inventory | append: ' left in stock - order soon.' -}}
+            {%- if low_stock_inventory == 1 -%}
+              Only 1 left
+            {%- else -%}
+              Only {{ low_stock_inventory }} left
+            {%- endif -%}
           </p>
         {%- endif -%}
         {%- if block.settings.show_trust_copy and block.settings.trust_copy != blank -%}
           <div class="product-form__trust rte">
             {{ block.settings.trust_copy }}
           </div>
-        {%- endif -%}
-        {%- if product.selected_or_first_available_variant.requires_shipping -%}
-          <p class="product-form__shipping-note caption-large">
-            {%- if product.tags contains 'Ballcaps' -%}
-              $6 U.S. shipping
-            {%- else -%}
-              Free U.S. shipping on orders over $99 &middot; Standard Shipping $15
-            {%- endif -%}
-          </p>
         {%- endif -%}
         {%- if block.settings.conversion_reassurance != blank -%}
           <p class="product-form__reassurance caption-large">

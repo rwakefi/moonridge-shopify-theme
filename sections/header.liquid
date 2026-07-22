@@ -304,21 +304,17 @@
   }
   @media screen and (max-width: 749px) {
     .header__mobile-cta {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
+      display: block;
       position: absolute;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
       z-index: 5;
       pointer-events: auto;
-      max-width: calc(100% - 120px);
     }
     .header__mobile-book-btn {
       font-family: var(--font-heading-family, sans-serif);
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -326,7 +322,7 @@
       background: transparent;
       border: 1px solid #C5A059;
       border-radius: 3px;
-      padding: 8px 14px;
+      padding: 10px 20px;
       cursor: pointer;
       white-space: nowrap;
       transition: background 0.2s, color 0.2s;
@@ -336,37 +332,11 @@
       background: #C5A059;
       color: #fff;
     }
-    .header__mobile-commerce {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .header__mobile-commerce-link {
-      font-family: var(--font-heading-family, sans-serif);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: #312110;
-      opacity: 0.75;
-      white-space: nowrap;
-    }
-    .header__mobile-commerce-sep {
-      color: #c4b49a;
-      font-size: 10px;
-      line-height: 1;
-      opacity: 0.8;
-    }
 
     @media screen and (max-width: 400px) {
       .header__mobile-book-btn {
-        font-size: 10px;
-        padding: 6px 10px;
-      }
-      .header__mobile-commerce-link {
-        font-size: 9px;
+        font-size: 11px;
+        padding: 6px 12px;
       }
     }
   }
@@ -693,7 +663,7 @@
       endif
     %}
 
-    {%- comment -%} Mobile-only CTA: booking primary + quieter Shop / Hat Finder links {%- endcomment -%}
+    {%- comment -%} Mobile-only CTA booking button in the empty header space {%- endcomment -%}
     <div class="header__mobile-cta">
       <a
         href="https://moonridgecompany.setmore.com"
@@ -702,11 +672,6 @@
       >
         BOOK A FREE HAT EXPERIENCE
       </a>
-      <div class="header__mobile-commerce">
-        <a href="/pages/shop-hats" class="header__mobile-commerce-link">Shop hats</a>
-        <span class="header__mobile-commerce-sep" aria-hidden="true">·</span>
-        <a href="https://hatfinder.moonridgecompany.com" class="header__mobile-commerce-link">Hat Finder</a>
-      </div>
     </div>
 
     {%- if section.settings.logo_position == 'middle-center' -%}

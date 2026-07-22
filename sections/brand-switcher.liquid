@@ -59,53 +59,22 @@
     border-top: 3px solid rgba(197, 160, 89, 0.4);
   }
 
+  .rm-brand-tab--gold {
+    color: #C5A059 !important;
+    font-weight: 700;
+  }
+  
+  .rm-brand-tab--gold:hover:not(.is-active) {
+    color: #a88746 !important;
+  }
+
+  /* Slider div kept but hidden — pure CSS handles active state now */
+  .rm-tab-slider { display: none; }
+
   .rm-brand-tab-logo {
     height: 38px;
     width: auto;
     display: block;
-  }
-
-  .rm-brand-actions {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-left: auto;
-    margin-right: 24px;
-    align-self: center;
-    flex-shrink: 0;
-  }
-
-  .rm-brand-commerce-links {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .rm-brand-commerce-link {
-    font-family: var(--font-heading-family);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #312110;
-    opacity: 0.72;
-    white-space: nowrap;
-    transition: opacity 0.2s ease;
-  }
-
-  .rm-brand-commerce-link:hover {
-    opacity: 1;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  .rm-brand-commerce-sep {
-    color: #c4b49a;
-    opacity: 0.7;
-    font-size: 12px;
-    line-height: 1;
-    user-select: none;
   }
 
   .rm-brand-promo-btn {
@@ -119,7 +88,7 @@
     background-color: transparent;
     border: 1px solid #c5a059;
     padding: 8px 20px;
-    margin-left: 0;
+    margin-left: 24px;
     transition: all 0.3s ease;
     border-radius: 2px;
     align-self: center;
@@ -143,19 +112,10 @@
       padding-left: clamp(1rem, 3vw, 2rem) !important;
     }
 
-    .rm-brand-actions {
-      gap: 10px;
-      margin-right: clamp(0.75rem, 2vw, 1.25rem);
-    }
-
-    .rm-brand-commerce-link {
-      font-size: 11px;
-      letter-spacing: 0.08em;
-    }
-
     .rm-brand-promo-btn {
       font-size: 11px;
       padding: 7px 14px;
+      margin-left: clamp(0.75rem, 2vw, 1.25rem);
       letter-spacing: 0.08em;
     }
 
@@ -212,8 +172,8 @@
     .rm-brand-tab:last-child {
       border-right: none;
     }
-    .rm-brand-actions {
-      display: none !important;
+    .rm-brand-promo-btn { 
+      display: none !important; 
     }
     .rm-brand-hamburger {
       display: flex !important;
@@ -354,7 +314,7 @@
     {% endfor %}
     {% for block in section.blocks %}
       <a href="{{ block.settings.link }}"
-         class="rm-brand-tab {% if forloop.index0 == active_index %}is-active{% endif %}"
+         class="rm-brand-tab {% if forloop.index0 == active_index %}is-active{% endif %} {% if block.settings.title == 'Make Your Event Special' %}rm-brand-tab--gold{% endif %}"
          data-tab-index="{{ forloop.index0 }}"
          {{ block.shopify_attributes }}>
         {% if block.settings.title == 'Moon Ridge' %}
@@ -366,34 +326,16 @@
     {% endfor %}
   </div>
 
-  <div class="rm-brand-actions">
-    <div class="rm-brand-commerce-links">
-      <a
-        href="{{ section.settings.shop_link | default: '/pages/shop-hats' }}"
-        class="rm-brand-commerce-link"
-      >
-        {{ section.settings.shop_label | default: 'Shop hats' | escape }}
-      </a>
-      <span class="rm-brand-commerce-sep" aria-hidden="true">·</span>
-      <a
-        href="{{ section.settings.hat_finder_link | default: 'https://hatfinder.moonridgecompany.com' }}"
-        class="rm-brand-commerce-link"
-      >
-        {{ section.settings.hat_finder_label | default: 'Hat Finder' | escape }}
-      </a>
-    </div>
-
-    {% if section.settings.promo_button_text != blank %}
-      <script id="anywhere_book_now_script" src="https://assets.setmore.com/integration/book-now/live/v1/anywhere-book-now.js" defer="defer"></script>
-      <button id="Anywhere_button_iframe"
-              class="rm-brand-promo-btn anywhere-book-now-button"
-              data-booking-url="https://moonridgecompany.setmore.com"
-              data-new-tab="false"
-              style="cursor: pointer;">
-        {{ section.settings.promo_button_text }}
-      </button>
-    {% endif %}
-  </div>
+  {% if section.settings.promo_button_text != blank %}
+    <script id="anywhere_book_now_script" src="https://assets.setmore.com/integration/book-now/live/v1/anywhere-book-now.js" defer="defer"></script>
+    <button id="Anywhere_button_iframe" 
+            class="rm-brand-promo-btn anywhere-book-now-button" 
+            data-booking-url="https://moonridgecompany.setmore.com" 
+            data-new-tab="false"
+            style="cursor: pointer;">
+      {{ section.settings.promo_button_text }}
+    </button>
+  {% endif %}
 
   {%- comment -%} Mobile Search Icon {%- endcomment -%}
   <button class="rm-brand-switcher-search" id="rm-mobile-search-btn" aria-label="Search" style="display: none;">
@@ -483,32 +425,6 @@
       "type": "url",
       "id": "promo_button_link",
       "label": "Promo Button Link"
-    },
-    {
-      "type": "header",
-      "content": "Commerce links (desktop)"
-    },
-    {
-      "type": "text",
-      "id": "shop_label",
-      "label": "Shop link label",
-      "default": "Shop hats"
-    },
-    {
-      "type": "url",
-      "id": "shop_link",
-      "label": "Shop link"
-    },
-    {
-      "type": "text",
-      "id": "hat_finder_label",
-      "label": "Hat Finder link label",
-      "default": "Hat Finder"
-    },
-    {
-      "type": "url",
-      "id": "hat_finder_link",
-      "label": "Hat Finder link"
     }
   ],
   "blocks": [

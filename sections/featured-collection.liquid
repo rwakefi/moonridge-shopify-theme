@@ -138,40 +138,35 @@
           assign fc_shown = 0
           assign fc_limit = section.settings.products_to_show | default: 4
         -%}
-        {%- for product in section.settings.collection.products -%}
-          {%- liquid
-            assign fc_include = true
-            if section.settings.hide_sold_out and product.available == false
-              assign fc_include = false
-            endif
-            if fc_shown >= fc_limit
-              assign fc_include = false
-            endif
-          -%}
-          {%- if fc_include -%}
-            {%- assign fc_shown = fc_shown | plus: 1 -%}
-            <li
-              id="Slide-{{ section.id }}-{{ fc_shown }}"
-              class="grid__item{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-              {% if settings.animations_reveal_on_scroll %}
-                data-cascade
-                style="--animation-order: {{ fc_shown }};"
-              {% endif %}
-            >
-              {% render 'card-product',
-                card_product: product,
-                media_aspect_ratio: section.settings.image_ratio,
-                image_shape: section.settings.image_shape,
-                show_secondary_image: section.settings.show_secondary_image,
-                show_vendor: section.settings.show_vendor,
-                show_rating: section.settings.show_rating,
-                show_quick_desc: section.settings.enable_quick_desc,
-                show_quick_add: section.settings.enable_quick_add,
-                show_secondary_add: section.settings.show_secondary_add,
-                section_id: section.id
-              %}
-            </li>
+        {%- for product in section.settings.collection.products limit: 50 -%}
+          {%- if section.settings.hide_sold_out and product.available == false -%}
+            {%- continue -%}
           {%- endif -%}
+          {%- if fc_shown >= fc_limit -%}
+            {%- break -%}
+          {%- endif -%}
+          {%- assign fc_shown = fc_shown | plus: 1 -%}
+          <li
+            id="Slide-{{ section.id }}-{{ fc_shown }}"
+            class="grid__item{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ fc_shown }};"
+            {% endif %}
+          >
+            {% render 'card-product',
+              card_product: product,
+              media_aspect_ratio: section.settings.image_ratio,
+              image_shape: section.settings.image_shape,
+              show_secondary_image: section.settings.show_secondary_image,
+              show_vendor: section.settings.show_vendor,
+              show_rating: section.settings.show_rating,
+              show_quick_desc: section.settings.enable_quick_desc,
+              show_quick_add: section.settings.enable_quick_add,
+              show_secondary_add: section.settings.show_secondary_add,
+              section_id: section.id
+            %}
+          </li>
         {%- else -%}
           {%- for i in (1..4) -%}
             <li

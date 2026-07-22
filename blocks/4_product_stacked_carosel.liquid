@@ -455,7 +455,7 @@
               assign carousel_shown = 0
               assign carousel_limit = block.settings.product_limit | default: 12
             -%}
-            {% for product in block.settings.collection.products %}
+            {% for product in block.settings.collection.products limit: 50 %}
               {%- liquid
                 assign carousel_skip = false
                 if block.settings.hide_sold_out and product.available == false

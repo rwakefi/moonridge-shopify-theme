@@ -134,13 +134,24 @@
         role="list"
         aria-label="{{ 'general.slider.name' | t }}"
       >
-        {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+        {%- liquid
+          assign fc_shown = 0
+          assign fc_limit = section.settings.products_to_show | default: 4
+        -%}
+        {%- for product in section.settings.collection.products -%}
+          {%- if section.settings.hide_sold_out and product.available == false -%}
+            {%- continue -%}
+          {%- endif -%}
+          {%- if fc_shown >= fc_limit -%}
+            {%- break -%}
+          {%- endif -%}
+          {%- assign fc_shown = fc_shown | plus: 1 -%}
           <li
-            id="Slide-{{ section.id }}-{{ forloop.index }}"
+            id="Slide-{{ section.id }}-{{ fc_shown }}"
             class="grid__item{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
-              style="--animation-order: {{ forloop.index }};"
+              style="--animation-order: {{ fc_shown }};"
             {% endif %}
           >
             {% render 'card-product',
@@ -412,6 +423,13 @@
       "step": 1,
       "default": 4,
       "label": "t:sections.featured-collection.settings.products_to_show.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_sold_out",
+      "label": "Hide sold-out products",
+      "default": true,
+      "info": "Skip unavailable products so featured rows fill with in-stock items."
     },
     {
       "type": "range",

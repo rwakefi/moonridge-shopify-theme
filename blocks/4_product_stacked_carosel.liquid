@@ -451,7 +451,18 @@
         <div class="ai-product-carousel-stage-{{ ai_gen_id }} moonridge-carousel-stage">
           <div class="ai-product-carousel-track-container-{{ ai_gen_id }}">
             <div class="ai-product-carousel-track-{{ ai_gen_id }}" data-track>
-            {% for product in block.settings.collection.products limit: block.settings.product_limit %}
+            {%- liquid
+              assign carousel_shown = 0
+              assign carousel_limit = block.settings.product_limit | default: 12
+            -%}
+            {% for product in block.settings.collection.products %}
+              {%- if block.settings.hide_sold_out and product.available == false -%}
+                {%- continue -%}
+              {%- endif -%}
+              {%- if carousel_shown >= carousel_limit -%}
+                {%- break -%}
+              {%- endif -%}
+              {%- assign carousel_shown = carousel_shown | plus: 1 -%}
               <div class="ai-product-carousel-slide-{{ ai_gen_id }}">
                 <div class="ai-product-card-{{ ai_gen_id }}">
                   <div class="ai-product-image-wrapper-{{ ai_gen_id }}">
@@ -976,6 +987,13 @@
       "step": 1,
       "label": "Maximum products",
       "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_sold_out",
+      "label": "Hide sold-out products",
+      "default": true,
+      "info": "Skip unavailable products so the carousel fills with in-stock items."
     },
     {
       "type": "header",

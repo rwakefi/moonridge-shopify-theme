@@ -221,6 +221,7 @@
           "settings": {
             "collection": "best-sellers",
             "product_limit": 12,
+            "hide_sold_out": true,
             "heading": "Best Sellers",
             "subheading": "",
             "heading_alignment": "center",
@@ -587,6 +588,7 @@
         "description_style": "body",
         "collection": "womens-1",
         "products_to_show": 14,
+        "hide_sold_out": true,
         "columns_desktop": 4,
         "full_width": false,
         "show_view_all": true,

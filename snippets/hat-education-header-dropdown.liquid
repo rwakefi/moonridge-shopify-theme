@@ -1,5 +1,5 @@
 {% comment %}
-  Hat Education nav dropdown: 4 latest guides + link to blog index.
+  Hat Education nav dropdown: hat sizing page + 4 latest guides + link to blog index.
 
   Accepts:
   - link: {Object} parent menu link
@@ -21,6 +21,15 @@
     tabindex="-1"
   >
 {%- endif -%}
+  <li>
+    <a
+      id="HeaderMenu-{{ link.handle }}-edu-hat-sizing"
+      href="/pages/hat-sizing"
+      class="he-edu-menu__link he-edu-menu__link--featured{% if menu_variant == 'drawer' %} menu-drawer__menu-item link link--text list-menu__item focus-inset{% else %} header__menu-item list-menu__item link link--text focus-inset caption-large{% endif %}"
+    >
+      Hat Sizing Video
+    </a>
+  </li>
   {%- if edu_articles.size > 0 -%}
     {%- for article in edu_articles limit: 4 -%}
       <li>
@@ -62,6 +71,10 @@
     letter-spacing: 0.02em !important;
     font-size: 1.24rem !important;
     white-space: normal;
+  }
+
+  .he-edu-menu__link--featured {
+    font-weight: 600;
   }
 
   .he-edu-menu__footer {

@@ -227,7 +227,7 @@
           "type": "4_product_stacked_carosel",
           "settings": {
             "collection": "best-sellers",
-            "product_limit": 12,
+            "product_limit": 16,
             "hide_sold_out": true,
             "heading": "Best Sellers",
             "subheading": "",

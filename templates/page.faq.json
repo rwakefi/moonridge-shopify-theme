@@ -11,22 +11,26 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "custom_css": [
+        ".main-page-title, .page-title, .page-header__title { display: none; }",
+        ".page-width { max-width: 900px; }"
+      ],
       "settings": {
-        "padding_top": 28,
+        "padding_top": 36,
         "padding_bottom": 0
       }
     },
     "faq_accordion": {
       "type": "collapsible-content",
       "settings": {
-        "heading": "",
+        "heading": "Frequently Asked Questions",
         "heading_alignment": "center",
-        "heading_size": 36,
+        "heading_size": 40,
         "intro": "",
         "content_max_width": 900,
         "color_scheme": "background-1",
-        "padding_top": 8,
-        "padding_bottom": 56
+        "padding_top": 12,
+        "padding_bottom": 64
       },
       "blocks": {
         "cat_rebranding": {

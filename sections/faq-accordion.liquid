@@ -310,7 +310,7 @@
 
     {% if section.settings.show_faq_page_link and section.settings.faq_page_label != blank %}
       <div class="faq-footer-link-{{ section.id }}">
-        <a href="{{ section.settings.faq_page_url | default: '/pages/faq' }}">{{ section.settings.faq_page_label }}</a>
+        <a href="{{ section.settings.faq_page_url | default: '/pages/moonridge-faqs' }}">{{ section.settings.faq_page_label }}</a>
       </div>
     {% endif %}
   </div>

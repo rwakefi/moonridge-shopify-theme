@@ -15,15 +15,15 @@
         "ai_gen_block_f6bf619_YmLAGm": {
           "type": "ai_gen_block_f6bf619",
           "settings": {
-            "desktop_image": "shopify://shop_images/Desktop_HERO_Moon_Ridge_1920_x_1080_px.png",
-            "mobile_image": "shopify://shop_images/Mobile_Hero_4f291e1d-b73b-475f-8d6d-10cf6e66107c.png",
+            "desktop_image": "shopify:\/\/shop_images\/Desktop_HERO_Moon_Ridge_1920_x_1080_px.png",
+            "mobile_image": "shopify:\/\/shop_images\/Mobile_Hero_4f291e1d-b73b-475f-8d6d-10cf6e66107c.png",
             "cta_support": "Ready to find yours?",
             "button_label": "Shop hats",
-            "button_link": "shopify://pages/shop-hats",
+            "button_link": "shopify:\/\/pages\/shop-hats",
             "secondary_label": "Try Hat Finder",
-            "secondary_link": "https://hatfinder.moonridgecompany.com",
+            "secondary_link": "https:\/\/hatfinder.moonridgecompany.com",
             "app_store_label": "Get the iPhone app",
-            "app_store_link": "https://apps.apple.com/us/app/hat-finder/id6767718895",
+            "app_store_link": "https:\/\/apps.apple.com\/us\/app\/hat-finder\/id6767718895",
             "cta_background": "#ffffff",
             "cta_text_color": "#312110",
             "cta_accent_color": "#c4b49a",
@@ -36,7 +36,7 @@
           "type": "ai_gen_block_238d094",
           "name": "Announcement Header",
           "settings": {
-            "text": "<p><strong>Authorized Retailer:</strong> Stetson, Resistol, Lucchese, Pendleton and more. <a href=\"https://moonridgecompany.setmore.com\"><strong>Book a Free Hat Fitting</strong></a>.</p>",
+            "text": "<p><strong>Authorized Retailer:<\/strong> Stetson, Resistol, Lucchese, Pendleton and more. <strong>We Ship Nationwide.<\/strong><\/p>",
             "text_alignment": "center",
             "font_size": 15,
             "background_color": "#312110",
@@ -66,18 +66,18 @@
             "title_alignment": "center",
             "title_color": "#666666",
             "title_spacing": 12,
-            "image_1": "shopify://shop_images/Stetson_2.webp",
-            "link_1": "shopify://pages/stetson",
-            "image_2": "shopify://shop_images/Resistol_911a3678-5dee-4a84-a061-3ac6b8fff945.webp",
-            "link_2": "shopify://pages/resistol",
-            "image_3": "shopify://shop_images/Lucchese.webp",
-            "link_3": "shopify://pages/lucchese",
-            "image_4": "shopify://shop_images/Pendleton.webp",
-            "link_4": "shopify://pages/pendleton",
-            "image_5": "shopify://shop_images/Goorin_4_00ffe83a-cbf3-4f8e-ba6e-3ff598c39e7d.webp",
-            "link_5": "shopify://pages/goorin-bros",
+            "image_1": "shopify:\/\/shop_images\/Stetson_2.webp",
+            "link_1": "shopify:\/\/pages\/stetson",
+            "image_2": "shopify:\/\/shop_images\/Resistol_911a3678-5dee-4a84-a061-3ac6b8fff945.webp",
+            "link_2": "shopify:\/\/pages\/resistol",
+            "image_3": "shopify:\/\/shop_images\/Lucchese.webp",
+            "link_3": "shopify:\/\/pages\/lucchese",
+            "image_4": "shopify:\/\/shop_images\/Pendleton.webp",
+            "link_4": "shopify:\/\/pages\/pendleton",
+            "image_5": "shopify:\/\/shop_images\/Goorin_4_00ffe83a-cbf3-4f8e-ba6e-3ff598c39e7d.webp",
+            "link_5": "shopify:\/\/pages\/goorin-bros",
             "spacing": 24,
-            "aspect_ratio": "1 / 1",
+            "aspect_ratio": "1 \/ 1",
             "border_radius": 0,
             "border_thickness": 0,
             "border_color": "#000000",
@@ -101,33 +101,33 @@
         "image_RzHyzt": {
           "type": "Image",
           "settings": {
-            "bubble_img": "shopify://shop_images/Cowboy_Mobile.png",
+            "bubble_img": "shopify:\/\/shop_images\/Cowboy_Mobile.png",
             "bubble_text": "HATS",
-            "bubble_link": "shopify://pages/shop-hats"
+            "bubble_link": "shopify:\/\/pages\/shop-hats"
           }
         },
         "image_VPVbV8": {
           "type": "Image",
           "settings": {
-            "bubble_img": "shopify://shop_images/Marroon.png",
+            "bubble_img": "shopify:\/\/shop_images\/Marroon.png",
             "bubble_text": "APPAREL",
-            "bubble_link": "shopify://collections/apparel"
+            "bubble_link": "shopify:\/\/collections\/apparel"
           }
         },
         "image_Xpdbqn": {
           "type": "Image",
           "settings": {
-            "bubble_img": "shopify://shop_images/Steston_Collection.jpg",
+            "bubble_img": "shopify:\/\/shop_images\/Steston_Collection.jpg",
             "bubble_text": "Boots",
-            "bubble_link": "shopify://collections/boots"
+            "bubble_link": "shopify:\/\/collections\/boots"
           }
         },
         "image_ygBdLd": {
           "type": "Image",
           "settings": {
-            "bubble_img": "shopify://shop_images/Myo_ther_hats_a_stetson.png",
+            "bubble_img": "shopify:\/\/shop_images\/Myo_ther_hats_a_stetson.png",
             "bubble_text": "BallCaps",
-            "bubble_link": "shopify://collections/ballcaps-truckers-1"
+            "bubble_link": "shopify:\/\/collections\/ballcaps-truckers-1"
           }
         },
         "image_WhAgxY": {
@@ -191,9 +191,9 @@
         "ai_gen_block_c7fa992_EXxCAN": {
           "type": "ai_gen_block_c7fa992",
           "settings": {
-            "heading": "<strong>Where Hats Meet Heritage</strong>",
+            "heading": "<strong>Where Hats Meet Heritage<\/strong>",
             "heading_tag": "h1",
-            "content": "<p>We love hats and the classic brands that compliment them. We sell, clean, shape, and style—preserving the craft along with great service. We also host unforgettable hat parties. We’re here to help you find your style. Visit us in Fayetteville or shop online. Want the full experience? Book a hat session—virtual or in person—for something truly unique and one-of-a-kind.</p><p>In NWA? Come Visit <a href=\"/pages/custom-hat-bar\"><strong>Arkansas’s Original Custom Hat Bar</strong></a> — we fit you, shape the crown to your head, and customize it with you at the shop.</p><p>New to hats? Visit <a href=\"/blogs/hat-education\"><strong>Hat Education</strong></a> for quick guides on X-rating, materials, and care.</p>",
+            "content": "<p>We love hats and the classic brands that compliment them. We sell, clean, shape, and style—preserving the craft along with great service. We also host unforgettable hat parties. We’re here to help you find your style. Visit us in Fayetteville or shop online. Want the full experience? Book a hat session—virtual or in person—for something truly unique and one-of-a-kind.<\/p><p>In NWA? Come Visit <a href=\"\/pages\/custom-hat-bar\"><strong>Arkansas’s Original Custom Hat Bar<\/strong><\/a> — we fit you, shape the crown to your head, and customize it with you at the shop.<\/p><p>New to hats? Visit <a href=\"\/blogs\/hat-education\"><strong>Hat Education<\/strong><\/a> for quick guides on X-rating, materials, and care.<\/p>",
             "max_width": 1200,
             "text_alignment": "center",
             "heading_size": 24,
@@ -326,7 +326,7 @@
       "type": "_blocks",
       "blocks": {
         "instafeed_app_block_rrg6Bd": {
-          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "type": "shopify:\/\/apps\/instafeed\/blocks\/app-block\/c447db20-095d-4a10-9725-b5977662c9d5",
           "settings": {
             "title": "",
             "title_color": "",
@@ -393,12 +393,12 @@
         "left_body": "We shape hats, we size hats, we customize hats — and we take immense pride in being a small, independent business in Fayetteville, Arkansas. No big corporates, no mass production. Just skill, craftsmanship, and a deep passion for helping every customer find the perfect hat.",
         "contact_label": "Contact Us:",
         "contact_address": "2218 N College Ave\nFayetteville, AR 72703",
-        "contact_map_link": "https://www.google.com/maps?q=2218+N+College+Ave,+Fayetteville,+AR+72703",
+        "contact_map_link": "https:\/\/www.google.com\/maps?q=2218+N+College+Ave,+Fayetteville,+AR+72703",
         "contact_email": "zack@moonridgecompany.com",
         "contact_phone": "479.283.6022",
-        "instagram_url": "https://instagram.com/moonridgeco",
-        "facebook_url": "https://www.facebook.com/Moonridgecompany/",
-        "tiktok_url": "https://tiktok.com/moonridgeco",
+        "instagram_url": "https:\/\/instagram.com\/moonridgeco",
+        "facebook_url": "https:\/\/www.facebook.com\/Moonridgecompany\/",
+        "tiktok_url": "https:\/\/tiktok.com\/moonridgeco",
         "store_hours": "Mon–Fri: 10am–5pm\nSaturday: 10am–2pm\nSunday: Closed",
         "newsletter_heading": "STAY IN TOUCH",
         "newsletter_text": "Subscribe to receive updates, new arrivals, and exclusive Moon Ridge offers.",
@@ -430,7 +430,7 @@
         "paragraph_GMBCNH": {
           "type": "paragraph",
           "settings": {
-            "text": "<h4>Be the first to know about our new collections.</h4>"
+            "text": "<h4>Be the first to know about our new collections.<\/h4>"
           }
         },
         "email_form_J7E9ge": {
@@ -482,7 +482,7 @@
         "text_EdwmCX": {
           "type": "text",
           "settings": {
-            "text": "<p>Our men's hat collection features a variety of styles, from rugged outdoor hats perfect for adventures to sleek, sophisticated designs ideal for urban settings.</p>",
+            "text": "<p>Our men's hat collection features a variety of styles, from rugged outdoor hats perfect for adventures to sleek, sophisticated designs ideal for urban settings.<\/p>",
             "text_style": "body"
           }
         },
@@ -490,7 +490,7 @@
           "type": "button",
           "settings": {
             "button_label": "Shop Now",
-            "button_link": "shopify://collections/womens",
+            "button_link": "shopify:\/\/collections\/womens",
             "button_style_secondary": false
           }
         }
@@ -502,7 +502,7 @@
       ],
       "settings": {
         "color_scheme_main": "",
-        "image": "shopify://shop_images/Rafter_M_Hat_Company-14.png",
+        "image": "shopify:\/\/shop_images\/Rafter_M_Hat_Company-14.png",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "image_first",
@@ -523,7 +523,7 @@
       "disabled": true,
       "settings": {
         "heading": "",
-        "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>",
+        "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>",
         "max_width": 800,
         "heading_tag": "h2",
         "text_alignment": "left",
@@ -556,7 +556,7 @@
         "text_adXeGi": {
           "type": "text",
           "settings": {
-            "text": "<p>Our collection offers an array of fashionable hats that combine elegance with practicality.</p>",
+            "text": "<p>Our collection offers an array of fashionable hats that combine elegance with practicality.<\/p>",
             "text_style": "body"
           }
         },
@@ -564,7 +564,7 @@
           "type": "button",
           "settings": {
             "button_label": "Shop Now",
-            "button_link": "shopify://collections/womens-1",
+            "button_link": "shopify:\/\/collections\/womens-1",
             "button_style_secondary": false
           }
         }
@@ -576,7 +576,7 @@
       ],
       "settings": {
         "color_scheme_main": "",
-        "image": "shopify://shop_images/Rafter_M_Hat_Company-15.png",
+        "image": "shopify:\/\/shop_images\/Rafter_M_Hat_Company-15.png",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "text_first",
@@ -650,14 +650,14 @@
             "medium_hide": false,
             "grid_width_tablet": "50",
             "small_hide": false,
-            "image": "shopify://shop_images/My_other_hat_is_a_stetson.png",
+            "image": "shopify:\/\/shop_images\/My_other_hat_is_a_stetson.png",
             "overlay_opacity": 0,
             "opacity_color": "#000000",
             "padding_size": 30,
             "padding_size_in": 10,
             "text_border": 0,
             "bg_color": "rgba(0,0,0,0)",
-            "head": "BULLCAPS/TRUCKERS",
+            "head": "BULLCAPS\/TRUCKERS",
             "head_color": "#ffffff",
             "head_size_d": 30,
             "head_size_m": 24,
@@ -670,7 +670,7 @@
             "button_link": "",
             "desktop_content_alignment": "left",
             "image_content_position": "bottom-center",
-            "grid-url": "shopify://collections/ballcaps-truckers"
+            "grid-url": "shopify:\/\/collections\/ballcaps-truckers"
           }
         },
         "image_T8PLJB": {
@@ -681,7 +681,7 @@
             "medium_hide": false,
             "grid_width_tablet": "50",
             "small_hide": false,
-            "image": "shopify://shop_images/Rafter_M_Hat_Company-22.png",
+            "image": "shopify:\/\/shop_images\/Rafter_M_Hat_Company-22.png",
             "overlay_opacity": 0,
             "opacity_color": "#000000",
             "padding_size": 30,
@@ -701,7 +701,7 @@
             "button_link": "",
             "desktop_content_alignment": "left",
             "image_content_position": "bottom-center",
-            "grid-url": "shopify://collections/apparel"
+            "grid-url": "shopify:\/\/collections\/apparel"
           }
         }
       },
@@ -725,18 +725,18 @@
         "image_BnRrL9": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Rafter_M_Hat_Company-10.png",
+            "image": "shopify:\/\/shop_images\/Rafter_M_Hat_Company-10.png",
             "focal_point": "center center",
-            "image_mobile": "shopify://shop_images/Rafter_M_Hat_Company-19.png",
+            "image_mobile": "shopify:\/\/shop_images\/Rafter_M_Hat_Company-19.png",
             "focal_point_mobile": "center center",
             "title": "",
             "subtitle": "",
             "image_link": "",
             "clickable_image_new_tab": false,
             "button_text": "Explore Now",
-            "button_link": "shopify://collections/best-sellers",
+            "button_link": "shopify:\/\/collections\/best-sellers",
             "button_text_2": "",
-            "button_link_2": "shopify://collections/all",
+            "button_link_2": "shopify:\/\/collections\/all",
             "title_font_size": 80,
             "title_font_size_mobile": 40,
             "subtitle_font_size": 21,
@@ -887,28 +887,28 @@
           "type": "faq",
           "settings": {
             "question": "Where are you located?",
-            "answer": "<p>We are proudly located just 2 doors south of the bowling alley on College Avenue in Fayetteville, Arkansas.</p>"
+            "answer": "<p>We are proudly located just 2 doors south of the bowling alley on College Avenue in Fayetteville, Arkansas.<\/p>"
           }
         },
         "faq_1": {
           "type": "faq",
           "settings": {
             "question": "Do you shape hats bought from other stores?",
-            "answer": "<p>Yes, absolutely. If you bring in a hat from somewhere else, our expert cleaning and shaping service is $35. (If you purchase a hat at Moon Ridge Co., custom shaping is always complimentary.)</p>"
+            "answer": "<p>Yes, absolutely. If you bring in a hat from somewhere else, our expert cleaning and shaping service is $35. (If you purchase a hat at Moon Ridge Co., custom shaping is always complimentary.)<\/p>"
           }
         },
         "faq_2": {
           "type": "faq",
           "settings": {
             "question": "When do you shape hats?",
-            "answer": "<p>We have staff in the store Monday through Saturday to help you, but our master hat shapers are in <strong>Thursday through Saturday</strong>. We also host special events that may occasionally affect our hours, so be sure to check our website for the latest updates.</p>"
+            "answer": "<p>We have staff in the store Monday through Saturday to help you, but our master hat shapers are in <strong>Thursday through Saturday<\/strong>. We also host special events that may occasionally affect our hours, so be sure to check our website for the latest updates.<\/p>"
           }
         },
         "faq_3": {
           "type": "faq",
           "settings": {
             "question": "Do I need an appointment for hat shaping?",
-            "answer": "<p>Walk-ins are always welcome! However, we highly recommend booking a 'Free Hat Experience' appointment. One-on-one time is our specialty, and booking an appointment ensures we have dedicated time to perfectly fit and shape your hat.</p>"
+            "answer": "<p>Walk-ins are always welcome! However, we highly recommend booking a 'Free Hat Experience' appointment. One-on-one time is our specialty, and booking an appointment ensures we have dedicated time to perfectly fit and shape your hat.<\/p>"
           }
         }
       },

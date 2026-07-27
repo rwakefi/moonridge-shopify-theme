@@ -58,12 +58,12 @@
     "hat_shaping_video": {
       "type": "video",
       "settings": {
-        "heading": "Hat Shaping Video",
+        "heading": "Hat Sizing Video",
         "heading_size": "h1",
         "enable_video_looping": false,
         "video": "shopify://files/videos/My Movie_5159bbb4-6c16-4260-9745-b831ce0f449f.mp4",
         "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "description": "Watch how we shape hats at Moon Ridge",
+        "description": "How to measure your head for the perfect hat fit",
         "full_width": false,
         "color_scheme": "",
         "padding_top": 36,

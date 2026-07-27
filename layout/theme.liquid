@@ -2,6 +2,7 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
+<!-- mr-cache-bust: hat-bar-seo-geo -->
 <!-- mr-cache-bust: bestsellers-carousel-16 -->
 
 
@@ -61,7 +62,7 @@
       assign geo_suffix = " – Fayetteville, AR"
 
       if request.page_type == 'index'
-        assign full_title = "Moon Ridge Hats and Heritage | Quality Hats, Custom Shaping & Heritage Brands"
+        assign full_title = "Arkansas's Original Hat Bar | Moon Ridge in Fayetteville, AR"
       elsif request.page_type == 'product'
         assign full_title = product.title | truncate: 35 | append: brand_suffix
       elsif request.page_type == 'collection'
@@ -76,6 +77,8 @@
         assign full_title = "Search Results" | append: brand_suffix
       elsif page.handle == 'faq'
         assign full_title = "FAQ: Hat Shaping & Cleaning" | append: brand_suffix
+      elsif page.handle == 'custom-hat-bar'
+        assign full_title = "Arkansas's Original Custom Hat Bar | Moon Ridge Fayetteville"
       elsif page.handle contains 'about'
         assign full_title = "About Moon Ridge Hats and Heritage (Formerly Rafter M) | Fayetteville, AR"
       elsif page.handle contains 'contact'
@@ -103,7 +106,9 @@
     {%- liquid
       assign meta_description = page_description | default: shop.description | default: shop.name
       if request.page_type == 'index'
-        assign meta_description = "Moon Ridge Hats and Heritage (formerly Rafter M) in Fayetteville, AR. Professional hat shaping, cleaning, and restoration. Authorized Stetson and Resistol dealer."
+        assign meta_description = "Arkansas's Original Hat Bar at Moon Ridge in Fayetteville. Custom fit, shape, and style Stetson & Resistol hats — book a free fitting or shop online today."
+      elsif page.handle == 'custom-hat-bar'
+        assign meta_description = "Arkansas's Original Custom Hat Bar in Fayetteville. Fit, crown shaping, and trim customization with trained designers. Book a Free Hat Experience today."
       elsif page.handle contains 'about'
         assign meta_description = "Discover Moon Ridge Hats and Heritage (formerly Rafter M) in Fayetteville. Our veteran team provides master-level hat shaping, cleaning, and restoration with heritage craft."
       elsif page.handle contains 'contact' or page.handle contains 'book'
@@ -118,8 +123,11 @@
 
     {% render 'meta-tags' %}
     {% render 'site-organization-schema' %}
-    {%- if request.page_type == 'index' -%}
+    {%- if request.page_type == 'index' or page.handle == 'custom-hat-bar' -%}
       {% render 'ai-knowledge-graph' %}
+    {%- endif -%}
+    {%- if request.page_type == 'index' or page.handle == 'custom-hat-bar' -%}
+      {% render 'hat-bar-service-schema' %}
     {%- endif -%}
     
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>

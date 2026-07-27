@@ -62,8 +62,18 @@
       "@id": {{ request.origin | append: "/#organization" | json }},
       "name": {{ shop.name | json }},
       "url": {{ request.origin | json }},
-      "alternateName": ["Rafter M Hat Company", "Rafter M", "Moon Ridge", "Moonridge"],
-      "description": "Moon Ridge Hats and Heritage, formerly Rafter M Hat Company, is Northwest Arkansas' premier destination for headwear, premium apparel, hat shaping, and hat cleaning. Located in Fayetteville, AR, we carry heritage brands including Stetson, Resistol, and Pendleton. Exact same people, exact same hands — simply expanding our offerings.",
+      "alternateName": ["Rafter M Hat Company", "Rafter M", "Moon Ridge", "Moonridge", "Arkansas's Original Hat Bar", "Arkansas's Original Custom Hat Bar"],
+      "description": "Moon Ridge Hats and Heritage (formerly Rafter M Hat Company) is home to Arkansas's Original Hat Bar in Fayetteville. We sell, fit, shape, clean, and customize heritage headwear — including Stetson, Resistol, Charlie 1 Horse, Goorin Bros, Bigalli, and Pendleton — with trained in-store designers at 2218 N College Ave.",
+      "knowsAbout": [
+        "custom hat bar",
+        "hat shaping",
+        "cowboy hats",
+        "felt hat X-ratings",
+        "Stetson",
+        "Resistol",
+        "hat cleaning and restoration",
+        "private hat parties"
+      ],
       {% if settings.logo != blank %}
         "logo": {{ settings.logo | image_url: width: 600 | prepend: "https:" | json }},
       {% endif %}
@@ -90,12 +100,14 @@
     {
       "@type": "LocalBusiness",
       "name": {{ shop.name | json }},
-      "alternateName": ["Rafter M Hat Company", "Rafter M", "Moonridge"],
+      "alternateName": ["Rafter M Hat Company", "Rafter M", "Moonridge", "Arkansas's Original Hat Bar", "Arkansas's Original Custom Hat Bar"],
       "image": {{ "Moon_Ridge_Storefront.jpg" | asset_url | prepend: "https:" | json }},
       "@id": {{ request.origin | append: "/#localbusiness" | json }},
       "url": {{ request.origin | json }},
       "telephone": "(479) 430-2667",
       "priceRange": "$$",
+      "description": "Arkansas's Original Hat Bar in Fayetteville — custom hat fitting, shaping, cleaning, and personalization for Stetson, Resistol, and other heritage brands.",
+      "hasMap": "https://maps.google.com/?q=2218+N+College+Ave,+Fayetteville,+AR+72703",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "2218 N College Ave",

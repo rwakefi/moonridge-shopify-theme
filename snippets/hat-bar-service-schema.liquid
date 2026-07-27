@@ -1,0 +1,51 @@
+{%- comment -%}
+  Service schema for Arkansas's Original Custom Hat Bar — GEO/SEO rich results.
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": {{ request.origin | append: "/pages/custom-hat-bar#service" | json }},
+  "name": "Arkansas's Original Custom Hat Bar",
+  "alternateName": ["Arkansas's Original Hat Bar", "Moon Ridge Custom Hat Bar", "Fayetteville Custom Hat Bar"],
+  "serviceType": "Custom hat fitting, shaping, and personalization",
+  "description": "Arkansas's Original Hat Bar at Moon Ridge in Fayetteville. Trained designers fit your head, shape the crown and brim, and customize Stetson, Resistol, and other heritage hats with trim and hat bands. Complimentary shaping on hats purchased in-store.",
+  "url": {{ request.origin | append: "/pages/custom-hat-bar" | json }},
+  "provider": {
+    "@type": "LocalBusiness",
+    "@id": {{ request.origin | append: "/#localbusiness" | json }},
+    "name": {{ shop.name | json }},
+    "url": {{ request.origin | json }},
+    "telephone": "(479) 430-2667",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "2218 N College Ave",
+      "addressLocality": "Fayetteville",
+      "addressRegion": "AR",
+      "postalCode": "72703",
+      "addressCountry": "US"
+    }
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Fayetteville"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Northwest Arkansas"
+    },
+    {
+      "@type": "State",
+      "name": "Arkansas"
+    }
+  ],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Complimentary custom shaping on hats purchased at Moon Ridge. $35 shaping for hats brought from elsewhere. Free Hat Experience bookings available.",
+    "url": "https://moonridgecompany.setmore.com"
+  }
+}
+</script>

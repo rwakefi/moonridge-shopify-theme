@@ -37,11 +37,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
     color: #312110;
     transition: color 0.2s ease;
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
-  .faq-accordion-{{ section.id }} summary::-webkit-details-marker {
+  .faq-accordion-{{ section.id }} summary::-webkit-details-marker,
+  .faq-accordion-{{ section.id }} summary::marker {
     display: none;
   }
 
@@ -49,14 +54,28 @@
     color: #c5a059;
   }
 
+  .faq-accordion-{{ section.id }} summary > span,
+  .faq-summary-text-{{ section.id }} {
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: left;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+
   .faq-accordion-{{ section.id }} summary::after {
     content: '+';
+    flex: 0 0 auto;
+    width: 28px;
+    text-align: center;
     font-size: 24px;
     font-weight: 300;
+    line-height: 1;
     transition: transform 0.3s ease;
   }
 
-  .faq-accordion-{{ section.id }} details[open] summary::after {
+  /* Only rotate the direct summary of an open item (not nested children) */
+  .faq-accordion-{{ section.id }} details[open] > summary::after {
     transform: rotate(45deg);
   }
 
@@ -76,6 +95,13 @@
     margin-bottom: 0;
   }
 
+  .faq-content-{{ section.id }} a {
+    color: #312110;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    word-break: break-word;
+  }
+
   .faq-more-{{ section.id }} {
     border-top: 1px solid rgba(49, 33, 16, 0.12);
     margin-top: 0;
@@ -92,17 +118,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
     color: #312110;
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
-  .faq-more-{{ section.id }} > summary::-webkit-details-marker {
+  .faq-more-{{ section.id }} > summary::-webkit-details-marker,
+  .faq-more-{{ section.id }} > summary::marker {
     display: none;
   }
 
   .faq-more-{{ section.id }} > summary::after {
     content: '+';
+    flex: 0 0 auto;
+    width: 28px;
+    text-align: center;
     font-size: 24px;
     font-weight: 300;
+    line-height: 1;
     transition: transform 0.3s ease;
   }
 
@@ -115,7 +150,7 @@
   }
 
   .faq-more-inner-{{ section.id }} {
-    padding: 0 0 8px;
+    padding: 0 0 12px;
   }
 
   .faq-more-inner-{{ section.id }} details {
@@ -126,17 +161,32 @@
     border-top: none;
   }
 
+  .faq-more-inner-{{ section.id }} summary {
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+    padding: 18px 0;
+  }
+
   .faq-footer-link-{{ section.id }} {
     text-align: center;
     margin-top: 28px;
+    padding-bottom: 8px;
   }
 
   .faq-footer-link-{{ section.id }} a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 8px 12px;
     color: #312110;
     font-size: 1.5rem;
     font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 3px;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .faq-footer-link-{{ section.id }} a:hover {
@@ -155,16 +205,56 @@
   }
 
   @media screen and (max-width: 749px) {
+    .faq-section-{{ section.id }} {
+      padding-left: max({{ section.settings.padding_horizontal }}px, 16px);
+      padding-right: max({{ section.settings.padding_horizontal }}px, 16px);
+    }
+
     .faq-title-{{ section.id }} {
       font-size: 26px;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      padding: 0 4px;
     }
+
     .faq-accordion-{{ section.id }} summary,
     .faq-more-{{ section.id }} > summary {
       font-size: 16px;
-      padding: 20px 0;
+      padding: 18px 0;
+      gap: 12px;
+      min-height: 48px;
     }
+
+    .faq-accordion-{{ section.id }} summary::after,
+    .faq-more-{{ section.id }} > summary::after {
+      width: 32px;
+      font-size: 26px;
+    }
+
+    .faq-more-inner-{{ section.id }} {
+      padding: 0 0 8px 12px;
+    }
+
+    .faq-more-inner-{{ section.id }} summary {
+      font-size: 15px;
+      padding: 16px 0;
+      min-height: 48px;
+    }
+
     .faq-content-{{ section.id }} {
+      font-size: 15px;
+      padding-bottom: 18px;
+      padding-right: 8px;
+    }
+
+    .faq-footer-link-{{ section.id }} {
+      margin-top: 22px;
+      /* Keep clear of floating chat widgets on small screens */
+      padding-bottom: 24px;
+    }
+
+    .faq-footer-link-{{ section.id }} a {
       font-size: 15px;
     }
   }
@@ -191,7 +281,7 @@
       {% for block in section.blocks %}
         {% if block.type == 'faq' and block.settings.place_in_more == false %}
           <details {{ block.shopify_attributes }}>
-            <summary>{{ block.settings.question }}</summary>
+            <summary><span class="faq-summary-text-{{ section.id }}">{{ block.settings.question | escape }}</span></summary>
             <div class="faq-content-{{ section.id }}">
               {{ block.settings.answer }}
             </div>
@@ -201,12 +291,12 @@
 
       {% if more_count > 0 %}
         <details class="faq-more-{{ section.id }}">
-          <summary>{{ section.settings.more_label | default: 'More questions' }}</summary>
+          <summary><span class="faq-summary-text-{{ section.id }}">{{ section.settings.more_label | default: 'More questions' | escape }}</span></summary>
           <div class="faq-more-inner-{{ section.id }}">
             {% for block in section.blocks %}
               {% if block.type == 'faq' and block.settings.place_in_more %}
                 <details {{ block.shopify_attributes }}>
-                  <summary>{{ block.settings.question }}</summary>
+                  <summary><span class="faq-summary-text-{{ section.id }}">{{ block.settings.question | escape }}</span></summary>
                   <div class="faq-content-{{ section.id }}">
                     {{ block.settings.answer }}
                   </div>

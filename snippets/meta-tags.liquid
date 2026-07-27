@@ -1,11 +1,15 @@
 {%- liquid
   assign primary_keyword = "Hat Shaping"
-  if request.page_type == 'product'
+  if request.page_type == 'index'
+    assign primary_keyword = "Arkansas's Original Hat Bar"
+  elsif request.page_type == 'product'
     assign primary_keyword = product.title
   elsif request.page_type == 'collection'
     assign primary_keyword = collection.title
   elsif request.page_type == 'article'
     assign primary_keyword = article.title
+  elsif request.page_type == 'page' and page.handle == 'custom-hat-bar'
+    assign primary_keyword = "Arkansas's Original Custom Hat Bar"
   elsif request.page_type == 'page'
     assign primary_keyword = page.title
   elsif page_title != blank
@@ -17,11 +21,19 @@
     assign secondary_keyword = "Fayetteville, AR"
   endif
 
-  assign seo_title = primary_keyword
-  unless seo_title contains shop.name
-    assign seo_title = seo_title | append: " - " | append: shop.name
-  endunless
-  assign seo_description = page_description | default: shop.description | default: shop.name | strip_html | strip | truncate: 160
+  if request.page_type == 'index'
+    assign seo_title = "Arkansas's Original Hat Bar | Moon Ridge in Fayetteville, AR"
+    assign seo_description = "Arkansas's Original Hat Bar at Moon Ridge in Fayetteville. Custom fit, shape, and style Stetson & Resistol hats — book a free fitting or shop online today."
+  elsif request.page_type == 'page' and page.handle == 'custom-hat-bar'
+    assign seo_title = "Arkansas's Original Custom Hat Bar | Moon Ridge Fayetteville"
+    assign seo_description = "Arkansas's Original Custom Hat Bar in Fayetteville. Fit, crown shaping, and trim customization with trained designers. Book a Free Hat Experience today."
+  else
+    assign seo_title = primary_keyword
+    unless seo_title contains shop.name
+      assign seo_title = seo_title | append: " - " | append: shop.name
+    endunless
+    assign seo_description = page_description | default: shop.description | default: shop.name | strip_html | strip | truncate: 160
+  endif
   
   assign og_title = seo_title
   assign og_description = seo_description
@@ -36,7 +48,7 @@
     assign og_title = 'The Moon Ridge Podcast | Hosted by Zack Wakefield'
     assign og_description = 'Travel, hats, interior design, great brands, and stories from a life well lived. Listen on Apple Podcasts, Spotify, YouTube, and more.'
   endif
-%}
+-%}
 
 <meta name="geo.region" content="US-AR" />
 <meta name="geo.placename" content="Fayetteville" />

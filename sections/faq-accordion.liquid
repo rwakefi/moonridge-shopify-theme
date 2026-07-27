@@ -69,7 +69,78 @@
   }
 
   .faq-content-{{ section.id }} p {
-    margin: 0;
+    margin: 0 0 0.8em;
+  }
+
+  .faq-content-{{ section.id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  .faq-more-{{ section.id }} {
+    border-top: 1px solid rgba(49, 33, 16, 0.12);
+    margin-top: 0;
+  }
+
+  .faq-more-{{ section.id }} > summary {
+    padding: 24px 0;
+    font-size: 1.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #312110;
+  }
+
+  .faq-more-{{ section.id }} > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-more-{{ section.id }} > summary::after {
+    content: '+';
+    font-size: 24px;
+    font-weight: 300;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-more-{{ section.id }}[open] > summary::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-more-{{ section.id }} > summary:hover {
+    color: #c5a059;
+  }
+
+  .faq-more-inner-{{ section.id }} {
+    padding: 0 0 8px;
+  }
+
+  .faq-more-inner-{{ section.id }} details {
+    border-top: 1px solid rgba(49, 33, 16, 0.1);
+  }
+
+  .faq-more-inner-{{ section.id }} details:first-child {
+    border-top: none;
+  }
+
+  .faq-footer-link-{{ section.id }} {
+    text-align: center;
+    margin-top: 28px;
+  }
+
+  .faq-footer-link-{{ section.id }} a {
+    color: #312110;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .faq-footer-link-{{ section.id }} a:hover {
+    color: #c5a059;
   }
 
   @keyframes faq-fade-in {
@@ -88,7 +159,8 @@
       font-size: 26px;
       margin-bottom: 30px;
     }
-    .faq-accordion-{{ section.id }} summary {
+    .faq-accordion-{{ section.id }} summary,
+    .faq-more-{{ section.id }} > summary {
       font-size: 16px;
       padding: 20px 0;
     }
@@ -98,6 +170,17 @@
   }
 {% endstyle %}
 
+{%- liquid
+  assign primary_faqs = section.blocks | where: 'type', 'faq'
+  assign more_count = 0
+  for block in section.blocks
+    if block.type == 'faq' and block.settings.place_in_more
+      assign more_count = more_count | plus: 1
+    endif
+  endfor
+  assign primary_count = section.blocks.size | minus: more_count
+-%}
+
 <div class="faq-section-{{ section.id }}" {{ section.shopify_attributes }}>
   <div class="faq-container-{{ section.id }}">
     {% if section.settings.title != blank %}
@@ -106,14 +189,40 @@
     
     <div class="faq-accordion-{{ section.id }}">
       {% for block in section.blocks %}
-        <details {{ block.shopify_attributes }}>
-          <summary>{{ block.settings.question }}</summary>
-          <div class="faq-content-{{ section.id }}">
-            {{ block.settings.answer }}
+        {% if block.type == 'faq' and block.settings.place_in_more == false %}
+          <details {{ block.shopify_attributes }}>
+            <summary>{{ block.settings.question }}</summary>
+            <div class="faq-content-{{ section.id }}">
+              {{ block.settings.answer }}
+            </div>
+          </details>
+        {% endif %}
+      {% endfor %}
+
+      {% if more_count > 0 %}
+        <details class="faq-more-{{ section.id }}">
+          <summary>{{ section.settings.more_label | default: 'More questions' }}</summary>
+          <div class="faq-more-inner-{{ section.id }}">
+            {% for block in section.blocks %}
+              {% if block.type == 'faq' and block.settings.place_in_more %}
+                <details {{ block.shopify_attributes }}>
+                  <summary>{{ block.settings.question }}</summary>
+                  <div class="faq-content-{{ section.id }}">
+                    {{ block.settings.answer }}
+                  </div>
+                </details>
+              {% endif %}
+            {% endfor %}
           </div>
         </details>
-      {% endfor %}
+      {% endif %}
     </div>
+
+    {% if section.settings.show_faq_page_link and section.settings.faq_page_label != blank %}
+      <div class="faq-footer-link-{{ section.id }}">
+        <a href="{{ section.settings.faq_page_url | default: '/pages/faq' }}">{{ section.settings.faq_page_label }}</a>
+      </div>
+    {% endif %}
   </div>
 </div>
 
@@ -124,7 +233,11 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {% for block in section.blocks %}
+    {%- assign faq_schema_first = true -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'faq' and block.settings.question != blank -%}
+        {%- unless faq_schema_first -%},{%- endunless -%}
+        {%- assign faq_schema_first = false -%}
     {
       "@type": "Question",
       "name": {{ block.settings.question | json }},
@@ -132,8 +245,9 @@
         "@type": "Answer",
         "text": {{ block.settings.answer | strip_html | json }}
       }
-    }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
+    }
+      {%- endif -%}
+    {%- endfor -%}
   ]
 }
 </script>
@@ -148,6 +262,29 @@
       "id": "title",
       "label": "Heading",
       "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "more_label",
+      "label": "More questions expander label",
+      "default": "More questions"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_faq_page_link",
+      "label": "Show link to full FAQ page",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "faq_page_label",
+      "label": "FAQ page link label",
+      "default": "View all FAQs"
+    },
+    {
+      "type": "url",
+      "id": "faq_page_url",
+      "label": "FAQ page URL"
     },
     {
       "type": "color",
@@ -202,6 +339,12 @@
           "id": "answer",
           "label": "Answer",
           "default": "<p>Provide the answer to the question here.</p>"
+        },
+        {
+          "type": "checkbox",
+          "id": "place_in_more",
+          "label": "Place under “More questions” expander",
+          "default": false
         }
       ]
     }

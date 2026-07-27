@@ -887,28 +887,96 @@
           "type": "faq",
           "settings": {
             "question": "Where are you located?",
-            "answer": "<p>We are proudly located just 2 doors south of the bowling alley on College Avenue in Fayetteville, Arkansas.<\/p>"
+            "answer": "<p>We are proudly located just 2 doors south of the bowling alley on College Avenue in Fayetteville, Arkansas.<\/p>",
+            "place_in_more": false
           }
         },
         "faq_1": {
           "type": "faq",
           "settings": {
             "question": "Do you shape hats bought from other stores?",
-            "answer": "<p>Yes, absolutely. If you bring in a hat from somewhere else, our expert cleaning and shaping service is $35. (If you purchase a hat at Moon Ridge Co., custom shaping is always complimentary.)<\/p>"
+            "answer": "<p>Yes, absolutely. If you bring in a hat from somewhere else, our expert cleaning and shaping service is $35. (If you purchase a hat at Moon Ridge Co., custom shaping is always complimentary.)<\/p>",
+            "place_in_more": false
           }
         },
         "faq_2": {
           "type": "faq",
           "settings": {
             "question": "When do you shape hats?",
-            "answer": "<p>We have staff in the store Monday through Saturday to help you, but our master hat shapers are in <strong>Thursday through Saturday<\/strong>. We also host special events that may occasionally affect our hours, so be sure to check our website for the latest updates.<\/p>"
+            "answer": "<p>We have staff in the store Monday through Saturday to help you, but our master hat shapers are in <strong>Thursday through Saturday<\/strong>. We also host special events that may occasionally affect our hours, so be sure to check our website for the latest updates.<\/p>",
+            "place_in_more": false
           }
         },
         "faq_3": {
           "type": "faq",
           "settings": {
             "question": "Do I need an appointment for hat shaping?",
-            "answer": "<p>Walk-ins are always welcome! However, we highly recommend booking a 'Free Hat Experience' appointment. One-on-one time is our specialty, and booking an appointment ensures we have dedicated time to perfectly fit and shape your hat.<\/p>"
+            "answer": "<p>Walk-ins are always welcome! However, we highly recommend booking a 'Free Hat Experience' appointment. One-on-one time is our specialty, and booking an appointment ensures we have dedicated time to perfectly fit and shape your hat.<\/p>",
+            "place_in_more": false
+          }
+        },
+        "faq_hat_bar": {
+          "type": "faq",
+          "settings": {
+            "question": "What is Arkansas’s Original Hat Bar?",
+            "answer": "<p>It’s our custom hat fitting and shaping experience in Fayetteville. We fit your head, shape the crown and brim to you, then customize with trim and hat bands — not a trucker patch bar. Learn more on our <a href=\"\/pages\/custom-hat-bar\">Custom Hat Bar<\/a> page.<\/p>",
+            "place_in_more": true
+          }
+        },
+        "faq_rebrand": {
+          "type": "faq",
+          "settings": {
+            "question": "Did Rafter M Hat Company close?",
+            "answer": "<p>No — we expanded. Rafter M is now Moon Ridge Company: same team, same College Avenue shop, same custom hat craft, with even more heritage brands.<\/p>",
+            "place_in_more": true
+          }
+        },
+        "faq_ship": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you ship hats?",
+            "answer": "<p>Yes — we ship within the United States. Shipping options appear at checkout, and we pack hats carefully so they arrive ready to wear. We do not ship outside the US.<\/p>",
+            "place_in_more": true
+          }
+        },
+        "faq_size": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I find my hat size?",
+            "answer": "<p>Visit us in Fayetteville for an in-person fitting, use our <a href=\"\/pages\/hat-sizing\">hat sizing guide<\/a>, or <a href=\"https:\/\/moonridgecompany.setmore.com\">book a free hat fitting<\/a> (in person or virtual).<\/p>",
+            "place_in_more": true
+          }
+        },
+        "faq_events": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you host private events or hat parties?",
+            "answer": "<p>Yes — in store and off-site, for weddings, bachelor\/bachelorette parties, corporate events, and small celebrations. Start at <a href=\"\/pages\/book-moonridge\">Book Moon Ridge<\/a> or <a href=\"https:\/\/moonridgecompany.setmore.com\">book a free consultation<\/a>.<\/p>",
+            "place_in_more": true
+          }
+        },
+        "faq_authentic": {
+          "type": "faq",
+          "settings": {
+            "question": "Are your products authentic?",
+            "answer": "<p>Everything we sell is 100% authentic. We are authorized retailers for Stetson, Resistol, Lucchese, Pendleton, and many other brands.<\/p>",
+            "place_in_more": true
+          }
+        },
+        "faq_military": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you offer military or first responder discounts?",
+            "answer": "<p>Yes — 10% for military and first responders. Show valid ID in store, or email <a href=\"mailto:info@moonridgecompany.com\">info@moonridgecompany.com<\/a> before an online order so we can help apply it.<\/p>",
+            "place_in_more": true
+          }
+        },
+        "faq_gift": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I buy or use a gift card online and in store?",
+            "answer": "<p>Yes. Purchase and redeem gift cards online or in store. Online cards can be printed at home; in-store purchases include a branded plastic card. Need one mailed? Email or call us.<\/p>",
+            "place_in_more": true
           }
         }
       },
@@ -916,10 +984,22 @@
         "faq_4",
         "faq_1",
         "faq_2",
-        "faq_3"
+        "faq_3",
+        "faq_hat_bar",
+        "faq_rebrand",
+        "faq_ship",
+        "faq_size",
+        "faq_events",
+        "faq_authentic",
+        "faq_military",
+        "faq_gift"
       ],
       "settings": {
         "title": "Frequently Asked Questions",
+        "more_label": "More questions",
+        "show_faq_page_link": true,
+        "faq_page_label": "View all FAQs",
+        "faq_page_url": "shopify:\/\/pages\/faq",
         "background_color": "rgba(0,0,0,0)",
         "padding_top": 60,
         "padding_bottom": 60,

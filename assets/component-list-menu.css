@@ -4,8 +4,9 @@
 
 .list-menu--disclosure {
   position: absolute;
-  min-width: 100%;
-  width: 20rem;
+  min-width: max(20rem, 100%);
+  width: max-content;
+  max-width: 36rem;
   border: 1px solid rgba(var(--color-foreground), 0.2);
 }
 

@@ -915,14 +915,6 @@
             "place_in_more": false
           }
         },
-        "faq_hat_bar": {
-          "type": "faq",
-          "settings": {
-            "question": "What is Arkansas’s Original Hat Bar?",
-            "answer": "<p><strong>Arkansas’s Original Hat Bar</strong> is where a hat gets custom fitted for you — not handed off the shelf. At Moon Ridge in Fayetteville, trained designers fit your head first, shape the crown and brim to you, then add the personal touches you choose together.<\/p><p>Start with a cowboy hat or city dress hat from brands like Stetson and Resistol, then add ribbon, feathers, leather, and hat bands (including leather bands made in Northwest Arkansas). That’s the difference between a custom hat bar and a hat counter — and it’s not a trucker patch bar.<\/p><p>We were the first in Arkansas to train in person under third-generation shapers at Hat Masters in Denver, and we’ve shaped thousands of hats since. Designers are in Thursday–Saturday; shaping is complimentary on hats you buy here ($35 if you bring one from elsewhere). <a href=\"\/pages\/custom-hat-bar\">Learn more<\/a> or <a href=\"https:\/\/moonridgecompany.setmore.com\">book a Free Hat Experience<\/a>.<\/p>",
-            "place_in_more": true
-          }
-        },
         "faq_rebrand": {
           "type": "faq",
           "settings": {
@@ -985,7 +977,6 @@
         "faq_1",
         "faq_2",
         "faq_3",
-        "faq_hat_bar",
         "faq_rebrand",
         "faq_ship",
         "faq_size",

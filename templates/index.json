@@ -36,7 +36,7 @@
           "type": "ai_gen_block_238d094",
           "name": "Announcement Header",
           "settings": {
-            "text": "<p><strong>Authorized Retailer:</strong> Stetson, Resistol, Lucchese, Pendleton and more. <a href=\"https://moonridgecompany.setmore.com\"><strong>Book a Free Hat Fitting</strong></a>.</p>",
+            "text": "<p><strong>Authorized Retailer:</strong> Stetson, Resistol, Lucchese, Pendleton and more. <strong>We Ship Nationwide.</strong></p>",
             "text_alignment": "center",
             "font_size": 15,
             "background_color": "#312110",

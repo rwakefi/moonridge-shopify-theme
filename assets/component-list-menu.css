@@ -4,10 +4,15 @@
 
 .list-menu--disclosure {
   position: absolute;
-  min-width: max(20rem, 100%);
-  width: max-content;
-  max-width: 36rem;
+  min-width: 100%;
+  width: 20rem;
   border: 1px solid rgba(var(--color-foreground), 0.2);
+}
+
+/* Long nav labels wrap onto a second line instead of overflowing the panel. */
+.header__submenu .header__menu-item {
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .list-menu--disclosure:focus {

@@ -17,18 +17,18 @@
           "settings": {
             "desktop_image": "shopify://shop_images/Desktop_HERO_Moon_Ridge_1920_x_1080_px.png",
             "mobile_image": "shopify://shop_images/Mobile_Hero_4f291e1d-b73b-475f-8d6d-10cf6e66107c.png",
+            "cta_support": "Ready to find yours?",
             "button_label": "Shop hats",
             "button_link": "shopify://pages/shop-hats",
-            "button_background": "#312110",
-            "button_text_color": "#ffffff",
-            "cta_background": "#ffffff",
-            "cta_support": "Ready to find yours?",
             "secondary_label": "Try Hat Finder",
             "secondary_link": "https://hatfinder.moonridgecompany.com",
             "app_store_label": "Get the iPhone app",
             "app_store_link": "https://apps.apple.com/us/app/hat-finder/id6767718895",
+            "cta_background": "#ffffff",
             "cta_text_color": "#312110",
-            "cta_accent_color": "#c4b49a"
+            "cta_accent_color": "#c4b49a",
+            "button_background": "#312110",
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
@@ -193,7 +193,7 @@
           "settings": {
             "heading": "<strong>Where Hats Meet Heritage</strong>",
             "heading_tag": "h1",
-            "content": "<p>We love hats and the classic brands that compliment them. We sell, clean, shape, and style—preserving the craft along with great service. We also host unforgettable hat parties. We’re here to help you find your style. Visit us in Fayetteville or shop online. Want the full experience? Book a hat session—virtual or in person—for something truly unique and one-of-a-kind.</p><p>In NWA, Come Visit <a href=\"/pages/custom-hat-bar\"><strong>Arkansas’s Original Custom Hat Bar</strong></a> — we fit you, shape the crown to your head, and customize it with you at the shop.</p><p>New to hats? Visit <a href=\"/blogs/hat-education\"><strong>Hat Education</strong></a> for quick guides on X-rating, materials, and care.</p>",
+            "content": "<p>We love hats and the classic brands that compliment them. We sell, clean, shape, and style—preserving the craft along with great service. We also host unforgettable hat parties. We’re here to help you find your style. Visit us in Fayetteville or shop online. Want the full experience? Book a hat session—virtual or in person—for something truly unique and one-of-a-kind.</p><p>In NWA? Come Visit <a href=\"/pages/custom-hat-bar\"><strong>Arkansas’s Original Custom Hat Bar</strong></a> — we fit you, shape the crown to your head, and customize it with you at the shop.</p><p>New to hats? Visit <a href=\"/blogs/hat-education\"><strong>Hat Education</strong></a> for quick guides on X-rating, materials, and care.</p>",
             "max_width": 1200,
             "text_alignment": "center",
             "heading_size": 24,
@@ -228,6 +228,7 @@
           "settings": {
             "collection": "best-sellers",
             "product_limit": 12,
+            "hide_sold_out": true,
             "heading": "Best Sellers",
             "subheading": "",
             "heading_alignment": "center",
@@ -254,8 +255,7 @@
             "card_border_radius": 6,
             "padding_top": 40,
             "padding_bottom": 20,
-            "dots_padding_bottom": 24,
-            "hide_sold_out": true
+            "dots_padding_bottom": 24
           },
           "blocks": {}
         }
@@ -360,6 +360,7 @@
         "description_style": "body",
         "collection": "hats-for-everyone",
         "products_to_show": 13,
+        "hide_sold_out": true,
         "columns_desktop": 4,
         "full_width": false,
         "show_view_all": true,
@@ -404,6 +405,11 @@
         "newsletter_placeholder": "Enter your email address",
         "newsletter_button_label": "SUBSCRIBE",
         "newsletter_success": "Thanks for subscribing — we’ll be in touch soon.",
+        "show_hat_finder_column": true,
+        "hat_finder_heading": "HAT FINDER APP",
+        "hat_finder_text": "Not sure where to start? Answer a few quick questions about crown, brim, and style — our Hat Finder matches you with hats from the Moon Ridge collection. Free on iPhone.",
+        "hat_finder_link_label": "Try Hat Finder on the web →",
+        "hat_finder_link": "",
         "menu_heading": "QUICK LINKS",
         "footer_menu": "footer",
         "bottom_text": "© 2026 Moon Ridge Company (formerly Rafter M Hat Co.)  |  TERMS OF SERVICE  |  PRIVACY POLICY",
@@ -595,6 +601,7 @@
         "description_style": "body",
         "collection": "womens-hats",
         "products_to_show": 14,
+        "hide_sold_out": true,
         "columns_desktop": 4,
         "full_width": false,
         "show_view_all": true,
@@ -615,8 +622,7 @@
         "swipe_on_mobile": true,
         "navigation_on_mobile": false,
         "padding_top": 12,
-        "padding_bottom": 24,
-        "hide_sold_out": true
+        "padding_bottom": 24
       }
     },
     "slideshow_yKmXBC": {

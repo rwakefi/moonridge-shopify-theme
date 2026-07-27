@@ -1,40 +1,36 @@
 # X-Rating of Hats — Hat Education publish brief
 
-> **Published via Shopify Admin API on 2026-07-27**
-> Live URL: https://moonridgecompany.com/blogs/hat-education/x-rating-of-hats
-> Article ID: `622294663472` · Blog: Hat Education · Template: `hat-education`
+> **Published / updated via Shopify Admin API on 2026-07-27**
+> **Live URL:** https://moonridgecompany.com/blogs/hat-education/understanding-the-x-rating-of-hats
+> Article ID: `622294892848` · Blog: Hat Education · Template: `hat-education` · Author: **Zack Wakefield**
+>
+> Note: Shopify left a stale page cache on `/blogs/hat-education/x-rating-of-hats` after the first publish.
+> Redirects are set from `x-rating-of-hats` and `understanding-hat-x-ratings` → the live URL above (they apply once that cache clears).
 
-Hat Education articles live in **Shopify Admin** (not theme Liquid). Use this brief + `x-rating-of-hats.html` to publish.
+Hat Education articles live in **Shopify Admin** (not theme Liquid). Source HTML for edits: `x-rating-of-hats.html`.
 
-## Publish in Shopify Admin
-
-1. Go to **Online Store → Blog posts → Add blog post**
-2. Set **Blog** to **Hat Education**
-3. Fill in the fields below
-4. Switch the editor to **HTML** / Show HTML and paste the contents of `x-rating-of-hats.html`
-5. Under **Theme template**, choose **`hat-education`**
-6. Add a featured image (felt hat close-up or shop floor / shaping context works well)
-7. **Save** then **Publish**
-
-## Suggested fields
+## Current fields
 
 | Field | Value |
 | --- | --- |
 | **Title** | Understanding the X-Rating of Hats |
-| **Handle / URL** | `x-rating-of-hats` → `/blogs/hat-education/x-rating-of-hats` |
+| **Author** | Zack Wakefield |
+| **Handle / URL** | `understanding-the-x-rating-of-hats` |
 | **Excerpt / deck** | The X on a felt hat is shorthand for fur-felt quality — finer fiber, better hand, and more longevity. Here's how to read the number without getting lost in marketing. |
 | **SEO title** | Understanding Hat X-Ratings \| Moon Ridge Hat Education |
 | **SEO description** | Learn what hat X-ratings mean — from 4X to 100X — how brands differ, and how to choose the right felt quality for everyday wear or an heirloom hat. |
 | **Template** | `hat-education` |
-| **Tags** (optional) | `felt`, `hat education`, `x-rating`, `cowboy hats` |
+| **Tags** | `felt`, `hat education`, `x-rating`, `cowboy hats` |
 
-## After publish (optional polish)
+## Product links in body
 
-- Confirm the post appears on [Hat Education](https://moonridgecompany.com/blogs/hat-education)
-- Confirm it shows in the header **Hat Education** dropdown
-- From related guides, add a “see also” link to this article when convenient
-- Homepage already points people to Hat Education for “X-rating, materials, and care” — no theme change required once this post is live
+- [Resistol Tucker](/products/resistol-tucker)
+- [Stetson Oak Ridge](/products/stetson-oak-ridge)
+- [Stetson Red Rocks](/products/red-rocks)
+- [Stetson Corral](/products/stetson-corral-cowboy-hat)
 
-## Why this is a content file, not theme code
+## Fit CTAs in body
 
-Existing guides (`how-to-clean-a-felt-hat`, `learn-your-head-shape`, `finding-the-style-that-fits-your-face`) are Admin blog posts rendered by `snippets/hat-education-article.liquid`. Matching that workflow keeps the new guide on the same index, nav, and related-guides rails.
+- [Hat sizing guide](/pages/hat-sizing)
+- [Book a free hat fitting](https://moonridgecompany.setmore.com)
+- Related guides: head shape + face shape

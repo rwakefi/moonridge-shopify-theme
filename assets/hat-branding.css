@@ -1,6 +1,9 @@
 .hat-branding {
   display: block;
-  margin: 1.2rem 0 1.6rem;
+  width: 100%;
+  max-width: 44rem;
+  margin: 1.2rem 0;
+  box-sizing: border-box;
 }
 
 .hat-branding__note {
@@ -25,29 +28,55 @@
   margin: 0;
 }
 
-.hat-branding__open {
-  background-color: #312110 !important;
-  color: #fff !important;
-  border: none;
-  min-height: 4.8rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-size: 1.4rem;
+/* Match Add to Cart (.product-form__submit) size + finish on all viewports */
+.hat-branding__open.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-height: calc(4.2rem + var(--buttons-border-width, 1px) * 2);
+  margin: 0;
+  padding: 1.2rem 2.8rem !important;
+  border: 1px solid var(--rm-leather, #312110) !important;
+  border-radius: 2px !important;
+  background-color: var(--rm-leather, #312110) !important;
+  color: #ffffff !important;
+  font-size: inherit;
+  font-weight: 600 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  line-height: 1.2;
 }
 
-.hat-branding__open:hover {
-  background-color: #1f1d24 !important;
+.hat-branding__open.button:hover {
+  background-color: transparent !important;
+  color: var(--rm-leather, #312110) !important;
+  box-shadow: 0 5px 15px rgba(49, 33, 16, 0.15);
 }
 
-.hat-branding__open.is-added {
+.hat-branding__open.button.is-added {
   background-color: #fff !important;
-  color: #312110 !important;
-  box-shadow: inset 0 0 0 0.15rem #312110;
+  color: var(--rm-leather, #312110) !important;
+  border-color: var(--rm-leather, #312110) !important;
 }
 
 .hat-branding__status {
   margin: 0.8rem 0 0;
   color: rgba(var(--color-foreground), 0.75);
+}
+
+@media screen and (max-width: 749px) {
+  .hat-branding,
+  .hat-branding__open.button {
+    max-width: 100%;
+  }
+
+  .hat-branding__open.button {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
 }
 
 .hat-branding-modal {

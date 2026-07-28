@@ -489,6 +489,13 @@ a.product__text {
 
 .product-form__buttons {
   max-width: 44rem;
+  width: 100%;
+}
+
+.product-form__buttons .product-form__submit {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .product--no-media .product__info-container > modal-opener {

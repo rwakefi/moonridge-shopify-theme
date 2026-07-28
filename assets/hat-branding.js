@@ -26,6 +26,10 @@ if (!customElements.get('hat-branding')) {
         });
         this.submitButton?.addEventListener('click', () => this.submit());
         this.lettersInput?.addEventListener('input', () => this.normalizeLetters());
+        this.querySelectorAll('[data-hat-branding-location]').forEach((input) => {
+          input.addEventListener('change', () => this.updatePreview());
+        });
+        this.updatePreview();
       }
 
       disconnectedCallback() {
@@ -66,6 +70,25 @@ if (!customElements.get('hat-branding')) {
       selectedLocation() {
         const checked = this.querySelector('[data-hat-branding-location]:checked');
         return checked ? checked.value.trim() : '';
+      }
+
+      updatePreview() {
+        const checked = this.querySelector('[data-hat-branding-location]:checked');
+        const url = checked?.getAttribute('data-preview-image') || '';
+        const img = this.querySelector('[data-hat-branding-preview-img]');
+        const fallback = this.querySelector('[data-hat-branding-preview-fallback]');
+
+        if (!img) return;
+
+        if (url) {
+          img.src = url;
+          img.hidden = false;
+          img.removeAttribute('hidden');
+          if (fallback) fallback.hidden = true;
+        } else if (fallback) {
+          img.hidden = true;
+          fallback.hidden = false;
+        }
       }
 
       clearError() {

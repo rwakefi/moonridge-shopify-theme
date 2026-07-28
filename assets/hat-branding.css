@@ -149,6 +149,13 @@
   height: auto;
 }
 
+.hat-branding-modal__preview-image {
+  display: block;
+  max-height: 26rem;
+  object-fit: cover;
+  border-radius: 0;
+}
+
 .hat-branding-modal__panel {
   border: 0.1rem solid rgba(31, 29, 36, 0.15);
   padding: 1.3rem 1.1rem 1.1rem;

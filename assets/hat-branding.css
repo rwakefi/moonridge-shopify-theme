@@ -172,10 +172,16 @@
   font-weight: 600;
 }
 
+.hat-branding-modal__panel {
+  border: 0.1rem solid rgba(31, 29, 36, 0.15);
+  padding: 1.6rem;
+  background: #fff;
+}
+
 .hat-branding-modal__locations {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 1rem;
 }
 
 .hat-branding-modal__location {
@@ -192,13 +198,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 4rem;
-  padding: 0.6rem 1.1rem;
-  border: 0.1rem solid rgba(31, 29, 36, 0.25);
+  width: 7.2rem;
+  height: 7.2rem;
+  padding: 0.6rem;
+  border: 0.2rem solid rgba(31, 29, 36, 0.2);
+  border-radius: 50%;
   background: #fff;
   color: #1f1d24;
-  font-size: 1.25rem;
-  line-height: 1.2;
+  font-size: 1.1rem;
+  line-height: 1.15;
   text-align: center;
   transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease;
 }

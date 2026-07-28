@@ -85,12 +85,12 @@
           "disabled": true,
           "settings": {}
         },
-        "hat_branding_v2": {
+        "hat_branding_v3": {
           "type": "hat_branding",
           "settings": {
             "button_label": "Add Hat Branding $25",
             "note_heading": "NOTE:",
-            "note": "<p>This hat can be personalized with custom heated branding. Custom branded hats are not eligible for returns or exchanges.</p>",
+            "note": "<p>This hat is offered with custom heated branding. Custom branded hats are not eligible for returns or exchanges.</p>",
             "modal_heading": "Add Hat Branding",
             "location_label": "Branding Location",
             "branding_locations": "Front of crown,Side of crown,Back of crown,Under brim,Hatband",
@@ -99,7 +99,7 @@
             "max_letters": 2,
             "policy_text": "Custom branded hats are not eligible for returns or exchanges. Please check the box below to agree to Moon Ridge Hats and Heritage's returns policy.",
             "agree_label": "I Agree",
-            "submit_label": "Add Branding $25",
+            "submit_label": "ADD TO CART",
             "branding_product": "hat-branding-3-letters",
             "branding_variant_id": "49089192362288"
           }
@@ -149,7 +149,7 @@
         "inventory_status_nPFgBc",
         "shipping_CBekAR",
         "quantity_selector",
-        "hat_branding_v2",
+        "hat_branding_v3",
         "buy_buttons",
         "collapsible_tab_Rz9b6j",
         "image_mCjNUw",

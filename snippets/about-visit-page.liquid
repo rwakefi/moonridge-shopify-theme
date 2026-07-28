@@ -6,6 +6,16 @@
   if phone_href != blank and phone_href contains '479'
     assign phone_href = phone_href | prepend: '+1'
   endif
+
+  assign booking_url = section.settings.booking_url
+  if booking_url contains 'raftermhatcompany.setmore.com'
+    assign booking_url = 'https://moonridgecompany.setmore.com'
+  endif
+
+  assign secondary_url = section.settings.secondary_url
+  if secondary_url contains 'book-a-hat-party'
+    assign secondary_url = '/pages/book-moonridge'
+  endif
 -%}
 
 <section class="about-visit-page" id="AboutVisit-{{ section.id }}">
@@ -104,13 +114,13 @@
         </div>
 
         <div class="about-visit-page__actions">
-          {%- if section.settings.booking_url != blank -%}
-            <a class="about-visit-page__button about-visit-page__button--primary" href="{{ section.settings.booking_url }}">
+          {%- if booking_url != blank -%}
+            <a class="about-visit-page__button about-visit-page__button--primary" href="{{ booking_url }}">
               {{ section.settings.booking_label | escape }}
             </a>
           {%- endif -%}
-          {%- if section.settings.secondary_url != blank -%}
-            <a class="about-visit-page__button about-visit-page__button--secondary" href="{{ section.settings.secondary_url }}">
+          {%- if secondary_url != blank -%}
+            <a class="about-visit-page__button about-visit-page__button--secondary" href="{{ secondary_url }}">
               {{ section.settings.secondary_label | escape }}
             </a>
           {%- elsif phone_href != blank -%}

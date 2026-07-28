@@ -102,22 +102,57 @@ if (!customElements.get('hat-branding')) {
           return null;
         }
         if (!agreed) {
-          this.showError('Please agree to the branding policy to continue.');
+          this.showError('Please agree that custom branded hats cannot be returned or exchanged.');
           return null;
         }
 
         return { location, letters };
       }
 
+      orderProperties({ location, letters }) {
+        return {
+          '2 Letters': letters,
+          'Branding Location': location,
+          'For Hat': this.dataset.productTitle || '',
+          'Returns Disclaimer': 'Agreed — custom branded hats are final sale (no returns or exchanges)',
+        };
+      }
+
+      syncHatFormProperties(selection) {
+        const form =
+          document.getElementById(`product-form-${this.dataset.sectionId}`) ||
+          document.querySelector('[data-type="add-to-cart-form"]');
+        if (!form) return;
+
+        const props = this.orderProperties(selection);
+        props['Hat Branding'] = 'Yes — $25';
+
+        Object.entries(props).forEach(([name, value]) => {
+          let input = Array.from(form.querySelectorAll('input[data-hat-branding-prop]')).find(
+            (el) => el.getAttribute('data-hat-branding-prop') === name
+          );
+          if (!input) {
+            input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = `properties[${name}]`;
+            input.setAttribute('data-hat-branding-prop', name);
+            form.appendChild(input);
+          }
+          input.value = value;
+        });
+      }
+
       markAdded({ location, letters }) {
         this.selection = { location, letters };
+        this.syncHatFormProperties({ location, letters });
         if (this.openLabel) {
           this.openLabel.textContent = `Branding Added: ${letters} · ${location}`;
         }
         this.openButton?.classList.add('is-added');
         if (this.status) {
           this.status.hidden = false;
-          this.status.textContent = 'Custom branding will appear as a $25 line item in your cart.';
+          this.status.textContent =
+            '2 Letters and branding location are saved on the order. Custom branded hats are final sale.';
         }
       }
 
@@ -135,15 +170,11 @@ if (!customElements.get('hat-branding')) {
         this.setLoading(true);
 
         const cart = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
+        const properties = this.orderProperties(selection);
         const body = {
           id: Number(variantId),
           quantity: 1,
-          properties: {
-            'Branding Location': selection.location,
-            Letters: selection.letters,
-            'For Hat': this.dataset.productTitle || '',
-            'Hat Handle': this.dataset.productHandle || '',
-          },
+          properties,
         };
 
         if (cart && typeof cart.getSectionsToRender === 'function') {
@@ -162,6 +193,22 @@ if (!customElements.get('hat-branding')) {
             this.showError(data.description || data.message || 'Could not add branding to cart.');
             this.setLoading(false);
             return;
+          }
+
+          // Also store on cart attributes so values appear under Order → Additional details
+          try {
+            await fetch(window.routes.cart_update_url, {
+              ...fetchConfig(),
+              body: JSON.stringify({
+                attributes: {
+                  '2 Letters': selection.letters,
+                  'Branding Location': selection.location,
+                  'Hat Branding For': this.dataset.productTitle || '',
+                },
+              }),
+            });
+          } catch (attributeError) {
+            console.warn('Hat branding cart attributes could not be saved', attributeError);
           }
 
           this.markAdded(selection);

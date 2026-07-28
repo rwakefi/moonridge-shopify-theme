@@ -122,7 +122,7 @@
         "show_line_separator": false,
         "color_scheme": "accent-2",
         "menu_color_scheme": "accent-2",
-        "header_menu_size": 15,
+        "header_menu_size": 16,
         "header_spacing": 0.5,
         "header_menu_transform": "uppercase",
         "transparent_header": false,

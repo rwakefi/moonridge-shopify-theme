@@ -95,7 +95,7 @@
             "location_label": "Branding Location",
             "branding_locations": "Side of Crown - Left,Back of Crown - Right,Under Edge of Brim - Right Side,Under Edge of Brim - Left Side",
             "letters_label": "2 Letters",
-            "letters_placeholder": "e.g. MR",
+            "letters_placeholder": "2 letters (like NW)",
             "max_letters": 2,
             "faq_1_question": "Why only two letters?",
             "faq_1_answer": "We just think it looks classier. We have branded hundreds if not thousands of hats, and we think two gives it a really classy look.",

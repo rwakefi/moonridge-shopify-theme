@@ -9,7 +9,7 @@
  */
 {
   "sections": {
-    "about_visit_page": {
+    "visit_page_main": {
       "type": "about-visit-page",
       "settings": {
         "photo": "shopify://shop_images/IMG_9242_ed62501f-673f-4930-a8ea-28fa6861f3f0.jpg",
@@ -88,7 +88,7 @@
     }
   },
   "order": [
-    "about_visit_page",
+    "visit_page_main",
     "faq_accordion"
   ]
 }

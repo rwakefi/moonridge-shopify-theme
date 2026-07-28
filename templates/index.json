@@ -469,7 +469,7 @@
       "type": "_blocks",
       "settings": {}
     },
-    "lumin_mega_A34iND": {
+    "lumin_mega_mens_hats": {
       "type": "lumin-mega",
       "blocks": {
         "heading_NUNnji": {
@@ -490,7 +490,7 @@
           "type": "button",
           "settings": {
             "button_label": "Shop Now",
-            "button_link": "shopify:\/\/collections\/mens-hats",
+            "button_link": "\/collections\/mens-hats",
             "button_style_secondary": false
           }
         }
@@ -543,7 +543,7 @@
         "border_radius": 0
       }
     },
-    "lumin_mega_GYecDz": {
+    "lumin_mega_womens_hats": {
       "type": "lumin-mega",
       "blocks": {
         "heading_4TXyWn": {
@@ -564,7 +564,7 @@
           "type": "button",
           "settings": {
             "button_label": "Shop Now",
-            "button_link": "shopify:\/\/collections\/womens-hats",
+            "button_link": "\/collections\/womens-hats",
             "button_style_secondary": false
           }
         }
@@ -1012,9 +1012,9 @@
     "newsletter_eRQTKh",
     "17618020408820ce43",
     "1763038602d03ce096",
-    "lumin_mega_A34iND",
+    "lumin_mega_mens_hats",
     "rich_text_Mw4cQJ",
-    "lumin_mega_GYecDz",
+    "lumin_mega_womens_hats",
     "featured_collection_9pdd8p",
     "slideshow_yKmXBC",
     "lumin_grids_qnX3eH",

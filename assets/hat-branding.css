@@ -199,19 +199,24 @@
 
 .hat-branding-modal__location-chip {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 6.2rem;
-  height: 6.2rem;
+  width: 7.2rem;
+  height: 7.2rem;
   padding: 0.45rem;
   border: 0.2rem solid rgba(31, 29, 36, 0.2);
   border-radius: 50%;
   background: #fff;
   color: #1f1d24;
-  font-size: 1.02rem;
+  font-size: 0.95rem;
   line-height: 1.15;
   text-align: center;
   transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease;
+}
+
+.hat-branding-modal__location-line {
+  display: block;
 }
 
 .hat-branding-modal__location input:focus-visible + .hat-branding-modal__location-chip {

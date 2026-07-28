@@ -93,7 +93,7 @@
             "note": "<p>This hat is offered with custom heated branding. Custom branded hats are not eligible for returns or exchanges.</p>",
             "modal_heading": "Add Hat Branding",
             "location_label": "Branding Location",
-            "branding_locations": "Side of crown,Back of crown,Under brim,Hatband",
+            "branding_locations": "Side of crown,Back of crown,Edge of Brim - Under - Right,Edge of Brim - Under - Left,Hatband",
             "letters_label": "2 Letters",
             "letters_placeholder": "e.g. MR",
             "max_letters": 2,

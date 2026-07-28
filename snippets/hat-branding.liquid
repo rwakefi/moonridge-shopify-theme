@@ -20,7 +20,7 @@
   assign branding_variant_id = branding_variant.id | default: block.settings.branding_variant_id | default: 49089192362288
   assign branding_price = branding_variant.price | default: 2500
   assign button_label = block.settings.button_label | default: 'Add Hat Branding $25'
-  assign locations_raw = block.settings.branding_locations | default: 'Side of crown,Back of crown,Under brim,Hatband'
+  assign locations_raw = block.settings.branding_locations | default: 'Side of crown,Back of crown,Edge of Brim - Under - Right,Edge of Brim - Under - Left,Hatband'
   assign locations = locations_raw | split: ','
 -%}
 
@@ -128,7 +128,16 @@
                         data-hat-branding-location
                         {% if forloop.first %}checked{% endif %}
                       >
-                      <span class="hat-branding-modal__location-chip">{{ location_name }}</span>
+                      <span class="hat-branding-modal__location-chip">
+                        {%- assign chip_lines = location_name | split: ' - ' -%}
+                        {%- if chip_lines.size > 1 -%}
+                          {%- for line in chip_lines -%}
+                            <span class="hat-branding-modal__location-line">{{ line | escape }}</span>
+                          {%- endfor -%}
+                        {%- else -%}
+                          {{ location_name | escape }}
+                        {%- endif -%}
+                      </span>
                     </label>
                   {%- endif -%}
                 {%- endfor -%}

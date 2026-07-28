@@ -97,7 +97,6 @@ if (!customElements.get('hat-branding')) {
         const zoomUrl = checked?.getAttribute('data-preview-zoom') || url;
         const focus = checked?.getAttribute('data-preview-focus') || 'center';
         const img = this.querySelector('[data-hat-branding-preview-img]');
-        const fallback = this.querySelector('[data-hat-branding-preview-fallback]');
         const frame = this.previewFrame;
 
         this.endZoom();
@@ -119,19 +118,15 @@ if (!customElements.get('hat-branding')) {
             frame.hidden = false;
             frame.removeAttribute('hidden');
           }
-          if (fallback) {
-            fallback.hidden = true;
-            fallback.setAttribute('hidden', '');
-          }
-        } else if (fallback) {
+        } else {
           img.hidden = true;
           img.setAttribute('hidden', '');
+          img.removeAttribute('src');
+          img.removeAttribute('srcset');
           if (frame) {
             frame.hidden = true;
             frame.setAttribute('hidden', '');
           }
-          fallback.hidden = false;
-          fallback.removeAttribute('hidden');
         }
       }
 

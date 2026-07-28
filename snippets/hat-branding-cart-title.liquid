@@ -1,0 +1,26 @@
+{% comment %}
+  Cart/order title for hat branding line items.
+  Shows the two letters in the title when present.
+
+  Accepts:
+  - item: {Object} cart line item
+{% endcomment %}
+{%- liquid
+  assign branding_letters = blank
+  assign branding_location = blank
+  for property in item.properties
+    assign property_key = property.first | downcase
+    if property_key == '2 letters' or property_key == 'letters' or property_key == 'initials'
+      assign branding_letters = property.last
+    endif
+    if property_key == 'branding location' or property_key == 'location'
+      assign branding_location = property.last
+    endif
+  endfor
+-%}
+{%- if item.product.handle == 'hat-branding-3-letters' or item.product.title contains 'Hat Branding' -%}
+  Hat Branding
+  {%- if branding_letters != blank %} — {{ branding_letters | escape }}{% endif -%}
+{%- else -%}
+  {{ item.product.title | escape }}
+{%- endif -%}

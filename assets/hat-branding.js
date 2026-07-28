@@ -227,7 +227,7 @@ if (!customElements.get('hat-branding')) {
 
       orderProperties({ location, letters }) {
         return {
-          '2 Letters': letters,
+          Letters: letters,
           'Branding Location': location,
           'For Hat': this.dataset.productTitle || '',
           'Returns Disclaimer': 'Agreed — custom branded hats are final sale (no returns or exchanges)',
@@ -317,7 +317,7 @@ if (!customElements.get('hat-branding')) {
               ...fetchConfig(),
               body: JSON.stringify({
                 attributes: {
-                  '2 Letters': selection.letters,
+                  Letters: selection.letters,
                   'Branding Location': selection.location,
                   'Hat Branding For': this.dataset.productTitle || '',
                 },

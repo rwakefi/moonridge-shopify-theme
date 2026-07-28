@@ -291,11 +291,15 @@ if (!customElements.get('hat-branding')) {
           id: Number(variantId),
           quantity: 1,
           properties,
+          sections: ['cart-icon-bubble'],
+          sections_url: window.location.pathname,
         };
 
+        // Still request drawer/notification sections when present so counts stay in sync,
+        // but we intentionally do not open the cart UI after branding is added.
         if (cart && typeof cart.getSectionsToRender === 'function') {
-          body.sections = cart.getSectionsToRender().map((section) => section.id);
-          body.sections_url = window.location.pathname;
+          const sectionIds = cart.getSectionsToRender().map((section) => section.id);
+          body.sections = Array.from(new Set(['cart-icon-bubble', ...sectionIds]));
         }
 
         try {
@@ -329,12 +333,7 @@ if (!customElements.get('hat-branding')) {
 
           this.markAdded(selection);
           this.close();
-
-          if (cart && typeof cart.renderContents === 'function') {
-            cart.renderContents(data);
-          } else if (window.routes?.cart_url) {
-            window.location = window.routes.cart_url;
-          }
+          this.refreshCartIcon(data);
 
           if (typeof publish === 'function' && typeof PUB_SUB_EVENTS !== 'undefined') {
             publish(PUB_SUB_EVENTS.cartUpdate, {
@@ -348,6 +347,30 @@ if (!customElements.get('hat-branding')) {
           this.showError('Could not add branding to cart. Please try again.');
           this.setLoading(false);
         }
+      }
+
+      refreshCartIcon(parsedState) {
+        const bubble = document.getElementById('cart-icon-bubble');
+        if (!bubble) return;
+
+        const applySectionHtml = (sectionHtml) => {
+          if (!sectionHtml) return false;
+          const sectionEl = new DOMParser()
+            .parseFromString(sectionHtml, 'text/html')
+            .querySelector('.shopify-section');
+          if (!sectionEl) return false;
+          bubble.innerHTML = sectionEl.innerHTML;
+          return true;
+        };
+
+        if (applySectionHtml(parsedState?.sections?.['cart-icon-bubble'])) return;
+
+        fetch(`${window.location.pathname}?sections=cart-icon-bubble`)
+          .then((response) => response.json())
+          .then((sections) => {
+            applySectionHtml(sections?.['cart-icon-bubble']);
+          })
+          .catch(() => {});
       }
     }
   );

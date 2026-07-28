@@ -291,7 +291,7 @@
 
       {% if more_count > 0 %}
         <details class="faq-more-{{ section.id }}">
-          <summary><span class="faq-summary-text-{{ section.id }}">{{ section.settings.more_label | default: 'More questions' | escape }}</span></summary>
+          <summary><span class="faq-summary-text-{{ section.id }}">{{ section.settings.more_label | default: 'More FAQs' | escape }}</span></summary>
           <div class="faq-more-inner-{{ section.id }}">
             {% for block in section.blocks %}
               {% if block.type == 'faq' and block.settings.place_in_more %}
@@ -356,8 +356,8 @@
     {
       "type": "text",
       "id": "more_label",
-      "label": "More questions expander label",
-      "default": "More questions"
+      "label": "More FAQs expander label",
+      "default": "More FAQs"
     },
     {
       "type": "checkbox",
@@ -433,7 +433,7 @@
         {
           "type": "checkbox",
           "id": "place_in_more",
-          "label": "Place under “More questions” expander",
+          "label": "Place under “More FAQs” expander",
           "default": false
         }
       ]

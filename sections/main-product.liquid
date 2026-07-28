@@ -1261,7 +1261,19 @@ function updateCountdown() {
             {%- when 'variant_picker' -%}
               {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
             {%- when 'hat_branding' -%}
-              {%- render 'hat-branding', block: block, product: product, section_id: section.id -%}
+              {%- liquid
+                comment
+                  Product metafield custom.offer_hat_branding (boolean).
+                  Blank or true = show branding. Explicit false = hide.
+                endcomment
+                assign offer_hat_branding = true
+                if product.metafields.custom.offer_hat_branding.value == false
+                  assign offer_hat_branding = false
+                endif
+              -%}
+              {%- if offer_hat_branding -%}
+                {%- render 'hat-branding', block: block, product: product, section_id: section.id -%}
+              {%- endif -%}
             {%- when 'buy_buttons' -%}
               {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
             {%- when 'rating' -%}
@@ -2490,6 +2502,10 @@ function updateCountdown() {
       "name": "Hat Branding",
       "limit": 1,
       "settings": [
+        {
+          "type": "paragraph",
+          "content": "Per-product on/off switch: Product admin → Metafields → Offer Hat Branding. Leave On for hats that offer branding; turn Off to hide it. Blank defaults to On."
+        },
         {
           "type": "text",
           "id": "button_label",

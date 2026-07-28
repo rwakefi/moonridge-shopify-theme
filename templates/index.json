@@ -185,15 +185,15 @@
         "hide_desktop": false
       }
     },
-    "176367624771bca92d": {
+    "heritage_intro_copy": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_c7fa992_EXxCAN": {
+        "heritage_intro_block": {
           "type": "ai_gen_block_c7fa992",
           "settings": {
             "heading": "<strong>Where Hats Meet Heritage<\/strong>",
             "heading_tag": "h1",
-            "content": "<p><strong>Arkansas’s Original Hat Bar</strong> lives at Moon Ridge in Fayetteville. We sell, clean, shape, and style heritage hats — and we customize them with you at the shop, not after the fact.<\/p><p>In NWA? Come visit our Store — we fit you, shape the crown to your head, and finish it with trim and bands you choose. Want the full experience? <a href=\"https:\/\/moonridgecompany.setmore.com\"><strong>Book a free hat fitting<\/strong><\/a> (virtual or in person).<\/p><p>New to hats? Visit <a href=\"\/blogs\/hat-education\"><strong>Hat Education<\/strong><\/a> for quick guides on X-rating, materials, and care.<\/p>",
+            "content": "<p><strong>Arkansas’s Original Hat Bar</strong> lives at Moon Ridge Hats and Heritage in Fayetteville. We sell, clean, shape, style and customize hats.<\/p><p>In NWA? Come visit our Store — we fit you, shape the crown to your head, and finish it with trim and bands you choose. Want the full experience? <a href=\"https:\/\/moonridgecompany.setmore.com\"><strong>Book a free hat fitting<\/strong><\/a> (virtual or in person).<\/p><p>New to hats? Visit <a href=\"\/blogs\/hat-education\"><strong>Hat Education<\/strong><\/a> for quick guides on X-rating, materials, and care.<\/p>",
             "max_width": 1200,
             "text_alignment": "center",
             "heading_size": 24,
@@ -216,7 +216,7 @@
         }
       },
       "block_order": [
-        "ai_gen_block_c7fa992_EXxCAN"
+        "heritage_intro_block"
       ],
       "settings": {}
     },
@@ -1002,7 +1002,7 @@
     "1762578087a1ac51c4",
     "trust_badges",
     "ss_circle_menu_437Hac",
-    "176367624771bca92d",
+    "heritage_intro_copy",
     "176318539650189d04",
     "heritage_restoration_vibe",
     "collection_list_nTLNYY",

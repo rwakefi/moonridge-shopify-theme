@@ -10,28 +10,36 @@
 {
   "sections": {
     "sizing_intro": {
-      "type": "rich-text",
-      "settings": {
-        "heading": "How to Measure Your Hat Size",
-        "content": "<p>A good hat starts with an accurate head measurement. Use a soft tape about 1/8\" above your ears and across your forehead — snug, not tight. Match that number to the size chart on each product page, then refine fit with our <a href=\"/blogs/hat-education/learn-your-head-shape\">head shape</a> and <a href=\"/blogs/hat-education/finding-the-style-that-fits-your-face\">face shape</a> guides. Prefer help in person or online? <a href=\"https://moonridgecompany.setmore.com\"><strong>Book a free hat fitting</strong></a> at Moon Ridge in Fayetteville.</p>",
-        "max_width": 900,
-        "heading_tag": "h1",
-        "text_alignment": "center",
-        "heading_size": 36,
-        "text_size": 16,
-        "line_height": 1.6,
-        "heading_color": "#312110",
-        "text_color": "#1f1d24",
-        "link_color": "#312110",
-        "link_hover_color": "#1f1d24",
-        "background_color": "#ffffff",
-        "padding_top": 40,
-        "padding_bottom": 12,
-        "padding_horizontal": 20,
-        "heading_spacing": 16,
-        "paragraph_spacing": 12,
-        "border_radius": 0
-      }
+      "type": "_blocks",
+      "blocks": {
+        "sizing_copy": {
+          "type": "ai_gen_block_9276253",
+          "name": "Hat sizing intro",
+          "settings": {
+            "title": "How to Measure Your Hat Size",
+            "heading_tag": "h1",
+            "content": "<p>A good hat starts with an accurate head measurement. Use a soft tape about 1/8\" above your ears and across your forehead — snug, not tight. Match that number to the size chart on each product page, then refine fit with our <a href=\"/blogs/hat-education/learn-your-head-shape\">head shape</a> and <a href=\"/blogs/hat-education/finding-the-style-that-fits-your-face\">face shape</a> guides. Prefer help in person or online? <a href=\"https://moonridgecompany.setmore.com\"><strong>Book a free hat fitting</strong></a> at Moon Ridge in Fayetteville.</p>",
+            "max_width": 900,
+            "text_alignment": "center",
+            "title_size": 36,
+            "title_spacing": 16,
+            "text_size": 16,
+            "line_height": 1.6,
+            "background_color": "#ffffff",
+            "title_color": "#312110",
+            "text_color": "#1f1d24",
+            "heading_color": "#312110",
+            "link_color": "#312110",
+            "link_hover_color": "#1f1d24",
+            "padding_top": 40,
+            "padding_bottom": 12,
+            "padding_horizontal": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["sizing_copy"],
+      "settings": {}
     },
     "video": {
       "type": "video",

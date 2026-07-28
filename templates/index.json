@@ -987,7 +987,7 @@
       ],
       "settings": {
         "title": "Frequently Asked Questions",
-        "more_label": "More questions",
+        "more_label": "More FAQs",
         "show_faq_page_link": true,
         "faq_page_label": "View all FAQs",
         "faq_page_url": "shopify:\/\/pages\/moonridge-faqs",

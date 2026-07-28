@@ -206,8 +206,8 @@
             {%- liquid
               assign faq_1_q = block.settings.faq_1_question | default: 'Why only two letters?'
               assign faq_1_a = block.settings.faq_1_answer | default: 'We just think it looks classier. We have branded hundreds if not thousands of hats, and we think two gives it a really classy look.'
-              assign faq_2_q = block.settings.faq_2_question
-              assign faq_2_a = block.settings.faq_2_answer
+              assign faq_2_q = block.settings.faq_2_question | default: 'How do you arrange the letters?'
+              assign faq_2_a = block.settings.faq_2_answer | default: 'Under the brim, we brand them side by side. On the crown, we stack and stagger them.'
               assign show_faq = false
               if faq_1_q != blank and faq_1_a != blank
                 assign show_faq = true

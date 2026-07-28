@@ -336,6 +336,16 @@
   color: rgba(31, 29, 36, 0.75);
 }
 
+.hat-branding-modal__policy a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.hat-branding-modal__policy a:hover {
+  color: #1f1d24;
+}
+
 .hat-branding-modal__agree {
   display: flex;
   align-items: center;

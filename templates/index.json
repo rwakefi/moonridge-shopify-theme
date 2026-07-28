@@ -490,7 +490,7 @@
           "type": "button",
           "settings": {
             "button_label": "Shop Now",
-            "button_link": "shopify:\/\/collections\/womens",
+            "button_link": "shopify:\/\/collections\/mens-hats",
             "button_style_secondary": false
           }
         }
@@ -564,7 +564,7 @@
           "type": "button",
           "settings": {
             "button_label": "Shop Now",
-            "button_link": "shopify:\/\/collections\/womens-1",
+            "button_link": "shopify:\/\/collections\/womens-hats",
             "button_style_secondary": false
           }
         }

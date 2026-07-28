@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "about_visit_page": {
@@ -10,7 +19,7 @@
         "booking_label": "Book a Free Fitting",
         "booking_url": "https://moonridgecompany.setmore.com",
         "secondary_label": "Plan a Hat Party",
-        "secondary_url": "/pages/book-a-hat-party",
+        "secondary_url": "/pages/book-moonridge",
         "google_maps_embed": "",
         "map_link": "https://www.google.com/maps?q=2218+N+College+Ave,+Fayetteville,+AR+72703",
         "address": "2218 N College Ave, Fayetteville, AR 72703",

@@ -27,6 +27,18 @@
   elsif request.page_type == 'page' and page.handle == 'custom-hat-bar'
     assign seo_title = "Arkansas's Original Custom Hat Bar | Moon Ridge Fayetteville"
     assign seo_description = "Arkansas's Original Custom Hat Bar in Fayetteville. Fit, crown shaping, and trim customization with trained designers. Book a Free Hat Experience today."
+  elsif request.page_type == 'blog' and blog.handle == 'hat-education'
+    assign seo_title = blog.metafields.global.title_tag | default: "Hat Education: Sizing, X-Ratings & Care | Moon Ridge Hats and Heritage"
+    assign seo_description = blog.metafields.global.description_tag | default: page_description | default: shop.description
+  elsif request.page_type == 'article'
+    assign seo_title = article.metafields.global.title_tag | default: article.title
+    unless seo_title contains shop.name or seo_title contains "Moon Ridge"
+      assign seo_title = seo_title | append: " | Moon Ridge Hats and Heritage"
+    endunless
+    assign seo_description = article.metafields.global.description_tag | default: page_description | default: shop.description
+  elsif request.page_type == 'page' and page.handle == 'hat-sizing'
+    assign seo_title = page.metafields.global.title_tag | default: "How to Measure Hat Size | Moon Ridge Hats & Heritage"
+    assign seo_description = page.metafields.global.description_tag | default: page_description
   else
     assign seo_title = primary_keyword
     unless seo_title contains shop.name

@@ -6,6 +6,57 @@
   endif
 -%}
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ article.title | json }},
+  "description": {{ article.excerpt | default: article.content | strip_html | truncate: 160 | json }},
+  "datePublished": {{ article.published_at | date: '%Y-%m-%d' | json }},
+  "dateModified": {{ article.updated_at | date: '%Y-%m-%d' | json }},
+  "author": {
+    "@type": "Person",
+    "name": {{ article.author | json }}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "url": {{ request.origin | json }}
+  },
+  "mainEntityOfPage": {{ request.origin | append: article.url | json }},
+  "url": {{ request.origin | append: article.url | json }}
+  {%- if article.image -%}
+  ,"image": {{ article.image | image_url: width: 1200 | prepend: "https:" | json }}
+  {%- endif -%}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {{ request.origin | json }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Hat Education",
+      "item": {{ request.origin | append: edu_blog.url | json }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ article.title | json }},
+      "item": {{ request.origin | append: article.url | json }}
+    }
+  ]
+}
+</script>
+
 <section class="he-article">
   <div class="he-article__inner page-width">
 

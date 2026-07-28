@@ -1,6 +1,9 @@
 .hat-branding {
   display: block;
-  margin: 1.2rem 0 1.6rem;
+  width: 100%;
+  max-width: 44rem;
+  margin: 1.2rem 0;
+  box-sizing: border-box;
 }
 
 .hat-branding__note {
@@ -25,29 +28,38 @@
   margin: 0;
 }
 
-.hat-branding__open {
-  background-color: #312110 !important;
-  color: #fff !important;
-  border: none;
-  min-height: 4.8rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-size: 1.4rem;
+/*
+  Match Add to cart exactly: same Dawn classes (button / button--full-width /
+  button--primary) plus shared heritage-luxury chrome. Only lock layout here —
+  do not override padding, radius, border, or background (those caused the
+  width / finish mismatch on mobile).
+*/
+.hat-branding__open.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-height: calc(4.2rem + var(--buttons-border-width, 1px) * 2);
+  margin: 0;
 }
 
-.hat-branding__open:hover {
-  background-color: #1f1d24 !important;
-}
-
-.hat-branding__open.is-added {
-  background-color: #fff !important;
-  color: #312110 !important;
-  box-shadow: inset 0 0 0 0.15rem #312110;
+.hat-branding__open.button.is-added {
+  background-color: transparent !important;
+  color: var(--rm-leather, #312110) !important;
+  border: 1px solid var(--rm-leather, #312110) !important;
 }
 
 .hat-branding__status {
   margin: 0.8rem 0 0;
   color: rgba(var(--color-foreground), 0.75);
+}
+
+@media screen and (max-width: 749px) {
+  .hat-branding {
+    max-width: 100%;
+  }
 }
 
 .hat-branding-modal {
@@ -271,9 +283,9 @@
 }
 
 .hat-branding-modal__submit {
-  min-height: 4.8rem;
+  width: 100%;
+  min-height: calc(4.2rem + var(--buttons-border-width, 1px) * 2);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
 }
 
 .hat-branding-modal__submit .loading__spinner {

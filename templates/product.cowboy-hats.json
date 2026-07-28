@@ -105,7 +105,9 @@
             "agree_label": "I Agree",
             "submit_label": "ADD TO CART",
             "branding_product": "hat-branding-3-letters",
-            "branding_variant_id": "49089192362288"
+            "branding_variant_id": "49089192362288",
+            "image_side_of_crown_left": "shopify://shop_images/branding-side-of-crown-left_jpg.jpg",
+            "image_back_of_crown_right": "shopify://shop_images/branding-back-of-crown-right_jpg.jpg"
           }
         },
         "buy_buttons": {

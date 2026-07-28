@@ -184,7 +184,7 @@
           "type": "item",
           "settings": {
             "question": "What is your return or exchange policy?",
-            "answer": "<p>Returns and exchanges follow the rules on our official Refund policy page (timelines, eligible items, and how to start a request). For the full, up-to-date policy, see <a href=\"/policies/refund-policy\">Refund policy</a>.</p>"
+            "answer": "<p>Returns and exchanges follow the rules on our official <a href=\"/policies/refund-policy\">Return and Exchange Policy</a> (timelines, eligible items, and how to start a request).</p><p><strong>All sales are final on customized or branded products</strong>, including hats personalized with branding, letters/initials, custom shaping, or other made-to-order alterations. Those items are not eligible for return, refund, or exchange.</p>"
           }
         }
       },

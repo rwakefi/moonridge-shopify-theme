@@ -2623,10 +2623,34 @@ function updateCountdown() {
           "info": "Used if the branding product is not available to the Online Store catalog."
         },
         {
+          "type": "header",
+          "content": "Location photos"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_side_of_crown_left",
+          "label": "Photo: Side of Crown - Left"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_back_of_crown_right",
+          "label": "Photo: Back of Crown - Right"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_under_edge_right",
+          "label": "Photo: Under Edge of Brim - Right Side"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_under_edge_left",
+          "label": "Photo: Under Edge of Brim - Left Side"
+        },
+        {
           "type": "image_picker",
           "id": "preview_image",
-          "label": "Modal preview image",
-          "info": "Optional. Falls back to a simple hat diagram."
+          "label": "Fallback modal preview image",
+          "info": "Used when a location does not have its own photo. Falls back to a simple hat diagram if blank."
         }
       ]
     },

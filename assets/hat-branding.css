@@ -161,8 +161,7 @@
   cursor: zoom-out;
 }
 
-.hat-branding-modal__preview-image,
-.hat-branding-modal__hat-svg {
+.hat-branding-modal__preview-image {
   width: min(100%, 240px);
   height: auto;
 }

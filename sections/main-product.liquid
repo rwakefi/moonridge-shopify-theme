@@ -1261,11 +1261,11 @@ function updateCountdown() {
             {%- when 'variant_picker' -%}
               {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
             {%- when 'hat_branding' -%}
+              {%- comment -%}
+                Product metafield custom.offer_hat_branding (boolean).
+                Blank or true = show branding. Explicit false = hide.
+              {%- endcomment -%}
               {%- liquid
-                comment
-                  Product metafield custom.offer_hat_branding (boolean).
-                  Blank or true = show branding. Explicit false = hide.
-                endcomment
                 assign offer_hat_branding = true
                 if product.metafields.custom.offer_hat_branding.value == false
                   assign offer_hat_branding = false
@@ -2592,10 +2592,10 @@ function updateCountdown() {
           "label": "FAQ 2 answer"
         },
         {
-          "type": "text",
+          "type": "inline_richtext",
           "id": "policy_text",
           "label": "Policy text",
-          "default": "Custom branded hats are not eligible for returns or exchanges. Please check the box below to agree to Moon Ridge Hats and Heritage's returns policy."
+          "default": "Custom branded hats are not eligible for returns or exchanges. Please check the box below to agree to Moon Ridge Hats and Heritage's <a href=\"/policies/refund-policy\" target=\"_blank\" rel=\"noopener\">returns policy</a>."
         },
         {
           "type": "text",

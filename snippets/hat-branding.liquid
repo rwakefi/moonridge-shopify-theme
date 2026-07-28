@@ -20,7 +20,7 @@
   assign branding_variant_id = branding_variant.id | default: block.settings.branding_variant_id | default: 49089192362288
   assign branding_price = branding_variant.price | default: 2500
   assign button_label = block.settings.button_label | default: 'Add Hat Branding $25'
-  assign locations_raw = block.settings.branding_locations | default: 'Side of Crown - Left,Back of Crown - Right,Edge of Brim - Under - Right,Edge of Brim - Under - Left'
+  assign locations_raw = block.settings.branding_locations | default: 'Side of Crown - Left,Back of Crown - Right,Under Edge of Brim - Center Right,Under Edge of Brim - Center Left'
   assign locations = locations_raw | split: ','
 -%}
 

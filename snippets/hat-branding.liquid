@@ -133,6 +133,46 @@
               </p>
             </div>
 
+            {%- liquid
+              assign faq_1_q = block.settings.faq_1_question | default: 'Why only two letters?'
+              assign faq_1_a = block.settings.faq_1_answer | default: 'We just think it looks classier. We have branded hundreds if not thousands of hats, and we think two gives it a really classy look.'
+              assign faq_2_q = block.settings.faq_2_question
+              assign faq_2_a = block.settings.faq_2_answer
+              assign show_faq = false
+              if faq_1_q != blank and faq_1_a != blank
+                assign show_faq = true
+              endif
+              if faq_2_q != blank and faq_2_a != blank
+                assign show_faq = true
+              endif
+            -%}
+            {%- if show_faq -%}
+              <div class="hat-branding-modal__faqs">
+                {%- if faq_1_q != blank and faq_1_a != blank -%}
+                  <details class="hat-branding-modal__faq">
+                    <summary class="hat-branding-modal__faq-question">
+                      <span>{{ faq_1_q }}</span>
+                      <span class="hat-branding-modal__faq-icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="hat-branding-modal__faq-answer">
+                      <p>{{ faq_1_a }}</p>
+                    </div>
+                  </details>
+                {%- endif -%}
+                {%- if faq_2_q != blank and faq_2_a != blank -%}
+                  <details class="hat-branding-modal__faq">
+                    <summary class="hat-branding-modal__faq-question">
+                      <span>{{ faq_2_q }}</span>
+                      <span class="hat-branding-modal__faq-icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="hat-branding-modal__faq-answer">
+                      <p>{{ faq_2_a }}</p>
+                    </div>
+                  </details>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
             {%- if block.settings.policy_text != blank -%}
               <p class="hat-branding-modal__policy">{{ block.settings.policy_text }}</p>
             {%- endif -%}

@@ -254,6 +254,77 @@
   color: rgba(31, 29, 36, 0.65);
 }
 
+.hat-branding-modal__faqs {
+  margin: 0 0 1.1rem;
+  border-top: 0.1rem solid rgba(31, 29, 36, 0.12);
+}
+
+.hat-branding-modal__faq {
+  border-bottom: 0.1rem solid rgba(31, 29, 36, 0.12);
+}
+
+.hat-branding-modal__faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 0;
+  list-style: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #1f1d24;
+}
+
+.hat-branding-modal__faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.hat-branding-modal__faq-icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.hat-branding-modal__faq-icon::before,
+.hat-branding-modal__faq-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.hat-branding-modal__faq-icon::before {
+  width: 1.2rem;
+  height: 0.15rem;
+}
+
+.hat-branding-modal__faq-icon::after {
+  width: 0.15rem;
+  height: 1.2rem;
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.hat-branding-modal__faq[open] .hat-branding-modal__faq-icon::after {
+  transform: translate(-50%, -50%) scaleY(0);
+  opacity: 0;
+}
+
+.hat-branding-modal__faq-answer {
+  padding: 0 0 1rem;
+}
+
+.hat-branding-modal__faq-answer p {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: rgba(31, 29, 36, 0.78);
+}
+
 .hat-branding-modal__policy {
   margin: 0 0 0.9rem;
   font-size: 1.15rem;

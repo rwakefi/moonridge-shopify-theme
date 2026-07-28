@@ -5,7 +5,9 @@ if (!customElements.get('hat-branding')) {
       constructor() {
         super();
         this.selection = null;
+        this.zoomRatio = 2.4;
         this.onKeyDown = this.onKeyDown.bind(this);
+        this.onZoomPointerMove = this.onZoomPointerMove.bind(this);
       }
 
       connectedCallback() {
@@ -18,6 +20,7 @@ if (!customElements.get('hat-branding')) {
         this.agreeInput = this.querySelector('[data-hat-branding-agree]');
         this.errorEl = this.querySelector('[data-hat-branding-error]');
         this.submitButton = this.querySelector('[data-hat-branding-submit]');
+        this.previewFrame = this.querySelector('[data-hat-branding-zoom-trigger]');
         this.maxLetters = Number(this.dataset.maxLetters || 2);
 
         this.openButton?.addEventListener('click', () => this.open());
@@ -29,12 +32,14 @@ if (!customElements.get('hat-branding')) {
         this.querySelectorAll('[data-hat-branding-location]').forEach((input) => {
           input.addEventListener('change', () => this.updatePreview());
         });
+        this.previewFrame?.addEventListener('click', (event) => this.toggleZoom(event));
         this.updatePreview();
       }
 
       disconnectedCallback() {
         document.removeEventListener('keydown', this.onKeyDown);
         document.body.classList.remove('hat-branding-open');
+        this.endZoom();
       }
 
       open() {
@@ -50,6 +55,7 @@ if (!customElements.get('hat-branding')) {
 
       close() {
         if (!this.modal) return;
+        this.endZoom();
         this.modal.hidden = true;
         document.body.classList.remove('hat-branding-open');
         document.removeEventListener('keydown', this.onKeyDown);
@@ -58,7 +64,13 @@ if (!customElements.get('hat-branding')) {
       }
 
       onKeyDown(event) {
-        if (event.key === 'Escape') this.close();
+        if (event.key === 'Escape') {
+          if (this.previewFrame?.classList.contains('is-zoomed')) {
+            this.endZoom();
+            return;
+          }
+          this.close();
+        }
       }
 
       normalizeLetters() {
@@ -75,20 +87,86 @@ if (!customElements.get('hat-branding')) {
       updatePreview() {
         const checked = this.querySelector('[data-hat-branding-location]:checked');
         const url = checked?.getAttribute('data-preview-image') || '';
+        const zoomUrl = checked?.getAttribute('data-preview-zoom') || url;
+        const focus = checked?.getAttribute('data-preview-focus') || 'center';
         const img = this.querySelector('[data-hat-branding-preview-img]');
         const fallback = this.querySelector('[data-hat-branding-preview-fallback]');
+        const frame = this.previewFrame;
+
+        this.endZoom();
 
         if (!img) return;
 
         if (url) {
           img.src = url;
+          img.dataset.zoomSrc = zoomUrl;
           img.hidden = false;
           img.removeAttribute('hidden');
+          img.className = `hat-branding-modal__preview-image hat-branding-modal__preview-image--${focus}`;
+          if (frame) {
+            frame.hidden = false;
+            frame.removeAttribute('hidden');
+          }
           if (fallback) fallback.hidden = true;
         } else if (fallback) {
           img.hidden = true;
+          if (frame) frame.hidden = true;
           fallback.hidden = false;
         }
+      }
+
+      toggleZoom(event) {
+        if (!this.previewFrame || this.previewFrame.hidden) return;
+        const img = this.querySelector('[data-hat-branding-preview-img]');
+        if (!img || img.hidden || !img.src) return;
+
+        if (this.previewFrame.classList.contains('is-zoomed')) {
+          this.endZoom();
+          return;
+        }
+
+        this.startZoom(img, event);
+      }
+
+      startZoom(image, event) {
+        if (!this.previewFrame) return;
+
+        const lens = document.createElement('div');
+        lens.className = 'hat-branding-modal__preview-zoom-lens';
+        lens.setAttribute('aria-hidden', 'true');
+        lens.style.backgroundImage = `url("${image.dataset.zoomSrc || image.currentSrc || image.src}")`;
+        this.previewFrame.appendChild(lens);
+        this.zoomLens = lens;
+        this.previewFrame.classList.add('is-zoomed');
+        this.previewFrame.setAttribute('aria-label', 'Exit zoom');
+
+        this.moveZoom(event);
+        this.previewFrame.addEventListener('pointermove', this.onZoomPointerMove);
+      }
+
+      moveZoom(event) {
+        if (!this.zoomLens || !this.previewFrame) return;
+        const rect = this.previewFrame.getBoundingClientRect();
+        const x = Math.min(Math.max(event.clientX - rect.left, 0), rect.width);
+        const y = Math.min(Math.max(event.clientY - rect.top, 0), rect.height);
+        const xPercent = (x / rect.width) * 100;
+        const yPercent = (y / rect.height) * 100;
+        this.zoomLens.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
+        this.zoomLens.style.backgroundSize = `${rect.width * this.zoomRatio}px`;
+      }
+
+      onZoomPointerMove(event) {
+        this.moveZoom(event);
+      }
+
+      endZoom() {
+        if (this.previewFrame) {
+          this.previewFrame.classList.remove('is-zoomed');
+          this.previewFrame.setAttribute('aria-label', 'Zoom branding photo');
+          this.previewFrame.removeEventListener('pointermove', this.onZoomPointerMove);
+        }
+        this.zoomLens?.remove();
+        this.zoomLens = null;
       }
 
       clearError() {

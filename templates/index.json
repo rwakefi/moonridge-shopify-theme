@@ -185,10 +185,10 @@
         "hide_desktop": false
       }
     },
-    "heritage_intro_copy": {
+    "heritage_intro_v2": {
       "type": "_blocks",
       "blocks": {
-        "heritage_intro_block": {
+        "heritage_intro_block_v2": {
           "type": "ai_gen_block_c7fa992",
           "settings": {
             "heading": "<strong>Where Hats Meet Heritage<\/strong>",
@@ -216,7 +216,7 @@
         }
       },
       "block_order": [
-        "heritage_intro_block"
+        "heritage_intro_block_v2"
       ],
       "settings": {}
     },
@@ -1002,7 +1002,7 @@
     "1762578087a1ac51c4",
     "trust_badges",
     "ss_circle_menu_437Hac",
-    "heritage_intro_copy",
+    "heritage_intro_v2",
     "176318539650189d04",
     "heritage_restoration_vibe",
     "collection_list_nTLNYY",

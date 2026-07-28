@@ -28,7 +28,12 @@
   margin: 0;
 }
 
-/* Match Add to Cart (.product-form__submit) size + finish on all viewports */
+/*
+  Match Add to cart exactly: same Dawn classes (button / button--full-width /
+  button--primary) plus shared heritage-luxury chrome. Only lock layout here —
+  do not override padding, radius, border, or background (those caused the
+  width / finish mismatch on mobile).
+*/
 .hat-branding__open.button {
   display: flex;
   align-items: center;
@@ -38,28 +43,12 @@
   box-sizing: border-box;
   min-height: calc(4.2rem + var(--buttons-border-width, 1px) * 2);
   margin: 0;
-  padding: 1.2rem 2.8rem !important;
-  border: 1px solid var(--rm-leather, #312110) !important;
-  border-radius: 2px !important;
-  background-color: var(--rm-leather, #312110) !important;
-  color: #ffffff !important;
-  font-size: inherit;
-  font-weight: 600 !important;
-  letter-spacing: 0.15em !important;
-  text-transform: uppercase !important;
-  line-height: 1.2;
-}
-
-.hat-branding__open.button:hover {
-  background-color: transparent !important;
-  color: var(--rm-leather, #312110) !important;
-  box-shadow: 0 5px 15px rgba(49, 33, 16, 0.15);
 }
 
 .hat-branding__open.button.is-added {
-  background-color: #fff !important;
+  background-color: transparent !important;
   color: var(--rm-leather, #312110) !important;
-  border-color: var(--rm-leather, #312110) !important;
+  border: 1px solid var(--rm-leather, #312110) !important;
 }
 
 .hat-branding__status {
@@ -68,14 +57,8 @@
 }
 
 @media screen and (max-width: 749px) {
-  .hat-branding,
-  .hat-branding__open.button {
+  .hat-branding {
     max-width: 100%;
-  }
-
-  .hat-branding__open.button {
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
   }
 }
 
@@ -300,9 +283,9 @@
 }
 
 .hat-branding-modal__submit {
-  min-height: 4.8rem;
+  width: 100%;
+  min-height: calc(4.2rem + var(--buttons-border-width, 1px) * 2);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
 }
 
 .hat-branding-modal__submit .loading__spinner {

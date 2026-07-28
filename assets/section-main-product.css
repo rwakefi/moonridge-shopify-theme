@@ -490,12 +490,31 @@ a.product__text {
 .product-form__buttons {
   max-width: 44rem;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .product-form__buttons .product-form__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+}
+
+/* Keep hat branding CTA and Add to cart on the same width track */
+.product__info-container hat-branding.hat-branding,
+.product__info-container .product-form__buttons {
+  width: 100%;
+  max-width: 44rem;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 749px) {
+  .product__info-container hat-branding.hat-branding,
+  .product__info-container .product-form__buttons {
+    max-width: 100%;
+  }
 }
 
 .product--no-media .product__info-container > modal-opener {

@@ -63,6 +63,11 @@ if (!customElements.get('hat-branding')) {
         this.lettersInput.value = cleaned.toUpperCase();
       }
 
+      selectedLocation() {
+        const checked = this.querySelector('[data-hat-branding-location]:checked');
+        return checked ? checked.value.trim() : '';
+      }
+
       clearError() {
         if (!this.errorEl) return;
         this.errorEl.hidden = true;
@@ -83,9 +88,14 @@ if (!customElements.get('hat-branding')) {
       }
 
       validate() {
+        const location = this.selectedLocation();
         const letters = (this.lettersInput?.value || '').trim();
         const agreed = Boolean(this.agreeInput?.checked);
 
+        if (!location) {
+          this.showError('Please choose a branding location.');
+          return null;
+        }
         if (letters.length !== this.maxLetters) {
           this.showError(`Please enter exactly ${this.maxLetters} letters.`);
           this.lettersInput?.focus();
@@ -96,12 +106,13 @@ if (!customElements.get('hat-branding')) {
           return null;
         }
 
-        return { letters };
+        return { location, letters };
       }
 
-      orderProperties({ letters }) {
+      orderProperties({ location, letters }) {
         return {
           '2 Letters': letters,
+          'Branding Location': location,
           'For Hat': this.dataset.productTitle || '',
           'Returns Disclaimer': 'Agreed — custom branded hats are final sale (no returns or exchanges)',
         };
@@ -131,17 +142,17 @@ if (!customElements.get('hat-branding')) {
         });
       }
 
-      markAdded({ letters }) {
-        this.selection = { letters };
-        this.syncHatFormProperties({ letters });
+      markAdded({ location, letters }) {
+        this.selection = { location, letters };
+        this.syncHatFormProperties({ location, letters });
         if (this.openLabel) {
-          this.openLabel.textContent = `Branding Added: ${letters}`;
+          this.openLabel.textContent = `Branding Added: ${letters} · ${location}`;
         }
         this.openButton?.classList.add('is-added');
         if (this.status) {
           this.status.hidden = false;
           this.status.textContent =
-            '2 Letters are saved on the order. Custom branded hats are final sale.';
+            '2 Letters and branding location are saved on the order. Custom branded hats are final sale.';
         }
       }
 
@@ -191,6 +202,7 @@ if (!customElements.get('hat-branding')) {
               body: JSON.stringify({
                 attributes: {
                   '2 Letters': selection.letters,
+                  'Branding Location': selection.location,
                   'Hat Branding For': this.dataset.productTitle || '',
                 },
               }),

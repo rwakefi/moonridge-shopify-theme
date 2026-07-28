@@ -201,17 +201,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 9.6rem;
-  min-height: 3.6rem;
-  padding: 0.55rem 1rem;
-  border: 0.15rem solid rgba(31, 29, 36, 0.25);
-  border-radius: 999px;
+  width: 6.2rem;
+  height: 6.2rem;
+  padding: 0.45rem;
+  border: 0.2rem solid rgba(31, 29, 36, 0.2);
+  border-radius: 50%;
   background: #fff;
   color: #1f1d24;
-  font-size: 1.15rem;
-  line-height: 1.2;
+  font-size: 1.02rem;
+  line-height: 1.15;
   text-align: center;
-  white-space: nowrap;
   transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease;
 }
 

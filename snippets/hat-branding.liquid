@@ -20,7 +20,7 @@
   assign branding_variant_id = branding_variant.id | default: block.settings.branding_variant_id | default: 49089192362288
   assign branding_price = branding_variant.price | default: 2500
   assign button_label = block.settings.button_label | default: 'Add Hat Branding $25'
-  assign locations_raw = block.settings.branding_locations | default: 'Front of crown,Side of crown,Back of crown,Under brim,Hatband'
+  assign locations_raw = block.settings.branding_locations | default: 'Side of crown,Back of crown,Under brim,Hatband'
   assign locations = locations_raw | split: ','
 -%}
 
@@ -111,6 +111,29 @@
             <p class="hat-branding-modal__price">
               {{ branding_price | money }}
             </p>
+
+            <fieldset class="hat-branding-modal__fieldset">
+              <legend class="hat-branding-modal__label">
+                {{ block.settings.location_label | default: 'Branding Location' }}
+              </legend>
+              <div class="hat-branding-modal__locations" role="radiogroup" aria-label="{{ block.settings.location_label | default: 'Branding Location' }}">
+                {%- for location in locations -%}
+                  {%- assign location_name = location | strip -%}
+                  {%- if location_name != blank -%}
+                    <label class="hat-branding-modal__location">
+                      <input
+                        type="radio"
+                        name="hat-branding-location-{{ block.id }}"
+                        value="{{ location_name | escape }}"
+                        data-hat-branding-location
+                        {% if forloop.first %}checked{% endif %}
+                      >
+                      <span class="hat-branding-modal__location-chip">{{ location_name }}</span>
+                    </label>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </fieldset>
 
             <div class="hat-branding-modal__field">
               <label class="hat-branding-modal__label" for="HatBrandingLetters-{{ block.id }}">

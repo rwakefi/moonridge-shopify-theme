@@ -31,6 +31,13 @@ if (!customElements.get('hat-branding')) {
         this.lettersInput?.addEventListener('input', () => this.normalizeLetters());
         this.querySelectorAll('[data-hat-branding-location]').forEach((input) => {
           input.addEventListener('change', () => this.updatePreview());
+          // Click covers re-selecting the already-checked option and some mobile label quirks.
+          input.addEventListener('click', () => this.updatePreview());
+        });
+        this.querySelectorAll('.hat-branding-modal__location').forEach((label) => {
+          label.addEventListener('click', () => {
+            requestAnimationFrame(() => this.updatePreview());
+          });
         });
         this.previewFrame?.addEventListener('click', (event) => this.toggleZoom(event));
         this.updatePreview();
@@ -98,7 +105,12 @@ if (!customElements.get('hat-branding')) {
         if (!img) return;
 
         if (url) {
+          // Clear Shopify image_tag srcset so src swaps actually change the visible photo.
+          img.removeAttribute('srcset');
+          img.removeAttribute('sizes');
           img.src = url;
+          img.srcset = `${url} 1200w`;
+          img.sizes = '(min-width: 750px) 280px, 70vw';
           img.dataset.zoomSrc = zoomUrl;
           img.hidden = false;
           img.removeAttribute('hidden');
@@ -107,11 +119,19 @@ if (!customElements.get('hat-branding')) {
             frame.hidden = false;
             frame.removeAttribute('hidden');
           }
-          if (fallback) fallback.hidden = true;
+          if (fallback) {
+            fallback.hidden = true;
+            fallback.setAttribute('hidden', '');
+          }
         } else if (fallback) {
           img.hidden = true;
-          if (frame) frame.hidden = true;
+          img.setAttribute('hidden', '');
+          if (frame) {
+            frame.hidden = true;
+            frame.setAttribute('hidden', '');
+          }
           fallback.hidden = false;
+          fallback.removeAttribute('hidden');
         }
       }
 

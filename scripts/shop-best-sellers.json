@@ -1,0 +1,37 @@
+{
+  "collection_handle": "best-sellers",
+  "collection_id": 494910374192,
+  "tag": "best-seller",
+  "rules": [
+    { "column": "tag", "relation": "equals", "condition": "best-seller" },
+    { "column": "variant_inventory", "relation": "greater_than", "condition": "0" }
+  ],
+  "sort_order": "manual",
+  "handles": [
+    "resistol-tucker",
+    "stetson-elmhurst",
+    "stetson-amberwood",
+    "midtown",
+    "bozeman",
+    "resistol-anders",
+    "resistol-travis",
+    "resistol-cojo-vaquero",
+    "stetson-seneca-cowboy-hat",
+    "72-llano",
+    "stetson-drifter",
+    "resistol-20x-wildfire-30-profile",
+    "resistol-super-duty",
+    "stetson-oak-ridge",
+    "stetson-brenham-cowboy-hat",
+    "stetson-cyprus",
+    "kambra",
+    "stetson-saddleman-20x-straw-cowboy-hat",
+    "stetson-jw-marshall",
+    "portage",
+    "resistol-20x-chase-ba-profile-cowboy-hat",
+    "open-road-25",
+    "skyline",
+    "stetson-chambers"
+  ],
+  "notes": "Curated for Shop Campaigns + homepage. Keep in-stock only. Update tag when rotating."
+}

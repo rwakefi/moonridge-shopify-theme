@@ -17,20 +17,21 @@
     assign branding_product = all_products['hat-branding-3-letters']
   endif
   assign branding_variant = branding_product.selected_or_first_available_variant
+  assign branding_variant_id = branding_variant.id | default: block.settings.branding_variant_id | default: 49089192362288
   assign branding_price = branding_variant.price | default: 2500
   assign button_label = block.settings.button_label | default: 'Add Hat Branding $25'
   assign locations_raw = block.settings.branding_locations | default: 'Front of crown,Side of crown,Back of crown,Under brim,Hatband'
   assign locations = locations_raw | split: ','
 -%}
 
-{%- if branding_variant != blank -%}
+{%- if branding_variant_id != blank -%}
   {{ 'hat-branding.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'hat-branding.js' | asset_url }}" defer="defer"></script>
 
   <hat-branding
     class="hat-branding"
     data-section-id="{{ section_id }}"
-    data-variant-id="{{ branding_variant.id }}"
+    data-variant-id="{{ branding_variant_id }}"
     data-product-title="{{ product.title | escape }}"
     data-product-handle="{{ product.handle | escape }}"
     data-max-letters="{{ block.settings.max_letters | default: 2 }}"

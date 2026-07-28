@@ -85,30 +85,31 @@
           "disabled": true,
           "settings": {}
         },
-        "hat_branding_v1": {
+        "hat_branding_v2": {
           "type": "hat_branding",
           "settings": {
             "button_label": "Add Hat Branding $25",
             "note_heading": "NOTE:",
-            "note": "<p>Personalize this hat with custom heated branding. Branded hats are made to order and not eligible for returns or exchanges.</p>",
+            "note": "<p>This hat can be personalized with custom heated branding. Custom branded hats are not eligible for returns or exchanges.</p>",
             "modal_heading": "Add Hat Branding",
             "location_label": "Branding Location",
             "branding_locations": "Front of crown,Side of crown,Back of crown,Under brim,Hatband",
             "letters_label": "2 Letters",
             "letters_placeholder": "e.g. MR",
             "max_letters": 2,
-            "policy_text": "Custom branded hats are not eligible for returns or exchanges. Please check the box below to agree to Moon Ridge's returns policy.",
+            "policy_text": "Custom branded hats are not eligible for returns or exchanges. Please check the box below to agree to Moon Ridge Hats and Heritage's returns policy.",
             "agree_label": "I Agree",
             "submit_label": "Add Branding $25",
-            "branding_product": "hat-branding-3-letters"
+            "branding_product": "hat-branding-3-letters",
+            "branding_variant_id": "49089192362288"
           }
         },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "enable_low_stock_notice": false,
             "show_dynamic_checkout": false,
-            "show_gift_card_recipient": true
+            "show_gift_card_recipient": true,
+            "enable_low_stock_notice": false
           }
         },
         "collapsible_tab_Rz9b6j": {
@@ -148,7 +149,7 @@
         "inventory_status_nPFgBc",
         "shipping_CBekAR",
         "quantity_selector",
-        "hat_branding_v1",
+        "hat_branding_v2",
         "buy_buttons",
         "collapsible_tab_Rz9b6j",
         "image_mCjNUw",

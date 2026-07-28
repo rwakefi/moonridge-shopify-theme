@@ -1,0 +1,183 @@
+{% comment %}
+  Hat branding upsell: opens a modal to choose branding location + 2 letters,
+  then adds the $25 branding product to cart with line-item properties.
+
+  Accepts:
+  - product: {Object} current product
+  - block: {Object} block settings
+  - section_id: {String}
+{% endcomment %}
+
+{%- liquid
+  if block.settings.branding_product != blank and block.settings.branding_product.id != blank
+    assign branding_product = block.settings.branding_product
+  elsif block.settings.branding_product != blank
+    assign branding_product = all_products[block.settings.branding_product]
+  else
+    assign branding_product = all_products['hat-branding-3-letters']
+  endif
+  assign branding_variant = branding_product.selected_or_first_available_variant
+  assign branding_variant_id = branding_variant.id | default: block.settings.branding_variant_id | default: 49089192362288
+  assign branding_price = branding_variant.price | default: 2500
+  assign button_label = block.settings.button_label | default: 'Add Hat Branding $25'
+  assign locations_raw = block.settings.branding_locations | default: 'Front of crown,Side of crown,Back of crown,Under brim,Hatband'
+  assign locations = locations_raw | split: ','
+-%}
+
+{%- if branding_variant_id != blank -%}
+  {{ 'hat-branding.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'hat-branding.js' | asset_url }}" defer="defer"></script>
+
+  <hat-branding
+    class="hat-branding"
+    data-section-id="{{ section_id }}"
+    data-variant-id="{{ branding_variant_id }}"
+    data-product-title="{{ product.title | escape }}"
+    data-product-handle="{{ product.handle | escape }}"
+    data-max-letters="{{ block.settings.max_letters | default: 2 }}"
+    {{ block.shopify_attributes }}
+  >
+    {%- if block.settings.note != blank -%}
+      <div class="hat-branding__note">
+        <p class="hat-branding__note-heading">{{ block.settings.note_heading | default: 'NOTE:' }}</p>
+        <div class="hat-branding__note-body rte">{{ block.settings.note }}</div>
+      </div>
+    {%- endif -%}
+
+    <button
+      type="button"
+      class="hat-branding__open button button--full-width"
+      data-hat-branding-open
+      aria-haspopup="dialog"
+      aria-controls="HatBrandingModal-{{ block.id }}"
+    >
+      <span data-hat-branding-open-label>{{ button_label }}</span>
+    </button>
+
+    <p class="hat-branding__status caption-large" data-hat-branding-status hidden></p>
+
+    <div
+      id="HatBrandingModal-{{ block.id }}"
+      class="hat-branding-modal"
+      data-hat-branding-modal
+      hidden
+    >
+      <div class="hat-branding-modal__overlay" data-hat-branding-close tabindex="-1"></div>
+      <div
+        class="hat-branding-modal__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="HatBrandingHeading-{{ block.id }}"
+        tabindex="-1"
+        data-hat-branding-dialog
+      >
+        <button
+          type="button"
+          class="hat-branding-modal__close"
+          data-hat-branding-close
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          {% render 'icon-close' %}
+        </button>
+
+        <div class="hat-branding-modal__layout">
+          <div class="hat-branding-modal__preview" aria-hidden="true">
+            {%- if block.settings.preview_image != blank -%}
+              {{
+                block.settings.preview_image
+                | image_url: width: 900
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'hat-branding-modal__preview-image',
+                  widths: '400, 600, 900',
+                  sizes: '(min-width: 750px) 40vw, 80vw'
+              }}
+            {%- else -%}
+              <svg class="hat-branding-modal__hat-svg" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M40 150c20-18 70-30 120-30s100 12 120 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M70 148c8-46 40-78 90-78s82 32 90 78" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M95 148c6-28 28-48 65-48s59 20 65 48" stroke="currentColor" stroke-width="2"/>
+                <path d="M28 158c18 18 70 28 132 28s114-10 132-28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M110 118h100" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="210" cy="118" r="4" fill="currentColor"/>
+              </svg>
+            {%- endif -%}
+          </div>
+
+          <div class="hat-branding-modal__panel">
+            <h2 class="hat-branding-modal__heading" id="HatBrandingHeading-{{ block.id }}">
+              {{ block.settings.modal_heading | default: 'Add Hat Branding' }}
+            </h2>
+            <p class="hat-branding-modal__price">
+              {{ branding_price | money }}
+            </p>
+
+            <fieldset class="hat-branding-modal__fieldset">
+              <legend class="hat-branding-modal__label">
+                {{ block.settings.location_label | default: 'Branding Location' }}
+              </legend>
+              <div class="hat-branding-modal__locations" role="radiogroup" aria-label="{{ block.settings.location_label | default: 'Branding Location' }}">
+                {%- for location in locations -%}
+                  {%- assign location_name = location | strip -%}
+                  {%- if location_name != blank -%}
+                    <label class="hat-branding-modal__location">
+                      <input
+                        type="radio"
+                        name="hat-branding-location-{{ block.id }}"
+                        value="{{ location_name | escape }}"
+                        data-hat-branding-location
+                        {% if forloop.first %}checked{% endif %}
+                      >
+                      <span class="hat-branding-modal__location-chip">{{ location_name }}</span>
+                    </label>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </fieldset>
+
+            <div class="hat-branding-modal__field">
+              <label class="hat-branding-modal__label" for="HatBrandingLetters-{{ block.id }}">
+                {{ block.settings.letters_label | default: '2 Letters' }}
+              </label>
+              <input
+                id="HatBrandingLetters-{{ block.id }}"
+                class="hat-branding-modal__letters"
+                type="text"
+                inputmode="text"
+                autocomplete="off"
+                spellcheck="false"
+                maxlength="{{ block.settings.max_letters | default: 2 }}"
+                placeholder="{{ block.settings.letters_placeholder | default: 'e.g. MR' }}"
+                data-hat-branding-letters
+                aria-describedby="HatBrandingLettersHelp-{{ block.id }}"
+              >
+              <p class="hat-branding-modal__help" id="HatBrandingLettersHelp-{{ block.id }}">
+                Enter exactly {{ block.settings.max_letters | default: 2 }} letters.
+              </p>
+            </div>
+
+            {%- if block.settings.policy_text != blank -%}
+              <p class="hat-branding-modal__policy">{{ block.settings.policy_text }}</p>
+            {%- endif -%}
+
+            <label class="hat-branding-modal__agree">
+              <input type="checkbox" data-hat-branding-agree>
+              <span>{{ block.settings.agree_label | default: 'I Agree' }}</span>
+            </label>
+
+            <p class="hat-branding-modal__error" data-hat-branding-error hidden></p>
+
+            <button
+              type="button"
+              class="hat-branding-modal__submit button button--full-width button--primary"
+              data-hat-branding-submit
+            >
+              <span data-hat-branding-submit-label>{{ block.settings.submit_label | default: 'Add Branding $25' }}</span>
+              {%- render 'loading-spinner' -%}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </hat-branding>
+{%- endif -%}

@@ -1260,6 +1260,8 @@ function updateCountdown() {
 
             {%- when 'variant_picker' -%}
               {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+            {%- when 'hat_branding' -%}
+              {%- render 'hat-branding', block: block, product: product, section_id: section.id -%}
             {%- when 'buy_buttons' -%}
               {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
             {%- when 'rating' -%}
@@ -2480,6 +2482,108 @@ function updateCountdown() {
           ],
           "default": "button",
           "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.label"
+        }
+      ]
+    },
+    {
+      "type": "hat_branding",
+      "name": "Hat Branding",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Add Hat Branding $25"
+        },
+        {
+          "type": "text",
+          "id": "note_heading",
+          "label": "Note heading",
+          "default": "NOTE:"
+        },
+        {
+          "type": "richtext",
+          "id": "note",
+          "label": "Note above button",
+          "default": "<p>Personalize this hat with custom heated branding. Branded hats are made to order and not eligible for returns or exchanges.</p>"
+        },
+        {
+          "type": "text",
+          "id": "modal_heading",
+          "label": "Modal heading",
+          "default": "Add Hat Branding"
+        },
+        {
+          "type": "text",
+          "id": "location_label",
+          "label": "Location label",
+          "default": "Branding Location"
+        },
+        {
+          "type": "textarea",
+          "id": "branding_locations",
+          "label": "Branding locations",
+          "default": "Front of crown,Side of crown,Back of crown,Under brim,Hatband",
+          "info": "Comma-separated list. Replace these once you finalize the branding locations."
+        },
+        {
+          "type": "text",
+          "id": "letters_label",
+          "label": "Letters field label",
+          "default": "2 Letters"
+        },
+        {
+          "type": "text",
+          "id": "letters_placeholder",
+          "label": "Letters placeholder",
+          "default": "e.g. MR"
+        },
+        {
+          "type": "range",
+          "id": "max_letters",
+          "min": 1,
+          "max": 3,
+          "step": 1,
+          "default": 2,
+          "label": "Max letters"
+        },
+        {
+          "type": "text",
+          "id": "policy_text",
+          "label": "Policy text",
+          "default": "Custom branded hats are not eligible for returns or exchanges. Please check the box below to agree to Moon Ridge's returns policy."
+        },
+        {
+          "type": "text",
+          "id": "agree_label",
+          "label": "Agreement checkbox label",
+          "default": "I Agree"
+        },
+        {
+          "type": "text",
+          "id": "submit_label",
+          "label": "Modal submit label",
+          "default": "Add Branding $25"
+        },
+        {
+          "type": "product",
+          "id": "branding_product",
+          "label": "Branding product",
+          "info": "Defaults to hat-branding-3-letters ($25) if left blank."
+        },
+        {
+          "type": "text",
+          "id": "branding_variant_id",
+          "label": "Branding variant ID fallback",
+          "default": "49089192362288",
+          "info": "Used if the branding product is not available to the Online Store catalog."
+        },
+        {
+          "type": "image_picker",
+          "id": "preview_image",
+          "label": "Modal preview image",
+          "info": "Optional. Falls back to a simple hat diagram."
         }
       ]
     },

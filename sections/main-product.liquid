@@ -1261,11 +1261,11 @@ function updateCountdown() {
             {%- when 'variant_picker' -%}
               {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
             {%- when 'hat_branding' -%}
+              {%- comment -%}
+                Product metafield custom.offer_hat_branding (boolean).
+                Blank or true = show branding. Explicit false = hide.
+              {%- endcomment -%}
               {%- liquid
-                comment
-                  Product metafield custom.offer_hat_branding (boolean).
-                  Blank or true = show branding. Explicit false = hide.
-                endcomment
                 assign offer_hat_branding = true
                 if product.metafields.custom.offer_hat_branding.value == false
                   assign offer_hat_branding = false
@@ -2553,7 +2553,7 @@ function updateCountdown() {
           "type": "text",
           "id": "letters_placeholder",
           "label": "Letters placeholder",
-          "default": "e.g. MR"
+          "default": "2 letters (like NW)"
         },
         {
           "type": "range",
@@ -2584,18 +2584,20 @@ function updateCountdown() {
           "type": "text",
           "id": "faq_2_question",
           "label": "FAQ 2 question",
+          "default": "How do you arrange the letters?",
           "info": "Leave blank to hide."
         },
         {
           "type": "textarea",
           "id": "faq_2_answer",
-          "label": "FAQ 2 answer"
+          "label": "FAQ 2 answer",
+          "default": "Under the brim, we brand them side by side. On the crown, we stack and stagger them."
         },
         {
-          "type": "text",
+          "type": "inline_richtext",
           "id": "policy_text",
           "label": "Policy text",
-          "default": "Custom branded hats are not eligible for returns or exchanges. Please check the box below to agree to Moon Ridge Hats and Heritage's returns policy."
+          "default": "Custom branded hats are not eligible for returns or exchanges. Please check the box below to agree to Moon Ridge Hats and Heritage's <a href=\"/policies/refund-policy\" target=\"_blank\" rel=\"noopener\">returns policy</a>."
         },
         {
           "type": "text",
@@ -2623,10 +2625,34 @@ function updateCountdown() {
           "info": "Used if the branding product is not available to the Online Store catalog."
         },
         {
+          "type": "header",
+          "content": "Location photos"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_side_of_crown_left",
+          "label": "Photo: Side of Crown - Left"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_back_of_crown_right",
+          "label": "Photo: Back of Crown - Right"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_under_edge_right",
+          "label": "Photo: Under Edge of Brim - Right Side"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_under_edge_left",
+          "label": "Photo: Under Edge of Brim - Left Side"
+        },
+        {
           "type": "image_picker",
           "id": "preview_image",
-          "label": "Modal preview image",
-          "info": "Optional. Falls back to a simple hat diagram."
+          "label": "Fallback modal preview image",
+          "info": "Used when a location does not have its own photo. Falls back to a simple hat diagram if blank."
         }
       ]
     },

@@ -29,6 +29,7 @@
         "intro": "",
         "content_max_width": 900,
         "color_scheme": "background-1",
+        "emit_faq_schema": true,
         "padding_top": 12,
         "padding_bottom": 64
       },

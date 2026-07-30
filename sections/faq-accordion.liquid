@@ -316,8 +316,17 @@
   </div>
 </div>
 
-<!-- FAQPage JSON-LD Schema for SEO/GEO -->
-{% if section.blocks.size > 0 %}
+{%- comment -%}
+  FAQPage JSON-LD — never on homepage (ai-knowledge-graph already emits one
+  FAQPage there). Elsewhere, controlled by Emit FAQ schema setting.
+{%- endcomment -%}
+{%- liquid
+  assign emit_faq_jsonld = false
+  if section.blocks.size > 0 and section.settings.emit_faq_schema and request.page_type != 'index'
+    assign emit_faq_jsonld = true
+  endif
+-%}
+{% if emit_faq_jsonld %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -352,6 +361,13 @@
       "id": "title",
       "label": "Heading",
       "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "checkbox",
+      "id": "emit_faq_schema",
+      "label": "Emit FAQ schema (JSON-LD)",
+      "default": true,
+      "info": "Turn off when another FAQPage already exists on the page (homepage uses the AI knowledge graph). Always skipped on the homepage to avoid duplicate FAQPage."
     },
     {
       "type": "text",

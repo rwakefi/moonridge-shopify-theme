@@ -95,17 +95,19 @@
             "location_label": "Branding Location",
             "branding_locations": "Side of Crown - Left,Back of Crown - Right,Under Edge of Brim - Right Side,Under Edge of Brim - Left Side",
             "letters_label": "2 Letters",
-            "letters_placeholder": "e.g. MR",
+            "letters_placeholder": "2 letters (like NW)",
             "max_letters": 2,
             "faq_1_question": "Why only two letters?",
             "faq_1_answer": "We just think it looks classier. We have branded hundreds if not thousands of hats, and we think two gives it a really classy look.",
-            "faq_2_question": "",
-            "faq_2_answer": "",
-            "policy_text": "Custom branded hats are not eligible for returns or exchanges. Please check the box below to agree to Moon Ridge Hats and Heritage's returns policy.",
+            "faq_2_question": "How do you arrange the letters?",
+            "faq_2_answer": "Under the brim, we brand them side by side. On the crown, we stack and stagger them.",
+            "policy_text": "Custom branded hats are not eligible for returns or exchanges. Please check the box below to agree to Moon Ridge Hats and Heritage's <a href=\"/policies/refund-policy\" target=\"_blank\" rel=\"noopener\">returns policy</a>.",
             "agree_label": "I Agree",
             "submit_label": "ADD TO CART",
             "branding_product": "hat-branding-3-letters",
-            "branding_variant_id": "49089192362288"
+            "branding_variant_id": "49089192362288",
+            "image_side_of_crown_left": "shopify://shop_images/branding-side-of-crown-left_jpg.jpg",
+            "image_back_of_crown_right": "shopify://shop_images/branding-back-of-crown-right_jpg.jpg"
           }
         },
         "buy_buttons": {

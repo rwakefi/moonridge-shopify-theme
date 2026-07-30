@@ -5,7 +5,9 @@ if (!customElements.get('hat-branding')) {
       constructor() {
         super();
         this.selection = null;
+        this.zoomRatio = 2.4;
         this.onKeyDown = this.onKeyDown.bind(this);
+        this.onZoomPointerMove = this.onZoomPointerMove.bind(this);
       }
 
       connectedCallback() {
@@ -18,6 +20,7 @@ if (!customElements.get('hat-branding')) {
         this.agreeInput = this.querySelector('[data-hat-branding-agree]');
         this.errorEl = this.querySelector('[data-hat-branding-error]');
         this.submitButton = this.querySelector('[data-hat-branding-submit]');
+        this.previewFrame = this.querySelector('[data-hat-branding-zoom-trigger]');
         this.maxLetters = Number(this.dataset.maxLetters || 2);
 
         this.openButton?.addEventListener('click', () => this.open());
@@ -26,11 +29,24 @@ if (!customElements.get('hat-branding')) {
         });
         this.submitButton?.addEventListener('click', () => this.submit());
         this.lettersInput?.addEventListener('input', () => this.normalizeLetters());
+        this.querySelectorAll('[data-hat-branding-location]').forEach((input) => {
+          input.addEventListener('change', () => this.updatePreview());
+          // Click covers re-selecting the already-checked option and some mobile label quirks.
+          input.addEventListener('click', () => this.updatePreview());
+        });
+        this.querySelectorAll('.hat-branding-modal__location').forEach((label) => {
+          label.addEventListener('click', () => {
+            requestAnimationFrame(() => this.updatePreview());
+          });
+        });
+        this.previewFrame?.addEventListener('click', (event) => this.toggleZoom(event));
+        this.updatePreview();
       }
 
       disconnectedCallback() {
         document.removeEventListener('keydown', this.onKeyDown);
         document.body.classList.remove('hat-branding-open');
+        this.endZoom();
       }
 
       open() {
@@ -46,6 +62,7 @@ if (!customElements.get('hat-branding')) {
 
       close() {
         if (!this.modal) return;
+        this.endZoom();
         this.modal.hidden = true;
         document.body.classList.remove('hat-branding-open');
         document.removeEventListener('keydown', this.onKeyDown);
@@ -54,7 +71,13 @@ if (!customElements.get('hat-branding')) {
       }
 
       onKeyDown(event) {
-        if (event.key === 'Escape') this.close();
+        if (event.key === 'Escape') {
+          if (this.previewFrame?.classList.contains('is-zoomed')) {
+            this.endZoom();
+            return;
+          }
+          this.close();
+        }
       }
 
       normalizeLetters() {
@@ -66,6 +89,99 @@ if (!customElements.get('hat-branding')) {
       selectedLocation() {
         const checked = this.querySelector('[data-hat-branding-location]:checked');
         return checked ? checked.value.trim() : '';
+      }
+
+      updatePreview() {
+        const checked = this.querySelector('[data-hat-branding-location]:checked');
+        const url = checked?.getAttribute('data-preview-image') || '';
+        const zoomUrl = checked?.getAttribute('data-preview-zoom') || url;
+        const focus = checked?.getAttribute('data-preview-focus') || 'center';
+        const img = this.querySelector('[data-hat-branding-preview-img]');
+        const frame = this.previewFrame;
+
+        this.endZoom();
+
+        if (!img) return;
+
+        if (url) {
+          // Clear Shopify image_tag srcset so src swaps actually change the visible photo.
+          img.removeAttribute('srcset');
+          img.removeAttribute('sizes');
+          img.src = url;
+          img.srcset = `${url} 1200w`;
+          img.sizes = '(min-width: 750px) 280px, 70vw';
+          img.dataset.zoomSrc = zoomUrl;
+          img.hidden = false;
+          img.removeAttribute('hidden');
+          img.className = `hat-branding-modal__preview-image hat-branding-modal__preview-image--${focus}`;
+          if (frame) {
+            frame.hidden = false;
+            frame.removeAttribute('hidden');
+          }
+        } else {
+          img.hidden = true;
+          img.setAttribute('hidden', '');
+          img.removeAttribute('src');
+          img.removeAttribute('srcset');
+          if (frame) {
+            frame.hidden = true;
+            frame.setAttribute('hidden', '');
+          }
+        }
+      }
+
+      toggleZoom(event) {
+        if (!this.previewFrame || this.previewFrame.hidden) return;
+        const img = this.querySelector('[data-hat-branding-preview-img]');
+        if (!img || img.hidden || !img.src) return;
+
+        if (this.previewFrame.classList.contains('is-zoomed')) {
+          this.endZoom();
+          return;
+        }
+
+        this.startZoom(img, event);
+      }
+
+      startZoom(image, event) {
+        if (!this.previewFrame) return;
+
+        const lens = document.createElement('div');
+        lens.className = 'hat-branding-modal__preview-zoom-lens';
+        lens.setAttribute('aria-hidden', 'true');
+        lens.style.backgroundImage = `url("${image.dataset.zoomSrc || image.currentSrc || image.src}")`;
+        this.previewFrame.appendChild(lens);
+        this.zoomLens = lens;
+        this.previewFrame.classList.add('is-zoomed');
+        this.previewFrame.setAttribute('aria-label', 'Exit zoom');
+
+        this.moveZoom(event);
+        this.previewFrame.addEventListener('pointermove', this.onZoomPointerMove);
+      }
+
+      moveZoom(event) {
+        if (!this.zoomLens || !this.previewFrame) return;
+        const rect = this.previewFrame.getBoundingClientRect();
+        const x = Math.min(Math.max(event.clientX - rect.left, 0), rect.width);
+        const y = Math.min(Math.max(event.clientY - rect.top, 0), rect.height);
+        const xPercent = (x / rect.width) * 100;
+        const yPercent = (y / rect.height) * 100;
+        this.zoomLens.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
+        this.zoomLens.style.backgroundSize = `${rect.width * this.zoomRatio}px`;
+      }
+
+      onZoomPointerMove(event) {
+        this.moveZoom(event);
+      }
+
+      endZoom() {
+        if (this.previewFrame) {
+          this.previewFrame.classList.remove('is-zoomed');
+          this.previewFrame.setAttribute('aria-label', 'Zoom branding photo');
+          this.previewFrame.removeEventListener('pointermove', this.onZoomPointerMove);
+        }
+        this.zoomLens?.remove();
+        this.zoomLens = null;
       }
 
       clearError() {
@@ -111,7 +227,7 @@ if (!customElements.get('hat-branding')) {
 
       orderProperties({ location, letters }) {
         return {
-          '2 Letters': letters,
+          Letters: letters,
           'Branding Location': location,
           'For Hat': this.dataset.productTitle || '',
           'Returns Disclaimer': 'Agreed — custom branded hats are final sale (no returns or exchanges)',
@@ -175,11 +291,15 @@ if (!customElements.get('hat-branding')) {
           id: Number(variantId),
           quantity: 1,
           properties,
+          sections: ['cart-icon-bubble'],
+          sections_url: window.location.pathname,
         };
 
+        // Still request drawer/notification sections when present so counts stay in sync,
+        // but we intentionally do not open the cart UI after branding is added.
         if (cart && typeof cart.getSectionsToRender === 'function') {
-          body.sections = cart.getSectionsToRender().map((section) => section.id);
-          body.sections_url = window.location.pathname;
+          const sectionIds = cart.getSectionsToRender().map((section) => section.id);
+          body.sections = Array.from(new Set(['cart-icon-bubble', ...sectionIds]));
         }
 
         try {
@@ -201,7 +321,7 @@ if (!customElements.get('hat-branding')) {
               ...fetchConfig(),
               body: JSON.stringify({
                 attributes: {
-                  '2 Letters': selection.letters,
+                  Letters: selection.letters,
                   'Branding Location': selection.location,
                   'Hat Branding For': this.dataset.productTitle || '',
                 },
@@ -213,12 +333,7 @@ if (!customElements.get('hat-branding')) {
 
           this.markAdded(selection);
           this.close();
-
-          if (cart && typeof cart.renderContents === 'function') {
-            cart.renderContents(data);
-          } else if (window.routes?.cart_url) {
-            window.location = window.routes.cart_url;
-          }
+          this.refreshCartIcon(data);
 
           if (typeof publish === 'function' && typeof PUB_SUB_EVENTS !== 'undefined') {
             publish(PUB_SUB_EVENTS.cartUpdate, {
@@ -232,6 +347,30 @@ if (!customElements.get('hat-branding')) {
           this.showError('Could not add branding to cart. Please try again.');
           this.setLoading(false);
         }
+      }
+
+      refreshCartIcon(parsedState) {
+        const bubble = document.getElementById('cart-icon-bubble');
+        if (!bubble) return;
+
+        const applySectionHtml = (sectionHtml) => {
+          if (!sectionHtml) return false;
+          const sectionEl = new DOMParser()
+            .parseFromString(sectionHtml, 'text/html')
+            .querySelector('.shopify-section');
+          if (!sectionEl) return false;
+          bubble.innerHTML = sectionEl.innerHTML;
+          return true;
+        };
+
+        if (applySectionHtml(parsedState?.sections?.['cart-icon-bubble'])) return;
+
+        fetch(`${window.location.pathname}?sections=cart-icon-bubble`)
+          .then((response) => response.json())
+          .then((sections) => {
+            applySectionHtml(sections?.['cart-icon-bubble']);
+          })
+          .catch(() => {});
       }
     }
   );

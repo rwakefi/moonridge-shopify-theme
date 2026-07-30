@@ -81,27 +81,50 @@
         </button>
 
         <div class="hat-branding-modal__layout">
-          <div class="hat-branding-modal__preview" aria-hidden="true">
-            {%- if block.settings.preview_image != blank -%}
-              {{
-                block.settings.preview_image
-                | image_url: width: 900
-                | image_tag:
-                  loading: 'lazy',
-                  class: 'hat-branding-modal__preview-image',
-                  widths: '400, 600, 900',
-                  sizes: '(min-width: 750px) 40vw, 80vw'
-              }}
-            {%- else -%}
-              <svg class="hat-branding-modal__hat-svg" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M40 150c20-18 70-30 120-30s100 12 120 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M70 148c8-46 40-78 90-78s82 32 90 78" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-                <path d="M95 148c6-28 28-48 65-48s59 20 65 48" stroke="currentColor" stroke-width="2"/>
-                <path d="M28 158c18 18 70 28 132 28s114-10 132-28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M110 118h100" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <circle cx="210" cy="118" r="4" fill="currentColor"/>
-              </svg>
-            {%- endif -%}
+          <div class="hat-branding-modal__preview" data-hat-branding-preview>
+            {%- liquid
+              assign default_preview = block.settings.preview_image
+              assign first_loc_image = blank
+              assign first_focus = 'center'
+              if block.settings.image_side_of_crown_left != blank
+                assign first_loc_image = block.settings.image_side_of_crown_left
+                assign first_focus = 'side-left'
+              elsif default_preview != blank
+                assign first_loc_image = default_preview
+              endif
+              assign first_preview_class = 'hat-branding-modal__preview-image hat-branding-modal__preview-image--' | append: first_focus
+            -%}
+            <button
+              type="button"
+              class="hat-branding-modal__preview-frame"
+              data-hat-branding-zoom-trigger
+              aria-label="Zoom branding photo"
+              {% if first_loc_image == blank %}hidden{% endif %}
+            >
+              {%- if first_loc_image != blank -%}
+                {{
+                  first_loc_image
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    class: first_preview_class,
+                    widths: '400, 600, 900, 1200',
+                    sizes: '(min-width: 750px) 280px, 70vw',
+                    alt: 'Branding location example',
+                    data-hat-branding-preview-img: ''
+                }}
+              {%- else -%}
+                <img
+                  class="hat-branding-modal__preview-image"
+                  data-hat-branding-preview-img
+                  alt="Branding location example"
+                  hidden
+                  width="1200"
+                  height="1200"
+                >
+              {%- endif -%}
+              <span class="hat-branding-modal__preview-zoom-hint" aria-hidden="true">Tap to zoom</span>
+            </button>
           </div>
 
           <div class="hat-branding-modal__panel">
@@ -120,23 +143,70 @@
                 {%- for location in locations -%}
                   {%- assign location_name = location | strip -%}
                   {%- if location_name != blank -%}
-                    <label class="hat-branding-modal__location">
+                    {%- liquid
+                      assign location_image = blank
+                      assign location_focus = 'center'
+                      assign location_key = location_name | downcase
+                      if location_key contains 'side of crown' and location_key contains 'left'
+                        assign location_image = block.settings.image_side_of_crown_left
+                        assign location_focus = 'side-left'
+                      elsif location_key contains 'back of crown' and location_key contains 'right'
+                        assign location_image = block.settings.image_back_of_crown_right
+                        assign location_focus = 'back-right'
+                      elsif location_key contains 'under edge' and location_key contains 'right'
+                        assign location_image = block.settings.image_under_edge_right
+                        assign location_focus = 'under-right'
+                      elsif location_key contains 'under edge' and location_key contains 'left'
+                        assign location_image = block.settings.image_under_edge_left
+                        assign location_focus = 'under-left'
+                      endif
+                      if location_image == blank
+                        assign location_image = block.settings.preview_image
+                      endif
+                      assign location_image_url = ''
+                      assign location_zoom_url = ''
+                      if location_image != blank
+                        assign location_image_url = location_image | image_url: width: 1200
+                        assign location_zoom_url = location_image | image_url: width: 2000
+                      endif
+                      assign chip_img_class = 'hat-branding-modal__location-img hat-branding-modal__location-img--' | append: location_focus
+                    -%}
+                    <label class="hat-branding-modal__location{% if location_image != blank %} hat-branding-modal__location--photo{% endif %}">
                       <input
                         type="radio"
                         name="hat-branding-location-{{ block.id }}"
                         value="{{ location_name | escape }}"
                         data-hat-branding-location
+                        data-preview-image="{{ location_image_url | escape }}"
+                        data-preview-zoom="{{ location_zoom_url | escape }}"
+                        data-preview-focus="{{ location_focus | escape }}"
                         {% if forloop.first %}checked{% endif %}
                       >
                       <span class="hat-branding-modal__location-chip">
-                        {%- assign chip_lines = location_name | split: ' - ' -%}
-                        {%- if chip_lines.size > 1 -%}
-                          {%- for line in chip_lines -%}
-                            <span class="hat-branding-modal__location-line">{{ line | escape }}</span>
-                          {%- endfor -%}
-                        {%- else -%}
-                          {{ location_name | escape }}
+                        {%- if location_image != blank -%}
+                          <span class="hat-branding-modal__location-photo" aria-hidden="true">
+                            {{
+                              location_image
+                              | image_url: width: 360
+                              | image_tag:
+                                loading: 'lazy',
+                                class: chip_img_class,
+                                widths: '160, 240, 360',
+                                sizes: '72px',
+                                alt: ''
+                            }}
+                          </span>
                         {%- endif -%}
+                        <span class="hat-branding-modal__location-caption">
+                          {%- assign chip_lines = location_name | split: ' - ' -%}
+                          {%- if chip_lines.size > 1 -%}
+                            {%- for line in chip_lines -%}
+                              <span class="hat-branding-modal__location-line">{{ line | escape }}</span>
+                            {%- endfor -%}
+                          {%- else -%}
+                            {{ location_name | escape }}
+                          {%- endif -%}
+                        </span>
                       </span>
                     </label>
                   {%- endif -%}
@@ -156,7 +226,7 @@
                 autocomplete="off"
                 spellcheck="false"
                 maxlength="{{ block.settings.max_letters | default: 2 }}"
-                placeholder="{{ block.settings.letters_placeholder | default: 'e.g. MR' }}"
+                placeholder="{{ block.settings.letters_placeholder | default: '2 letters (like NW)' }}"
                 data-hat-branding-letters
                 aria-describedby="HatBrandingLettersHelp-{{ block.id }}"
               >
@@ -168,8 +238,8 @@
             {%- liquid
               assign faq_1_q = block.settings.faq_1_question | default: 'Why only two letters?'
               assign faq_1_a = block.settings.faq_1_answer | default: 'We just think it looks classier. We have branded hundreds if not thousands of hats, and we think two gives it a really classy look.'
-              assign faq_2_q = block.settings.faq_2_question
-              assign faq_2_a = block.settings.faq_2_answer
+              assign faq_2_q = block.settings.faq_2_question | default: 'How do you arrange the letters?'
+              assign faq_2_a = block.settings.faq_2_answer | default: 'Under the brim, we brand them side by side. On the crown, we stack and stagger them.'
               assign show_faq = false
               if faq_1_q != blank and faq_1_a != blank
                 assign show_faq = true
@@ -206,7 +276,7 @@
             {%- endif -%}
 
             {%- if block.settings.policy_text != blank -%}
-              <p class="hat-branding-modal__policy">{{ block.settings.policy_text }}</p>
+              <div class="hat-branding-modal__policy">{{ block.settings.policy_text }}</div>
             {%- endif -%}
 
             <label class="hat-branding-modal__agree">

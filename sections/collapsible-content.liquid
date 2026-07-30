@@ -204,6 +204,44 @@
   }
 {% endstyle %}
 
+{%- comment -%}
+  FAQPage JSON-LD for the full FAQ page (/pages/moonridge-faqs) and any
+  template using this collapsible FAQ section.
+{%- endcomment -%}
+{%- liquid
+  assign faq_schema_count = 0
+  for block in section.blocks
+    if block.type == 'item' and block.settings.question != blank and block.settings.answer != blank
+      assign faq_schema_count = faq_schema_count | plus: 1
+    endif
+  endfor
+-%}
+{% if faq_schema_count > 0 and section.settings.emit_faq_schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- assign faq_schema_first = true -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'item' and block.settings.question != blank and block.settings.answer != blank -%}
+        {%- unless faq_schema_first -%},{%- endunless -%}
+        {%- assign faq_schema_first = false -%}
+    {
+      "@type": "Question",
+      "name": {{ block.settings.question | json }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ block.settings.answer | strip_html | json }}
+      }
+    }
+      {%- endif -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+{% endif %}
+
 {% schema %}
 {
   "name": "FAQ accordion",
@@ -215,6 +253,13 @@
       "id": "heading",
       "label": "Section heading",
       "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "checkbox",
+      "id": "emit_faq_schema",
+      "label": "Emit FAQ schema (JSON-LD)",
+      "default": true,
+      "info": "Adds FAQPage structured data from the questions below for Google and AI answer engines."
     },
     {
       "type": "select",

@@ -317,12 +317,16 @@
 </div>
 
 {%- comment -%}
-  FAQPage JSON-LD — disabled on the homepage so we emit only one FAQPage
-  (from snippets/ai-knowledge-graph.liquid). Enable on other templates via
-  Theme Editor → FAQ Accordion → Emit FAQ schema.
+  FAQPage JSON-LD — never on homepage (ai-knowledge-graph already emits one
+  FAQPage there). Elsewhere, controlled by Emit FAQ schema setting.
 {%- endcomment -%}
-{% if section.blocks.size > 0 and section.settings.emit_faq_schema %}
-  {%- unless request.page_type == 'index' -%}
+{%- liquid
+  assign emit_faq_jsonld = false
+  if section.blocks.size > 0 and section.settings.emit_faq_schema and request.page_type != 'index'
+    assign emit_faq_jsonld = true
+  endif
+-%}
+{% if emit_faq_jsonld %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -346,7 +350,6 @@
   ]
 }
 </script>
-  {%- endunless -%}
 {% endif %}
 
 {% schema %}

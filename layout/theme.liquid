@@ -66,7 +66,11 @@
       elsif request.page_type == 'product'
         assign full_title = product.title | truncate: 35 | append: brand_suffix
       elsif request.page_type == 'collection'
-        assign full_title = collection.title | append: " | Hats & Heritage" | append: brand_suffix
+        if collection.metafields.global.title_tag != blank
+          assign full_title = collection.metafields.global.title_tag
+        else
+          assign full_title = collection.title | append: " | Hats & Heritage" | append: brand_suffix
+        endif
       elsif request.page_type == 'article'
         if article.metafields.global.title_tag != blank
           assign full_title = article.metafields.global.title_tag
@@ -144,7 +148,13 @@
       elsif page.handle contains 'contact' or page.handle contains 'book'
         assign meta_description = "Book your hat shaping session or private hat party at Moon Ridge Hats and Heritage in Fayetteville, AR. We personalize premium hats from Stetson and Resistol."
       elsif request.page_type == 'collection'
-        assign meta_description = "Shop premium heritage hats and goods at Moon Ridge Hats and Heritage. Authorized dealer for Stetson and Resistol. Expertly shaped and styled in Fayetteville, Arkansas."
+        if collection.metafields.global.description_tag != blank
+          assign meta_description = collection.metafields.global.description_tag
+        elsif collection.description != blank
+          assign meta_description = collection.description | strip_html | strip | truncate: 160
+        else
+          assign meta_description = "Shop premium heritage hats at Moon Ridge Hats and Heritage in Fayetteville, AR — authorized Stetson & Resistol dealer with custom hat bar shaping."
+        endif
       elsif template.suffix == 'podcast-moon-ridge'
         assign meta_description = "The Moon Ridge Podcast is about the things we love — travel, hats, interior design, great brands, and stories from a life well lived. Hosted by Zack Wakefield."
       endif

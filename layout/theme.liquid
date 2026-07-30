@@ -154,7 +154,7 @@
     {% render 'meta-tags' %}
     {% render 'site-organization-schema' %}
     {%- if request.page_type == 'index' or page.handle == 'custom-hat-bar' -%}
-      {% render 'ai-knowledge-graph' %}
+      {% render 'ai-knowledge-graph' %}{%- comment -%} seo-tech-debt-2026-07-30 {%- endcomment -%}
     {%- endif -%}
     {%- if request.page_type == 'index' or page.handle == 'custom-hat-bar' -%}
       {% render 'hat-bar-service-schema' %}

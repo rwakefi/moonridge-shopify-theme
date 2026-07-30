@@ -1,7 +1,8 @@
 # Cowboy Hat Brim Shapes — Hat Education publish brief
 
-> **Status: DRAFT — do not publish until Zack approves**
-> Blog: Hat Education · Template: `hat-education`
+> **Published 2026-07-30** via Shopify Admin API  
+> Live: https://moonridgecompany.com/blogs/hat-education/cowboy-hat-brim-shapes  
+> Article ID: `622418952496` · Blog: Hat Education · Template: `hat-education`
 
 ## Publish in Shopify Admin
 

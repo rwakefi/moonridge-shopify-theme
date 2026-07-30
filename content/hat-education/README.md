@@ -7,13 +7,13 @@ Articles are published in **Shopify Admin** (not theme Liquid). Each guide has:
 - `*.md` — publish brief (title, handle, SEO, checklist)
 - `*.html` — body HTML using `he-article__*` classes
 
-## Draft batch (awaiting approval)
+## Published 2026-07-30
 
 | Guide | Handle | Status |
 | --- | --- | --- |
-| Felt vs Straw Cowboy Hats | `felt-vs-straw-cowboy-hats` | Draft |
-| Cowboy Hat Crown Shapes Explained | `cowboy-hat-crown-shapes` | Draft |
-| Cowboy Hat Brim Shapes Explained | `cowboy-hat-brim-shapes` | Draft |
+| Felt vs Straw Cowboy Hats | `felt-vs-straw-cowboy-hats` | Live |
+| Cowboy Hat Crown Shapes Explained | `cowboy-hat-crown-shapes` | Live |
+| Cowboy Hat Brim Shapes Explained | `cowboy-hat-brim-shapes` | Live |
 
 ## Already live
 

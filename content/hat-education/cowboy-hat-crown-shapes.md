@@ -1,7 +1,8 @@
 # Cowboy Hat Crown Shapes — Hat Education publish brief
 
-> **Status: DRAFT — do not publish until Zack approves**
-> Blog: Hat Education · Template: `hat-education`
+> **Published 2026-07-30** via Shopify Admin API  
+> Live: https://moonridgecompany.com/blogs/hat-education/cowboy-hat-crown-shapes  
+> Article ID: `622418919728` · Blog: Hat Education · Template: `hat-education`
 
 ## Publish in Shopify Admin
 

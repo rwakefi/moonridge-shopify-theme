@@ -1,7 +1,8 @@
 # Felt vs Straw Cowboy Hats — Hat Education publish brief
 
-> **Status: DRAFT — do not publish until Zack approves**
-> Blog: Hat Education · Template: `hat-education`
+> **Published 2026-07-30** via Shopify Admin API  
+> Live: https://moonridgecompany.com/blogs/hat-education/felt-vs-straw-cowboy-hats  
+> Article ID: `622418886960` · Blog: Hat Education · Template: `hat-education`
 
 Hat Education articles live in **Shopify Admin** (not theme Liquid). Use this brief + `felt-vs-straw-cowboy-hats.html` to publish.
 

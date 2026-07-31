@@ -2,7 +2,6 @@
   @prompt
     a section the same size as the lumen slideshow section below, this will just be a single picture, it needs to be 1920 by 1080, add a mobile image that is 1080 by 1350
 {% enddoc %}
-{% comment %} App Store badge nested in secondary shell {% endcomment %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
 {% style %}
@@ -75,8 +74,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: 10px 16px 12px;
+    gap: 10px;
+    padding: 16px 20px 18px;
     background: var(--mr-cta-band);
     border-top: 1px solid color-mix(in srgb, var(--mr-cta-rule) 70%, transparent);
     text-align: center;
@@ -85,20 +84,20 @@
   .ai-single-image-cta-copy-{{ ai_gen_id }} {
     margin: 0;
     color: var(--mr-cta-ink);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    line-height: 1.3;
+    line-height: 1.4;
     opacity: 0.78;
   }
 
   .ai-single-image-cta-actions-{{ ai_gen_id }} {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
     width: 100%;
   }
 
@@ -107,10 +106,8 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-sizing: border-box;
     min-height: 44px;
-    height: 44px;
-    padding: 0 22px;
+    padding: 11px 22px;
     font-family: inherit;
     font-size: 13px;
     font-weight: 600;
@@ -155,47 +152,11 @@
     border-color: var(--mr-cta-ink);
   }
 
-  .ai-single-image-cta-secondary-shell-{{ ai_gen_id }} {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    box-sizing: border-box;
-    min-height: 44px;
-    padding: 8px 18px 9px;
-    color: var(--mr-cta-ink);
-    background-color: transparent;
-    border: 1px solid color-mix(in srgb, var(--mr-cta-ink) 55%, transparent);
-    transition:
-      background-color 0.2s ease,
-      border-color 0.2s ease;
-  }
-
-  .ai-single-image-cta-secondary-shell-{{ ai_gen_id }}:hover {
-    background-color: color-mix(in srgb, var(--mr-cta-ink) 6%, transparent);
-    border-color: var(--mr-cta-ink);
-  }
-
-  .ai-single-image-cta-secondary-shell-{{ ai_gen_id }} .ai-single-image-cta-btn--secondary-{{ ai_gen_id }} {
-    width: 100%;
-    height: auto;
-    min-height: 0;
-    padding: 0;
-    border: 0;
-    background: transparent;
-  }
-
-  .ai-single-image-cta-secondary-shell-{{ ai_gen_id }} .ai-single-image-cta-btn--secondary-{{ ai_gen_id }}:hover {
-    background: transparent;
-    border: 0;
-  }
-
   .ai-single-image-cta-appstore-{{ ai_gen_id }} {
-    display: inline-flex;
+    display: none;
     line-height: 0;
     text-decoration: none;
-    opacity: 0.92;
+    opacity: 0.95;
   }
 
   .ai-single-image-cta-appstore-{{ ai_gen_id }}:hover {
@@ -204,7 +165,7 @@
 
   .ai-single-image-cta-appstore-badge-{{ ai_gen_id }} {
     display: block;
-    width: 84px;
+    width: 140px;
     max-width: 100%;
     height: auto;
   }
@@ -229,35 +190,30 @@
     }
 
     .ai-single-image-cta-{{ ai_gen_id }} {
-      gap: 6px;
-      padding: 10px 14px 12px;
-    }
-
-    .ai-single-image-cta-copy-{{ ai_gen_id }} {
-      font-size: 10px;
-      letter-spacing: 0.12em;
+      gap: 10px;
+      padding: 14px 16px 16px;
     }
 
     .ai-single-image-cta-actions-{{ ai_gen_id }} {
       flex-direction: column;
-      align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .ai-single-image-cta-btn-{{ ai_gen_id }} {
       width: 100%;
-      max-width: 320px;
+      max-width: 360px;
     }
 
-    .ai-single-image-cta-secondary-shell-{{ ai_gen_id }} {
-      width: 100%;
-      max-width: 320px;
-      padding: 9px 16px 10px;
-      gap: 6px;
+    .ai-single-image-cta--has-appstore-{{ ai_gen_id }} .ai-single-image-cta-btn--secondary-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .ai-single-image-cta-appstore-{{ ai_gen_id }} {
+      display: inline-flex;
     }
 
     .ai-single-image-cta-appstore-badge-{{ ai_gen_id }} {
-      width: 92px;
+      width: 160px;
     }
   }
 
@@ -329,10 +285,11 @@
   </div>
 
   {%- if block.settings.button_label != blank or block.settings.secondary_label != blank or block.settings.app_store_link != blank -%}
-    <div class="ai-single-image-cta-{{ ai_gen_id }}">
+    <div class="ai-single-image-cta-{{ ai_gen_id }}{% if block.settings.app_store_link != blank %} ai-single-image-cta--has-appstore-{{ ai_gen_id }}{% endif %}">
       {%- if block.settings.cta_support != blank -%}
         <p class="ai-single-image-cta-copy-{{ ai_gen_id }}">{{ block.settings.cta_support | escape }}</p>
       {%- endif -%}
+
       <div class="ai-single-image-cta-actions-{{ ai_gen_id }}">
         {%- if block.settings.button_label != blank -%}
           <a
@@ -346,36 +303,32 @@
           </a>
         {%- endif -%}
 
-        {%- if block.settings.secondary_label != blank or block.settings.app_store_link != blank -%}
-          <div class="ai-single-image-cta-secondary-shell-{{ ai_gen_id }}">
-            {%- if block.settings.secondary_label != blank -%}
-              <a
-                href="{{ block.settings.secondary_link | default: 'https://hatfinder.moonridgecompany.com' }}"
-                class="ai-single-image-cta-btn-{{ ai_gen_id }} ai-single-image-cta-btn--secondary-{{ ai_gen_id }}"
-              >
-                <span>{{ block.settings.secondary_label | escape }}</span>
-              </a>
-            {%- endif -%}
+        {%- if block.settings.secondary_label != blank -%}
+          <a
+            href="{{ block.settings.secondary_link | default: 'https://hatfinder.moonridgecompany.com' }}"
+            class="ai-single-image-cta-btn-{{ ai_gen_id }} ai-single-image-cta-btn--secondary-{{ ai_gen_id }}"
+          >
+            <span>{{ block.settings.secondary_label | escape }}</span>
+          </a>
+        {%- endif -%}
 
-            {%- if block.settings.app_store_link != blank -%}
-              <a
-                href="{{ block.settings.app_store_link }}"
-                class="ai-single-image-cta-appstore-{{ ai_gen_id }}"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="{{ block.settings.app_store_label | default: 'Download Hat Finder on the App Store' | escape }}"
-              >
-                <img
-                  class="ai-single-image-cta-appstore-badge-{{ ai_gen_id }}"
-                  src="{{ 'download-on-the-app-store.svg' | asset_url }}"
-                  alt="Download on the App Store"
-                  width="84"
-                  height="28"
-                  loading="lazy"
-                >
-              </a>
-            {%- endif -%}
-          </div>
+        {%- if block.settings.app_store_link != blank -%}
+          <a
+            href="{{ block.settings.app_store_link }}"
+            class="ai-single-image-cta-appstore-{{ ai_gen_id }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="{{ block.settings.app_store_label | default: 'Download Hat Finder on the App Store' | escape }}"
+          >
+            <img
+              class="ai-single-image-cta-appstore-badge-{{ ai_gen_id }}"
+              src="{{ 'download-on-the-app-store.svg' | asset_url }}"
+              alt="Download on the App Store"
+              width="140"
+              height="47"
+              loading="lazy"
+            >
+          </a>
         {%- endif -%}
       </div>
     </div>
@@ -432,7 +385,8 @@
       "type": "text",
       "id": "secondary_label",
       "label": "Secondary button label",
-      "default": "Try Hat Finder"
+      "default": "Try Hat Finder",
+      "info": "Shown on desktop. Hidden on mobile when an App Store link is set."
     },
     {
       "type": "url",
@@ -445,13 +399,13 @@
       "id": "app_store_label",
       "label": "App Store badge accessibility label",
       "default": "Download Hat Finder on the App Store",
-      "info": "Used for screen readers. Leave App Store link blank to hide the badge."
+      "info": "Used for screen readers. The badge replaces Try Hat Finder on mobile only."
     },
     {
       "type": "url",
       "id": "app_store_link",
-      "label": "App Store link",
-      "info": "Shows the official App Store badge under the buttons on desktop and mobile."
+      "label": "App Store link (mobile only)",
+      "info": "Shows the official App Store badge on mobile in place of Try Hat Finder. Hidden on desktop."
     },
     {
       "type": "color",

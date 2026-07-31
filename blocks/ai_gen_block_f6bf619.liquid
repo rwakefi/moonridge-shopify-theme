@@ -154,23 +154,47 @@
     border-color: var(--mr-cta-ink);
   }
 
-  .ai-single-image-cta-secondary-stack-{{ ai_gen_id }} {
+  .ai-single-image-cta-secondary-shell-{{ ai_gen_id }} {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    gap: 5px;
+    justify-content: center;
+    gap: 6px;
+    box-sizing: border-box;
+    min-height: 44px;
+    padding: 8px 18px 9px;
+    color: var(--mr-cta-ink);
+    background-color: transparent;
+    border: 1px solid color-mix(in srgb, var(--mr-cta-ink) 55%, transparent);
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
   }
 
-  .ai-single-image-cta-secondary-stack-{{ ai_gen_id }} .ai-single-image-cta-btn-{{ ai_gen_id }} {
+  .ai-single-image-cta-secondary-shell-{{ ai_gen_id }}:hover {
+    background-color: color-mix(in srgb, var(--mr-cta-ink) 6%, transparent);
+    border-color: var(--mr-cta-ink);
+  }
+
+  .ai-single-image-cta-secondary-shell-{{ ai_gen_id }} .ai-single-image-cta-btn--secondary-{{ ai_gen_id }} {
     width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .ai-single-image-cta-secondary-shell-{{ ai_gen_id }} .ai-single-image-cta-btn--secondary-{{ ai_gen_id }}:hover {
+    background: transparent;
+    border: 0;
   }
 
   .ai-single-image-cta-appstore-{{ ai_gen_id }} {
     display: inline-flex;
     line-height: 0;
     text-decoration: none;
-    opacity: 0.9;
+    opacity: 0.92;
   }
 
   .ai-single-image-cta-appstore-{{ ai_gen_id }}:hover {
@@ -179,7 +203,7 @@
 
   .ai-single-image-cta-appstore-badge-{{ ai_gen_id }} {
     display: block;
-    width: 88px;
+    width: 84px;
     max-width: 100%;
     height: auto;
   }
@@ -224,14 +248,15 @@
       max-width: 320px;
     }
 
-    .ai-single-image-cta-secondary-stack-{{ ai_gen_id }} {
+    .ai-single-image-cta-secondary-shell-{{ ai_gen_id }} {
       width: 100%;
       max-width: 320px;
-      gap: 5px;
+      padding: 9px 16px 10px;
+      gap: 6px;
     }
 
     .ai-single-image-cta-appstore-badge-{{ ai_gen_id }} {
-      width: 96px;
+      width: 92px;
     }
   }
 
@@ -322,7 +347,7 @@
         {%- endif -%}
 
         {%- if block.settings.secondary_label != blank or block.settings.app_store_link != blank -%}
-          <div class="ai-single-image-cta-secondary-stack-{{ ai_gen_id }}">
+          <div class="ai-single-image-cta-secondary-shell-{{ ai_gen_id }}">
             {%- if block.settings.secondary_label != blank -%}
               <a
                 href="{{ block.settings.secondary_link | default: 'https://hatfinder.moonridgecompany.com' }}"
@@ -344,8 +369,8 @@
                   class="ai-single-image-cta-appstore-badge-{{ ai_gen_id }}"
                   src="{{ 'download-on-the-app-store.svg' | asset_url }}"
                   alt="Download on the App Store"
-                  width="96"
-                  height="32"
+                  width="84"
+                  height="28"
                   loading="lazy"
                 >
               </a>

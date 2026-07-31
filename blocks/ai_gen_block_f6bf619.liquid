@@ -152,20 +152,27 @@
     border-color: var(--mr-cta-ink);
   }
 
+  .ai-single-image-cta-secondary-stack-{{ ai_gen_id }} {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
   .ai-single-image-cta-appstore-{{ ai_gen_id }} {
     display: inline-flex;
-    margin: 4px 0 0;
     line-height: 0;
     text-decoration: none;
+    opacity: 0.9;
   }
 
   .ai-single-image-cta-appstore-{{ ai_gen_id }}:hover {
-    opacity: 0.85;
+    opacity: 1;
   }
 
   .ai-single-image-cta-appstore-badge-{{ ai_gen_id }} {
     display: block;
-    width: 130px;
+    width: 96px;
     max-width: 100%;
     height: auto;
   }
@@ -204,8 +211,13 @@
       max-width: 360px;
     }
 
+    .ai-single-image-cta-secondary-stack-{{ ai_gen_id }} {
+      width: 100%;
+      max-width: 360px;
+    }
+
     .ai-single-image-cta-appstore-badge-{{ ai_gen_id }} {
-      width: 140px;
+      width: 110px;
     }
   }
 
@@ -295,34 +307,38 @@
           </a>
         {%- endif -%}
 
-        {%- if block.settings.secondary_label != blank -%}
-          <a
-            href="{{ block.settings.secondary_link | default: 'https://hatfinder.moonridgecompany.com' }}"
-            class="ai-single-image-cta-btn-{{ ai_gen_id }} ai-single-image-cta-btn--secondary-{{ ai_gen_id }}"
-          >
-            <span>{{ block.settings.secondary_label | escape }}</span>
-          </a>
+        {%- if block.settings.secondary_label != blank or block.settings.app_store_link != blank -%}
+          <div class="ai-single-image-cta-secondary-stack-{{ ai_gen_id }}">
+            {%- if block.settings.secondary_label != blank -%}
+              <a
+                href="{{ block.settings.secondary_link | default: 'https://hatfinder.moonridgecompany.com' }}"
+                class="ai-single-image-cta-btn-{{ ai_gen_id }} ai-single-image-cta-btn--secondary-{{ ai_gen_id }}"
+              >
+                <span>{{ block.settings.secondary_label | escape }}</span>
+              </a>
+            {%- endif -%}
+
+            {%- if block.settings.app_store_link != blank -%}
+              <a
+                href="{{ block.settings.app_store_link }}"
+                class="ai-single-image-cta-appstore-{{ ai_gen_id }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="{{ block.settings.app_store_label | default: 'Download Hat Finder on the App Store' | escape }}"
+              >
+                <img
+                  class="ai-single-image-cta-appstore-badge-{{ ai_gen_id }}"
+                  src="{{ 'download-on-the-app-store.svg' | asset_url }}"
+                  alt="Download on the App Store"
+                  width="96"
+                  height="32"
+                  loading="lazy"
+                >
+              </a>
+            {%- endif -%}
+          </div>
         {%- endif -%}
       </div>
-
-      {%- if block.settings.app_store_link != blank -%}
-        <a
-          href="{{ block.settings.app_store_link }}"
-          class="ai-single-image-cta-appstore-{{ ai_gen_id }}"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="{{ block.settings.app_store_label | default: 'Download Hat Finder on the App Store' | escape }}"
-        >
-          <img
-            class="ai-single-image-cta-appstore-badge-{{ ai_gen_id }}"
-            src="{{ 'download-on-the-app-store.svg' | asset_url }}"
-            alt="Download on the App Store"
-            width="130"
-            height="43"
-            loading="lazy"
-          >
-        </a>
-      {%- endif -%}
     </div>
   {%- endif -%}
 </div>

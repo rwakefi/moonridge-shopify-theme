@@ -153,20 +153,21 @@
   }
 
   .ai-single-image-cta-appstore-{{ ai_gen_id }} {
-    display: none;
-    margin: 2px 0 0;
-    color: var(--mr-cta-ink);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    opacity: 0.72;
+    display: inline-flex;
+    margin: 4px 0 0;
+    line-height: 0;
+    text-decoration: none;
   }
 
   .ai-single-image-cta-appstore-{{ ai_gen_id }}:hover {
-    opacity: 1;
+    opacity: 0.85;
+  }
+
+  .ai-single-image-cta-appstore-badge-{{ ai_gen_id }} {
+    display: block;
+    width: 130px;
+    max-width: 100%;
+    height: auto;
   }
 
   .ai-single-image-cta-btn-{{ ai_gen_id }}:focus-visible,
@@ -203,8 +204,8 @@
       max-width: 360px;
     }
 
-    .ai-single-image-cta-appstore-{{ ai_gen_id }} {
-      display: inline-flex;
+    .ai-single-image-cta-appstore-badge-{{ ai_gen_id }} {
+      width: 140px;
     }
   }
 
@@ -304,14 +305,22 @@
         {%- endif -%}
       </div>
 
-      {%- if block.settings.app_store_link != blank and block.settings.app_store_label != blank -%}
+      {%- if block.settings.app_store_link != blank -%}
         <a
           href="{{ block.settings.app_store_link }}"
           class="ai-single-image-cta-appstore-{{ ai_gen_id }}"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
+          aria-label="{{ block.settings.app_store_label | default: 'Download Hat Finder on the App Store' | escape }}"
         >
-          {{ block.settings.app_store_label | escape }}
+          <img
+            class="ai-single-image-cta-appstore-badge-{{ ai_gen_id }}"
+            src="{{ 'download-on-the-app-store.svg' | asset_url }}"
+            alt="Download on the App Store"
+            width="130"
+            height="43"
+            loading="lazy"
+          >
         </a>
       {%- endif -%}
     </div>
@@ -379,15 +388,15 @@
     {
       "type": "text",
       "id": "app_store_label",
-      "label": "App Store link label (mobile only)",
-      "default": "Get the iPhone app",
-      "info": "Only shows on mobile. Leave blank to hide."
+      "label": "App Store badge accessibility label",
+      "default": "Download Hat Finder on the App Store",
+      "info": "Used for screen readers. Leave App Store link blank to hide the badge."
     },
     {
       "type": "url",
       "id": "app_store_link",
-      "label": "App Store link (mobile only)",
-      "info": "Paste the App Store URL. Hidden on desktop."
+      "label": "App Store link",
+      "info": "Shows the official App Store badge under the buttons on desktop and mobile."
     },
     {
       "type": "color",

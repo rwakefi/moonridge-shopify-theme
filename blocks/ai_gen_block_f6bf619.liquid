@@ -95,7 +95,7 @@
   .ai-single-image-cta-actions-{{ ai_gen_id }} {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     gap: 10px;
     width: 100%;
@@ -106,8 +106,10 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    box-sizing: border-box;
     min-height: 44px;
-    padding: 11px 22px;
+    height: 44px;
+    padding: 0 22px;
     font-family: inherit;
     font-size: 13px;
     font-weight: 600;
@@ -156,7 +158,12 @@
     display: inline-flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     gap: 8px;
+  }
+
+  .ai-single-image-cta-secondary-stack-{{ ai_gen_id }} .ai-single-image-cta-btn-{{ ai_gen_id }} {
+    width: 100%;
   }
 
   .ai-single-image-cta-appstore-{{ ai_gen_id }} {

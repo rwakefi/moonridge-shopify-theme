@@ -16,29 +16,31 @@
       "name": "Moon Ridge Footer",
       "settings": {
         "left_heading": "MOON RIDGE COMPANY | Legendary Brands. FITTED. PERSONALIZED.",
-        "left_body": "We love hats — and we love helping you find the one that feels just right. We’re proud to do it as a small business from Fayetteville, Arkansas.",
+        "left_body": "We love hats \u2014 and we love helping you find the one that feels just right. We\u2019re proud to do it as a small business from Fayetteville, Arkansas.",
         "contact_label": "Address/Contact Info",
         "contact_email": "info@moonridgecompany.com",
         "contact_phone": "(479) 430-2667",
         "instagram_url": "https://instagram.com/moonridgeco",
         "facebook_url": "https://facebook.com/Moonridgecompany/",
         "tiktok_url": "https://tiktok.com/moonridgeco",
-        "store_hours": "Mon–Fri: 10am–5pm\nSaturday: 10am–2pm\nSunday: Closed\n\nHat Designers are in store Thursday, Friday, and Saturday.",
+        "store_hours": "Mon\u2013Fri: 10am\u20135pm\nSaturday: 10am\u20132pm\nSunday: Closed\n\nHat Designers are in store Thursday, Friday, and Saturday.",
         "newsletter_heading": "STAY IN TOUCH",
         "newsletter_text": "Subscribe to receive updates, new arrivals, and exclusive Moon Ridge offers.",
         "newsletter_placeholder": "Enter your email address",
         "newsletter_button_label": "SUBSCRIBE",
-        "newsletter_success": "Thanks for subscribing — we’ll be in touch soon.",
+        "newsletter_success": "Thanks for subscribing \u2014 we\u2019ll be in touch soon.",
         "show_hat_finder_column": true,
         "hat_finder_heading": "HAT FINDER APP",
-        "hat_finder_text": "Not sure where to start? Answer a few quick questions about crown, brim, and style — our Hat Finder matches you with hats from the Moon Ridge collection. Free on iPhone.",
-        "hat_finder_link_label": "Try Hat Finder on the web →",
+        "hat_finder_text": "Not sure where to start? Answer a few quick questions about crown, brim, and style \u2014 our Hat Finder matches you with hats from the Moon Ridge collection. Free on iPhone.",
+        "hat_finder_link_label": "Try Hat Finder on the web \u2192",
         "hat_finder_link": "/pages/hat-finder",
         "menu_heading": "QUICK LINKS",
         "footer_menu": "footer",
-        "bottom_text": "© 2026 Moon Ridge Company (formerly Rafter M Hat Co.)",
+        "bottom_text": "\u00a9 2026 Moon Ridge Company (formerly Rafter M Hat Co.)",
         "padding_top": 60,
-        "padding_bottom": 28
+        "padding_bottom": 28,
+        "show_hat_finder_app_store_badge": true,
+        "hat_finder_app_store_url": "https://apps.apple.com/us/app/hat-finder/id6767718895?itscg=30200&itsct=apps_box_link&mttnsubad=6767718895"
       }
     },
     "custom_liquid_mJwrwy": {
@@ -91,7 +93,7 @@
           "type": "text",
           "settings": {
             "heading": "<a href=\"/pages/contact\" title=\"Contact\">Contact Moon Ridge</a>",
-            "subtext": "<h4>                                  Moon Ridge     </h4><h4>2218 N College Ave, Fayetteville, AR 72703</h4><h4>Phone: ‪(479) 430-2667‬</h4>"
+            "subtext": "<h4>                                  Moon Ridge     </h4><h4>2218 N College Ave, Fayetteville, AR 72703</h4><h4>Phone: \u202a(479) 430-2667\u202c</h4>"
           }
         },
         "link_list_CmhmYR": {

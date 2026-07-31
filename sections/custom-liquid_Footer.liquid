@@ -141,6 +141,7 @@
         {% assign hat_finder_body = section.settings.hat_finder_text | default: section.settings.hat_finder_body %}
         {% assign hat_finder_web_url = section.settings.hat_finder_link | default: section.settings.hat_finder_web_url | default: '/pages/hat-finder' %}
         {% assign hat_finder_web_label = section.settings.hat_finder_link_label | default: section.settings.hat_finder_web_label | default: 'Try Hat Finder on the web →' %}
+        {% assign hat_finder_app_store_url = section.settings.hat_finder_app_store_url | default: 'https://apps.apple.com/us/app/hat-finder/id6767718895?itscg=30200&itsct=apps_box_link&mttnsubad=6767718895' %}
 
         <div class="rm-footer-col rm-footer-hat-finder">
           <h3>{{ section.settings.hat_finder_heading | default: 'HAT FINDER APP' }}</h3>
@@ -152,6 +153,40 @@
           {% if hat_finder_web_url != blank and hat_finder_web_label != blank %}
             <p class="rm-hat-finder-web-link">
               <a href="{{ hat_finder_web_url }}">{{ hat_finder_web_label }}</a>
+            </p>
+          {% endif %}
+
+          {% if section.settings.show_hat_finder_app_store_badge != false and hat_finder_app_store_url != blank %}
+            <p class="rm-hat-finder-app-store">
+              <a
+                class="rm-hat-finder-app-store-link"
+                href="{{ hat_finder_app_store_url }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Download Hat Finder on the App Store"
+              >
+                {% if section.settings.hat_finder_app_store_badge != blank %}
+                  {{
+                    section.settings.hat_finder_app_store_badge
+                    | image_url: width: 360
+                    | image_tag:
+                      class: 'rm-hat-finder-app-store-badge',
+                      alt: 'Download on the App Store',
+                      loading: 'lazy',
+                      widths: '120, 180, 240, 360',
+                      sizes: '140px'
+                  }}
+                {% else %}
+                  <img
+                    class="rm-hat-finder-app-store-badge"
+                    src="{{ 'download-on-the-app-store-white.svg' | asset_url }}"
+                    alt="Download on the App Store"
+                    width="140"
+                    height="47"
+                    loading="lazy"
+                  >
+                {% endif %}
+              </a>
             </p>
           {% endif %}
         </div>
@@ -336,17 +371,34 @@
   margin-bottom: 8px;
 }
 
-.rm-footer-hat-finder img,
-.rm-footer-hat-finder svg,
-.rm-footer-hat-finder .rm-hat-finder-badges,
-.rm-footer-hat-finder .rm-hat-finder-icon-link {
-  display: none;
+.rm-hat-finder-web-link {
+  margin-bottom: 12px;
 }
 
 .rm-hat-finder-web-link a {
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 5px;
+}
+
+.rm-hat-finder-app-store {
+  margin: 0 0 8px;
+}
+
+.rm-hat-finder-app-store-link {
+  display: inline-block;
+  line-height: 0;
+}
+
+.rm-hat-finder-app-store-link:hover {
+  opacity: 0.85;
+}
+
+.rm-hat-finder-app-store-badge {
+  display: block;
+  width: 140px;
+  max-width: 100%;
+  height: auto;
 }
 
 /* NEWSLETTER */
@@ -596,6 +648,24 @@
       "type": "url",
       "id": "hat_finder_link",
       "label": "Hat Finder link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hat_finder_app_store_badge",
+      "label": "Show App Store badge under web link",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "hat_finder_app_store_url",
+      "label": "App Store URL",
+      "info": "Defaults to the Hat Finder App Store marketing link."
+    },
+    {
+      "type": "image_picker",
+      "id": "hat_finder_app_store_badge",
+      "label": "App Store badge image (optional)",
+      "info": "Leave blank to use the official white App Store badge SVG in theme assets."
     },
     {
       "type": "text",

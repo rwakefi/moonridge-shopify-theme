@@ -2,6 +2,7 @@
   @prompt
     a section the same size as the lumen slideshow section below, this will just be a single picture, it needs to be 1920 by 1080, add a mobile image that is 1080 by 1350
 {% enddoc %}
+{% comment %} App Store badge nested in secondary shell {% endcomment %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
 {% style %}
@@ -332,8 +333,6 @@
       {%- if block.settings.cta_support != blank -%}
         <p class="ai-single-image-cta-copy-{{ ai_gen_id }}">{{ block.settings.cta_support | escape }}</p>
       {%- endif -%}
-
-      <!-- hf-shell-1785463755 -->
       <div class="ai-single-image-cta-actions-{{ ai_gen_id }}">
         {%- if block.settings.button_label != blank -%}
           <a

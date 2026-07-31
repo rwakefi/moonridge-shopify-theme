@@ -4,6 +4,8 @@
   if pages['shop-hats'] != blank
     assign hub_url = pages['shop-hats'].url
   endif
+  assign hat_finder_url = 'https://hatfinder.moonridgecompany.com'
+  assign hat_finder_app_store_url = 'https://apps.apple.com/us/app/hat-finder/id6767718895'
 -%}
 
 <script type="application/ld+json">
@@ -95,10 +97,12 @@
       <div class="he-article__cta-inner">
         <div class="he-article__cta-copy">
           <p class="he-article__cta-label">Ready to find your fit?</p>
-          <p class="he-article__cta-text">Book a free hat fitting in Fayetteville or browse hats online with expert guidance built in.</p>
+          <p class="he-article__cta-text">Try <a href="{{ hat_finder_url }}">Hat Finder</a> on the web or iPhone, book a free fitting in Fayetteville, or browse hats with expert guidance built in.</p>
         </div>
         <div class="he-article__cta-actions">
-          <a class="he-article__btn he-article__btn--primary" href="https://moonridgecompany.setmore.com">Book a fitting</a>
+          <a class="he-article__btn he-article__btn--primary" href="{{ hat_finder_url }}">Try Hat Finder</a>
+          <a class="he-article__btn he-article__btn--secondary" href="{{ hat_finder_app_store_url }}" target="_blank" rel="noopener noreferrer">Get the iPhone app</a>
+          <a class="he-article__btn he-article__btn--secondary" href="https://moonridgecompany.setmore.com">Book a fitting</a>
           <a class="he-article__btn he-article__btn--secondary" href="{{ hub_url }}">Shop hats</a>
         </div>
       </div>
@@ -530,6 +534,17 @@
     margin: 0;
     font-size: 1.05rem;
     color: var(--he-ink);
+  }
+
+  .he-article__cta-text a {
+    color: var(--he-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--he-accent);
+    text-underline-offset: 0.15em;
+  }
+
+  .he-article__cta-text a:hover {
+    color: var(--he-accent);
   }
 
   .he-article__cta-actions {

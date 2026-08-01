@@ -29,10 +29,11 @@
 }
 
 /*
-  Match Add to cart exactly: same Dawn classes (button / button--full-width /
-  button--primary) plus shared heritage-luxury chrome. Only lock layout here —
-  do not override padding, radius, border, or background (those caused the
-  width / finish mismatch on mobile).
+  Secondary / outlined by design: this is an optional add-on, so it must read as
+  subordinate to Add to cart. White fill, leather border, leather text. Only
+  background / border / color are overridden here -- padding, radius and width
+  stay inherited from .button, because overriding those previously caused a
+  width + finish mismatch on mobile.
 */
 .hat-branding__open.button {
   display: flex;
@@ -43,11 +44,22 @@
   box-sizing: border-box;
   min-height: calc(4.2rem + var(--buttons-border-width, 1px) * 2);
   margin: 0;
+  background-color: #fff !important;
+  color: var(--rm-leather, #312110) !important;
+  border: 1px solid var(--rm-leather, #312110) !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
+.hat-branding__open.button:hover {
+  background-color: var(--rm-leather, #312110) !important;
+  color: #fff !important;
+}
+
+/* Once branding is in the cart, invert to a solid state as confirmation. */
 .hat-branding__open.button.is-added {
-  background-color: transparent !important;
-  color: var(--rm-leather, #312110) !important;
+  background-color: var(--rm-leather, #312110) !important;
+  color: #fff !important;
   border: 1px solid var(--rm-leather, #312110) !important;
 }
 

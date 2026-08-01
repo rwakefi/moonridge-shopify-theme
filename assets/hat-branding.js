@@ -15,6 +15,14 @@ if (!customElements.get('hat-branding')) {
         this.openLabel = this.querySelector('[data-hat-branding-open-label]');
         this.status = this.querySelector('[data-hat-branding-status]');
         this.modal = this.querySelector('[data-hat-branding-modal]');
+        // A previous instance of this section may have left a portaled modal on <body>.
+        if (this.modal?.id) {
+          document
+            .querySelectorAll(`body > [data-hat-branding-modal]#${CSS.escape(this.modal.id)}`)
+            .forEach((stale) => {
+              if (stale !== this.modal) stale.remove();
+            });
+        }
         this.dialog = this.querySelector('[data-hat-branding-dialog]');
         this.lettersInput = this.querySelector('[data-hat-branding-letters]');
         this.agreeInput = this.querySelector('[data-hat-branding-agree]');
@@ -47,11 +55,50 @@ if (!customElements.get('hat-branding')) {
         document.removeEventListener('keydown', this.onKeyDown);
         document.body.classList.remove('hat-branding-open');
         this.endZoom();
+        if (this.modal && this.modal.parentElement === document.body) {
+          this.modal.remove();
+        }
+      }
+
+      // Runtime lookups must follow the modal, which moves to <body> while open.
+      scope() {
+        return this.modal || this;
+      }
+
+      /*
+        The modal is position:fixed with inset:0, but on product pages an ancestor
+        (.product__info-wrapper) runs a slideIn animation whose keyframes animate
+        transform. An element with a transform animation in effect becomes the
+        containing block for fixed-position descendants, so inset:0 resolved against
+        that wrapper instead of the viewport and the dialog landed ~550px down --
+        below the fold, so the button looked like it did nothing.
+
+        Cancelling the animation is not an option: its fill state also supplies the
+        wrapper's opacity, so the whole product column (modal included) fades out.
+        Moving the modal to <body> while open sidesteps the ancestor chain entirely.
+      */
+      portalModal() {
+        if (!this.modal || this.modal.parentElement === document.body) return;
+        this.modalHome = this.modal.parentElement;
+        this.modalHomeNext = this.modal.nextElementSibling;
+        document.body.appendChild(this.modal);
+      }
+
+      restoreModal() {
+        if (!this.modal || !this.modalHome) return;
+        if (this.modal.parentElement !== document.body) return;
+        const ref = this.modalHomeNext && this.modalHomeNext.parentElement === this.modalHome
+          ? this.modalHomeNext
+          : null;
+        this.modalHome.insertBefore(this.modal, ref);
+        this.modalHome = null;
+        this.modalHomeNext = null;
       }
 
       open() {
         if (!this.modal) return;
         this.clearError();
+        this.portalModal();
         this.modal.hidden = false;
         document.body.classList.add('hat-branding-open');
         document.addEventListener('keydown', this.onKeyDown);
@@ -64,6 +111,7 @@ if (!customElements.get('hat-branding')) {
         if (!this.modal) return;
         this.endZoom();
         this.modal.hidden = true;
+        this.restoreModal();
         document.body.classList.remove('hat-branding-open');
         document.removeEventListener('keydown', this.onKeyDown);
         this.setLoading(false);
@@ -87,16 +135,16 @@ if (!customElements.get('hat-branding')) {
       }
 
       selectedLocation() {
-        const checked = this.querySelector('[data-hat-branding-location]:checked');
+        const checked = this.scope().querySelector('[data-hat-branding-location]:checked');
         return checked ? checked.value.trim() : '';
       }
 
       updatePreview() {
-        const checked = this.querySelector('[data-hat-branding-location]:checked');
+        const checked = this.scope().querySelector('[data-hat-branding-location]:checked');
         const url = checked?.getAttribute('data-preview-image') || '';
         const zoomUrl = checked?.getAttribute('data-preview-zoom') || url;
         const focus = checked?.getAttribute('data-preview-focus') || 'center';
-        const img = this.querySelector('[data-hat-branding-preview-img]');
+        const img = this.scope().querySelector('[data-hat-branding-preview-img]');
         const frame = this.previewFrame;
 
         this.endZoom();
@@ -132,7 +180,7 @@ if (!customElements.get('hat-branding')) {
 
       toggleZoom(event) {
         if (!this.previewFrame || this.previewFrame.hidden) return;
-        const img = this.querySelector('[data-hat-branding-preview-img]');
+        const img = this.scope().querySelector('[data-hat-branding-preview-img]');
         if (!img || img.hidden || !img.src) return;
 
         if (this.previewFrame.classList.contains('is-zoomed')) {

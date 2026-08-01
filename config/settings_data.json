@@ -293,6 +293,11 @@
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
+      },
+      "1513253815146976218": {
+        "type": "shopify://apps/omnisend-email-marketing-sms/blocks/app-embed/44704aa2-794f-4c5d-8c8e-039c841158e9",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
@@ -615,7 +620,7 @@
       "/* Hide typical trust-badge rows on product pages */.product__trust,.product-trust,.trust-badges,.product__icons,.icons-row,.guarantee-icons {display: none !important;}",
       "se-option:has(se-button) .se-selected-value {display: none !important;}",
       ".se-option-name {text-transform: capitalize;}",
-      "/* Moon Ridge blog: readable body text on mobile */.text-box p,.text-box li {font-size: 1.125rem !important; line-height: 1.65 !important;}",
+      " /* Moon Ridge blog: readable body text on mobile */.text-box p,.text-box li {font-size: 1.125rem !important; line-height: 1.65 !important;}",
       ".text-box p span[style],.text-box p em[style],.text-box span[style] {font-size: inherit !important;}",
       ".block-blog-header__description {font-size: 1.125rem !important; line-height: 1.65 !important;}",
       "@media screen and (max-width: 749px) {.text-box p, .text-box li, .block-blog-header__description {font-size: 1.1875rem !important; }}",

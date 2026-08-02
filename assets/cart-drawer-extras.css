@@ -129,13 +129,21 @@
   margin-top: auto;
 }
 
+/*
+  heritage-luxury.css sets padding / letter-spacing on all .button with
+  !important, which overrode the compact sizing here: the button rendered at
+  14px 32px, so 64px of a 130px tile was padding and "Add to cart" wrapped onto
+  two lines. These need !important to win.
+*/
 .cart-addons__add .button,
 .cart-addons__add .cart-addons__choose {
   width: 100%;
   min-width: 0;
-  padding: 0.7rem 0.8rem;
-  font-size: 1.2rem;
-  min-height: 0;
+  padding: 0.6rem 0.8rem !important;
+  font-size: 1.1rem !important;
+  letter-spacing: 0.08em !important;
+  line-height: 1.25 !important;
+  min-height: 0 !important;
 }
 
 .cart-addons__add product-form {

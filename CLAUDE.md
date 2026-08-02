@@ -113,10 +113,35 @@ Pulled from the About Us / brand-partner pages and from live copywriting session
   - Ball caps are identified by product tag `Ballcaps` (they ship via a separate $6 profile; no free-shipping tier).
 - Shipping rates (July 2026): General profile $15 ground ≤$99.99 / free ≥$100 (the $99.00–$99.99 dead zone was fixed 2026-07-19); Hats profile $15 economy, free ≥$99.99, $70 express; Ball caps $6/$25/$50; local pickup free.
 
+## Email & Omnisend (customer messaging)
+
+**Do not badger customers.** Light, respectful automation beats aggressive recovery sequences. This is a standing preference for Zack — treat it as a hard constraint when designing or editing campaigns, flows, SMS, or any outbound marketing.
+
+### Channel & cadence rules
+- **Email-only for now** — do not add SMS (or push) automations unless explicitly asked.
+- Cap automation send volume: about **1 automation email per day** and **no more than 3–4 per week** to the same person across flows.
+- **Suppress** automation emails if the customer just purchased.
+- **Quiet hours:** roughly **8am–8pm CDT** — don't schedule sends outside that window.
+- Do **not** stack Omnisend messages on top of Shopify's transactional order/shipping emails (no duplicate "your order shipped" style content).
+
+### Discount & offer rules
+- Protect the ~**40%** blended gross margin — no early or heavy %-off pressure in automations.
+- Abandoned cart: **no discount on emails 1–2**; only consider a small late incentive on a final reminder, and **never reuse `THANKYOU10`** for abandonment without discussing first (that code is post-purchase).
+- Prefer real value props over coupons first (e.g. free shipping ≥$100, fit/shaping expertise, brand trust).
+
+### Priority flows to build (drafts only until approved)
+1. **Abandoned cart** — 3 emails at ~2h / ~24h / ~72h; exit on purchase.
+2. **Welcome** — 3 emails: immediate brand intro → Day 3 experience/shaping → Day 7 soft shop CTA.
+3. **Post-purchase** — 1–2 emails only (~7–10 days care/fit; ~14–21 days soft review). Don't duplicate Shopify order/shipping mail.
+4. Later (not first): back-in-stock, winback (~90/120 days), birthday.
+5. Skip for now: browse/product abandonment, replenishment, heavy campaign blasts.
+
+Never activate, send, or publish Omnisend campaigns/automations without explicit approval.
+
 ## Active work queue (as of 2026-07-19)
 
 1. **Commit the shipping-line theme edit** — full instructions + paste-ready code in `shipping-line-theme-edit.md`. Use the GitHub connector to commit to `rwakefi/moonridge-shopify-theme` branch `main` (auto-deploys via Shopify GitHub integration). Verify on a live product page after.
-2. **Cart abandonments — Bob wants to work on this next.** Context: the checkout performance review (`checkout-performance-review.md`) found ~40 abandoned checkouts/quarter at $110+ AOV. First steps identified: verify abandoned-checkout email automation is active (Marketing → Automations), confirm Shop app cart reminders are on (Shop channel → Settings), then look at recovery copy/timing and possibly an incentive strategy (THANKYOU10 code exists for post-purchase; don't reuse it for abandonment without discussing).
+2. **Cart abandonments — Bob wants to work on this next.** Context: the checkout performance review (`checkout-performance-review.md`) found ~40 abandoned checkouts/quarter at $110+ AOV. First steps identified: verify abandoned-checkout email automation is active (Marketing → Automations), confirm Shop app cart reminders are on (Shop channel → Settings), then look at recovery copy/timing and possibly an incentive strategy (THANKYOU10 code exists for post-purchase; don't reuse it for abandonment without discussing). Follow the **Email & Omnisend** rules above — do not badger.
 
 ## Financials (established July 2026)
 

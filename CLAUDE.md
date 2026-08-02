@@ -117,6 +117,8 @@ Pulled from the About Us / brand-partner pages and from live copywriting session
 
 **Brand for all Omnisend work:** **Moon Ridge Hats and Heritage** (moonridgecompany.com). If the Omnisend account has multiple stores/brands, always confirm and use Moon Ridge Hats and Heritage — never set up or edit under a different brand without asking.
 
+**Remove Omnisend branding from everything.** No "Powered by Omnisend," Omnisend logos, Omnisend footer links, or other Omnisend platform marks in customer-facing emails, forms, popups, landing pages, or SMS. Customer-facing surfaces should look like Moon Ridge only. Omnisend's Free plan does **not** allow branding removal — paid plan (Standard or higher) is required; if branding can't be removed yet, flag it to Zack before anything goes live. When editing templates, strip any residual Omnisend marks from footers and prebuilt blocks.
+
 **Do not badger customers.** Light, respectful automation beats aggressive recovery sequences. This is a standing preference for Zack — treat it as a hard constraint when designing or editing campaigns, flows, SMS, or any outbound marketing.
 
 ### Channel & cadence rules

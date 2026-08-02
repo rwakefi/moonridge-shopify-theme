@@ -26,6 +26,7 @@ If Claude thinks you're wrong, it should push back and make its case before defe
 - Prefer drafts in Omnisend until Zack explicitly approves going live.
 - **Max marketing discount: 10%** unless Zack explicitly overrides.
 - Omnisend work must target **Moon Ridge Hats and Heritage** only.
+- **Remove Omnisend branding** from all customer-facing emails/forms/pages ("Powered by Omnisend," logos, footer links). Moon Ridge only. Flag if the plan blocks removal.
 - When using AI for email: optimize relevance and send timing, not volume; keep human oversight on brand voice (see `CLAUDE.md` → **AI email guidance**).
 
 ---
@@ -37,3 +38,4 @@ If Claude thinks you're wrong, it should push back and make its case before defe
 3. Never ship or publish anything without explicit approval — including Omnisend campaigns and automations.
 4. Never modify the Shopify store live (prices, inventory, product status) without explicit approval.
 5. Never design or recommend customer messaging that badgers — keep automation cadence light per `CLAUDE.md`.
+6. Never leave Omnisend (or other platform) branding on customer-facing Moon Ridge emails/forms without flagging Zack — strip it whenever the plan allows.

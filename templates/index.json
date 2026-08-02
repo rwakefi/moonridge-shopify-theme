@@ -193,7 +193,7 @@
           "settings": {
             "heading": "<strong>Where Hats Meet Heritage</strong>",
             "heading_tag": "h1",
-            "content": "<p>Arkansas\u2019s Original Hat Bar lives at Moon Ridge Hats and Heritage in Fayetteville. We sell, clean, shape, style and customize hats from heritage brands like Stetson and Resistol \u2014 and we carry complementary makers including Lucchese, Pendleton, and more.</p><p><strong>Now offering custom hat branding for shipped hats.</strong> Choose your two-letter initials and branding location on the product page when you order online.</p><p>In NWA? Come visit our Store \u2014 we fit you, shape the crown to your head, and finish it with trim and bands you choose. Want the full experience? <a href=\"https://moonridgecompany.setmore.com\"><strong>Book a free hat fitting</strong></a> (virtual or in person).</p><p>New to hats? Visit <a href=\"/blogs/hat-education\"><strong>Hat Education</strong></a> for quick guides on X-rating, materials, and care.</p>",
+            "content": "<p><a href=\"/pages/custom-hat-bar\" title=\"Arkansas's Original Custom Hat Bar\"><strong>Arkansas’s Original Hat Bar</strong></a> lives at Moon Ridge Hats and Heritage in Fayetteville. We sell, clean, shape, style and customize hats from heritage brands like Stetson and Resistol — and we carry complementary makers including Lucchese, Pendleton, and more.</p><p><strong>Now offering custom hat branding for shipped hats.</strong> Choose your two-letter initials and branding location on the product page when you order online.</p><p>In NWA? Come visit our Store — we fit you, shape the crown to your head, and finish it with trim and bands you choose. Want the full experience? <a href=\"https://moonridgecompany.setmore.com\"><strong>Book a free hat fitting</strong></a> (virtual or in person).</p><p>New to hats? Visit <a href=\"/blogs/hat-education\"><strong>Hat Education</strong></a> for quick guides on X-rating, materials, and care.</p>",
             "max_width": 1200,
             "text_alignment": "center",
             "heading_size": 24,
@@ -271,7 +271,7 @@
       "settings": {
         "label": "The Service Ritual",
         "title": "Your Hat, Restored.",
-        "text": "We don\u2019t just sell hats\u2014we preserve them. Bring in any hat, regardless of where it was purchased, for our expert cleaning and reshaping services.",
+        "text": "We don’t just sell hats—we preserve them. Bring in any hat, regardless of where it was purchased, for our expert cleaning and reshaping services.",
         "button_label": "Book a Restoration",
         "button_link": ""
       }
@@ -390,7 +390,7 @@
       "name": "Book Now Button",
       "settings": {
         "left_heading": "MOON RIDGE COMPANY | CRAFTED. FITTED. PERSONALIZED.",
-        "left_body": "We shape hats, we size hats, we customize hats \u2014 and we take immense pride in being a small, independent business in Fayetteville, Arkansas. No big corporates, no mass production. Just skill, craftsmanship, and a deep passion for helping every customer find the perfect hat.",
+        "left_body": "We shape hats, we size hats, we customize hats — and we take immense pride in being a small, independent business in Fayetteville, Arkansas. No big corporates, no mass production. Just skill, craftsmanship, and a deep passion for helping every customer find the perfect hat.",
         "contact_label": "Contact Us:",
         "contact_address": "2218 N College Ave\nFayetteville, AR 72703",
         "contact_map_link": "https://www.google.com/maps?q=2218+N+College+Ave,+Fayetteville,+AR+72703",
@@ -399,22 +399,22 @@
         "instagram_url": "https://instagram.com/moonridgeco",
         "facebook_url": "https://www.facebook.com/Moonridgecompany/",
         "tiktok_url": "https://tiktok.com/moonridgeco",
-        "store_hours": "Mon\u2013Fri: 10am\u20135pm\nSaturday: 10am\u20132pm\nSunday: Closed",
+        "store_hours": "Mon–Fri: 10am–5pm\nSaturday: 10am–2pm\nSunday: Closed",
         "newsletter_heading": "STAY IN TOUCH",
         "newsletter_text": "Subscribe to receive updates, new arrivals, and exclusive Moon Ridge offers.",
         "newsletter_placeholder": "Enter your email address",
         "newsletter_button_label": "SUBSCRIBE",
-        "newsletter_success": "Thanks for subscribing \u2014 we\u2019ll be in touch soon.",
+        "newsletter_success": "Thanks for subscribing — we’ll be in touch soon.",
         "show_hat_finder_column": true,
         "hat_finder_heading": "HAT FINDER APP",
-        "hat_finder_text": "Not sure where to start? Answer a few quick questions about crown, brim, and style \u2014 our Hat Finder matches you with hats from the Moon Ridge collection. Free on iPhone.",
-        "hat_finder_link_label": "Try Hat Finder on the web \u2192",
+        "hat_finder_text": "Not sure where to start? Answer a few quick questions about crown, brim, and style — our Hat Finder matches you with hats from the Moon Ridge collection. Free on iPhone.",
+        "hat_finder_link_label": "Try Hat Finder on the web →",
         "hat_finder_link": "",
         "show_hat_finder_app_store_badge": true,
         "hat_finder_app_store_url": "https://apps.apple.com/us/app/hat-finder/id6767718895?itscg=30200&itsct=apps_box_link&mttnsubad=6767718895",
         "menu_heading": "QUICK LINKS",
         "footer_menu": "footer",
-        "bottom_text": "\u00a9 2026 Moon Ridge Company (formerly Rafter M Hat Co.)  |  TERMS OF SERVICE  |  PRIVACY POLICY",
+        "bottom_text": "© 2026 Moon Ridge Company (formerly Rafter M Hat Co.)  |  TERMS OF SERVICE  |  PRIVACY POLICY",
         "padding_top": 60,
         "padding_bottom": 28
       }
@@ -921,7 +921,7 @@
           "type": "faq",
           "settings": {
             "question": "Did Rafter M Hat Company close?",
-            "answer": "<p>No \u2014 we expanded. Rafter M is now Moon Ridge Company: same team, same College Avenue shop, same custom hat craft, with even more heritage brands.</p>",
+            "answer": "<p>No — we expanded. Rafter M is now Moon Ridge Company: same team, same College Avenue shop, same custom hat craft, with even more heritage brands.</p>",
             "place_in_more": true
           }
         },
@@ -929,7 +929,7 @@
           "type": "faq",
           "settings": {
             "question": "Do you ship hats?",
-            "answer": "<p>Yes \u2014 we ship within the United States. Shipping options appear at checkout, and we pack hats carefully so they arrive ready to wear. We do not ship outside the US.</p>",
+            "answer": "<p>Yes — we ship within the United States. Shipping options appear at checkout, and we pack hats carefully so they arrive ready to wear. We do not ship outside the US.</p>",
             "place_in_more": true
           }
         },
@@ -945,7 +945,7 @@
           "type": "faq",
           "settings": {
             "question": "Do you host private events or hat parties?",
-            "answer": "<p>Yes \u2014 in store and off-site, for weddings, bachelor/bachelorette parties, corporate events, and small celebrations. Start at <a href=\"/pages/book-moonridge\">Book Moon Ridge</a> or <a href=\"https://moonridgecompany.setmore.com\">book a free consultation</a>.</p>",
+            "answer": "<p>Yes — in store and off-site, for weddings, bachelor/bachelorette parties, corporate events, and small celebrations. Start at <a href=\"/pages/book-moonridge\">Book Moon Ridge</a> or <a href=\"https://moonridgecompany.setmore.com\">book a free consultation</a>.</p>",
             "place_in_more": true
           }
         },
@@ -961,7 +961,7 @@
           "type": "faq",
           "settings": {
             "question": "Do you offer military or first responder discounts?",
-            "answer": "<p>Yes \u2014 10% for military and first responders. Show valid ID in store, or email <a href=\"mailto:info@moonridgecompany.com\">info@moonridgecompany.com</a> before an online order so we can help apply it.</p>",
+            "answer": "<p>Yes — 10% for military and first responders. Show valid ID in store, or email <a href=\"mailto:info@moonridgecompany.com\">info@moonridgecompany.com</a> before an online order so we can help apply it.</p>",
             "place_in_more": true
           }
         },

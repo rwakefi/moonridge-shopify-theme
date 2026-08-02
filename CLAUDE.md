@@ -115,6 +115,8 @@ Pulled from the About Us / brand-partner pages and from live copywriting session
 
 ## Email & Omnisend (customer messaging)
 
+**Brand for all Omnisend work:** **Moon Ridge Hats and Heritage** (moonridgecompany.com). If the Omnisend account has multiple stores/brands, always confirm and use Moon Ridge Hats and Heritage — never set up or edit under a different brand without asking.
+
 **Do not badger customers.** Light, respectful automation beats aggressive recovery sequences. This is a standing preference for Zack — treat it as a hard constraint when designing or editing campaigns, flows, SMS, or any outbound marketing.
 
 ### Channel & cadence rules
@@ -125,9 +127,22 @@ Pulled from the About Us / brand-partner pages and from live copywriting session
 - Do **not** stack Omnisend messages on top of Shopify's transactional order/shipping emails (no duplicate "your order shipped" style content).
 
 ### Discount & offer rules
+- **Max discount: 10%.** Never create or recommend an offer above 10% off in Omnisend (or any marketing automation) unless Zack explicitly overrides.
 - Protect the ~**40%** blended gross margin — no early or heavy %-off pressure in automations.
-- Abandoned cart: **no discount on emails 1–2**; only consider a small late incentive on a final reminder, and **never reuse `THANKYOU10`** for abandonment without discussing first (that code is post-purchase).
+- Abandoned cart: **no discount on emails 1–2**; only consider a small late incentive on a final reminder (**≤10%**), and **never reuse `THANKYOU10`** for abandonment without discussing first (that code is post-purchase).
 - Prefer real value props over coupons first (e.g. free shipping ≥$100, fit/shaping expertise, brand trust).
+
+### AI email guidance (keep human judgment in charge)
+Drawn from modern AI email best practices (incl. Salesforce's AI-in-email guidance) and adapted to Moon Ridge's no-badger standard:
+
+- **AI reduces fatigue — it does not justify more email.** Use send-time optimization and preference signals so people hear from us when they're receptive, not more often.
+- **Relevance over volume.** Personalize from real first-party behavior (purchases, browse, signup source) so each send has a clear reason. Never use AI to manufacture urgency or pressure.
+- **Human brand voice wins.** Let AI draft structure/variants; Zack/Natalie (or an approved agent pass) add the Moon Ridge POV. No AI copy goes live without human oversight for brand consistency and compassion.
+- **Clear goal before each send or flow.** Know the one job (recover cart, welcome, care tip, soft review) before generating content or turning on AI features.
+- **Start with platform AI that's already built in** (send-time optimization, subject-line testing, simple content variants) before custom/complex models.
+- **A/B test one thing at a time** with a control group — don't change subject, offer, and body in the same test.
+- **Trust and consent first.** Prefer first-party, permissioned data. Don't chase purchased lists or dark patterns that erode trust.
+- Empathetic, thoughtful content is the bar — efficiency is secondary.
 
 ### Priority flows to build (drafts only until approved)
 1. **Abandoned cart** — 3 emails at ~2h / ~24h / ~72h; exit on purchase.

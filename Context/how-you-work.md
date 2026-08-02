@@ -24,6 +24,9 @@ If Claude thinks you're wrong, it should push back and make its case before defe
 ## Additional Preferences
 - **Do not badger customers.** Marketing and automation design must stay light and respectful — never aggressive recovery sequences, SMS piles, or over-messaging. See `CLAUDE.md` → **Email & Omnisend** for cadence, quiet hours, suppress-on-purchase, and discount rules.
 - Prefer drafts in Omnisend until Zack explicitly approves going live.
+- **Max marketing discount: 10%** unless Zack explicitly overrides.
+- Omnisend work must target **Moon Ridge Hats and Heritage** only.
+- When using AI for email: optimize relevance and send timing, not volume; keep human oversight on brand voice (see `CLAUDE.md` → **AI email guidance**).
 
 ---
 

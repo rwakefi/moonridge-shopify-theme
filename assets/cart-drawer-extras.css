@@ -148,13 +148,27 @@
 }
 
 /*
+  Header: title 24px -> 19px, header block 69px -> 47px. The close button stays
+  vertically aligned because it is centred in the header, not against the title.
+*/
+cart-drawer .drawer__header {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+cart-drawer .drawer__heading {
+  font-size: 1.9rem !important;
+  margin-bottom: 0.4rem !important;
+}
+
+/*
   Compact drawer layout, measured against a 750px drawer.
 
   A newly added item goes to the TOP of the cart and the drawer opens at
   scroll-top with the free shipping bar above it, so the new card is only fully
   visible when (shipping bar + one card) fits the scroll viewport.
   Before: bar 64px + card 176px = 240px against a 149px viewport -- you saw
-  125px of a 176px card. After: bar 49px + card 153px = 202px against 290px.
+  125px of a 176px card. After: bar 49px + card 153px = 202px against 312px.
 
   The shipping bar must stay INSIDE cart-drawer-items. Moving it out makes it a
   fixed flex child that permanently subtracts its height from the scroll
@@ -211,8 +225,9 @@ cart-drawer .cart-addons__media {
 }
 
 /*
-  Footer trim: 250px -> 188px, which grows the scroll viewport 228px -> 290px so
-  the newly added card shows in full with 83px of the next card peeking.
+  Footer trim: 250px -> 188px. Together with the header trim this grows the
+  scroll viewport 149px -> 312px, so the newly added card shows in full with
+  105px of the next card peeking.
 
   Totals card 118px -> 80px (padding, .totals margins, tax-note margins) and the
   checkout assurance line pulled tighter.

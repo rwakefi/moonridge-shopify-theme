@@ -14,10 +14,10 @@
   elsif block.settings.branding_product != blank
     assign branding_product = all_products[block.settings.branding_product]
   else
-    assign branding_product = all_products['hat-branding-3-letters']
+    assign branding_product = all_products['hat-branding-existing-hats']
   endif
   assign branding_variant = branding_product.selected_or_first_available_variant
-  assign branding_variant_id = branding_variant.id | default: block.settings.branding_variant_id | default: 49089192362288
+  assign branding_variant_id = branding_variant.id | default: block.settings.branding_variant_id | default: 49280805470512
   assign branding_price = branding_variant.price | default: 2500
   assign button_label = block.settings.button_label | default: 'Add Hat Branding $25'
   assign locations_raw = block.settings.branding_locations | default: 'Side of Crown - Left,Back of Crown - Right,Under Edge of Brim - Right Side,Under Edge of Brim - Left Side'

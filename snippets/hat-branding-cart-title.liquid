@@ -18,7 +18,7 @@
     endif
   endfor
 -%}
-{%- if item.product.handle == 'hat-branding-3-letters' or item.product.title contains 'Hat Branding' -%}
+{%- if item.product.handle == 'hat-branding-existing-hats' or item.product.title contains 'Hat Branding' -%}
   Hat Branding
   {%- if branding_letters != blank %} — {{ branding_letters | escape }}{% endif -%}
 {%- else -%}

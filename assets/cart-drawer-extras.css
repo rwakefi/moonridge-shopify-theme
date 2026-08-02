@@ -139,11 +139,75 @@
 .cart-addons__add .cart-addons__choose {
   width: 100%;
   min-width: 0;
-  padding: 0.6rem 0.8rem !important;
-  font-size: 1.1rem !important;
-  letter-spacing: 0.08em !important;
+  padding: 0.6rem 0.5rem !important;
+  font-size: 1.05rem !important;
+  letter-spacing: 0.03em !important;
   line-height: 1.25 !important;
   min-height: 0 !important;
+  white-space: nowrap !important;
+}
+
+/*
+  Compact drawer layout, measured against a 750px drawer.
+
+  A newly added item goes to the TOP of the cart and the drawer opens at
+  scroll-top with the free shipping bar above it, so the new card is only fully
+  visible when (shipping bar + one card) fits the scroll viewport.
+  Before: bar 64px + card 176px = 240px against a 149px viewport -- you saw
+  125px of a 176px card. After: bar 49px + card 153px = 202px against 228px.
+
+  The shipping bar must stay INSIDE cart-drawer-items. Moving it out makes it a
+  fixed flex child that permanently subtracts its height from the scroll
+  viewport (measured: 149px -> 73px). Inside, it scrolls away and costs nothing.
+
+  Scoped to cart-drawer so the /cart page keeps full sizing. !important is
+  needed throughout because the theme base and heritage-luxury.css both use it.
+*/
+cart-drawer .cart-ship-bar {
+  padding: 0.8rem 2rem 0.9rem !important;
+  margin-bottom: 0.6rem !important;
+}
+
+cart-drawer .cart-ship-bar__message {
+  margin-bottom: 0.5rem !important;
+  font-size: 1.25rem !important;
+}
+
+cart-drawer .cart-item {
+  row-gap: 0.7rem !important;
+}
+
+cart-drawer .cart-item > * {
+  padding-top: 0.9rem !important;
+}
+
+cart-drawer .cart-item dl {
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+cart-drawer .cart-item .product-option {
+  font-size: 1.2rem !important;
+  line-height: 1.3 !important;
+}
+
+cart-drawer .cart-addons {
+  padding-top: 0.9rem !important;
+  padding-bottom: 0.2rem !important;
+}
+
+cart-drawer .cart-addons__heading {
+  margin-bottom: 0.6rem !important;
+}
+
+cart-drawer .cart-addons__item {
+  width: 9rem !important;
+}
+
+cart-drawer .cart-addons__media {
+  width: 6.2rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .cart-addons__add product-form {

@@ -111,12 +111,14 @@ Pulled from the About Us / brand-partner pages and from live copywriting session
   - All product templates (`product.json`, `product.cowboy-hats.json`, `product.bigalli.json`, `product.boots.json`, `product.drinkware.json`, `product.gift-card.json`, `product.home.json`, `product.services.json`, `product.rafter-m-personally-you.json`) use the shared `main-product` section → one edit to `snippets/buy-buttons.liquid` reaches every template. None of them override the buy_buttons block settings (all use schema defaults from `sections/main-product.liquid`).
   - Trust microcopy ("In-store or shipping nationwide…") lives as a `buy_buttons` block setting default in `sections/main-product.liquid` (~line 2497), rendered in `snippets/buy-buttons.liquid` (~line 120).
   - Ball caps are identified by product tag `Ballcaps` (they ship via a separate $6 profile; no free-shipping tier).
+  - **Cart add-ons (cart upsells) already built** (verified Aug 2026): `snippets/cart-drawer-addons.liquid` renders in the cart drawer (`snippets/cart-drawer.liquid`) above the footer. Styled in `assets/cart-drawer-extras.css`. Theme settings under Cart → "Suggested add-ons": `cart_addons_enable` (on), `cart_addons_collection` (`cart-add-ons`), `cart_addons_heading` ("Add to your order"), `cart_addons_limit` (6). Falls back to collection handle `cart-add-ons` if the setting is blank. Hides products already in the cart; single-variant products AJAX-add, multi-variant link to the product page. If the section doesn't show live, the usual cause is an empty/missing `cart-add-ons` collection — not missing theme code. Session paused Aug 2026 before wiring products or redesigning; see `scratch/cart-addons-notes.md` for resume notes.
 - Shipping rates (July 2026): General profile $15 ground ≤$99.99 / free ≥$100 (the $99.00–$99.99 dead zone was fixed 2026-07-19); Hats profile $15 economy, free ≥$99.99, $70 express; Ball caps $6/$25/$50; local pickup free.
 
-## Active work queue (as of 2026-07-19)
+## Active work queue (as of 2026-08-02)
 
 1. **Commit the shipping-line theme edit** — full instructions + paste-ready code in `shipping-line-theme-edit.md`. Use the GitHub connector to commit to `rwakefi/moonridge-shopify-theme` branch `main` (auto-deploys via Shopify GitHub integration). Verify on a live product page after.
 2. **Cart abandonments — Bob wants to work on this next.** Context: the checkout performance review (`checkout-performance-review.md`) found ~40 abandoned checkouts/quarter at $110+ AOV. First steps identified: verify abandoned-checkout email automation is active (Marketing → Automations), confirm Shop app cart reminders are on (Shop channel → Settings), then look at recovery copy/timing and possibly an incentive strategy (THANKYOU10 code exists for post-purchase; don't reuse it for abandonment without discussing).
+3. **Cart add-ons — paused.** Theme code is in place; next step when resumed is populate/confirm the `cart-add-ons` collection (and optionally tweak heading/look). Details in `scratch/cart-addons-notes.md`.
 
 ## Financials (established July 2026)
 

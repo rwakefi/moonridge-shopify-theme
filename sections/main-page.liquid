@@ -1,5 +1,16 @@
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  assign brand_intro_wide = false
+  if template.suffix == 'brand' or template.suffix == 'brand-v2' or template.suffix == 'brand-nav'
+    assign brand_intro_wide = true
+  endif
+  assign brand_bar_handles = 'stetson,resistol,lucchese,pendleton,goorin-bros,bigalli-1' | split: ','
+  if brand_bar_handles contains page.handle
+    assign brand_intro_wide = true
+  endif
+-%}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -19,9 +30,32 @@
     text-align: center;
     margin-bottom: 2rem;
   }
+
+  {%- if brand_intro_wide -%}
+  #shopify-section-{{ section.id }} .page-width {
+    max-width: 1000px;
+  }
+
+  #shopify-section-{{ section.id }} .rte {
+    max-width: min(68rem, 92vw);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 1.7rem;
+    line-height: 1.7;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .rte {
+      max-width: 92vw;
+      font-size: 1.55rem;
+      line-height: 1.65;
+    }
+  }
+  {%- endif -%}
 {%- endstyle -%}
 
-<div class="page-width page-width--narrow section-{{ section.id }}-padding">
+<div class="page-width{% unless brand_intro_wide %} page-width--narrow{% endunless %} section-{{ section.id }}-padding">
   <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     {{ page.title | escape }}
   </h1>

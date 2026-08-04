@@ -514,7 +514,7 @@
     {% sections 'popup-group' %}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
-      {%- if template.suffix == 'brand' or template.suffix == 'brand-v2' or template.suffix == 'brand-nav' -%}
+      {%- if template.name == 'page' and page.metafields.custom.brand_logo != blank -%}
         {% render 'heritage-brands-marquee', hbm_id: 'theme-brand' %}
       {%- endif -%}
       {{ content_for_layout }}

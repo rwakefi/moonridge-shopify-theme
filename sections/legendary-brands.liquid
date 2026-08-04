@@ -1,4 +1,4 @@
-{%- comment -%} block-order note: Lucchese before Goorin Bros. {%- endcomment -%}
+{%- comment -%} logo-size-slider + block-order note: Lucchese before Goorin Bros. {%- endcomment -%}
 {% comment %}
   Our Legendary Brands — hero, brand showcase with image spots, optional photo strip.
 {% endcomment %}
@@ -108,10 +108,24 @@
     transition: transform 0.45s ease;
   }
 
+  .lb-card-media-{{ section.id }}--logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .lb-card-media-{{ section.id }}--logo img {
     object-fit: contain;
     padding: 18% 16%;
     background: #fff;
+  }
+
+  .lb-card-media-{{ section.id }}--logo img.lb-logo-sized-{{ section.id }} {
+    width: auto;
+    height: auto;
+    max-width: var(--lb-logo-size, 70%);
+    max-height: var(--lb-logo-size, 70%);
+    padding: 0;
   }
 
   .lb-card-{{ section.id }}:hover .lb-card-media-{{ section.id }} img {
@@ -260,12 +274,15 @@
                     | image_tag: loading: 'lazy', widths: '300, 500, 800', sizes: '(min-width: 990px) 30vw, 50vw', alt: logo_alt
                   }}
                 {%- elsif block.settings.logo_url != blank -%}
+                  {%- assign lb_logo_size = block.settings.logo_url_size | default: 70 -%}
                   <img
+                    class="lb-logo-sized-{{ section.id }}"
                     src="{{ block.settings.logo_url }}"
                     alt="{{ block.settings.title | escape }}"
                     loading="lazy"
                     width="400"
                     height="300"
+                    style="--lb-logo-size: {{ lb_logo_size }}%;"
                   >
                 {%- endif -%}
               </div>
@@ -314,12 +331,15 @@
                     | image_tag: loading: 'lazy', widths: '300, 500, 800', sizes: '(min-width: 990px) 30vw, 50vw', alt: logo_alt
                   }}
                 {%- elsif block.settings.logo_url != blank -%}
+                  {%- assign lb_logo_size = block.settings.logo_url_size | default: 70 -%}
                   <img
+                    class="lb-logo-sized-{{ section.id }}"
                     src="{{ block.settings.logo_url }}"
                     alt="{{ block.settings.title | escape }}"
                     loading="lazy"
                     width="400"
                     height="300"
+                    style="--lb-logo-size: {{ lb_logo_size }}%;"
                   >
                 {%- endif -%}
               </div>
@@ -528,6 +548,17 @@
           "id": "logo_url",
           "label": "Logo URL fallback",
           "info": "Optional CDN URL if logo image isn’t uploaded yet."
+        },
+        {
+          "type": "range",
+          "id": "logo_url_size",
+          "min": 30,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "label": "Fallback logo size",
+          "info": "How large the CDN fallback logo sits in the tile.",
+          "default": 70
         }
       ]
     },

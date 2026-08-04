@@ -1,7 +1,7 @@
 # Stetson brand page — heritage copy (draft)
 
-Paste-ready for the Stetson page metafields / page body.
-Do **not** publish until Zack approves.
+Published to the live Stetson page (Zack approved “lets push”, 2026-08-04).
+Kept here as the source-of-truth draft for future brand-page clones.
 
 Sources checked against Stetson’s own 160-year timeline, Stetson Stories,
 True West (Megargee), and John B. Stetson Company history. Moon Ridge voice

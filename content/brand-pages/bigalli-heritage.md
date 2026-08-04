@@ -16,9 +16,8 @@ history (Ezio Bigalli Corbani / Ecuador).
 - Craft blend: Italian felt / millinery precision + Ecuadorian **paja
   toquilla** (Panama straw) weaving.
 - Still family-run across **four generations**; US distribution through
-  Dallas. Live Moon Ridge page handle is currently `bigalli-1` (template
-  brand-v2) — content applied there; clean `/pages/bigalli` URL is a
-  separate redirect/handle fix if Zack wants it.
+  Dallas. Page handle cleaned from `bigalli-1` → `bigalli` when this
+  heritage pass went live.
 
 ---
 
@@ -140,4 +139,4 @@ one on at the hat bar, or shop online and we’ll ship it to your door.
 | Timeline | New — six eras (none existed before) |
 | Heritage image | Left empty |
 | Tagline | Unchanged — `Crafting Timeless Hats Since 1926` |
-| URL | Content on `bigalli-1`; optional later handle cleanup to `bigalli` |
+| URL | Handle updated `bigalli-1` → `bigalli` |

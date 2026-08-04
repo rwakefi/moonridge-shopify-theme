@@ -12,9 +12,16 @@
 
   .ai-four-picture-grid__title-{{ ai_gen_id }} {
     margin: 0 0 {{ block.settings.title_spacing }}px;
+    padding: 0 16px;
     text-align: {{ block.settings.title_alignment }};
     color: {{ block.settings.title_color }};
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
     font-size: {{ block.settings.title_size }}px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.3;
   }
 
   .ai-four-picture-grid__container-{{ ai_gen_id }} {
@@ -111,6 +118,13 @@
       max-width: 100%;
       overflow-x: clip;
     }
+
+    .ai-four-picture-grid__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | minus: 4 | at_least: 14 }}px;
+      letter-spacing: 0.12em;
+      padding: 0 20px;
+      margin-bottom: {{ block.settings.title_spacing | minus: 4 | at_least: 8 }}px;
+    }
     
     .ai-four-picture-grid__track-{{ ai_gen_id }} {
       gap: 30px;
@@ -121,6 +135,12 @@
     .ai-four-picture-grid__item-{{ ai_gen_id }} {
       width: 130px;
       height: 80px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ai-four-picture-grid__track-{{ ai_gen_id }} {
+      animation: none;
     }
   }
 {% endstyle %}

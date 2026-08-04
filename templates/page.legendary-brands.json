@@ -7,11 +7,6 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-/*
- * ------------------------------------------------------------
- * Our Legendary Brands — brand showcase + product carousel
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "legendary_brands": {
@@ -22,101 +17,20 @@
           "settings": {
             "title": "Stetson",
             "tagline": "An American legacy",
-            "blurb": "Boss of the Plains to Garland felt — the most iconic hat brand in the world, shaped at our bench.",
+            "blurb": "Boss of the Plains to Garland felt \u2014 shaped at our bench.",
             "link": "/pages/stetson",
             "cta_label": "Explore Stetson",
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Stetson-Logo-Final.webp"
           }
-        },
-        "brand_resistol": {
-          "type": "brand",
-          "settings": {
-            "title": "Resistol",
-            "tagline": "Best All Around",
-            "blurb": "Texas-made felt built to resist all — still under the same Garland roof, fitted here in Fayetteville.",
-            "link": "/pages/resistol",
-            "cta_label": "Explore Resistol",
-            "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Resistol_911a3678-5dee-4a84-a061-3ac6b8fff945.webp"
-          }
-        },
-        "brand_goorin": {
-          "type": "brand",
-          "settings": {
-            "title": "Goorin Bros.",
-            "tagline": "Smooth Never Meant Subtle",
-            "blurb": "From a Pittsburgh cart in 1895 to Animal Farm truckers — family hats with a patch you can spot across a room.",
-            "link": "/pages/goorin-bros",
-            "cta_label": "Explore Goorin",
-            "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Goorin_10f766db-115d-4e2c-8c05-4781456b9d6d.webp"
-          }
-        },
-        "brand_pendleton": {
-          "type": "brand",
-          "settings": {
-            "title": "Pendleton",
-            "tagline": "Woven in Oregon Since 1863",
-            "blurb": "Virgin wool, dyed and woven in the Northwest — blankets, shirts, and goods that break in instead of wearing out.",
-            "link": "/pages/pendleton",
-            "cta_label": "Explore Pendleton",
-            "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Pendleton.webp"
-          }
-        },
-        "brand_lucchese": {
-          "type": "brand",
-          "settings": {
-            "title": "Lucchese",
-            "tagline": "Bootmaker",
-            "blurb": "Sicily to Fort Sam Houston in 1883. Twisted-cone last, El Paso hands — a smaller menu, better execution.",
-            "link": "/pages/lucchese",
-            "cta_label": "Explore Lucchese",
-            "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Lucchese.webp"
-          }
-        },
-        "brand_bigalli": {
-          "type": "brand",
-          "settings": {
-            "title": "Bigalli",
-            "tagline": "Crafting Timeless Hats Since 1926",
-            "blurb": "Italian eye, Ecuadorian hands — paja toquilla Panama straw and wool felt from a four-generation workshop.",
-            "link": "/pages/bigalli",
-            "cta_label": "Explore Bigalli",
-            "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Bigalli_2.webp"
-          }
-        },
-        "photo_1": {
-          "type": "photo",
-          "settings": {
-            "caption": "In the shop"
-          }
-        },
-        "photo_2": {
-          "type": "photo",
-          "settings": {
-            "caption": "On the bench"
-          }
-        },
-        "photo_3": {
-          "type": "photo",
-          "settings": {
-            "caption": "Fitted here"
-          }
         }
       },
       "block_order": [
-        "brand_stetson",
-        "brand_resistol",
-        "brand_goorin",
-        "brand_pendleton",
-        "brand_lucchese",
-        "brand_bigalli",
-        "photo_1",
-        "photo_2",
-        "photo_3"
+        "brand_stetson"
       ],
       "settings": {
         "eyebrow": "Moon Ridge Hats and Heritage",
         "heading": "Our Legendary Brands",
-        "intro": "The makers we trust enough to put our name next to. Heritage houses, still built by hand — shop the story, then find yours.",
+        "intro": "The makers we trust enough to put our name next to.",
         "container_width": 1200,
         "background_color": "#faf7f2",
         "surface_color": "#ffffff",
@@ -127,58 +41,9 @@
         "padding_top": 56,
         "padding_bottom": 64
       }
-    },
-    "brand_carousel": {
-      "type": "_blocks",
-      "blocks": {
-        "best_selling_carousel": {
-          "type": "ai_gen_block_884b3f7",
-          "name": "Best Selling Carosel",
-          "settings": {
-            "collection": "best-sellers",
-            "product_limit": 12,
-            "min_sizes_in_stock": 1,
-            "heading": "Shop the legends",
-            "subheading": "",
-            "heading_alignment": "center",
-            "heading_size": 28,
-            "show_view_all": true,
-            "view_all_label": "Shop all bestsellers",
-            "show_view_all_count": true,
-            "products_per_view": 4,
-            "products_per_view_tablet": 3,
-            "product_gap": 20,
-            "container_width": 1400,
-            "show_navigation": true,
-            "sale_badge_label": "Sale",
-            "sale_badge_bg": "#312110",
-            "sale_badge_color": "#ffffff",
-            "badge_border_radius": 4,
-            "background_color": "#ffffff",
-            "heading_color": "#1f1d24",
-            "text_color": "#1f1d24",
-            "price_color": "#312110",
-            "compare_price_color": "#999999",
-            "card_background": "#ffffff",
-            "card_border_color": "#e0e0e0",
-            "button_background": "#312110",
-            "button_color": "#ffffff",
-            "button_hover_background": "#1f1d24",
-            "card_border_radius": 6,
-            "padding_top": 50,
-            "padding_bottom": 65
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "best_selling_carousel"
-      ],
-      "settings": {}
     }
   },
   "order": [
-    "legendary_brands",
-    "brand_carousel"
+    "legendary_brands"
   ]
 }

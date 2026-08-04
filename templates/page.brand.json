@@ -43,6 +43,39 @@
         "padding_bottom": 36
       }
     },
+    "brand_heritage_section": {
+      "type": "_blocks",
+      "blocks": {
+        "brand_heritage_block": {
+          "type": "brand-heritage",
+          "name": "Brand Heritage",
+          "settings": {
+            "eyebrow": "The painting",
+            "timeline_heading": "A closer look at the history",
+            "image_ratio": 0.8,
+            "container_width": 1050,
+            "timeline_gap": 60,
+            "image_radius": 4,
+            "heading_size": 26,
+            "entry_title_size": 19,
+            "caption_size": 17,
+            "body_size": 16,
+            "background_color": "#faf7f2",
+            "heading_color": "#312110",
+            "text_color": "#1f1d24",
+            "eyebrow_color": "#8a7355",
+            "rule_color": "#e2d9cb",
+            "padding_top": 70,
+            "padding_bottom": 70
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "brand_heritage_block"
+      ],
+      "settings": {}
+    },
     "176306333526884c4b": {
       "type": "_blocks",
       "blocks": {
@@ -95,6 +128,7 @@
   "order": [
     "17617663646392ef5c",
     "main",
+    "brand_heritage_section",
     "176306333526884c4b",
     "176176716340be886a"
   ]

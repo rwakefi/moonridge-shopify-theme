@@ -47,6 +47,33 @@
 }
 
 /* ------------------------------
+   VIEW ALL
+--------------------------------*/
+.ai-carousel-viewall-wrap-{{ ai_gen_id }} {
+  text-align: center;
+  margin-top: 34px;
+}
+
+.ai-carousel-viewall-{{ ai_gen_id }} {
+  display: inline-block;
+  padding: 13px 30px;
+  border: 1px solid {{ block.settings.button_background }};
+  border-radius: {{ block.settings.card_border_radius }}px;
+  color: {{ block.settings.button_background }};
+  background-color: transparent;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.ai-carousel-viewall-{{ ai_gen_id }}:hover,
+.ai-carousel-viewall-{{ ai_gen_id }}:focus {
+  background-color: {{ block.settings.button_background }};
+  color: {{ block.settings.button_color }};
+}
+
+/* ------------------------------
    TRACK + SLIDE AREA
 --------------------------------*/
 .ai-product-carousel-wrapper-{{ ai_gen_id }} {
@@ -245,7 +272,23 @@
       >
         <div class="ai-product-carousel-track-container-{{ ai_gen_id }} moonridge-carousel-stage">
           <div class="ai-product-carousel-track-{{ ai_gen_id }}" data-track>
-            {% for product in block.settings.collection.products limit: block.settings.product_limit %}
+            {%- assign shown_count = 0 -%}
+            {% for product in block.settings.collection.products %}
+              {%- liquid
+                assign sizes_in_stock = 0
+                for variant in product.variants
+                  if variant.available
+                    assign sizes_in_stock = sizes_in_stock | plus: 1
+                  endif
+                endfor
+              -%}
+              {%- if sizes_in_stock < block.settings.min_sizes_in_stock -%}
+                {%- continue -%}
+              {%- endif -%}
+              {%- if shown_count >= block.settings.product_limit -%}
+                {%- break -%}
+              {%- endif -%}
+              {%- assign shown_count = shown_count | plus: 1 -%}
               <div class="ai-product-carousel-slide-{{ ai_gen_id }}">
                 <div class="ai-product-card-{{ ai_gen_id }}">
                   <div class="ai-product-image-wrapper-{{ ai_gen_id }}">
@@ -314,6 +357,14 @@
         <!-- Dots now sit under the products, not between arrows -->
         <div class="ai-carousel-dots-{{ ai_gen_id }}" data-dots></div>
       </div>
+
+      {%- if block.settings.show_view_all -%}
+        <div class="ai-carousel-viewall-wrap-{{ ai_gen_id }}">
+          <a class="ai-carousel-viewall-{{ ai_gen_id }}" href="{{ block.settings.collection.url }}">
+            {{ block.settings.view_all_label }}{% if block.settings.show_view_all_count %} ({{ block.settings.collection.all_products_count }}){% endif %}
+          </a>
+        </div>
+      {%- endif -%}
     {% else %}
       <div class="ai-carousel-empty-state-{{ ai_gen_id }}">
         <p>Next, select a collection to display products</p>
@@ -655,6 +706,16 @@
       "default": 12
     },
     {
+      "type": "range",
+      "id": "min_sizes_in_stock",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Minimum sizes in stock",
+      "default": 3,
+      "info": "Hides picked-over products. A hat with only one size left is still 'in stock' to Shopify, but a customer usually cannot buy their size. Set to 1 to show everything."
+    },
+    {
       "type": "header",
       "content": "Heading"
     },
@@ -698,6 +759,28 @@
       "unit": "px",
       "label": "Heading size",
       "default": 32
+    },
+    {
+      "type": "header",
+      "content": "View all link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show view all link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "Link label",
+      "default": "Shop all"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all_count",
+      "label": "Show product count in label",
+      "default": true
     },
     {
       "type": "header",

@@ -15,8 +15,10 @@ Growing the Moon Ridge brand — building awareness under the new Moon Ridge nam
 ## Tools & Platforms
 - Shopify
 - GitHub
+- Dropbox (brand assets; Cloud Agents need MCP hooked up separately from Desktop)
 - Social platforms (Instagram, Facebook, TikTok)
 - Google Suite
+- Omnisend (email — drafts until approved; no SMS unless asked)
 
 ## Additional Context
 Small family team — just Zack and Natalie (the Wakefield Family) running the business together.

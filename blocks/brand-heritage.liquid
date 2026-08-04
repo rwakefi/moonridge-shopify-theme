@@ -274,7 +274,11 @@
         </figure>
         <div class="brand-heritage-copy-{{ ai_gen_id }}">
           {%- if block.settings.eyebrow != blank -%}
-            <p class="brand-heritage-eyebrow-{{ ai_gen_id }}">{{ block.settings.eyebrow }}</p>
+            {%- comment -%}
+              brand_collection_handle may be possessive (e.g. Stetson's).
+              Theme JSON dynamic sources ignore Liquid filters, so strip here.
+            {%- endcomment -%}
+            <p class="brand-heritage-eyebrow-{{ ai_gen_id }}">{{ block.settings.eyebrow | remove: "'s" }}</p>
           {%- endif -%}
           {%- if heritage_caption != blank -%}
             <p class="brand-heritage-caption-{{ ai_gen_id }}">{{ heritage_caption | newline_to_br }}</p>
@@ -293,7 +297,7 @@
     {%- if has_timeline -%}
       <div class="brand-heritage-timeline-{{ ai_gen_id }}">
         {%- if block.settings.timeline_heading != blank -%}
-          <h2 class="brand-heritage-timeline-heading-{{ ai_gen_id }}">{{ block.settings.timeline_heading }}</h2>
+          <h2 class="brand-heritage-timeline-heading-{{ ai_gen_id }}">{{ block.settings.timeline_heading | remove: "'s" }}</h2>
         {%- endif -%}
 
         {%- for entry in timeline -%}

@@ -1,0 +1,142 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "17617663646392ef5c": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_5e8d0a5_GTgNgH": {
+          "type": "ai_gen_block_5e8d0a5",
+          "name": "Brand Logo Block",
+          "settings": {
+            "image": "{{ closest.page.metafields.custom.brand_logo.value }}",
+            "max_width": 500,
+            "padding_desktop": 10,
+            "padding_mobile": 10,
+            "background_color": "#ffffff",
+            "border_radius": 8,
+            "border_thickness": 0,
+            "border_color": "#e0e0e0"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_5e8d0a5_GTgNgH"
+      ],
+      "settings": {}
+    },
+    "main": {
+      "type": "main-page",
+      "custom_css": [
+        ".page-header__title,.page__title,.main-page-title {display: none;}",
+        ".page-width {max-width: 760px;}",
+        ".rte {max-width: 40rem; margin: 0 auto; text-align: center; font-size: 1.7rem; line-height: 1.7; color: #1f1d24;}",
+        ".rte p {margin: 0;}"
+      ],
+      "settings": {
+        "padding_top": 12,
+        "padding_bottom": 48
+      }
+    },
+    "brand_heritage_section": {
+      "type": "_blocks",
+      "blocks": {
+        "brand_heritage_block": {
+          "type": "brand-heritage",
+          "name": "Brand Heritage",
+          "settings": {
+            "eyebrow": "The painting",
+            "timeline_heading": "A closer look at the history",
+            "image_ratio": 0.9,
+            "container_width": 1100,
+            "timeline_gap": 70,
+            "image_radius": 2,
+            "heading_size": 24,
+            "entry_title_size": 20,
+            "caption_size": 18,
+            "body_size": 16,
+            "background_color": "#faf7f2",
+            "heading_color": "#312110",
+            "text_color": "#1f1d24",
+            "eyebrow_color": "#8a7355",
+            "rule_color": "#e2d9cb",
+            "padding_top": 70,
+            "padding_bottom": 70
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "brand_heritage_block"
+      ],
+      "settings": {}
+    },
+    "176306333526884c4b": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_884b3f7_dUN3fq": {
+          "type": "ai_gen_block_884b3f7",
+          "name": "Best Selling Carosel",
+          "settings": {
+            "collection": "{{ closest.page.metafields.custom.best_sellers.value }}",
+            "product_limit": 12,
+            "min_sizes_in_stock": 3,
+            "heading": "Best Selling {{ closest.page.metafields.custom.brand_collection_handle.value }}",
+            "subheading": "",
+            "heading_alignment": "center",
+            "heading_size": 28,
+            "show_view_all": true,
+            "view_all_label": "Shop all {{ closest.page.metafields.custom.brand_collection_handle.value }}",
+            "show_view_all_count": true,
+            "products_per_view": 4,
+            "products_per_view_tablet": 3,
+            "product_gap": 20,
+            "container_width": 1400,
+            "show_navigation": true,
+            "sale_badge_label": "Sale",
+            "sale_badge_bg": "#312110",
+            "sale_badge_color": "#ffffff",
+            "badge_border_radius": 4,
+            "background_color": "#ffffff",
+            "heading_color": "#1f1d24",
+            "text_color": "#1f1d24",
+            "price_color": "#312110",
+            "compare_price_color": "#999999",
+            "card_background": "#ffffff",
+            "card_border_color": "#e0e0e0",
+            "button_background": "#312110",
+            "button_color": "#ffffff",
+            "button_hover_background": "#1f1d24",
+            "card_border_radius": 6,
+            "padding_top": 50,
+            "padding_bottom": 50
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_884b3f7_dUN3fq"
+      ],
+      "settings": {}
+    },
+    "176176716340be886a": {
+      "type": "_blocks",
+      "settings": {}
+    }
+  },
+  "order": [
+    "17617663646392ef5c",
+    "main",
+    "brand_heritage_section",
+    "176306333526884c4b",
+    "176176716340be886a"
+  ]
+}

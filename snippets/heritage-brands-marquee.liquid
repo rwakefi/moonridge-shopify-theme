@@ -1,17 +1,12 @@
-{%- comment -%}
-  Shared heritage-brand logo marquee for brand pages.
-  Kept as a snippet so it still renders on pages with theme-editor overrides.
-{%- endcomment -%}
 {%- assign hbm_id = hbm_id | default: 'heritage-brands' -%}
 
-{%- style -%}
+<style>
   .hbm-{{ hbm_id }} {
     width: 100%;
     background-color: #faf7f2;
     padding: 36px 0 20px;
     margin: 0 0 8px;
   }
-
   .hbm-title-{{ hbm_id }} {
     margin: 0 0 20px;
     padding: 0 20px;
@@ -25,7 +20,6 @@
     text-transform: uppercase;
     line-height: 1.3;
   }
-
   .hbm-container-{{ hbm_id }} {
     display: flex;
     overflow: hidden;
@@ -34,7 +28,6 @@
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   }
-
   .hbm-track-{{ hbm_id }} {
     display: flex;
     flex-shrink: 0;
@@ -43,22 +36,18 @@
     padding-right: 56px;
     animation: hbm-scroll-{{ hbm_id }} 120s linear infinite;
   }
-
   .hbm-container-{{ hbm_id }}:hover .hbm-track-{{ hbm_id }} {
     animation-play-state: paused;
   }
-
   @keyframes hbm-scroll-{{ hbm_id }} {
     0% { transform: translateX(0); }
     100% { transform: translateX(-100%); }
   }
-
   .hbm-item-{{ hbm_id }} {
     flex: 0 0 auto;
     width: 180px;
     height: 100px;
   }
-
   .hbm-link-{{ hbm_id }} {
     display: flex;
     align-items: center;
@@ -66,7 +55,6 @@
     width: 100%;
     height: 100%;
   }
-
   .hbm-link-{{ hbm_id }} img {
     max-width: 100%;
     max-height: 100%;
@@ -75,103 +63,52 @@
     object-fit: contain;
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
-
   .hbm-link-{{ hbm_id }}:hover img {
     transform: scale(1.05);
     opacity: 0.8;
   }
-
   @media screen and (max-width: 749px) {
-    .hbm-{{ hbm_id }} {
-      padding: 28px 0 16px;
-    }
-
-    .hbm-title-{{ hbm_id }} {
-      font-size: 14px;
-      letter-spacing: 0.12em;
-      margin-bottom: 16px;
-    }
-
-    .hbm-track-{{ hbm_id }} {
-      gap: 30px;
-      padding-right: 30px;
-      animation-duration: 90s;
-    }
-
-    .hbm-item-{{ hbm_id }} {
-      width: 130px;
-      height: 80px;
-    }
+    .hbm-{{ hbm_id }} { padding: 28px 0 16px; }
+    .hbm-title-{{ hbm_id }} { font-size: 14px; letter-spacing: 0.12em; margin-bottom: 16px; }
+    .hbm-track-{{ hbm_id }} { gap: 30px; padding-right: 30px; animation-duration: 90s; }
+    .hbm-item-{{ hbm_id }} { width: 130px; height: 80px; }
   }
-
   @media (prefers-reduced-motion: reduce) {
-    .hbm-track-{{ hbm_id }} {
-      animation: none;
-    }
+    .hbm-track-{{ hbm_id }} { animation: none; }
   }
-{%- endstyle -%}
+</style>
 
 <section class="hbm-{{ hbm_id }}" aria-label="Our Heritage Brands">
   <h2 class="hbm-title-{{ hbm_id }}">Our Heritage Brands</h2>
   <div class="hbm-container-{{ hbm_id }}">
-    {%- for pass in (1..2) -%}
+    {% for pass in (1..2) %}
       <div class="hbm-track-{{ hbm_id }}"{% if pass == 2 %} aria-hidden="true"{% endif %}>
         <div class="hbm-item-{{ hbm_id }}">
           <a href="/pages/stetson" class="hbm-link-{{ hbm_id }}"{% if pass == 2 %} tabindex="-1"{% endif %}>
-            <img
-              src="{{ 'Stetson_2.webp' | file_url }}"
-              alt="Stetson"
-              loading="lazy"
-              width="180"
-              height="100"
-            >
+            <img src="https://moonridgecompany.com/cdn/shop/files/Stetson_2.webp?width=400" alt="Stetson" loading="lazy" width="180" height="100">
           </a>
         </div>
         <div class="hbm-item-{{ hbm_id }}">
           <a href="/pages/resistol" class="hbm-link-{{ hbm_id }}"{% if pass == 2 %} tabindex="-1"{% endif %}>
-            <img
-              src="{{ 'Resistol_911a3678-5dee-4a84-a061-3ac6b8fff945.webp' | file_url }}"
-              alt="Resistol"
-              loading="lazy"
-              width="180"
-              height="100"
-            >
+            <img src="https://moonridgecompany.com/cdn/shop/files/Resistol_911a3678-5dee-4a84-a061-3ac6b8fff945.webp?width=400" alt="Resistol" loading="lazy" width="180" height="100">
           </a>
         </div>
         <div class="hbm-item-{{ hbm_id }}">
           <a href="/pages/lucchese" class="hbm-link-{{ hbm_id }}"{% if pass == 2 %} tabindex="-1"{% endif %}>
-            <img
-              src="{{ 'Lucchese.webp' | file_url }}"
-              alt="Lucchese"
-              loading="lazy"
-              width="180"
-              height="100"
-            >
+            <img src="https://moonridgecompany.com/cdn/shop/files/Lucchese.webp?width=400" alt="Lucchese" loading="lazy" width="180" height="100">
           </a>
         </div>
         <div class="hbm-item-{{ hbm_id }}">
           <a href="/pages/pendleton" class="hbm-link-{{ hbm_id }}"{% if pass == 2 %} tabindex="-1"{% endif %}>
-            <img
-              src="{{ 'Pendleton.webp' | file_url }}"
-              alt="Pendleton"
-              loading="lazy"
-              width="180"
-              height="100"
-            >
+            <img src="https://moonridgecompany.com/cdn/shop/files/Pendleton.webp?width=400" alt="Pendleton" loading="lazy" width="180" height="100">
           </a>
         </div>
         <div class="hbm-item-{{ hbm_id }}">
           <a href="/pages/goorin-bros" class="hbm-link-{{ hbm_id }}"{% if pass == 2 %} tabindex="-1"{% endif %}>
-            <img
-              src="{{ 'Goorin_4_00ffe83a-cbf3-4f8e-ba6e-3ff598c39e7d.webp' | file_url }}"
-              alt="Goorin Bros."
-              loading="lazy"
-              width="180"
-              height="100"
-            >
+            <img src="https://moonridgecompany.com/cdn/shop/files/Goorin_4_00ffe83a-cbf3-4f8e-ba6e-3ff598c39e7d.webp?width=400" alt="Goorin Bros." loading="lazy" width="180" height="100">
           </a>
         </div>
       </div>
-    {%- endfor -%}
+    {% endfor %}
   </div>
 </section>

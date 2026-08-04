@@ -223,7 +223,8 @@
       </div>
     {%- endif -%}
 
-    <div class="lb-grid-{{ section.id }}">
+    <div class="lb-grid-{{ section.id }}" data-lb-order="lucchese-before-goorin">
+      <!-- lb-order-v2-lucchese-before-goorin -->
       {%- comment -%}
         Preferred brand order (Lucchese before Goorin). Render by title so storefront
         cache / block creation order cannot reshuffle the grid.

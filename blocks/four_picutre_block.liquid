@@ -3,6 +3,14 @@
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
+{%- comment -%}
+  Brand pages now render this marquee from layout/theme.liquid.
+  Skip the old template JSON instance so we don't show it twice.
+{%- endcomment -%}
+{%- if block.settings.title == 'Our Heritage Brands' -%}
+  <div {{ block.shopify_attributes }} hidden class="heritage-brands-marquee-deduped"></div>
+{%- else -%}
+
 {% style %}
   .ai-four-picture-grid-{{ ai_gen_id }} {
     width: 100%;
@@ -234,6 +242,8 @@
     </div>
   </div>
 </div>
+
+{%- endif -%}
 
 {% schema %}
 {

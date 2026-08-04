@@ -62,7 +62,7 @@
       assign geo_suffix = " – Fayetteville, AR"
 
       if request.page_type == 'index'
-        assign full_title = "Arkansas's Original Custom Hat Bar | Moon Ridge in Fayetteville, AR"
+        assign full_title = "Arkansas's Original Hat Bar | Moon Ridge in Fayetteville, AR"
       elsif request.page_type == 'product'
         assign full_title = product.title | truncate: 35 | append: brand_suffix
       elsif request.page_type == 'collection'
@@ -92,7 +92,7 @@
       elsif page.handle == 'faq'
         assign full_title = "FAQ: Hat Shaping & Cleaning" | append: brand_suffix
       elsif page.handle == 'custom-hat-bar'
-        assign full_title = "Arkansas's Original Custom Hat Bar | Moon Ridge Fayetteville"
+        assign full_title = "Arkansas's Original Hat Bar | Moon Ridge Fayetteville"
       elsif page.handle == 'hat-sizing'
         if page.metafields.global.title_tag != blank
           assign full_title = page.metafields.global.title_tag
@@ -126,9 +126,9 @@
     {%- liquid
       assign meta_description = page_description | default: shop.description | default: shop.name
       if request.page_type == 'index'
-        assign meta_description = "Arkansas's Original Custom Hat Bar at Moon Ridge in Fayetteville. Custom fit, shape, and style Stetson & Resistol hats — book a free fitting or shop online today."
+        assign meta_description = "Arkansas's Original Hat Bar at Moon Ridge in Fayetteville. Custom fit, shape, and style Stetson & Resistol hats — book a free fitting or shop online today."
       elsif page.handle == 'custom-hat-bar'
-        assign meta_description = "Arkansas's Original Custom Hat Bar in Fayetteville. Fit, crown shaping, and trim customization with trained designers. Book a Free Hat Experience today."
+        assign meta_description = "Arkansas's Original Hat Bar in Fayetteville. Fit, crown shaping, and trim customization with trained designers. Book a Free Hat Experience today."
       elsif page.handle == 'hat-sizing'
         if page.metafields.global.description_tag != blank
           assign meta_description = page.metafields.global.description_tag
@@ -139,7 +139,7 @@
         if blog.metafields.global.description_tag != blank
           assign meta_description = blog.metafields.global.description_tag
         else
-          assign meta_description = "Learn hat sizing, X-ratings, face and head shape, and felt care from Moon Ridge — Arkansas’s Original Custom Hat Bar in Fayetteville."
+          assign meta_description = "Learn hat sizing, X-ratings, face and head shape, and felt care from Moon Ridge — Arkansas’s Original Hat Bar in Fayetteville."
         endif
       elsif request.page_type == 'article' and article.metafields.global.description_tag != blank
         assign meta_description = article.metafields.global.description_tag

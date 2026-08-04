@@ -1,7 +1,7 @@
 {%- liquid
   assign primary_keyword = "Hat Shaping"
   if request.page_type == 'index'
-    assign primary_keyword = "Arkansas's Original Custom Hat Bar"
+    assign primary_keyword = "Arkansas's Original Hat Bar"
   elsif request.page_type == 'product'
     assign primary_keyword = product.title
   elsif request.page_type == 'collection'
@@ -9,7 +9,7 @@
   elsif request.page_type == 'article'
     assign primary_keyword = article.title
   elsif request.page_type == 'page' and page.handle == 'custom-hat-bar'
-    assign primary_keyword = "Arkansas's Original Custom Hat Bar"
+    assign primary_keyword = "Arkansas's Original Hat Bar"
   elsif request.page_type == 'page'
     assign primary_keyword = page.title
   elsif page_title != blank
@@ -22,11 +22,11 @@
   endif
 
   if request.page_type == 'index'
-    assign seo_title = "Arkansas's Original Custom Hat Bar | Moon Ridge in Fayetteville, AR"
-    assign seo_description = "Arkansas's Original Custom Hat Bar at Moon Ridge in Fayetteville. Custom fit, shape, and style Stetson & Resistol hats — book a free fitting or shop online today."
+    assign seo_title = "Arkansas's Original Hat Bar | Moon Ridge in Fayetteville, AR"
+    assign seo_description = "Arkansas's Original Hat Bar at Moon Ridge in Fayetteville. Custom fit, shape, and style Stetson & Resistol hats — book a free fitting or shop online today."
   elsif request.page_type == 'page' and page.handle == 'custom-hat-bar'
-    assign seo_title = "Arkansas's Original Custom Hat Bar | Moon Ridge Fayetteville"
-    assign seo_description = "Arkansas's Original Custom Hat Bar in Fayetteville. Fit, crown shaping, and trim customization with trained designers. Book a Free Hat Experience today."
+    assign seo_title = "Arkansas's Original Hat Bar | Moon Ridge Fayetteville"
+    assign seo_description = "Arkansas's Original Hat Bar in Fayetteville. Fit, crown shaping, and trim customization with trained designers. Book a Free Hat Experience today."
   elsif request.page_type == 'blog' and blog.handle == 'hat-education'
     assign seo_title = blog.metafields.global.title_tag | default: "Hat Education: Sizing, X-Ratings & Care | Moon Ridge Hats and Heritage"
     assign seo_description = blog.metafields.global.description_tag | default: page_description | default: shop.description

@@ -17,7 +17,7 @@
     "legendary_brands": {
       "type": "legendary-brands",
       "blocks": {
-        "brand_stetson": {
+        "brand_stetson_1": {
           "type": "brand",
           "settings": {
             "title": "Stetson",
@@ -28,7 +28,7 @@
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Stetson-Logo-Final.webp"
           }
         },
-        "brand_resistol": {
+        "brand_resistol_2": {
           "type": "brand",
           "settings": {
             "title": "Resistol",
@@ -39,7 +39,7 @@
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Resistol_911a3678-5dee-4a84-a061-3ac6b8fff945.webp"
           }
         },
-        "brand_lucchese": {
+        "brand_lucchese_3": {
           "type": "brand",
           "settings": {
             "title": "Lucchese",
@@ -50,7 +50,7 @@
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Lucchese.webp"
           }
         },
-        "brand_pendleton": {
+        "brand_pendleton_4": {
           "type": "brand",
           "settings": {
             "title": "Pendleton",
@@ -61,7 +61,7 @@
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Pendleton.webp"
           }
         },
-        "brand_goorin": {
+        "brand_goorin_5": {
           "type": "brand",
           "settings": {
             "title": "Goorin Bros.",
@@ -72,7 +72,7 @@
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Goorin_10f766db-115d-4e2c-8c05-4781456b9d6d.webp"
           }
         },
-        "brand_bigalli": {
+        "brand_bigalli_6": {
           "type": "brand",
           "settings": {
             "title": "Bigalli",
@@ -103,12 +103,12 @@
         }
       },
       "block_order": [
-        "brand_stetson",
-        "brand_resistol",
-        "brand_lucchese",
-        "brand_pendleton",
-        "brand_goorin",
-        "brand_bigalli",
+        "brand_stetson_1",
+        "brand_resistol_2",
+        "brand_lucchese_3",
+        "brand_pendleton_4",
+        "brand_goorin_5",
+        "brand_bigalli_6",
         "photo_1",
         "photo_2",
         "photo_3"

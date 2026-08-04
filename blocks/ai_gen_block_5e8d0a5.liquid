@@ -3,6 +3,12 @@
     one image block with some padding around the edge but not too big on desktop, add a thin boarder, make the image a little maller
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% liquid
+  assign show_heritage_brands = false
+  if template.suffix == 'brand' or template.suffix == 'brand-nav'
+    assign show_heritage_brands = true
+  endif
+%}
 
 {% style %}
   .ai-image-block-{{ ai_gen_id }} {
@@ -58,6 +64,10 @@
     }
   }
 {% endstyle %}
+
+{%- if show_heritage_brands -%}
+  {% render 'heritage-brands-marquee', hbm_id: ai_gen_id %}
+{%- endif -%}
 
 <div class="ai-image-block-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   <div class="ai-image-wrapper-{{ ai_gen_id }}">

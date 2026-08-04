@@ -1,0 +1,567 @@
+{%- comment -%} block-order note: Lucchese before Goorin Bros. {%- endcomment -%}
+{% comment %}
+  Our Legendary Brands — hero, brand showcase with image spots, optional photo strip.
+{% endcomment %}
+
+{%- style -%}
+  .lb-{{ section.id }} {
+    --lb-bg: {{ section.settings.background_color }};
+    --lb-surface: {{ section.settings.surface_color }};
+    --lb-ink: {{ section.settings.text_color }};
+    --lb-muted: {{ section.settings.muted_color }};
+    --lb-accent: {{ section.settings.accent_color }};
+    --lb-rule: {{ section.settings.rule_color }};
+    background: var(--lb-bg);
+    color: var(--lb-ink);
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+
+  .lb-inner-{{ section.id }} {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .lb-hero-{{ section.id }} {
+    text-align: center;
+    max-width: 42rem;
+    margin: 0 auto {% if section.settings.hero_image != blank %}36px{% else %}48px{% endif %};
+  }
+
+  .lb-eyebrow-{{ section.id }} {
+    margin: 0 0 14px;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--lb-muted);
+  }
+
+  .lb-title-{{ section.id }} {
+    margin: 0 0 16px;
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    font-size: clamp(2.8rem, 4vw, 4.2rem);
+    line-height: 1.15;
+    letter-spacing: 0.02em;
+    color: var(--lb-accent);
+  }
+
+  .lb-intro-{{ section.id }} {
+    margin: 0;
+    font-size: 1.7rem;
+    line-height: 1.7;
+    color: var(--lb-ink);
+  }
+
+  .lb-hero-media-{{ section.id }} {
+    margin: 0 auto 56px;
+    max-width: 1100px;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .lb-hero-media-{{ section.id }} img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 21 / 9;
+    object-fit: cover;
+  }
+
+  .lb-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 24px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .lb-grid-{{ section.id }} {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 36px 28px;
+    }
+  }
+
+  .lb-card-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .lb-card-media-{{ section.id }} {
+    position: relative;
+    background: var(--lb-surface);
+    border: 1px solid var(--lb-rule);
+    border-radius: 2px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    margin-bottom: 18px;
+  }
+
+  .lb-card-media-{{ section.id }} img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+  }
+
+  .lb-card-media-{{ section.id }}--logo img {
+    object-fit: contain;
+    padding: 18% 16%;
+    background: #fff;
+  }
+
+  .lb-card-{{ section.id }}:hover .lb-card-media-{{ section.id }} img {
+    transform: scale(1.03);
+  }
+
+  .lb-card-name-{{ section.id }} {
+    margin: 0 0 6px;
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    font-size: 2rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--lb-accent);
+  }
+
+  .lb-card-tagline-{{ section.id }} {
+    margin: 0 0 10px;
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    color: var(--lb-muted);
+  }
+
+  .lb-card-blurb-{{ section.id }} {
+    margin: 0 0 14px;
+    font-size: 1.5rem;
+    line-height: 1.55;
+    color: var(--lb-ink);
+    flex-grow: 1;
+  }
+
+  .lb-card-cta-{{ section.id }} {
+    font-size: 1.2rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lb-accent);
+    border-bottom: 1px solid var(--lb-accent);
+    align-self: flex-start;
+    padding-bottom: 2px;
+  }
+
+  .lb-photos-{{ section.id }} {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .lb-photos-{{ section.id }} {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+  }
+
+  .lb-photo-{{ section.id }} {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 2px;
+    background: var(--lb-surface);
+  }
+
+  .lb-photo-{{ section.id }} img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+
+  .lb-photo-caption-{{ section.id }} {
+    margin: 10px 0 0;
+    font-size: 1.2rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--lb-muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lb-card-{{ section.id }}:hover .lb-card-media-{{ section.id }} img {
+      transform: none;
+    }
+  }
+{%- endstyle -%}
+
+<section class="lb-{{ section.id }}" id="legendary-brands">
+  <div class="lb-inner-{{ section.id }}">
+    <header class="lb-hero-{{ section.id }}">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="lb-eyebrow-{{ section.id }}">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h1 class="lb-title-{{ section.id }}">{{ section.settings.heading }}</h1>
+      {%- endif -%}
+      {%- if section.settings.intro != blank -%}
+        <p class="lb-intro-{{ section.id }}">{{ section.settings.intro }}</p>
+      {%- endif -%}
+    </header>
+
+    {%- if section.settings.hero_image != blank -%}
+      <div class="lb-hero-media-{{ section.id }}">
+        {%- assign hero_alt = section.settings.hero_image.alt | default: section.settings.heading -%}
+        {{
+          section.settings.hero_image
+          | image_url: width: 2200
+          | image_tag: loading: 'eager', widths: '800, 1200, 1600, 2200', sizes: '100vw', alt: hero_alt
+        }}
+      </div>
+    {%- endif -%}
+
+    <div class="lb-grid-{{ section.id }}" data-lb-order="lucchese-before-goorin">
+      <!-- lb-order-v2-lucchese-before-goorin -->
+      {%- comment -%}
+        Preferred brand order (Lucchese before Goorin). Render by title so storefront
+        cache / block creation order cannot reshuffle the grid.
+      {%- endcomment -%}
+      {%- assign lb_brand_order = 'Stetson|Resistol|Lucchese|Pendleton|Goorin Bros.|Bigalli' | split: '|' -%}
+      {%- assign lb_rendered = '' -%}
+      {%- for brand_title in lb_brand_order -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'brand' and block.settings.title == brand_title -%}
+            {%- assign brand_url = block.settings.link | default: '#' -%}
+            {%- assign has_feature = false -%}
+            {%- if block.settings.feature_image != blank -%}
+              {%- assign has_feature = true -%}
+            {%- endif -%}
+            <a
+              class="lb-card-{{ section.id }}"
+              href="{{ brand_url }}"
+              {{ block.shopify_attributes }}
+            >
+              <div class="lb-card-media-{{ section.id }}{% unless has_feature %} lb-card-media-{{ section.id }}--logo{% endunless %}">
+                {%- if has_feature -%}
+                  {%- assign feature_alt = block.settings.feature_image.alt | default: block.settings.title -%}
+                  {{
+                    block.settings.feature_image
+                    | image_url: width: 1200
+                    | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1200', sizes: '(min-width: 990px) 30vw, 50vw', alt: feature_alt
+                  }}
+                {%- elsif block.settings.logo != blank -%}
+                  {%- assign logo_alt = block.settings.logo.alt | default: block.settings.title -%}
+                  {{
+                    block.settings.logo
+                    | image_url: width: 800
+                    | image_tag: loading: 'lazy', widths: '300, 500, 800', sizes: '(min-width: 990px) 30vw, 50vw', alt: logo_alt
+                  }}
+                {%- elsif block.settings.logo_url != blank -%}
+                  <img
+                    src="{{ block.settings.logo_url }}"
+                    alt="{{ block.settings.title | escape }}"
+                    loading="lazy"
+                    width="400"
+                    height="300"
+                  >
+                {%- endif -%}
+              </div>
+              {%- if block.settings.title != blank -%}
+                <h2 class="lb-card-name-{{ section.id }}">{{ block.settings.title }}</h2>
+              {%- endif -%}
+              {%- if block.settings.tagline != blank -%}
+                <p class="lb-card-tagline-{{ section.id }}">{{ block.settings.tagline }}</p>
+              {%- endif -%}
+              {%- if block.settings.blurb != blank -%}
+                <p class="lb-card-blurb-{{ section.id }}">{{ block.settings.blurb }}</p>
+              {%- endif -%}
+              <span class="lb-card-cta-{{ section.id }}">{{ block.settings.cta_label | default: 'Learn More' }}</span>
+            </a>
+            {%- assign lb_rendered = lb_rendered | append: brand_title | append: '|' -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'brand' -%}
+          {%- assign lb_title_key = block.settings.title | append: '|' -%}
+          {%- unless lb_rendered contains lb_title_key -%}
+            {%- assign brand_url = block.settings.link | default: '#' -%}
+            {%- assign has_feature = false -%}
+            {%- if block.settings.feature_image != blank -%}
+              {%- assign has_feature = true -%}
+            {%- endif -%}
+            <a
+              class="lb-card-{{ section.id }}"
+              href="{{ brand_url }}"
+              {{ block.shopify_attributes }}
+            >
+              <div class="lb-card-media-{{ section.id }}{% unless has_feature %} lb-card-media-{{ section.id }}--logo{% endunless %}">
+                {%- if has_feature -%}
+                  {%- assign feature_alt = block.settings.feature_image.alt | default: block.settings.title -%}
+                  {{
+                    block.settings.feature_image
+                    | image_url: width: 1200
+                    | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1200', sizes: '(min-width: 990px) 30vw, 50vw', alt: feature_alt
+                  }}
+                {%- elsif block.settings.logo != blank -%}
+                  {%- assign logo_alt = block.settings.logo.alt | default: block.settings.title -%}
+                  {{
+                    block.settings.logo
+                    | image_url: width: 800
+                    | image_tag: loading: 'lazy', widths: '300, 500, 800', sizes: '(min-width: 990px) 30vw, 50vw', alt: logo_alt
+                  }}
+                {%- elsif block.settings.logo_url != blank -%}
+                  <img
+                    src="{{ block.settings.logo_url }}"
+                    alt="{{ block.settings.title | escape }}"
+                    loading="lazy"
+                    width="400"
+                    height="300"
+                  >
+                {%- endif -%}
+              </div>
+              {%- if block.settings.title != blank -%}
+                <h2 class="lb-card-name-{{ section.id }}">{{ block.settings.title }}</h2>
+              {%- endif -%}
+              {%- if block.settings.tagline != blank -%}
+                <p class="lb-card-tagline-{{ section.id }}">{{ block.settings.tagline }}</p>
+              {%- endif -%}
+              {%- if block.settings.blurb != blank -%}
+                <p class="lb-card-blurb-{{ section.id }}">{{ block.settings.blurb }}</p>
+              {%- endif -%}
+              <span class="lb-card-cta-{{ section.id }}">{{ block.settings.cta_label | default: 'Learn More' }}</span>
+            </a>
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- assign photo_count = 0 -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'photo' and block.settings.image != blank -%}
+        {%- assign photo_count = photo_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if photo_count > 0 -%}
+      <div class="lb-photos-{{ section.id }}">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'photo' and block.settings.image != blank -%}
+            <figure class="lb-photo-{{ section.id }}" {{ block.shopify_attributes }}>
+              {%- assign photo_alt = block.settings.image.alt | default: block.settings.caption -%}
+              {%- if block.settings.link != blank -%}
+                <a href="{{ block.settings.link }}">
+                  {{
+                    block.settings.image
+                    | image_url: width: 1200
+                    | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1200', sizes: '(min-width: 750px) 30vw, 100vw', alt: photo_alt
+                  }}
+                </a>
+              {%- else -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 1200
+                  | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1200', sizes: '(min-width: 750px) 30vw, 100vw', alt: photo_alt
+                }}
+              {%- endif -%}
+              {%- if block.settings.caption != blank -%}
+                <figcaption class="lb-photo-caption-{{ section.id }}">{{ block.settings.caption }}</figcaption>
+              {%- endif -%}
+            </figure>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Legendary Brands Grid",
+  "tag": "section",
+  "class": "section-legendary-brands",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Moon Ridge Hats and Heritage"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Legendary Brands"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "The makers we trust enough to put our name next to. Heritage houses, still built by hand — shop the story, then find yours."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image",
+      "info": "Optional wide lifestyle shot above the brand grid."
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 900,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "label": "Container width",
+      "default": 1200
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#faf7f2"
+    },
+    {
+      "type": "color",
+      "id": "surface_color",
+      "label": "Image surface",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Body text",
+      "default": "#1f1d24"
+    },
+    {
+      "type": "color",
+      "id": "muted_color",
+      "label": "Muted text",
+      "default": "#8a7355"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Headings",
+      "default": "#312110"
+    },
+    {
+      "type": "color",
+      "id": "rule_color",
+      "label": "Borders",
+      "default": "#e2d9cb"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 20,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Brand name",
+          "default": "Brand"
+        },
+        {
+          "type": "text",
+          "id": "tagline",
+          "label": "Tagline"
+        },
+        {
+          "type": "textarea",
+          "id": "blurb",
+          "label": "Short blurb"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Brand page link"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA label",
+          "default": "Learn More"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_image",
+          "label": "Feature / lifestyle image",
+          "info": "Preferred. Shows as the large picture on the tile."
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image",
+          "info": "Used when no feature image is set."
+        },
+        {
+          "type": "text",
+          "id": "logo_url",
+          "label": "Logo URL fallback",
+          "info": "Optional CDN URL if logo image isn’t uploaded yet."
+        }
+      ]
+    },
+    {
+      "type": "photo",
+      "name": "Photo spot",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Optional link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Legendary Brands Grid",
+      "blocks": [
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" }
+      ]
+    }
+  ]
+}
+{% endschema %}

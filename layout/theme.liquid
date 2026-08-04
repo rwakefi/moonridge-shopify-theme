@@ -514,7 +514,19 @@
     {% sections 'popup-group' %}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
-      {%- if template.name == 'page' and page.metafields.custom.brand_logo != blank -%}
+      {%- liquid
+        assign show_heritage_brands_bar = false
+        if template.name == 'page'
+          assign brand_bar_handles = 'stetson,resistol,lucchese,pendleton,goorin-bros,bigalli-1' | split: ','
+          if brand_bar_handles contains page.handle
+            assign show_heritage_brands_bar = true
+          endif
+          if template.suffix == 'brand' or template.suffix == 'brand-v2' or template.suffix == 'brand-nav'
+            assign show_heritage_brands_bar = true
+          endif
+        endif
+      -%}
+      {%- if show_heritage_brands_bar -%}
         {% render 'heritage-brands-marquee', hbm_id: 'theme-brand' %}
       {%- endif -%}
       {{ content_for_layout }}

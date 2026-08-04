@@ -17,7 +17,7 @@
           "name": "Brand Logo Block",
           "settings": {
             "image": "{{ closest.page.metafields.custom.brand_logo.value }}",
-            "max_width": 500,
+            "max_width": 400,
             "padding_desktop": 10,
             "padding_mobile": 10,
             "background_color": "#ffffff",
@@ -53,8 +53,8 @@
           "type": "brand-heritage",
           "name": "Brand Heritage",
           "settings": {
-            "eyebrow": "The painting",
-            "timeline_heading": "A closer look at the history",
+            "eyebrow": "John B. Stetson's Journey",
+            "timeline_heading": "The Story of Stetson",
             "image_ratio": 0.9,
             "container_width": 1100,
             "timeline_gap": 70,

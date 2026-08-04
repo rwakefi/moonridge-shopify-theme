@@ -213,14 +213,11 @@
 
     {%- if section.settings.hero_image != blank -%}
       <div class="lb-hero-media-{{ section.id }}">
+        {%- assign hero_alt = section.settings.hero_image.alt | default: section.settings.heading -%}
         {{
           section.settings.hero_image
           | image_url: width: 2200
-          | image_tag:
-            loading: 'eager',
-            widths: '800, 1200, 1600, 2200',
-            sizes: '100vw',
-            alt: section.settings.hero_image.alt | default: section.settings.heading
+          | image_tag: loading: 'eager', widths: '800, 1200, 1600, 2200', sizes: '100vw', alt: hero_alt
         }}
       </div>
     {%- endif -%}
@@ -240,24 +237,18 @@
           >
             <div class="lb-card-media-{{ section.id }}{% unless has_feature %} lb-card-media-{{ section.id }}--logo{% endunless %}">
               {%- if has_feature -%}
+                {%- assign feature_alt = block.settings.feature_image.alt | default: block.settings.title -%}
                 {{
                   block.settings.feature_image
                   | image_url: width: 1200
-                  | image_tag:
-                    loading: 'lazy',
-                    widths: '400, 700, 1000, 1200',
-                    sizes: '(min-width: 990px) 30vw, 50vw',
-                    alt: block.settings.feature_image.alt | default: block.settings.title
+                  | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1200', sizes: '(min-width: 990px) 30vw, 50vw', alt: feature_alt
                 }}
               {%- elsif block.settings.logo != blank -%}
+                {%- assign logo_alt = block.settings.logo.alt | default: block.settings.title -%}
                 {{
                   block.settings.logo
                   | image_url: width: 800
-                  | image_tag:
-                    loading: 'lazy',
-                    widths: '300, 500, 800',
-                    sizes: '(min-width: 990px) 30vw, 50vw',
-                    alt: block.settings.logo.alt | default: block.settings.title
+                  | image_tag: loading: 'lazy', widths: '300, 500, 800', sizes: '(min-width: 990px) 30vw, 50vw', alt: logo_alt
                 }}
               {%- elsif block.settings.logo_url != blank -%}
                 <img
@@ -296,27 +287,20 @@
         {%- for block in section.blocks -%}
           {%- if block.type == 'photo' and block.settings.image != blank -%}
             <figure class="lb-photo-{{ section.id }}" {{ block.shopify_attributes }}>
+              {%- assign photo_alt = block.settings.image.alt | default: block.settings.caption -%}
               {%- if block.settings.link != blank -%}
                 <a href="{{ block.settings.link }}">
                   {{
                     block.settings.image
                     | image_url: width: 1200
-                    | image_tag:
-                      loading: 'lazy',
-                      widths: '400, 700, 1000, 1200',
-                      sizes: '(min-width: 750px) 30vw, 100vw',
-                      alt: block.settings.image.alt | default: block.settings.caption
+                    | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1200', sizes: '(min-width: 750px) 30vw, 100vw', alt: photo_alt
                   }}
                 </a>
               {%- else -%}
                 {{
                   block.settings.image
                   | image_url: width: 1200
-                  | image_tag:
-                    loading: 'lazy',
-                    widths: '400, 700, 1000, 1200',
-                    sizes: '(min-width: 750px) 30vw, 100vw',
-                    alt: block.settings.image.alt | default: block.settings.caption
+                  | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1200', sizes: '(min-width: 750px) 30vw, 100vw', alt: photo_alt
                 }}
               {%- endif -%}
               {%- if block.settings.caption != blank -%}

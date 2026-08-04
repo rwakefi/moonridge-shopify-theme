@@ -36,11 +36,14 @@
     "main": {
       "type": "main-page",
       "custom_css": [
-        ".page-header__title,.page__title,.main-page-title {display: none;}"
+        ".page-header__title,.page__title,.main-page-title {display: none;}",
+        ".page-width {max-width: 760px;}",
+        ".rte {max-width: 40rem; margin: 0 auto; text-align: center; font-size: 1.7rem; line-height: 1.7; color: #1f1d24;}",
+        ".rte p {margin: 0;}"
       ],
       "settings": {
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 12,
+        "padding_bottom": 48
       }
     },
     "brand_heritage_section": {
@@ -52,13 +55,13 @@
           "settings": {
             "eyebrow": "The painting",
             "timeline_heading": "A closer look at the history",
-            "image_ratio": 0.8,
-            "container_width": 1050,
-            "timeline_gap": 60,
-            "image_radius": 4,
-            "heading_size": 26,
-            "entry_title_size": 19,
-            "caption_size": 17,
+            "image_ratio": 0.9,
+            "container_width": 1100,
+            "timeline_gap": 70,
+            "image_radius": 2,
+            "heading_size": 24,
+            "entry_title_size": 20,
+            "caption_size": 18,
             "body_size": 16,
             "background_color": "#faf7f2",
             "heading_color": "#312110",

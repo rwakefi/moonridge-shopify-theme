@@ -1,3 +1,4 @@
+{%- comment -%} block-order note: Lucchese before Goorin Bros. {%- endcomment -%}
 {% comment %}
   Our Legendary Brands — hero, brand showcase with image spots, optional photo strip.
 {% endcomment %}
@@ -223,54 +224,116 @@
     {%- endif -%}
 
     <div class="lb-grid-{{ section.id }}">
+      {%- comment -%}
+        Preferred brand order (Lucchese before Goorin). Render by title so storefront
+        cache / block creation order cannot reshuffle the grid.
+      {%- endcomment -%}
+      {%- assign lb_brand_order = 'Stetson|Resistol|Lucchese|Pendleton|Goorin Bros.|Bigalli' | split: '|' -%}
+      {%- assign lb_rendered = '' -%}
+      {%- for brand_title in lb_brand_order -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'brand' and block.settings.title == brand_title -%}
+            {%- assign brand_url = block.settings.link | default: '#' -%}
+            {%- assign has_feature = false -%}
+            {%- if block.settings.feature_image != blank -%}
+              {%- assign has_feature = true -%}
+            {%- endif -%}
+            <a
+              class="lb-card-{{ section.id }}"
+              href="{{ brand_url }}"
+              {{ block.shopify_attributes }}
+            >
+              <div class="lb-card-media-{{ section.id }}{% unless has_feature %} lb-card-media-{{ section.id }}--logo{% endunless %}">
+                {%- if has_feature -%}
+                  {%- assign feature_alt = block.settings.feature_image.alt | default: block.settings.title -%}
+                  {{
+                    block.settings.feature_image
+                    | image_url: width: 1200
+                    | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1200', sizes: '(min-width: 990px) 30vw, 50vw', alt: feature_alt
+                  }}
+                {%- elsif block.settings.logo != blank -%}
+                  {%- assign logo_alt = block.settings.logo.alt | default: block.settings.title -%}
+                  {{
+                    block.settings.logo
+                    | image_url: width: 800
+                    | image_tag: loading: 'lazy', widths: '300, 500, 800', sizes: '(min-width: 990px) 30vw, 50vw', alt: logo_alt
+                  }}
+                {%- elsif block.settings.logo_url != blank -%}
+                  <img
+                    src="{{ block.settings.logo_url }}"
+                    alt="{{ block.settings.title | escape }}"
+                    loading="lazy"
+                    width="400"
+                    height="300"
+                  >
+                {%- endif -%}
+              </div>
+              {%- if block.settings.title != blank -%}
+                <h2 class="lb-card-name-{{ section.id }}">{{ block.settings.title }}</h2>
+              {%- endif -%}
+              {%- if block.settings.tagline != blank -%}
+                <p class="lb-card-tagline-{{ section.id }}">{{ block.settings.tagline }}</p>
+              {%- endif -%}
+              {%- if block.settings.blurb != blank -%}
+                <p class="lb-card-blurb-{{ section.id }}">{{ block.settings.blurb }}</p>
+              {%- endif -%}
+              <span class="lb-card-cta-{{ section.id }}">{{ block.settings.cta_label | default: 'Learn More' }}</span>
+            </a>
+            {%- assign lb_rendered = lb_rendered | append: brand_title | append: '|' -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'brand' -%}
-          {%- assign brand_url = block.settings.link | default: '#' -%}
-          {%- assign has_feature = false -%}
-          {%- if block.settings.feature_image != blank -%}
-            {%- assign has_feature = true -%}
-          {%- endif -%}
-          <a
-            class="lb-card-{{ section.id }}"
-            href="{{ brand_url }}"
-            {{ block.shopify_attributes }}
-          >
-            <div class="lb-card-media-{{ section.id }}{% unless has_feature %} lb-card-media-{{ section.id }}--logo{% endunless %}">
-              {%- if has_feature -%}
-                {%- assign feature_alt = block.settings.feature_image.alt | default: block.settings.title -%}
-                {{
-                  block.settings.feature_image
-                  | image_url: width: 1200
-                  | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1200', sizes: '(min-width: 990px) 30vw, 50vw', alt: feature_alt
-                }}
-              {%- elsif block.settings.logo != blank -%}
-                {%- assign logo_alt = block.settings.logo.alt | default: block.settings.title -%}
-                {{
-                  block.settings.logo
-                  | image_url: width: 800
-                  | image_tag: loading: 'lazy', widths: '300, 500, 800', sizes: '(min-width: 990px) 30vw, 50vw', alt: logo_alt
-                }}
-              {%- elsif block.settings.logo_url != blank -%}
-                <img
-                  src="{{ block.settings.logo_url }}"
-                  alt="{{ block.settings.title | escape }}"
-                  loading="lazy"
-                  width="400"
-                  height="300"
-                >
+          {%- assign lb_title_key = block.settings.title | append: '|' -%}
+          {%- unless lb_rendered contains lb_title_key -%}
+            {%- assign brand_url = block.settings.link | default: '#' -%}
+            {%- assign has_feature = false -%}
+            {%- if block.settings.feature_image != blank -%}
+              {%- assign has_feature = true -%}
+            {%- endif -%}
+            <a
+              class="lb-card-{{ section.id }}"
+              href="{{ brand_url }}"
+              {{ block.shopify_attributes }}
+            >
+              <div class="lb-card-media-{{ section.id }}{% unless has_feature %} lb-card-media-{{ section.id }}--logo{% endunless %}">
+                {%- if has_feature -%}
+                  {%- assign feature_alt = block.settings.feature_image.alt | default: block.settings.title -%}
+                  {{
+                    block.settings.feature_image
+                    | image_url: width: 1200
+                    | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1200', sizes: '(min-width: 990px) 30vw, 50vw', alt: feature_alt
+                  }}
+                {%- elsif block.settings.logo != blank -%}
+                  {%- assign logo_alt = block.settings.logo.alt | default: block.settings.title -%}
+                  {{
+                    block.settings.logo
+                    | image_url: width: 800
+                    | image_tag: loading: 'lazy', widths: '300, 500, 800', sizes: '(min-width: 990px) 30vw, 50vw', alt: logo_alt
+                  }}
+                {%- elsif block.settings.logo_url != blank -%}
+                  <img
+                    src="{{ block.settings.logo_url }}"
+                    alt="{{ block.settings.title | escape }}"
+                    loading="lazy"
+                    width="400"
+                    height="300"
+                  >
+                {%- endif -%}
+              </div>
+              {%- if block.settings.title != blank -%}
+                <h2 class="lb-card-name-{{ section.id }}">{{ block.settings.title }}</h2>
               {%- endif -%}
-            </div>
-            {%- if block.settings.title != blank -%}
-              <h2 class="lb-card-name-{{ section.id }}">{{ block.settings.title }}</h2>
-            {%- endif -%}
-            {%- if block.settings.tagline != blank -%}
-              <p class="lb-card-tagline-{{ section.id }}">{{ block.settings.tagline }}</p>
-            {%- endif -%}
-            {%- if block.settings.blurb != blank -%}
-              <p class="lb-card-blurb-{{ section.id }}">{{ block.settings.blurb }}</p>
-            {%- endif -%}
-            <span class="lb-card-cta-{{ section.id }}">{{ block.settings.cta_label | default: 'Learn More' }}</span>
-          </a>
+              {%- if block.settings.tagline != blank -%}
+                <p class="lb-card-tagline-{{ section.id }}">{{ block.settings.tagline }}</p>
+              {%- endif -%}
+              {%- if block.settings.blurb != blank -%}
+                <p class="lb-card-blurb-{{ section.id }}">{{ block.settings.blurb }}</p>
+              {%- endif -%}
+              <span class="lb-card-cta-{{ section.id }}">{{ block.settings.cta_label | default: 'Learn More' }}</span>
+            </a>
+          {%- endunless -%}
         {%- endif -%}
       {%- endfor -%}
     </div>

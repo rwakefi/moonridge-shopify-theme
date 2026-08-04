@@ -130,9 +130,8 @@ Charlie 1 Horse under one Garland campus.
 ```
 Resistol is still Texas-made, still the Official Hat of the PRCA, and
 still built for a working head. Most leave the factory already creased.
-Good felt doesn't mind a second opinion — steam opens it, and a new
-shape holds. We set yours at the bench in Fayetteville, two doors south
-of the bowling alley.
+Good felt and straw doesn't mind a second opinion. We set yours at the
+hat bar in Fayetteville, two doors south of the bowling alley.
 ```
 
 ---

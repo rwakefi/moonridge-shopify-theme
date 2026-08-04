@@ -1,7 +1,7 @@
 {%- liquid
   assign primary_keyword = "Hat Shaping"
   if request.page_type == 'index'
-    assign primary_keyword = "Arkansas's Original Hat Bar"
+    assign primary_keyword = "Arkansas's Original Custom Hat Bar"
   elsif request.page_type == 'product'
     assign primary_keyword = product.title
   elsif request.page_type == 'collection'
@@ -22,8 +22,8 @@
   endif
 
   if request.page_type == 'index'
-    assign seo_title = "Arkansas's Original Hat Bar | Moon Ridge in Fayetteville, AR"
-    assign seo_description = "Arkansas's Original Hat Bar at Moon Ridge in Fayetteville. Custom fit, shape, and style Stetson & Resistol hats — book a free fitting or shop online today."
+    assign seo_title = "Arkansas's Original Custom Hat Bar | Moon Ridge in Fayetteville, AR"
+    assign seo_description = "Arkansas's Original Custom Hat Bar at Moon Ridge in Fayetteville. Custom fit, shape, and style Stetson & Resistol hats — book a free fitting or shop online today."
   elsif request.page_type == 'page' and page.handle == 'custom-hat-bar'
     assign seo_title = "Arkansas's Original Custom Hat Bar | Moon Ridge Fayetteville"
     assign seo_description = "Arkansas's Original Custom Hat Bar in Fayetteville. Fit, crown shaping, and trim customization with trained designers. Book a Free Hat Experience today."

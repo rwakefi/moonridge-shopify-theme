@@ -5,8 +5,7 @@
   if template.suffix == 'brand' or template.suffix == 'brand-v2' or template.suffix == 'brand-nav'
     assign brand_intro_wide = true
   endif
-  assign brand_bar_handles = 'stetson,resistol,lucchese,pendleton,goorin-bros,bigalli-1' | split: ','
-  if brand_bar_handles contains page.handle
+  if page.handle == 'stetson' or page.handle == 'resistol' or page.handle == 'lucchese' or page.handle == 'pendleton' or page.handle == 'goorin-bros' or page.handle == 'bigalli-1'
     assign brand_intro_wide = true
   endif
 -%}
@@ -33,11 +32,11 @@
 
   {%- if brand_intro_wide -%}
   #shopify-section-{{ section.id }} .page-width {
-    max-width: 1000px;
+    max-width: 1000px !important;
   }
 
   #shopify-section-{{ section.id }} .rte {
-    max-width: min(68rem, 92vw);
+    max-width: min(68rem, 92vw) !important;
     margin-left: auto;
     margin-right: auto;
     text-align: center;

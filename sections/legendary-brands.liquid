@@ -269,7 +269,7 @@
             {%- if block.settings.blurb != blank -%}
               <p class="lb-card-blurb-{{ section.id }}">{{ block.settings.blurb }}</p>
             {%- endif -%}
-            <span class="lb-card-cta-{{ section.id }}">{{ block.settings.cta_label | default: 'Explore' }}</span>
+            <span class="lb-card-cta-{{ section.id }}">{{ block.settings.cta_label | default: 'Learn More' }}</span>
           </a>
         {%- endif -%}
       {%- endfor -%}
@@ -445,7 +445,7 @@
           "type": "text",
           "id": "cta_label",
           "label": "CTA label",
-          "default": "Explore"
+          "default": "Learn More"
         },
         {
           "type": "image_picker",

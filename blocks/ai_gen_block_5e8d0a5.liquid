@@ -3,20 +3,6 @@
     one image block with some padding around the edge but not too big on desktop, add a thin boarder, make the image a little maller
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
-{% liquid
-  comment
-    Show on brand templates. Also show when this block is the brand-page
-    logo instance (metafield-driven image), so pages with theme-editor
-    overrides still get the marquee.
-  endcomment
-  assign show_heritage_brands = false
-  if template.suffix == 'brand' or template.suffix == 'brand-nav'
-    assign show_heritage_brands = true
-  endif
-  if closest.page.metafields.custom.brand_logo != blank
-    assign show_heritage_brands = true
-  endif
-%}
 
 {% style %}
   .ai-image-block-{{ ai_gen_id }} {
@@ -73,9 +59,8 @@
   }
 {% endstyle %}
 
-{%- if show_heritage_brands -%}
-  {% render 'heritage-brands-marquee', hbm_id: ai_gen_id %}
-{%- endif -%}
+{%- comment -%} Heritage brands marquee — always on for this brand logo block {%- endcomment -%}
+{% render 'heritage-brands-marquee', hbm_id: ai_gen_id %}
 
 <div class="ai-image-block-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   <div class="ai-image-wrapper-{{ ai_gen_id }}">

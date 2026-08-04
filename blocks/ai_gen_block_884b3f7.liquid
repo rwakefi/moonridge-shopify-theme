@@ -32,13 +32,17 @@
 --------------------------------*/
 .ai-product-carousel-header-{{ ai_gen_id }} {
   text-align: {{ block.settings.heading_alignment }};
-  margin-bottom: 30px;
+  margin-bottom: 16px;
 }
 
 .ai-product-carousel-heading-{{ ai_gen_id }} {
   color: {{ block.settings.heading_color }};
-  margin: 0 0 10px;
+  margin: 0;
   font-size: {{ block.settings.heading_size }}px;
+}
+
+.ai-product-carousel-heading-{{ ai_gen_id }}:not(:only-child) {
+  margin: 0 0 10px;
 }
 
 .ai-product-carousel-subheading-{{ ai_gen_id }} {

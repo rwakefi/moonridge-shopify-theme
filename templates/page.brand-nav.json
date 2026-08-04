@@ -37,8 +37,8 @@
       "type": "main-page",
       "custom_css": [
         ".page-header__title,.page__title,.main-page-title {display: none;}",
-        ".page-width {max-width: 760px;}",
-        ".rte {max-width: 40rem; margin: 0 auto; text-align: center; font-size: 1.7rem; line-height: 1.7; color: #1f1d24;}",
+        ".page-width {max-width: 1000px;}",
+        ".rte {max-width: min(68rem, 92vw); margin: 0 auto; text-align: center; font-size: 1.7rem; line-height: 1.7; color: #1f1d24;}",
         ".rte p {margin: 0;}"
       ],
       "settings": {

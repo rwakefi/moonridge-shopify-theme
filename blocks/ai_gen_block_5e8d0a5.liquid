@@ -4,8 +4,16 @@
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 {% liquid
+  comment
+    Show on brand templates. Also show when this block is the brand-page
+    logo instance (metafield-driven image), so pages with theme-editor
+    overrides still get the marquee.
+  endcomment
   assign show_heritage_brands = false
   if template.suffix == 'brand' or template.suffix == 'brand-nav'
+    assign show_heritage_brands = true
+  endif
+  if closest.page.metafields.custom.brand_logo != blank
     assign show_heritage_brands = true
   endif
 %}

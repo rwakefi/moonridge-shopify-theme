@@ -1,0 +1,423 @@
+{%- liquid
+  assign ai_gen_id = block.id | replace: '_', '' | downcase
+  assign page_fields = closest.page.metafields.custom
+  assign heritage_image = page_fields.heritage_image.value
+  assign heritage_caption = page_fields.heritage_caption.value
+  assign heritage_credit = page_fields.heritage_credit.value
+  assign timeline = page_fields.brand_timeline.value
+  assign has_image = false
+  assign has_timeline = false
+  if heritage_image != blank
+    assign has_image = true
+  endif
+  if timeline != blank and timeline.size > 0
+    assign has_timeline = true
+  endif
+-%}
+
+{%- unless has_image or has_timeline -%}
+  <div {{ block.shopify_attributes }} hidden class="brand-heritage-empty"></div>
+{%- else -%}
+
+{% style %}
+.brand-heritage-{{ ai_gen_id }} {
+  background-color: {{ block.settings.background_color }};
+  padding: {{ block.settings.padding_top }}px 20px {{ block.settings.padding_bottom }}px;
+}
+
+.brand-heritage-inner-{{ ai_gen_id }} {
+  max-width: {{ block.settings.container_width }}px;
+  margin: 0 auto;
+}
+
+.brand-heritage-band-{{ ai_gen_id }} {
+  display: grid;
+  grid-template-columns: minmax(0, {{ block.settings.image_ratio }}fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: center;
+}
+
+.brand-heritage-figure-{{ ai_gen_id }} {
+  margin: 0;
+}
+
+.brand-heritage-figure-{{ ai_gen_id }} img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: {{ block.settings.image_radius }}px;
+}
+
+.brand-heritage-eyebrow-{{ ai_gen_id }} {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: {{ block.settings.eyebrow_color }};
+  margin: 0 0 14px;
+}
+
+.brand-heritage-caption-{{ ai_gen_id }} {
+  font-size: {{ block.settings.caption_size }}px;
+  line-height: 1.65;
+  color: {{ block.settings.text_color }};
+  margin: 0;
+}
+
+.brand-heritage-credit-{{ ai_gen_id }} {
+  font-size: 13px;
+  line-height: 1.6;
+  color: {{ block.settings.eyebrow_color }};
+  margin: 16px 0 0;
+}
+
+.brand-heritage-timeline-{{ ai_gen_id }} {
+  margin-top: {{ block.settings.timeline_gap }}px;
+}
+
+.brand-heritage-timeline-heading-{{ ai_gen_id }} {
+  font-size: {{ block.settings.heading_size }}px;
+  color: {{ block.settings.heading_color }};
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.brand-heritage-entry-{{ ai_gen_id }} {
+  border-top: 1px solid {{ block.settings.rule_color }};
+}
+
+.brand-heritage-entry-{{ ai_gen_id }}:last-child {
+  border-bottom: 1px solid {{ block.settings.rule_color }};
+}
+
+.brand-heritage-entry-{{ ai_gen_id }} > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 20px 40px 20px 0;
+  position: relative;
+  display: block;
+}
+
+.brand-heritage-entry-{{ ai_gen_id }} > summary::-webkit-details-marker {
+  display: none;
+}
+
+.brand-heritage-entry-{{ ai_gen_id }} > summary:focus-visible {
+  outline: 2px solid {{ block.settings.heading_color }};
+  outline-offset: 3px;
+}
+
+.brand-heritage-era-{{ ai_gen_id }} {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: {{ block.settings.eyebrow_color }};
+  margin-bottom: 6px;
+}
+
+.brand-heritage-title-{{ ai_gen_id }} {
+  display: block;
+  font-size: {{ block.settings.entry_title_size }}px;
+  line-height: 1.35;
+  color: {{ block.settings.heading_color }};
+}
+
+.brand-heritage-sign-{{ ai_gen_id }} {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin-top: -7px;
+}
+
+.brand-heritage-sign-{{ ai_gen_id }}::before,
+.brand-heritage-sign-{{ ai_gen_id }}::after {
+  content: '';
+  position: absolute;
+  background-color: {{ block.settings.heading_color }};
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.brand-heritage-sign-{{ ai_gen_id }}::before {
+  left: 0;
+  top: 6px;
+  width: 14px;
+  height: 2px;
+}
+
+.brand-heritage-sign-{{ ai_gen_id }}::after {
+  left: 6px;
+  top: 0;
+  width: 2px;
+  height: 14px;
+}
+
+.brand-heritage-entry-{{ ai_gen_id }}[open] .brand-heritage-sign-{{ ai_gen_id }}::after {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+.brand-heritage-body-{{ ai_gen_id }} {
+  font-size: {{ block.settings.body_size }}px;
+  line-height: 1.75;
+  color: {{ block.settings.text_color }};
+  margin: 0;
+  padding: 0 40px 24px 0;
+  max-width: 68ch;
+}
+
+@media screen and (max-width: 749px) {
+  .brand-heritage-band-{{ ai_gen_id }} {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .brand-heritage-{{ ai_gen_id }} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-heritage-sign-{{ ai_gen_id }}::before,
+  .brand-heritage-sign-{{ ai_gen_id }}::after {
+    transition: none;
+  }
+}
+{% endstyle %}
+
+<section class="brand-heritage-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="brand-heritage-inner-{{ ai_gen_id }}">
+
+    {%- if has_image -%}
+      <div class="brand-heritage-band-{{ ai_gen_id }}">
+        <figure class="brand-heritage-figure-{{ ai_gen_id }}">
+          <img
+            src="{{ heritage_image | image_url: width: 1000 }}"
+            srcset="{{ heritage_image | image_url: width: 500 }} 500w, {{ heritage_image | image_url: width: 750 }} 750w, {{ heritage_image | image_url: width: 1000 }} 1000w"
+            sizes="(max-width: 749px) 90vw, 45vw"
+            alt="{{ heritage_image.alt | escape }}"
+            width="{{ heritage_image.width }}"
+            height="{{ heritage_image.height }}"
+            loading="lazy"
+          >
+        </figure>
+        <div>
+          {%- if block.settings.eyebrow != blank -%}
+            <p class="brand-heritage-eyebrow-{{ ai_gen_id }}">{{ block.settings.eyebrow }}</p>
+          {%- endif -%}
+          {%- if heritage_caption != blank -%}
+            <p class="brand-heritage-caption-{{ ai_gen_id }}">{{ heritage_caption | newline_to_br }}</p>
+          {%- endif -%}
+          {%- if heritage_credit != blank -%}
+            <p class="brand-heritage-credit-{{ ai_gen_id }}">{{ heritage_credit }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if has_timeline -%}
+      <div class="brand-heritage-timeline-{{ ai_gen_id }}">
+        {%- if block.settings.timeline_heading != blank -%}
+          <h2 class="brand-heritage-timeline-heading-{{ ai_gen_id }}">{{ block.settings.timeline_heading }}</h2>
+        {%- endif -%}
+
+        {%- for entry in timeline -%}
+          <details class="brand-heritage-entry-{{ ai_gen_id }}">
+            <summary>
+              {%- if entry.era != blank -%}
+                <span class="brand-heritage-era-{{ ai_gen_id }}">{{ entry.era }}</span>
+              {%- endif -%}
+              <span class="brand-heritage-title-{{ ai_gen_id }}">{{ entry.title }}</span>
+              <span class="brand-heritage-sign-{{ ai_gen_id }}" aria-hidden="true"></span>
+            </summary>
+            <p class="brand-heritage-body-{{ ai_gen_id }}">{{ entry.body }}</p>
+          </details>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "Brand heritage",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "paragraph",
+      "content": "Image, caption and history entries come from the page's metafields, so each brand page shows its own. The block hides itself on pages with no heritage content."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow above caption",
+      "default": "The painting"
+    },
+    {
+      "type": "text",
+      "id": "timeline_heading",
+      "label": "Timeline heading",
+      "default": "A closer look at the history"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "image_ratio",
+      "min": 0.4,
+      "max": 1.4,
+      "step": 0.1,
+      "label": "Image column width",
+      "default": 0.8
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "label": "Container width",
+      "default": 1050
+    },
+    {
+      "type": "range",
+      "id": "timeline_gap",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Space above timeline",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 0,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "label": "Image corner radius",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Type"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 18,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Timeline heading size",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "entry_title_size",
+      "min": 14,
+      "max": 26,
+      "step": 1,
+      "unit": "px",
+      "label": "Entry title size",
+      "default": 19
+    },
+    {
+      "type": "range",
+      "id": "caption_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Caption size",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "min": 13,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Entry body size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#faf7f2"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Headings",
+      "default": "#312110"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Body text",
+      "default": "#1f1d24"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow and credit",
+      "default": "#8a7355"
+    },
+    {
+      "type": "color",
+      "id": "rule_color",
+      "label": "Dividing lines",
+      "default": "#e2d9cb"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 70
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand heritage"
+    }
+  ]
+}
+{% endschema %}

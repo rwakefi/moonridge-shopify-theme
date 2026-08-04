@@ -53,8 +53,8 @@
           "type": "brand-heritage",
           "name": "Brand Heritage",
           "settings": {
-            "eyebrow": "{{ closest.page.metafields.custom.brand_collection_handle.value }} Heritage",
-            "timeline_heading": "The Story of {{ closest.page.metafields.custom.brand_collection_handle.value }}",
+            "eyebrow": "{{ closest.page.metafields.custom.brand_collection_handle.value | remove: \"'s\" }} Heritage",
+            "timeline_heading": "The Story of {{ closest.page.metafields.custom.brand_collection_handle.value | remove: \"'s\" }}",
             "image_ratio": 0.9,
             "container_width": 1100,
             "timeline_gap": 70,

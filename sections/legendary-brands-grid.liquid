@@ -120,16 +120,27 @@
     background: #fff;
   }
 
+  /* Absolute center so % max-height resolves against the aspect-ratio box.
+     Without this, mobile Safari often collapses fallback logos to 0 height. */
   .lb-card-media-{{ section.id }}--logo img.lb-logo-sized-{{ section.id }} {
-    width: auto;
-    height: auto;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: auto !important;
+    height: auto !important;
     max-width: var(--lb-logo-size, 85%);
     max-height: var(--lb-logo-size, 85%);
+    object-fit: contain;
     padding: 0;
+    background: transparent;
   }
 
   .lb-card-{{ section.id }}:hover .lb-card-media-{{ section.id }} img {
     transform: scale(1.03);
+  }
+
+  .lb-card-{{ section.id }}:hover .lb-card-media-{{ section.id }}--logo img.lb-logo-sized-{{ section.id }} {
+    transform: none;
   }
 
   .lb-card-name-{{ section.id }} {
@@ -279,7 +290,8 @@
                     class="lb-logo-sized-{{ section.id }}"
                     src="{{ block.settings.logo_url }}"
                     alt="{{ block.settings.title | escape }}"
-                    loading="lazy"
+                    loading="eager"
+                    decoding="async"
                     width="400"
                     height="300"
                     style="--lb-logo-size: {{ lb_logo_size }}%;"
@@ -336,7 +348,8 @@
                     class="lb-logo-sized-{{ section.id }}"
                     src="{{ block.settings.logo_url }}"
                     alt="{{ block.settings.title | escape }}"
-                    loading="lazy"
+                    loading="eager"
+                    decoding="async"
                     width="400"
                     height="300"
                     style="--lb-logo-size: {{ lb_logo_size }}%;"

@@ -1,0 +1,25 @@
+{% comment %}
+  Default Shopify robots.txt rules, rendered unchanged.
+{% endcomment %}
+{% for group in robots.default_groups %}
+  {{- group.user_agent }}
+
+  {% for rule in group.rules -%}
+    {{ rule }}
+  {% endfor -%}
+
+  {%- if group.sitemap != blank -%}
+    {{ group.sitemap }}
+  {%- endif -%}
+{% endfor %}
+
+# Google Storebot validates the checkout_link_template attribute used by the
+# Google & YouTube app's Checkout link enhancement. It must be able to reach
+# /cart/ and the /checkouts/ redirect target, both of which the default rules
+# above disallow for all agents. This group applies to Storebot only.
+User-agent: Storebot-Google
+Allow: /cart/
+Allow: /checkouts/
+Disallow: /admin
+Disallow: /account
+Disallow: /orders

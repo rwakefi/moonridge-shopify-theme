@@ -64,7 +64,11 @@
       if request.page_type == 'index'
         assign full_title = "Arkansas's Original Hat Bar | Moon Ridge in Fayetteville, AR"
       elsif request.page_type == 'product'
-        assign full_title = product.title | truncate: 35 | append: brand_suffix
+        if product.metafields.global.title_tag != blank
+          assign full_title = product.metafields.global.title_tag
+        else
+          assign full_title = product.title | truncate: 35 | append: brand_suffix
+        endif
       elsif request.page_type == 'collection'
         if collection.metafields.global.title_tag != blank
           assign full_title = collection.metafields.global.title_tag
@@ -113,6 +117,8 @@
         assign full_title = "Moon Ridge Home & Interiors by Natalie Jo"
       elsif template.suffix == 'podcast-moon-ridge'
         assign full_title = "The Moon Ridge Podcast | Hosted by Zack Wakefield"
+      elsif page.metafields.global.title_tag != blank
+        assign full_title = page.metafields.global.title_tag
       else
         assign full_title = page.title | append: brand_suffix
       endif
@@ -147,6 +153,10 @@
         assign meta_description = "Discover Moon Ridge Hats and Heritage (formerly Rafter M) in Fayetteville. Our veteran team provides master-level hat shaping, cleaning, and restoration with heritage craft."
       elsif page.handle contains 'contact' or page.handle contains 'book'
         assign meta_description = "Book your hat shaping session or private hat party at Moon Ridge Hats and Heritage in Fayetteville, AR. We personalize premium hats from Stetson and Resistol."
+      elsif request.page_type == 'page' and page.metafields.global.description_tag != blank
+        assign meta_description = page.metafields.global.description_tag
+      elsif request.page_type == 'product' and product.metafields.global.description_tag != blank
+        assign meta_description = product.metafields.global.description_tag
       elsif request.page_type == 'collection'
         if collection.metafields.global.description_tag != blank
           assign meta_description = collection.metafields.global.description_tag

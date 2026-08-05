@@ -117,10 +117,24 @@
         assign full_title = "Moon Ridge Home & Interiors by Natalie Jo"
       elsif template.suffix == 'podcast-moon-ridge'
         assign full_title = "The Moon Ridge Podcast | Hosted by Zack Wakefield"
-      elsif page.metafields.global.title_tag != blank
+      elsif page.handle == 'stetson'
+        assign full_title = page.metafields.global.title_tag | default: "Stetson Hat History & Heritage | Moon Ridge"
+      elsif page.handle == 'resistol'
+        assign full_title = page.metafields.global.title_tag | default: "Resistol Hat History & Heritage | Moon Ridge"
+      elsif page.handle == 'pendleton'
+        assign full_title = page.metafields.global.title_tag | default: "Pendleton Wool History & Heritage | Moon Ridge"
+      elsif page.handle == 'goorin-bros'
+        assign full_title = page.metafields.global.title_tag | default: "Goorin Bros. Hat History | Moon Ridge AR"
+      elsif page.handle == 'lucchese'
+        assign full_title = page.metafields.global.title_tag | default: "Lucchese Boot History & Heritage | Moon Ridge"
+      elsif page.handle == 'bigalli'
+        assign full_title = page.metafields.global.title_tag | default: "Bigalli Hat History & Heritage | Moon Ridge"
+      elsif page.handle == 'heritage-brands'
+        assign full_title = page.metafields.global.title_tag | default: "Legendary Hat Brands We Carry | Moon Ridge"
+      elsif request.page_type == 'page' and page.metafields.global.title_tag != blank
         assign full_title = page.metafields.global.title_tag
       else
-        assign full_title = page.title | append: brand_suffix
+        assign full_title = page.title | default: page_title | default: shop.name | append: brand_suffix
       endif
 
       if current_page != 1

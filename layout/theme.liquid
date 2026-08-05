@@ -31,24 +31,88 @@
       assign robots_content = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
       if request.page_type == 'search'
         assign robots_content = 'noindex,follow'
+      elsif request.page_type == 'cart'
+        assign robots_content = 'noindex,nofollow'
+      elsif request.page_type == 'account'
+        assign robots_content = 'noindex,nofollow'
+      elsif request.page_type == 'activate_account'
+        assign robots_content = 'noindex,nofollow'
+      elsif request.page_type == 'addresses'
+        assign robots_content = 'noindex,nofollow'
+      elsif request.page_type == 'login'
+        assign robots_content = 'noindex,nofollow'
+      elsif request.page_type == 'order'
+        assign robots_content = 'noindex,nofollow'
+      elsif request.page_type == 'register'
+        assign robots_content = 'noindex,nofollow'
+      elsif request.page_type == 'reset_password'
+        assign robots_content = 'noindex,nofollow'
+      endif
+    -%}
+    <meta name="robots" content="{{ robots_content }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ 'moonridge-hat-finder-app-icon.png' | asset_url }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ 'moonridge-hat-finder-app-icon.png' | asset_url }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ 'moonridge-hat-finder-app-icon.png' | asset_url }}">
+    <link rel="shortcut icon" type="image/png" href="{{ 'moonridge-hat-finder-app-icon.png' | asset_url }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ 'moonridge-hat-finder-app-icon.png' | asset_url }}">
+
+    {%- liquid
+      assign brand_suffix = " | Moon Ridge Hats and Heritage"
+      assign geo_suffix = " – Fayetteville, AR"
+
+      if request.page_type == 'index'
+        assign full_title = "Arkansas's Original Hat Bar | Moon Ridge in Fayetteville, AR"
+      elsif request.page_type == 'product'
+        if product.metafields.global.title_tag != blank
+          assign full_title = product.metafields.global.title_tag
+        elsif product.metafields.global.title_tag.value != blank
+          assign full_title = product.metafields.global.title_tag.value
+        else
+          assign full_title = product.title | truncate: 35 | append: brand_suffix
+        endif
+      elsif request.page_type == 'collection'
+        if collection.metafields.global.title_tag != blank
+          assign full_title = collection.metafields.global.title_tag
+        else
+          assign full_title = collection.title | append: " | Hats & Heritage" | append: brand_suffix
+        endif
+      elsif request.page_type == 'article'
+        if article.metafields.global.title_tag != blank
+          assign full_title = article.metafields.global.title_tag
+        else
+          assign full_title = article.title | append: brand_suffix
+        endif
+      elsif request.page_type == 'blog'
+        if blog.metafields.global.title_tag != blank
+          assign full_title = blog.metafields.global.title_tag
+        elsif blog.handle == 'hat-education'
+          assign full_title = "Hat Education: Sizing, X-Ratings & Care" | append: brand_suffix
+        else
+          assign full_title = blog.title | append: brand_suffix
+        endif
+      elsif request.page_type == 'cart'
+        assign full_title = "Your Cart" | append: brand_suffix
+      elsif request.page_type == 'search'
+        assign full_title = "Search Results" | append: brand_suffix
       elsif request.page_type == 'page'
         if page.metafields.global.title_tag.value != blank
           assign full_title = page.metafields.global.title_tag.value
         elsif page.metafields.global.title_tag != blank
           assign full_title = page.metafields.global.title_tag
-        elsif page.handle == 'stetson'
+        elsif page.handle == 'stetson' or page.handle == 'stetson-hat-history'
           assign full_title = "Stetson Hat History & Heritage | Moon Ridge"
-        elsif page.handle == 'resistol'
+        elsif page.handle == 'resistol' or page.handle == 'resistol-hat-history'
           assign full_title = "Resistol Hat History & Heritage | Moon Ridge"
         elsif page.handle == 'pendleton'
           assign full_title = "Pendleton Wool History & Heritage | Moon Ridge"
-        elsif page.handle == 'goorin-bros'
-          assign full_title = "Goorin Bros. Hat History | Moon Ridge AR"
-        elsif page.handle == 'lucchese'
+        elsif page.handle == 'goorin-bros' or page.handle == 'goorin-bros-hat-history'
+          assign full_title = "Goorin Bros. Hat History & Heritage | Moon Ridge"
+        elsif page.handle == 'lucchese' or page.handle == 'lucchese-boot-history'
           assign full_title = "Lucchese Boot History & Heritage | Moon Ridge"
         elsif page.handle == 'bigalli' or page.handle == 'bigalli-hat-history'
           assign full_title = "Bigalli Hat History & Heritage | Moon Ridge"
-        elsif page.handle == 'heritage-brands'
+        elsif page.handle == 'heritage-brands' or page.handle == 'legendary-hat-brands'
           assign full_title = "Legendary Hat Brands We Carry | Moon Ridge"
         elsif page.handle == 'faq'
           assign full_title = "FAQ: Hat Shaping & Cleaning" | append: brand_suffix
@@ -73,12 +137,8 @@
         else
           assign full_title = page.title | append: brand_suffix
         endif
-      elsif request.page_type == 'cart'
-        assign full_title = "Your Cart" | append: brand_suffix
-      elsif request.page_type == 'search'
-        assign full_title = "Search Results" | append: brand_suffix
       else
-        assign full_title = page_title | default: shop.name | append: brand_suffix
+        assign full_title = page_title | default: page.title | append: brand_suffix
       endif
 
       if current_page != 1

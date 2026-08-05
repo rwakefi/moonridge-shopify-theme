@@ -7,11 +7,6 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-/*
- * ------------------------------------------------------------
- * Our Legendary Brands — brand showcase + product carousel
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "brand_carousel": {
@@ -169,8 +164,8 @@
       ],
       "settings": {
         "eyebrow": "Moon Ridge Hats and Heritage",
-        "heading": "Our Legendary Brands",
-        "intro": "The makers we trust enough to put our name next to. Heritage houses, still built by hand \u2014 shop the story, then find yours. ",
+        "heading": "Legendary Hat Brands We Carry",
+        "intro": "Stetson, Resistol, Lucchese, Pendleton, Goorin Bros., and Bigalli\u2014heritage makers Moon Ridge trusts. Read their stories, then shop fitted styles in Fayetteville or nationwide.",
         "container_width": 1200,
         "background_color": "#faf7f2",
         "surface_color": "#ffffff",

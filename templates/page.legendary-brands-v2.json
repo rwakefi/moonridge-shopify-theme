@@ -62,7 +62,7 @@
             "title": "Stetson",
             "tagline": "An American legacy",
             "blurb": "Boss of the Plains to Garland felt \u2014 the most iconic hat brand in the world, shaped at our bench.",
-            "link": "/pages/stetson",
+            "link": "/pages/stetson-hat-history",
             "cta_label": "Learn More About Stetson",
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Stetson-Logo-Final.webp",
             "logo_url_size": 85
@@ -74,7 +74,7 @@
             "title": "Resistol",
             "tagline": "Best All Around",
             "blurb": "Texas-made felt built to resist all \u2014 still under the same Garland roof, fitted here in Fayetteville.",
-            "link": "/pages/resistol",
+            "link": "/pages/resistol-hat-history",
             "cta_label": "Learn More About Resistol",
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Resistol_911a3678-5dee-4a84-a061-3ac6b8fff945.webp",
             "logo_url_size": 85
@@ -86,7 +86,7 @@
             "title": "Lucchese",
             "tagline": "Bootmaker",
             "blurb": "Sicily to Fort Sam Houston in 1883. Twisted-cone last, El Paso hands \u2014 a smaller menu, better execution.",
-            "link": "/pages/lucchese",
+            "link": "/pages/lucchese-boot-history",
             "cta_label": "Learn More About Lucchese",
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Lucchese.webp",
             "logo_url_size": 85
@@ -110,7 +110,7 @@
             "title": "Goorin Bros.",
             "tagline": "Smooth Never Meant Subtle",
             "blurb": "From a Pittsburgh cart in 1895 to Animal Farm truckers \u2014 family hats with a patch you can spot across a room.",
-            "link": "/pages/goorin-bros",
+            "link": "/pages/goorin-bros-hat-history",
             "cta_label": "Learn More About Goorin Bros.",
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Goorin_10f766db-115d-4e2c-8c05-4781456b9d6d.webp",
             "logo_url_size": 85
@@ -122,7 +122,7 @@
             "title": "Bigalli",
             "tagline": "Crafting Timeless Hats Since 1926",
             "blurb": "Italian eye, Ecuadorian hands \u2014 paja toquilla Panama straw and wool felt from a four-generation workshop.",
-            "link": "/pages/bigalli",
+            "link": "/pages/bigalli-hat-history",
             "cta_label": "Learn More About Bigalli",
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Bigalli_2.webp",
             "logo_url_size": 85
@@ -160,8 +160,8 @@
       ],
       "settings": {
         "eyebrow": "Moon Ridge Hats and Heritage",
-        "heading": "Our Legendary Brands",
-        "intro": "The makers we trust enough to put our name next to. Heritage houses, still built by hand \u2014 shop the story, then find yours. ",
+        "heading": "Legendary Hat Brands We Carry",
+        "intro": "Stetson, Resistol, Lucchese, Pendleton, Goorin Bros., and Bigalli\u2014heritage makers Moon Ridge trusts. Read their stories, then shop fitted styles in Fayetteville or nationwide.",
         "container_width": 1200,
         "background_color": "#faf7f2",
         "surface_color": "#ffffff",

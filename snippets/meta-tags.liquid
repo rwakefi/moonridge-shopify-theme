@@ -39,6 +39,12 @@
   elsif request.page_type == 'page' and page.handle == 'hat-sizing'
     assign seo_title = page.metafields.global.title_tag | default: "How to Measure Hat Size | Moon Ridge Hats & Heritage"
     assign seo_description = page.metafields.global.description_tag | default: page_description
+  elsif request.page_type == 'page' and page.metafields.global.title_tag != blank
+    assign seo_title = page.metafields.global.title_tag
+    assign seo_description = page.metafields.global.description_tag | default: page_description | default: shop.description
+  elsif request.page_type == 'product' and product.metafields.global.title_tag != blank
+    assign seo_title = product.metafields.global.title_tag
+    assign seo_description = product.metafields.global.description_tag | default: page_description | default: shop.description
   else
     assign seo_title = primary_keyword
     unless seo_title contains shop.name

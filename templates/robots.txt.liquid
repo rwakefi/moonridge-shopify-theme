@@ -1,22 +1,24 @@
 {% comment %}
-  Default Shopify robots.txt rules, rendered unchanged.
+  Renders Shopify's default robots.txt rules unchanged, then appends a group
+  for Google Storebot.
+
+  Storebot validates the checkout_link_template attribute used by the Google &
+  YouTube app's Checkout link enhancement. That link points at
+  /cart/{variant_id}:1, which redirects to /checkouts/ — both disallowed by the
+  default rules above for every agent, so Storebot cannot reach the link and
+  Merchant Center flags every product with "Invalid checkout URL".
+
+  The group below applies to Storebot only. General crawlers are unaffected.
 {% endcomment %}
-{% for group in robots.default_groups %}
-  {{- group.user_agent }}
-
-  {% for rule in group.rules -%}
-    {{ rule }}
-  {% endfor -%}
-
-  {%- if group.sitemap != blank -%}
-    {{ group.sitemap }}
-  {%- endif -%}
-{% endfor %}
-
-# Google Storebot validates the checkout_link_template attribute used by the
-# Google & YouTube app's Checkout link enhancement. It must be able to reach
-# /cart/ and the /checkouts/ redirect target, both of which the default rules
-# above disallow for all agents. This group applies to Storebot only.
+{%- for group in robots.default_groups -%}
+{{ group.user_agent }}
+{% for rule in group.rules -%}
+{{ rule }}
+{% endfor -%}
+{%- if group.sitemap != blank -%}
+{{ group.sitemap }}
+{% endif %}
+{% endfor -%}
 User-agent: Storebot-Google
 Allow: /cart/
 Allow: /checkouts/

@@ -36,19 +36,19 @@
           assign full_title = page.metafields.global.title_tag.value
         elsif page.metafields.global.title_tag != blank
           assign full_title = page.metafields.global.title_tag
-        elsif page.handle == 'stetson'
+        elsif page.handle == 'stetson' or page.handle == 'stetson-hat-history'
           assign full_title = "Stetson Hat History & Heritage | Moon Ridge"
         elsif page.handle == 'resistol'
           assign full_title = "Resistol Hat History & Heritage | Moon Ridge"
         elsif page.handle == 'pendleton'
           assign full_title = "Pendleton Wool History & Heritage | Moon Ridge"
-        elsif page.handle == 'goorin-bros'
+        elsif page.handle == 'goorin-bros' or page.handle == 'goorin-bros-hat-history'
           assign full_title = "Goorin Bros. Hat History | Moon Ridge AR"
-        elsif page.handle == 'lucchese'
+        elsif page.handle == 'lucchese' or page.handle == 'lucchese-boot-history'
           assign full_title = "Lucchese Boot History & Heritage | Moon Ridge"
         elsif page.handle == 'bigalli'
           assign full_title = "Bigalli Hat History & Heritage | Moon Ridge"
-        elsif page.handle == 'heritage-brands'
+        elsif page.handle == 'heritage-brands' or page.handle == 'legendary-hat-brands'
           assign full_title = "Legendary Hat Brands We Carry | Moon Ridge"
         elsif page.handle == 'faq'
           assign full_title = "FAQ: Hat Shaping & Cleaning" | append: brand_suffix
@@ -85,7 +85,7 @@
         assign full_title = full_title | append: " | Page " | append: current_page
       endif
     -%}
-    <!-- seo-title-fix-2026-08 -->
+    <!-- seo-title-fix-2026-08c -->
     <title>{{ full_title }}</title>
 
     {%- liquid

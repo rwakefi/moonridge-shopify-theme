@@ -1,0 +1,99 @@
+=============================================================================
+MOON RIDGE HATS & HERITAGE - SHOP APP AUDIT SUMMARY
+=============================================================================
+Date: August 12, 2026
+Store: shop.app/m/moonridgeco
+Rating: 5★ (23 reviews)
+
+=============================================================================
+🔥 CRITICAL ISSUES - FIX IMMEDIATELY
+=============================================================================
+
+1. ❌ OUTDATED "RAFTER M" BRANDING VISIBLE
+   → Gift card still shows old "Rafter M Hat Company" logo
+   → Confuses customers, damages rebrand credibility
+   → FIX: Update gift card image or unpublish from Shop channel
+
+2. ❌ MISSING COLLECTION IMAGES (3 out of 4 empty)
+   → Best Sellers: blank gray tile
+   → Best Selling Stetson's: blank gray tile  
+   → New Arrivals: blank gray tile
+   → FIX: Upload hero images for each collection
+
+3. ❌ WEAK HERO/COVER IMAGE
+   → Current: blurry, low-contrast, unclear subject
+   → FIX: Replace with sharp, high-res hero shot of signature products
+
+4. ❌ NO SHIPPING MESSAGING
+   → Missing free shipping threshold
+   → Missing estimated delivery dates
+   → FIX: Configure in Sales channels → Shop → Offers
+
+=============================================================================
+📊 WHAT'S WORKING
+=============================================================================
+
+✅ Store is discoverable ("Moon Ridge Hats" search works)
+✅ 5-star rating
+✅ Professional product photography (white background, clean)
+✅ Strong product titles (brand + model: "Stetson Elmhurst", "Resistol Tucker 3X")
+✅ Exclusive pricing callouts visible
+✅ Good product descriptions
+
+=============================================================================
+⚠️ MEDIUM PRIORITY FIXES
+=============================================================================
+
+- Search discoverability: "Rafter M" (old name) doesn't find the store
+- Store handle "moonridgeco" doesn't match domain "moonridgecompany.com"
+- Only 23 reviews (good quality, but low quantity for social proof)
+- Shop Cash offers unclear (may or may not be active)
+
+=============================================================================
+📋 ACTION PLAN - PRIORITIZED
+=============================================================================
+
+🔥 DO NOW (1-2 hours total, high impact):
+   1. Update/remove Rafter M gift card
+   2. Upload 3 collection images
+   3. Replace hero image with sharp product/lifestyle shot
+   4. Add store description (2-3 sentences about Fayetteville location, 
+      Stetson/Resistol expertise, hat shaping service)
+
+📅 DO SOON (next week):
+   5. Set up free shipping threshold messaging
+   6. Enable estimated delivery dates
+   7. Review/activate Shop Cash offers (suggest 5% on all orders)
+   8. Optimize product titles for search if needed
+
+🤔 NEEDS DECISION (budget/strategy):
+   9. Create exclusive Shop-only offer (10% off first order?)
+   10. Build review request campaign (goal: 23 → 100+ reviews)
+   11. Launch Shop-exclusive collection
+
+=============================================================================
+💰 EXPECTED IMPACT
+=============================================================================
+
+Implementing "DO NOW" fixes alone:
+→ 15-30% increase in Shop conversion rate within 30 days
+→ Higher browse-to-follow rate from improved first impression
+→ Reduced confusion from outdated branding
+→ More click-through from collection tiles
+
+=============================================================================
+📸 KEY EVIDENCE
+=============================================================================
+
+Screenshots captured showing:
+- Blurry hero image (needs replacement)
+- Empty collection tiles (3 missing images)
+- Rafter M gift card (outdated branding)
+- Good product pages (clean, professional)
+- 5★ rating with 23 reviews
+
+Full detailed audit report: /workspace/moon-ridge-shop-audit.md
+
+=============================================================================
+NEXT STEP: Share with Zack and schedule implementation
+=============================================================================

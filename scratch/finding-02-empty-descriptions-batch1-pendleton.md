@@ -1,8 +1,8 @@
 # Finding #2 — Empty product descriptions (Batch 1: Pendleton)
 
-**Status:** Draft only — do not publish until Zack approves.  
+**Status:** Voice approved (“good to go”) — still needs explicit OK before live Shopify paste.  
 **Scope:** 14 in-stock Pendleton products with empty `body_html`.  
-**Next:** Batch 2 jewelry/scarves (18), Batch 3 Stetson + Moon Ridge apparel/caps (6).
+**Next:** Batch 2 jewelry/scarves · Batch 3 apparel/caps (drafted).
 
 Paste each HTML block into Shopify → Products → [product] → Description.
 

@@ -8,6 +8,11 @@
   if page.handle == 'stetson' or page.handle == 'resistol' or page.handle == 'lucchese' or page.handle == 'pendleton' or page.handle == 'goorin-bros' or page.handle == 'bigalli-1'
     assign brand_intro_wide = true
   endif
+
+  assign show_lucchese_videos = false
+  if page.handle == 'lucchese' or page.handle == 'lucchese-boot-history' or page.handle == 'lucchese-boot-heritage'
+    assign show_lucchese_videos = true
+  endif
 -%}
 
 {%- style -%}
@@ -61,6 +66,9 @@
   <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     {{ page.content }}
   </div>
+  {%- if show_lucchese_videos -%}
+    {% render 'lucchese-brand-videos' %}
+  {%- endif -%}
 </div>
 <script type="application/ld+json">
   {

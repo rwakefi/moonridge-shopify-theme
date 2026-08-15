@@ -1,0 +1,188 @@
+{%- comment -%}
+  Official Lucchese Bootmaker channel videos, shown under the Lucchese
+  brand-page body. Picked the two craft films from
+  https://www.youtube.com/user/lucchesebootmaker
+{%- endcomment -%}
+
+{%- liquid
+  assign video_1_id = 'O4Fr9tT2sx4'
+  assign video_1_title = 'Lucchese Boots: The making of a boot from start to finish'
+  assign video_2_id = 'C8Ci9F86mWs'
+  assign video_2_title = "We're Made That Way"
+-%}
+
+<style>
+  .lbv {
+    margin: 36px auto 0;
+    max-width: min(68rem, 92vw);
+  }
+
+  .lbv__heading {
+    font-family: var(--font-heading-family);
+    font-style: var(--font-heading-style);
+    font-weight: var(--font-heading-weight);
+    font-size: 24px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #312110;
+    text-align: center;
+    margin: 0 0 28px;
+  }
+
+  .lbv__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .lbv__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+  }
+
+  .lbv__item {
+    margin: 0;
+  }
+
+  .lbv__frame {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background: #1f1d24;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .lbv__frame iframe,
+  .lbv__poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .lbv__poster {
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    background: #1f1d24;
+    color: #faf7f2;
+  }
+
+  .lbv__poster:focus-visible {
+    outline: 2px solid #312110;
+    outline-offset: 3px;
+  }
+
+  .lbv__poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .lbv__play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+    border-radius: 50%;
+    background: rgba(49, 33, 16, 0.88);
+    color: #faf7f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .lbv__play .icon-play {
+    width: 16px;
+    height: 22px;
+    margin-left: 3px;
+  }
+
+  .lbv__poster:hover .lbv__play {
+    background: #312110;
+  }
+
+  .lbv__caption {
+    font-family: var(--font-heading-family);
+    font-size: 16px;
+    line-height: 1.4;
+    color: #312110;
+    text-align: center;
+    margin: 12px 0 0;
+  }
+</style>
+
+<div class="lbv">
+  <h2 class="lbv__heading">See the work</h2>
+  <div class="lbv__grid">
+    <figure class="lbv__item">
+      <div class="lbv__frame">
+        <button
+          type="button"
+          class="lbv__poster"
+          data-lbv-id="{{ video_1_id }}"
+          data-lbv-title="{{ video_1_title | escape }}"
+          aria-label="Play {{ video_1_title | escape }}"
+        >
+          <img
+            src="https://i.ytimg.com/vi/{{ video_1_id }}/hqdefault.jpg"
+            alt="{{ video_1_title | escape }}"
+            width="480"
+            height="360"
+            loading="lazy"
+          >
+          <span class="lbv__play" aria-hidden="true">{% render 'icon-play' %}</span>
+        </button>
+      </div>
+      <figcaption class="lbv__caption">{{ video_1_title }}</figcaption>
+    </figure>
+
+    <figure class="lbv__item">
+      <div class="lbv__frame">
+        <button
+          type="button"
+          class="lbv__poster"
+          data-lbv-id="{{ video_2_id }}"
+          data-lbv-title="{{ video_2_title | escape }}"
+          aria-label="Play {{ video_2_title | escape }}"
+        >
+          <img
+            src="https://i.ytimg.com/vi/{{ video_2_id }}/hqdefault.jpg"
+            alt="{{ video_2_title | escape }}"
+            width="480"
+            height="360"
+            loading="lazy"
+          >
+          <span class="lbv__play" aria-hidden="true">{% render 'icon-play' %}</span>
+        </button>
+      </div>
+      <figcaption class="lbv__caption">{{ video_2_title }}</figcaption>
+    </figure>
+  </div>
+</div>
+
+<script>
+  (function () {
+    document.querySelectorAll('[data-lbv-id]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var iframe = document.createElement('iframe');
+        iframe.src =
+          'https://www.youtube-nocookie.com/embed/' +
+          encodeURIComponent(button.getAttribute('data-lbv-id')) +
+          '?autoplay=1&rel=0';
+        iframe.title = button.getAttribute('data-lbv-title') || 'Lucchese video';
+        iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        iframe.setAttribute('allowfullscreen', '');
+        button.replaceWith(iframe);
+      });
+    });
+  })();
+</script>

@@ -46,6 +46,16 @@
     gap: 16px; /* Reduced from 24px */
   }
 
+  /* No Section Image set: center the text block instead of leaving a gap */
+  .heritage-restoration__container--no-image {
+    max-width: 800px;
+    text-align: center;
+  }
+
+  .heritage-restoration__container--no-image .heritage-restoration__content {
+    align-items: center;
+  }
+
   .heritage-restoration__label {
     font-size: 11px; /* Reduced from 14px */
     text-transform: uppercase;
@@ -86,6 +96,10 @@
     border: 1px solid transparent;
   }
 
+  .heritage-restoration__container--no-image .heritage-restoration__cta {
+    align-self: center;
+  }
+
   .heritage-restoration__cta:hover {
     background-color: #F7EFE6;
     color: #4D382B;
@@ -106,6 +120,9 @@
     .heritage-restoration__content {
       align-items: center;
     }
+    .heritage-restoration__cta {
+      align-self: center;
+    }
     .heritage-restoration__title {
       font-size: 36px;
     }
@@ -117,26 +134,17 @@
 {%- endstyle -%}
 
 <section class="heritage-restoration">
-  <div class="heritage-restoration__container">
-    <div class="heritage-restoration__image-wrapper">
-      {%- if section.settings.image != blank -%}
-        {{ section.settings.image | image_url: width: 1200 | image_tag: 
+  <div class="heritage-restoration__container{% if section.settings.image == blank %} heritage-restoration__container--no-image{% endif %}">
+    {%- if section.settings.image != blank -%}
+      <div class="heritage-restoration__image-wrapper">
+        {{ section.settings.image | image_url: width: 1200 | image_tag:
           class: 'heritage-restoration__image',
           loading: 'lazy',
           alt: section.settings.image.alt | default: 'Hat Restoration Service' | escape
         }}
-      {%- else -%}
-        <img
-          src="{{ 'hat_restoration_heritage.png' | file_img_url: '1200x' }}"
-          class="heritage-restoration__image"
-          alt="Hat Restoration Service"
-          loading="lazy"
-          width="1200"
-          height="800"
-        >
-      {%- endif -%}
-    </div>
-    
+      </div>
+    {%- endif -%}
+
     <div class="heritage-restoration__content">
       <span class="heritage-restoration__label">{{ section.settings.label | default: "The Service Ritual" }}</span>
       <h2 class="heritage-restoration__title">{{ section.settings.title | default: "Your Hat, Restored." }}</h2>

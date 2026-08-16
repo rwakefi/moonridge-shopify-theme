@@ -110,4 +110,4 @@ Hold merchandising on OOS hats until they can sell. Do not paste the 3 no-photo 
 | 3 Apparel/caps | `finding-02-empty-descriptions-batch3-apparel.md` | 6 | Draft — Bullock, Howdy, hoodies, Cupid, Support Cowboy |
 | 4 Remaining / OOS | this file | 10 | Draft — mostly OOS; paste when they restock or if URLs stay live |
 
-**Live Shopify paste still needs explicit approval.**
+Batches 2–3 (21 in-stock with photos) pasted live 2026-08-16. This batch is still draft.

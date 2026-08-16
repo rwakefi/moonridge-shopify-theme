@@ -1,8 +1,8 @@
 # Finding #2 — Empty product descriptions (Batch 2: Jewelry / scarves / bandanas)
 
-**Status:** Draft only — do not publish until Zack approves.  
-**Scope:** 18 in-stock Moon Ridge accessories with empty `body_html`.  
-**Note:** 3 bracelets have **zero images** — copy is title-accurate only; flag for Finding #6 photos before pushing hard in merchandising.
+**Status:** 15 with photos pasted live 2026-08-16. 3 no-image bracelets still held.  
+**Scope:** 18 in-stock Moon Ridge accessories that had empty `body_html`.  
+**Note:** 3 bracelets have **zero images** — still held until Finding #6 photos.
 
 ---
 
@@ -170,7 +170,7 @@
 ---
 
 ## Approval checklist
-- [ ] Voice OK
+- [x] Voice OK
 - [ ] Confirm silver/gold horse-bit plating wording
-- [ ] Approve paste for items **with** photos
-- [ ] Hold or soft-publish the 3 no-image bracelets until Finding #6
+- [x] Approve paste for items **with** photos
+- [x] Hold or soft-publish the 3 no-image bracelets until Finding #6

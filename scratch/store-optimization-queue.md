@@ -21,15 +21,16 @@ Ranked by impact.
 ### 1. Reviews — parked for you
 No review app. Theme already reads `product.metafields.reviews.rating`. Judge.me Free is the cheap path. Plan: `scratch/finding-01-reviews-plan.md`.
 
-### 2. Empty descriptions — drafts ready, not live
-34 products still have empty `body_html`. 24 are available; 21 of those have photos.
+### 2. Empty descriptions — 21 pasted live 2026-08-16
+Catalog empty count is now **13 of 298** (was 34).
 
-- `scratch/finding-02-empty-descriptions-batch1-pendleton.md` — already live (no longer empty)
-- `scratch/finding-02-empty-descriptions-batch2-jewelry.md` — 15 with photos ready; hold 3 no-image bracelets
-- `scratch/finding-02-empty-descriptions-batch3-apparel.md` — Bullock, Howdy, hoodies, Cupid, Support Cowboy
-- `scratch/finding-02-empty-descriptions-batch4-remaining.md` — OOS hats/scarves/tee (Sedona, Centennial, felts)
+- `scratch/finding-02-empty-descriptions-batch1-pendleton.md` — already live
+- `scratch/finding-02-empty-descriptions-batch2-jewelry.md` — 15 pasted; 3 no-image bracelets still held
+- `scratch/finding-02-empty-descriptions-batch3-apparel.md` — 6 pasted (Bullock, Howdy, hoodies, Cupid, Support Cowboy)
+- `scratch/finding-02-empty-descriptions-batch4-remaining.md` — 10 still empty, mostly OOS
+- Script: `scratch/apply-empty-product-descriptions.py`
 
-Say the word and these can be pasted. Do not paste the 3 no-photo bracelets.
+Held: `cross-bracelet-14k-dip`, `horse-shoe-bracelet-14k-dip`, `turquoise-cross-bracelet-14k-gold-dip`.
 
 ### 3. Collection handle leftovers — rename + redirect
 | Live handle | Should be |

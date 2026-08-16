@@ -151,9 +151,11 @@
       <p class="heritage-restoration__text">
         {{ section.settings.text | default: "We don't just sell hats; we preserve them. Bring in any hat—regardless of brand or age—for professional cleaning and precision reshaping to its original glory." }}
       </p>
-      <a href="{{ section.settings.button_link | default: 'https://moonridgecompany.setmore.com' }}" class="heritage-restoration__cta" id="Setmore_button_iframe">
-        {{ section.settings.button_label | default: "Book a Restoration" }}
-      </a>
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="heritage-restoration__cta">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
     </div>
   </div>
 </section>
@@ -189,7 +191,7 @@
       "type": "text",
       "id": "button_label",
       "label": "Button Label",
-      "default": "Book a Restoration"
+      "info": "Leave blank to hide the button."
     },
     {
       "type": "url",

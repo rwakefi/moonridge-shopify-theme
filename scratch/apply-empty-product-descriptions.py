@@ -27,7 +27,7 @@ HOLD = {
     "turquoise-cross-bracelet-14k-gold-dip",
 }
 
-# 21 in-stock products with photos. Source: finding-02 batches 2 and 3.
+# Batches 2–3 (in-stock + photos) and batch 4 (mostly OOS, still have photos).
 PASTE: dict[str, str] = {
     "bolo": (
         "<p>Black braided bolo with a silver-tone oval slide and ribbed metal tips. "
@@ -143,6 +143,55 @@ PASTE: dict[str, str] = {
         "<p>Cream trucker with a black-bordered front patch that reads SUPPORT YOUR "
         "LOCAL COWBOY in three stacked lines. Foam front, mesh back, pre-curved brim. "
         "Simple message. Easy everyday hat.</p>"
+    ),
+    "stetson-co-ball-cap": (
+        "<p>Navy-and-red Stetson canvas cap with cream embroidery — STETSON CO. "
+        "arched over a bucking bronco. Red visor and top button, silver-tone S pin "
+        "on the side. Structured front, one size.</p>"
+    ),
+    "espresso-chic-scarf": (
+        "<p>Cream square with a tan monogram field, chocolate border, and an "
+        "equestrian strap-and-chain print along the edge — buckles, studs, silver "
+        "links. Soft sheen. Folds for the neck, bag, or pocket.</p>"
+    ),
+    "cirque-of-color-scarf": (
+        "<p>Fuchsia square framed in teal, packed with folk-art animals, figures, "
+        "and a wheel motif. Bright on purpose. Same drape as the other Moon Ridge "
+        "squares — neck, bag, or pocket.</p>"
+    ),
+    "scarlet-wagon-wheel-twilly": (
+        "<p>Narrow scarlet twilly in a white-and-black bandana print with pointed "
+        "ends. Tie it on a bag handle, around a hat band, or at the wrist.</p>"
+    ),
+    "parade-of-color-twilly": (
+        "<p>Narrow twilly in red, pink, and turquoise — horse panels on one side, "
+        "stripes and checks on the other, pointed ends. Same slim knot as the other "
+        "twillies.</p>"
+    ),
+    "support-live-country-music": (
+        "<p>Heather gray cropped tee with SUPPORT LIVE COUNTRY MUSIC in white "
+        "stacked across the chest. Raw hem, crew neck, sizes S–L. A message, not a "
+        "costume graphic.</p>"
+    ),
+    "silverbelly-felt": (
+        "<p>Silverbelly felt western hat with a cattleman crease and a slim matching "
+        "self-felt band. Light, clean color — the pale tan-grey that reads as "
+        "silverbelly in the hand. Open for in-store shaping.</p>"
+    ),
+    "black-felt": (
+        "<p>Black felt western hat with a cattleman crease and a slim self-felt band "
+        "finished with a three-piece silver-tone buckle set. Dark, clean, ready to "
+        "shape in the shop.</p>"
+    ),
+    "sedona": (
+        "<p>Stetson Sedona in rust-brown felt — pinch-front crown, flat brim, and a "
+        "layered band set with a polished agate slice and leather tassels. Medium "
+        "only on this listing. A statement hat, not a daily cattleman.</p>"
+    ),
+    "centennial": (
+        "<p>Stetson Centennial in bone shantung straw. Cattleman crease, western "
+        "brim, and a slim chevron band in cream and dark brown with the Stetson "
+        "plate on the side. Listed in 7 1/8.</p>"
     ),
 }
 

@@ -21,13 +21,13 @@ Ranked by impact.
 ### 1. Reviews — parked for you
 No review app. Theme already reads `product.metafields.reviews.rating`. Judge.me Free is the cheap path. Plan: `scratch/finding-01-reviews-plan.md`.
 
-### 2. Empty descriptions — 21 pasted live 2026-08-16
-Catalog empty count is now **13 of 298** (was 34).
+### 2. Empty descriptions — 31 pasted live 2026-08-16
+Catalog empty count is now **3 of 298** — only the no-photo bracelets.
 
 - `scratch/finding-02-empty-descriptions-batch1-pendleton.md` — already live
 - `scratch/finding-02-empty-descriptions-batch2-jewelry.md` — 15 pasted; 3 no-image bracelets still held
-- `scratch/finding-02-empty-descriptions-batch3-apparel.md` — 6 pasted (Bullock, Howdy, hoodies, Cupid, Support Cowboy)
-- `scratch/finding-02-empty-descriptions-batch4-remaining.md` — 10 still empty, mostly OOS
+- `scratch/finding-02-empty-descriptions-batch3-apparel.md` — 6 pasted
+- `scratch/finding-02-empty-descriptions-batch4-remaining.md` — 10 pasted (mostly OOS)
 - Script: `scratch/apply-empty-product-descriptions.py`
 
 Held: `cross-bracelet-14k-dip`, `horse-shoe-bracelet-14k-dip`, `turquoise-cross-bracelet-14k-gold-dip`.

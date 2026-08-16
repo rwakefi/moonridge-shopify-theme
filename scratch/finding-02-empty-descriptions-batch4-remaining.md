@@ -1,7 +1,7 @@
 # Finding #2 — Empty product descriptions (Batch 4: leftover hats / OOS)
 
-**Status:** Draft only — do not publish until Zack approves.  
-**Scope:** 10 products still empty after batches 1–3. Most are out of stock; copy is for when they restock or if we keep the URLs live.
+**Status:** All 10 pasted live 2026-08-16.  
+**Scope:** 10 leftover products after batches 1–3. Most are out of stock.
 
 Hold merchandising on OOS hats until they can sell. Do not paste the 3 no-photo bracelets from batch 2.
 
@@ -21,7 +21,7 @@ Hold merchandising on OOS hats until they can sell. Do not paste the 3 no-photo 
 - Handle: `espresso-chic-scarf` · $29 · OOS
 
 ```html
-<p>Square scarf in a deep espresso ground. Soft drape for neck, bag, or pocket — the dark colorway next to the lime and cirque prints.</p>
+<p>Cream square with a tan monogram field, chocolate border, and an equestrian strap-and-chain print along the edge — buckles, studs, silver links. Soft sheen. Folds for the neck, bag, or pocket.</p>
 ```
 
 ---
@@ -30,7 +30,7 @@ Hold merchandising on OOS hats until they can sell. Do not paste the 3 no-photo 
 - Handle: `cirque-of-color-scarf` · $29 · OOS
 
 ```html
-<p>Square scarf in a bright, busy print — circus-color blocks that read from across the room. Same size and drape as the other Moon Ridge squares.</p>
+<p>Fuchsia square framed in teal, packed with folk-art animals, figures, and a wheel motif. Bright on purpose. Same drape as the other Moon Ridge squares — neck, bag, or pocket.</p>
 ```
 
 ---
@@ -39,7 +39,7 @@ Hold merchandising on OOS hats until they can sell. Do not paste the 3 no-photo 
 - Handle: `scarlet-wagon-wheel-twilly` · $19 · OOS
 
 ```html
-<p>Narrow twilly in scarlet with a wagon-wheel print and pointed ends. Tie it on a bag handle, around a hat band, or at the wrist.</p>
+<p>Narrow scarlet twilly in a white-and-black bandana print with pointed ends. Tie it on a bag handle, around a hat band, or at the wrist.</p>
 ```
 
 ---
@@ -48,7 +48,7 @@ Hold merchandising on OOS hats until they can sell. Do not paste the 3 no-photo 
 - Handle: `parade-of-color-twilly` · $19 · OOS
 
 ```html
-<p>Narrow twilly in a full-color parade print with pointed ends. Same slim knot as the cart-and-carriage and cavaliere twillies.</p>
+<p>Narrow twilly in red, pink, and turquoise — horse panels on one side, stripes and checks on the other, pointed ends. Same slim knot as the other twillies.</p>
 ```
 
 ---
@@ -57,7 +57,7 @@ Hold merchandising on OOS hats until they can sell. Do not paste the 3 no-photo 
 - Handle: `support-live-country-music` · $35 · Gray · S–L · OOS
 
 ```html
-<p>Gray tee with a short front mark: Support Live Country Music. Soft everyday cotton, sizes S–L. A message, not a costume graphic.</p>
+<p>Heather gray cropped tee with SUPPORT LIVE COUNTRY MUSIC in white stacked across the chest. Raw hem, crew neck, sizes S–L. A message, not a costume graphic.</p>
 ```
 
 ---
@@ -106,8 +106,8 @@ Hold merchandising on OOS hats until they can sell. Do not paste the 3 no-photo 
 | Batch | File | Count | Status |
 |---|---|---|---|
 | 1 Pendleton | `finding-02-empty-descriptions-batch1-pendleton.md` | 14 | Voice approved — those listings now have copy live |
-| 2 Jewelry/scarves | `finding-02-empty-descriptions-batch2-jewelry.md` | 18 | Draft — 15 with photos ready; hold 3 no-image bracelets |
-| 3 Apparel/caps | `finding-02-empty-descriptions-batch3-apparel.md` | 6 | Draft — Bullock, Howdy, hoodies, Cupid, Support Cowboy |
-| 4 Remaining / OOS | this file | 10 | Draft — mostly OOS; paste when they restock or if URLs stay live |
+| 2 Jewelry/scarves | `finding-02-empty-descriptions-batch2-jewelry.md` | 18 | 15 pasted live; 3 no-image held |
+| 3 Apparel/caps | `finding-02-empty-descriptions-batch3-apparel.md` | 6 | Pasted live 2026-08-16 |
+| 4 Remaining / OOS | this file | 10 | Pasted live 2026-08-16 |
 
-Batches 2–3 (21 in-stock with photos) pasted live 2026-08-16. This batch is still draft.
+Only empty descriptions left: the 3 no-photo bracelets.

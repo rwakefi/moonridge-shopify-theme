@@ -1,35 +1,35 @@
 # Store optimization queue
 
-Picked up 2026-08-16 from the Aug 12 store-analyzer audit. Re-checked live storefront JSON today.
+Updated 2026-08-16 after a fresh store-analyzer pass (`scratch/store-analyzer-moonridgecompany-2026-08-16.md`).
 
-Theme fixes in this PR do **not** write catalog data. Handles, alt fields, descriptions, and unpublishing still need Shopify admin.
+Theme fixes in this PR do **not** write catalog data. Handles, descriptions, unpublishing, and a review app still need Shopify admin (and a clear OK before live paste).
 
-## Done in theme (this PR)
+## Done in theme
 
-- Product JSON-LD no longer dumps raw metafield objects (`json not allowed for this object` on material / crown / brim / origin).
-- Image alt falls back to the product title on PDP media, cart drawer, add-ons, and cart notification.
+- Product JSON-LD no longer dumps raw metafield objects (verified gone on sampled PDPs).
+- Image alt falls back to the product title; Admin alts filled 2026-08-16 (1,167 active images).
 - Hat Experiences and Boots collection intros no longer say Rafter M.
-- Insider list tab title is no longer "Tuskers Trunk Show." H1 is Moon Ridge, not Rafter M.
+- Brand / bestseller collections with empty admin copy now get Moon Ridge intros: Bigalli (`resistol-copy`), Best Selling Pendleton / Bigalli / Lucchese / Resistol / Goorin, Apparel, T-Shirts.
+- Insider list tab title and H1 are Moon Ridge (admin title still says Rafter M).
+- Contact page H1 is “Visit Moon Ridge” instead of “About Moon Ridge.”
 - Shipping Policy link added to the footer bar.
 
-## Still needs Shopify admin (not done)
+## Still needs Shopify admin
 
-Ranked by impact. I cannot paste these from this environment — no Admin API.
+Ranked by impact.
 
 ### 1. Reviews — parked for you
 No review app. Theme already reads `product.metafields.reviews.rating`. Judge.me Free is the cheap path. Plan: `scratch/finding-01-reviews-plan.md`.
 
 ### 2. Empty descriptions — drafts ready, not live
-34 products still have empty `body_html` (was 56 in August; some got filled).
-38 in-stock drafts already written:
+34 products still have empty `body_html`. 24 are available; 21 of those have photos.
 
-- `scratch/finding-02-empty-descriptions-batch1-pendleton.md` (voice approved)
-- `scratch/finding-02-empty-descriptions-batch2-jewelry.md`
-- `scratch/finding-02-empty-descriptions-batch3-apparel.md`
+- `scratch/finding-02-empty-descriptions-batch1-pendleton.md` — already live (no longer empty)
+- `scratch/finding-02-empty-descriptions-batch2-jewelry.md` — 15 with photos ready; hold 3 no-image bracelets
+- `scratch/finding-02-empty-descriptions-batch3-apparel.md` — Bullock, Howdy, hoodies, Cupid, Support Cowboy
+- `scratch/finding-02-empty-descriptions-batch4-remaining.md` — OOS hats/scarves/tee (Sedona, Centennial, felts)
 
-Hold the 3 no-photo bracelets until they have images.
-
-Hats still empty today: `stetson-bullock`, `centennial` (Stetson Centennial), `sedona` (Stetson Sedona), plus `silverbelly-felt` and `black-felt`.
+Say the word and these can be pasted. Do not paste the 3 no-photo bracelets.
 
 ### 3. Collection handle leftovers — rename + redirect
 | Live handle | Should be |
@@ -42,6 +42,8 @@ Hats still empty today: `stetson-bullock`, `centennial` (Stetson Centennial), `s
 | `accessories-1` | `accessories` (if free) |
 | `ballcaps-truckers-1` | `ballcaps-truckers` |
 | `hat-bands-1` | `hat-bands` |
+
+Target handles were free on 2026-08-16 (storefront 404). Theme overrides key off the **live** handles, so update the snippet when you rename.
 
 ### 4. Empty published collections — unpublish
 `bath`, `candles`, `mugs`, `shoelaces` — 0 products each.
@@ -58,9 +60,10 @@ Hats/caps that can take vendor photos today:
 Jewelry with no photo (unpublish until shot): stud/coin/hoop earrings, both tennis bracelets, beaded turquoise bracelet, turquoise cross / horseshoe / cross bracelets.
 
 ### 6. Real image alt text — done 2026-08-16
-All **1,167** active product images now have Admin alt text (960 were blank; existing good alts were left alone). Voice pass: one concrete detail (color, then material, then crown). No Rafter M, no “image of,” no “another angle,” no Moon Ridge stuffing on partner brands.
-
-Reversible map: `scratch/product-image-alts.csv`. Script: `scratch/apply-product-image-alts.py`.
+All **1,167** active product images have Admin alt text.
 
 ### 7. Insider list page in admin
 Theme overrides the title. Still change the Shopify page title + SEO title so admin matches: drop "Tuskers Trunk Show" and "Rafter M Hat Co. Insider List."
+
+### 8. Out-of-stock catalog
+89 of 298 products have zero available variants. Unpublish long-OOS SKUs or restock. Do not lead collections with empty-body OOS hats.

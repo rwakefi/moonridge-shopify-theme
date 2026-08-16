@@ -1,6 +1,6 @@
 {%- comment -%}
-  Collection body lives in Shopify admin. These two still say Rafter M.
-  Theme override until the admin descriptions are updated.
+  Collection body lives in Shopify admin. Override leftover Rafter M copy
+  and empty brand / bestseller intros until admin descriptions are updated.
 {%- endcomment -%}
 
 {%- if collection.handle == 'hat-experiences' -%}
@@ -10,6 +10,22 @@
   <p>Lucchese has been building boots by hand since 1883. Heritage you can feel in the leather. That's why they're the only boot on our shelf — we don't carry anything we wouldn't stand behind.</p>
   <p>Come try a pair in Fayetteville. Most popular options below; the floor has more than the site.</p>
   <p><strong>Boots are in-store only.</strong> The website does not show every size or style on the floor.</p>
+{%- elsif collection.handle == 'resistol-copy' -%}
+  <p>Bigalli has been making hats since 1926 — Italian finishing on Ecuadorian straw. Light on the head, clean in the hand. The ones we keep on the wall.</p>
+{%- elsif collection.handle == 'best-selling-stetsons-copy-1' -%}
+  <p>Pendleton has run the same Oregon wool mill since 1863. Blankets, layers, and small goods with the geometric language they have used for generations.</p>
+{%- elsif collection.handle == 'best-selling-goorin-bros-copy' -%}
+  <p>The Bigalli pieces people actually take home — straw you can wear in Arkansas heat, finished the Italian way.</p>
+{%- elsif collection.handle == 'best-selling-pendleton-copy' -%}
+  <p>Lucchese boots, hand-lasted in San Antonio since the 1880s. A smaller menu. Better execution.</p>
+{%- elsif collection.handle == 'best-selling-stetsons-copy' -%}
+  <p>Resistol, Texas-made since 1927. Built to resist all — the felt and straw we sell most.</p>
+{%- elsif collection.handle == 'best-selling-goorin-bros' -%}
+  <p>Goorin Bros. since 1895, Pittsburgh. Felt hats and Animal Farm caps with a family name still on the label.</p>
+{%- elsif collection.handle == 'apparel' -%}
+  <p>Hoodies, tees, and sweatshirts that sit next to the hat wall — Stetson marks, western graphics, nothing that needs a costume.</p>
+{%- elsif collection.handle == 't-shirt' -%}
+  <p>Western tees with a short message and a clean fit. Everyday shirts, not souvenir-stand prints.</p>
 {%- else -%}
   {{ collection.description }}
 {%- endif -%}

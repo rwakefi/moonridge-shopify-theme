@@ -96,7 +96,9 @@
       elsif request.page_type == 'search'
         assign full_title = "Search Results" | append: brand_suffix
       elsif request.page_type == 'page'
-        if page.metafields.global.title_tag.value != blank
+        if page.handle == 'insiders-list'
+          assign full_title = "Join the Moon Ridge Insider List | Moon Ridge Hats & Heritage"
+        elsif page.metafields.global.title_tag.value != blank
           assign full_title = page.metafields.global.title_tag.value
         elsif page.metafields.global.title_tag != blank
           assign full_title = page.metafields.global.title_tag

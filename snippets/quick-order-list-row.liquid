@@ -36,7 +36,7 @@
                 width: 43,
                 height: img_height,
                 widths: '86',
-                alt: image.alt
+                alt: image.alt | default: item.product.title
               | escape
             }}
           {% endif %}

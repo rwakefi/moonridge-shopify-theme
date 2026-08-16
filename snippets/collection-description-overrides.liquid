@@ -1,0 +1,15 @@
+{%- comment -%}
+  Collection body lives in Shopify admin. These two still say Rafter M.
+  Theme override until the admin descriptions are updated.
+{%- endcomment -%}
+
+{%- if collection.handle == 'hat-experiences' -%}
+  <p>Visit us at 2218 N College Avenue in Fayetteville. Walk in or book a Free Hat Experience — we fit you, shape the crown, and finish it with trim you choose.</p>
+  <p>Stetson, Resistol, and Charlie 1 Horse on the wall. Complimentary shaping on hats bought here.</p>
+{%- elsif collection.handle == 'boots' -%}
+  <p>Lucchese has been building boots by hand since 1883. Heritage you can feel in the leather. That's why they're the only boot on our shelf — we don't carry anything we wouldn't stand behind.</p>
+  <p>Come try a pair in Fayetteville. Most popular options below; the floor has more than the site.</p>
+  <p><strong>Boots are in-store only.</strong> The website does not show every size or style on the floor.</p>
+{%- else -%}
+  {{ collection.description }}
+{%- endif -%}

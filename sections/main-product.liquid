@@ -1493,16 +1493,20 @@ function updateCountdown() {
       assign seo_media = product.featured_media
     endif
     assign product_description = product.description | strip_html | strip
-    assign product_material = blank
-    if product.metafields.custom.material != blank
-      assign product_material = product.metafields.custom.material
-    elsif product_description contains 'Felt'
-      assign product_material = 'Felt'
-    elsif product_description contains 'Straw'
-      assign product_material = 'Straw'
-    elsif product_description contains 'Fur'
-      assign product_material = 'Fur'
+    assign product_material = product.metafields.custom.material | metafield_text | strip
+    if product_material == blank
+      if product_description contains 'Felt'
+        assign product_material = 'Felt'
+      elsif product_description contains 'Straw'
+        assign product_material = 'Straw'
+      elsif product_description contains 'Fur'
+        assign product_material = 'Fur'
+      endif
     endif
+    assign crown_shape_text = product.metafields.custom.crown_shape | metafield_text | strip
+    assign crown_height_text = product.metafields.custom.crown_height | metafield_text | strip
+    assign brim_width_text = product.metafields.custom.brim_width | metafield_text | strip
+    assign origin_text = product.metafields.custom.origin | metafield_text | strip
   -%}
 
   {%- if product != blank -%}
@@ -1529,34 +1533,34 @@ function updateCountdown() {
       {% if product_material != blank %}
         "material": {{ product_material | json }},
       {% endif %}
-      {%- if product.metafields.custom.crown_shape != blank or product.metafields.custom.crown_height != blank or product.metafields.custom.brim_width != blank or product.metafields.custom.origin != blank -%}
+      {%- if crown_shape_text != blank or crown_height_text != blank or brim_width_text != blank or origin_text != blank -%}
       "additionalProperty": [
-        {% if product.metafields.custom.crown_shape != blank %}
+        {% if crown_shape_text != blank %}
         {
           "@type": "PropertyValue",
           "name": "Crown Shape",
-          "value": {{ product.metafields.custom.crown_shape | json }}
-        }{% if product.metafields.custom.crown_height != blank or product.metafields.custom.brim_width != blank or product.metafields.custom.origin != blank %},{% endif %}
+          "value": {{ crown_shape_text | json }}
+        }{% if crown_height_text != blank or brim_width_text != blank or origin_text != blank %},{% endif %}
         {% endif %}
-        {% if product.metafields.custom.crown_height != blank %}
+        {% if crown_height_text != blank %}
         {
           "@type": "PropertyValue",
           "name": "Crown Height",
-          "value": {{ product.metafields.custom.crown_height | json }}
-        }{% if product.metafields.custom.brim_width != blank or product.metafields.custom.origin != blank %},{% endif %}
+          "value": {{ crown_height_text | json }}
+        }{% if brim_width_text != blank or origin_text != blank %},{% endif %}
         {% endif %}
-        {% if product.metafields.custom.brim_width != blank %}
+        {% if brim_width_text != blank %}
         {
           "@type": "PropertyValue",
           "name": "Brim Width",
-          "value": {{ product.metafields.custom.brim_width | json }}
-        }{% if product.metafields.custom.origin != blank %},{% endif %}
+          "value": {{ brim_width_text | json }}
+        }{% if origin_text != blank %},{% endif %}
         {% endif %}
-        {% if product.metafields.custom.origin != blank %}
+        {% if origin_text != blank %}
         {
           "@type": "PropertyValue",
           "name": "Country of Origin",
-          "value": {{ product.metafields.custom.origin | json }}
+          "value": {{ origin_text | json }}
         }
         {% endif %}
       ],

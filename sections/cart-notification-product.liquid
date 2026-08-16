@@ -5,7 +5,7 @@
         <div class="cart-notification-product__image global-media-settings">
           <img
             src="{{ item.image | image_url: width: 140 }}"
-            alt="{{ item.image.alt | escape }}"
+            alt="{{ item.image.alt | default: item.product.title | escape }}"
             width="70"
             height="{{ 70 | divided_by: item.image.aspect_ratio | ceil }}"
             loading="lazy"

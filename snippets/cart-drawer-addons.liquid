@@ -54,7 +54,7 @@
               {%- if product.featured_media -%}
                 <img
                   src="{{ product.featured_media | image_url: width: 260 }}"
-                  alt="{{ product.featured_media.alt | escape }}"
+                  alt="{{ product.featured_media.alt | default: product.title | escape }}"
                   loading="lazy"
                   width="130"
                   height="130"

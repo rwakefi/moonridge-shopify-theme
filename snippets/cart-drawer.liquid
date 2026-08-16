@@ -131,7 +131,7 @@
                             <img
                               class="cart-item__image"
                               src="{{ item.image | image_url: width: 300 }}"
-                              alt="{{ item.image.alt | escape }}"
+                              alt="{{ item.image.alt | default: item.product.title | escape }}"
                               loading="lazy"
                               width="150"
                               height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"

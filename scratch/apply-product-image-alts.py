@@ -74,18 +74,18 @@ VENDOR_DISPLAY = {
 }
 
 CROWN_SHORT = {
-    "Cattleman's": "cattleman's",
-    "Gambler/Telescope/Buckaroo": "gambler",
-    "Gambler/Telescope": "gambler",
-    "Pinch Front/Teardrop/Diamond": "pinch-front",
-    "CHL (Cool Hand Luke)": "Cool Hand Luke",
-    "Gus/Tom Mix": "Gus",
-    "Brick/Rounded Brick/Minnick": "brick",
+    "Cattleman's": "Cattleman's crease",
+    "Gambler/Telescope/Buckaroo": "gambler crown",
+    "Gambler/Telescope": "gambler crown",
+    "Pinch Front/Teardrop/Diamond": "pinch-front crown",
+    "CHL (Cool Hand Luke)": "CHL (Cool Hand Luke)",
+    "Gus/Tom Mix": "Gus crease",
+    "Brick/Rounded Brick/Minnick": "brick crease",
     "Texas Punch": "Texas Punch",
-    "Cutter": "cutter",
-    "The Walker": "Walker",
+    "Cutter": "cutter crease",
+    "The Walker": "Walker crease",
     "Mule Kick/Horseshoe": "mule kick",
-    "Open Crown": "open-crown",
+    "Open Crown": "open crown",
 }
 
 TYPE_WORDS = (
@@ -402,80 +402,66 @@ def clip(text: str, limit: int = 125) -> str:
     return text[: limit - 1].rsplit(" ", 1)[0] + "…"
 
 
-def core_alt(product: dict) -> str:
+def product_name(product: dict) -> str:
     title = re.sub(r"\s+", " ", product["title"]).strip()
     title = title.replace(" - ", " ").replace("–", " ")
     brand = vendor_label(product.get("vendor") or "")
+    if brand and brand.lower() not in title.lower():
+        return f"{brand} {title}"
+    return title
+
+
+def image_alt(product: dict, url: str, variant_color: str = "") -> str:
+    """One concrete visual: color, then material, then crown. No catalog piles."""
+    name = product_name(product)
     material = clean_material(metafield_first(product.get("material")))
     crown = clean_crown(metafield_first(product.get("crown")))
     noun = type_noun(product, crown, material)
+    color = (variant_color or filename_color(url) or "").strip()
+    if color.lower() == "sliver grey":
+        color = "silver grey"
+    if not color:
+        colors = option_colors(product)
+        if len(colors) == 1:
+            color = colors[0]
 
-    parts = []
-    if brand and brand.lower() not in title.lower():
-        parts.append(brand)
-    parts.append(title)
-
-    extras = []
-    if material and material not in title.lower():
-        extras.append(material)
-    if noun and noun not in title.lower() and noun not in " ".join(extras):
-        extras.append(noun)
-    elif crown and "cattleman" in crown and "cowboy" not in " ".join(parts + extras).lower():
-        extras.append("cattleman's crease")
-
-    text = " ".join(parts)
-    if extras:
-        text = f"{text}, {' '.join(extras)}"
-    return clip(text)
-
-
-def image_alt(product: dict, url: str, used: set[str], is_first_blank: bool) -> str:
-    base = core_alt(product)
-    color = filename_color(url)
-    view = filename_view(url)
-    colors = [value.lower() for value in option_colors(product)]
-
-    bits = []
-    if color and color not in base.lower():
-        bits.append(f"in {color}")
-    elif not color and len(colors) == 1 and colors[0] not in base.lower():
-        bits.append(f"in {colors[0]}")
-    if view:
-        bits.append(view)
-
-    alt = f"{base} {(' '.join(bits))}".strip() if bits else base
-    alt = clip(alt)
-
-    if alt.lower() in used and not is_first_blank:
-        angled = clip(f"{base}, another angle")
-        if angled.lower() not in used:
-            alt = angled
-    return alt
+    name_l = name.lower()
+    if color and color.lower() not in name_l:
+        return clip(f"{name} in {color.lower()}")
+    if material and material not in name_l:
+        return clip(f"{name} in {material}")
+    if crown and crown.lower() not in name_l:
+        return clip(f"{name}, {crown}")
+    if noun and noun not in name_l:
+        return clip(f"{name} {noun}")
+    return clip(name)
 
 
-def planned_updates(products: list[dict]) -> list[dict]:
+def planned_updates(products: list[dict], rewrite_ids: set[str] | None = None, color_by_media: dict[str, str] | None = None) -> list[dict]:
     rows = []
+    color_by_media = color_by_media or {}
     for product in products:
         if product["status"] != "ACTIVE":
             continue
-        used: set[str] = set()
         media = [edge["node"] for edge in product["media"]["edges"] if edge["node"].get("id")]
-        first_blank = True
         for media_item in media:
             current = (media_item.get("alt") or "").strip()
-            if current:
-                used.add(current.lower())
+            media_id = media_item["id"]
+            if rewrite_ids is None:
+                if current:
+                    continue
+            elif media_id not in rewrite_ids:
                 continue
             url = (media_item.get("image") or {}).get("url") or ""
-            alt = image_alt(product, url, used, first_blank)
-            first_blank = False
-            used.add(alt.lower())
+            alt = image_alt(product, url, color_by_media.get(media_id, ""))
+            if alt == current:
+                continue
             rows.append(
                 {
                     "handle": product["handle"],
                     "title": product["title"],
                     "vendor": product["vendor"],
-                    "media_id": media_item["id"],
+                    "media_id": media_id,
                     "old_alt": current,
                     "new_alt": alt,
                     "image_url": url,
@@ -522,14 +508,70 @@ def write_csv(rows: list[dict]) -> None:
         writer.writerows(rows)
 
 
+def filename_of(url: str) -> str:
+    return url.split("/")[-1].split("?")[0]
+
+
+def fetch_colors_by_handle_file() -> dict[tuple[str, str], str]:
+    token = os.environ["SHOPIFY_ADMIN_API_TOKEN"]
+    rest = f"https://{STORE}/admin/api/2024-10"
+    colors: dict[tuple[str, str], str] = {}
+    since = 0
+    while True:
+        req = urllib.request.Request(
+            f"{rest}/products.json?limit=250&since_id={since}&status=active&fields=id,handle,images,variants,options",
+            headers={"X-Shopify-Access-Token": token, "Content-Type": "application/json"},
+        )
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            batch = json.load(resp).get("products") or []
+        if not batch:
+            break
+        for product in batch:
+            color_pos = None
+            for option in product.get("options") or []:
+                if option["name"].lower() in {"color", "colour"}:
+                    color_pos = option["position"]
+                    break
+            if not color_pos:
+                continue
+            variants = product.get("variants") or []
+            for image in product.get("images") or []:
+                vids = image.get("variant_ids") or []
+                found = {
+                    variant.get(f"option{color_pos}")
+                    for variant in variants
+                    if variant["id"] in vids and variant.get(f"option{color_pos}")
+                }
+                if len(found) == 1:
+                    colors[(product["handle"], filename_of(image.get("src") or ""))] = found.pop()
+        since = batch[-1]["id"]
+        time.sleep(0.2)
+    return colors
+
+
 def main() -> None:
     apply = "--apply" in sys.argv
+    rewrite = "--rewrite" in sys.argv
     products = fetch_products()
-    rows = planned_updates(products)
+    rewrite_ids = None
+    if rewrite and OUT_CSV.exists():
+        rewrite_ids = {row["media_id"] for row in csv.DictReader(OUT_CSV.open())}
+    color_by_file = fetch_colors_by_handle_file()
+    color_by_media: dict[str, str] = {}
+    for product in products:
+        for edge in product["media"]["edges"]:
+            node = edge["node"]
+            if not node.get("id"):
+                continue
+            url = (node.get("image") or {}).get("url") or ""
+            color = color_by_file.get((product["handle"], filename_of(url)))
+            if color:
+                color_by_media[node["id"]] = color
+    rows = planned_updates(products, rewrite_ids=rewrite_ids, color_by_media=color_by_media)
     write_csv(rows)
     print(f"planned {len(rows)} alt updates -> {OUT_CSV}")
     for row in rows[:12]:
-        print(f"  {row['handle']}: {row['new_alt']}")
+        print(f"  {row['old_alt']}  =>  {row['new_alt']}")
     if not apply:
         print("dry run only. pass --apply to write to Shopify.")
         return

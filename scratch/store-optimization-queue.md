@@ -58,7 +58,7 @@ Hats/caps that can take vendor photos today:
 Jewelry with no photo (unpublish until shot): stud/coin/hoop earrings, both tennis bracelets, beaded turquoise bracelet, turquoise cross / horseshoe / cross bracelets.
 
 ### 6. Real image alt text — done 2026-08-16
-All **1,167** active product images now have Admin alt text (960 were blank; existing good alts were left alone). Written from brand + product + material/crown metafields + variant color. No Rafter M, no “image of,” no Moon Ridge stuffing on partner brands.
+All **1,167** active product images now have Admin alt text (960 were blank; existing good alts were left alone). Voice pass: one concrete detail (color, then material, then crown). No Rafter M, no “image of,” no “another angle,” no Moon Ridge stuffing on partner brands.
 
 Reversible map: `scratch/product-image-alts.csv`. Script: `scratch/apply-product-image-alts.py`.
 

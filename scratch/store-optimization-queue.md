@@ -57,10 +57,10 @@ Hats/caps that can take vendor photos today:
 
 Jewelry with no photo (unpublish until shot): stud/coin/hoop earrings, both tennis bracelets, beaded turquoise bracelet, turquoise cross / horseshoe / cross bracelets.
 
-### 6. Real image alt text
-Every storefront image alt is blank (1,060 images / 284 products). Theme fallback helps the page. Google Images and the Merchant feed still need the Admin alt field filled.
+### 6. Real image alt text — done 2026-08-16
+All **1,167** active product images now have Admin alt text (960 were blank; existing good alts were left alone). Written from brand + product + material/crown metafields + variant color. No Rafter M, no “image of,” no Moon Ridge stuffing on partner brands.
 
-Pattern: `{Brand} {Product name}` — e.g. `Stetson Bullock cowboy hat`.
+Reversible map: `scratch/product-image-alts.csv`. Script: `scratch/apply-product-image-alts.py`.
 
 ### 7. Insider list page in admin
 Theme overrides the title. Still change the Shopify page title + SEO title so admin matches: drop "Tuskers Trunk Show" and "Rafter M Hat Co. Insider List."

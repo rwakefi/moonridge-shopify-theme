@@ -220,7 +220,7 @@
         "label": "The Service Ritual",
         "title": "Your Hat, Restored.",
         "text": "We don't just sell hats; we preserve them—any hat, regardless of brand or age. Drop your hat off and tell us what you're thinking, and we'll go to work. Most pickups within a week.",
-        "button_label": "Drop Off Your Hat",
+        "button_label": "",
         "button_link": ""
       }
     }

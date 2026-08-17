@@ -6,10 +6,8 @@
   If no collection is passed, map the article handle (or a collection-reference
   metafield custom.shop_collection). Fallback: western-hats.
   How to Store a Cowboy Hat features A Better Hat Can unless custom.shop_product is set.
+  Collection rails use the homepage Best Sellers carousel (chocolate arrows, hover image, gold dots).
 {% endcomment %}
-
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
   assign he_shop = shop_collection
@@ -85,10 +83,10 @@
     assign he_sub = 'Hats we stand behind — try them in Fayetteville or order from here.'
   endif
 
-  assign he_limit = 4
+  assign he_limit = 12
   assign he_shown = 0
   if he_shop != blank
-    for product in he_shop.products limit: 24
+    for product in he_shop.products limit: 50
       if product.available and product.featured_media
         assign he_shown = he_shown | plus: 1
       endif
@@ -125,7 +123,8 @@
     </div>
   </aside>
 {%- elsif he_shop != blank and he_shown > 0 -%}
-  <aside class="he-shop" aria-label="{{ he_heading | escape }}">
+  <script src="{{ 'hat-education-carousel.js' | asset_url }}" defer="defer"></script>
+  <aside class="he-shop he-shop--carousel" aria-label="{{ he_heading | escape }}">
     <div class="he-shop__inner page-width">
       <header class="he-shop__header">
         <p class="he-shop__eyebrow">From the shop</p>
@@ -135,32 +134,100 @@
         {%- endif -%}
       </header>
 
-      <ul class="he-shop__grid" role="list">
-        {%- assign he_shown = 0 -%}
-        {%- for product in he_shop.products limit: 24 -%}
-          {%- if he_shown >= he_limit -%}
-            {%- break -%}
-          {%- endif -%}
-          {%- unless product.available and product.featured_media -%}
-            {%- continue -%}
-          {%- endunless -%}
-          {%- assign he_shown = he_shown | plus: 1 -%}
-          <li class="he-shop__item">
-            {% render 'card-product',
-              card_product: product,
-              media_aspect_ratio: 'square',
-              show_secondary_image: false,
-              show_vendor: false,
-              show_rating: false,
-              show_quick_add: false,
-              show_secondary_add: false,
-              show_quick_desc: false,
-              lazy_load: true,
-              section_id: he_id
-            %}
-          </li>
-        {%- endfor -%}
-      </ul>
+      <he-product-carousel
+        class="he-shop__carousel"
+        id="{{ he_id }}"
+        data-per-view="4"
+        data-per-view-tablet="3"
+        data-gap="20"
+      >
+        <div
+          class="he-shop__stage moonridge-carousel-wrapper"
+          style="--mr-carousel-btn-bg: #312110; --mr-carousel-btn-color: #ffffff; --mr-carousel-btn-hover-bg: #1f1d24;"
+        >
+          <div class="he-shop__viewport moonridge-carousel-stage">
+            <div class="he-shop__track-wrap" data-track-wrap>
+              <div class="he-shop__track" data-track>
+                {%- assign he_shown = 0 -%}
+                {%- for product in he_shop.products limit: 50 -%}
+                  {%- if he_shown >= he_limit -%}
+                    {%- break -%}
+                  {%- endif -%}
+                  {%- unless product.available and product.featured_media -%}
+                    {%- continue -%}
+                  {%- endunless -%}
+                  {%- assign he_shown = he_shown | plus: 1 -%}
+                  {%- assign he_hover = nil -%}
+                  {%- for media in product.media -%}
+                    {%- if media.id != product.featured_media.id and media.media_type == 'image' -%}
+                      {%- assign he_hover = media -%}
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                  <article class="he-shop__slide">
+                    <a class="he-shop__card" href="{{ product.url }}">
+                      <div class="he-shop__media">
+                        <img
+                          class="he-shop__img"
+                          src="{{ product.featured_media | image_url: width: 600 }}"
+                          alt="{{ product.featured_media.alt | default: product.title | escape }}"
+                          width="600"
+                          height="600"
+                          loading="lazy"
+                        >
+                        {%- if he_hover != blank -%}
+                          <img
+                            class="he-shop__img he-shop__img--hover"
+                            src="{{ he_hover | image_url: width: 600 }}"
+                            alt=""
+                            width="600"
+                            height="600"
+                            loading="lazy"
+                          >
+                        {%- endif -%}
+                      </div>
+                      <div class="he-shop__info">
+                        <h3 class="he-shop__title">{{ product.title | escape }}</h3>
+                        <p class="he-shop__card-price">
+                          <span>{{ product.price | money }}</span>
+                          {%- if product.compare_at_price > product.price -%}
+                            <s>{{ product.compare_at_price | money }}</s>
+                          {%- endif -%}
+                        </p>
+                      </div>
+                    </a>
+                  </article>
+                {%- endfor -%}
+              </div>
+            </div>
+
+            <div class="moonridge-carousel-controls" data-controls>
+              <button
+                type="button"
+                class="moonridge-carousel-btn moonridge-carousel-btn--prev"
+                aria-label="Previous hats"
+                data-prev
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="moonridge-carousel-btn moonridge-carousel-btn--next"
+                aria-label="Next hats"
+                data-next
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="he-shop__dots" data-dots></div>
+        </div>
+      </he-product-carousel>
 
       {%- if he_shop.url != blank -%}
         <p class="he-shop__all">
@@ -181,16 +248,35 @@
     background: var(--he-cream);
     border-top: 1px solid rgba(49, 33, 16, 0.08);
     border-bottom: 1px solid rgba(49, 33, 16, 0.08);
+    overflow: visible;
   }
 
   .he-shop__inner {
     max-width: 1100px;
+    overflow: visible;
+  }
+
+  .he-shop--carousel .he-shop__inner {
+    max-width: var(--page-width);
   }
 
   .he-shop__header {
     text-align: center;
     margin: 0 auto 2rem;
     max-width: 40rem;
+  }
+
+  .he-shop--carousel .he-shop__header {
+    margin-bottom: 2.25rem;
+  }
+
+  .he-shop--carousel .he-shop__header::after {
+    content: '';
+    display: block;
+    width: 2.5rem;
+    height: 1px;
+    margin: 1.25rem auto 0;
+    background: var(--he-accent);
   }
 
   .he-shop__eyebrow {
@@ -219,24 +305,199 @@
     color: rgba(49, 33, 16, 0.78);
   }
 
-  .he-shop__grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 1.25rem;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .he-shop__carousel {
+    display: block;
   }
 
-  @media screen and (min-width: 990px) {
-    .he-shop__grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1.5rem;
+  .he-shop__stage {
+    position: relative;
+  }
+
+  .he-shop__viewport {
+    position: relative;
+  }
+
+  .he-shop__track-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .he-shop__track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
+    will-change: transform;
+  }
+
+  .he-shop__track.is-animating {
+    animation: he-shop-swipe 0.25s ease-out;
+  }
+
+  @keyframes he-shop-swipe {
+    from { opacity: 0.88; }
+    to { opacity: 1; }
+  }
+
+  .he-shop__slide {
+    flex: 0 0 calc((100% - 60px) / 4);
+    min-width: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .he-shop__track {
+      gap: var(--grid-desktop-horizontal-spacing, 16px);
+    }
+
+    .he-shop__slide {
+      flex: 0 0 var(--he-slide-width, 25%);
+      max-width: var(--he-slide-width, none);
     }
   }
 
-  .he-shop__item {
-    min-width: 0;
+  .he-shop__card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #fff;
+    border: 1px solid rgba(49, 33, 16, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      transform 0.45s cubic-bezier(0.2, 0, 0, 1),
+      box-shadow 0.45s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .he-shop__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(49, 33, 16, 0.08);
+  }
+
+  .he-shop__media {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow: hidden;
+    background: #f4efe8;
+  }
+
+  .he-shop__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s ease;
+  }
+
+  .he-shop__img--hover {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .he-shop__card:has(.he-shop__img--hover):hover .he-shop__img:not(.he-shop__img--hover) {
+    opacity: 0;
+  }
+
+  .he-shop__card:hover .he-shop__img--hover {
+    opacity: 1;
+  }
+
+  .he-shop__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.95rem 1rem 1.15rem;
+    flex-grow: 1;
+  }
+
+  .he-shop__title {
+    margin: 0;
+    font-family: var(--font-heading-family);
+    font-size: clamp(0.95rem, 1.4vw, 1.12rem);
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    color: var(--he-ink);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .he-shop__card-price {
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-family: var(--font-heading-family);
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    color: var(--he-ink);
+  }
+
+  .he-shop__card-price s {
+    color: rgba(49, 33, 16, 0.45);
+    font-size: 0.85rem;
+  }
+
+  .he-shop__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    padding: 1.15rem 0 0;
+  }
+
+  .he-shop__dot {
+    width: 7px;
+    height: 7px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: rgba(49, 33, 16, 0.22);
+    cursor: pointer;
+    appearance: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .he-shop__dot:hover {
+    background: rgba(49, 33, 16, 0.45);
+  }
+
+  .he-shop__dot.is-active {
+    background: var(--he-accent);
+    transform: scale(1.25);
+  }
+
+  .he-shop__carousel.is-single .moonridge-carousel-controls,
+  .he-shop__carousel.is-single .he-shop__dots {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .he-shop__track {
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .he-shop__slide {
+      flex: 0 0 calc((100% - 12px) / 2);
+      max-width: calc((100% - 12px) / 2);
+    }
+
+    .he-shop__info {
+      padding: 0.7rem 0.75rem 0.9rem;
+    }
+
+    .he-shop__title {
+      font-size: 0.92rem;
+    }
   }
 
   .he-shop__all {

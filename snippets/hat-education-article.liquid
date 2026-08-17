@@ -7,35 +7,6 @@
   assign hat_finder_url = 'https://hatfinder.moonridgecompany.com'
   assign hat_finder_app_store_url = 'https://apps.apple.com/us/app/hat-finder/id6767718895?itscg=30200&itsct=apps_box_link&mttnsubad=6767718895'
 
-  assign hat_can = nil
-  assign hat_can_hero = nil
-  assign hat_can_stack = nil
-  if article.handle == 'how-to-store-a-cowboy-hat'
-    assign hat_can = all_products['a-better-hat-can']
-    if hat_can != blank and hat_can.featured_media
-      assign hat_can_hero = hat_can.featured_media
-      for media in hat_can.media
-        if media.media_type == 'image'
-          assign hat_can_src = media.preview_image.src | default: media.src
-          if hat_can_src contains 'stacked'
-            assign hat_can_stack = media
-            break
-          endif
-        endif
-      endfor
-      if hat_can_stack == blank
-        for media in hat_can.media
-          if media.media_type == 'image' and media.id != hat_can.featured_media.id
-            assign hat_can_stack = media
-            break
-          endif
-        endfor
-      endif
-      if hat_can_stack == blank
-        assign hat_can_stack = hat_can_hero
-      endif
-    endif
-  endif
 -%}
 
 <script type="application/ld+json">
@@ -59,8 +30,6 @@
   "url": {{ request.origin | append: article.url | json }}
   {%- if article.image -%}
   ,"image": {{ article.image | image_url: width: 1200 | prepend: "https:" | json }}
-  {%- elsif hat_can_hero != blank -%}
-  ,"image": {{ hat_can_hero | image_url: width: 1200 | prepend: "https:" | json }}
   {%- endif -%}
 }
 </script>
@@ -119,48 +88,10 @@
           fetchpriority="high"
         >
       </figure>
-    {%- elsif hat_can_hero != blank -%}
-      <figure class="he-article__figure he-article__figure--product">
-        <a href="{{ hat_can.url }}">
-          <img
-            src="{{ hat_can_hero | image_url: width: 1400 }}"
-            alt="{{ hat_can_hero.alt | default: hat_can.title | escape }}"
-            width="1400"
-            height="1400"
-            loading="eager"
-            fetchpriority="high"
-          >
-        </a>
-        <figcaption>
-          <a href="{{ hat_can.url }}">A Better Hat Can</a> — stackable cowboy hat case, made in Gainesville, Texas.
-        </figcaption>
-      </figure>
     {%- endif -%}
 
     <div class="he-article__body rte">
-      {%- if hat_can_stack != blank and article.content contains '<h2>Long-term storage: the case for a hat can</h2>' -%}
-        {%- assign hat_can_marker = '<h2>Long-term storage: the case for a hat can</h2>' -%}
-        {%- assign hat_can_parts = article.content | split: hat_can_marker -%}
-        {{ hat_can_parts[0] }}
-        {{ hat_can_marker }}
-        <figure class="he-article__figure he-article__figure--product he-article__figure--inline">
-          <a href="{{ hat_can.url }}">
-            <img
-              src="{{ hat_can_stack | image_url: width: 1200 }}"
-              alt="{{ hat_can_stack.alt | default: 'Stacked A Better Hat Cans' | escape }}"
-              width="1200"
-              height="1200"
-              loading="lazy"
-            >
-          </a>
-          <figcaption>
-            They stack. That is the whole point of a closet that still has room for anything else.
-          </figcaption>
-        </figure>
-        {{ hat_can_parts[1] }}
-      {%- else -%}
-        {{ article.content }}
-      {%- endif -%}
+      {{ article.content }}
     </div>
   </div>
 
@@ -271,9 +202,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.35rem 0.5rem;
-    margin: 0 0 1.5rem;
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
+    margin: 0 0 2.8rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.11em;
     text-transform: uppercase;
     color: rgba(49, 33, 16, 0.65);
   }
@@ -293,9 +224,10 @@
   }
 
   .he-article__eyebrow {
-    margin: 0 0 0.75rem;
-    font-size: 0.8rem;
-    letter-spacing: 0.2em;
+    margin: 0 0 1.4rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--he-accent);
     font-family: var(--font-heading-family);
@@ -304,7 +236,7 @@
   .he-article__title {
     margin: 0 0 1rem;
     font-family: var(--font-heading-family);
-    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    font-size: clamp(3.4rem, 5vw, 4.4rem);
     font-weight: 500;
     letter-spacing: 0.04em;
     line-height: 1.15;
@@ -313,9 +245,9 @@
 
   .he-article__deck {
     margin: 0 auto;
-    max-width: 40rem;
-    font-size: 1.3rem;
-    line-height: 1.65;
+    max-width: 62rem;
+    font-size: 2.1rem;
+    line-height: 1.55;
     color: rgba(49, 33, 16, 0.82);
   }
 
@@ -348,7 +280,7 @@
     padding: 0.85rem 1rem 1rem;
     background: var(--he-cream);
     font-family: var(--font-heading-family);
-    font-size: 0.95rem;
+    font-size: 1.4rem;
     line-height: 1.45;
     letter-spacing: 0.02em;
     color: rgba(49, 33, 16, 0.78);
@@ -374,16 +306,19 @@
 
   /* Article body — tuned for pasted guides (p + strong headings, hr breaks) */
   .he-article__body {
-    font-size: 1.7rem;
-    line-height: 1.7;
+    font-size: 1.9rem;
+    line-height: 1.68;
     color: #2b241e;
-    letter-spacing: 0.01em;
+    letter-spacing: 0;
+    max-width: 69rem; /* ~72 characters at 19px */
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .he-article__body.rte p,
   .he-article__body.rte li {
-    font-size: 1.7rem !important;
-    line-height: 1.7 !important;
+    font-size: 1.9rem !important;
+    line-height: 1.68 !important;
   }
 
   .he-article__body.rte [style*="font-size"] {
@@ -392,12 +327,12 @@
 
   @media screen and (min-width: 750px) {
     .he-article__body {
-      font-size: 1.7rem;
+      font-size: 1.9rem;
     }
 
     .he-article__body.rte p,
     .he-article__body.rte li {
-      font-size: 1.7rem !important;
+      font-size: 1.9rem !important;
     }
   }
 
@@ -405,7 +340,7 @@
     .he-article__body,
     .he-article__body.rte p,
     .he-article__body.rte li {
-      font-size: 2rem !important;
+      font-size: 1.8rem !important;
       line-height: 1.65 !important;
     }
   }
@@ -422,7 +357,7 @@
   }
 
   .he-article__body p {
-    margin: 0 0 1.35rem;
+    margin: 0 0 2.4rem;
   }
 
   /* Hide duplicate title when first line is bold-only (page already has h1) */
@@ -433,7 +368,7 @@
   .he-article__body .he-article__byline {
     margin: 0 0 1.15rem;
     font-family: var(--font-heading-family);
-    font-size: 0.85rem;
+    font-size: 1.2rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--he-accent);
@@ -452,16 +387,16 @@
   .he-article__body > p:first-of-type:not(:has(> strong:only-child)):not(.he-article__byline):not(.he-article__see-also),
   .he-article__body > p:first-child:has(> strong:only-child):not(.he-article__byline) + p:not(.he-article__see-also),
   .he-article__body .he-article__lede {
-    font-size: 1.85rem;
-    line-height: 1.7;
-    color: rgba(43, 36, 30, 0.92);
+    font-size: 2.2rem;
+    line-height: 1.55;
+    color: rgba(43, 36, 30, 0.95);
   }
 
   @media screen and (min-width: 750px) {
     .he-article__body > p:first-of-type:not(:has(> strong:only-child)):not(.he-article__byline):not(.he-article__see-also),
     .he-article__body > p:first-child:has(> strong:only-child):not(.he-article__byline) + p:not(.he-article__see-also),
     .he-article__body .he-article__lede {
-      font-size: 1.85rem;
+      font-size: 2.2rem;
     }
   }
 
@@ -469,8 +404,8 @@
     .he-article__body > p:first-of-type:not(:has(> strong:only-child)):not(.he-article__byline):not(.he-article__see-also),
     .he-article__body > p:first-child:has(> strong:only-child):not(.he-article__byline) + p:not(.he-article__see-also),
     .he-article__body .he-article__lede {
-      font-size: 2.1rem !important;
-      line-height: 1.65 !important;
+      font-size: 2.05rem !important;
+      line-height: 1.55 !important;
     }
   }
 
@@ -478,7 +413,7 @@
   .he-article__body hr {
     border: 0;
     height: 1px;
-    margin: 2.25rem 0;
+    margin: 4.4rem 0;
     background: linear-gradient(
       to right,
       transparent,
@@ -518,34 +453,38 @@
     color: var(--he-ink);
   }
 
-  .he-article__body h2 {
-    margin: 2.25rem 0 0.85rem;
+  .he-article__body h2,
+  .he-article__body.rte h2 {
+    margin: 5.2rem 0 1.4rem;
     font-family: var(--font-heading-family);
-    font-size: 1.55rem;
+    font-size: 2.6rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
-    line-height: 1.3;
+    letter-spacing: 0;
+    line-height: 1.22;
     text-transform: none;
     color: var(--he-ink);
   }
 
   @media screen and (min-width: 750px) {
-    .he-article__body h2 {
-      font-size: 1.75rem;
+    .he-article__body h2,
+    .he-article__body.rte h2 {
+      font-size: 2.9rem;
     }
   }
 
-  .he-article__body hr + h2 {
-    margin-top: 0;
+  .he-article__body hr + h2,
+  .he-article__body.rte hr + h2 {
+    margin-top: 4.4rem;
   }
 
   .he-article__body .he-article__see-also {
-    margin-bottom: 1.5rem;
-    padding: 1rem 1.15rem;
+    margin-bottom: 3.4rem;
+    padding: 1.6rem 2rem;
     background: var(--he-cream);
+    border-left: 3px solid var(--he-accent);
     border-radius: 6px;
-    font-size: 1.125rem;
-    line-height: 1.6;
+    font-size: 1.55rem;
+    line-height: 1.65;
   }
 
   /* Face shape guide blocks */
@@ -565,7 +504,7 @@
     display: block;
     margin-bottom: 0.4rem;
     font-family: var(--font-heading-family);
-    font-size: 1.05rem;
+    font-size: 1.3rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -594,7 +533,7 @@
 
   .he-article__body .he-article__rules h2 {
     margin: 0 0 0.85rem;
-    font-size: 0.85rem;
+    font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -605,7 +544,7 @@
     margin: 0;
     padding: 0.7rem 0;
     border-top: 1px solid rgba(49, 33, 16, 0.1);
-    font-size: 1.55rem !important;
+    font-size: 1.75rem !important;
     line-height: 1.45 !important;
   }
 
@@ -634,7 +573,7 @@
     background: #fff;
     border: 1px solid rgba(49, 33, 16, 0.1);
     border-radius: 6px;
-    font-size: 1.45rem !important;
+    font-size: 1.7rem !important;
     line-height: 1.5 !important;
   }
 
@@ -642,7 +581,7 @@
     display: block;
     margin-bottom: 0.35rem;
     font-family: var(--font-heading-family);
-    font-size: 0.8rem;
+    font-size: 1.15rem;
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -654,10 +593,11 @@
     display: none;
   }
 
-  .he-article__body h3 {
-    margin: 1.75rem 0 0.6rem;
+  .he-article__body h3,
+  .he-article__body.rte h3 {
+    margin: 3.6rem 0 1rem;
     font-family: var(--font-heading-family);
-    font-size: 1.4rem;
+    font-size: 2.1rem;
     font-weight: 600;
     letter-spacing: 0.03em;
     text-transform: none;
@@ -728,7 +668,7 @@
 
   .he-article__cta-label {
     margin: 0 0 0.35rem;
-    font-size: 0.75rem;
+    font-size: 1.2rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--he-accent);
@@ -737,7 +677,7 @@
 
   .he-article__cta-text {
     margin: 0;
-    font-size: 1.05rem;
+    font-size: 1.7rem;
     color: var(--he-ink);
   }
 
@@ -764,7 +704,7 @@
     justify-content: center;
     padding: 0.75rem 1.35rem;
     border-radius: 4px;
-    font-size: 0.8rem;
+    font-size: 1.25rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     text-decoration: none;
@@ -800,7 +740,7 @@
     margin: 0 0 1.25rem;
     text-align: center;
     font-family: var(--font-heading-family);
-    font-size: 1.1rem;
+    font-size: 1.7rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--he-ink);
@@ -853,7 +793,7 @@
   .he-article__related-title {
     display: block;
     padding: 0.85rem 0.75rem 1rem;
-    font-size: 0.9rem;
+    font-size: 1.5rem;
     line-height: 1.35;
     color: var(--he-ink);
     font-family: var(--font-heading-family);
@@ -866,7 +806,7 @@
   }
 
   .he-article__related-all a {
-    font-size: 0.9rem;
+    font-size: 1.4rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--he-accent);
@@ -897,7 +837,7 @@
   }
 
   .he-article__nav-kicker {
-    font-size: 0.72rem;
+    font-size: 1.15rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     opacity: 0.65;
@@ -905,7 +845,7 @@
   }
 
   .he-article__nav-title {
-    font-size: 0.95rem;
+    font-size: 1.6rem;
     font-weight: 600;
     line-height: 1.35;
   }

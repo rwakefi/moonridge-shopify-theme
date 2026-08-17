@@ -6,6 +6,36 @@
   endif
   assign hat_finder_url = 'https://hatfinder.moonridgecompany.com'
   assign hat_finder_app_store_url = 'https://apps.apple.com/us/app/hat-finder/id6767718895?itscg=30200&itsct=apps_box_link&mttnsubad=6767718895'
+
+  assign hat_can = nil
+  assign hat_can_hero = nil
+  assign hat_can_stack = nil
+  if article.handle == 'how-to-store-a-cowboy-hat'
+    assign hat_can = all_products['a-better-hat-can']
+    if hat_can != blank and hat_can.featured_media
+      assign hat_can_hero = hat_can.featured_media
+      for media in hat_can.media
+        if media.media_type == 'image'
+          assign hat_can_src = media.preview_image.src | default: media.src
+          if hat_can_src contains 'stacked'
+            assign hat_can_stack = media
+            break
+          endif
+        endif
+      endfor
+      if hat_can_stack == blank
+        for media in hat_can.media
+          if media.media_type == 'image' and media.id != hat_can.featured_media.id
+            assign hat_can_stack = media
+            break
+          endif
+        endfor
+      endif
+      if hat_can_stack == blank
+        assign hat_can_stack = hat_can_hero
+      endif
+    endif
+  endif
 -%}
 
 <script type="application/ld+json">
@@ -29,6 +59,8 @@
   "url": {{ request.origin | append: article.url | json }}
   {%- if article.image -%}
   ,"image": {{ article.image | image_url: width: 1200 | prepend: "https:" | json }}
+  {%- elsif hat_can_hero != blank -%}
+  ,"image": {{ hat_can_hero | image_url: width: 1200 | prepend: "https:" | json }}
   {%- endif -%}
 }
 </script>
@@ -87,10 +119,48 @@
           fetchpriority="high"
         >
       </figure>
+    {%- elsif hat_can_hero != blank -%}
+      <figure class="he-article__figure he-article__figure--product">
+        <a href="{{ hat_can.url }}">
+          <img
+            src="{{ hat_can_hero | image_url: width: 1400 }}"
+            alt="{{ hat_can_hero.alt | default: hat_can.title | escape }}"
+            width="1400"
+            height="1400"
+            loading="eager"
+            fetchpriority="high"
+          >
+        </a>
+        <figcaption>
+          <a href="{{ hat_can.url }}">A Better Hat Can</a> — stackable cowboy hat case, made in Gainesville, Texas.
+        </figcaption>
+      </figure>
     {%- endif -%}
 
     <div class="he-article__body rte">
-      {{ article.content }}
+      {%- if hat_can_stack != blank and article.content contains '<h2>Long-term storage: the case for a hat can</h2>' -%}
+        {%- assign hat_can_marker = '<h2>Long-term storage: the case for a hat can</h2>' -%}
+        {%- assign hat_can_parts = article.content | split: hat_can_marker -%}
+        {{ hat_can_parts[0] }}
+        {{ hat_can_marker }}
+        <figure class="he-article__figure he-article__figure--product he-article__figure--inline">
+          <a href="{{ hat_can.url }}">
+            <img
+              src="{{ hat_can_stack | image_url: width: 1200 }}"
+              alt="{{ hat_can_stack.alt | default: 'Stacked A Better Hat Cans' | escape }}"
+              width="1200"
+              height="1200"
+              loading="lazy"
+            >
+          </a>
+          <figcaption>
+            They stack. That is the whole point of a closet that still has room for anything else.
+          </figcaption>
+        </figure>
+        {{ hat_can_parts[1] }}
+      {%- else -%}
+        {{ article.content }}
+      {%- endif -%}
     </div>
   </div>
 
@@ -260,6 +330,46 @@
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  .he-article__figure--product {
+    background: #fff;
+    border: 1px solid rgba(49, 33, 16, 0.08);
+    overflow: hidden;
+  }
+
+  .he-article__figure--product a {
+    display: block;
+    text-decoration: none;
+  }
+
+  .he-article__figure--product figcaption {
+    margin: 0;
+    padding: 0.85rem 1rem 1rem;
+    background: var(--he-cream);
+    font-family: var(--font-heading-family);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    letter-spacing: 0.02em;
+    color: rgba(49, 33, 16, 0.78);
+    text-align: center;
+  }
+
+  .he-article__figure--product figcaption a {
+    display: inline;
+    color: var(--he-ink);
+    text-decoration: underline;
+    text-decoration-color: rgba(49, 33, 16, 0.28);
+    text-underline-offset: 0.18em;
+  }
+
+  .he-article__figure--inline {
+    margin: 0.5rem 0 2rem;
+  }
+
+  .he-article__body .he-article__figure--product img {
+    margin: 0;
+    border-radius: 0;
   }
 
   /* Article body — tuned for pasted guides (p + strong headings, hr breaks) */

@@ -24,6 +24,10 @@ Articles are published in **Shopify Admin** (not theme Liquid). Each guide has:
 - `/blogs/hat-education/finding-the-style-that-fits-your-face`
 - `/pages/hat-sizing`
 
+## Products on guides
+
+Theme shows four in-stock hats after the article (and on the Hat Education index). Mapping is automatic from the handle (straw guide → straw, felt/X-rating → felt, face/head → hats for everyone, everything else → western). Optional override: article metafield `custom.shop_collection` (collection reference).
+
 ## Rules
 
 - Do **not** publish without explicit approval

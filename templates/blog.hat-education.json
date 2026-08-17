@@ -55,6 +55,15 @@
         "read_more_label": "Read the full story"
       }
     },
+    "hat_education_shop": {
+      "type": "hat-education-shop",
+      "settings": {
+        "collection": "western-hats",
+        "heading": "On the wall",
+        "subheading": "Guides first. Then a hat you can actually put on.",
+        "view_all_label": "Shop western hats"
+      }
+    },
     "hat_shaping_video": {
       "type": "video",
       "settings": {
@@ -74,6 +83,7 @@
   "order": [
     "17653910051ed52623",
     "main",
+    "hat_education_shop",
     "hat_shaping_video"
   ]
 }

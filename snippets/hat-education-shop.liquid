@@ -1,0 +1,336 @@
+{% comment %}
+  In-stock hats for Hat Education — magazine rail, not a hard sell.
+
+  Optional: shop_collection, featured_product, heading, subheading, view_all_label, unique_id
+
+  If no collection is passed, map the article handle (or a collection-reference
+  metafield custom.shop_collection). Fallback: western-hats.
+  How to Store a Cowboy Hat features A Better Hat Can unless custom.shop_product is set.
+{% endcomment %}
+
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign he_shop = shop_collection
+  assign he_heading = heading
+  assign he_sub = subheading
+  assign he_view = view_all_label | default: 'Shop the collection'
+  assign he_id = unique_id | default: 'hat-ed-shop'
+
+  if he_shop == blank and article != blank
+    assign he_meta = article.metafields.custom.shop_collection.value
+    if he_meta != blank
+      assign he_shop = he_meta
+    endif
+  endif
+
+  if he_shop == blank and article != blank
+    assign he_handle = article.handle | downcase
+    assign mapped = 'western-hats'
+    if he_handle == 'types-of-straw-in-straw-hats'
+      assign mapped = 'straw-hats'
+    elsif he_handle == 'understanding-the-x-rating-of-hats' or he_handle == 'how-to-clean-a-felt-hat'
+      assign mapped = 'felt-hats'
+    elsif he_handle == 'learn-your-head-shape' or he_handle == 'finding-the-style-that-fits-your-face'
+      assign mapped = 'hats-for-everyone'
+    endif
+    assign he_shop = collections[mapped]
+  endif
+
+  if he_shop == blank
+    assign he_shop = collections['western-hats']
+  endif
+
+  assign he_feature = featured_product
+  if he_feature == blank and article != blank
+    assign he_prod_meta = article.metafields.custom.shop_product.value
+    if he_prod_meta != blank
+      assign he_feature = he_prod_meta
+    endif
+  endif
+  if he_feature == blank and article != blank and article.handle == 'how-to-store-a-cowboy-hat'
+    assign he_feature = all_products['a-better-hat-can']
+  endif
+
+  if he_heading == blank
+    assign he_heading = 'On the wall'
+  endif
+  if article != blank and article.handle == 'how-to-store-a-cowboy-hat' and he_feature != blank
+    assign he_heading = 'A Better Hat Can'
+    assign he_sub = 'Stackable cowboy hat case. Made in Gainesville, Texas — the first real upgrade to hat storage we have put on the shelf.'
+    assign he_view = 'See the hat can'
+  endif
+
+  if he_sub == blank and article != blank
+    assign he_handle = article.handle | downcase
+    if he_handle == 'types-of-straw-in-straw-hats'
+      assign he_sub = 'Bangora, shantung, palm — straw we actually keep in stock.'
+    elsif he_handle == 'understanding-the-x-rating-of-hats' or he_handle == 'how-to-clean-a-felt-hat'
+      assign he_sub = 'Felt you can try on, then take home or leave with us to shape.'
+    elsif he_handle == 'cowboy-hat-crown-shapes' or he_handle == 'cowboy-hat-brim-shapes'
+      assign he_sub = 'Same crease names as the product pages. See them on a real hat.'
+    elsif he_handle == 'felt-vs-straw-cowboy-hats'
+      assign he_sub = 'Felt for cool mornings. Straw when Arkansas heats up.'
+    elsif he_handle == 'finding-the-style-that-fits-your-face' or he_handle == 'learn-your-head-shape'
+      assign he_sub = 'Start with a shape. Finish it on your head.'
+    elsif he_handle == 'how-to-store-a-cowboy-hat'
+      assign he_sub = 'A hat worth storing right.'
+    else
+      assign he_sub = 'Hats from this guide, ready to try on or ship.'
+    endif
+  endif
+
+  if he_sub == blank
+    assign he_sub = 'Hats we stand behind — try them in Fayetteville or order from here.'
+  endif
+
+  assign he_limit = 4
+  assign he_shown = 0
+  if he_shop != blank
+    for product in he_shop.products limit: 24
+      if product.available and product.featured_media
+        assign he_shown = he_shown | plus: 1
+      endif
+      if he_shown >= he_limit
+        break
+      endif
+    endfor
+  endif
+-%}
+
+{%- if he_feature != blank and he_feature.featured_media -%}
+  <aside class="he-shop he-shop--feature" aria-label="{{ he_heading | escape }}">
+    <div class="he-shop__inner he-shop__inner--feature page-width">
+      <a class="he-shop__feature" href="{{ he_feature.url }}">
+        <div class="he-shop__feature-media">
+          <img
+            src="{{ he_feature.featured_media | image_url: width: 1200 }}"
+            alt="{{ he_feature.featured_media.alt | default: he_feature.title | escape }}"
+            width="600"
+            height="600"
+            loading="lazy"
+          >
+        </div>
+        <div class="he-shop__feature-copy">
+          <p class="he-shop__eyebrow">From the shop</p>
+          <h2 class="he-shop__heading">{{ he_heading | escape }}</h2>
+          {%- if he_sub != blank -%}
+            <p class="he-shop__sub">{{ he_sub | escape }}</p>
+          {%- endif -%}
+          <p class="he-shop__price">{{ he_feature.price | money }}</p>
+          <span class="he-shop__btn">{{ he_view | escape }}</span>
+        </div>
+      </a>
+    </div>
+  </aside>
+{%- elsif he_shop != blank and he_shown > 0 -%}
+  <aside class="he-shop" aria-label="{{ he_heading | escape }}">
+    <div class="he-shop__inner page-width">
+      <header class="he-shop__header">
+        <p class="he-shop__eyebrow">From the shop</p>
+        <h2 class="he-shop__heading">{{ he_heading | escape }}</h2>
+        {%- if he_sub != blank -%}
+          <p class="he-shop__sub">{{ he_sub | escape }}</p>
+        {%- endif -%}
+      </header>
+
+      <ul class="he-shop__grid" role="list">
+        {%- assign he_shown = 0 -%}
+        {%- for product in he_shop.products limit: 24 -%}
+          {%- if he_shown >= he_limit -%}
+            {%- break -%}
+          {%- endif -%}
+          {%- unless product.available and product.featured_media -%}
+            {%- continue -%}
+          {%- endunless -%}
+          {%- assign he_shown = he_shown | plus: 1 -%}
+          <li class="he-shop__item">
+            {% render 'card-product',
+              card_product: product,
+              media_aspect_ratio: 'square',
+              show_secondary_image: false,
+              show_vendor: false,
+              show_rating: false,
+              show_quick_add: false,
+              show_secondary_add: false,
+              show_quick_desc: false,
+              lazy_load: true,
+              section_id: he_id
+            %}
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {%- if he_shop.url != blank -%}
+        <p class="he-shop__all">
+          <a href="{{ he_shop.url }}">{{ he_view | escape }} →</a>
+        </p>
+      {%- endif -%}
+    </div>
+  </aside>
+{%- endif -%}
+
+<style>
+  .he-shop {
+    --he-ink: #312110;
+    --he-accent: #c5a059;
+    --he-cream: #f6f2ec;
+    margin: 0;
+    padding: 2.75rem 0 3rem;
+    background: var(--he-cream);
+    border-top: 1px solid rgba(49, 33, 16, 0.08);
+    border-bottom: 1px solid rgba(49, 33, 16, 0.08);
+  }
+
+  .he-shop__inner {
+    max-width: 1100px;
+  }
+
+  .he-shop__header {
+    text-align: center;
+    margin: 0 auto 2rem;
+    max-width: 40rem;
+  }
+
+  .he-shop__eyebrow {
+    margin: 0 0 0.65rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--he-accent);
+    font-family: var(--font-heading-family);
+  }
+
+  .he-shop__heading {
+    margin: 0 0 0.65rem;
+    font-family: var(--font-heading-family);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--he-ink);
+  }
+
+  .he-shop__sub {
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.55;
+    color: rgba(49, 33, 16, 0.78);
+  }
+
+  .he-shop__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media screen and (min-width: 990px) {
+    .he-shop__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  .he-shop__item {
+    min-width: 0;
+  }
+
+  .he-shop__all {
+    margin: 1.75rem 0 0;
+    text-align: center;
+  }
+
+  .he-shop__all a {
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--he-accent);
+    text-decoration: none;
+    font-family: var(--font-heading-family);
+  }
+
+  .he-shop__all a:hover {
+    color: var(--he-ink);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .he-shop__inner--feature {
+    max-width: 960px;
+  }
+
+  .he-shop__feature {
+    display: grid;
+    gap: 1.75rem;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  @media screen and (min-width: 750px) {
+    .he-shop__feature {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 2.5rem;
+    }
+  }
+
+  .he-shop__feature-media {
+    margin: 0;
+    background: #fff;
+    border: 1px solid rgba(49, 33, 16, 0.08);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .he-shop__feature-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .he-shop__feature-copy {
+    text-align: left;
+  }
+
+  .he-shop--feature .he-shop__heading {
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+  }
+
+  .he-shop--feature .he-shop__sub {
+    font-size: 1.25rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .he-shop__price {
+    margin: 0 0 1.25rem;
+    font-family: var(--font-heading-family);
+    font-size: 1.35rem;
+    color: var(--he-ink);
+  }
+
+  .he-shop__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.4rem;
+    background: var(--he-ink);
+    color: #fff;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-family: var(--font-heading-family);
+  }
+
+  .he-shop__feature:hover .he-shop__btn {
+    background: #4a3428;
+  }
+</style>

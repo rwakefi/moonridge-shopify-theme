@@ -24,6 +24,10 @@ Articles are published in **Shopify Admin** (not theme Liquid). Each guide has:
 - `/blogs/hat-education/finding-the-style-that-fits-your-face`
 - `/pages/hat-sizing`
 
+## Products on guides
+
+Theme shows products after each Hat Education article (and on the index). Most guides get four in-stock hats from a matching collection. **How to Store a Cowboy Hat** features **A Better Hat Can** (`a-better-hat-can`) as a single product. Optional overrides: `custom.shop_collection` (collection) or `custom.shop_product` (product).
+
 ## Rules
 
 - Do **not** publish without explicit approval

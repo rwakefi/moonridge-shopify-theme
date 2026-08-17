@@ -1,0 +1,58 @@
+{% comment %}
+  Hat Education index — in-stock hats under the guide grid.
+  Picks a collection in the theme editor; falls back to western-hats.
+{% endcomment %}
+
+{%- liquid
+  assign index_collection = section.settings.collection
+  if index_collection == blank
+    assign index_collection = collections['western-hats']
+  endif
+-%}
+
+{% render 'hat-education-shop',
+  shop_collection: index_collection,
+  heading: section.settings.heading,
+  subheading: section.settings.subheading,
+  view_all_label: section.settings.view_all_label,
+  unique_id: section.id
+%}
+
+{% schema %}
+{
+  "name": "Hat Education shop",
+  "tag": "section",
+  "class": "section-hat-education-shop",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Leave blank to use Western Hats."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "On the wall"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Guides first. Then a hat you can actually put on."
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "Collection link label",
+      "default": "Shop western hats"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hat Education shop"
+    }
+  ]
+}
+{% endschema %}

@@ -1,10 +1,11 @@
 {% comment %}
   In-stock hats for Hat Education — magazine rail, not a hard sell.
 
-  Optional: shop_collection, heading, subheading, view_all_label, unique_id
+  Optional: shop_collection, featured_product, heading, subheading, view_all_label, unique_id
 
   If no collection is passed, map the article handle (or a collection-reference
   metafield custom.shop_collection). Fallback: western-hats.
+  How to Store a Cowboy Hat features A Better Hat Can unless custom.shop_product is set.
 {% endcomment %}
 
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
@@ -41,8 +42,24 @@
     assign he_shop = collections['western-hats']
   endif
 
+  assign he_feature = featured_product
+  if he_feature == blank and article != blank
+    assign he_prod_meta = article.metafields.custom.shop_product.value
+    if he_prod_meta != blank
+      assign he_feature = he_prod_meta
+    endif
+  endif
+  if he_feature == blank and article != blank and article.handle == 'how-to-store-a-cowboy-hat'
+    assign he_feature = all_products['a-better-hat-can']
+  endif
+
   if he_heading == blank
     assign he_heading = 'On the wall'
+  endif
+  if article != blank and article.handle == 'how-to-store-a-cowboy-hat' and he_feature != blank
+    assign he_heading = 'A Better Hat Can'
+    assign he_sub = 'Stackable cowboy hat case. Made in Gainesville, Texas — the first real upgrade to hat storage we have put on the shelf.'
+    assign he_view = 'See the hat can'
   endif
 
   if he_sub == blank and article != blank
@@ -82,7 +99,32 @@
   endif
 -%}
 
-{%- if he_shop != blank and he_shown > 0 -%}
+{%- if he_feature != blank and he_feature.featured_media -%}
+  <aside class="he-shop he-shop--feature" aria-label="{{ he_heading | escape }}">
+    <div class="he-shop__inner he-shop__inner--feature page-width">
+      <a class="he-shop__feature" href="{{ he_feature.url }}">
+        <div class="he-shop__feature-media">
+          <img
+            src="{{ he_feature.featured_media | image_url: width: 1200 }}"
+            alt="{{ he_feature.featured_media.alt | default: he_feature.title | escape }}"
+            width="600"
+            height="600"
+            loading="lazy"
+          >
+        </div>
+        <div class="he-shop__feature-copy">
+          <p class="he-shop__eyebrow">From the shop</p>
+          <h2 class="he-shop__heading">{{ he_heading | escape }}</h2>
+          {%- if he_sub != blank -%}
+            <p class="he-shop__sub">{{ he_sub | escape }}</p>
+          {%- endif -%}
+          <p class="he-shop__price">{{ he_feature.price | money }}</p>
+          <span class="he-shop__btn">{{ he_view | escape }}</span>
+        </div>
+      </a>
+    </div>
+  </aside>
+{%- elsif he_shop != blank and he_shown > 0 -%}
   <aside class="he-shop" aria-label="{{ he_heading | escape }}">
     <div class="he-shop__inner page-width">
       <header class="he-shop__header">
@@ -215,5 +257,80 @@
     color: var(--he-ink);
     text-decoration: underline;
     text-underline-offset: 0.2em;
+  }
+
+  .he-shop__inner--feature {
+    max-width: 960px;
+  }
+
+  .he-shop__feature {
+    display: grid;
+    gap: 1.75rem;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  @media screen and (min-width: 750px) {
+    .he-shop__feature {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 2.5rem;
+    }
+  }
+
+  .he-shop__feature-media {
+    margin: 0;
+    background: #fff;
+    border: 1px solid rgba(49, 33, 16, 0.08);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .he-shop__feature-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .he-shop__feature-copy {
+    text-align: left;
+  }
+
+  .he-shop--feature .he-shop__heading {
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+  }
+
+  .he-shop--feature .he-shop__sub {
+    font-size: 1.25rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .he-shop__price {
+    margin: 0 0 1.25rem;
+    font-family: var(--font-heading-family);
+    font-size: 1.35rem;
+    color: var(--he-ink);
+  }
+
+  .he-shop__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.4rem;
+    background: var(--he-ink);
+    color: #fff;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-family: var(--font-heading-family);
+  }
+
+  .he-shop__feature:hover .he-shop__btn {
+    background: #4a3428;
   }
 </style>

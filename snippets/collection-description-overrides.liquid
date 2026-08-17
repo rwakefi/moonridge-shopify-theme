@@ -1,6 +1,14 @@
 {%- comment -%}
   Collection body lives in Shopify admin. Override leftover Rafter M copy
   and empty brand / bestseller intros until admin descriptions are updated.
+
+  Note: several handles do not match their titles (legacy "-copy" handles
+  from duplicated collections). Verified against live Shopify 2026-08-17:
+    resistol-copy                 -> Bigalli
+    best-selling-stetsons-copy-1  -> Best Selling Pendleton
+    best-selling-goorin-bros-copy -> Best Selling Bigalli
+    best-selling-pendleton-copy   -> Best Selling Lucchese
+    best-selling-stetsons-copy    -> Best Selling Resistol
 {%- endcomment -%}
 
 {%- if collection.handle == 'hat-experiences' -%}
@@ -25,7 +33,7 @@
 {%- elsif collection.handle == 'apparel' -%}
   <p>Hoodies, tees, and sweatshirts that sit next to the hat wall — Stetson marks, western graphics, nothing that needs a costume.</p>
 {%- elsif collection.handle == 't-shirt' -%}
-  <p>Western tees with a short message and a clean fit. Everyday shirts, not souvenir-stand prints.</p>
+  <p>Short-sleeve western shirts and graphic tees — Stetson crests alongside Pendleton's Laramie and Aloha prints. Everyday shirts, not souvenir-stand prints.</p>
 {%- else -%}
   {{ collection.description }}
 {%- endif -%}

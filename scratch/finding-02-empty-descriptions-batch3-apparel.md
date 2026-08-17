@@ -1,7 +1,7 @@
 # Finding #2 — Empty product descriptions (Batch 3: Stetson + Moon Ridge apparel/caps)
 
-**Status:** Draft only — do not publish until Zack approves.  
-**Scope:** Last 6 in-stock products with empty `body_html`.
+**Status:** All 6 pasted live 2026-08-16.  
+**Scope:** Last 6 in-stock products that had empty `body_html`.
 
 ---
 
@@ -62,8 +62,7 @@
 ## Finding #2 wrap-up
 | Batch | File | Count | Status |
 |---|---|---|---|
-| 1 Pendleton | `finding-02-empty-descriptions-batch1-pendleton.md` | 14 | Approved voice — ready to paste on Zack’s say-so |
-| 2 Jewelry/scarves | `finding-02-empty-descriptions-batch2-jewelry.md` | 18 | Draft — review |
-| 3 Apparel/caps | this file | 6 | Draft — review |
-
-**Live Shopify paste still needs explicit approval** (and 3 no-image bracelets should wait on photos).
+| 1 Pendleton | `finding-02-empty-descriptions-batch1-pendleton.md` | 14 | Already live before this pass |
+| 2 Jewelry/scarves | `finding-02-empty-descriptions-batch2-jewelry.md` | 18 | 15 pasted live; 3 no-image held |
+| 3 Apparel/caps | this file | 6 | Pasted live 2026-08-16 |
+| 4 Remaining / OOS | `finding-02-empty-descriptions-batch4-remaining.md` | 10 | Draft — still empty, mostly OOS |

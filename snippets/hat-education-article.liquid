@@ -94,6 +94,8 @@
     </div>
   </div>
 
+  <script src="{{ 'hat-education-article.js' | asset_url }}" defer="defer"></script>
+
   {% render 'hat-education-shop', unique_id: 'hat-ed-article' %}
 
   <div class="he-article__inner he-article__inner--after page-width">
@@ -298,8 +300,8 @@
     }
   }
 
-  /* Ignore stray classes from AI / external editors (not our layout classes) */
-  .he-article__body [class]:not(.he-article__lede):not(.he-article__see-also) {
+  /* Ignore stray classes from AI / external editors (keep our he-* layout classes) */
+  .he-article__body [class]:not([class^="he-article__"]):not([class^="he-face-"]) {
     font-family: inherit !important;
     line-height: inherit !important;
     letter-spacing: inherit !important;
@@ -314,8 +316,22 @@
   }
 
   /* Hide duplicate title when first line is bold-only (page already has h1) */
-  .he-article__body > p:first-child:has(> strong:only-child) {
+  .he-article__body > p:first-child:has(> strong:only-child):not(.he-article__byline) {
     display: none;
+  }
+
+  .he-article__body .he-article__byline {
+    margin: 0 0 1.15rem;
+    font-family: var(--font-heading-family);
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--he-accent);
+  }
+
+  .he-article__body .he-article__byline strong {
+    font-weight: 500;
+    color: inherit;
   }
 
   /* Intro: paragraphs before the first divider */
@@ -323,8 +339,8 @@
     margin-top: 0.5rem;
   }
 
-  .he-article__body > p:first-of-type:not(:has(> strong:only-child)),
-  .he-article__body > p:first-child:has(> strong:only-child) + p,
+  .he-article__body > p:first-of-type:not(:has(> strong:only-child)):not(.he-article__byline):not(.he-article__see-also),
+  .he-article__body > p:first-child:has(> strong:only-child):not(.he-article__byline) + p:not(.he-article__see-also),
   .he-article__body .he-article__lede {
     font-size: 1.85rem;
     line-height: 1.7;
@@ -332,16 +348,16 @@
   }
 
   @media screen and (min-width: 750px) {
-    .he-article__body > p:first-of-type:not(:has(> strong:only-child)),
-    .he-article__body > p:first-child:has(> strong:only-child) + p,
+    .he-article__body > p:first-of-type:not(:has(> strong:only-child)):not(.he-article__byline):not(.he-article__see-also),
+    .he-article__body > p:first-child:has(> strong:only-child):not(.he-article__byline) + p:not(.he-article__see-also),
     .he-article__body .he-article__lede {
       font-size: 1.85rem;
     }
   }
 
   @media screen and (max-width: 749px) {
-    .he-article__body > p:first-of-type:not(:has(> strong:only-child)),
-    .he-article__body > p:first-child:has(> strong:only-child) + p,
+    .he-article__body > p:first-of-type:not(:has(> strong:only-child)):not(.he-article__byline):not(.he-article__see-also),
+    .he-article__body > p:first-child:has(> strong:only-child):not(.he-article__byline) + p:not(.he-article__see-also),
     .he-article__body .he-article__lede {
       font-size: 2.1rem !important;
       line-height: 1.65 !important;
@@ -456,6 +472,76 @@
 
   .he-article__body .he-article__see-also a {
     font-weight: 600;
+  }
+
+  .he-article__body .he-article__rules {
+    margin: 0 0 2.25rem;
+    padding: 1.5rem 1.6rem 1.15rem;
+    background: var(--he-cream);
+    border: 1px solid rgba(49, 33, 16, 0.08);
+    border-radius: 8px;
+  }
+
+  .he-article__body .he-article__rules h2 {
+    margin: 0 0 0.85rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--he-accent);
+  }
+
+  .he-article__body .he-article__rules p {
+    margin: 0;
+    padding: 0.7rem 0;
+    border-top: 1px solid rgba(49, 33, 16, 0.1);
+    font-size: 1.55rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .he-article__body .he-article__rules p strong {
+    font-family: var(--font-heading-family);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--he-ink);
+  }
+
+  .he-article__body .he-article__facts {
+    display: grid;
+    gap: 0.85rem;
+    margin: 0 0 1.75rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .he-article__body .he-article__facts {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .he-article__body .he-article__facts p {
+    margin: 0;
+    padding: 1rem 1.05rem 1.05rem;
+    background: #fff;
+    border: 1px solid rgba(49, 33, 16, 0.1);
+    border-radius: 6px;
+    font-size: 1.45rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .he-article__body .he-article__facts p strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-family: var(--font-heading-family);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--he-accent);
+  }
+
+  .he-article__body hr:has(+ .he-article__rules),
+  .he-article__rules + hr {
+    display: none;
   }
 
   .he-article__body h3 {

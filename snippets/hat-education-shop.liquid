@@ -98,23 +98,48 @@
 -%}
 
 {%- if he_feature != blank and he_feature.featured_media -%}
+  {%- assign he_feature_hover = nil -%}
+  {%- for media in he_feature.media -%}
+    {%- if media.id != he_feature.featured_media.id and media.media_type == 'image' -%}
+      {%- assign he_feature_hover = media -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
   <aside class="he-shop he-shop--feature" aria-label="{{ he_heading | escape }}">
     <div class="he-shop__inner he-shop__inner--feature page-width">
       <a class="he-shop__feature" href="{{ he_feature.url }}">
         <div class="he-shop__feature-media">
           <img
+            class="he-shop__feature-img"
             src="{{ he_feature.featured_media | image_url: width: 1200 }}"
             alt="{{ he_feature.featured_media.alt | default: he_feature.title | escape }}"
             width="600"
             height="600"
             loading="lazy"
           >
+          {%- if he_feature_hover != blank -%}
+            <img
+              class="he-shop__feature-img he-shop__feature-img--hover"
+              src="{{ he_feature_hover | image_url: width: 1200 }}"
+              alt=""
+              width="600"
+              height="600"
+              loading="lazy"
+            >
+          {%- endif -%}
         </div>
         <div class="he-shop__feature-copy">
           <p class="he-shop__eyebrow">From the shop</p>
           <h2 class="he-shop__heading">{{ he_heading | escape }}</h2>
           {%- if he_sub != blank -%}
             <p class="he-shop__sub">{{ he_sub | escape }}</p>
+          {%- endif -%}
+          {%- if he_feature.handle == 'a-better-hat-can' -%}
+            <ul class="he-shop__specs">
+              <li>Stackable</li>
+              <li>Fits a 5″ brim</li>
+              <li>Made in Gainesville, TX</li>
+            </ul>
           {%- endif -%}
           <p class="he-shop__price">{{ he_feature.price | money }}</p>
           <span class="he-shop__btn">{{ he_view | escape }}</span>
@@ -540,6 +565,7 @@
   }
 
   .he-shop__feature-media {
+    position: relative;
     margin: 0;
     background: #fff;
     border: 1px solid rgba(49, 33, 16, 0.08);
@@ -547,12 +573,25 @@
     overflow: hidden;
   }
 
-  .he-shop__feature-media img {
+  .he-shop__feature-media img,
+  .he-shop__feature-img {
     display: block;
     width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
     object-fit: cover;
+  }
+
+  .he-shop__feature-img--hover {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .he-shop__feature:hover .he-shop__feature-img--hover {
+    opacity: 1;
   }
 
   .he-shop__feature-copy {
@@ -565,9 +604,38 @@
     font-size: clamp(2rem, 4vw, 2.8rem);
   }
 
+  .he-shop--feature .he-shop__heading::after {
+    content: '';
+    display: block;
+    width: 2.5rem;
+    height: 1px;
+    margin: 0.85rem 0 0;
+    background: var(--he-accent);
+  }
+
   .he-shop--feature .he-shop__sub {
     font-size: 1.25rem;
-    margin-bottom: 1.1rem;
+    margin: 1rem 0 1.1rem;
+  }
+
+  .he-shop__specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    list-style: none;
+    margin: 0 0 1.25rem;
+    padding: 0;
+  }
+
+  .he-shop__specs li {
+    padding: 0.35rem 0.7rem;
+    border: 1px solid rgba(49, 33, 16, 0.14);
+    border-radius: 999px;
+    font-family: var(--font-heading-family);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--he-ink);
   }
 
   .he-shop__price {

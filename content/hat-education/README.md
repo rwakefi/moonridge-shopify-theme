@@ -26,7 +26,7 @@ Articles are published in **Shopify Admin** (not theme Liquid). Each guide has:
 
 ## Products on guides
 
-Theme shows products after each Hat Education article (and on the index). Most guides get a Best Sellers–style carousel of in-stock hats from a matching collection (up to 12, four at a time). **How to Store a Cowboy Hat** features **A Better Hat Can** (`a-better-hat-can`) as a single product. Optional overrides: `custom.shop_collection` (collection) or `custom.shop_product` (product).
+Theme shows products after each Hat Education article (and on the index). Most guides get a Best Sellers–style carousel of in-stock hats from a matching collection (up to 12, four at a time). **How to Store a Cowboy Hat** features **A Better Hat Can** (`a-better-hat-can`) as a single product. Any Hat Education article uses the magazine layout even if Shopify still has the default article template assigned. Optional overrides: `custom.shop_collection` (collection) or `custom.shop_product` (product).
 
 ## Rules
 

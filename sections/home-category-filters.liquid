@@ -45,7 +45,11 @@
             assign pill_collection = collections[block.settings.collection_handle]
           endif
         -%}
+        {%- assign pill_product_count = 0 -%}
         {%- if pill_collection != blank -%}
+          {%- assign pill_product_count = pill_collection.all_products_count | default: pill_collection.products_count | default: 0 -%}
+        {%- endif -%}
+        {%- if pill_collection != blank and pill_product_count > 0 -%}
           <li {{ block.shopify_attributes }}>
             <a
               class="home-category-filters__pill{% if current_handle == pill_collection.handle %} is-active{% endif %}"

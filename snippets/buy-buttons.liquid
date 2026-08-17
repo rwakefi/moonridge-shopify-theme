@@ -135,9 +135,26 @@
             {%- endif -%}
           </p>
         {%- endif -%}
-        {%- if block.settings.conversion_reassurance != blank -%}
+        {%- liquid
+          assign fit_reassurance = block.settings.conversion_reassurance
+          assign fit_suffix = product.template_suffix | default: '' | downcase
+          assign fit_type = product.type | downcase
+          assign fit_handle = product.handle | downcase
+          if fit_suffix == 'boots' or fit_type == 'boots' or fit_type == 'boot care'
+            assign fit_reassurance = 'Lucchese is built on a last — the surest fit is in Fayetteville. The site is a smaller menu than the floor.'
+          elsif fit_type == 'apparel' or fit_handle contains 't-shirt' or fit_handle contains 'hoodie' or fit_handle contains 'sweatshirt'
+            assign fit_reassurance = 'Sized as marked. If you are between sizes, go up. Questions? Email or visit us in Fayetteville.'
+          elsif product.tags contains 'Ballcaps'
+            assign fit_reassurance = 'Most caps are one size or snapback. Reach out if you want a closer look at the fit.'
+          elsif fit_suffix == 'cowboy-hats' or fit_suffix == 'bigalli' or fit_type == 'headwear' or fit_type == 'hat care'
+            assign fit_reassurance = 'Need a size? Measure two fingers above the brow, or <a href="/pages/hat-sizing">see the hat sizing guide</a>.'
+          elsif fit_type == 'accessories'
+            assign fit_reassurance = 'Questions on length or fit? Email us or stop by the store — we will help you pick.'
+          endif
+        -%}
+        {%- if fit_reassurance != blank -%}
           <p class="product-form__reassurance caption-large">
-            {{ block.settings.conversion_reassurance }}
+            {{ fit_reassurance }}
           </p>
         {%- endif -%}
       {%- endform -%}

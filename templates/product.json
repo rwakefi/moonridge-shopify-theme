@@ -136,7 +136,7 @@
       "settings": {
         "heading": "What Natalie and Zack Think About it:",
         "heading_size": 32,
-        "intro_text": "<p>This is honest feedback from founders Natalie and Zack about specific items that we have reviewed ourselves in our own words. If this section is visible, we describe what we think about this hat in our own words. This is not AI.</p>",
+        "intro_text": "<p>This is honest feedback from founders Natalie and Zack about specific items that we have reviewed ourselves in our own words. If this section is visible, we describe what we think about this piece in our own words. This is not AI.</p>",
         "show_signature": true,
         "signature_text": "Natalie & Zack",
         "signature_alignment": "left",
@@ -213,17 +213,6 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "heritage_restoration_product_page": {
-      "type": "heritage-restoration",
-      "settings": {
-        "image": "shopify://shop_images/hat-steaming-restoration-moon-ridge.jpg",
-        "label": "The Service Ritual",
-        "title": "Your Hat, Restored.",
-        "text": "We don't just sell hats; we preserve them—any hat, regardless of brand or age. Drop your hat off and tell us what you're thinking, and we'll go to work. Most pickups within a week.",
-        "button_label": "",
-        "button_link": ""
-      }
     }
   },
   "order": [
@@ -232,7 +221,6 @@
     "177400781857d7ac00",
     "featured_collection_xLGdKg",
     "176179595271248401",
-    "related-products",
-    "heritage_restoration_product_page"
+    "related-products"
   ]
 }

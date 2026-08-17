@@ -133,6 +133,22 @@
   }
 {%- endstyle -%}
 
+{%- liquid
+  assign show_heritage_restoration = true
+  if request.page_type == 'product'
+    assign heritage_suffix = product.template_suffix | default: '' | downcase
+    assign heritage_type = product.type | downcase
+    assign show_heritage_restoration = false
+    if heritage_suffix == 'cowboy-hats' or heritage_suffix == 'bigalli'
+      assign show_heritage_restoration = true
+    elsif heritage_type == 'headwear' and product.tags contains 'Ballcaps'
+      assign show_heritage_restoration = false
+    elsif heritage_type == 'headwear'
+      assign show_heritage_restoration = true
+    endif
+  endif
+-%}
+{%- if show_heritage_restoration -%}
 <section class="heritage-restoration">
   <div class="heritage-restoration__container{% if section.settings.image == blank %} heritage-restoration__container--no-image{% endif %}">
     {%- if section.settings.image != blank -%}
@@ -159,6 +175,7 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {

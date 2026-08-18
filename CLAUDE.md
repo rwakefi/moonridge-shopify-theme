@@ -124,19 +124,49 @@ Pulled from the About Us / brand-partner pages and from live copywriting session
   - **Grid spacing:** never set `column-gap`/`row-gap` on `.product-grid` directly. Dawn computes item widths from `--grid-*-horizontal-spacing` and uses the same variables for the gap, so overriding only the gap makes items too wide and collapses the mobile grid to one column. Set the variables.
 - Shipping rates (July 2026): General profile $15 ground ≤$99.99 / free ≥$100 (the $99.00–$99.99 dead zone was fixed 2026-07-19); Hats profile $15 economy, free ≥$99.99, $70 express; Ball caps $6/$25/$50; local pickup free.
 
+## Brand fonts (confirmed by Zack 2026-08-18)
+
+**The four official Moon Ridge fonts are Lora, Playfair Display, Cinzel, and Tenor Sans.** Three serifs and one sans. Anything else appearing on the storefront is not brand — treat it as drift to be removed, not a choice to be matched.
+
+All four are open-source, so there is **no licensing constraint and no need to fetch files from anywhere**:
+
+| Font | In Shopify's font library? | Handles / source |
+| --- | --- | --- |
+| Lora | Yes | `lora_n4 lora_i4 lora_n5 lora_i5 lora_n6 lora_i6 lora_n7 lora_i7` |
+| Playfair Display | Yes | `playfair_display_n4` … `_n9` plus italics |
+| Tenor Sans | Yes | `tenor_sans_n4` (single weight) |
+| Cinzel | **No** | Already uploaded to Moon Ridge's own Shopify Files as `Cinzel-Medium.ttf`, registered as family `customfont` |
+
+So Lora / Playfair Display / Tenor Sans can be set straight from **Theme settings → Typography** — served off Shopify's CDN, no third-party request, no upload. Cinzel is the only one needing the manual upload it already has.
+
+**Do not use Canela.** It is referenced all over `heritage-luxury.css`, `lumin.css` and the dead `cus_font` / `font` keys in `settings_data.json`, but it is not a Moon Ridge font — it is demo data that shipped with the purchased theme. The two files are hosted on *other merchants'* CDN paths (`/0765/8707/3883/`, `/0811/3002/9368/`; Moon Ridge is `/0885/7180/6000/`) and the font name tables identify it as genuine Canela by **Commercial Type**, a commercial licence sold per domain. Replace those references with a brand font rather than wiring Canela up.
+
 ## Typography: the live font situation (audited Aug 2026 — Zack wants to tackle this)
 
 The brand guide asks for an elegant serif. The store does not currently render one, and the reasons are all fixable. Audited against the live site with headless Chrome, so these are what actually renders, not what the files claim.
 
-**What actually loads on the storefront:** Jost (headings), Poppins (body), Tenor Sans, and `customfont` = **Cinzel Medium**. Note `config/settings_data.json` in the repo says `futura_n5` / `harmonia_sans_n4` — that is **stale**, don't trust it for fonts.
+**What actually loads on the storefront** (network capture of `/collections/mens-hats`, 2026-08-18 — **six families, ten files on one page**):
+
+| Family | Served from | On brand? |
+| --- | --- | --- |
+| Jost `n5` | Shopify library — current `type_header_font` | No |
+| Poppins `n4/n5/n7` | Shopify library — current `type_body_font` | No |
+| Playfair `n4/n7` | Shopify library (note: "Playfair", not "Playfair Display") | Near |
+| Libre Baskerville `n4/n7` | Shopify library | No |
+| Tenor Sans | **Google Fonts** `@import` in `sections/brand-switcher.liquid` | Yes, wrong source |
+| Cinzel Medium | Moon Ridge Shopify Files, family `customfont` | Yes |
+
+So the two most visible faces on the store — headings and body — are currently **Jost and Poppins, neither of which is a brand font**. The real job is not "add a font", it's cutting six families down to the official set. Also remove the stray Google Fonts `@import`s in `sections/brand-switcher.liquid` (Tenor Sans) and `sections/founders-review.liquid` (Playfair Display + Dancing Script) — the first two are in Shopify's library already.
+
+Note `config/settings_data.json` in the repo says `futura_n5` / `harmonia_sans_n4` — that is **stale**, don't trust it for fonts. Live values differ; check the rendered page.
 
 **Why headings are inconsistent — three separate causes:**
 
-1. `assets/heritage-luxury.css` and `assets/lumin.css` both set `h1, h2, h3, .h1, .h2, .h3, .card__heading, .banner__heading` to `"Canela", "Playfair Display", serif !important`. **Neither font is loaded**, so everything hitting that rule falls back to **Times New Roman** — including every product title on the store.
-2. **Canela is already uploaded and paid for**: `config/settings_data.json` has `Canela-Regular.ttf` on the Shopify CDN. But the live custom-font block (`sections/custom-fonts.liquid`, configured in `sections/header-group.json`) points at **`Cinzel-Medium.ttf`** instead and registers it under the family name **`customfont`**, applied to `h1`/`h2` only. So the serif that renders is Cinzel, the serif that's referenced is Canela, and they never meet.
-3. Elements not matching either rule (e.g. `.hats-toolbar__title`, a `<p>`) use `var(--font-heading-family)` = Jost. Net effect before the Aug 2026 fix: hero title in Cinzel, toolbar title in Jost, product titles in Times — three faces on one page.
+1. `assets/heritage-luxury.css` and `assets/lumin.css` both set `h1, h2, h3, .h1, .h2, .h3, .card__heading, .banner__heading` to `"Canela", "Playfair Display", serif !important`. **Neither font is loaded under those names**, so everything hitting that rule falls back to **Times New Roman** — including every product title on the store. Fix: point that stack at a brand font.
+2. The live custom-font block (`sections/custom-fonts.liquid`, configured in `sections/header-group.json`) loads **`Cinzel-Medium.ttf`** and registers it as the family **`customfont`**, applied to `h1`/`h2` only. So the serif that renders is Cinzel while the serif referenced in CSS is Canela, and they never meet.
+3. Elements matching neither rule use `var(--font-heading-family)` = Jost. Net effect before the Aug 2026 fixes: hero title in Cinzel, toolbar title in Jost, product titles in Times — three faces for headings on one page.
 
-**Decision Zack needs to make:** what the heading font should actually be. Canela is bought and uploaded, and matches "elegant serif" better than Cinzel (a Roman inscriptional caps face). Cleanest fix is to register Canela properly and point the theme heading setting at it, rather than leaving four font systems fighting.
+**Note on Cinzel:** it works well as a large masthead but it is a Roman inscriptional **capitals** design with almost no lowercase character — do not use it below roughly 24px or for product titles. Playfair Display or Lora are the right choices for text-size serif.
 
 **Two other global `!important` layers to know about before touching type or cards:**
 
@@ -189,7 +219,7 @@ Never activate, send, or publish Omnisend campaigns/automations without explicit
 
 ## Active work queue (as of 2026-08-18)
 
-0. **Brand fonts — Zack's next design job, deliberately deferred 2026-08-18.** Decide the heading font and wire it up properly; Canela is already uploaded but never loads, so product titles across the store are Times New Roman. Full audit and root causes in **Typography: the live font situation** above. Related cleanup that should probably ride along: the `.color-inverse` rule in `header.liquid` and the duplicated `heritage-luxury.css` / `lumin.css`.
+0. **Brand fonts roll-out — next design job.** Official set confirmed 2026-08-18 (Lora, Playfair Display, Cinzel, Tenor Sans — see **Brand fonts** above). No blockers: three of the four are in Shopify's font library, Cinzel is already uploaded, nothing needs fetching from Dropbox. The work is (a) set Typography to the brand fonts — headings and body are currently Jost and Poppins, neither on brand, (b) repoint the Canela stack in `heritage-luxury.css` / `lumin.css`, (c) drop the Google Fonts `@import`s in `brand-switcher.liquid` and `founders-review.liquid`, (d) get the page down from six font families. Related cleanup that should probably ride along: the `.color-inverse` rule in `header.liquid` and the duplicated `heritage-luxury.css` / `lumin.css`.
 1. **Cart abandonments — Bob wants to work on this next.** Context: the checkout performance review found ~40 abandoned checkouts/quarter at $110+ AOV. First steps: verify abandoned-checkout email automation is active (Marketing → Automations), confirm Shop app cart reminders are on (Shop channel → Settings), then look at recovery copy/timing and possibly an incentive strategy (THANKYOU10 is post-purchase; don't reuse for abandonment without discussing). Follow the **Email & Omnisend** rules above — do not badger.
 2. **Cart add-ons — paused.** Theme code is in place; next step when resumed is populate/confirm the `cart-add-ons` collection (and optionally tweak heading/look). Details in `scratch/cart-addons-notes.md`.
 3. **Brand page heritage roll-out.** Stetson + Resistol are live with researched timelines. Remaining brands on `page.brand-v2` still need full heritage copy (and Charlie 1 Horse / Bigalli page URLs need fixing or creating). Optional: Resistol heritage image band (no Megargee equivalent yet).

@@ -100,6 +100,15 @@
             "show_gift_card_recipient": true,
             "enable_low_stock_notice": false
           }
+        },
+        "collapsible_tab_boot_fit": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Fit",
+            "icon": "ruler",
+            "content": "<p>Lucchese is hand-lasted in San Antonio. The surest fit is in the store — try a pair at 2218 N College Ave in Fayetteville.</p><p>The website is a smaller menu than the floor. If you are between sizes, come in. Email <a href=\"mailto:info@moonridgecompany.com\">info@moonridgecompany.com</a> if you want help before you visit.</p>",
+            "page": ""
+          }
         }
       },
       "block_order": [
@@ -112,7 +121,8 @@
         "inventory_status_nPFgBc",
         "shipping_CBekAR",
         "quantity_selector",
-        "buy_buttons"
+        "buy_buttons",
+        "collapsible_tab_boot_fit"
       ],
       "custom_css": [],
       "settings": {
@@ -137,7 +147,7 @@
       "settings": {
         "heading": "What Natalie and Zack Think About it:",
         "heading_size": 32,
-        "intro_text": "<p>This is honest feedback from founders Natalie and Zack about specific items that we have reviewed ourselves in our own words. If this section is visible, we describe what we think about this hat in our own words. This is not AI.</p>",
+        "intro_text": "<p>This is honest feedback from founders Natalie and Zack about specific items that we have reviewed ourselves in our own words. If this section is visible, we describe what we think about this pair in our own words. This is not AI.</p>",
         "show_signature": true,
         "signature_text": "Natalie & Zack",
         "signature_alignment": "left",
@@ -154,11 +164,11 @@
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
-        "title": "Featured collection",
+        "title": "More Lucchese",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "hats-for-everyone",
+        "collection": "boots",
         "products_to_show": 4,
         "columns_desktop": 4,
         "full_width": false,
@@ -208,16 +218,6 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "heritage_restoration_product_page": {
-      "type": "heritage-restoration",
-      "settings": {
-        "label": "The Service Ritual",
-        "title": "Your Hat, Restored.",
-        "text": "We don't just sell hats; we preserve them. Bring in any hat—regardless of brand or age—for professional cleaning and precision reshaping to its original glory.",
-        "button_label": "Book a Restoration",
-        "button_link": ""
-      }
     }
   },
   "order": [
@@ -225,7 +225,6 @@
     "founders_review",
     "featured_collection_xLGdKg",
     "176179595271248401",
-    "related-products",
-    "heritage_restoration_product_page"
+    "related-products"
   ]
 }

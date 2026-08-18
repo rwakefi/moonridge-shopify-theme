@@ -218,11 +218,18 @@
             if tile_collection == blank and block.settings.collection_handle != blank
               assign tile_collection = collections[block.settings.collection_handle]
             endif
+            assign tile_product_count = 0
+            if tile_collection != blank
+              assign tile_product_count = tile_collection.all_products_count | default: tile_collection.products_count | default: 0
+            endif
           -%}
+          {%- if tile_collection == blank or tile_product_count == 0 -%}
+            {%- continue -%}
+          {%- endif -%}
           <li {{ block.shopify_attributes }}>
             <a
               class="home-hub__tile"
-              href="{% if tile_collection %}{{ tile_collection.url }}{{ from_param }}{% else %}#{% endif %}"
+              href="{{ tile_collection.url }}{{ from_param }}"
             >
               <div class="home-hub__tile-media">
                 {%- render 'hats-hub-tile-media',

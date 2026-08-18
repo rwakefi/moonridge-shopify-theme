@@ -3,12 +3,16 @@
   and empty brand / bestseller intros until admin descriptions are updated.
 
   Note: several handles do not match their titles (legacy "-copy" handles
-  from duplicated collections). Verified against live Shopify 2026-08-17:
-    resistol-copy                 -> Bigalli
-    best-selling-stetsons-copy-1  -> Best Selling Pendleton
-    best-selling-goorin-bros-copy -> Best Selling Bigalli
-    best-selling-pendleton-copy   -> Best Selling Lucchese
-    best-selling-stetsons-copy    -> Best Selling Resistol
+  from duplicated collections). Verified against live Shopify 2026-08-17.
+  Each leftover handle is paired with its target so intros survive a rename:
+    resistol-copy                 -> bigalli
+    best-selling-stetsons-copy-1  -> best-selling-pendleton
+    best-selling-goorin-bros-copy -> best-selling-bigalli
+    best-selling-pendleton-copy   -> best-selling-lucchese
+    best-selling-stetsons-copy    -> best-selling-resistol
+    accessories-1                 -> accessories
+    ballcaps-truckers-1           -> ballcaps-truckers
+    hat-bands-1                   -> hat-bands
 {%- endcomment -%}
 
 {%- if collection.handle == 'hat-experiences' -%}
@@ -18,15 +22,15 @@
   <p>Lucchese has been building boots by hand since 1883. Heritage you can feel in the leather. That's why they're the only boot on our shelf — we don't carry anything we wouldn't stand behind.</p>
   <p>Come try a pair in Fayetteville. Most popular options below; the floor has more than the site.</p>
   <p><strong>Boots are in-store only.</strong> The website does not show every size or style on the floor.</p>
-{%- elsif collection.handle == 'resistol-copy' -%}
+{%- elsif collection.handle == 'resistol-copy' or collection.handle == 'bigalli' -%}
   <p>Bigalli has been making hats since 1926 — Italian finishing on Ecuadorian straw. Light on the head, clean in the hand. The ones we keep on the wall.</p>
-{%- elsif collection.handle == 'best-selling-stetsons-copy-1' -%}
+{%- elsif collection.handle == 'best-selling-stetsons-copy-1' or collection.handle == 'best-selling-pendleton' -%}
   <p>Pendleton has run the same Oregon wool mill since 1863. Blankets, layers, and small goods with the geometric language they have used for generations.</p>
-{%- elsif collection.handle == 'best-selling-goorin-bros-copy' -%}
+{%- elsif collection.handle == 'best-selling-goorin-bros-copy' or collection.handle == 'best-selling-bigalli' -%}
   <p>The Bigalli pieces people actually take home — straw you can wear in Arkansas heat, finished the Italian way.</p>
-{%- elsif collection.handle == 'best-selling-pendleton-copy' -%}
+{%- elsif collection.handle == 'best-selling-pendleton-copy' or collection.handle == 'best-selling-lucchese' -%}
   <p>Lucchese boots, hand-lasted in San Antonio since the 1880s. A smaller menu. Better execution.</p>
-{%- elsif collection.handle == 'best-selling-stetsons-copy' -%}
+{%- elsif collection.handle == 'best-selling-stetsons-copy' or collection.handle == 'best-selling-resistol' -%}
   <p>Resistol, Texas-made since 1927. Built to resist all — the felt and straw we sell most.</p>
 {%- elsif collection.handle == 'best-selling-goorin-bros' -%}
   <p>Goorin Bros. since 1895, Pittsburgh. Felt hats and Animal Farm caps with a family name still on the label.</p>

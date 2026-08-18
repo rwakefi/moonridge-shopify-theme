@@ -191,12 +191,24 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "heritage_restoration_product_page": {
+      "type": "heritage-restoration",
+      "settings": {
+        "image": "shopify://shop_images/hat-steaming-restoration-moon-ridge.jpg",
+        "label": "The Service Ritual",
+        "title": "Your Hat, Restored.",
+        "text": "We don't just sell hats; we preserve them—any hat, regardless of brand or age. Drop your hat off and tell us what you're thinking, and we'll go to work. Most pickups within a week.",
+        "button_label": "",
+        "button_link": ""
+      }
     }
   },
   "order": [
     "breadcrumbs_JDDDX8",
     "main",
     "featured_collection_xLGdKg",
+    "heritage_restoration_product_page",
     "related-products"
   ]
 }

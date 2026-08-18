@@ -161,15 +161,17 @@ Drawn from modern AI email best practices (incl. Salesforce's AI-in-email guidan
 
 Never activate, send, or publish Omnisend campaigns/automations without explicit approval.
 
-## Active work queue (as of 2026-08-04)
+## Active work queue (as of 2026-08-17)
 
-1. **Cart abandonments — Bob wants to work on this next.** Context: the checkout performance review found ~40 abandoned checkouts/quarter at $110+ AOV. First steps: verify abandoned-checkout email automation is active (Marketing → Automations), confirm Shop app cart reminders are on (Shop channel → Settings), then look at recovery copy/timing and possibly an incentive strategy (THANKYOU10 is post-purchase; don't reuse for abandonment without discussing). Follow the **Email & Omnisend** rules above — do not badger.
-2. **Cart add-ons — paused.** Theme code is in place; next step when resumed is populate/confirm the `cart-add-ons` collection (and optionally tweak heading/look). Details in `scratch/cart-addons-notes.md`.
-3. **Brand page heritage roll-out.** Stetson + Resistol are live with researched timelines. Remaining brands on `page.brand-v2` still need full heritage copy (and Charlie 1 Horse / Bigalli page URLs need fixing or creating). Optional: Resistol heritage image band (no Megargee equivalent yet).
-4. ~~Commit the shipping-line theme edit~~ — **done** (live on product pages).
-5. ~~Arkansas's Original Hat Bar naming~~ — **done** on `main` / live (draft PR #50 superseded).
+1. **Store optimizer — admin leftovers.** Theme follow-up is in git (collection intro dual-keys, empty home tiles hidden, hat restoration off non-hat PDPs, product-aware fit copy). Still needs a clear OK in Shopify admin: Judge.me, leftover handle renames + redirects, unpublish `bath`/`candles`/`mugs`/`shoelaces`, photos or unpublish no-image SKUs, 89 fully OOS products, Insider list admin title. Queue: `scratch/store-optimization-queue.md`. Do not paste the 3 no-photo bracelets. Do not install Judge.me or Omnisend without OK.
+2. **Cart abandonments — Bob wants to work on this next.** Context: the checkout performance review found ~40 abandoned checkouts/quarter at $110+ AOV. First steps: verify abandoned-checkout email automation is active (Marketing → Automations), confirm Shop app cart reminders are on (Shop channel → Settings), then look at recovery copy/timing and possibly an incentive strategy (THANKYOU10 is post-purchase; don't reuse for abandonment without discussing). Follow the **Email & Omnisend** rules above — do not badger.
+3. **Cart add-ons — paused.** Theme code is in place; next step when resumed is populate/confirm the `cart-add-ons` collection (and optionally tweak heading/look). Details in `scratch/cart-addons-notes.md`.
+4. **Brand page heritage roll-out.** Stetson + Resistol are live with researched timelines. Remaining brands on `page.brand-v2` still need full heritage copy (and Charlie 1 Horse / Bigalli page URLs need fixing or creating). Optional: Resistol heritage image band (no Megargee equivalent yet).
+5. ~~Commit the shipping-line theme edit~~ — **done** (live on product pages).
+6. ~~Arkansas's Original Hat Bar naming~~ — **done** on `main` / live (draft PR #50 superseded).
+7. ~~Empty product descriptions~~ — **done** 2026-08-16 except 3 no-photo bracelets.
 
-Housekeeping: draft PRs `#50` (Original Hat Bar) and `#45` (cart-addons notes) — #50 conflicting/superseded; #45 docs only (notes now landed in-repo via currency pass).
+Housekeeping: PR #65 merged (store-analyzer pass). Draft PRs `#50` (Original Hat Bar) and `#45` (cart-addons notes) — #50 conflicting/superseded; #45 docs only.
 
 ## Financials (established July 2026)
 

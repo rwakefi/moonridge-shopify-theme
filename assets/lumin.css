@@ -1280,3 +1280,55 @@ body:not(.template-index) .header__icon .icon,
     text-align: center;
   }
 }
+
+/* OPTIS size/color buttons: sold-out sizes get a slash and muted fill.
+   Optis already flags them with [out-of-stock]; it does not style button type. */
+.bss-se-variant .se-type-button[out-of-stock],
+.bss-se-variant .se-type-pill_swatch[out-of-stock],
+.bss-se-variant .se-type-swatch[out-of-stock],
+.bss-se-variant .se-type-swatch_card[out-of-stock],
+.bss-se-variant .se-dropdown-item[out-of-stock] {
+  position: relative;
+  overflow: hidden;
+  color: #6b6258;
+  border-color: #cfc6bb;
+  background-color: #f3eee8;
+}
+
+.bss-se-variant .se-type-button[out-of-stock] *:not(.se-tooltip *),
+.bss-se-variant .se-type-pill_swatch[out-of-stock] *:not(.se-tooltip *) {
+  color: #6b6258;
+}
+
+.bss-se-variant .se-type-button[out-of-stock][aria-checked='true'],
+.bss-se-variant .se-type-pill_swatch[out-of-stock][aria-checked='true'] {
+  background-color: #e8e0d6 !important;
+  border-color: #8a7f72 !important;
+}
+
+.bss-se-variant .se-type-button[out-of-stock][aria-checked='true'] *:not(.se-tooltip *),
+.bss-se-variant .se-type-pill_swatch[out-of-stock][aria-checked='true'] *:not(.se-tooltip *) {
+  color: #5c534c !important;
+}
+
+.bss-se-variant .se-type-button[out-of-stock]::after,
+.bss-se-variant .se-type-pill_swatch[out-of-stock]::after,
+.bss-se-variant .se-type-swatch[out-of-stock]::after,
+.bss-se-variant .se-type-swatch_card[out-of-stock]::after {
+  content: '';
+  position: absolute;
+  left: -15%;
+  top: 50%;
+  width: 130%;
+  height: 1px;
+  background: #312110;
+  opacity: 0.55;
+  transform: rotate(-28deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bss-se-variant .se-dropdown-item[out-of-stock] {
+  text-decoration: line-through;
+  opacity: 0.65;
+}

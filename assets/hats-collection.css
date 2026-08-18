@@ -390,10 +390,6 @@
   border-radius: var(--hats-radius);
 }
 
-.hats-collection-grid .card__content {
-  padding: 0;
-}
-
 /* Title and price stack tight under the image; price is pushed to the
    bottom of the card so prices line up across a row of mixed-length titles. */
 .hats-collection-grid .card__information {
@@ -416,9 +412,16 @@
   color: var(--hats-ink);
 }
 
-.hats-collection-grid .card-information {
+/* .card-information grows to fill the card, which leaves the price floating at
+   the top of that space. Stop it growing and push the whole block down instead. */
+.hats-collection-grid .card__information > .card-information {
+  flex-grow: 0;
   margin-top: auto;
   padding-top: 0.8rem;
+}
+
+.hats-collection-grid .card-information > .card-price {
+  margin-top: 0;
 }
 
 .hats-collection-grid .price {
@@ -426,32 +429,25 @@
   color: var(--hats-ink);
 }
 
-/* Struck compare-at price recedes so the current price leads */
-.hats-collection-grid .price--on-sale .price-item--regular {
-  color: var(--hats-muted);
-}
-
-.hats-collection-grid .price--sold-out .price-item {
-  color: var(--hats-muted);
-}
-
 /* Sale and sold out both use the "inverse" colour scheme in theme settings, so
-   they arrive looking identical. Sale leads in solid ink, sold out recedes. */
+   they arrive looking identical. Sale leads in solid ink, sold out recedes.
+   The !important is to clear a rule in sections/header.liquid that paints
+   anything carrying .color-inverse white — see the note at the end of this file. */
 .hats-collection-grid .card__badge .badge {
   border-radius: var(--hats-radius);
   padding: 0.6rem 1rem;
 }
 
 .hats-collection-grid .card__badge .badge--sale {
-  background-color: var(--hats-ink);
-  border-color: var(--hats-ink);
-  color: var(--hats-cream);
+  background-color: var(--hats-ink) !important;
+  border-color: var(--hats-ink) !important;
+  color: var(--hats-cream) !important;
 }
 
 .hats-collection-grid .card__badge .badge--sold-out {
-  background-color: var(--hats-cream);
-  border-color: var(--hats-line-strong);
-  color: var(--hats-ink-soft);
+  background-color: var(--hats-cream) !important;
+  border-color: var(--hats-line-strong) !important;
+  color: var(--hats-ink-soft) !important;
 }
 
 .hats-collection-grid .hats-collection-empty-finder {
@@ -518,9 +514,72 @@
 }
 
 /* ------------------------------------------------------------------
+ * Reconciling the global card layer
+ *
+ * heritage-luxury.css and lumin.css are near-duplicates of each other, both
+ * loaded on every page, and both restyle product cards with !important. The
+ * rules below each neutralise one of theirs for this template only, which is
+ * why they carry !important in return.
+ * ------------------------------------------------------------------ */
+
+/* Those files set every heading to "Canela", "Playfair Display", serif. Neither
+   font is loaded on the store, so headings fall back to Times while the rest of
+   the page uses the theme heading font — on this template that put the hero
+   title and the toolbar title, the same words, in two different faces. Follow
+   the theme's heading setting so the whole template moves together if it
+   changes. */
+.template-suffix-hats .collection-hero__title,
+.hats-collection-grid .card__heading,
+.hats-collection-grid .card__heading a {
+  font-family: var(--font-heading-family) !important;
+  font-weight: 400 !important;
+  letter-spacing: var(--hats-track-display) !important;
+}
+
+/* Each card already sits in a panel from the theme's card style; the wrapper
+   adds a second one, plus an 8px hover lift and a wide drop shadow. */
+.hats-collection-grid .card-wrapper.product-card-wrapper {
+  padding: 0;
+  border: 0;
+  border-radius: var(--hats-radius);
+  background: transparent;
+}
+
+.hats-collection-grid .card-wrapper.product-card-wrapper:hover {
+  border-color: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+.hats-collection-grid .card__content {
+  padding: 0 !important;
+}
+
+/* The struck compare-at price is forced to the same brown as the live price */
+.hats-collection-grid .price--on-sale .price-item--regular {
+  color: var(--hats-muted) !important;
+}
+
+.hats-collection-grid .price--sold-out .price-item {
+  color: var(--hats-muted) !important;
+}
+
+/* ------------------------------------------------------------------
  * Hat Finder CTA — closes the page on the same hairline as the toolbar
  * ------------------------------------------------------------------ */
 
 .template-suffix-hats .hat-finder-cta {
   border-top: 1px solid var(--hats-line);
 }
+
+/* ------------------------------------------------------------------
+ * Known conflicts left alone on purpose
+ *
+ * sections/header.liquid carries a global <style> that paints
+ * .color-inverse and .color-background-2 white with !important. It was
+ * written to force the header white, but both are stock Shopify colour
+ * scheme classes, so it also reaches product badges and any section set to
+ * either scheme. Narrowing that selector to the header would repaint those
+ * sections across the store, so it needs its own change and a look from
+ * Zack rather than riding along with this template.
+ * ------------------------------------------------------------------ */

@@ -70,8 +70,8 @@ Core positioning: honesty, authenticity, craftsmanship you can feel. No rush, no
 ## Tagline & visual identity
 
 - **Tagline: "Hats & Heritage."** Simple, timeless, not trendy — meant to signal a lifestyle and tradition, not just a product category.
-- **Palette:** warm cream/off-white backgrounds with chocolate brown and saddle-leather tan accents. Rich but understated.
-- **Typography:** elegant serif, nothing bold or aggressive.
+- **Palette:** warm cream/off-white backgrounds with chocolate brown and saddle-leather tan accents. Rich but understated. Values in use on the theme: ink `#312110`, cream `#faf8f5`, saddle tan `#9c7a52`.
+- **Typography:** elegant serif, nothing bold or aggressive. **The live store does not currently deliver this** — see **Typography: the live font situation** below before doing any type work.
 - **Overall feel:** "like flipping through a premium Western lifestyle magazine, not a rodeo supply catalog." Elevated Western, not kitschy cowboy. Minimal and confident — the logo/brand doesn't need to shout.
 - Illustration style (for app/marketing use): hand-crafted but refined — think ink-sketch/clean line art echoing the logo's hat icon, not cartoonish.
 
@@ -107,6 +107,8 @@ Pulled from the About Us / brand-partner pages and from live copywriting session
 ## How to edit the website/theme (verified July 2026)
 
 - The live theme is **GitHub-connected**: `moonridge-shopify-theme/main` (theme ID `gid://shopify/OnlineStoreTheme/184590074160`), synced to `github.com/rwakefi/moonridge-shopify-theme` branch `main`. The repo is publicly clonable (read-only from Cowork's sandbox — no push credentials, no `gh` CLI, no authenticated Shopify CLI).
+- **Cloud Agents are different:** they have git push credentials and a read-only `gh`. **Merging to `main` is publishing** — Shopify syncs within about a minute. Treat a merge as a live store change and get Zack's explicit go-ahead first (verified Aug 2026, PR #81 was live ~60s after push).
+- **There is no working PR preview.** The `Deploy PR Preview` workflow fails on every PR — the `SHOPIFY_PREVIEW_THEME_ID` secret points at a theme that no longer exists on the store. Don't read that red X as a signal about your changes, and don't rely on it to see your work. Until it's fixed, the way to preview a theme change is to curl the live page HTML, swap in the branch's stylesheets, and render it in headless Chrome — that caught three real bugs on PR #81 that reading the CSS had missed.
 - **The way to edit:** Shopify admin → Online Store → Themes → ⋯ → **Edit code** (driven via the Claude in Chrome browser). Edits made in the admin code editor sync back to the GitHub repo automatically because of the GitHub integration.
 - The Shopify MCP's `themeFilesUpsert` is blocked on the live/MAIN theme — API writes only work on unpublished themes. Browser code-editor edits are the working path for live-theme changes.
 - Key theme facts learned:
@@ -117,7 +119,31 @@ Pulled from the About Us / brand-partner pages and from live copywriting session
   - **Brand pages** use template `page.brand-v2.json` (not `page.brand.json`). Heritage block + Best Selling carousel read `custom.brand_collection_handle` / logo metafields. Theme JSON `| remove: "'s"` filters on dynamic sources are ignored by Shopify — strip possessive `'s` in `blocks/brand-heritage.liquid` at render time so Stetson reads "Stetson Heritage" / "The Story of Stetson". Best Selling carousel intentionally keeps the apostrophe.
   - Heritage copy drafts: `content/brand-pages/stetson-heritage.md` and `resistol-heritage.md` (both published live Aug 2026). Other brand pages (Pendleton, Goorin Bros, etc.) share the template but do not yet have full Stetson-style heritage timelines. `/pages/charlie-1-horse` currently redirects to a collection; `/pages/bigalli` 404s.
   - **Cart add-ons (cart upsells) already built** (verified Aug 2026): `snippets/cart-drawer-addons.liquid` in the cart drawer; settings under Cart → "Suggested add-ons" (`cart-add-ons` collection, "Add to your order", limit 6). If the strip doesn't show live, check the collection first — not missing theme code. Resume notes: `scratch/cart-addons-notes.md`.
+  - **Hat collections** (Men's Hats, Women's Hats, Hats for Everyone) use `templates/collection.hats.json` → `main-collection-banner` + `main-collection-product-grid` + `hat-finder-cta`. Styling lives in `assets/hats-collection.css`, which since Aug 2026 is built on a **design token block at the top of the file** — palette, a four-step type scale, one tracking value per role, one radius, one grid rhythm. Add a token there before hardcoding a value, or the toolbar/grid/badges/CTA drift apart again. 24 products a page.
+  - **Body template classes:** `<body>` only carries `template-suffix-hats`, added conditionally in `layout/theme.liquid`. `home-product.css`, `home-collection.css` and `drinkware-product.css` are all written against `.template-suffix-home` / `.template-suffix-drinkware`, which **still don't exist** — those stylesheets have never rendered. Switching them on would change those pages, so it needs its own review.
+  - **Grid spacing:** never set `column-gap`/`row-gap` on `.product-grid` directly. Dawn computes item widths from `--grid-*-horizontal-spacing` and uses the same variables for the gap, so overriding only the gap makes items too wide and collapses the mobile grid to one column. Set the variables.
 - Shipping rates (July 2026): General profile $15 ground ≤$99.99 / free ≥$100 (the $99.00–$99.99 dead zone was fixed 2026-07-19); Hats profile $15 economy, free ≥$99.99, $70 express; Ball caps $6/$25/$50; local pickup free.
+
+## Typography: the live font situation (audited Aug 2026 — Zack wants to tackle this)
+
+The brand guide asks for an elegant serif. The store does not currently render one, and the reasons are all fixable. Audited against the live site with headless Chrome, so these are what actually renders, not what the files claim.
+
+**What actually loads on the storefront:** Jost (headings), Poppins (body), Tenor Sans, and `customfont` = **Cinzel Medium**. Note `config/settings_data.json` in the repo says `futura_n5` / `harmonia_sans_n4` — that is **stale**, don't trust it for fonts.
+
+**Why headings are inconsistent — three separate causes:**
+
+1. `assets/heritage-luxury.css` and `assets/lumin.css` both set `h1, h2, h3, .h1, .h2, .h3, .card__heading, .banner__heading` to `"Canela", "Playfair Display", serif !important`. **Neither font is loaded**, so everything hitting that rule falls back to **Times New Roman** — including every product title on the store.
+2. **Canela is already uploaded and paid for**: `config/settings_data.json` has `Canela-Regular.ttf` on the Shopify CDN. But the live custom-font block (`sections/custom-fonts.liquid`, configured in `sections/header-group.json`) points at **`Cinzel-Medium.ttf`** instead and registers it under the family name **`customfont`**, applied to `h1`/`h2` only. So the serif that renders is Cinzel, the serif that's referenced is Canela, and they never meet.
+3. Elements not matching either rule (e.g. `.hats-toolbar__title`, a `<p>`) use `var(--font-heading-family)` = Jost. Net effect before the Aug 2026 fix: hero title in Cinzel, toolbar title in Jost, product titles in Times — three faces on one page.
+
+**Decision Zack needs to make:** what the heading font should actually be. Canela is bought and uploaded, and matches "elegant serif" better than Cinzel (a Roman inscriptional caps face). Cleanest fix is to register Canela properly and point the theme heading setting at it, rather than leaving four font systems fighting.
+
+**Two other global `!important` layers to know about before touching type or cards:**
+
+- `sections/header.liquid` has a `<style>` that paints `.color-inverse` and `.color-background-2` white with `!important`. Both are stock Shopify colour-scheme classes, so it reaches product badges and **any section set to either scheme** — `background-2` is defined as brown-on-white and renders white instead. Narrowing that selector to header-only selectors would repaint sections across the store, so it needs its own change and Zack's eyes.
+- `heritage-luxury.css` and `lumin.css` **share 52 selectors** and are both loaded on every page. They also wrap every product card in a second white panel (10px padding, 4px radius) with an 8px hover lift, on top of the panel the theme card style already draws.
+
+Scoped workarounds for all of the above exist in `assets/hats-collection.css` (hat collections only) — read the comment blocks there before repeating the work elsewhere.
 
 ## Email & Omnisend (customer messaging)
 
@@ -161,15 +187,17 @@ Drawn from modern AI email best practices (incl. Salesforce's AI-in-email guidan
 
 Never activate, send, or publish Omnisend campaigns/automations without explicit approval.
 
-## Active work queue (as of 2026-08-04)
+## Active work queue (as of 2026-08-18)
 
+0. **Brand fonts — Zack's next design job, deliberately deferred 2026-08-18.** Decide the heading font and wire it up properly; Canela is already uploaded but never loads, so product titles across the store are Times New Roman. Full audit and root causes in **Typography: the live font situation** above. Related cleanup that should probably ride along: the `.color-inverse` rule in `header.liquid` and the duplicated `heritage-luxury.css` / `lumin.css`.
 1. **Cart abandonments — Bob wants to work on this next.** Context: the checkout performance review found ~40 abandoned checkouts/quarter at $110+ AOV. First steps: verify abandoned-checkout email automation is active (Marketing → Automations), confirm Shop app cart reminders are on (Shop channel → Settings), then look at recovery copy/timing and possibly an incentive strategy (THANKYOU10 is post-purchase; don't reuse for abandonment without discussing). Follow the **Email & Omnisend** rules above — do not badger.
 2. **Cart add-ons — paused.** Theme code is in place; next step when resumed is populate/confirm the `cart-add-ons` collection (and optionally tweak heading/look). Details in `scratch/cart-addons-notes.md`.
 3. **Brand page heritage roll-out.** Stetson + Resistol are live with researched timelines. Remaining brands on `page.brand-v2` still need full heritage copy (and Charlie 1 Horse / Bigalli page URLs need fixing or creating). Optional: Resistol heritage image band (no Megargee equivalent yet).
 4. ~~Commit the shipping-line theme edit~~ — **done** (live on product pages).
 5. ~~Arkansas's Original Hat Bar naming~~ — **done** on `main` / live (draft PR #50 superseded).
+6. ~~Hat collection template design pass~~ — **done and live** (PR #81, merged 2026-08-18). Token system in `assets/hats-collection.css`, fixed the body class that had left two-thirds of that stylesheet dead, restored the two-column mobile grid, split sale vs sold-out badges, 24 products a page. Open question Zack hasn't answered: with the desktop hero title correctly hidden, the reading order is intro copy → title in the filter bar → grid. Offer to lead with the title instead if he raises it.
 
-Housekeeping: draft PRs `#50` (Original Hat Bar) and `#45` (cart-addons notes) — #50 conflicting/superseded; #45 docs only (notes now landed in-repo via currency pass).
+Housekeeping: draft PRs `#50` (Original Hat Bar) and `#45` (cart-addons notes) — #50 conflicting/superseded; #45 docs only (notes now landed in-repo via currency pass). Broken CI: `Deploy PR Preview` fails on every PR (dead `SHOPIFY_PREVIEW_THEME_ID`) — worth fixing so future theme work can be previewed before merge.
 
 ## Financials (established July 2026)
 
@@ -191,4 +219,5 @@ Housekeeping: draft PRs `#50` (Original Hat Bar) and `#45` (cart-addons notes) �
 - **Dropbox:** Desktop MCP can be connected (`https://mcp.dropbox.com/mcp`). Tokens seen so far have been App Folder–scoped (can't see full Dropbox / shared brand asset libraries) — regenerate with Full Dropbox if agents need existing brand photos. Cloud Agents need Dropbox MCP added separately at cursor.com/agents → MCP.
 - Treat the lists above as a snapshot, not a source of truth — re-verify against live Shopify metafields before writing anything customer-facing.
 - If work touches the Hat Finder app or theme, the relevant repos are `rwakefi/hat_finder` (Flutter) and `rwakefi/moonridge-shopify-theme` (Shopify Liquid theme), plus the Netlify project `moonridge-hatfinder`.
-- This file was built by reviewing the store's About Us / brand pages and past Cowork sessions (crown/brim terminology, and the Moon Ridge Hat Finder app planning conversation) as of July 2026; currency-pass updates Aug 2026. Update it as the brand voice, team, or product ecosystem evolves.
+- Theme CSS carries several `!important` layers that quietly override anything you write. Before concluding a style "should work", render it and check computed values rather than reading the CSS — see the preview-harness note under **How to edit the website/theme**.
+- This file was built by reviewing the store's About Us / brand pages and past Cowork sessions (crown/brim terminology, and the Moon Ridge Hat Finder app planning conversation) as of July 2026; currency-pass updates Aug 2026; hat collection design pass and font audit 2026-08-18. Update it as the brand voice, team, or product ecosystem evolves.

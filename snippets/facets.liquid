@@ -8,6 +8,7 @@
   - filter_type: {String} Type of filter
   - paginate: {Object}
   - home_style: {Boolean} Williams-Sonoma-style horizontal filter bar
+  - hats_style: {Boolean} Hat collection sidebar + Hat Finder link
 
   Usage:
   {% render 'facets', results: collection, enable_filtering: true, enable_sorting: true, filter_type: 'vertical', paginate: paginate %}
@@ -15,6 +16,7 @@
 
 {%- liquid
   assign home_style = home_style | default: false
+  assign hats_style = hats_style | default: false
 -%}
 
 {{ 'component-show-more.css' | asset_url | stylesheet_tag }}
@@ -31,7 +33,7 @@
   endif
 -%}
 
-<div class="facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if home_style %} facets-container--home-ws{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+<div class="facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if home_style %} facets-container--home-ws{% endif %}{% if hats_style %} facets-container--hats{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
   {%- if filter_type == 'vertical' or filter_type == 'horizontal' -%}
     <facet-filters-form class="facets small-hide">
       <form
@@ -70,6 +72,9 @@
                       {{ 'products.facets.filter_by_label' | t }}
                     </h2>
                   {%- endunless -%}
+                  {%- if hats_style -%}
+                    {% render 'hats-collection-finder-link' %}
+                  {%- endif -%}
                   <facet-remove class="active-facets__button-wrapper">
                     <a href="{{ results_url }}" class="active-facets__button-remove underlined-link">
                       <span>{{ 'products.facets.clear_all' | t }}</span>
@@ -698,6 +703,9 @@
               </div>
             </div>
             <div class="mobile-facets__main has-submenu gradient">
+              {%- if hats_style -%}
+                {% render 'hats-collection-finder-link', extra_class: 'hats-finder-link--mobile' %}
+              {%- endif -%}
               {%- if enable_filtering -%}
                 {%- for filter in results.filters -%}
                   {% liquid

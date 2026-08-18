@@ -1,0 +1,97 @@
+.hat-finder-cta__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.hat-finder-cta__eyebrow {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-heading-family);
+  font-size: 1.1rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: inherit;
+  opacity: 0.72;
+}
+
+.hat-finder-cta__heading {
+  margin: 0 0 0.8rem;
+  font-family: var(--font-heading-family);
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.hat-finder-cta__subheading {
+  margin: 0;
+  max-width: 46rem;
+  font-size: 1.5rem;
+  line-height: 1.55;
+  opacity: 0.82;
+}
+
+.hat-finder-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem 1.8rem;
+}
+
+.hat-finder-cta__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.4rem;
+  padding: 0.9rem 1.8rem;
+  font-family: var(--font-heading-family);
+  font-size: 1.2rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+.hat-finder-cta__button--primary {
+  background: var(--hat-finder-cta-btn-bg, #312110);
+  color: var(--hat-finder-cta-btn-text, #fff);
+  border: 1px solid var(--hat-finder-cta-btn-bg, #312110);
+}
+
+.hat-finder-cta__button--primary:hover {
+  opacity: 0.9;
+}
+
+.hat-finder-cta__button--secondary {
+  background: transparent;
+  color: inherit;
+  border: 1px solid rgba(49, 33, 16, 0.28);
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+  border: 0;
+  min-height: auto;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  font-size: 1.4rem;
+}
+
+.hat-finder-cta__button--secondary:hover {
+  opacity: 0.75;
+}
+
+@media screen and (min-width: 750px) {
+  .hat-finder-cta__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .hat-finder-cta__actions {
+    flex-shrink: 0;
+    justify-content: flex-end;
+  }
+}

@@ -1,0 +1,9 @@
+{% comment %}
+  Compact Hat Finder prompt for hat collection filters.
+  Accepts:
+  - extra_class: {String} optional modifier class
+{% endcomment %}
+<p class="hats-finder-link{% if extra_class != blank %} {{ extra_class }}{% endif %}">
+  Prefer a guided path?
+  <a href="{{ pages['hat-finder'].url | default: '/pages/hat-finder' }}">Try Hat Finder</a>
+</p>

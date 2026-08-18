@@ -1,0 +1,68 @@
+/*
+ * ------------------------------------------------------------
+ * Hat collections — Men's Hats, Women's Hats, Hats for Everyone.
+ * Sidebar filters (Shopify Search & Discovery) + Hat Finder CTA.
+ * Assign this template in Admin → Products → Collections → Theme template.
+ * Setup: scratch/hat-collection-filters.md
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "custom_css": [
+        "h1 {text-align: center;}",
+        ".collection-hero__description.rte {text-align: center; margin: 0 auto; max-width: 900px;}"
+      ],
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "background-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 3,
+        "color_scheme": "background-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "enable_quick_desc": false,
+        "quick_desc_legth": 90,
+        "quick_desc_size": 14,
+        "enable_quick_add": false,
+        "show_secondary_add": false,
+        "enable_filtering": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "hat_finder_cta": {
+      "type": "hat-finder-cta",
+      "settings": {
+        "eyebrow": "Hat Finder",
+        "heading": "Prefer a guided path?",
+        "subheading": "Same questions as the filters — type, crown, and brim — then we show hats that match.",
+        "button_label": "Try Hat Finder",
+        "button_link": "/pages/hat-finder",
+        "show_secondary_link": true,
+        "secondary_label": "Open on the web",
+        "secondary_link": "https://hatfinder.moonridgecompany.com",
+        "secondary_new_tab": true,
+        "background_color": "#faf8f5",
+        "text_color": "#312110",
+        "button_background": "#312110",
+        "button_text": "#ffffff",
+        "padding_top": 36,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": ["banner", "product-grid", "hat_finder_cta"]
+}

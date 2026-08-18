@@ -3,6 +3,9 @@
   {{ 'home-collection.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'home-collection.js' | asset_url }}" defer="defer"></script>
 {% endif %}
+{% if template.suffix == 'hats' %}
+  {{ 'hats-collection.css' | asset_url | stylesheet_tag }}
+{% endif %}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
@@ -57,7 +60,7 @@
   }
 {%- endstyle -%}
 
-<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}{% if template.suffix == 'home' %} home-collection-grid{% endif %}">
+<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}{% if template.suffix == 'home' %} home-collection-grid{% endif %}{% if template.suffix == 'hats' %} hats-collection-grid{% endif %}">
   {%- paginate collection.products by section.settings.products_per_page -%}
     {%- liquid
       assign show_home_variant_thumbs = false
@@ -139,8 +142,12 @@
         >
           {% liquid
             assign home_style = false
+            assign hats_style = false
             if template.suffix == 'home'
               assign home_style = true
+            endif
+            if template.suffix == 'hats'
+              assign hats_style = true
             endif
           %}
           {% render 'facets',
@@ -149,7 +156,8 @@
             enable_sorting: section.settings.enable_sorting,
             filter_type: section.settings.filter_type,
             paginate: paginate,
-            home_style: home_style
+            home_style: home_style,
+            hats_style: hats_style
           %}
         </aside>
       {%- endif -%}
@@ -173,6 +181,13 @@
                   | t: link: collection.url, class: 'underlined-link link'
                 }}
               </h2>
+              {%- if template.suffix == 'hats' -%}
+                <p class="hats-collection-empty-finder">
+                  Or
+                  <a class="underlined-link link" href="{{ pages['hat-finder'].url | default: '/pages/hat-finder' }}">try Hat Finder</a>
+                  and we’ll match type, crown, and brim for you.
+                </p>
+              {%- endif -%}
             </div>
           </div>
         {%- else -%}

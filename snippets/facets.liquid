@@ -46,8 +46,11 @@
         {%- endif -%}
 
         {%- if hats_style and filter_type == 'horizontal' -%}
+          {% comment %}
+            The collection title is the page h1 in main-collection-banner, above the
+            description. Only the count belongs in the toolbar.
+          {% endcomment %}
           <div class="hats-toolbar__identity">
-            <p class="hats-toolbar__title">{{ results.title | escape }}</p>
             <p class="hats-toolbar__count" role="status">
               <span id="ProductCountDesktop">
                 {%- if results.results_count -%}

@@ -532,7 +532,18 @@
     {% endif %}
   </head>
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  {%- liquid
+    comment
+      hats-collection.css is written against .template-suffix-hats. Scoped to the hat
+      collection template only — home/drinkware stylesheets use the same convention but
+      have never been live, so enabling them needs its own review.
+    endcomment
+    assign body_template_class = ''
+    if template.name == 'collection' and template.suffix == 'hats'
+      assign body_template_class = ' template-suffix-hats'
+    endif
+  -%}
+  <body class="gradient{{ body_template_class }}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>

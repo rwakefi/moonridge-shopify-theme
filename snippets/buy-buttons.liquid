@@ -25,10 +25,45 @@
 
       assign sold_out_button_label = 'products.product.sold_out' | t
       assign product_template_suffix = product.template_suffix | default: '' | downcase
+
+      comment
+        in_store_only — boots are fitted and sold in the shop, never checked out
+        online. The submit button stays disabled regardless of stock, the variant
+        id is withheld from the form, and the dynamic checkout buttons (Shop Pay,
+        installments) are suppressed so no path bypasses the cart.
+      endcomment
+      assign in_store_only = false
       if product_template_suffix == 'boots' or product_template_suffix contains 'boot'
         assign sold_out_button_label = 'Contact Store For Availability'
+        assign in_store_only = true
+        assign show_dynamic_checkout = false
       endif
     -%}
+
+    {%- if in_store_only -%}
+      <script>
+        /* layout/theme.liquid defines window.variantStrings near the end of
+           <body>, i.e. AFTER this snippet renders, so a plain assignment here
+           would be overwritten. global.js reads variantStrings.soldOut at call
+           time (on every variant change) and would otherwise relabel this
+           button "Sold out" the moment a shopper picks a size. Overriding on
+           DOMContentLoaded runs after theme.liquid's inline script and keeps
+           the whole in-store-only rule inside this one snippet. */
+        document.addEventListener('DOMContentLoaded', function () {
+          window.variantStrings = window.variantStrings || {};
+          window.variantStrings.soldOut = 'Contact Store For Availability';
+        });
+      </script>
+      <style>
+        /* Boots cannot be checked out online. The Shop Pay installments offer is
+           rendered by the price block in sections/main-product.liquid, outside
+           this snippet — hide it here rather than editing that 4,000-line file,
+           so the whole in-store-only rule stays in one place. */
+        .installment {
+          display: none !important;
+        }
+      </style>
+    {%- endif -%}
 
     <product-form
       class="product-form"
@@ -61,7 +96,7 @@
           type="hidden"
           name="id"
           value="{{ product.selected_or_first_available_variant.id }}"
-          {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+          {% if in_store_only or product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
             disabled
           {% endif %}
           class="product-variant-id"
@@ -93,12 +128,12 @@
             type="submit"
             name="add"
             class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
-            {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+            {% if in_store_only or product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
               disabled
             {% endif %}
           >
             <span>
-              {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+              {%- if in_store_only or product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                 {{- sold_out_button_label -}}
               {%- else -%}
                 {{ 'products.product.add_to_cart' | t }}
@@ -121,12 +156,33 @@
             {%- endif -%}
           </p>
         {%- endif -%}
-        {%- if block.settings.show_trust_copy and block.settings.trust_copy != blank -%}
+        {%- comment -%}
+          Boots are fitted in person and cannot be bought online, so the default
+          trust line ("In-store or shipping nationwide") and the shipping-rate
+          note are both replaced with in-store wording. Everything else on the
+          site keeps the block setting.
+        {%- endcomment -%}
+        {%- if in_store_only -%}
+          {%- comment -%}
+            Deep-links to the "Lucchese Boots Private Shopping Experience"
+            service on Setmore (product id 43f4df6a-f625-400c-bc15-b05505c2206c).
+            No staff id in the URL on purpose — Setmore resolves it to staff=SKIP
+            so the booking isn't pinned to one person.
+          {%- endcomment -%}
+          <div class="product-form__trust rte">
+            <p>
+              <a
+                href="https://moonridgecompany.setmore.com/book?step=staff&amp;products=43f4df6a-f625-400c-bc15-b05505c2206c&amp;type=service"
+                rel="noopener"
+              >Book a custom Lucchese Fitting Experience in our shop</a>
+            </p>
+          </div>
+        {%- elsif block.settings.show_trust_copy and block.settings.trust_copy != blank -%}
           <div class="product-form__trust rte">
             {{ block.settings.trust_copy }}
           </div>
         {%- endif -%}
-        {%- if product.selected_or_first_available_variant.requires_shipping -%}
+        {%- if in_store_only == false and product.selected_or_first_available_variant.requires_shipping -%}
           <p class="product-form__shipping-note caption-large">
             {%- if product.tags contains 'Ballcaps' -%}
               $6 U.S. shipping

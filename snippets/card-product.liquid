@@ -64,6 +64,16 @@
       assign sold_out_badge_text = 'Contact Store For Availability'
     endif
 
+    comment
+      Boots are fitted in the shop and cannot be bought online (see
+      snippets/buy-buttons.liquid for the product-page rule). The card CTA is a
+      booking link rather than a quick-add or a "sold out" link. Same Setmore
+      service as the product page — "Lucchese Boots Private Shopping Experience",
+      product id 43f4df6a-f625-400c-bc15-b05505c2206c. No staff id on purpose;
+      Setmore resolves it to staff=SKIP so the booking isn't pinned to one person.
+    endcomment
+    assign boots_booking_url = 'https://moonridgecompany.setmore.com/book?step=staff&products=43f4df6a-f625-400c-bc15-b05505c2206c&type=service'
+
     assign hide_boots_collection_badges = false
     if template.name == 'collection' and collection
       assign _collection_handle = collection.handle | default: '' | downcase
@@ -345,7 +355,20 @@ endif
                 assign qty_rules = true
               endif
             -%}
-            {%- if card_product.available == false -%}
+            {%- if is_boots_collection_context -%}
+                <a
+                  href="{{ boots_booking_url }}"
+                  id="{{ product_form_id }}-submit"
+                  class="quick-add__submit button button--full-width{% if show_secondary_add %} button--secondary{% endif %}{% if horizontal_quick_add %} card--horizontal__quick-add{% endif %}"
+                  rel="noopener"
+                  aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
+                >
+                  <span>Book a Lucchese Fitting</span>
+                  {%- if horizontal_quick_add -%}
+                    <span class="icon-wrap">{% render 'icon-arrow' %}</span>
+                  {%- endif -%}
+                </a>
+            {%- elsif card_product.available == false -%}
                 <a
                   href="{{ card_product.url }}"
                   id="{{ product_form_id }}-submit"

@@ -1,0 +1,20 @@
+{% comment %}
+  First paragraph of the product description, for the buying column.
+  Skips when the description is only one block so it is not duplicated below.
+{% endcomment %}
+{%- if product.description != blank -%}
+  {%- liquid
+    assign summary_html = ''
+    if product.description contains '</p>'
+      assign summary_parts = product.description | split: '</p>'
+      if summary_parts.size > 1
+        assign summary_html = summary_parts.first | append: '</p>'
+      endif
+    endif
+  -%}
+  {%- if summary_html != blank -%}
+    <div class="product__buy-summary rte">
+      {{ summary_html }}
+    </div>
+  {%- endif -%}
+{%- endif -%}

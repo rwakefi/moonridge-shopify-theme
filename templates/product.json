@@ -48,6 +48,12 @@
             "shipping_hide": true
           }
         },
+        "buy_summary": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'product-buy-summary' %}"
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -104,14 +110,15 @@
       "block_order": [
         "vendor",
         "title",
-        "description",
         "text_F8QjfR",
         "price",
+        "buy_summary",
         "variant_picker",
         "inventory_status_nPFgBc",
         "shipping_CBekAR",
         "quantity_selector",
-        "buy_buttons"
+        "buy_buttons",
+        "description"
       ],
       "custom_css": [],
       "settings": {

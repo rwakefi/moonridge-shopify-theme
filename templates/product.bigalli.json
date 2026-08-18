@@ -50,6 +50,12 @@
             "shipping_hide": true
           }
         },
+        "buy_summary": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'product-buy-summary' %}"
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -111,12 +117,13 @@
       "block_order": [
         "vendor",
         "title",
-        "description",
         "price",
+        "buy_summary",
         "variant_picker",
         "shipping_CBekAR",
         "quantity_selector",
         "buy_buttons",
+        "description",
         "avada_upsell_app_badge_v2_block_n37Aer",
         "payment_GNLD3k",
         "share"

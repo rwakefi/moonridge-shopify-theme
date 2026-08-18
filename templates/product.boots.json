@@ -105,14 +105,14 @@
       "block_order": [
         "vendor",
         "title",
-        "description",
         "text_F8QjfR",
         "price",
         "variant_picker",
         "inventory_status_nPFgBc",
         "shipping_CBekAR",
         "quantity_selector",
-        "buy_buttons"
+        "buy_buttons",
+        "description"
       ],
       "custom_css": [],
       "settings": {

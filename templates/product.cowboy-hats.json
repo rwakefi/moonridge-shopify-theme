@@ -41,6 +41,12 @@
             "shipping_hide": true
           }
         },
+        "buy_summary": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'product-buy-summary' %}"
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -149,14 +155,15 @@
       "block_order": [
         "vendor",
         "title",
-        "description",
         "price",
+        "buy_summary",
         "variant_picker",
         "inventory_status_nPFgBc",
         "shipping_CBekAR",
         "quantity_selector",
         "hat_branding_v3",
         "buy_buttons",
+        "description",
         "collapsible_tab_Rz9b6j",
         "image_mCjNUw",
         "custom_liquid_XDbg47"

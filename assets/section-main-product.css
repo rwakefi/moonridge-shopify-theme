@@ -180,6 +180,45 @@ variant-selects {
   margin-bottom: 1.6rem;
 }
 
+.product-form__option-label,
+.product-form__option-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.product-form__option-label .form__label {
+  margin-bottom: 0;
+}
+
+.product-form__size-guide {
+  flex-shrink: 0;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c5a059;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.product-form__size-guide:hover {
+  color: #312110;
+}
+
+.product__buy-summary {
+  margin: 0 0 1.25rem;
+  max-width: 44rem;
+  font-size: 1.6rem;
+  line-height: 1.55;
+  color: rgba(49, 33, 16, 0.82);
+}
+
+.product__buy-summary p {
+  margin: 0;
+}
+
 .product-form__input .form__label {
   padding-left: 0;
 }

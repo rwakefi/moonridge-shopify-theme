@@ -9,6 +9,17 @@
   Usage:
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
+{%- liquid
+  assign hat_uses_size_guide = false
+  if template.suffix == 'cowboy-hats' or template.suffix == 'bigalli'
+    assign hat_uses_size_guide = true
+  elsif product.type contains 'Hat' or product.type contains 'hat' or product.type contains 'Cap' or product.type contains 'cap'
+    assign hat_uses_size_guide = true
+  endif
+  if template.suffix == 'boots'
+    assign hat_uses_size_guide = false
+  endif
+-%}
 {%- unless product.has_only_default_variant -%}
   {%- if block.settings.picker_type == 'button' -%}
     <variant-radios
@@ -22,10 +33,15 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
+        {%- assign option_name_down = option.name | downcase -%}
         <fieldset class="js product-form__input">
-          <span class="pdkt-fetr{% if section.settings.desktop_content_alignment == 'center' %} pdkt-fetr-center{% elsif section.settings.desktop_content_alignment == 'right' %} pdkt-fetr-right{% endif %}">
+          <span class="pdkt-fetr product-form__option-heading{% if section.settings.desktop_content_alignment == 'center' %} pdkt-fetr-center{% elsif section.settings.desktop_content_alignment == 'right' %} pdkt-fetr-right{% endif %}">
         {{ option.name }}: <legend class="form__label" id="form__label" style="margin:0;opacity: 0.5;"> 
-        {% assign current_variant = product.selected_or_first_available_variant %} {{ current_variant.title }}</legend></span>
+        {% assign current_variant = product.selected_or_first_available_variant %} {{ current_variant.title }}</legend>
+        {%- if hat_uses_size_guide and option_name_down contains 'size' -%}
+          <a class="product-form__size-guide" href="{{ pages['hat-sizing'].url | default: '/pages/hat-sizing' }}">Size guide</a>
+        {%- endif -%}
+        </span>
           {% render 'product-variant-options-swatches', product: product, option: option, block: block %}
         </fieldset>
       {%- endfor -%}
@@ -45,10 +61,16 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
+        {%- assign option_name_down = option.name | downcase -%}
         <div class="product-form__input product-form__input--dropdown">
-          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
-            {{ option.name }}
-          </label>
+          <div class="product-form__option-label">
+            <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+              {{ option.name }}
+            </label>
+            {%- if hat_uses_size_guide and option_name_down contains 'size' -%}
+              <a class="product-form__size-guide" href="{{ pages['hat-sizing'].url | default: '/pages/hat-sizing' }}">Size guide</a>
+            {%- endif -%}
+          </div>
           <div class="select">
             <select
               id="Option-{{ section.id }}-{{ forloop.index0 }}"

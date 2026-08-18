@@ -1054,6 +1054,17 @@ function updateCountdown() {
                   <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
                     {{ block.settings.content }}
                     {{ block.settings.page.content }}
+                    {%- if block.settings.image != blank -%}
+                      <p class="accordion__chart">
+                        <img
+                          src="{{ block.settings.image | image_url: width: 1200 }}"
+                          alt="{{ block.settings.image.alt | default: 'Hat sizing chart' | escape }}"
+                          width="{{ block.settings.image.width | default: 1200 }}"
+                          height="{{ block.settings.image.height | default: 400 }}"
+                          loading="lazy"
+                        >
+                      </p>
+                    {%- endif -%}
                   </div>
                 </details>
               </div>
@@ -2957,6 +2968,12 @@ function updateCountdown() {
           "type": "page",
           "id": "page",
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.page.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image inside row",
+          "info": "Shown at the bottom of this dropdown. Used for the hat sizing chart."
         }
       ]
     },

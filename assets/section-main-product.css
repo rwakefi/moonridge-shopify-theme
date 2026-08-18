@@ -423,6 +423,16 @@ a.product__text {
   padding: 0 1rem;
 }
 
+.product__accordion .accordion__chart {
+  margin: 1rem 0 0.5rem;
+}
+
+.product__accordion .accordion__chart img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .product .price .badge {
   margin-bottom: 0.5rem;
 }

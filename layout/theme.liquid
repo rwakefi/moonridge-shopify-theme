@@ -471,6 +471,9 @@
     {{ 'moonridge-carousel-arrows.css' | asset_url | stylesheet_tag }}
     {{ 'lumin.css' | asset_url | stylesheet_tag }}
     {{ 'heritage-luxury.css' | asset_url | stylesheet_tag }}
+    {%- if template.name == 'collection' and template.suffix == 'hats' -%}
+      {{ 'hats-collection.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
     {{ 'transition-cover.css' | asset_url | stylesheet_tag }}
     {{ 'sticky-booking-cta.css' | asset_url | stylesheet_tag }}
     

@@ -1,39 +1,188 @@
-/* Hat collections — vertical sidebar + obvious mobile filter */
+/* Hat collections — magazine sidebar, tight hero, no stretched grid */
 
-.hats-collection-grid {
+.template-suffix-hats {
   --hats-ink: #312110;
   --hats-cream: #faf8f5;
+  --hats-muted: rgba(49, 33, 16, 0.68);
+  --hats-line: rgba(49, 33, 16, 0.12);
 }
 
+/* Hero */
+.template-suffix-hats .collection-hero__inner {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+.template-suffix-hats .collection-hero__title {
+  margin: 1.2rem 0 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+}
+
+.template-suffix-hats .collection-hero__description.rte {
+  max-width: 62rem;
+  margin: 0 auto;
+  font-size: 1.5rem;
+  line-height: 1.55;
+  color: var(--hats-muted);
+}
+
+.template-suffix-hats .collection-hero__description.rte p {
+  margin: 0 0 0.8rem;
+}
+
+.template-suffix-hats .collection-hero__description.rte p:last-child {
+  margin-bottom: 0;
+}
+
+.template-suffix-hats .collection-hero__title + .collection-hero__description {
+  margin-top: 0.8rem;
+  margin-bottom: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .template-suffix-hats .collection-hero__title {
+    font-size: clamp(2.8rem, 4vw, 3.6rem);
+  }
+
+  .template-suffix-hats .collection-hero__description.rte {
+    font-size: 1.55rem;
+  }
+}
+
+/* Stop the sidebar from stretching the product grid into a giant gap */
+.hats-collection-grid .facets-vertical {
+  align-items: flex-start;
+}
+
+.hats-collection-grid .product-grid-container,
+.hats-collection-grid .facets-wrapper {
+  align-self: flex-start;
+}
+
+.hats-collection-grid .product-grid {
+  align-content: start;
+  row-gap: 2.8rem;
+  column-gap: 2rem;
+}
+
+.hats-collection-grid .card-information > .caption-with-letter-spacing {
+  display: none;
+}
+
+.hats-collection-grid .card__heading {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.hats-collection-grid .price {
+  margin-top: 0.4rem;
+}
+
+/* Sidebar */
 .hats-collection-grid .facets__heading--vertical {
   font-family: var(--font-heading-family);
-  font-size: 1.4rem;
-  letter-spacing: 0.12em;
+  font-size: 1.3rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--hats-ink);
+  margin: 0 0 1.2rem;
 }
 
 .hats-finder-link {
-  margin: 0 0 1.6rem;
-  font-size: 1.3rem;
-  line-height: 1.45;
-  color: rgba(49, 33, 16, 0.72);
+  margin: 0 0 1.8rem;
+  padding: 1.2rem 1.3rem 1.3rem;
+  background: #fff;
+  border: 1px solid var(--hats-line);
 }
 
-.hats-finder-link a {
+.hats-finder-link__eyebrow {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-heading-family);
+  font-size: 1rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hats-muted);
+}
+
+.hats-finder-link__text {
+  margin: 0 0 0.7rem;
+  font-size: 1.35rem;
+  line-height: 1.4;
   color: var(--hats-ink);
-  text-underline-offset: 0.2rem;
+}
+
+.hats-finder-link__cta {
+  font-family: var(--font-heading-family);
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--hats-ink);
+  text-underline-offset: 0.25rem;
 }
 
 .hats-finder-link--mobile {
-  margin: 0 0 1.2rem;
-  padding: 0 1.5rem;
+  margin: 0 1.5rem 1.4rem;
+}
+
+.hats-collection-grid .facets__disclosure-vertical {
+  border-top-color: var(--hats-line);
+}
+
+.hats-collection-grid .facets-vertical .facets__summary {
+  padding-top: 1.1rem;
+  padding-bottom: 1.1rem;
+  color: var(--hats-ink);
+  font-family: var(--font-heading-family);
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+}
+
+.hats-collection-grid .facets__summary:hover .facets__summary-label {
+  text-decoration: none;
+}
+
+.hats-collection-grid .facet-checkbox {
+  padding: 0.55rem 0;
+  font-size: 1.35rem;
+  color: var(--hats-ink);
+}
+
+.hats-collection-grid .facet-checkbox > svg:not(.icon-checkmark) {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 1px;
+}
+
+.hats-collection-grid .facet-checkbox > input[type='checkbox']:checked ~ svg:not(.icon-checkmark) {
+  background: var(--hats-ink);
+}
+
+.hats-collection-grid .facet-checkbox > input[type='checkbox']:checked ~ svg:not(.icon-checkmark) rect {
+  stroke: var(--hats-ink);
+}
+
+.hats-collection-grid .facet-checkbox .icon-checkmark {
+  color: #fff;
+}
+
+.hats-collection-grid .facets__display-vertical {
+  padding-bottom: 0.8rem;
+}
+
+.hats-collection-grid .active-facets-vertical-filter {
+  margin-bottom: 0.4rem;
+}
+
+.hats-collection-grid .facets-vertical .active-facets__button-wrapper {
+  margin-bottom: 0.8rem;
 }
 
 .hats-collection-grid .mobile-facets__open-wrapper {
   display: block;
   width: 100%;
-  margin: 0 0 1.2rem;
+  margin: 0 0 1.6rem;
 }
 
 .hats-collection-grid .mobile-facets__open {
@@ -64,10 +213,7 @@
 }
 
 .hats-collection-grid .mobile-facets__open line,
-.hats-collection-grid .mobile-facets__open circle {
-  stroke: #fff;
-}
-
+.hats-collection-grid .mobile-facets__open circle,
 .hats-collection-grid .mobile-facets__open:hover line,
 .hats-collection-grid .mobile-facets__open:hover circle {
   stroke: #fff;
@@ -79,15 +225,43 @@
 }
 
 .hats-collection-empty-finder a {
-  color: var(--hats-ink, #312110);
+  color: var(--hats-ink);
+}
+
+.template-suffix-hats .hat-finder-cta {
+  border-top: 1px solid var(--hats-line);
 }
 
 @media screen and (min-width: 750px) {
-  .hats-collection-grid.facets-vertical .facets-wrapper {
-    padding-right: 2.4rem;
+  .hats-collection-grid .facets-wrapper {
+    background: var(--hats-cream);
+    padding: 2rem 1.8rem 2.4rem;
+    margin-right: 1.2rem;
+    border: 1px solid var(--hats-line);
+  }
+
+  .hats-collection-grid.facets-vertical .facets-wrapper,
+  .hats-collection-grid .facets-vertical .facets-wrapper {
+    padding-right: 1.8rem;
   }
 
   .hats-collection-grid .facets__form-vertical {
-    width: 24rem;
+    width: 23rem;
+  }
+
+  .hats-collection-grid .facets-vertical-sort {
+    margin-bottom: 0.4rem;
+  }
+
+  .hats-collection-grid .facet-filters__label,
+  .hats-collection-grid .product-count-vertical .product-count__text {
+    font-size: 1.3rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--hats-muted);
+  }
+
+  .hats-collection-grid .pagination-wrapper {
+    margin-top: 2.4rem;
   }
 }

@@ -3,7 +3,8 @@
   Accepts:
   - extra_class: {String} optional modifier class
 {% endcomment %}
-<p class="hats-finder-link{% if extra_class != blank %} {{ extra_class }}{% endif %}">
-  Prefer a guided path?
-  <a href="{{ pages['hat-finder'].url | default: '/pages/hat-finder' }}">Try Hat Finder</a>
-</p>
+<div class="hats-finder-link{% if extra_class != blank %} {{ extra_class }}{% endif %}">
+  <p class="hats-finder-link__eyebrow">Hat Finder</p>
+  <p class="hats-finder-link__text">Prefer a guided path?</p>
+  <a class="hats-finder-link__cta" href="{{ pages['hat-finder'].url | default: '/pages/hat-finder' }}">Try Hat Finder</a>
+</div>

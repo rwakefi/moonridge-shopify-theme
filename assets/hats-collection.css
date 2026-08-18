@@ -35,6 +35,8 @@
   /* Rhythm */
   --hats-gap-row: 4.4rem;
   --hats-gap-col: 2.4rem;
+  --hats-gap-row-mobile: 3.2rem;
+  --hats-gap-col-mobile: 1.6rem;
 }
 
 /* Shared recipe for every uppercase micro-label on the template:
@@ -364,9 +366,15 @@
  * Product grid
  * ------------------------------------------------------------------ */
 
+/* Set the spacing through Dawn's grid variables rather than column-gap/row-gap.
+   Item widths are calculated from these same variables, so overriding the gap on
+   its own leaves each item too wide for the row — that is what was collapsing the
+   two-column mobile grid down to one. */
 .hats-collection-grid .product-grid {
-  row-gap: var(--hats-gap-row);
-  column-gap: var(--hats-gap-col);
+  --grid-desktop-horizontal-spacing: var(--hats-gap-col);
+  --grid-desktop-vertical-spacing: var(--hats-gap-row);
+  --grid-mobile-horizontal-spacing: var(--hats-gap-col-mobile);
+  --grid-mobile-vertical-spacing: var(--hats-gap-row-mobile);
 }
 
 /* Cards sit flat on the page — the theme's "card" style wraps each product in a

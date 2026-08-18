@@ -420,7 +420,7 @@ a.product__text {
 }
 
 .product__accordion .accordion__content {
-  padding: 0 1rem;
+  padding: 1.6rem 1rem 1rem;
 }
 
 .product__accordion .accordion__chart {

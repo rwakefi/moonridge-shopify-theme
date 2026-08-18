@@ -28,32 +28,18 @@
 
       comment
         in_store_only — boots are fitted and sold in the shop, never checked out
-        online. The submit button stays disabled regardless of stock, the variant
-        id is withheld from the form, and the dynamic checkout buttons (Shop Pay,
-        installments) are suppressed so no path bypasses the cart.
+        online. The submit button is replaced outright by a booking link, the
+        variant id is withheld from the form, and the dynamic checkout buttons
+        (Shop Pay, installments) are suppressed so no path bypasses the cart.
       endcomment
       assign in_store_only = false
       if product_template_suffix == 'boots' or product_template_suffix contains 'boot'
-        assign sold_out_button_label = 'Contact Store For Availability'
         assign in_store_only = true
         assign show_dynamic_checkout = false
       endif
     -%}
 
     {%- if in_store_only -%}
-      <script>
-        /* layout/theme.liquid defines window.variantStrings near the end of
-           <body>, i.e. AFTER this snippet renders, so a plain assignment here
-           would be overwritten. global.js reads variantStrings.soldOut at call
-           time (on every variant change) and would otherwise relabel this
-           button "Sold out" the moment a shopper picks a size. Overriding on
-           DOMContentLoaded runs after theme.liquid's inline script and keeps
-           the whole in-store-only rule inside this one snippet. */
-        document.addEventListener('DOMContentLoaded', function () {
-          window.variantStrings = window.variantStrings || {};
-          window.variantStrings.soldOut = 'Contact Store For Availability';
-        });
-      </script>
       <style>
         /* Boots cannot be checked out online. The Shop Pay installments offer is
            rendered by the price block in sections/main-product.liquid, outside
@@ -123,28 +109,46 @@
               endif
             endif
           -%}
-          <button
-            id="ProductSubmitButton-{{ section_id }}"
-            type="submit"
-            name="add"
-            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
-            {% if in_store_only or product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
-              disabled
-            {% endif %}
-          >
-            <span>
-              {%- if in_store_only or product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
-                {{- sold_out_button_label -}}
-              {%- else -%}
-                {{ 'products.product.add_to_cart' | t }}
-              {%- endif -%}
-            </span>
-            {%- render 'loading-spinner' -%}
-          </button>
-          {%- if show_dynamic_checkout -%}
-            
+          {%- if in_store_only -%}
+            {%- comment -%}
+              Boots are fitted in the shop, so the primary action is a booking,
+              not a purchase. Rendering an <a> rather than a disabled <button>
+              means there is no submit control in the form at all. global.js
+              guards its `[name="add"]` lookups, so its absence is safe.
+              Links to the "Lucchese Boots Private Shopping Experience" service
+              (product id 43f4df6a-f625-400c-bc15-b05505c2206c). No staff id in
+              the URL on purpose — Setmore resolves it to staff=SKIP so the
+              booking isn't pinned to one person.
+            {%- endcomment -%}
+            <a
+              href="https://moonridgecompany.setmore.com/book?step=staff&amp;products=43f4df6a-f625-400c-bc15-b05505c2206c&amp;type=service"
+              class="product-form__submit button button--full-width button--primary"
+              rel="noopener"
+            >Book a Lucchese Fitting Experience</a>
+          {%- else -%}
+            <button
+              id="ProductSubmitButton-{{ section_id }}"
+              type="submit"
+              name="add"
+              class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+              {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+                disabled
+              {% endif %}
+            >
+              <span>
+                {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+                  {{- sold_out_button_label -}}
+                {%- else -%}
+                  {{ 'products.product.add_to_cart' | t }}
+                {%- endif -%}
+              </span>
+              {%- render 'loading-spinner' -%}
+            </button>
+            {%- if show_dynamic_checkout -%}
+              
         {{ form | payment_button }}
-            
+              
+            {%- endif -%}
           {%- endif -%}
         </div>
         {%- if show_low_stock_notice -%}
@@ -157,27 +161,10 @@
           </p>
         {%- endif -%}
         {%- comment -%}
-          Boots are fitted in person and cannot be bought online, so the default
-          trust line ("In-store or shipping nationwide") and the shipping-rate
-          note are both replaced with in-store wording. Everything else on the
-          site keeps the block setting.
+          Boots get no trust line — the booking CTA above already says it, and the
+          default copy ("In-store or shipping nationwide") contradicts in-store-only.
         {%- endcomment -%}
-        {%- if in_store_only -%}
-          {%- comment -%}
-            Deep-links to the "Lucchese Boots Private Shopping Experience"
-            service on Setmore (product id 43f4df6a-f625-400c-bc15-b05505c2206c).
-            No staff id in the URL on purpose — Setmore resolves it to staff=SKIP
-            so the booking isn't pinned to one person.
-          {%- endcomment -%}
-          <div class="product-form__trust rte">
-            <p>
-              <a
-                href="https://moonridgecompany.setmore.com/book?step=staff&amp;products=43f4df6a-f625-400c-bc15-b05505c2206c&amp;type=service"
-                rel="noopener"
-              >Book a custom Lucchese Fitting Experience in our shop</a>
-            </p>
-          </div>
-        {%- elsif block.settings.show_trust_copy and block.settings.trust_copy != blank -%}
+        {%- if in_store_only == false and block.settings.show_trust_copy and block.settings.trust_copy != blank -%}
           <div class="product-form__trust rte">
             {{ block.settings.trust_copy }}
           </div>

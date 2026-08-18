@@ -17,6 +17,15 @@
   --hats-cream: #faf8f5;
   --hats-tan: #9c7a52;
 
+  /* Faces. Display is the brand serif — Cinzel, registered as the family
+     "customfont" by sections/custom-fonts.liquid and already loaded on every
+     page. Swap the family here if the brand serif changes and the collection
+     title follows. Text is the theme heading setting (currently Jost), which
+     stays on product titles because the serif is a caps display face and does
+     not hold up at 18px. */
+  --hats-font-display: 'customfont', 'Cinzel', Georgia, serif;
+  --hats-font-text: var(--font-heading-family);
+
   /* Type scale — four steps, no in-between values */
   --hats-type-micro: 1.2rem;
   --hats-type-small: 1.4rem;
@@ -69,6 +78,7 @@
 
 .template-suffix-hats .collection-hero__title {
   margin: 0 0 1.2rem;
+  font-family: var(--hats-font-display);
   font-size: var(--hats-type-display);
   font-weight: 500;
   letter-spacing: var(--hats-track-display);
@@ -479,16 +489,20 @@
  * ------------------------------------------------------------------ */
 
 /* Those files set every heading to "Canela", "Playfair Display", serif. Neither
-   font is loaded on the store, so headings fall back to Times while the rest of
-   the page uses the theme heading font — on this template that put the hero
-   title and the toolbar title, the same words, in two different faces. Follow
-   the theme's heading setting so the whole template moves together if it
-   changes. */
-.template-suffix-hats .collection-hero__title,
+   font is loaded on the store, so anything matching that rule falls back to
+   Times. Product titles take the theme heading face; the collection title takes
+   the brand serif. Both are stated explicitly rather than left to whichever
+   !important rule happens to load last. */
 .hats-collection-grid .card__heading,
 .hats-collection-grid .card__heading a {
-  font-family: var(--font-heading-family) !important;
+  font-family: var(--hats-font-text) !important;
   font-weight: 400 !important;
+  letter-spacing: var(--hats-track-display) !important;
+}
+
+.template-suffix-hats .collection-hero__title {
+  font-family: var(--hats-font-display) !important;
+  font-weight: 500 !important;
   letter-spacing: var(--hats-track-display) !important;
 }
 

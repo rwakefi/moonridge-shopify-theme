@@ -1,10 +1,15 @@
 {% comment %}
-  Compact Hat Finder prompt for hat collection filters.
-  Accepts:
-  - extra_class: {String} optional modifier class
+  Hat Finder link for hat collection filters.
+  extra_class: hats-finder-link--bar for the desktop toolbar; --mobile for the drawer.
 {% endcomment %}
-<div class="hats-finder-link{% if extra_class != blank %} {{ extra_class }}{% endif %}">
-  <p class="hats-finder-link__eyebrow">Hat Finder</p>
-  <p class="hats-finder-link__text">Prefer a guided path?</p>
-  <a class="hats-finder-link__cta" href="{{ pages['hat-finder'].url | default: '/pages/hat-finder' }}">Try Hat Finder</a>
-</div>
+{%- liquid
+  assign finder_url = pages['hat-finder'].url | default: '/pages/hat-finder'
+-%}
+{%- if extra_class == 'hats-finder-link--bar' -%}
+  <a class="hats-finder-link hats-finder-link--bar" href="{{ finder_url }}">Hat Finder</a>
+{%- else -%}
+  <p class="hats-finder-link{% if extra_class != blank %} {{ extra_class }}{% endif %}">
+    Prefer a guided path?
+    <a href="{{ finder_url }}">Try Hat Finder</a>
+  </p>
+{%- endif -%}

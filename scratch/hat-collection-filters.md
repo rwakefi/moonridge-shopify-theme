@@ -2,7 +2,7 @@
 
 Theme work is in `templates/collection.hats.json`. Filters themselves are **Shopify Search & Discovery**, not Liquid. This file is the admin setup so collection pages and Hat Finder speak the same language.
 
-Ian (Ecommerce Bournemouth): men’s hats had 91 products with only price + availability. Add brand, size, colour, hat type / material. Sidebar on desktop, obvious filter button on mobile. Keep Hat Finder as the guided path. Do **not** recategorize the whole catalog — use data already on products.
+Ian (Ecommerce Bournemouth): men’s hats had 91 products with only price + availability. Add brand, size, colour, hat type / material. Keep Hat Finder as the guided path. Do **not** recategorize the whole catalog — use data already on products.
 
 ## Assign the template (after this theme is live)
 
@@ -60,9 +60,9 @@ Metafields must be filterable types (single-line text, list of values, or metaob
 
 ## What the theme is doing
 
-- New template `collection.hats`: vertical sidebar on desktop, full-width Filter button on mobile, vendor on cards, Hat Finder CTA under the grid.
+- New template `collection.hats`: horizontal filter bar on desktop (title + count + sort on the first row, filter dropdowns on the second), Filter & Sort button on mobile, Hat Finder CTA under the grid.
 - Default `collection.json` stays drawer-style for everything else.
-- Sidebar + empty-results copy points to `/pages/hat-finder`.
+- Empty-results copy points to `/pages/hat-finder`.
 
 Filters will still look thin (price + availability only) until the S&D list above is saved. That is admin, not a second theme pass.
 

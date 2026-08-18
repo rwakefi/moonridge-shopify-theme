@@ -423,8 +423,12 @@ a.product__text {
   padding: 1.6rem 1rem 1rem;
 }
 
+.product__accordion .accordion__content p {
+  margin: 0 0 0.9rem;
+}
+
 .product__accordion .accordion__chart {
-  margin: 1rem 0 0.5rem;
+  margin: 1.2rem 0 0.5rem;
 }
 
 .product__accordion .accordion__chart img {

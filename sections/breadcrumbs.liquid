@@ -27,6 +27,14 @@
     margin-bottom: 2rem;
   }
 
+  {%- if template.name == 'product' -%}
+  @media screen and (min-width: 750px) {
+    .breadcrumbs {
+      margin-bottom: 0;
+    }
+  }
+  {%- endif -%}
+
   .breadcrumbs__list {
     list-style-type: none;
     margin: 0;

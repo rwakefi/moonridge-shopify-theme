@@ -1,13 +1,60 @@
-/* Hat collections — horizontal filter bar */
+/* ------------------------------------------------------------------
+ * Hat collections — Men's Hats, Women's Hats, Hats for Everyone.
+ * Editorial horizontal filter bar + product grid + Hat Finder CTA.
+ *
+ * Everything on this template draws from the tokens below. Add a new
+ * value here before hardcoding one in a rule, so the toolbar, grid,
+ * badges, and CTA keep sharing a single type scale and palette.
+ * ------------------------------------------------------------------ */
 
 .template-suffix-hats {
+  /* Palette — chocolate brown ink, saddle tan accent, warm cream */
   --hats-ink: #312110;
+  --hats-ink-soft: rgba(49, 33, 16, 0.78);
   --hats-muted: rgba(49, 33, 16, 0.62);
   --hats-line: rgba(49, 33, 16, 0.14);
+  --hats-line-strong: rgba(49, 33, 16, 0.32);
   --hats-cream: #faf8f5;
+  --hats-tan: #9c7a52;
+
+  /* Type scale — four steps, no in-between values */
+  --hats-type-micro: 1.2rem;
+  --hats-type-small: 1.4rem;
+  --hats-type-body: 1.5rem;
+  --hats-type-heading: clamp(2rem, 2.4vw, 2.6rem);
+  --hats-type-display: clamp(2.4rem, 3vw, 3.2rem);
+
+  /* Tracking — one value per role */
+  --hats-track-micro: 0.14em;
+  --hats-track-display: 0.02em;
+
+  /* Geometry */
+  --hats-radius: 2px;
+  --hats-control-height: 4rem;
+
+  /* Rhythm */
+  --hats-gap-row: 4.4rem;
+  --hats-gap-col: 2.4rem;
 }
 
-/* Intro sits above the bar; title lives in the toolbar on desktop */
+/* Shared recipe for every uppercase micro-label on the template:
+   toolbar Hat Finder link, card badges, CTA eyebrow and buttons. */
+.template-suffix-hats .hats-label,
+.template-suffix-hats .hats-finder-link--bar,
+.hats-collection-grid .card__badge .badge {
+  font-family: var(--font-heading-family);
+  font-size: var(--hats-type-micro);
+  font-weight: 500;
+  letter-spacing: var(--hats-track-micro);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* ------------------------------------------------------------------
+ * Collection intro — sits above the bar; the title moves into the
+ * toolbar on desktop so the filters read as one masthead.
+ * ------------------------------------------------------------------ */
+
 .template-suffix-hats .collection-hero__inner {
   padding-top: 0.8rem;
   padding-bottom: 0;
@@ -19,11 +66,17 @@
   width: 100%;
 }
 
+.template-suffix-hats .collection-hero__title {
+  text-align: left;
+  font-weight: 500;
+  letter-spacing: var(--hats-track-display);
+}
+
 .template-suffix-hats .collection-hero__description.rte {
   max-width: 72rem;
   margin: 0;
-  font-size: 1.5rem;
-  line-height: 1.55;
+  font-size: var(--hats-type-body);
+  line-height: 1.6;
   color: var(--hats-muted);
   text-align: left;
 }
@@ -34,6 +87,11 @@
 
 .template-suffix-hats .collection-hero__description.rte p:last-child {
   margin-bottom: 0;
+}
+
+.template-suffix-hats .collection-hero__description.rte a {
+  color: var(--hats-ink);
+  text-underline-offset: 0.25rem;
 }
 
 .template-suffix-hats .collection-hero__title + .collection-hero__description {
@@ -55,23 +113,25 @@
   }
 }
 
-.hats-collection-grid .product-grid {
-  row-gap: 2.8rem;
-  column-gap: 2rem;
+@media screen and (max-width: 749px) {
+  .template-suffix-hats .collection-hero__title {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 1.2rem 0 0.8rem;
+    clip: auto;
+    overflow: visible;
+    white-space: normal;
+  }
 }
 
-.hats-collection-grid .card__heading {
-  font-weight: 500;
-  letter-spacing: 0.01em;
-}
-
-.hats-collection-grid .price {
-  margin-top: 0.4rem;
-}
+/* ------------------------------------------------------------------
+ * Toolbar — title, count, filters, sort, pagination
+ * ------------------------------------------------------------------ */
 
 .hats-collection-grid .facets-wrapper.page-width {
   padding-top: 0;
-  margin-bottom: 1.6rem;
+  margin-bottom: 2.4rem;
 }
 
 .hats-collection-grid .facets-container--hats {
@@ -103,16 +163,16 @@
 .hats-toolbar__title {
   margin: 0;
   font-family: var(--font-heading-family);
-  font-size: clamp(2.4rem, 3vw, 3.2rem);
+  font-size: var(--hats-type-display);
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: var(--hats-track-display);
   line-height: 1.15;
   color: var(--hats-ink);
 }
 
 .hats-toolbar__count {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: var(--hats-type-small);
   color: var(--hats-muted);
   white-space: nowrap;
   position: relative;
@@ -145,31 +205,40 @@
 
 .hats-collection-grid .facets__form--hats .facet-filters__label {
   margin: 0 0.8rem 0 0;
-  font-size: 1.4rem;
-  color: var(--hats-ink);
+  font-size: var(--hats-type-small);
+  color: var(--hats-muted);
   text-transform: none;
   letter-spacing: normal;
 }
 
 .hats-collection-grid .facets__form--hats .facet-filters__sort {
   border: 1px solid var(--hats-line);
-  min-height: 3.6rem;
-  padding: 0.4rem 2.6rem 0.4rem 1rem;
+  border-radius: var(--hats-radius);
+  min-height: var(--hats-control-height);
+  padding: 0.4rem 2.6rem 0.4rem 1.2rem;
   min-width: 13rem;
-  font-size: 1.4rem;
+  font-size: var(--hats-type-small);
+  color: var(--hats-ink);
+  background-color: transparent;
+}
+
+.hats-collection-grid .facets__form--hats .facet-filters__sort:hover {
+  border-color: var(--hats-line-strong);
 }
 
 .hats-toolbar__page {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  font-size: 1.4rem;
+  font-size: var(--hats-type-small);
   color: var(--hats-ink);
 }
 
 .hats-toolbar__page-status {
   min-width: 3.6rem;
   text-align: center;
+  color: var(--hats-muted);
+  font-variant-numeric: tabular-nums;
 }
 
 .hats-toolbar__page-btn {
@@ -179,6 +248,11 @@
   width: 2.4rem;
   height: 2.4rem;
   color: var(--hats-ink);
+  transition: opacity 0.2s ease;
+}
+
+.hats-toolbar__page-btn:hover {
+  opacity: 0.6;
 }
 
 .hats-toolbar__page-btn .icon-arrow {
@@ -195,14 +269,15 @@
   pointer-events: none;
 }
 
+/* Filter row — hairline rules top and bottom read as an editorial masthead */
 .hats-collection-grid .facets__form--hats .facets__wrapper {
   grid-area: filters;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0 2.2rem;
+  gap: 0 2.4rem;
   width: 100%;
-  padding: 1.1rem 0;
+  padding: 0.8rem 0;
   border-top: 1px solid var(--hats-line);
   border-bottom: 1px solid var(--hats-line);
 }
@@ -215,13 +290,20 @@
 .hats-collection-grid .facets__form--hats .facets__summary {
   margin: 0;
   padding: 0.6rem 0;
-  min-height: 3.6rem;
+  min-height: var(--hats-control-height);
+  display: flex;
+  align-items: center;
   color: var(--hats-ink);
-  font-size: 1.4rem;
+  font-size: var(--hats-type-small);
   font-weight: 400;
   letter-spacing: normal;
   text-transform: none;
   white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.hats-collection-grid .facets__form--hats .facets__summary:hover {
+  opacity: 0.65;
 }
 
 .hats-collection-grid .facets__form--hats .facets__summary > div {
@@ -245,7 +327,7 @@
   min-width: 24rem;
   width: max-content;
   max-width: 32rem;
-  border-radius: 0;
+  border-radius: var(--hats-radius);
   border-color: var(--hats-line);
   box-shadow: 0 10px 28px rgba(49, 33, 16, 0.08);
 }
@@ -253,10 +335,6 @@
 .hats-finder-link--bar {
   margin-left: auto;
   padding: 0.6rem 0;
-  font-family: var(--font-heading-family);
-  font-size: 1.3rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--hats-ink);
   text-underline-offset: 0.25rem;
   white-space: nowrap;
@@ -266,8 +344,120 @@
   grid-area: pills;
   width: 100%;
   margin: 0;
-  padding: 0.8rem 0 0;
+  padding: 1.2rem 0 0;
 }
+
+/* Active filter chips ship as fully rounded 10px pills — square them onto the
+   toolbar geometry and pick up the saddle-tan accent */
+.hats-collection-grid .active-facets-desktop span.active-facets__button-inner {
+  border-radius: var(--hats-radius);
+  box-shadow: 0 0 0 1px var(--hats-tan);
+  padding: 0.6rem 1rem;
+  color: var(--hats-ink);
+  font-family: var(--font-heading-family);
+  font-size: var(--hats-type-micro);
+  letter-spacing: var(--hats-track-micro);
+  text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------------
+ * Product grid
+ * ------------------------------------------------------------------ */
+
+.hats-collection-grid .product-grid {
+  row-gap: var(--hats-gap-row);
+  column-gap: var(--hats-gap-col);
+}
+
+/* Cards sit flat on the page — the theme's "card" style wraps each product in a
+   white panel with a 6px radius, which is invisible against the white page and
+   only shows up as stray padding and a mismatched image corner. */
+.hats-collection-grid .card--card {
+  background: transparent;
+  border: 0;
+  border-radius: var(--hats-radius);
+}
+
+.hats-collection-grid .card--card .card__inner .card__media {
+  border-radius: var(--hats-radius);
+}
+
+.hats-collection-grid .card__content {
+  padding: 0;
+}
+
+/* Title and price stack tight under the image; price is pushed to the
+   bottom of the card so prices line up across a row of mixed-length titles. */
+.hats-collection-grid .card__information {
+  padding: 1.4rem 0 0;
+  gap: 0;
+}
+
+.hats-collection-grid .card__heading {
+  /* base.css centres titles inside a 4.5em box with !important, which drops
+     one-line names into the middle of a tall gap */
+  display: block !important;
+  min-height: 0;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: var(--hats-track-display);
+  line-height: 1.35;
+}
+
+.hats-collection-grid .card__heading a {
+  color: var(--hats-ink);
+}
+
+.hats-collection-grid .card-information {
+  margin-top: auto;
+  padding-top: 0.8rem;
+}
+
+.hats-collection-grid .price {
+  margin: 0;
+  color: var(--hats-ink);
+}
+
+/* Struck compare-at price recedes so the current price leads */
+.hats-collection-grid .price--on-sale .price-item--regular {
+  color: var(--hats-muted);
+}
+
+.hats-collection-grid .price--sold-out .price-item {
+  color: var(--hats-muted);
+}
+
+/* Sale and sold out both use the "inverse" colour scheme in theme settings, so
+   they arrive looking identical. Sale leads in solid ink, sold out recedes. */
+.hats-collection-grid .card__badge .badge {
+  border-radius: var(--hats-radius);
+  padding: 0.6rem 1rem;
+}
+
+.hats-collection-grid .card__badge .badge--sale {
+  background-color: var(--hats-ink);
+  border-color: var(--hats-ink);
+  color: var(--hats-cream);
+}
+
+.hats-collection-grid .card__badge .badge--sold-out {
+  background-color: var(--hats-cream);
+  border-color: var(--hats-line-strong);
+  color: var(--hats-ink-soft);
+}
+
+.hats-collection-grid .hats-collection-empty-finder {
+  margin: 1.6rem 0 0;
+  font-size: var(--hats-type-body);
+}
+
+.hats-collection-grid .hats-collection-empty-finder a {
+  color: var(--hats-ink);
+}
+
+/* ------------------------------------------------------------------
+ * Mobile filter entry
+ * ------------------------------------------------------------------ */
 
 .hats-collection-grid .mobile-facets__open-wrapper {
   display: block;
@@ -281,14 +471,14 @@
   min-height: 4.4rem;
   padding: 1.1rem 1.6rem;
   border: 1px solid var(--hats-line);
-  background: #fff;
+  border-radius: var(--hats-radius);
+  background: transparent;
   color: var(--hats-ink);
-  border-radius: 0;
 }
 
 .hats-collection-grid .mobile-facets__open-label {
-  font-size: 1.4rem;
-  letter-spacing: 0.04em;
+  font-size: var(--hats-type-small);
+  letter-spacing: normal;
   text-transform: none;
   color: var(--hats-ink);
 }
@@ -305,38 +495,24 @@
 .hats-finder-link--mobile {
   margin: 0 0 1.2rem;
   padding: 0 1.5rem;
-  font-size: 1.35rem;
+  font-size: var(--hats-type-small);
+  color: var(--hats-muted);
 }
 
-.hats-collection-empty-finder {
-  margin: 1.6rem 0 0;
-  font-size: 1.5rem;
-}
-
-.hats-collection-empty-finder a {
+.hats-finder-link--mobile a {
   color: var(--hats-ink);
-}
-
-.template-suffix-hats .hat-finder-cta {
-  border-top: 1px solid var(--hats-line);
-}
-
-@media screen and (max-width: 749px) {
-  .template-suffix-hats .collection-hero__title {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 1.2rem 0 0.8rem;
-    clip: auto;
-    overflow: visible;
-    white-space: normal;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-  }
 }
 
 @media screen and (min-width: 750px) {
   .hats-collection-grid .facets-container--hats .mobile-facets__wrapper {
     display: none;
   }
+}
+
+/* ------------------------------------------------------------------
+ * Hat Finder CTA — closes the page on the same hairline as the toolbar
+ * ------------------------------------------------------------------ */
+
+.template-suffix-hats .hat-finder-cta {
+  border-top: 1px solid var(--hats-line);
 }

@@ -1,0 +1,40 @@
+{% comment %}
+  Product description minus the opening paragraph, which is already shown in the
+  buying column by 'product-buy-summary'. If the description is a single block
+  (nothing was lifted into the buying column), the whole description renders here.
+{% endcomment %}
+{%- liquid
+  assign legacy_line = 'A Moon Ridge Company Original (Formerly Rafter M). Same master-level shaping, same veteran team.'
+  assign source = product.description | replace: legacy_line, ''
+  assign rest_html = source
+
+  assign tail_is_open = true
+  assign tail_check = source | strip | slice: -4, 4
+  if tail_check == '</p>'
+    assign tail_is_open = false
+  endif
+
+  if source contains '</p>'
+    assign parts = source | split: '</p>'
+    if parts.size > 1
+      assign rest_html = ''
+      for part in parts offset: 1
+        assign chunk = part | strip_html | strip
+        if chunk != blank
+          if forloop.last and tail_is_open
+            assign rest_html = rest_html | append: part
+          else
+            assign rest_html = rest_html | append: part | append: '</p>'
+          endif
+        endif
+      endfor
+    endif
+  endif
+
+  assign rest_text = rest_html | strip_html | strip
+-%}
+{%- if rest_text != blank -%}
+  <div class="product__description rte quick-add-hidden">
+    {{ rest_html }}
+  </div>
+{%- endif -%}

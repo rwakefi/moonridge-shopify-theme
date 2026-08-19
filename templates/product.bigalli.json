@@ -36,8 +36,10 @@
           }
         },
         "description": {
-          "type": "description",
-          "settings": {}
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'product-description-rest' %}"
+          }
         },
         "price": {
           "type": "price",

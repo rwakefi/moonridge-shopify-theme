@@ -27,8 +27,10 @@
           }
         },
         "description": {
-          "type": "description",
-          "settings": {}
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'product-description-rest' %}"
+          }
         },
         "text_F8QjfR": {
           "type": "text",

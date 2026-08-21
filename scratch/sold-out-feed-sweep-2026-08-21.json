@@ -1,0 +1,2267 @@
+{
+  "at": "2026-08-21T03:04:35.796779Z",
+  "shop": "moonridgecompany.com",
+  "active_products": 348,
+  "sold_out_on_feeds_count": 74,
+  "hfe_count_before": 172,
+  "hfe_leftovers_count": 35,
+  "hfe_inclusion_sold_out_count": 35,
+  "hfe_collection_id": "gid://shopify/Collection/478261870896",
+  "hfe_source_id": "gid://shopify/CollectionConditionsSource/1469448496",
+  "unpublish_target_count": 76,
+  "unpublish_targets": [
+    {
+      "id": "gid://shopify/Product/9646530560304",
+      "title": "Apple Cider Soy Blend Candle",
+      "handle": "apple-cider-soy-blend-candle",
+      "vendor": "LYON Luminaries Candle Co.",
+      "productType": "Home & Lifestyle",
+      "totalInventory": 0,
+      "on_feeds": [
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9564873457968",
+      "title": "Arkansas Flag Cap",
+      "handle": "arkansas-flag-hat",
+      "vendor": "MASON JAR LABEL",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9646530068784",
+      "title": "Beach Mai Tai Soy Blend Candle",
+      "handle": "beach-mai-tai-soy-blend-candle",
+      "vendor": "LYON Luminaries Candle Co.",
+      "productType": "Home & Lifestyle",
+      "totalInventory": 0,
+      "on_feeds": [
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9981991682352",
+      "title": "Bigalli Ivy Newsboy Cap",
+      "handle": "bigallii-ivy-newsboy-cap",
+      "vendor": "BIGALLI",
+      "productType": "Headwear",
+      "totalInventory": -3,
+      "on_feeds": [
+        "Google & YouTube",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9974391931184",
+      "title": "Bigalli Pioneer Panama Hat",
+      "handle": "pioneer-panama-new",
+      "vendor": "Bigalli Hats USA",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": false,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9981973135664",
+      "title": "Bigalli Striped Linen Newsboy Cap",
+      "handle": "bigalli-striped-linen-newsboy-cap",
+      "vendor": "BIGALLI",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9964081807664",
+      "title": "Bigalli Traveler Newsboy Cap",
+      "handle": "bigalli-traveler-newsboy-cap",
+      "vendor": "BIGALLI",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9949396599088",
+      "title": "Black Felt",
+      "handle": "black-felt",
+      "vendor": "Moon Ridge Hats and Heritage",
+      "productType": "Headwear",
+      "totalInventory": -12,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9646530789680",
+      "title": "Bourbon Butterscotch Soy Blend Candle",
+      "handle": "bourbon-butterscotch-soy-blend-candle",
+      "vendor": "LYON Luminaries Candle Co.",
+      "productType": "Home & Lifestyle",
+      "totalInventory": 0,
+      "on_feeds": [
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9646533280048",
+      "title": "Camo Print Cross Body Bag - Large",
+      "handle": "brixton-cross-body-sling-bag-camo-print-large",
+      "vendor": "Sixton London",
+      "productType": "Accessories",
+      "totalInventory": 0,
+      "on_feeds": [
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/10067946635568",
+      "title": "Cirque Of Color Scarf",
+      "handle": "cirque-of-color-scarf",
+      "vendor": "Moon Ridge Hats and Heritage",
+      "productType": "Accessories",
+      "totalInventory": -1,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/10018104049968",
+      "title": "Clean Barn Soy Wax Candle",
+      "handle": "clean-barn-soy-wax-candle",
+      "vendor": "Stable Style",
+      "productType": "Home & Lifestyle",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/15146165174576",
+      "title": "Cowboy Bar t-shirt",
+      "handle": "cowboy-bar-t-shirt",
+      "vendor": "Moon Ridge Hats and Heritage",
+      "productType": "",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9646529642800",
+      "title": "Cowboy Soy Blend Candle",
+      "handle": "cowboy-soy-blend-candle",
+      "vendor": "LYON Luminaries Candle Co.",
+      "productType": "Home & Lifestyle",
+      "totalInventory": 0,
+      "on_feeds": [
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/10067974127920",
+      "title": "Espresso Chic Scarf",
+      "handle": "espresso-chic-scarf",
+      "vendor": "Moon Ridge Hats and Heritage",
+      "productType": "Accessories",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/10010920943920",
+      "title": "Goorin Bros Killer Whale",
+      "handle": "sliver-fox-copy",
+      "vendor": "Goorin Bros",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/10010919534896",
+      "title": "Goorin Bros Silver Fox",
+      "handle": "sliver-fox",
+      "vendor": "Goorin Bros",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9646530986288",
+      "title": "Leopard Print Cross Body Bag - Large",
+      "handle": "brixton-cross-body-sling-bag-leopard-print-brown-large",
+      "vendor": "Sixton London",
+      "productType": "Accessories",
+      "totalInventory": 0,
+      "on_feeds": [
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9785704087856",
+      "title": "Mesa Sunset Woven Hat Band",
+      "handle": "the-mesa-sunset-woven-hat-band",
+      "vendor": "AUSTIN ACCENT",
+      "productType": "Accessories",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/10067898368304",
+      "title": "Parade Of Color Twilly",
+      "handle": "parade-of-color-twilly",
+      "vendor": "Moon Ridge Hats and Heritage",
+      "productType": "Accessories",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/15118062453040",
+      "title": "Pendleton Astoria Canvas Large Tote",
+      "handle": "astoria-canvas-large-tote",
+      "vendor": "Pendleton",
+      "productType": "Accessories",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/15178854007088",
+      "title": "Pendleton Classic Patch Trucker \u2014 Olive",
+      "handle": "pendleton-classic-patch-trucker-black",
+      "vendor": "Pendleton",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/15118059864368",
+      "title": "Pendleton Southwestern Pattern Ceramic Coffee Mugs Set",
+      "handle": "12-oz-ceramic-mug-set",
+      "vendor": "Pendleton",
+      "productType": "Home & Lifestyle",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/15118064386352",
+      "title": "Pendleton Vintage Bison Graphic Tee",
+      "handle": "vintage-bison-graphic-tee",
+      "vendor": "Pendleton",
+      "productType": "Apparel",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9596686500144",
+      "title": "Resistol Colt George Strait 20X",
+      "handle": "resistol-20x-colt-cowboy-hat",
+      "vendor": "RESISTOL",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9892954964272",
+      "title": "Resistol Rigby By Cody Johnson",
+      "handle": "resistol-rigby-cody-johnson",
+      "vendor": "Moon Ridge Hats and Heritage",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/10067933167920",
+      "title": "Scarlet Wagon Wheel Twilly",
+      "handle": "scarlet-wagon-wheel-twilly",
+      "vendor": "Moon Ridge Hats and Heritage",
+      "productType": "Accessories",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9949398565168",
+      "title": "Silverbelly Felt",
+      "handle": "silverbelly-felt",
+      "vendor": "Moon Ridge Hats and Heritage",
+      "productType": "Headwear",
+      "totalInventory": -12,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9563906965808",
+      "title": "Stetson 10X Lobo",
+      "handle": "lobo",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9732766400816",
+      "title": "Stetson Arapaho 10X",
+      "handle": "stetson-arapaho",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9732768956720",
+      "title": "Stetson Atacama",
+      "handle": "stetson-atacama",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9732765876528",
+      "title": "Stetson Baytown",
+      "handle": "stetson-baytown",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9732766925104",
+      "title": "Stetson Billy Junior",
+      "handle": "stetson-billy-jr",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9563906081072",
+      "title": "Stetson Brentwood",
+      "handle": "brentwood",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9920528286000",
+      "title": "Stetson Centennial",
+      "handle": "centennial",
+      "vendor": "Moon Ridge Hats and Heritage",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/15137223541040",
+      "title": "Stetson Co Ball Cap",
+      "handle": "stetson-co-ball-cap",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9777180442928",
+      "title": "Stetson Cumberland",
+      "handle": "stetson-cumberland",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9563906572592",
+      "title": "Stetson Diamond Jim",
+      "handle": "diamond-jim",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9732764401968",
+      "title": "Stetson Double Bogey",
+      "handle": "stetson-double-bogey",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9976312889648",
+      "title": "Stetson Eagle Trucker Hat",
+      "handle": "stetson-eagle-trucker-hat-1",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9563907064112",
+      "title": "Stetson El Presidente",
+      "handle": "el-presidente",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9571338748208",
+      "title": "Stetson Fullerton",
+      "handle": "stetson-fullerton",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9563907326256",
+      "title": "Stetson Gambler",
+      "handle": "gambler",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9732764762416",
+      "title": "Stetson Glen Rose",
+      "handle": "stetson-glen-rose",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9732765057328",
+      "title": "Stetson Grand Loop",
+      "handle": "steston-grand-loop",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9563906834736",
+      "title": "Stetson Grant 10X",
+      "handle": "grant",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9563906113840",
+      "title": "Stetson Haywood 10X",
+      "handle": "haywood",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9757099786544",
+      "title": "Stetson Lariat 5x",
+      "handle": "stetson-lariat",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9990359810352",
+      "title": "Stetson Leather Patch Trucker Ball Cap",
+      "handle": "stetson-stetson-leather-patch-trucker-ball-cap",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9732770103600",
+      "title": "Stetson Oasis",
+      "handle": "stetson-oasis",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9597114745136",
+      "title": "Stetson Open Road Vented",
+      "handle": "stetson-open-road-vented",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9976184013104",
+      "title": "Stetson Outlaw Bison Trucker Hat",
+      "handle": "stetson-outlaw-bison-trucker-hat",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9563906507056",
+      "title": "Stetson Pawnee 5X",
+      "handle": "pawnee",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9563906638128",
+      "title": "Stetson Pure Stratoliner",
+      "handle": "pure-stratoliner-b",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9563906670896",
+      "title": "Stetson Range 6X",
+      "handle": "range",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9920530448688",
+      "title": "Stetson Sedona",
+      "handle": "sedona",
+      "vendor": "Moon Ridge Hats and Heritage",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9563906801968",
+      "title": "Stetson Shasta",
+      "handle": "shasta",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9777189290288",
+      "title": "Stetson Stratoliner B",
+      "handle": "stetson-stratoliner-b",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9563906605360",
+      "title": "Stetson Temple",
+      "handle": "temple",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9981697589552",
+      "title": "Stetson Western Landscape Trucker Hat",
+      "handle": "stetson-desert-scene-trucker-hat",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9976201707824",
+      "title": "Stetson Western Wear Ball Cap",
+      "handle": "stetson-western-wear-ball-cap",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9563907129648",
+      "title": "Stetson Wildling",
+      "handle": "stetson-wildling",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9646532002096",
+      "title": "Stripe Print Cross Body Bag - Large",
+      "handle": "brixton-cross-body-sling-bag-stripe-print-large",
+      "vendor": "Sixton London",
+      "productType": "Accessories",
+      "totalInventory": 0,
+      "on_feeds": [
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/10071539286320",
+      "title": "Stud Earring",
+      "handle": "stud-earring",
+      "vendor": "Moon Ridge Hats and Heritage",
+      "productType": "Accessories",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/10067668468016",
+      "title": "Support Live Country Music",
+      "handle": "support-live-country-music",
+      "vendor": "Moon Ridge Hats and Heritage",
+      "productType": "Apparel",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Shop",
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9566065688880",
+      "title": "Support Your Local Farmer Cap",
+      "handle": "support-your-local-farmer-cap",
+      "vendor": "MASON JAR LABEL",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds",
+        "hfe_leftover"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/10071534633264",
+      "title": "Tennis Bracelet- 3Mm",
+      "handle": "tennis-bracelet-3mm",
+      "vendor": "Moon Ridge Hats and Heritage",
+      "productType": "Accessories",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9785736921392",
+      "title": "The Canyon Ridge Woven Hat Band",
+      "handle": "the-frontier-woven-hat-band",
+      "vendor": "AUSTIN ACCENT",
+      "productType": "Accessories",
+      "totalInventory": -1,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9785747833136",
+      "title": "The Classic Hat Band",
+      "handle": "the-classic-hat-band",
+      "vendor": "AUSTIN ACCENT",
+      "productType": "Accessories",
+      "totalInventory": -9,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9785518326064",
+      "title": "The Mesa Ridge Hat Band",
+      "handle": "the-mesa-ridge-hat-band",
+      "vendor": "AUSTIN ACCENT",
+      "productType": "Accessories",
+      "totalInventory": -1,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9785749143856",
+      "title": "The Ranchhand Leather Hat Band",
+      "handle": "the-ranchhand-leather-hat-band",
+      "vendor": "AUSTIN ACCENT",
+      "productType": "Accessories",
+      "totalInventory": -1,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9785488769328",
+      "title": "The Silverado Turquoise Hat Band",
+      "handle": "untitled-mar21_11-06",
+      "vendor": "AUSTIN ACCENT",
+      "productType": "Accessories",
+      "totalInventory": -2,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9785735315760",
+      "title": "The Timberline Woven Hat Band",
+      "handle": "the-timberline-woven-hat-band",
+      "vendor": "AUSTIN ACCENT",
+      "productType": "Accessories",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9785679315248",
+      "title": "Trailblazer Studded Hat Bands",
+      "handle": "trailblazer-studded-hat-bands",
+      "vendor": "AUSTIN ACCENT",
+      "productType": "Accessories",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9833906438448",
+      "title": "Wild Rags",
+      "handle": "wild-rags",
+      "vendor": "Moon Ridge Hats and Heritage",
+      "productType": "Accessories",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    },
+    {
+      "id": "gid://shopify/Product/9833908404528",
+      "title": "Wild Rags",
+      "handle": "wild-rags-1",
+      "vendor": "Moon Ridge Hats and Heritage",
+      "productType": "Accessories",
+      "totalInventory": 0,
+      "on_feeds": [
+        "Google & YouTube",
+        "Facebook & Instagram",
+        "TikTok"
+      ],
+      "keep": {
+        "onlineStore": true,
+        "pos": true,
+        "headless": true
+      },
+      "reason": [
+        "sold_out_on_paid_feeds"
+      ]
+    }
+  ],
+  "hfe_leftovers": [
+    {
+      "id": "gid://shopify/Product/9732765057328",
+      "title": "Stetson Grand Loop",
+      "handle": "steston-grand-loop",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9596686500144",
+      "title": "Resistol Colt George Strait 20X",
+      "handle": "resistol-20x-colt-cowboy-hat",
+      "vendor": "RESISTOL",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9563907326256",
+      "title": "Stetson Gambler",
+      "handle": "gambler",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9981991682352",
+      "title": "Bigalli Ivy Newsboy Cap",
+      "handle": "bigallii-ivy-newsboy-cap",
+      "vendor": "BIGALLI",
+      "productType": "Headwear",
+      "totalInventory": -3,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9732764401968",
+      "title": "Stetson Double Bogey",
+      "handle": "stetson-double-bogey",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9981697589552",
+      "title": "Stetson Western Landscape Trucker Hat",
+      "handle": "stetson-desert-scene-trucker-hat",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9563906965808",
+      "title": "Stetson 10X Lobo",
+      "handle": "lobo",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9563906081072",
+      "title": "Stetson Brentwood",
+      "handle": "brentwood",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/10010920943920",
+      "title": "Goorin Bros Killer Whale",
+      "handle": "sliver-fox-copy",
+      "vendor": "Goorin Bros",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/10010919534896",
+      "title": "Goorin Bros Silver Fox",
+      "handle": "sliver-fox",
+      "vendor": "Goorin Bros",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9976184013104",
+      "title": "Stetson Outlaw Bison Trucker Hat",
+      "handle": "stetson-outlaw-bison-trucker-hat",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9732770103600",
+      "title": "Stetson Oasis",
+      "handle": "stetson-oasis",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9571338748208",
+      "title": "Stetson Fullerton",
+      "handle": "stetson-fullerton",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9990359810352",
+      "title": "Stetson Leather Patch Trucker Ball Cap",
+      "handle": "stetson-stetson-leather-patch-trucker-ball-cap",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9732765876528",
+      "title": "Stetson Baytown",
+      "handle": "stetson-baytown",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9563907129648",
+      "title": "Stetson Wildling",
+      "handle": "stetson-wildling",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9563906834736",
+      "title": "Stetson Grant 10X",
+      "handle": "grant",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9563906605360",
+      "title": "Stetson Temple",
+      "handle": "temple",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9563906113840",
+      "title": "Stetson Haywood 10X",
+      "handle": "haywood",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9981973135664",
+      "title": "Bigalli Striped Linen Newsboy Cap",
+      "handle": "bigalli-striped-linen-newsboy-cap",
+      "vendor": "BIGALLI",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9976312889648",
+      "title": "Stetson Eagle Trucker Hat",
+      "handle": "stetson-eagle-trucker-hat-1",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9976201707824",
+      "title": "Stetson Western Wear Ball Cap",
+      "handle": "stetson-western-wear-ball-cap",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9777180442928",
+      "title": "Stetson Cumberland",
+      "handle": "stetson-cumberland",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9732766925104",
+      "title": "Stetson Billy Junior",
+      "handle": "stetson-billy-jr",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9597114745136",
+      "title": "Stetson Open Road Vented",
+      "handle": "stetson-open-road-vented",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9566065688880",
+      "title": "Support Your Local Farmer Cap",
+      "handle": "support-your-local-farmer-cap",
+      "vendor": "MASON JAR LABEL",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9563906801968",
+      "title": "Stetson Shasta",
+      "handle": "shasta",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9563906670896",
+      "title": "Stetson Range 6X",
+      "handle": "range",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9777189290288",
+      "title": "Stetson Stratoliner B",
+      "handle": "stetson-stratoliner-b",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9757099786544",
+      "title": "Stetson Lariat 5x",
+      "handle": "stetson-lariat",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9563906572592",
+      "title": "Stetson Diamond Jim",
+      "handle": "diamond-jim",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9563906507056",
+      "title": "Stetson Pawnee 5X",
+      "handle": "pawnee",
+      "vendor": "STETSON",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/15178854007088",
+      "title": "Pendleton Classic Patch Trucker \u2014 Olive",
+      "handle": "pendleton-classic-patch-trucker-black",
+      "vendor": "Pendleton",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9974391931184",
+      "title": "Bigalli Pioneer Panama Hat",
+      "handle": "pioneer-panama-new",
+      "vendor": "Bigalli Hats USA",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    },
+    {
+      "id": "gid://shopify/Product/9964081807664",
+      "title": "Bigalli Traveler Newsboy Cap",
+      "handle": "bigalli-traveler-newsboy-cap",
+      "vendor": "BIGALLI",
+      "productType": "Headwear",
+      "totalInventory": 0,
+      "tracksInventory": true
+    }
+  ],
+  "hfe_inclusion_sold_out": [
+    {
+      "id": "gid://shopify/Product/9563906081072",
+      "title": "Stetson Brentwood",
+      "handle": "brentwood",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9563906113840",
+      "title": "Stetson Haywood 10X",
+      "handle": "haywood",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9563906507056",
+      "title": "Stetson Pawnee 5X",
+      "handle": "pawnee",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9563906572592",
+      "title": "Stetson Diamond Jim",
+      "handle": "diamond-jim",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9563906605360",
+      "title": "Stetson Temple",
+      "handle": "temple",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9563906670896",
+      "title": "Stetson Range 6X",
+      "handle": "range",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9563906801968",
+      "title": "Stetson Shasta",
+      "handle": "shasta",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9563906834736",
+      "title": "Stetson Grant 10X",
+      "handle": "grant",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9563906965808",
+      "title": "Stetson 10X Lobo",
+      "handle": "lobo",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9563907129648",
+      "title": "Stetson Wildling",
+      "handle": "stetson-wildling",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9563907326256",
+      "title": "Stetson Gambler",
+      "handle": "gambler",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9566065688880",
+      "title": "Support Your Local Farmer Cap",
+      "handle": "support-your-local-farmer-cap",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "MASON JAR LABEL"
+    },
+    {
+      "id": "gid://shopify/Product/9571338748208",
+      "title": "Stetson Fullerton",
+      "handle": "stetson-fullerton",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9596686500144",
+      "title": "Resistol Colt George Strait 20X",
+      "handle": "resistol-20x-colt-cowboy-hat",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "RESISTOL"
+    },
+    {
+      "id": "gid://shopify/Product/9597114745136",
+      "title": "Stetson Open Road Vented",
+      "handle": "stetson-open-road-vented",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9732764401968",
+      "title": "Stetson Double Bogey",
+      "handle": "stetson-double-bogey",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9732765057328",
+      "title": "Stetson Grand Loop",
+      "handle": "steston-grand-loop",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9732765876528",
+      "title": "Stetson Baytown",
+      "handle": "stetson-baytown",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9732766925104",
+      "title": "Stetson Billy Junior",
+      "handle": "stetson-billy-jr",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9732770103600",
+      "title": "Stetson Oasis",
+      "handle": "stetson-oasis",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9757099786544",
+      "title": "Stetson Lariat 5x",
+      "handle": "stetson-lariat",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9777180442928",
+      "title": "Stetson Cumberland",
+      "handle": "stetson-cumberland",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9777189290288",
+      "title": "Stetson Stratoliner B",
+      "handle": "stetson-stratoliner-b",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9964081807664",
+      "title": "Bigalli Traveler Newsboy Cap",
+      "handle": "bigalli-traveler-newsboy-cap",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "BIGALLI"
+    },
+    {
+      "id": "gid://shopify/Product/9974391931184",
+      "title": "Bigalli Pioneer Panama Hat",
+      "handle": "pioneer-panama-new",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "Bigalli Hats USA"
+    },
+    {
+      "id": "gid://shopify/Product/9976184013104",
+      "title": "Stetson Outlaw Bison Trucker Hat",
+      "handle": "stetson-outlaw-bison-trucker-hat",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9976201707824",
+      "title": "Stetson Western Wear Ball Cap",
+      "handle": "stetson-western-wear-ball-cap",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9976312889648",
+      "title": "Stetson Eagle Trucker Hat",
+      "handle": "stetson-eagle-trucker-hat-1",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9981697589552",
+      "title": "Stetson Western Landscape Trucker Hat",
+      "handle": "stetson-desert-scene-trucker-hat",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/9981973135664",
+      "title": "Bigalli Striped Linen Newsboy Cap",
+      "handle": "bigalli-striped-linen-newsboy-cap",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "BIGALLI"
+    },
+    {
+      "id": "gid://shopify/Product/9981991682352",
+      "title": "Bigalli Ivy Newsboy Cap",
+      "handle": "bigallii-ivy-newsboy-cap",
+      "totalInventory": -3,
+      "tracksInventory": true,
+      "vendor": "BIGALLI"
+    },
+    {
+      "id": "gid://shopify/Product/9990359810352",
+      "title": "Stetson Leather Patch Trucker Ball Cap",
+      "handle": "stetson-stetson-leather-patch-trucker-ball-cap",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "STETSON"
+    },
+    {
+      "id": "gid://shopify/Product/10010919534896",
+      "title": "Goorin Bros Silver Fox",
+      "handle": "sliver-fox",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "Goorin Bros"
+    },
+    {
+      "id": "gid://shopify/Product/10010920943920",
+      "title": "Goorin Bros Killer Whale",
+      "handle": "sliver-fox-copy",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "Goorin Bros"
+    },
+    {
+      "id": "gid://shopify/Product/15178854007088",
+      "title": "Pendleton Classic Patch Trucker \u2014 Olive",
+      "handle": "pendleton-classic-patch-trucker-black",
+      "totalInventory": 0,
+      "tracksInventory": true,
+      "vendor": "Pendleton"
+    }
+  ],
+  "after": {
+    "sold_out_non_boot_on_paid_feeds": 0,
+    "hfe_count": 137,
+    "hfe_tracked_sold_out_leftovers": 0,
+    "unpublish_ok": 76,
+    "unpublish_fail": 0,
+    "notes": [
+      "Bigalli Pioneer Panama Hat POS was already off",
+      "Bigalli Traveler Newsboy Cap was already DRAFT"
+    ]
+  }
+}

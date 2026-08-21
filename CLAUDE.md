@@ -4,7 +4,8 @@ Before beginning any task, read these context files in order:
 1. Context/who-i-am.md
 2. Context/how-i-talk.md
 3. Context/how-you-work.md
-4. Context/catalog-sold-out.md — paid-feed / collection sold-out rules (live as of 2026-08-21)
+4. Context/the-repo.md — one GitHub repo; iCloud Co Work OS is not it
+5. Context/catalog-sold-out.md — paid-feed / collection sold-out rules (live as of 2026-08-21)
 
 Follow all rules in how-you-work.md. Never skip this step.
 

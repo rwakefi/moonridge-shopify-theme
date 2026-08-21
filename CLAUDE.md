@@ -1,9 +1,10 @@
 # Moon Ridge Cowork
 
-Before beginning any task, read these three context files in order:
+Before beginning any task, read these context files in order:
 1. Context/who-i-am.md
 2. Context/how-i-talk.md
 3. Context/how-you-work.md
+4. Context/catalog-sold-out.md — paid-feed / collection sold-out rules (live as of 2026-08-21)
 
 Follow all rules in how-you-work.md. Never skip this step.
 
@@ -217,7 +218,7 @@ Drawn from modern AI email best practices (incl. Salesforce's AI-in-email guidan
 
 Never activate, send, or publish Omnisend campaigns/automations without explicit approval.
 
-## Active work queue (as of 2026-08-18)
+## Active work queue (as of 2026-08-21)
 
 0. **Brand fonts roll-out — next design job.** Official set confirmed 2026-08-18 (Lora, Playfair Display, Cinzel, Tenor Sans — see **Brand fonts** above). No blockers: three of the four are in Shopify's font library, Cinzel is already uploaded, nothing needs fetching from Dropbox. The work is (a) set Typography to the brand fonts — headings and body are currently Jost and Poppins, neither on brand, (b) repoint the Canela stack in `heritage-luxury.css` / `lumin.css`, (c) drop the Google Fonts `@import`s in `brand-switcher.liquid` and `founders-review.liquid`, (d) get the page down from six font families. Related cleanup that should probably ride along: the `.color-inverse` rule in `header.liquid` and the duplicated `heritage-luxury.css` / `lumin.css`.
 1. **Cart abandonments — Bob wants to work on this next.** Context: the checkout performance review found ~40 abandoned checkouts/quarter at $110+ AOV. First steps: verify abandoned-checkout email automation is active (Marketing → Automations), confirm Shop app cart reminders are on (Shop channel → Settings), then look at recovery copy/timing and possibly an incentive strategy (THANKYOU10 is post-purchase; don't reuse for abandonment without discussing). Follow the **Email & Omnisend** rules above — do not badger.
@@ -226,6 +227,7 @@ Never activate, send, or publish Omnisend campaigns/automations without explicit
 4. ~~Commit the shipping-line theme edit~~ — **done** (live on product pages).
 5. ~~Arkansas's Original Hat Bar naming~~ — **done** on `main` / live (draft PR #50 superseded).
 6. ~~Hat collection template design pass~~ — **done and live** (PR #81, merged 2026-08-18). Token system in `assets/hats-collection.css`, fixed the body class that had left two-thirds of that stylesheet dead, restored the two-column mobile grid, split sale vs sold-out badges, 24 products a page. Open question Zack hasn't answered: with the desktop hero title correctly hidden, the reading order is intro copy → title in the filter bar → grid. Offer to lead with the title instead if he raises it.
+7. ~~Sold-out off paid feeds + nav collections~~ — **done 2026-08-21.** 74 sold-out non-boot products unpublished from Shop / Google / Facebook / TikTok (Online Store, POS, Headless kept). Hats For Everyone 172 → 137. Men’s Hats 94 → 60 and Women’s Hats 61 → 42, still manual. Shopify Flow live: hide+strip on sellout, publish back to those four channels on restock. Details: `Context/catalog-sold-out.md`. Next optional: negative-inventory email to Zack; Omnisend back-in-stock still off.
 
 Housekeeping: draft PRs `#50` (Original Hat Bar) and `#45` (cart-addons notes) — #50 conflicting/superseded; #45 docs only (notes now landed in-repo via currency pass). Broken CI: `Deploy PR Preview` fails on every PR (dead `SHOPIFY_PREVIEW_THEME_ID`) — worth fixing so future theme work can be previewed before merge.
 

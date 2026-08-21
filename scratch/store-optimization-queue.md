@@ -66,5 +66,5 @@ All **1,167** active product images have Admin alt text.
 ### 7. Insider list page in admin
 Theme overrides the title. Still change the Shopify page title + SEO title so admin matches: drop "Tuskers Trunk Show" and "Rafter M Hat Co. Insider List."
 
-### 8. Out-of-stock catalog
-89 of 298 products have zero available variants. Unpublish long-OOS SKUs or restock. Do not lead collections with empty-body OOS hats.
+### 8. Out-of-stock catalog — mostly done 2026-08-21
+Sold-out non-boot products are off Shop / Google / Facebook / TikTok. Hats For Everyone, Men’s Hats, and Women’s Hats no longer show tracked sold-out leftovers. Flow keeps it that way. Still open: negative inventory SKUs, and restocks to Men’s / Women’s are hand-added. See `Context/catalog-sold-out.md`.

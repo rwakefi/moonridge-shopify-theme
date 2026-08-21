@@ -24,7 +24,10 @@ Exclude from both workflows: Services, Gift Cards, Hat Sale Wall, Lucchese / Boo
 5. Action: **Hide product** / **Unpublish product**.
    - Sales channels: **Google & YouTube**, **Facebook & Instagram**, **TikTok**, **Shop**.
    - Leave Online Store, Point of Sale, and Moon Ridge Headless unchecked.
-6. Turn the workflow **on**.
+6. Same workflow, two more actions: **Remove product from collection** → **Men's Hats**, then again → **Women's Hats**. Restock does **not** add them back.
+7. Turn the workflow **on**.
+
+Live as of 2026-08-21 (Zack). The hide-from-feeds workflow also strips Men's / Women's on sellout.
 
 Inventory quantity changed fires per variant. The total-inventory check is what stops a size-7 selling out from hiding a hat that still has other sizes.
 
@@ -43,6 +46,12 @@ Inventory quantity changed fires per variant. The total-inventory check is what 
 4. Action: **Publish product**.
    - Same four channels: Google & YouTube, Facebook & Instagram, TikTok, Shop.
 5. Turn **on**.
+
+---
+
+## Still optional
+
+Negative-inventory email to Zack when a tracked product goes below zero. Not customer-facing.
 
 ---
 

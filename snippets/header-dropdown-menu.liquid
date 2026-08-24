@@ -24,6 +24,7 @@
         endif
         if link.handle == 'hat-education' or link_title_lc contains 'hat education'
           assign hat_education_menu_match = true
+          assign menu_parent_url = hat_education_blog_url
         endif
       -%}
       <li>

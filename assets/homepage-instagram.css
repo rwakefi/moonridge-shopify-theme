@@ -1,0 +1,6 @@
+/* Homepage GSC feed: hide the stock heading + subtext.
+   GSC renders both as .gfa-content__text (h3 heading, span body).
+   The photo strip and Visit Instagram button are untouched. */
+.gfa-content__text {
+  display: none !important;
+}

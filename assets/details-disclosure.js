@@ -36,6 +36,55 @@ class HeaderMenu extends DetailsDisclosure {
   constructor() {
     super();
     this.header = document.querySelector('.header-wrapper');
+    this.desktopQuery = window.matchMedia('(min-width: 990px)');
+    this.openOnHover = this.openOnHover.bind(this);
+    this.closeOnLeave = this.closeOnLeave.bind(this);
+    this.blockClickToggle = this.blockClickToggle.bind(this);
+
+    this.addEventListener('pointerenter', this.openOnHover);
+    this.addEventListener('pointerleave', this.closeOnLeave);
+    this.mainDetailsToggle.querySelector('summary').addEventListener('click', this.blockClickToggle);
+  }
+
+  isMouseDesktop(event) {
+    if (!this.desktopQuery.matches) return false;
+    if (event && event.pointerType === 'touch') return false;
+    return true;
+  }
+
+  openOnHover(event) {
+    if (!this.isMouseDesktop(event)) return;
+    clearTimeout(this.closeTimer);
+    this.closeSiblings();
+    this.open();
+  }
+
+  closeOnLeave(event) {
+    if (!this.isMouseDesktop(event)) return;
+    clearTimeout(this.closeTimer);
+    this.closeTimer = setTimeout(() => this.close(), 120);
+  }
+
+  closeSiblings() {
+    document.querySelectorAll('header-menu').forEach((menu) => {
+      if (menu !== this) {
+        clearTimeout(menu.closeTimer);
+        menu.close();
+      }
+    });
+  }
+
+  open() {
+    this.mainDetailsToggle.setAttribute('open', '');
+    this.mainDetailsToggle.querySelector('summary').setAttribute('aria-expanded', true);
+  }
+
+  blockClickToggle(event) {
+    if (!this.desktopQuery.matches) return;
+    if (event.pointerType === 'touch') return;
+    if (this.mainDetailsToggle.hasAttribute('open') && event.detail > 0) {
+      event.preventDefault();
+    }
   }
 
   onToggle() {

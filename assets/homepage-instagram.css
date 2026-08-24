@@ -26,7 +26,7 @@
   --mr-ig-display: 'customfont', 'Cinzel', Georgia, serif;
   --mr-ig-text: var(--font-heading-family, Jost, sans-serif);
   text-align: center;
-  padding: 32px 16px 12px;
+  padding: 20px 16px 8px;
   width: 100%;
 }
 
@@ -43,11 +43,15 @@
 
 .mr-ig-label__handle {
   margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   font-family: var(--mr-ig-display);
   font-size: clamp(2.2rem, 2.6vw, 2.8rem);
   font-weight: 500;
   letter-spacing: 0.02em;
-  line-height: 1.15;
+  line-height: 1;
   color: var(--mr-ig-ink);
 }
 
@@ -57,6 +61,26 @@
 }
 
 .mr-ig-label__link:hover {
+  color: #9c7a52;
+}
+
+.mr-ig-label__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  color: rgba(49, 33, 16, 0.42);
+  flex-shrink: 0;
+}
+
+.mr-ig-label__icon .icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.mr-ig-label__icon:hover {
   color: #9c7a52;
 }
 
@@ -73,5 +97,5 @@
 .shopify-block:has(.gfa-content),
 .mr-ig-label + .shopify-block {
   margin: 0;
-  padding: 0 0 32px;
+  padding: 0 0 20px;
 }

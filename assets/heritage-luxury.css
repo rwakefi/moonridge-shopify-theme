@@ -181,7 +181,13 @@ body:not(.template-index) .header-wrapper,
     0 1px 6px rgba(0, 0, 0, 0.3);
 }
 
-.header__submenu, 
+.header__submenu {
+  background: #faf8f5 !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid var(--rm-border, rgba(49, 33, 16, 0.15)) !important;
+}
+
 .menu-drawer,
 .drawer__inner,
 .predictive-search,

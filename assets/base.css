@@ -2367,7 +2367,7 @@ product-info .loading__spinner:not(.hidden) ~ *,
 
 /* section-header */
 .section-header.shopify-section-group-header-group {
-  z-index: 3;
+  z-index: 20;
 }
 
 .shopify-section-header-sticky {
@@ -2797,7 +2797,7 @@ details[open] > .header__submenu {
 
 @media screen and (min-width: 990px) {
   header-menu details[open] .header__submenu {
-    z-index: 3;
+    z-index: 5;
   }
 
   /* Keep a hover path from the top-level label into the panel */

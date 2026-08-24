@@ -82,7 +82,16 @@ class HeaderMenu extends DetailsDisclosure {
   blockClickToggle(event) {
     if (!this.desktopQuery.matches) return;
     if (event.pointerType === 'touch') return;
-    if (this.mainDetailsToggle.hasAttribute('open') && event.detail > 0) {
+    if (!(event.detail > 0)) return;
+
+    const href = this.mainDetailsToggle.querySelector('summary')?.getAttribute('data-href');
+    if (href) {
+      event.preventDefault();
+      window.location.assign(href);
+      return;
+    }
+
+    if (this.mainDetailsToggle.hasAttribute('open')) {
       event.preventDefault();
     }
   }

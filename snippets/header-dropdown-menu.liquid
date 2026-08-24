@@ -18,6 +18,10 @@
           assign hat_education_blog_url = hat_education_blog.url
         endif
         assign link_title_lc = link.title | downcase | strip
+        assign menu_parent_url = ''
+        if link.handle == 'experiences' or link_title_lc == 'experiences'
+          assign menu_parent_url = '/pages/book-moonridge'
+        endif
         if link.handle == 'hat-education' or link_title_lc contains 'hat education'
           assign hat_education_menu_match = true
         endif
@@ -46,6 +50,9 @@
               <summary
                 id="HeaderMenu-{{ link.handle }}"
                 class="header__menu-item list-menu__item link focus-inset"
+                {% if menu_parent_url != blank %}
+                  data-href="{{ menu_parent_url }}"
+                {% endif %}
               >
                 <span
                   {%- if link.child_active or link.current %}
@@ -72,6 +79,9 @@
               <summary
                 id="HeaderMenu-{{ link.handle }}"
                 class="header__menu-item list-menu__item link focus-inset"
+                {% if menu_parent_url != blank %}
+                  data-href="{{ menu_parent_url }}"
+                {% endif %}
               >
                 <span
                   {%- if link.child_active %}

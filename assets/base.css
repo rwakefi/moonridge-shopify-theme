@@ -2795,6 +2795,22 @@ details[open] > .header__submenu {
   z-index: 1;
 }
 
+@media (hover: hover) and (pointer: fine) and (min-width: 990px) {
+  header-menu details[open] .header__submenu {
+    z-index: 3;
+  }
+
+  /* Keep a hover path from the top-level label into the panel */
+  header-menu > details[open]::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 1.6rem;
+  }
+}
+
 @media (prefers-reduced-motion) {
   details[open] > .header__submenu {
     opacity: 1;

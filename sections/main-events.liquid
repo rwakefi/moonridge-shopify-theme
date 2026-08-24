@@ -277,6 +277,22 @@
   }
   .events-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .events-form-grid .field--full-width { grid-column: 1 / -1; }
+  .events-form-grid .field--date .field__label {
+    font-size: 1rem;
+    top: calc(var(--inputs-border-width) + 0.5rem);
+    left: calc(var(--inputs-border-width) + 2rem);
+    letter-spacing: 0.04rem;
+    transform: none;
+  }
+  .events-form-grid .field--date .field__input {
+    padding: 2.2rem 1.5rem 0.8rem 2rem;
+    min-height: 4.8rem;
+    color-scheme: light;
+  }
+  .events-form-grid .field--date .field__input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.75;
+  }
 
   @media screen and (max-width: 768px) {
     .events-video-banner__title { font-size: 36px; }
@@ -464,6 +480,10 @@
           <div class="field">
             <input type="number" id="ContactForm-headcount" class="field__input" name="contact[Expected Headcount]" placeholder="Expected # of people" required>
             <label class="field__label" for="ContactForm-headcount">Expected # of people</label>
+          </div>
+          <div class="field field--full-width field--date">
+            <input type="date" id="ContactForm-event_date" class="field__input" name="contact[Date of Event]" placeholder="Date of the event" autocomplete="off" required>
+            <label class="field__label" for="ContactForm-event_date">Date of the event</label>
           </div>
           <div class="field field--full-width">
             <input type="text" id="ContactForm-location" class="field__input" name="contact[Location of Event]" placeholder="Location of The Event" required>

@@ -262,9 +262,11 @@
         "instagram_label_homepage": {
           "type": "instagram-label",
           "settings": {
-            "eyebrow": "On Instagram",
+            "eyebrow": "",
             "handle": "@moonridgeco",
-            "url": "https://www.instagram.com/moonridgeco/"
+            "url": "https://www.instagram.com/moonridgeco/",
+            "tiktok_url": "https://www.tiktok.com/@moonridgeco",
+            "show_icons": true
           }
         },
         "gsc_instagram_feed_instafeed_AMHbVy": {

@@ -1,21 +1,45 @@
 {%- comment -%}
-  Quiet Instagram section label: small tracked eyebrow + the @handle.
-  Pattern used by heritage and luxury shops — the handle is the heading,
-  not "Follow us on Instagram."
+  Quiet Instagram section label. Default live look is the handle with
+  small Instagram / TikTok marks. To roll back: Theme editor → this
+  block → turn off "Show social icons" and type "On Instagram" in Eyebrow.
 {%- endcomment -%}
 
 <div class="mr-ig-label" {{ block.shopify_attributes }}>
   {%- if block.settings.eyebrow != blank -%}
     <p class="mr-ig-label__eyebrow">{{ block.settings.eyebrow | escape }}</p>
   {%- endif -%}
-  {%- if block.settings.handle != blank -%}
+  {%- if block.settings.handle != blank or block.settings.show_icons -%}
     <h2 class="mr-ig-label__handle">
-      {%- if block.settings.url != blank -%}
-        <a href="{{ block.settings.url }}" class="mr-ig-label__link" target="_blank" rel="noopener">
-          {{ block.settings.handle | escape }}
+      {%- if block.settings.show_icons and block.settings.url != blank -%}
+        <a
+          href="{{ block.settings.url }}"
+          class="mr-ig-label__icon mr-ig-label__icon--instagram"
+          target="_blank"
+          rel="noopener"
+          aria-label="Moon Ridge on Instagram"
+        >
+          {% render 'icon-instagram' %}
         </a>
-      {%- else -%}
-        {{ block.settings.handle | escape }}
+      {%- endif -%}
+      {%- if block.settings.handle != blank -%}
+        {%- if block.settings.url != blank -%}
+          <a href="{{ block.settings.url }}" class="mr-ig-label__link" target="_blank" rel="noopener">
+            {{ block.settings.handle | escape }}
+          </a>
+        {%- else -%}
+          {{ block.settings.handle | escape }}
+        {%- endif -%}
+      {%- endif -%}
+      {%- if block.settings.show_icons and block.settings.tiktok_url != blank -%}
+        <a
+          href="{{ block.settings.tiktok_url }}"
+          class="mr-ig-label__icon mr-ig-label__icon--tiktok"
+          target="_blank"
+          rel="noopener"
+          aria-label="Moon Ridge on TikTok"
+        >
+          {% render 'icon-tiktok' %}
+        </a>
       {%- endif -%}
     </h2>
   {%- endif -%}
@@ -30,7 +54,7 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "On Instagram"
+      "info": "Leave blank to hide. Type “On Instagram” to restore the old heading."
     },
     {
       "type": "text",
@@ -42,7 +66,19 @@
       "type": "url",
       "id": "url",
       "label": "Instagram URL",
-      "info": "Opens the handle in a new tab."
+      "info": "Opens the Instagram icon and the handle."
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icons",
+      "label": "Show Instagram and TikTok icons",
+      "info": "Uncheck to go back to handle-only (or handle + eyebrow).",
+      "default": true
     }
   ],
   "presets": [

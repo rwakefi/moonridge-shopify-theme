@@ -459,6 +459,7 @@
     "17618020408820ce43": {
       "type": "apps",
       "name": "Instafeed App",
+      "disabled": true,
       "settings": {
         "include_margins": true
       }

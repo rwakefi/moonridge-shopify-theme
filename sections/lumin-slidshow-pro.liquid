@@ -1819,7 +1819,7 @@ window[slideshowID] = (function() {
             return;
           }
           try {
-            await _loadScript('https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.5/dist/lazyload.min.js');
+            await _loadScript({{ 'vendor-lazyload.min.js' | asset_url | json }});
           } catch (err) {
             /* Native lazy loading remains available on image tags */
           }
@@ -1831,7 +1831,7 @@ window[slideshowID] = (function() {
           if (window.Flickity !== undefined) {
             return Promise.resolve(true);
           }
-          return _loadScript('https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.pkgd.min.js');
+          return _loadScript({{ 'vendor-flickity.pkgd.min.js' | asset_url | json }});
         }
 
     function loadFlickity() {
@@ -1843,13 +1843,13 @@ window[slideshowID] = (function() {
         return new Promise(async (resolve, reject) => {
                            try{
                            
-                       await _loadScript(`https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.pkgd.min.js`);    
+                       await _loadScript({{ 'vendor-flickity.pkgd.min.js' | asset_url | json }});    
                            } catch(err){
         	await loadLocalFlickity();
         	if (window.Flickity === undefined) throw err;
         }
             
-            _loadStyle(`https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.min.css`);
+            _loadStyle({{ 'vendor-flickity.min.css' | asset_url | json }});
   			
   			await loadFlickityFade();
             
@@ -1866,7 +1866,7 @@ window[slideshowID] = (function() {
       if (isLoaded) {
         return Promise.resolve(true);
       }
-      return _loadScript('https://unpkg.com/flickity-fade@2.0.0/flickity-fade.js').then(function () {
+      return _loadScript({{ 'vendor-flickity-fade.js' | asset_url | json }}).then(function () {
         return new Promise(function (resolve) {
           var attempts = 0;
           (function waitForFade() {

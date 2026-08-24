@@ -1,7 +1,4 @@
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
+{{ 'vendor-swiper-bundle.min.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
 
@@ -346,7 +343,7 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer="defer"></script>
+<script src="{{ 'vendor-swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
 
 <script>
   function initInstagramMenu() {

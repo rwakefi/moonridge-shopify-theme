@@ -1,0 +1,54 @@
+{%- comment -%}
+  Quiet Instagram section label: small tracked eyebrow + the @handle.
+  Pattern used by heritage and luxury shops — the handle is the heading,
+  not "Follow us on Instagram."
+{%- endcomment -%}
+
+<div class="mr-ig-label" {{ block.shopify_attributes }}>
+  {%- if block.settings.eyebrow != blank -%}
+    <p class="mr-ig-label__eyebrow">{{ block.settings.eyebrow | escape }}</p>
+  {%- endif -%}
+  {%- if block.settings.handle != blank -%}
+    <h2 class="mr-ig-label__handle">
+      {%- if block.settings.url != blank -%}
+        <a href="{{ block.settings.url }}" class="mr-ig-label__link" target="_blank" rel="noopener">
+          {{ block.settings.handle | escape }}
+        </a>
+      {%- else -%}
+        {{ block.settings.handle | escape }}
+      {%- endif -%}
+    </h2>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Instagram label",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "On Instagram"
+    },
+    {
+      "type": "text",
+      "id": "handle",
+      "label": "Handle",
+      "default": "@moonridgeco"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Instagram URL",
+      "info": "Opens the handle in a new tab."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram label"
+    }
+  ]
+}
+{% endschema %}

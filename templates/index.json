@@ -259,6 +259,14 @@
           },
           "blocks": {}
         },
+        "instagram_label_homepage": {
+          "type": "instagram-label",
+          "settings": {
+            "eyebrow": "On Instagram",
+            "handle": "@moonridgeco",
+            "url": "https://www.instagram.com/moonridgeco/"
+          }
+        },
         "gsc_instagram_feed_instafeed_AMHbVy": {
           "type": "shopify://apps/gsc-instagram-feed/blocks/instafeed/96970b1b-b770-454f-b16b-51f47e1aa4ed",
           "settings": {
@@ -268,6 +276,7 @@
       },
       "block_order": [
         "ai_gen_block_757192d_hMggzr",
+        "instagram_label_homepage",
         "gsc_instagram_feed_instafeed_AMHbVy"
       ],
       "settings": {}

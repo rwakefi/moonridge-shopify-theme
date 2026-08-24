@@ -258,10 +258,17 @@
             "dots_padding_bottom": 24
           },
           "blocks": {}
+        },
+        "gsc_instagram_feed_instafeed_AMHbVy": {
+          "type": "shopify://apps/gsc-instagram-feed/blocks/instafeed/96970b1b-b770-454f-b16b-51f47e1aa4ed",
+          "settings": {
+            "widget_id": "GSC-CukZIuTXYCRJqJJ"
+          }
         }
       },
       "block_order": [
-        "ai_gen_block_757192d_hMggzr"
+        "ai_gen_block_757192d_hMggzr",
+        "gsc_instagram_feed_instafeed_AMHbVy"
       ],
       "settings": {}
     },
@@ -324,29 +331,6 @@
     },
     "17631854945b793bb1": {
       "type": "_blocks",
-      "blocks": {
-        "instafeed_app_block_rrg6Bd": {
-          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
-          "settings": {
-            "title": "",
-            "title_color": "",
-            "title_size_v2": 28,
-            "alignment": "center",
-            "instafeed_margin_top": 0,
-            "instafeed_margin_bottom": 0,
-            "instafeed_margin_sides": 0,
-            "show_instagram_link": false,
-            "link_alignment": "left",
-            "link_color": "#000000",
-            "background_color": "",
-            "feed_id": "",
-            "html_area": ""
-          }
-        }
-      },
-      "block_order": [
-        "instafeed_app_block_rrg6Bd"
-      ],
       "name": "Legendary Brands",
       "settings": {}
     },
@@ -999,6 +983,12 @@
         "padding_bottom": 60,
         "padding_horizontal": 20
       }
+    },
+    "1787530689bd916ca1": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
@@ -1023,6 +1013,7 @@
     "lumin_grids_qnX3eH",
     "lumin_slidshow_pro_yNeGG6",
     "lumin_review_AbtUAG",
-    "faq_accordion"
+    "faq_accordion",
+    "1787530689bd916ca1"
   ]
 }

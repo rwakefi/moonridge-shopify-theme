@@ -1,8 +1,11 @@
 /* Homepage Instagram feed.
    GSC still draws the photos. We hide its stock copy and button, then
    sit our own label (blocks/instagram-label.liquid) above the strip.
-   GSC's widget ships with ~76px top/bottom padding — crush that so this
-   block uses the same 24px section rhythm as Men's Hats. */
+
+   The label is a theme block with no shopify-block wrapper, so the wash
+   has to sit on .mr-ig-label itself plus the GSC app block next to it.
+   GSC paints its widget white — override that or the photos sit on white
+   and the tan only shows as a strip under the row. */
 
 .gfa-content__text,
 .gfa-content__button-container,
@@ -10,18 +13,11 @@
   display: none !important;
 }
 
-/* Parchment wash — one step warmer than page white, same family as
-   heritage cream (#faf8f5) mixed toward saddle tan. */
-.shopify-block:has(.mr-ig-label),
+.mr-ig-label,
+.mr-ig-label + .shopify-block,
 .shopify-block:has(.gfa-widget),
 .shopify-block:has(.gfa-content) {
   background-color: #f3ebe2;
-  margin: 0;
-}
-
-.shopify-block:has(.gfa-widget),
-.shopify-block:has(.gfa-content) {
-  padding: 0 0 32px;
 }
 
 .mr-ig-label {
@@ -30,7 +26,8 @@
   --mr-ig-display: 'customfont', 'Cinzel', Georgia, serif;
   --mr-ig-text: var(--font-heading-family, Jost, sans-serif);
   text-align: center;
-  padding: 32px 16px 8px;
+  padding: 32px 16px 12px;
+  width: 100%;
 }
 
 .mr-ig-label__eyebrow {
@@ -63,13 +60,18 @@
   color: #9c7a52;
 }
 
-/* GSC injects container padding after load. Beat it. */
 .gfa-widget,
 .gfa-content {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   margin: 0 !important;
-  background: transparent !important;
-  background-color: transparent !important;
+  background: #f3ebe2 !important;
+  background-color: #f3ebe2 !important;
 }
 
+.shopify-block:has(.gfa-widget),
+.shopify-block:has(.gfa-content),
+.mr-ig-label + .shopify-block {
+  margin: 0;
+  padding: 0 0 32px;
+}

@@ -181,7 +181,7 @@
                   alt="{{ block.settings.image.alt | default: block.settings.head | escape }}"
                   loading="lazy"
                   class="lumin-grid-image"
-                  style="object-fit:cover;background-color:#a88467;width:100%;max-width:100%;height:auto;display:block;"
+                  style="object-fit:cover;background-color:#a88467;width:100%;max-width:100%;display:block;"
                 >
               {%- else -%}
                 {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -678,11 +678,14 @@
            }
           .lumin-image-{{ section.id }} img {
             transition: all 0.5s ease-in;
-            margin-bottom: -8px;
+            margin-bottom: 0;
             border-radius:{{ section.settings.video_border }}px;
             width: 100%;
             max-width: 100%;
-            height: auto;
+            height: 100%;
+            aspect-ratio: 3 / 2;
+            object-fit: cover;
+            object-position: center;
             display: block;
            }
 

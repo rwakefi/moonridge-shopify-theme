@@ -75,6 +75,7 @@
         },
         "avada_upsell_app_badge_v2_block_n37Aer": {
           "type": "shopify://apps/avada-boost-sales-trust-badge/blocks/app-badge-v2-block/45454b7f-f6a7-4852-b770-8e0c3992a226",
+          "disabled": true,
           "settings": {
             "badge_id": "AVD-50308937"
           }

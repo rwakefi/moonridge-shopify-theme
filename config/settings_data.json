@@ -212,12 +212,12 @@
     "blocks": {
       "15710897563947040993": {
         "type": "shopify://apps/avada-upsell/blocks/app-embed/45454b7f-f6a7-4852-b770-8e0c3992a226",
-        "disabled": false,
+        "disabled": true,
         "settings": {}
       },
       "6468128024931565999": {
         "type": "shopify://apps/seguno-popups/blocks/popup-app-embed/f53bd66f-9a20-4ce2-ae2e-ccbd0148bd4b",
-        "disabled": false,
+        "disabled": true,
         "settings": {}
       },
       "2567389343055140935": {
@@ -279,7 +279,7 @@
       },
       "855628211100114053": {
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
-        "disabled": false,
+        "disabled": true,
         "settings": {}
       },
       "1513253815146976218": {

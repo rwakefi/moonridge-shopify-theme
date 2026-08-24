@@ -2795,7 +2795,7 @@ details[open] > .header__submenu {
   z-index: 1;
 }
 
-@media (hover: hover) and (pointer: fine) and (min-width: 990px) {
+@media screen and (min-width: 990px) {
   header-menu details[open] .header__submenu {
     z-index: 3;
   }

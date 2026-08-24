@@ -26,7 +26,7 @@
   --mr-ig-display: 'customfont', 'Cinzel', Georgia, serif;
   --mr-ig-text: var(--font-heading-family, Jost, sans-serif);
   text-align: center;
-  padding: 20px 16px 8px;
+  padding: 20px 16px 16px;
   width: 100%;
 }
 

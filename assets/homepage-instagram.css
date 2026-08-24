@@ -70,7 +70,7 @@
   justify-content: center;
   width: 2.2rem;
   height: 2.2rem;
-  color: rgba(49, 33, 16, 0.42);
+  color: rgba(49, 33, 16, 0.82);
   flex-shrink: 0;
 }
 
@@ -80,8 +80,13 @@
   display: block;
 }
 
+.mr-ig-label__icon--tiktok {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
 .mr-ig-label__icon:hover {
-  color: #9c7a52;
+  color: var(--mr-ig-ink);
 }
 
 .gfa-widget,

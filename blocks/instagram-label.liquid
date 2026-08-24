@@ -4,15 +4,25 @@
   block → turn off "Show social icons" and type "On Instagram" in Eyebrow.
 {%- endcomment -%}
 
+{%- liquid
+  assign ig_url = block.settings.url
+  if ig_url == blank
+    assign ig_url = settings.social_instagram_link
+  endif
+  assign tiktok_url = block.settings.tiktok_url
+  if tiktok_url == blank
+    assign tiktok_url = settings.social_tiktok_link
+  endif
+-%}
 <div class="mr-ig-label" {{ block.shopify_attributes }}>
   {%- if block.settings.eyebrow != blank -%}
     <p class="mr-ig-label__eyebrow">{{ block.settings.eyebrow | escape }}</p>
   {%- endif -%}
   {%- if block.settings.handle != blank or block.settings.show_icons -%}
     <h2 class="mr-ig-label__handle">
-      {%- if block.settings.show_icons and block.settings.url != blank -%}
+      {%- if block.settings.show_icons and ig_url != blank -%}
         <a
-          href="{{ block.settings.url }}"
+          href="{{ ig_url }}"
           class="mr-ig-label__icon mr-ig-label__icon--instagram"
           target="_blank"
           rel="noopener"
@@ -22,17 +32,17 @@
         </a>
       {%- endif -%}
       {%- if block.settings.handle != blank -%}
-        {%- if block.settings.url != blank -%}
-          <a href="{{ block.settings.url }}" class="mr-ig-label__link" target="_blank" rel="noopener">
+        {%- if ig_url != blank -%}
+          <a href="{{ ig_url }}" class="mr-ig-label__link" target="_blank" rel="noopener">
             {{ block.settings.handle | escape }}
           </a>
         {%- else -%}
           {{ block.settings.handle | escape }}
         {%- endif -%}
       {%- endif -%}
-      {%- if block.settings.show_icons and block.settings.tiktok_url != blank -%}
+      {%- if block.settings.show_icons and tiktok_url != blank -%}
         <a
-          href="{{ block.settings.tiktok_url }}"
+          href="{{ tiktok_url }}"
           class="mr-ig-label__icon mr-ig-label__icon--tiktok"
           target="_blank"
           rel="noopener"
@@ -69,9 +79,10 @@
       "info": "Opens the Instagram icon and the handle."
     },
     {
-      "type": "url",
+      "type": "text",
       "id": "tiktok_url",
-      "label": "TikTok URL"
+      "label": "TikTok URL",
+      "info": "Use a full URL. Falls back to the theme’s TikTok link if blank."
     },
     {
       "type": "checkbox",

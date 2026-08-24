@@ -474,6 +474,9 @@
     {%- if template.name == 'collection' and template.suffix == 'hats' -%}
       {{ 'hats-collection.css' | asset_url | stylesheet_tag }}
     {%- endif -%}
+    {%- if template.name == 'index' -%}
+      {{ 'homepage-instagram.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
     {{ 'transition-cover.css' | asset_url | stylesheet_tag }}
     {{ 'sticky-booking-cta.css' | asset_url | stylesheet_tag }}
     

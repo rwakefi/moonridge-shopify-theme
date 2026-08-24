@@ -1,0 +1,53 @@
+/* Homepage Instagram feed.
+   GSC still draws the photos. We hide its stock copy and button, then
+   sit our own label (blocks/instagram-label.liquid) above the strip. */
+
+.gfa-content__text,
+.gfa-content__button-container,
+.gfa-copyright {
+  display: none !important;
+}
+
+.mr-ig-label {
+  --mr-ig-ink: #312110;
+  --mr-ig-muted: rgba(49, 33, 16, 0.62);
+  --mr-ig-display: 'customfont', 'Cinzel', Georgia, serif;
+  --mr-ig-text: var(--font-heading-family, Jost, sans-serif);
+  text-align: center;
+  padding: 2.8rem 1.6rem 1.2rem;
+}
+
+.mr-ig-label__eyebrow {
+  margin: 0 0 0.8rem;
+  font-family: var(--mr-ig-text);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--mr-ig-muted);
+}
+
+.mr-ig-label__handle {
+  margin: 0;
+  font-family: var(--mr-ig-display);
+  font-size: clamp(2.2rem, 2.6vw, 2.8rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  color: var(--mr-ig-ink);
+}
+
+.mr-ig-label__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mr-ig-label__link:hover {
+  color: #9c7a52;
+}
+
+.shopify-block:has(.gfa-widget),
+.shopify-block:has(.gfa-content) {
+  margin-top: 0;
+}

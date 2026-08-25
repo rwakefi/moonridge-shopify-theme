@@ -1,0 +1,291 @@
+{% comment %}
+  ------------------------------------------------------------
+  Moon Ridge — Customer Proposal Gallery
+  ------------------------------------------------------------
+  Renders any "proposal" metaobject entries assigned to the
+  currently logged-in customer (via the entry's Customer
+  reference field). Logged-out visitors and customers with no
+  proposal assigned see nothing sensitive.
+
+  Data model: metaobject type "proposal", fields:
+    title (single line text)
+    customer (customer reference)
+    description (multi-line text)
+    gallery_images (list of files)
+    video_links (list of URLs — YouTube or Vimeo)
+    status (single line text, e.g. "Draft", "Sent", "Approved")
+    expires_on (date)
+    event_name (single line text)
+    event_date (date)
+    event_location (single line text)
+    guest_count (integer)
+    package_details (multi-line text)
+    pricing_summary (multi-line text)
+    deposit_notes (multi-line text)
+    contact_phone (single line text)
+
+  To create/edit a proposal: Shopify Admin → Content →
+  Metaobjects → Proposal → Add entry.
+  ------------------------------------------------------------
+{% endcomment %}
+
+<div class="mr-proposal">
+  {%- if customer -%}
+    {%- assign found_any = false -%}
+    {%- for proposal in shop.metaobjects.proposal.values -%}
+      {%- assign p_customer = proposal.fields.customer.value -%}
+      {%- assign p_customer_gid = "gid://shopify/Customer/" | append: customer.id -%}
+      {%- assign p_is_match = false -%}
+      {%- if p_customer.id and p_customer.id == customer.id -%}
+        {%- assign p_is_match = true -%}
+      {%- elsif p_customer == p_customer_gid -%}
+        {%- assign p_is_match = true -%}
+      {%- endif -%}
+      {%- if p_is_match -%}
+        {%- assign found_any = true -%}
+        {%- assign p_title = proposal.fields.title.value -%}
+        {%- assign p_description = proposal.fields.description.value -%}
+        {%- assign p_status = proposal.fields.status.value -%}
+        {%- assign p_expires = proposal.fields.expires_on.value -%}
+        {%- assign p_images = proposal.fields.gallery_images.value -%}
+        {%- assign p_videos = proposal.fields.video_links.value -%}
+        {%- assign p_event_name = proposal.fields.event_name.value -%}
+        {%- assign p_event_date = proposal.fields.event_date.value -%}
+        {%- assign p_event_location = proposal.fields.event_location.value -%}
+        {%- assign p_guest_count = proposal.fields.guest_count.value -%}
+        {%- assign p_package_details = proposal.fields.package_details.value -%}
+        {%- assign p_pricing_summary = proposal.fields.pricing_summary.value -%}
+        {%- assign p_deposit_notes = proposal.fields.deposit_notes.value -%}
+        {%- assign p_contact_phone = proposal.fields.contact_phone.value -%}
+
+        <article class="mr-proposal__card">
+          <header class="mr-proposal__header">
+            <h2 class="mr-proposal__title">{{ p_title | default: section.settings.default_title }}</h2>
+            {%- if p_status != blank -%}
+              <span class="mr-proposal__status mr-proposal__status--{{ p_status | handleize }}">{{ p_status }}</span>
+            {%- endif -%}
+          </header>
+
+          {%- if p_expires != blank -%}
+            <p class="mr-proposal__expires">Valid through {{ p_expires | date: "%B %d, %Y" }}</p>
+          {%- endif -%}
+
+          {%- if p_event_name != blank or p_event_date != blank or p_event_location != blank or p_guest_count != blank -%}
+            <dl class="mr-proposal__event-details">
+              {%- if p_event_name != blank -%}
+                <div class="mr-proposal__event-row"><dt>Event</dt><dd>{{ p_event_name }}</dd></div>
+              {%- endif -%}
+              {%- if p_event_date != blank -%}
+                <div class="mr-proposal__event-row"><dt>Date</dt><dd>{{ p_event_date | date: "%B %d, %Y" }}</dd></div>
+              {%- endif -%}
+              {%- if p_event_location != blank -%}
+                <div class="mr-proposal__event-row"><dt>Location</dt><dd>{{ p_event_location }}</dd></div>
+              {%- endif -%}
+              {%- if p_guest_count != blank -%}
+                <div class="mr-proposal__event-row"><dt>Expected guests</dt><dd>{{ p_guest_count }}</dd></div>
+              {%- endif -%}
+              {%- if p_contact_phone != blank -%}
+                <div class="mr-proposal__event-row"><dt>Your contact</dt><dd>{{ p_contact_phone }}</dd></div>
+              {%- endif -%}
+            </dl>
+          {%- endif -%}
+
+          {%- if p_description != blank -%}
+            <div class="mr-proposal__description">{{ p_description | newline_to_br }}</div>
+          {%- endif -%}
+
+          {%- if p_package_details != blank -%}
+            <div class="mr-proposal__section">
+              <h3>What's included</h3>
+              <div class="mr-proposal__section-body">{{ p_package_details | newline_to_br }}</div>
+            </div>
+          {%- endif -%}
+
+          {%- if p_pricing_summary != blank -%}
+            <div class="mr-proposal__section">
+              <h3>Pricing</h3>
+              <div class="mr-proposal__section-body">{{ p_pricing_summary | newline_to_br }}</div>
+            </div>
+          {%- endif -%}
+
+          {%- if p_deposit_notes != blank -%}
+            <div class="mr-proposal__section mr-proposal__section--notes">
+              <h3>Deposit &amp; payment</h3>
+              <div class="mr-proposal__section-body">{{ p_deposit_notes | newline_to_br }}</div>
+            </div>
+          {%- endif -%}
+
+          {%- if p_images.size > 0 or p_videos.size > 0 -%}
+            <div class="mr-proposal__gallery">
+              {%- for file in p_images -%}
+                {%- if file.media_type == "image" or file.preview_image -%}
+                  <button type="button" class="mr-proposal__thumb" data-mr-lightbox-open data-full="{{ file | image_url: width: 1600 }}" aria-label="View photo full size">
+                    <img
+                      src="{{ file | image_url: width: 600 }}"
+                      srcset="{{ file | image_url: width: 400 }} 400w, {{ file | image_url: width: 800 }} 800w, {{ file | image_url: width: 1200 }} 1200w"
+                      sizes="(min-width: 750px) 33vw, 50vw"
+                      loading="lazy"
+                      alt="{{ file.alt | default: p_title | escape }}"
+                      width="{{ file.width }}"
+                      height="{{ file.height }}"
+                    >
+                  </button>
+                {%- endif -%}
+              {%- endfor -%}
+
+              {%- for video_url in p_videos -%}
+                {%- assign video_url_string = video_url | strip -%}
+                <div class="mr-proposal__video">
+                  {%- if video_url_string contains 'youtube.com' or video_url_string contains 'youtu.be' -%}
+                    {%- assign yt_id = '' -%}
+                    {%- if video_url_string contains 'youtu.be/' -%}
+                      {%- assign yt_id = video_url_string | split: 'youtu.be/' | last | split: '?' | first | split: '&' | first -%}
+                    {%- elsif video_url_string contains 'v=' -%}
+                      {%- assign yt_id = video_url_string | split: 'v=' | last | split: '&' | first -%}
+                    {%- endif -%}
+                    <div class="mr-proposal__video-frame">
+                      <iframe
+                        src="https://www.youtube.com/embed/{{ yt_id }}"
+                        title="{{ p_title | escape }} video"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                  {%- elsif video_url_string contains 'vimeo.com' -%}
+                    {%- assign vimeo_id = video_url_string | split: 'vimeo.com/' | last | split: '?' | first -%}
+                    <div class="mr-proposal__video-frame">
+                      <iframe
+                        src="https://player.vimeo.com/video/{{ vimeo_id }}"
+                        title="{{ p_title | escape }} video"
+                        loading="lazy"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                  {%- else -%}
+                    <p class="mr-proposal__video-fallback"><a href="{{ video_url_string }}" target="_blank" rel="noopener">Watch video</a></p>
+                  {%- endif -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </article>
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- unless found_any -%}
+      <div class="mr-proposal__empty">
+        <p>{{ section.settings.empty_message | default: "We don't have a proposal on file for your account yet. Reach out and we'll get one started." }}</p>
+      </div>
+    {%- endunless -%}
+
+  {%- else -%}
+    <div class="mr-proposal__login">
+      <h2>{{ section.settings.login_title | default: "Sign in to view your proposal" }}</h2>
+      <p>{{ section.settings.login_message | default: "This proposal is private. Please log in with the account we set up for you." }}</p>
+      <a class="mr-proposal__login-button" href="{{ routes.account_login_url }}?return_url={{ request.path | url_encode }}">Log in</a>
+    </div>
+  {%- endif -%}
+
+  <div class="mr-proposal__lightbox" data-mr-lightbox hidden>
+    <button type="button" class="mr-proposal__lightbox-close" data-mr-lightbox-close aria-label="Close">&times;</button>
+    <img src="" alt="" data-mr-lightbox-img>
+  </div>
+</div>
+
+<style>
+  .mr-proposal { max-width: 1000px; margin: 0 auto; padding: 40px 20px 60px; }
+  .mr-proposal__card { margin-bottom: 56px; }
+  .mr-proposal__header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .mr-proposal__title { margin: 0; font-size: 28px; }
+  .mr-proposal__status { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; padding: 4px 10px; border-radius: 999px; background: #eee; }
+  .mr-proposal__status--approved { background: #d9f2df; color: #1c6b34; }
+  .mr-proposal__status--sent { background: #fff3d6; color: #8a5a00; }
+  .mr-proposal__expires { color: #666; margin: 4px 0 0; font-size: 14px; }
+  .mr-proposal__event-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px 24px; margin: 20px 0; padding: 16px 20px; background: #f7f5f2; border-radius: 8px; }
+  .mr-proposal__event-row dt { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #888; margin: 0; }
+  .mr-proposal__event-row dd { margin: 2px 0 0; font-size: 15px; }
+  .mr-proposal__description { margin: 20px 0; line-height: 1.6; }
+  .mr-proposal__section { margin: 24px 0; }
+  .mr-proposal__section h3 { margin: 0 0 8px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .mr-proposal__section-body { line-height: 1.6; }
+  .mr-proposal__section--notes { padding: 16px 20px; background: #fbf8f3; border-left: 3px solid #c9a15a; border-radius: 4px; }
+  .mr-proposal__gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-top: 24px; }
+  .mr-proposal__thumb { border: 0; padding: 0; background: none; cursor: zoom-in; border-radius: 8px; overflow: hidden; aspect-ratio: 4 / 3; display: block; width: 100%; }
+  .mr-proposal__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.2s ease; }
+  .mr-proposal__thumb:hover img { transform: scale(1.04); }
+  .mr-proposal__video { grid-column: 1 / -1; }
+  .mr-proposal__video-frame { position: relative; padding-top: 56.25%; border-radius: 8px; overflow: hidden; }
+  .mr-proposal__video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .mr-proposal__empty, .mr-proposal__login { text-align: center; padding: 60px 20px; }
+  .mr-proposal__login-button { display: inline-block; margin-top: 16px; padding: 12px 28px; background: #212121; color: #fff; text-decoration: none; border-radius: 4px; }
+  .mr-proposal__lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 30px; }
+  .mr-proposal__lightbox[hidden] { display: none; }
+  .mr-proposal__lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .mr-proposal__lightbox-close { position: absolute; top: 20px; right: 24px; background: none; border: 0; color: #fff; font-size: 32px; cursor: pointer; line-height: 1; }
+</style>
+
+<script>
+  (function () {
+    var section = document.currentScript.closest('.mr-proposal');
+    if (!section) return;
+    var lightbox = section.querySelector('[data-mr-lightbox]');
+    var lightboxImg = section.querySelector('[data-mr-lightbox-img]');
+    section.addEventListener('click', function (e) {
+      var opener = e.target.closest('[data-mr-lightbox-open]');
+      if (opener) {
+        lightboxImg.src = opener.getAttribute('data-full');
+        lightboxImg.alt = opener.querySelector('img') ? opener.querySelector('img').alt : '';
+        lightbox.hidden = false;
+      }
+      if (e.target.closest('[data-mr-lightbox-close]') || e.target === lightbox) {
+        lightbox.hidden = true;
+        lightboxImg.src = '';
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !lightbox.hidden) {
+        lightbox.hidden = true;
+        lightboxImg.src = '';
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Proposal gallery",
+  "settings": [
+    {
+      "type": "text",
+      "id": "default_title",
+      "label": "Fallback proposal title",
+      "default": "Your Proposal"
+    },
+    {
+      "type": "textarea",
+      "id": "empty_message",
+      "label": "Message when no proposal is assigned",
+      "default": "We don't have a proposal on file for your account yet. Reach out and we'll get one started."
+    },
+    {
+      "type": "text",
+      "id": "login_title",
+      "label": "Logged-out heading",
+      "default": "Sign in to view your proposal"
+    },
+    {
+      "type": "textarea",
+      "id": "login_message",
+      "label": "Logged-out message",
+      "default": "This proposal is private. Please log in with the account we set up for you."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Proposal gallery"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,22 @@
+<![CDATA[{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "proposal-gallery": {
+      "type": "proposal-gallery",
+      "settings": {
+        "default_title": "Your Proposal",
+        "empty_message": "We don't have a proposal on file for your account yet. Reach out and we'll get one started.",
+        "login_title": "Sign in to view your proposal",
+        "login_message": "This proposal is private. Please log in with the account we set up for you."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "proposal-gallery"
+  ]
+}
+]]>

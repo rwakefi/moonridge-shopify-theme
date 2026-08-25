@@ -60,6 +60,13 @@
       "name": "Moon Ridge Announcement bar",
       "settings": {
         "layout": "rotating",
+        "left_text": "Arkansas's Original Hat Bar",
+        "left_link": "",
+        "center_before": "Legendary Brands.",
+        "center_highlight": "Fitted.",
+        "center_after": "Personalized.",
+        "right_text": "Shop now",
+        "right_link": "",
         "rotation_interval": 7000
       }
     },
@@ -141,7 +148,7 @@
       "name": "Three-column strip",
       "settings": {
         "layout": "three_column",
-        "left_text": "Arkansas's Original Hat Bar",
+        "left_text": "Authorized Dealer",
         "left_link": "shopify://pages/custom-hat-bar",
         "center_before": "Legendary Brands.",
         "center_highlight": "Fitted.",

@@ -329,7 +329,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const bar = document.querySelector('.rm-announcement-bar');
+      const bar = document.getElementById('rm-announcement-{{ section.id }}');
       if (!bar) return;
 
       const slides = bar.querySelectorAll('.rm-announcement-slide');

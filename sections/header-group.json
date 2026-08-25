@@ -145,6 +145,7 @@
     },
     "promo_split_bar": {
       "type": "announcement-bar",
+      "disabled": true,
       "name": "Three-column strip",
       "settings": {
         "layout": "three_column",

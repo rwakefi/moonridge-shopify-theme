@@ -10,12 +10,14 @@
 
   .rm-split-bar {
     --split-ink: #312110;
+    --split-tan: #9c7a52;
+    --split-gold: #c5a059;
+    --split-cream: #faf8f5;
     --split-floor: 12px;
     color: var(--split-ink);
-    background-color: #e8c4bc;
-    background-image:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.08) 45%, rgba(49, 33, 16, 0.05) 100%),
-      linear-gradient(90deg, #edd0c9 0%, #f6e2dc 48%, #e6c3ba 100%);
+    background: var(--split-cream);
+    border-top: 1px solid rgba(49, 33, 16, 0.08);
+    border-bottom: 1px solid rgba(49, 33, 16, 0.14);
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
@@ -58,7 +60,7 @@
     top: 18%;
     bottom: 18%;
     width: 1px;
-    background: var(--split-ink);
+    background: rgba(197, 160, 89, 0.72);
   }
 
   .rm-split-bar__col--center::before { left: 0; }
@@ -67,8 +69,9 @@
   .rm-split-bar__label,
   .rm-split-bar__lead,
   .rm-split-bar__cta {
-    font-family: 'Playfair Display', 'Playfair', Georgia, 'Times New Roman', serif;
+    font-family: var(--font-heading-family, Jost, sans-serif);
     font-size: max(var(--split-floor), 1.3rem);
+    font-weight: 500;
     line-height: 1.25;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -78,13 +81,13 @@
   }
 
   .rm-split-bar__highlight {
-    font-family: 'Playfair Display', 'Playfair', Georgia, 'Times New Roman', serif;
+    font-family: var(--font-heading-family, Jost, sans-serif);
     font-size: max(1.6rem, 2.2rem);
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--split-ink);
+    color: var(--split-tan);
   }
 
   .rm-split-bar a {
@@ -96,6 +99,7 @@
     text-decoration: underline;
     text-underline-offset: 0.22em;
     text-decoration-thickness: 1px;
+    text-decoration-color: var(--split-gold);
   }
 
   /* Mobile: never drop below 12px — matches the reference floor */

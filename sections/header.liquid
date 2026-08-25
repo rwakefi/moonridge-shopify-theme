@@ -185,6 +185,13 @@
     background: #ffffff !important;
   }
 
+  @media screen and (min-width: 750px) {
+    .section-header .header-wrapper {
+      border-top: 3px solid #ffffff !important;
+      border-bottom: 1px solid #e0e0e0 !important;
+    }
+  }
+
   .header {
     background-color: transparent !important;
     display: flex !important;
@@ -585,6 +592,57 @@
     visibility: visible;
     bottom: -20px;
   }
+
+  /* Mobile: drop the podcast badge and the empty header row it sat in.
+     Brand switcher already has menu, search, and cart. Keep the drawer in
+     the DOM so the hamburger still opens it. */
+  @media screen and (max-width: 749px) {
+    .header .header__icon--podcast {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .header,
+    .header header-drawer,
+    .header .menu-drawer-container {
+      display: block !important;
+      width: 100% !important;
+      min-height: 0 !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: visible !important;
+    }
+
+    .header__icons,
+    .header__heading,
+    .header__heading--with-cta {
+      display: none !important;
+    }
+
+    .section-header,
+    .section-header .header-wrapper,
+    sticky-header.header-wrapper {
+      min-height: 0 !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      border-top: none !important;
+      border-bottom: none !important;
+      box-shadow: none !important;
+      overflow: visible !important;
+    }
+
+    .header .menu-drawer {
+      width: 100vw !important;
+      max-width: 100% !important;
+      left: 0 !important;
+    }
+  }
 {%- endstyle -%}
 
 <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
@@ -619,7 +677,7 @@
   endfor
 -%}
 
-<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}" style="background: #ffffff !important; background-image: none !important; border-top: 3px solid #ffffff !important; box-shadow: none !important; border-bottom: 1px solid #e0e0e0 !important;">
+<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}" style="background: #ffffff !important; background-image: none !important; box-shadow: none !important;">
   {%- liquid
     assign social_links = false
     assign localization_forms = false

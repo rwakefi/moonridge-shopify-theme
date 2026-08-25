@@ -59,6 +59,14 @@
       ],
       "name": "Moon Ridge Announcement bar",
       "settings": {
+        "layout": "three_column",
+        "left_text": "Arkansas's Original Hat Bar",
+        "left_link": "shopify://pages/custom-hat-bar",
+        "center_before": "Legendary Brands.",
+        "center_highlight": "Fitted.",
+        "center_after": "Personalized.",
+        "right_text": "Shop now",
+        "right_link": "shopify://collections/hats-for-everyone",
         "rotation_interval": 7000
       }
     },
@@ -171,10 +179,10 @@
     }
   },
   "order": [
-    "announcement_bar_MVm44A",
     "brand_switcher_xyz123",
     "1775539951d5ecae59",
     "header",
+    "announcement_bar_MVm44A",
     "custom_fonts_NVpMpR",
     "1775539906bf4288c6"
   ]

@@ -1,6 +1,129 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
 <style>
+  .section-announcement-bar.shopify-section-group-header-group {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    color: inherit !important;
+  }
+
+  .rm-split-bar {
+    --split-ink: #312110;
+    --split-floor: 12px;
+    color: var(--split-ink);
+    background-color: #e8c4bc;
+    background-image:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.08) 45%, rgba(49, 33, 16, 0.05) 100%),
+      linear-gradient(90deg, #edd0c9 0%, #f6e2dc 48%, #e6c3ba 100%);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  .rm-split-bar__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) minmax(0, 1fr);
+    align-items: stretch;
+    width: 100%;
+    min-height: 5.2rem;
+  }
+
+  .rm-split-bar__col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem 1.6rem;
+    min-width: 0;
+  }
+
+  .rm-split-bar__col--center {
+    position: relative;
+  }
+
+  .rm-split-bar__center {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.35rem 0.45rem;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .rm-split-bar__col--center::before,
+  .rm-split-bar__col--center::after {
+    content: '';
+    position: absolute;
+    top: 18%;
+    bottom: 18%;
+    width: 1px;
+    background: var(--split-ink);
+  }
+
+  .rm-split-bar__col--center::before { left: 0; }
+  .rm-split-bar__col--center::after { right: 0; }
+
+  .rm-split-bar__label,
+  .rm-split-bar__lead,
+  .rm-split-bar__cta {
+    font-family: 'Playfair Display', 'Playfair', Georgia, 'Times New Roman', serif;
+    font-size: max(var(--split-floor), 1.3rem);
+    line-height: 1.25;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--split-ink);
+    margin: 0;
+    overflow-wrap: break-word;
+  }
+
+  .rm-split-bar__highlight {
+    font-family: 'Playfair Display', 'Playfair', Georgia, 'Times New Roman', serif;
+    font-size: max(1.6rem, 2.2rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--split-ink);
+  }
+
+  .rm-split-bar a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .rm-split-bar__cta {
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: 1px;
+  }
+
+  /* Mobile: never drop below 12px — matches the reference floor */
+  @media screen and (max-width: 749px) {
+    .rm-split-bar__grid {
+      min-height: 4.8rem;
+    }
+
+    .rm-split-bar__col {
+      padding: 0.85rem 0.55rem;
+    }
+
+    .rm-split-bar__label,
+    .rm-split-bar__lead,
+    .rm-split-bar__cta {
+      font-size: var(--split-floor);
+      letter-spacing: 0.05em;
+    }
+
+    .rm-split-bar__highlight {
+      font-size: max(var(--split-floor), 1.6rem);
+    }
+
+    .rm-split-bar__center {
+      gap: 0.2rem 0.35rem;
+    }
+  }
+
   .rm-announcement-bar {
     background-color: #4a9e9a;
     color: #ffffff;
@@ -24,7 +147,6 @@
     gap: 0.75rem;
   }
 
-  /* TRACK – fixed height so nothing jumps */
   .rm-announcement-track {
     position: relative;
     flex: 1;
@@ -36,7 +158,6 @@
     overflow: hidden;
   }
 
-  /* SLIDES – fade smoothly, no jump */
   .rm-announcement-slide {
     position: absolute;
     top: 0;
@@ -65,7 +186,6 @@
     text-decoration: underline;
   }
 
-  /* ARROWS */
   .rm-announcement-arrow {
     background: transparent;
     border: none;
@@ -88,32 +208,30 @@
   .rm-announcement-arrow--prev { margin-right: 0.25rem; }
   .rm-announcement-arrow--next { margin-left: 0.25rem; }
 
-  /* MOBILE — improved vertical centering + extra breathing room */
-@media screen and (max-width: 749px) {
-  .rm-announcement-bar {
-    padding: 1rem 0.8rem 0.9rem;  /* MORE balanced vertical padding */
-    font-size: 12px;
-    line-height: 1.5;
-  }
+  @media screen and (max-width: 749px) {
+    .rm-announcement-bar {
+      padding: 1rem 0.8rem 0.9rem;
+      font-size: 12px;
+      line-height: 1.5;
+    }
 
-  .rm-announcement-track {
-    padding: 0 1.8rem;
-    min-height: 3.8em !important; /* consistent locked height */
-    display: flex;
-    align-items: center;          /* TRUE VERTICAL CENTERING */
-  }
+    .rm-announcement-track {
+      padding: 0 1.8rem;
+      min-height: 3.8em !important;
+      display: flex;
+      align-items: center;
+    }
 
-  .rm-announcement-slide {
-    white-space: normal;
-    overflow: visible;
-  }
+    .rm-announcement-slide {
+      white-space: normal;
+      overflow: visible;
+    }
 
-  .rm-announcement-text {
-    font-size: 12px;
-    display: inline-block;
-    padding-top: 7px;             /* tiny soft lift for optical centering */
-  }
-}
+    .rm-announcement-text {
+      font-size: 12px;
+      display: inline-block;
+      padding-top: 7px;
+    }
 
     .rm-announcement-arrow {
       width: 1.4rem;
@@ -122,15 +240,54 @@
   }
 </style>
 
-{% if section.blocks.size > 0 %}
+{%- if section.settings.layout == 'three_column' -%}
+  {%- liquid
+    assign left_text = section.settings.left_text | default: "Arkansas's Original Hat Bar"
+    assign center_before = section.settings.center_before | default: 'Legendary Brands.'
+    assign center_highlight = section.settings.center_highlight | default: 'Fitted.'
+    assign center_after = section.settings.center_after | default: 'Personalized.'
+    assign right_text = section.settings.right_text | default: 'Shop now'
+  -%}
+  <div class="rm-split-bar" role="region" aria-label="Store highlights">
+    <div class="rm-split-bar__grid">
+      <div class="rm-split-bar__col rm-split-bar__col--left">
+        {%- if section.settings.left_link != blank -%}
+          <a class="rm-split-bar__label" href="{{ section.settings.left_link }}">{{ left_text | escape }}</a>
+        {%- else -%}
+          <p class="rm-split-bar__label">{{ left_text | escape }}</p>
+        {%- endif -%}
+      </div>
+      <div class="rm-split-bar__col rm-split-bar__col--center">
+        <p class="rm-split-bar__center">
+          {%- if center_before != blank -%}
+            <span class="rm-split-bar__lead">{{ center_before | escape }}</span>
+          {%- endif -%}
+          {%- if center_highlight != blank -%}
+            <span class="rm-split-bar__highlight">{{ center_highlight | escape }}</span>
+          {%- endif -%}
+          {%- if center_after != blank -%}
+            <span class="rm-split-bar__lead">{{ center_after | escape }}</span>
+          {%- endif -%}
+        </p>
+      </div>
+      <div class="rm-split-bar__col rm-split-bar__col--right">
+        {%- if section.settings.right_link != blank -%}
+          <a class="rm-split-bar__cta" href="{{ section.settings.right_link }}">{{ right_text | escape }}</a>
+        {%- else -%}
+          <p class="rm-split-bar__cta">{{ right_text | escape }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- elsif section.blocks.size > 0 -%}
   <div class="rm-announcement-bar" role="region" aria-label="Store announcements">
     <div class="rm-announcement-bar-inner">
-
       {% if section.blocks.size > 1 %}
         <button
           type="button"
           class="rm-announcement-arrow rm-announcement-arrow--prev"
-          aria-label="Previous announcement">
+          aria-label="Previous announcement"
+        >
           <svg viewBox="0 0 10 10"><path d="M6.5 1L2 5l4.5 4" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       {% endif %}
@@ -140,8 +297,8 @@
           <div
             class="rm-announcement-slide{% if forloop.first %} is-active{% endif %}"
             data-index="{{ forloop.index0 }}"
-            {{ block.shopify_attributes }}>
-              
+            {{ block.shopify_attributes }}
+          >
             {% if block.settings.link != blank %}
               <a href="{{ block.settings.link }}" class="rm-announcement-text rm-announcement-link">
                 {{ block.settings.text | escape }}
@@ -149,7 +306,6 @@
             {% else %}
               <span class="rm-announcement-text">{{ block.settings.text | escape }}</span>
             {% endif %}
-
           </div>
         {% endfor %}
       </div>
@@ -158,16 +314,16 @@
         <button
           type="button"
           class="rm-announcement-arrow rm-announcement-arrow--next"
-          aria-label="Next announcement">
+          aria-label="Next announcement"
+        >
           <svg viewBox="0 0 10 10"><path d="M3.5 1L8 5l-4.5 4" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       {% endif %}
-
     </div>
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const bar = document.querySelector('.rm-announcement-bar');
       if (!bar) return;
 
@@ -175,10 +331,8 @@
       if (slides.length === 0) return;
 
       let currentIndex = 0;
-
       const baseInterval = {{ section.settings.rotation_interval | default: 7000 }};
-      const intervalMs = Math.round(baseInterval * 1.6); // slower, smoother pacing
-
+      const intervalMs = Math.round(baseInterval * 1.6);
       let timer = null;
 
       function showSlide(index) {
@@ -204,20 +358,76 @@
 
       const nextBtn = bar.querySelector('.rm-announcement-arrow--next');
       const prevBtn = bar.querySelector('.rm-announcement-arrow--prev');
-
       if (nextBtn) nextBtn.addEventListener('click', () => { next(); resetLoop(); });
       if (prevBtn) prevBtn.addEventListener('click', () => { prev(); resetLoop(); });
-
       startLoop();
     });
   </script>
-{% endif %}
+{%- endif -%}
 
 {% schema %}
 {
   "name": "Announcement bar",
   "class": "section-announcement-bar",
   "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "three_column", "label": "Three columns" },
+        { "value": "rotating", "label": "Rotating messages" }
+      ],
+      "default": "three_column"
+    },
+    {
+      "type": "header",
+      "content": "Three columns"
+    },
+    {
+      "type": "text",
+      "id": "left_text",
+      "label": "Left text",
+      "default": "Arkansas's Original Hat Bar"
+    },
+    {
+      "type": "url",
+      "id": "left_link",
+      "label": "Left link"
+    },
+    {
+      "type": "text",
+      "id": "center_before",
+      "label": "Center — before",
+      "default": "Legendary Brands."
+    },
+    {
+      "type": "text",
+      "id": "center_highlight",
+      "label": "Center — highlight",
+      "default": "Fitted."
+    },
+    {
+      "type": "text",
+      "id": "center_after",
+      "label": "Center — after",
+      "default": "Personalized."
+    },
+    {
+      "type": "text",
+      "id": "right_text",
+      "label": "Right text",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "right_link",
+      "label": "Right link"
+    },
+    {
+      "type": "header",
+      "content": "Rotating messages"
+    },
     {
       "type": "range",
       "id": "rotation_interval",

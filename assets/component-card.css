@@ -210,7 +210,7 @@
 .card__heading {
   margin-top: 0;
   margin-bottom: 0;
-  min-height: 4.5em; /* Normalizes card heights for all titles up to 3 lines */
+  min-height: 3em; /* Normalizes card heights for titles up to 2 lines — reduced from 4.5em (3 lines) to close the gap above the price on short titles */
   display: flex !important;
   align-items: center;
 }

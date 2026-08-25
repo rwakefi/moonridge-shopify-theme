@@ -324,14 +324,15 @@
     {% endfor %}
   </div>
 
-  {% if section.settings.promo_button_text != blank %}
+  {% assign promo_button_text = section.settings.promo_button_text | strip %}
+  {% if promo_button_text != blank %}
     <script id="anywhere_book_now_script" src="https://assets.setmore.com/integration/book-now/live/v1/anywhere-book-now.js" defer="defer"></script>
     <button id="Anywhere_button_iframe" 
             class="rm-brand-promo-btn anywhere-book-now-button" 
             data-booking-url="https://moonridgecompany.setmore.com" 
             data-new-tab="false"
             style="cursor: pointer;">
-      {{ section.settings.promo_button_text }}
+      {{ promo_button_text | escape }}
     </button>
   {% endif %}
 
@@ -416,8 +417,7 @@
     {
       "type": "text",
       "id": "promo_button_text",
-      "label": "Promo Button Text",
-      "default": "Book A Free Hat Experience"
+      "label": "Promo Button Text"
     },
     {
       "type": "url",

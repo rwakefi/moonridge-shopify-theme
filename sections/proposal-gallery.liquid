@@ -15,6 +15,14 @@
     video_links (list of URLs — YouTube or Vimeo)
     status (single line text, e.g. "Draft", "Sent", "Approved")
     expires_on (date)
+    event_name (single line text)
+    event_date (date)
+    event_location (single line text)
+    guest_count (integer)
+    package_details (multi-line text)
+    pricing_summary (multi-line text)
+    deposit_notes (multi-line text)
+    contact_phone (single line text)
 
   To create/edit a proposal: Shopify Admin → Content →
   Metaobjects → Proposal → Add entry.
@@ -34,6 +42,14 @@
         {%- assign p_expires = proposal.fields.expires_on.value -%}
         {%- assign p_images = proposal.fields.gallery_images.value -%}
         {%- assign p_videos = proposal.fields.video_links.value -%}
+        {%- assign p_event_name = proposal.fields.event_name.value -%}
+        {%- assign p_event_date = proposal.fields.event_date.value -%}
+        {%- assign p_event_location = proposal.fields.event_location.value -%}
+        {%- assign p_guest_count = proposal.fields.guest_count.value -%}
+        {%- assign p_package_details = proposal.fields.package_details.value -%}
+        {%- assign p_pricing_summary = proposal.fields.pricing_summary.value -%}
+        {%- assign p_deposit_notes = proposal.fields.deposit_notes.value -%}
+        {%- assign p_contact_phone = proposal.fields.contact_phone.value -%}
 
         <article class="mr-proposal__card">
           <header class="mr-proposal__header">
@@ -47,8 +63,49 @@
             <p class="mr-proposal__expires">Valid through {{ p_expires | date: "%B %d, %Y" }}</p>
           {%- endif -%}
 
+          {%- if p_event_name != blank or p_event_date != blank or p_event_location != blank or p_guest_count != blank -%}
+            <dl class="mr-proposal__event-details">
+              {%- if p_event_name != blank -%}
+                <div class="mr-proposal__event-row"><dt>Event</dt><dd>{{ p_event_name }}</dd></div>
+              {%- endif -%}
+              {%- if p_event_date != blank -%}
+                <div class="mr-proposal__event-row"><dt>Date</dt><dd>{{ p_event_date | date: "%B %d, %Y" }}</dd></div>
+              {%- endif -%}
+              {%- if p_event_location != blank -%}
+                <div class="mr-proposal__event-row"><dt>Location</dt><dd>{{ p_event_location }}</dd></div>
+              {%- endif -%}
+              {%- if p_guest_count != blank -%}
+                <div class="mr-proposal__event-row"><dt>Expected guests</dt><dd>{{ p_guest_count }}</dd></div>
+              {%- endif -%}
+              {%- if p_contact_phone != blank -%}
+                <div class="mr-proposal__event-row"><dt>Your contact</dt><dd>{{ p_contact_phone }}</dd></div>
+              {%- endif -%}
+            </dl>
+          {%- endif -%}
+
           {%- if p_description != blank -%}
             <div class="mr-proposal__description">{{ p_description | newline_to_br }}</div>
+          {%- endif -%}
+
+          {%- if p_package_details != blank -%}
+            <div class="mr-proposal__section">
+              <h3>What's included</h3>
+              <div class="mr-proposal__section-body">{{ p_package_details | newline_to_br }}</div>
+            </div>
+          {%- endif -%}
+
+          {%- if p_pricing_summary != blank -%}
+            <div class="mr-proposal__section">
+              <h3>Pricing</h3>
+              <div class="mr-proposal__section-body">{{ p_pricing_summary | newline_to_br }}</div>
+            </div>
+          {%- endif -%}
+
+          {%- if p_deposit_notes != blank -%}
+            <div class="mr-proposal__section mr-proposal__section--notes">
+              <h3>Deposit &amp; payment</h3>
+              <div class="mr-proposal__section-body">{{ p_deposit_notes | newline_to_br }}</div>
+            </div>
           {%- endif -%}
 
           {%- if p_images.size > 0 or p_videos.size > 0 -%}
@@ -139,7 +196,14 @@
   .mr-proposal__status--approved { background: #d9f2df; color: #1c6b34; }
   .mr-proposal__status--sent { background: #fff3d6; color: #8a5a00; }
   .mr-proposal__expires { color: #666; margin: 4px 0 0; font-size: 14px; }
+  .mr-proposal__event-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px 24px; margin: 20px 0; padding: 16px 20px; background: #f7f5f2; border-radius: 8px; }
+  .mr-proposal__event-row dt { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #888; margin: 0; }
+  .mr-proposal__event-row dd { margin: 2px 0 0; font-size: 15px; }
   .mr-proposal__description { margin: 20px 0; line-height: 1.6; }
+  .mr-proposal__section { margin: 24px 0; }
+  .mr-proposal__section h3 { margin: 0 0 8px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .mr-proposal__section-body { line-height: 1.6; }
+  .mr-proposal__section--notes { padding: 16px 20px; background: #fbf8f3; border-left: 3px solid #c9a15a; border-radius: 4px; }
   .mr-proposal__gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-top: 24px; }
   .mr-proposal__thumb { border: 0; padding: 0; background: none; cursor: zoom-in; border-radius: 8px; overflow: hidden; aspect-ratio: 4 / 3; display: block; width: 100%; }
   .mr-proposal__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.2s ease; }

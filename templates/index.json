@@ -499,6 +499,9 @@
         "text_EdwmCX",
         "button_xxJR8A"
       ],
+      "custom_css": [
+        ".image-with-text__heading { font-size: 46.8px !important; }"
+      ],
       "settings": {
         "color_scheme_main": "",
         "image": "shopify://shop_images/Rafter_M_Hat_Company-14.png",
@@ -572,6 +575,9 @@
         "heading_4TXyWn",
         "text_adXeGi",
         "button_EpYNxQ"
+      ],
+      "custom_css": [
+        ".image-with-text__heading { font-size: 46.8px !important; }"
       ],
       "settings": {
         "color_scheme_main": "",

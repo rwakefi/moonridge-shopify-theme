@@ -147,8 +147,8 @@
         "button_2_link": "shopify://pages/legendary-brands",
         "button_3_text": "Shop now",
         "button_3_link": "shopify://collections/hats-for-everyone",
-        "button_4_text": "Book a fitting",
-        "button_4_link": "shopify://pages/book-moonridge",
+        "button_4_text": "Book a Free Fitting",
+        "button_4_link": "https://moonridgecompany.setmore.com",
         "rotation_interval": 7000
       }
     },

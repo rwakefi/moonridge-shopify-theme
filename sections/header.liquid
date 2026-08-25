@@ -585,6 +585,42 @@
     visibility: visible;
     bottom: -20px;
   }
+
+  /* Mobile: drop the podcast badge and the empty header row it sat in.
+     Brand switcher already has menu, search, and cart. Keep the drawer in
+     the DOM so the hamburger still opens it. */
+  @media screen and (max-width: 749px) {
+    .header .header__icon--podcast {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .header {
+      min-height: 0 !important;
+      height: 0 !important;
+      padding: 0 !important;
+      overflow: visible !important;
+    }
+
+    .header__icons,
+    .header__heading,
+    .header__heading--with-cta {
+      display: none !important;
+    }
+
+    .section-header,
+    #shopify-section-header,
+    #shopify-section-header .header-wrapper {
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+  }
 {%- endstyle -%}
 
 <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>

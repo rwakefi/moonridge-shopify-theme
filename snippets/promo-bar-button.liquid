@@ -1,0 +1,27 @@
+{%- comment -%}
+  Renders one toolbar button.
+  Setmore links open the in-page embed on desktop; mobile still goes to the booking URL.
+{%- endcomment -%}
+{%- liquid
+  assign promo_label = label | strip
+  assign promo_link = link | default: ''
+  assign use_embed = embed | default: false
+-%}
+{%- if promo_label != blank -%}
+  {%- if use_embed -%}
+    <a class="rm-promo-bar__btn rm-promo-bar__btn--mobile-nav" href="{{ promo_link }}">{{ promo_label | escape }}</a>
+    <button
+      type="button"
+      class="rm-promo-bar__btn rm-promo-bar__btn--desktop-embed anywhere-book-now-button"
+      id="Anywhere_button_iframe"
+      data-booking-url="{{ promo_link | escape }}"
+      data-new-tab="false"
+    >
+      {{ promo_label | escape }}
+    </button>
+  {%- elsif promo_link != blank -%}
+    <a class="rm-promo-bar__btn" href="{{ promo_link }}">{{ promo_label | escape }}</a>
+  {%- else -%}
+    <span class="rm-promo-bar__btn">{{ promo_label | escape }}</span>
+  {%- endif -%}
+{%- endif -%}

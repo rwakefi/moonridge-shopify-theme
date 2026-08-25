@@ -55,9 +55,31 @@
     overflow-wrap: break-word;
   }
 
-  a.rm-promo-bar__btn:hover {
+  a.rm-promo-bar__btn:hover,
+  button.rm-promo-bar__btn:hover {
     border-color: #9c7a52;
     color: var(--promo-ink);
+  }
+
+  button.rm-promo-bar__btn {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .rm-promo-bar__btn--desktop-embed {
+    display: none !important;
+  }
+
+  @media screen and (min-width: 750px) {
+    .rm-promo-bar__btn--mobile-nav {
+      display: none !important;
+    }
+
+    .rm-promo-bar__btn--desktop-embed {
+      display: flex !important;
+    }
   }
 
   @media screen and (max-width: 749px) {
@@ -205,7 +227,12 @@
     assign b2_text = section.settings.button_2_text | strip
     assign b3_text = section.settings.button_3_text | strip
     assign b4_text = section.settings.button_4_text | strip
+    assign b1_link = section.settings.button_1_link
+    assign b2_link = section.settings.button_2_link
+    assign b3_link = section.settings.button_3_link
+    assign b4_link = section.settings.button_4_link
     assign promo_count = 0
+    assign embed_given = false
     if b1_text != blank
       assign promo_count = promo_count | plus: 1
     endif
@@ -223,35 +250,50 @@
     <div class="rm-promo-bar" role="navigation" aria-label="Store highlights">
       <div class="rm-promo-bar__grid" data-count="{{ promo_count }}">
         {%- if b1_text != blank -%}
-          {%- if section.settings.button_1_link != blank -%}
-            <a class="rm-promo-bar__btn" href="{{ section.settings.button_1_link }}">{{ b1_text | escape }}</a>
-          {%- else -%}
-            <span class="rm-promo-bar__btn">{{ b1_text | escape }}</span>
-          {%- endif -%}
+          {%- liquid
+            assign use_embed = false
+            if b1_link contains 'setmore.com' and embed_given == false
+              assign use_embed = true
+              assign embed_given = true
+            endif
+          -%}
+          {% render 'promo-bar-button', label: b1_text, link: b1_link, embed: use_embed %}
         {%- endif -%}
         {%- if b2_text != blank -%}
-          {%- if section.settings.button_2_link != blank -%}
-            <a class="rm-promo-bar__btn" href="{{ section.settings.button_2_link }}">{{ b2_text | escape }}</a>
-          {%- else -%}
-            <span class="rm-promo-bar__btn">{{ b2_text | escape }}</span>
-          {%- endif -%}
+          {%- liquid
+            assign use_embed = false
+            if b2_link contains 'setmore.com' and embed_given == false
+              assign use_embed = true
+              assign embed_given = true
+            endif
+          -%}
+          {% render 'promo-bar-button', label: b2_text, link: b2_link, embed: use_embed %}
         {%- endif -%}
         {%- if b3_text != blank -%}
-          {%- if section.settings.button_3_link != blank -%}
-            <a class="rm-promo-bar__btn" href="{{ section.settings.button_3_link }}">{{ b3_text | escape }}</a>
-          {%- else -%}
-            <span class="rm-promo-bar__btn">{{ b3_text | escape }}</span>
-          {%- endif -%}
+          {%- liquid
+            assign use_embed = false
+            if b3_link contains 'setmore.com' and embed_given == false
+              assign use_embed = true
+              assign embed_given = true
+            endif
+          -%}
+          {% render 'promo-bar-button', label: b3_text, link: b3_link, embed: use_embed %}
         {%- endif -%}
         {%- if b4_text != blank -%}
-          {%- if section.settings.button_4_link != blank -%}
-            <a class="rm-promo-bar__btn" href="{{ section.settings.button_4_link }}">{{ b4_text | escape }}</a>
-          {%- else -%}
-            <span class="rm-promo-bar__btn">{{ b4_text | escape }}</span>
-          {%- endif -%}
+          {%- liquid
+            assign use_embed = false
+            if b4_link contains 'setmore.com' and embed_given == false
+              assign use_embed = true
+              assign embed_given = true
+            endif
+          -%}
+          {% render 'promo-bar-button', label: b4_text, link: b4_link, embed: use_embed %}
         {%- endif -%}
       </div>
     </div>
+    {%- if embed_given -%}
+      <script id="anywhere_book_now_script" src="https://assets.setmore.com/integration/book-now/live/v1/anywhere-book-now.js" defer="defer"></script>
+    {%- endif -%}
   {%- endif -%}
 {%- elsif section.blocks.size > 0 -%}
   <div class="rm-announcement-bar" id="rm-announcement-{{ section.id }}" role="region" aria-label="Store announcements">

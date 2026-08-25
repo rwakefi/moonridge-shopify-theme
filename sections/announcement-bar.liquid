@@ -285,7 +285,7 @@
     </div>
   </div>
 {%- elsif section.blocks.size > 0 -%}
-  <div class="rm-announcement-bar" role="region" aria-label="Store announcements">
+  <div class="rm-announcement-bar" id="rm-announcement-{{ section.id }}" role="region" aria-label="Store announcements">
     <div class="rm-announcement-bar-inner">
       {% if section.blocks.size > 1 %}
         <button
@@ -380,10 +380,10 @@
       "id": "layout",
       "label": "Layout",
       "options": [
-        { "value": "three_column", "label": "Three columns" },
-        { "value": "rotating", "label": "Rotating messages" }
+        { "value": "rotating", "label": "Rotating messages" },
+        { "value": "three_column", "label": "Three columns" }
       ],
-      "default": "three_column"
+      "default": "rotating"
     },
     {
       "type": "header",
@@ -456,7 +456,14 @@
   ],
   "max_blocks": 6,
   "presets": [
-    { "name": "Announcement bar" }
+    {
+      "name": "Announcement bar",
+      "settings": { "layout": "rotating" }
+    },
+    {
+      "name": "Three-column strip",
+      "settings": { "layout": "three_column" }
+    }
   ]
 }
 {% endschema %}

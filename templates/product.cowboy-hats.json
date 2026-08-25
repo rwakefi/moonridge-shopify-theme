@@ -26,12 +26,6 @@
             "title_size": 31
           }
         },
-        "description": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "{% render 'product-description-rest' %}"
-          }
-        },
         "price": {
           "type": "price",
           "settings": {
@@ -53,6 +47,16 @@
           "type": "variant_picker",
           "settings": {
             "picker_type": "dropdown"
+          }
+        },
+        "collapsible_tab_Rz9b6j": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Sizing Chart and Instructions",
+            "icon": "ruler",
+            "content": "<p><strong>See the video below for a step-by-step guide.</strong></p><p>Take a tape measure (a sewing tape measure works best, but not required).</p><p>Rest the tape approximately two fingers above your brow (about 1½\") and about ⅛\" above the ear. Right where the hat band would normally sit.</p><p>Tape should be firm but not tight. It should wrap straight across your mid-forehead.</p><p>Make sure it stays level all the way around your head (not dipping down behind your ears).</p><p>Check the sizing chart below.</p><p>If you are in between sizes, go with the bigger size.</p><p>We include sizers with every purchase that will help you make a hat that's a little too big fit.</p><p><strong>Any questions, <a href=\"https://moonridgecompany.setmore.com/book?step=time-slot&amp;products=4c5326cf-669f-46b6-99b4-df0cf4879ff1&amp;type=service&amp;staff=b46a1912-32ef-4cd6-834a-37ed5e54da82&amp;staffSelected=true\" target=\"_blank\" rel=\"noopener\">Book a Free virtual consultation</a> and we will be happy to help you!</strong></p>",
+            "page": "",
+            "image": "shopify://shop_images/Sizing_Chart_1200_x_400_px_47c23ba6-ea0f-4441-9dc5-8389c372974d.svg"
           }
         },
         "inventory_status_nPFgBc": {
@@ -121,25 +125,25 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
+            "show_trust_copy": true,
+            "trust_copy": "In-store or shipping nationwide. Authorized heritage dealer in Fayetteville, AR.",
+            "enable_low_stock_notice": false,
+            "low_stock_threshold": 5,
+            "conversion_reassurance": "Need help choosing your size? Contact us for a guided fit recommendation.",
             "show_dynamic_checkout": false,
-            "show_gift_card_recipient": true,
-            "enable_low_stock_notice": false
+            "show_gift_card_recipient": true
           }
         },
-        "collapsible_tab_Rz9b6j": {
-          "type": "collapsible_tab",
+        "description": {
+          "type": "custom_liquid",
           "settings": {
-            "heading": "Sizing Chart and Instructions",
-            "icon": "ruler",
-            "content": "<p><strong>See the video below for a step-by-step guide.</strong></p><p>Take a tape measure (a sewing tape measure works best, but not required).</p><p>Rest the tape approximately two fingers above your brow (about 1½\") and about ⅛\" above the ear. Right where the hat band would normally sit.</p><p>Tape should be firm but not tight. It should wrap straight across your mid-forehead.</p><p>Make sure it stays level all the way around your head (not dipping down behind your ears).</p><p>Check the sizing chart below.</p><p>If you are in between sizes, go with the bigger size.</p><p>We include sizers with every purchase that will help you make a hat that's a little too big fit.</p><p><strong>Any questions, <a href=\"https://moonridgecompany.setmore.com/book?step=time-slot&amp;products=4c5326cf-669f-46b6-99b4-df0cf4879ff1&amp;type=service&amp;staff=b46a1912-32ef-4cd6-834a-37ed5e54da82&amp;staffSelected=true\" target=\"_blank\" rel=\"noopener\">Book a Free virtual consultation</a> and we will be happy to help you!</strong></p>",
-            "page": "",
-            "image": "shopify://shop_images/Sizing_Chart_1200_x_400_px_47c23ba6-ea0f-4441-9dc5-8389c372974d.svg"
+            "custom_liquid": "{% render 'product-description-rest' %}"
           }
         },
         "image_mCjNUw": {
           "type": "image",
-          "disabled": true,
           "name": "Size Chart",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Sizing_Chart_1200_x_400_px_47c23ba6-ea0f-4441-9dc5-8389c372974d.svg",
             "image_size": 100,
@@ -296,6 +300,7 @@
         "description_style": "body",
         "collection": "hats-for-everyone",
         "products_to_show": 4,
+        "hide_sold_out": true,
         "columns_desktop": 4,
         "full_width": false,
         "show_view_all": true,
@@ -339,6 +344,26 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "17876160701dae8c93": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_Y4n3fm": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_Y4n3fm"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
@@ -351,6 +376,7 @@
     "176231046480df76ea",
     "video_Wz6Tx7",
     "featured_collection_xLGdKg",
-    "related-products"
+    "related-products",
+    "17876160701dae8c93"
   ]
 }

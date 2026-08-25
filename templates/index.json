@@ -514,7 +514,7 @@
         "margin_top": 0,
         "margin_bottom": 0,
         "padding_top": 24,
-        "padding_bottom": 24
+        "padding_bottom": 8
       }
     },
     "rich_text_Mw4cQJ": {
@@ -549,7 +549,7 @@
           "type": "heading",
           "settings": {
             "heading": "WOMEN'S HATS",
-            "heading_size": "h1"
+            "heading_size": "h0"
           }
         },
         "text_adXeGi": {
@@ -587,7 +587,7 @@
         "mobile_content_alignment": "center",
         "margin_top": 0,
         "margin_bottom": 0,
-        "padding_top": 24,
+        "padding_top": 8,
         "padding_bottom": 24
       }
     },

@@ -8,124 +8,78 @@
     color: inherit !important;
   }
 
-  .rm-split-bar {
-    --split-ink: #312110;
-    --split-tan: #9c7a52;
-    --split-gold: #c5a059;
-    --split-cream: #faf8f5;
-    --split-band: #f4efe8;
-    --split-floor: 12px;
-    color: var(--split-ink);
-    background: var(--split-band);
-    border-top: 1px solid rgba(197, 160, 89, 0.45);
-    border-bottom: 1px solid rgba(197, 160, 89, 0.45);
+  .rm-promo-bar {
+    --promo-ink: #312110;
+    --promo-gold: #c5a059;
+    --promo-cream: #faf8f5;
+    --promo-floor: 12px;
+    background: #ffffff;
+    padding: 0.5rem 1.2rem 0.6rem;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
 
-  .rm-split-bar__grid {
+  .rm-promo-bar__grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) minmax(0, 1fr);
-    align-items: stretch;
+    gap: 0.7rem;
     width: 100%;
-    min-height: 5.2rem;
+    align-items: stretch;
   }
 
-  .rm-split-bar__col {
+  .rm-promo-bar__grid[data-count="1"] { grid-template-columns: 1fr; }
+  .rm-promo-bar__grid[data-count="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rm-promo-bar__grid[data-count="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .rm-promo-bar__grid[data-count="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  .rm-promo-bar__btn {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 1rem 1.6rem;
-    min-width: 0;
-  }
-
-  .rm-split-bar__col--center {
-    position: relative;
-  }
-
-  .rm-split-bar__center {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: center;
-    gap: 0.35rem 0.45rem;
-    min-width: 0;
+    min-height: 3.4rem;
+    padding: 0.55rem 0.9rem;
     margin: 0;
-  }
-
-  .rm-split-bar__col--center::before,
-  .rm-split-bar__col--center::after {
-    content: '';
-    position: absolute;
-    top: 18%;
-    bottom: 18%;
-    width: 1px;
-    background: rgba(197, 160, 89, 0.72);
-  }
-
-  .rm-split-bar__col--center::before { left: 0; }
-  .rm-split-bar__col--center::after { right: 0; }
-
-  .rm-split-bar__label,
-  .rm-split-bar__lead,
-  .rm-split-bar__cta {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(49, 33, 16, 0.04) 100%),
+      var(--promo-cream);
+    border: 1px solid var(--promo-gold);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+    color: var(--promo-ink);
     font-family: var(--font-heading-family, Jost, sans-serif);
-    font-size: max(var(--split-floor), 1.3rem);
+    font-size: max(var(--promo-floor), 1.2rem);
     font-weight: 500;
-    line-height: 1.25;
     letter-spacing: 0.08em;
+    line-height: 1.2;
     text-transform: uppercase;
-    color: var(--split-ink);
-    margin: 0;
+    text-decoration: none;
     overflow-wrap: break-word;
   }
 
-  .rm-split-bar__highlight {
-    font-family: var(--font-heading-family, Jost, sans-serif);
-    font-size: max(1.6rem, 2.2rem);
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--split-tan);
+  a.rm-promo-bar__btn:hover {
+    border-color: #9c7a52;
+    color: var(--promo-ink);
   }
 
-  .rm-split-bar a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .rm-split-bar__cta {
-    text-decoration: underline;
-    text-underline-offset: 0.22em;
-    text-decoration-thickness: 1px;
-    text-decoration-color: var(--split-gold);
-  }
-
-  /* Mobile: never drop below 12px — matches the reference floor */
   @media screen and (max-width: 749px) {
-    .rm-split-bar__grid {
-      min-height: 4.8rem;
+    .rm-promo-bar {
+      padding: 0.45rem 0.7rem 0.55rem;
     }
 
-    .rm-split-bar__col {
-      padding: 0.85rem 0.55rem;
+    .rm-promo-bar__grid {
+      gap: 0.5rem;
     }
 
-    .rm-split-bar__label,
-    .rm-split-bar__lead,
-    .rm-split-bar__cta {
-      font-size: var(--split-floor);
+    .rm-promo-bar__grid[data-count="2"],
+    .rm-promo-bar__grid[data-count="3"],
+    .rm-promo-bar__grid[data-count="4"] {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .rm-promo-bar__btn {
+      min-height: 3.2rem;
+      padding: 0.5rem 0.55rem;
+      font-size: var(--promo-floor);
       letter-spacing: 0.05em;
-    }
-
-    .rm-split-bar__highlight {
-      font-size: max(var(--split-floor), 1.6rem);
-    }
-
-    .rm-split-bar__center {
-      gap: 0.2rem 0.35rem;
     }
   }
 
@@ -247,43 +201,58 @@
 
 {%- if section.settings.layout == 'three_column' -%}
   {%- liquid
-    assign left_text = section.settings.left_text | default: "Arkansas's Original Hat Bar"
-    assign center_before = section.settings.center_before | default: 'Legendary Brands.'
-    assign center_highlight = section.settings.center_highlight | default: 'Fitted.'
-    assign center_after = section.settings.center_after | default: 'Personalized.'
-    assign right_text = section.settings.right_text | default: 'Shop now'
+    assign b1_text = section.settings.button_1_text | strip
+    assign b2_text = section.settings.button_2_text | strip
+    assign b3_text = section.settings.button_3_text | strip
+    assign b4_text = section.settings.button_4_text | strip
+    assign promo_count = 0
+    if b1_text != blank
+      assign promo_count = promo_count | plus: 1
+    endif
+    if b2_text != blank
+      assign promo_count = promo_count | plus: 1
+    endif
+    if b3_text != blank
+      assign promo_count = promo_count | plus: 1
+    endif
+    if b4_text != blank
+      assign promo_count = promo_count | plus: 1
+    endif
   -%}
-  <div class="rm-split-bar" role="region" aria-label="Store highlights">
-    <div class="rm-split-bar__grid">
-      <div class="rm-split-bar__col rm-split-bar__col--left">
-        {%- if section.settings.left_link != blank -%}
-          <a class="rm-split-bar__label" href="{{ section.settings.left_link }}">{{ left_text | escape }}</a>
-        {%- else -%}
-          <p class="rm-split-bar__label">{{ left_text | escape }}</p>
+  {%- if promo_count > 0 -%}
+    <div class="rm-promo-bar" role="navigation" aria-label="Store highlights">
+      <div class="rm-promo-bar__grid" data-count="{{ promo_count }}">
+        {%- if b1_text != blank -%}
+          {%- if section.settings.button_1_link != blank -%}
+            <a class="rm-promo-bar__btn" href="{{ section.settings.button_1_link }}">{{ b1_text | escape }}</a>
+          {%- else -%}
+            <span class="rm-promo-bar__btn">{{ b1_text | escape }}</span>
+          {%- endif -%}
         {%- endif -%}
-      </div>
-      <div class="rm-split-bar__col rm-split-bar__col--center">
-        <p class="rm-split-bar__center">
-          {%- if center_before != blank -%}
-            <span class="rm-split-bar__lead">{{ center_before | escape }}</span>
+        {%- if b2_text != blank -%}
+          {%- if section.settings.button_2_link != blank -%}
+            <a class="rm-promo-bar__btn" href="{{ section.settings.button_2_link }}">{{ b2_text | escape }}</a>
+          {%- else -%}
+            <span class="rm-promo-bar__btn">{{ b2_text | escape }}</span>
           {%- endif -%}
-          {%- if center_highlight != blank -%}
-            <span class="rm-split-bar__highlight">{{ center_highlight | escape }}</span>
+        {%- endif -%}
+        {%- if b3_text != blank -%}
+          {%- if section.settings.button_3_link != blank -%}
+            <a class="rm-promo-bar__btn" href="{{ section.settings.button_3_link }}">{{ b3_text | escape }}</a>
+          {%- else -%}
+            <span class="rm-promo-bar__btn">{{ b3_text | escape }}</span>
           {%- endif -%}
-          {%- if center_after != blank -%}
-            <span class="rm-split-bar__lead">{{ center_after | escape }}</span>
+        {%- endif -%}
+        {%- if b4_text != blank -%}
+          {%- if section.settings.button_4_link != blank -%}
+            <a class="rm-promo-bar__btn" href="{{ section.settings.button_4_link }}">{{ b4_text | escape }}</a>
+          {%- else -%}
+            <span class="rm-promo-bar__btn">{{ b4_text | escape }}</span>
           {%- endif -%}
-        </p>
-      </div>
-      <div class="rm-split-bar__col rm-split-bar__col--right">
-        {%- if section.settings.right_link != blank -%}
-          <a class="rm-split-bar__cta" href="{{ section.settings.right_link }}">{{ right_text | escape }}</a>
-        {%- else -%}
-          <p class="rm-split-bar__cta">{{ right_text | escape }}</p>
         {%- endif -%}
       </div>
     </div>
-  </div>
+  {%- endif -%}
 {%- elsif section.blocks.size > 0 -%}
   <div class="rm-announcement-bar" id="rm-announcement-{{ section.id }}" role="region" aria-label="Store announcements">
     <div class="rm-announcement-bar-inner">
@@ -299,19 +268,21 @@
 
       <div class="rm-announcement-track">
         {% for block in section.blocks %}
-          <div
-            class="rm-announcement-slide{% if forloop.first %} is-active{% endif %}"
-            data-index="{{ forloop.index0 }}"
-            {{ block.shopify_attributes }}
-          >
-            {% if block.settings.link != blank %}
-              <a href="{{ block.settings.link }}" class="rm-announcement-text rm-announcement-link">
-                {{ block.settings.text | escape }}
-              </a>
-            {% else %}
-              <span class="rm-announcement-text">{{ block.settings.text | escape }}</span>
-            {% endif %}
-          </div>
+          {%- if block.settings.text != blank -%}
+            <div
+              class="rm-announcement-slide{% if forloop.first %} is-active{% endif %}"
+              data-index="{{ forloop.index0 }}"
+              {{ block.shopify_attributes }}
+            >
+              {% if block.settings.link != blank %}
+                <a href="{{ block.settings.link }}" class="rm-announcement-text rm-announcement-link">
+                  {{ block.settings.text | escape }}
+                </a>
+              {% else %}
+                <span class="rm-announcement-text">{{ block.settings.text | escape }}</span>
+              {% endif %}
+            </div>
+          {%- endif -%}
         {% endfor %}
       </div>
 
@@ -365,7 +336,7 @@
       const prevBtn = bar.querySelector('.rm-announcement-arrow--prev');
       if (nextBtn) nextBtn.addEventListener('click', () => { next(); resetLoop(); });
       if (prevBtn) prevBtn.addEventListener('click', () => { prev(); resetLoop(); });
-      startLoop();
+      if (slides.length > 1) startLoop();
     });
   </script>
 {%- endif -%}
@@ -381,53 +352,57 @@
       "label": "Layout",
       "options": [
         { "value": "rotating", "label": "Rotating messages" },
-        { "value": "three_column", "label": "Three columns" }
+        { "value": "three_column", "label": "Button strip" }
       ],
       "default": "rotating"
     },
     {
       "type": "header",
-      "content": "Three columns"
+      "content": "Button strip"
+    },
+    {
+      "type": "paragraph",
+      "content": "Leave a label blank to hide that button. Clearing a field will not fall back to old copy."
     },
     {
       "type": "text",
-      "id": "left_text",
-      "label": "Left text",
-      "default": "Arkansas's Original Hat Bar"
+      "id": "button_1_text",
+      "label": "Button 1 label"
     },
     {
       "type": "url",
-      "id": "left_link",
-      "label": "Left link"
+      "id": "button_1_link",
+      "label": "Button 1 link"
     },
     {
       "type": "text",
-      "id": "center_before",
-      "label": "Center — before",
-      "default": "Legendary Brands."
-    },
-    {
-      "type": "text",
-      "id": "center_highlight",
-      "label": "Center — highlight",
-      "default": "Fitted."
-    },
-    {
-      "type": "text",
-      "id": "center_after",
-      "label": "Center — after",
-      "default": "Personalized."
-    },
-    {
-      "type": "text",
-      "id": "right_text",
-      "label": "Right text",
-      "default": "Shop now"
+      "id": "button_2_text",
+      "label": "Button 2 label"
     },
     {
       "type": "url",
-      "id": "right_link",
-      "label": "Right link"
+      "id": "button_2_link",
+      "label": "Button 2 link"
+    },
+    {
+      "type": "text",
+      "id": "button_3_text",
+      "label": "Button 3 label"
+    },
+    {
+      "type": "url",
+      "id": "button_3_link",
+      "label": "Button 3 link"
+    },
+    {
+      "type": "text",
+      "id": "button_4_text",
+      "label": "Button 4 label"
+    },
+    {
+      "type": "url",
+      "id": "button_4_link",
+      "label": "Button 4 link"
     },
     {
       "type": "header",
@@ -461,7 +436,7 @@
       "settings": { "layout": "rotating" }
     },
     {
-      "name": "Three-column strip",
+      "name": "Button strip",
       "settings": { "layout": "three_column" }
     }
   ]

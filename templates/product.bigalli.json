@@ -35,8 +35,8 @@
             "title_size": 31
           }
         },
-        "description": {
-          "type": "description",
+        "judge_me_reviews_preview_badge_KrbRxR": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
         },
         "price": {
@@ -92,16 +92,18 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
+            "show_trust_copy": true,
+            "trust_copy": "In-store or shipping nationwide. Authorized heritage dealer in Fayetteville, AR.",
+            "enable_low_stock_notice": false,
+            "low_stock_threshold": 5,
+            "conversion_reassurance": "Need help choosing your size? Contact us for a guided fit recommendation.",
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": true
           }
         },
-        "avada_upsell_app_badge_v2_block_n37Aer": {
-          "type": "shopify://apps/avada-boost-sales-trust-badge/blocks/app-badge-v2-block/45454b7f-f6a7-4852-b770-8e0c3992a226",
-          "disabled": true,
-          "settings": {
-            "badge_id": "AVD-50308937"
-          }
+        "description": {
+          "type": "description",
+          "settings": {}
         },
         "payment_GNLD3k": {
           "type": "payment",
@@ -117,6 +119,7 @@
       "block_order": [
         "vendor",
         "title",
+        "judge_me_reviews_preview_badge_KrbRxR",
         "price",
         "buy_summary",
         "variant_picker",
@@ -124,7 +127,6 @@
         "quantity_selector",
         "buy_buttons",
         "description",
-        "avada_upsell_app_badge_v2_block_n37Aer",
         "payment_GNLD3k",
         "share"
       ],
@@ -146,6 +148,26 @@
         "padding_bottom": 76
       }
     },
+    "178761689551135011": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_PtkkHX": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_PtkkHX"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
     "featured_collection_xLGdKg": {
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
@@ -156,6 +178,7 @@
         "description_style": "body",
         "collection": "hats-for-everyone",
         "products_to_show": 4,
+        "hide_sold_out": true,
         "columns_desktop": 4,
         "full_width": false,
         "show_view_all": true,
@@ -203,6 +226,7 @@
   "order": [
     "breadcrumbs_JDDDX8",
     "main",
+    "178761689551135011",
     "featured_collection_xLGdKg",
     "related-products"
   ]

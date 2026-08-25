@@ -35,6 +35,10 @@
             "title_size": 31
           }
         },
+        "judge_me_reviews_preview_badge_w8RJzM": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
         "description": {
           "type": "description",
           "settings": {}
@@ -64,6 +68,11 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
+            "show_trust_copy": true,
+            "trust_copy": "In-store or shipping nationwide. Authorized heritage dealer in Fayetteville, AR.",
+            "enable_low_stock_notice": false,
+            "low_stock_threshold": 5,
+            "conversion_reassurance": "Need help choosing your size? Contact us for a guided fit recommendation.",
             "show_dynamic_checkout": true,
             "show_gift_card_recipient": true
           }
@@ -83,6 +92,7 @@
       "block_order": [
         "vendor",
         "title",
+        "judge_me_reviews_preview_badge_w8RJzM",
         "description",
         "price",
         "variant_picker",
@@ -109,6 +119,26 @@
         "padding_bottom": 76
       }
     },
+    "1787617012d769763c": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_97jtQK": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_97jtQK"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -133,6 +163,7 @@
   "order": [
     "breadcrumbs_JDDDX8",
     "main",
+    "1787617012d769763c",
     "related-products"
   ]
 }

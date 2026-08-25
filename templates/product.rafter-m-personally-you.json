@@ -27,6 +27,10 @@
             "title_size": 31
           }
         },
+        "judge_me_reviews_preview_badge_mE7fhJ": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
         "text_FKhTbi": {
           "type": "text",
           "settings": {
@@ -69,15 +73,13 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
+            "show_trust_copy": true,
+            "trust_copy": "In-store or shipping nationwide. Authorized heritage dealer in Fayetteville, AR.",
+            "enable_low_stock_notice": false,
+            "low_stock_threshold": 5,
+            "conversion_reassurance": "Need help choosing your size? Contact us for a guided fit recommendation.",
             "show_dynamic_checkout": true,
             "show_gift_card_recipient": true
-          }
-        },
-        "avada_upsell_app_badge_v2_block_n37Aer": {
-          "type": "shopify://apps/avada-boost-sales-trust-badge/blocks/app-badge-v2-block/45454b7f-f6a7-4852-b770-8e0c3992a226",
-          "disabled": true,
-          "settings": {
-            "badge_id": "AVD-50308937"
           }
         },
         "payment_GNLD3k": {
@@ -94,6 +96,7 @@
       },
       "block_order": [
         "title",
+        "judge_me_reviews_preview_badge_mE7fhJ",
         "text_FKhTbi",
         "description",
         "price",
@@ -101,7 +104,6 @@
         "quantity_selector",
         "vendor",
         "buy_buttons",
-        "avada_upsell_app_badge_v2_block_n37Aer",
         "payment_GNLD3k",
         "share"
       ],
@@ -121,6 +123,26 @@
         "enable_video_looping": true,
         "padding_top": 24,
         "padding_bottom": 76
+      }
+    },
+    "1787616990186ab6fa": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_ULX6PH": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_ULX6PH"
+      ],
+      "settings": {
+        "include_margins": true
       }
     },
     "related-products": {
@@ -147,6 +169,7 @@
   "order": [
     "breadcrumbs_JDDDX8",
     "main",
+    "1787616990186ab6fa",
     "related-products"
   ]
 }

@@ -9,7 +9,11 @@
 
   Data model: metaobject type "proposal", fields:
     title (single line text)
-    customer (customer reference)
+    customer (customer reference — kept for admin reference only;
+      NOT readable from storefront Liquid due to Shopify's
+      customer-privacy restrictions, so it is not used for matching)
+    customer_id (single line text — the customer's numeric ID,
+      e.g. "31318527705392"; this is what actually gates the page)
     description (multi-line text)
     gallery_images (list of files)
     video_links (list of URLs — YouTube or Vimeo)
@@ -33,12 +37,10 @@
   {%- if customer -%}
     {%- assign found_any = false -%}
     {%- for proposal in shop.metaobjects.proposal.values -%}
-      {%- assign p_customer = proposal.fields.customer.value -%}
-      {%- assign p_customer_gid = "gid://shopify/Customer/" | append: customer.id -%}
+      {%- assign p_customer_id = proposal.fields.customer_id.value -%}
+      {%- assign current_customer_id = customer.id | append: "" -%}
       {%- assign p_is_match = false -%}
-      {%- if p_customer.id and p_customer.id == customer.id -%}
-        {%- assign p_is_match = true -%}
-      {%- elsif p_customer == p_customer_gid -%}
+      {%- if p_customer_id != blank and p_customer_id == current_customer_id -%}
         {%- assign p_is_match = true -%}
       {%- endif -%}
       {%- if p_is_match -%}

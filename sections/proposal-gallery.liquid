@@ -5,7 +5,9 @@
   Renders any "proposal" metaobject entries assigned to the
   currently logged-in customer (via the entry's Customer
   reference field). Logged-out visitors and customers with no
-  proposal assigned see nothing sensitive.
+  proposal assigned see nothing sensitive except, when a
+  "Featured proposal" is assigned in this section's settings,
+  the event name in the sign-in heading.
 
   Data model: metaobject type "proposal", fields:
     title (single line text)
@@ -36,7 +38,9 @@
   deposit & payment → videos → terms & conditions.
 
   To create/edit a proposal: Shopify Admin → Content →
-  Metaobjects → Proposal → Add entry.
+  Metaobjects → Proposal → Add entry. Then assign it to this
+  page's section as the "Featured proposal" so the sign-in
+  screen shows that proposal's title before the customer logs in.
   ------------------------------------------------------------
 {% endcomment %}
 
@@ -239,8 +243,14 @@
     {%- endunless -%}
 
   {%- else -%}
+    {%- assign p_featured = section.settings.featured_proposal -%}
     <div class="mr-proposal__login">
-      <h2>{{ section.settings.login_title | default: "Sign in to view your proposal" }}</h2>
+      {%- if p_featured -%}
+        <p class="mr-proposal__login-eyebrow">Your Event Proposal:</p>
+        <h1 class="mr-proposal__login-title">{{ p_featured.title.value }}</h1>
+      {%- else -%}
+        <h2>{{ section.settings.login_title | default: "Sign in to view your proposal" }}</h2>
+      {%- endif -%}
       <p>{{ section.settings.login_message | default: "This proposal is private. Please log in with the account we set up for you." }}</p>
       <a class="mr-proposal__login-button" href="{{ routes.storefront_login_url }}">Log in</a>
     </div>
@@ -280,6 +290,8 @@
   .mr-proposal__video-frame { position: relative; padding-top: 56.25%; border-radius: 8px; overflow: hidden; }
   .mr-proposal__video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .mr-proposal__empty, .mr-proposal__login { text-align: center; padding: 60px 20px; }
+  .mr-proposal__login-eyebrow { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin: 0; }
+  .mr-proposal__login-title { margin: 6px 0 20px; font-size: 34px; }
   .mr-proposal__login-button { display: inline-block; margin-top: 16px; padding: 12px 28px; background: #212121; color: #fff; text-decoration: none; border-radius: 4px; }
   .mr-proposal__lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 30px; }
   .mr-proposal__lightbox[hidden] { display: none; }
@@ -319,6 +331,13 @@
   "name": "Proposal gallery",
   "settings": [
     {
+      "type": "metaobject_reference",
+      "id": "featured_proposal",
+      "metaobject_type": "proposal",
+      "label": "Featured proposal (pre-login heading)",
+      "info": "Shown as \"Your Event Proposal: [title]\" before the customer logs in. Leave blank to use the generic heading below."
+    },
+    {
       "type": "text",
       "id": "default_title",
       "label": "Fallback proposal title",
@@ -333,7 +352,7 @@
     {
       "type": "text",
       "id": "login_title",
-      "label": "Logged-out heading",
+      "label": "Logged-out heading (used when no featured proposal is set)",
       "default": "Sign in to view your proposal"
     },
     {

@@ -5,9 +5,8 @@
   Renders any "proposal" metaobject entries assigned to the
   currently logged-in customer (via the entry's Customer
   reference field). Logged-out visitors and customers with no
-  proposal assigned see nothing sensitive except, when a
-  "Featured proposal" is assigned in this section's settings,
-  the event name in the sign-in heading.
+  proposal assigned see nothing sensitive except the event name
+  in the sign-in heading (see "featured proposal" logic below).
 
   Data model: metaobject type "proposal", fields:
     title (single line text)
@@ -38,9 +37,15 @@
   deposit & payment → videos → terms & conditions.
 
   To create/edit a proposal: Shopify Admin → Content →
-  Metaobjects → Proposal → Add entry. Then assign it to this
-  page's section as the "Featured proposal" so the sign-in
-  screen shows that proposal's title before the customer logs in.
+  Metaobjects → Proposal → Add entry.
+
+  Pre-login heading ("Your Event Proposal: [title]"): uses this
+  section's "Featured proposal" setting if assigned; otherwise, if
+  there is exactly one proposal metaobject in the whole shop, uses
+  that one automatically. With two or more proposals and no setting
+  assigned, falls back to the generic "Sign in..." heading, since
+  there'd be no way to know which one to show an unauthenticated
+  visitor.
   ------------------------------------------------------------
 {% endcomment %}
 
@@ -244,6 +249,10 @@
 
   {%- else -%}
     {%- assign p_featured = section.settings.featured_proposal -%}
+    {%- assign all_proposals = shop.metaobjects.proposal.values -%}
+    {%- if p_featured == blank and all_proposals.size == 1 -%}
+      {%- assign p_featured = all_proposals.first -%}
+    {%- endif -%}
     <div class="mr-proposal__login">
       {%- if p_featured -%}
         <p class="mr-proposal__login-eyebrow">Your Event Proposal:</p>
@@ -335,7 +344,7 @@
       "id": "featured_proposal",
       "metaobject_type": "proposal",
       "label": "Featured proposal (pre-login heading)",
-      "info": "Shown as \"Your Event Proposal: [title]\" before the customer logs in. Leave blank to use the generic heading below."
+      "info": "Shown as \"Your Event Proposal: [title]\" before the customer logs in. Leave blank to auto-use the only proposal on file, or the generic heading below once there's more than one."
     },
     {
       "type": "text",

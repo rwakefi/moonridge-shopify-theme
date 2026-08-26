@@ -1,4 +1,3 @@
-{%- unless template.suffix == 'proposal' -%}
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
@@ -88,7 +87,6 @@
     }
   }
 </script>
-{%- endunless -%}
 
 {% schema %}
 {

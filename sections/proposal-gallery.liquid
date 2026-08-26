@@ -37,7 +37,7 @@
   {%- if customer -%}
     {%- assign found_any = false -%}
     {%- for proposal in shop.metaobjects.proposal.values -%}
-      {%- assign p_customer_id = proposal.fields.customer_id.value -%}
+      {%- assign p_customer_id = proposal.customer_id.value -%}
       {%- assign current_customer_id = customer.id | append: "" -%}
       {%- assign p_is_match = false -%}
       {%- if p_customer_id != blank and p_customer_id == current_customer_id -%}
@@ -45,20 +45,20 @@
       {%- endif -%}
       {%- if p_is_match -%}
         {%- assign found_any = true -%}
-        {%- assign p_title = proposal.fields.title.value -%}
-        {%- assign p_description = proposal.fields.description.value -%}
-        {%- assign p_status = proposal.fields.status.value -%}
-        {%- assign p_expires = proposal.fields.expires_on.value -%}
-        {%- assign p_images = proposal.fields.gallery_images.value -%}
-        {%- assign p_videos = proposal.fields.video_links.value -%}
-        {%- assign p_event_name = proposal.fields.event_name.value -%}
-        {%- assign p_event_date = proposal.fields.event_date.value -%}
-        {%- assign p_event_location = proposal.fields.event_location.value -%}
-        {%- assign p_guest_count = proposal.fields.guest_count.value -%}
-        {%- assign p_package_details = proposal.fields.package_details.value -%}
-        {%- assign p_pricing_summary = proposal.fields.pricing_summary.value -%}
-        {%- assign p_deposit_notes = proposal.fields.deposit_notes.value -%}
-        {%- assign p_contact_phone = proposal.fields.contact_phone.value -%}
+        {%- assign p_title = proposal.title.value -%}
+        {%- assign p_description = proposal.description.value -%}
+        {%- assign p_status = proposal.status.value -%}
+        {%- assign p_expires = proposal.expires_on.value -%}
+        {%- assign p_images = proposal.gallery_images.value -%}
+        {%- assign p_videos = proposal.video_links.value -%}
+        {%- assign p_event_name = proposal.event_name.value -%}
+        {%- assign p_event_date = proposal.event_date.value -%}
+        {%- assign p_event_location = proposal.event_location.value -%}
+        {%- assign p_guest_count = proposal.guest_count.value -%}
+        {%- assign p_package_details = proposal.package_details.value -%}
+        {%- assign p_pricing_summary = proposal.pricing_summary.value -%}
+        {%- assign p_deposit_notes = proposal.deposit_notes.value -%}
+        {%- assign p_contact_phone = proposal.contact_phone.value -%}
 
         <article class="mr-proposal__card">
           <header class="mr-proposal__header">

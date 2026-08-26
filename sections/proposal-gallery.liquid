@@ -16,13 +16,14 @@
       e.g. "31318527705392"; this is what actually gates the page)
     description (multi-line text)
     gallery_images (list of files)
-    video_links (list of URLs — YouTube or Vimeo)
+    video_link_1 (url — YouTube or Vimeo)
+    video_link_2 (url — YouTube or Vimeo)
     status (single line text, e.g. "Draft", "Sent", "Approved")
     expires_on (date)
     event_name (single line text)
     event_date (date)
     event_location (single line text)
-    guest_count (integer)
+    guest_count (integer — displayed as "Minimum guests")
     package_details (multi-line text)
     pricing_summary (multi-line text)
     deposit_notes (multi-line text)
@@ -56,7 +57,8 @@
         {%- assign p_status = proposal.status.value -%}
         {%- assign p_expires = proposal.expires_on.value -%}
         {%- assign p_images = proposal.gallery_images.value -%}
-        {%- assign p_videos = proposal.video_links.value -%}
+        {%- assign p_video_1 = proposal.video_link_1.value -%}
+        {%- assign p_video_2 = proposal.video_link_2.value -%}
         {%- assign p_event_name = proposal.event_name.value -%}
         {%- assign p_event_date = proposal.event_date.value -%}
         {%- assign p_event_location = proposal.event_location.value -%}
@@ -111,7 +113,7 @@
                 <div class="mr-proposal__event-row"><dt>Location</dt><dd>{{ p_event_location }}</dd></div>
               {%- endif -%}
               {%- if p_guest_count != blank -%}
-                <div class="mr-proposal__event-row"><dt>Expected guests</dt><dd>{{ p_guest_count }}</dd></div>
+                <div class="mr-proposal__event-row"><dt>Minimum guests</dt><dd>{{ p_guest_count }}</dd></div>
               {%- endif -%}
               {%- if p_contact_phone != blank -%}
                 <div class="mr-proposal__event-row"><dt>Your contact</dt><dd>{{ p_contact_phone }}</dd></div>
@@ -144,10 +146,10 @@
             </div>
           {%- endif -%}
 
-          {%- if p_videos.size > 0 -%}
+          {%- if p_video_1 != blank or p_video_2 != blank -%}
             <div class="mr-proposal__gallery mr-proposal__gallery--videos">
-              {%- for video_url in p_videos -%}
-                {%- assign video_url_string = video_url | strip -%}
+              {%- if p_video_1 != blank -%}
+                {%- assign video_url_string = p_video_1 | strip -%}
                 <div class="mr-proposal__video">
                   {%- if video_url_string contains 'youtube.com' or video_url_string contains 'youtu.be' -%}
                     {%- assign yt_id = '' -%}
@@ -180,7 +182,43 @@
                     <p class="mr-proposal__video-fallback"><a href="{{ video_url_string }}" target="_blank" rel="noopener">Watch video</a></p>
                   {%- endif -%}
                 </div>
-              {%- endfor -%}
+              {%- endif -%}
+
+              {%- if p_video_2 != blank -%}
+                {%- assign video_url_string = p_video_2 | strip -%}
+                <div class="mr-proposal__video">
+                  {%- if video_url_string contains 'youtube.com' or video_url_string contains 'youtu.be' -%}
+                    {%- assign yt_id = '' -%}
+                    {%- if video_url_string contains 'youtu.be/' -%}
+                      {%- assign yt_id = video_url_string | split: 'youtu.be/' | last | split: '?' | first | split: '&' | first -%}
+                    {%- elsif video_url_string contains 'v=' -%}
+                      {%- assign yt_id = video_url_string | split: 'v=' | last | split: '&' | first -%}
+                    {%- endif -%}
+                    <div class="mr-proposal__video-frame">
+                      <iframe
+                        src="https://www.youtube.com/embed/{{ yt_id }}"
+                        title="{{ p_title | escape }} video"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                  {%- elsif video_url_string contains 'vimeo.com' -%}
+                    {%- assign vimeo_id = video_url_string | split: 'vimeo.com/' | last | split: '?' | first -%}
+                    <div class="mr-proposal__video-frame">
+                      <iframe
+                        src="https://player.vimeo.com/video/{{ vimeo_id }}"
+                        title="{{ p_title | escape }} video"
+                        loading="lazy"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                  {%- else -%}
+                    <p class="mr-proposal__video-fallback"><a href="{{ video_url_string }}" target="_blank" rel="noopener">Watch video</a></p>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
             </div>
           {%- endif -%}
 

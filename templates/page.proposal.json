@@ -9,6 +9,10 @@
  */
 {
   "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
     "proposal-gallery": {
       "type": "proposal-gallery",
       "settings": {
@@ -20,6 +24,7 @@
     }
   },
   "order": [
+    "main",
     "proposal-gallery"
   ]
 }

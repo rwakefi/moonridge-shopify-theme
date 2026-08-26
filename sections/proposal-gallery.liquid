@@ -27,6 +27,8 @@
     pricing_summary (multi-line text)
     deposit_notes (multi-line text)
     contact_phone (single line text)
+    terms_conditions (multi-line text — standing legal terms /
+      stipulations, rendered as the last section of the proposal)
 
   To create/edit a proposal: Shopify Admin → Content →
   Metaobjects → Proposal → Add entry.
@@ -59,6 +61,7 @@
         {%- assign p_pricing_summary = proposal.pricing_summary.value -%}
         {%- assign p_deposit_notes = proposal.deposit_notes.value -%}
         {%- assign p_contact_phone = proposal.contact_phone.value -%}
+        {%- assign p_terms_conditions = proposal.terms_conditions.value -%}
 
         <article class="mr-proposal__card">
           <header class="mr-proposal__header">
@@ -172,6 +175,13 @@
               {%- endfor -%}
             </div>
           {%- endif -%}
+
+          {%- if p_terms_conditions != blank -%}
+            <div class="mr-proposal__section mr-proposal__section--terms">
+              <h3>Terms &amp; conditions</h3>
+              <div class="mr-proposal__section-body">{{ p_terms_conditions | newline_to_br }}</div>
+            </div>
+          {%- endif -%}
         </article>
       {%- endif -%}
     {%- endfor -%}
@@ -213,6 +223,8 @@
   .mr-proposal__section h3 { margin: 0 0 8px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.04em; }
   .mr-proposal__section-body { line-height: 1.6; }
   .mr-proposal__section--notes { padding: 16px 20px; background: #fbf8f3; border-left: 3px solid #c9a15a; border-radius: 4px; }
+  .mr-proposal__section--terms { margin-top: 40px; padding-top: 24px; border-top: 1px solid #e2ddd3; }
+  .mr-proposal__section--terms .mr-proposal__section-body { font-size: 13px; color: #6b6459; line-height: 1.7; }
   .mr-proposal__gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-top: 24px; }
   .mr-proposal__thumb { border: 0; padding: 0; background: none; cursor: zoom-in; border-radius: 8px; overflow: hidden; aspect-ratio: 4 / 3; display: block; width: 100%; }
   .mr-proposal__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.2s ease; }

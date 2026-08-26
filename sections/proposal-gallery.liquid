@@ -30,6 +30,10 @@
     terms_conditions (multi-line text — standing legal terms /
       stipulations, rendered as the last section of the proposal)
 
+  Layout order: title/status header → photo gallery → expires →
+  event details → description → what's included → pricing →
+  deposit & payment → videos → terms & conditions.
+
   To create/edit a proposal: Shopify Admin → Content →
   Metaobjects → Proposal → Add entry.
   ------------------------------------------------------------
@@ -70,6 +74,26 @@
               <span class="mr-proposal__status mr-proposal__status--{{ p_status | handleize }}">{{ p_status }}</span>
             {%- endif -%}
           </header>
+
+          {%- if p_images.size > 0 -%}
+            <div class="mr-proposal__gallery mr-proposal__gallery--photos">
+              {%- for file in p_images -%}
+                {%- if file.media_type == "image" or file.preview_image -%}
+                  <button type="button" class="mr-proposal__thumb" data-mr-lightbox-open data-full="{{ file | image_url: width: 1600 }}" aria-label="View photo full size">
+                    <img
+                      src="{{ file | image_url: width: 600 }}"
+                      srcset="{{ file | image_url: width: 400 }} 400w, {{ file | image_url: width: 800 }} 800w, {{ file | image_url: width: 1200 }} 1200w"
+                      sizes="(min-width: 750px) 33vw, 50vw"
+                      loading="lazy"
+                      alt="{{ file.alt | default: p_title | escape }}"
+                      width="{{ file.width }}"
+                      height="{{ file.height }}"
+                    >
+                  </button>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
 
           {%- if p_expires != blank -%}
             <p class="mr-proposal__expires">Valid through {{ p_expires | date: "%B %d, %Y" }}</p>
@@ -120,24 +144,8 @@
             </div>
           {%- endif -%}
 
-          {%- if p_images.size > 0 or p_videos.size > 0 -%}
-            <div class="mr-proposal__gallery">
-              {%- for file in p_images -%}
-                {%- if file.media_type == "image" or file.preview_image -%}
-                  <button type="button" class="mr-proposal__thumb" data-mr-lightbox-open data-full="{{ file | image_url: width: 1600 }}" aria-label="View photo full size">
-                    <img
-                      src="{{ file | image_url: width: 600 }}"
-                      srcset="{{ file | image_url: width: 400 }} 400w, {{ file | image_url: width: 800 }} 800w, {{ file | image_url: width: 1200 }} 1200w"
-                      sizes="(min-width: 750px) 33vw, 50vw"
-                      loading="lazy"
-                      alt="{{ file.alt | default: p_title | escape }}"
-                      width="{{ file.width }}"
-                      height="{{ file.height }}"
-                    >
-                  </button>
-                {%- endif -%}
-              {%- endfor -%}
-
+          {%- if p_videos.size > 0 -%}
+            <div class="mr-proposal__gallery mr-proposal__gallery--videos">
               {%- for video_url in p_videos -%}
                 {%- assign video_url_string = video_url | strip -%}
                 <div class="mr-proposal__video">

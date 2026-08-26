@@ -31,7 +31,7 @@
     terms_conditions (multi-line text — standing legal terms /
       stipulations, rendered as the last section of the proposal)
 
-  Layout order: title/status header → photo gallery → expires →
+  Layout order: photo gallery → title/status header → expires →
   event details → description → what's included → pricing →
   deposit & payment → videos → terms & conditions.
 
@@ -70,13 +70,6 @@
         {%- assign p_terms_conditions = proposal.terms_conditions.value -%}
 
         <article class="mr-proposal__card">
-          <header class="mr-proposal__header">
-            <h2 class="mr-proposal__title">{{ p_title | default: section.settings.default_title }}</h2>
-            {%- if p_status != blank -%}
-              <span class="mr-proposal__status mr-proposal__status--{{ p_status | handleize }}">{{ p_status }}</span>
-            {%- endif -%}
-          </header>
-
           {%- if p_images.size > 0 -%}
             <div class="mr-proposal__gallery mr-proposal__gallery--photos">
               {%- for file in p_images -%}
@@ -96,6 +89,13 @@
               {%- endfor -%}
             </div>
           {%- endif -%}
+
+          <header class="mr-proposal__header">
+            <h2 class="mr-proposal__title">{{ p_title | default: section.settings.default_title }}</h2>
+            {%- if p_status != blank -%}
+              <span class="mr-proposal__status mr-proposal__status--{{ p_status | handleize }}">{{ p_status }}</span>
+            {%- endif -%}
+          </header>
 
           {%- if p_expires != blank -%}
             <p class="mr-proposal__expires">Valid through {{ p_expires | date: "%B %d, %Y" }}</p>

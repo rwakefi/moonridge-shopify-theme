@@ -16,13 +16,19 @@ Articles are published in **Shopify Admin** (not theme Liquid). Each guide has:
 | Cowboy Hat Brim Shapes Explained | `cowboy-hat-brim-shapes` | Live |
 | Types of Straw in Straw Hats | `types-of-straw-in-straw-hats` | Live |
 
-## Already live
+## Also live
 
-- `/blogs/hat-education/understanding-the-x-rating-of-hats`
-- `/blogs/hat-education/how-to-clean-a-felt-hat`
-- `/blogs/hat-education/learn-your-head-shape`
-- `/blogs/hat-education/finding-the-style-that-fits-your-face`
-- `/pages/hat-sizing`
+| Guide | Handle | Notes |
+| --- | --- | --- |
+| Understanding the X-Rating of Hats | `understanding-the-x-rating-of-hats` | Live |
+| How to Clean a Felt Hat | `how-to-clean-a-felt-hat` | Live |
+| Learn Your Head Shape | `learn-your-head-shape` | Live |
+| Hat Styles for Your Face Shape | `finding-the-style-that-fits-your-face` | SEO H2 pass 2026-08-27 |
+| How to Store a Cowboy Hat | `how-to-store-a-cowboy-hat` | Live |
+| Felt Season vs. Straw Season | `felt-season-vs-straw-season` | SEO fields + template 2026-08-27 |
+| Hat sizing (page) | `/pages/hat-sizing` | Not a blog post |
+
+SEO audit: `content/seo/hat-education-seo-2026-08-27.md`
 
 ## Products on guides
 

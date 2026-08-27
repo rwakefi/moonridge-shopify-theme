@@ -444,6 +444,11 @@
     <div class="events-form-wrapper" id="event-inquiry-form">
       <h2 style="text-align: center; margin-bottom: 24px; font-family: var(--font-heading-family); font-size: 28px;">Inquire about Booking us for your next event</h2>
       {% form 'contact' %}
+        {%- comment -%}
+          First field in the merchant notification so the email body leads with Event Quote Request.
+          Inbox subject still comes from Settings → Notifications → Contact form.
+        {%- endcomment -%}
+        <input type="hidden" name="contact[Request Type]" value="Event Quote Request">
         {% if form.posted_successfully? %}
           <div class="form-status form-status-list form__message" tabindex="-1" autofocus style="color: green; text-align: center; margin-bottom: 16px;">
             Thanks for reaching out! We will get back to you soon.

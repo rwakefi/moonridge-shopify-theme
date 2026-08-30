@@ -4,8 +4,6 @@
   if pages['shop-hats'] != blank
     assign hub_url = pages['shop-hats'].url
   endif
-  assign hat_finder_url = 'https://hatfinder.moonridgecompany.com'
-  assign hat_finder_app_store_url = 'https://apps.apple.com/us/app/hat-finder/id6767718895?itscg=30200&itsct=apps_box_link&mttnsubad=6767718895'
 
 -%}
 
@@ -70,6 +68,15 @@
     </nav>
 
     <header class="he-article__hero">
+      <a class="he-article__mark" href="{{ routes.root_url }}">
+        <img
+          class="he-article__mark-img"
+          src="{{ 'moon-ridge-m-mark.png' | asset_url }}"
+          width="256"
+          height="256"
+          alt="Moon Ridge"
+        >
+      </a>
       <p class="he-article__eyebrow">Hat Education</p>
       <h1 class="he-article__title">{{ article.title | escape }}</h1>
       {%- if article.excerpt != blank -%}
@@ -100,19 +107,15 @@
   {% render 'hat-education-shop', unique_id: 'hat-ed-article' %}
 
   <div class="he-article__inner he-article__inner--after page-width">
-    <aside class="he-article__cta" aria-label="Next steps">
-      <div class="he-article__cta-inner">
-        <div class="he-article__cta-copy">
-          <p class="he-article__cta-label">Ready to find your fit?</p>
-          <p class="he-article__cta-text">Try <a href="{{ hat_finder_url }}">Hat Finder</a> on the web or iPhone, book a free fitting in Fayetteville, or browse hats with expert guidance built in.</p>
-        </div>
-        <div class="he-article__cta-actions">
-          <a class="he-article__btn he-article__btn--primary" href="{{ hat_finder_url }}">Try Hat Finder</a>
-          <a class="he-article__btn he-article__btn--secondary" href="{{ hat_finder_app_store_url }}" target="_blank" rel="noopener noreferrer">Get the iPhone app</a>
-          <a class="he-article__btn he-article__btn--secondary" href="https://moonridgecompany.setmore.com">Book a fitting</a>
-          <a class="he-article__btn he-article__btn--secondary" href="{{ hub_url }}">Shop hats</a>
-        </div>
-      </div>
+    <aside class="he-article__shop" aria-label="Shop hats">
+      <img
+        class="he-article__shop-mark"
+        src="{{ 'moon-ridge-m-mark.png' | asset_url }}"
+        width="256"
+        height="256"
+        alt=""
+      >
+      <a class="he-article__shop-link" href="{{ hub_url }}">Shop hats</a>
     </aside>
 
     {%- assign related_count = 0 -%}
@@ -221,6 +224,20 @@
   .he-article__hero {
     text-align: center;
     margin-bottom: 2rem;
+  }
+
+  .he-article__mark {
+    display: block;
+    width: 3.4rem;
+    margin: 0 auto 1.15rem;
+    line-height: 0;
+  }
+
+  .he-article__mark-img,
+  .he-article__shop-mark {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   .he-article__eyebrow {
@@ -650,85 +667,31 @@
     text-decoration-color: var(--he-accent);
   }
 
-  .he-article__cta {
-    margin: 0 0 2.5rem;
-    padding: 2rem;
-    background: linear-gradient(135deg, rgba(197, 160, 89, 0.12), rgba(49, 33, 16, 0.06));
-    border: 1px solid rgba(49, 33, 16, 0.1);
-    border-radius: 8px;
+  .he-article__shop {
+    text-align: center;
+    margin: 0 0 2.75rem;
+    padding: 0.25rem 0 0.5rem;
   }
 
-  .he-article__cta-inner {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.25rem;
+  .he-article__shop-mark {
+    width: 2.8rem;
+    margin: 0 auto 1rem;
   }
 
-  .he-article__cta-label {
-    margin: 0 0 0.35rem;
-    font-size: 1.2rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--he-accent);
+  .he-article__shop-link {
+    display: inline-block;
+    padding: 0.7rem 0.4rem;
     font-family: var(--font-heading-family);
-  }
-
-  .he-article__cta-text {
-    margin: 0;
-    font-size: 1.7rem;
-    color: var(--he-ink);
-  }
-
-  .he-article__cta-text a {
-    color: var(--he-ink);
-    text-decoration: underline;
-    text-decoration-color: var(--he-accent);
-    text-underline-offset: 0.15em;
-  }
-
-  .he-article__cta-text a:hover {
-    color: var(--he-accent);
-  }
-
-  .he-article__cta-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
-  .he-article__btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.35rem;
-    border-radius: 4px;
-    font-size: 1.25rem;
-    letter-spacing: 0.12em;
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     text-decoration: none;
-    font-family: var(--font-heading-family);
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-
-  .he-article__btn--primary {
-    background: var(--he-ink);
-    color: #fff;
-  }
-
-  .he-article__btn--primary:hover {
-    background: #4a3428;
-  }
-
-  .he-article__btn--secondary {
-    background: transparent;
     color: var(--he-ink);
-    border: 1px solid rgba(49, 33, 16, 0.35);
+    border-bottom: 1px solid var(--he-accent);
   }
 
-  .he-article__btn--secondary:hover {
-    border-color: var(--he-accent);
+  .he-article__shop-link:hover {
     color: var(--he-accent);
   }
 
@@ -860,17 +823,13 @@
   }
 
   @media screen and (max-width: 749px) {
-    .he-article__cta-inner {
-      flex-direction: column;
-      align-items: stretch;
+    .he-article__mark {
+      width: 3rem;
+      margin-bottom: 1rem;
     }
 
-    .he-article__cta-actions {
-      flex-direction: column;
-    }
-
-    .he-article__btn {
-      width: 100%;
+    .he-article__shop {
+      margin-bottom: 2.25rem;
     }
 
     .he-article__nav {

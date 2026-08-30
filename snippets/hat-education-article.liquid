@@ -107,16 +107,18 @@
   {% render 'hat-education-shop', unique_id: 'hat-ed-article' %}
 
   <div class="he-article__inner he-article__inner--after page-width">
-    <aside class="he-article__shop" aria-label="Shop hats">
-      <img
-        class="he-article__shop-mark"
-        src="{{ 'moon-ridge-m-mark.png' | asset_url }}"
-        width="256"
-        height="256"
-        alt=""
-      >
-      <a class="he-article__shop-link" href="{{ hub_url }}">Shop hats</a>
-    </aside>
+    <p class="he-article__shop">
+      <a class="he-article__shop-link" href="{{ hub_url }}">
+        <img
+          class="he-article__shop-mark"
+          src="{{ 'moon-ridge-m-mark.png' | asset_url }}"
+          width="256"
+          height="256"
+          alt=""
+        >
+        <span>Shop hats</span>
+      </a>
+    </p>
 
     {%- assign related_count = 0 -%}
     {%- for related in edu_blog.articles limit: 12 -%}
@@ -238,6 +240,10 @@
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  .he-article__shop-mark {
+    width: 2.6rem;
   }
 
   .he-article__eyebrow {
@@ -669,30 +675,42 @@
 
   .he-article__shop {
     text-align: center;
-    margin: 0 0 2.75rem;
-    padding: 0.25rem 0 0.5rem;
-  }
-
-  .he-article__shop-mark {
-    width: 2.8rem;
-    margin: 0 auto 1rem;
+    margin: 0 0 3rem;
+    padding: 0.5rem 0 0.25rem;
   }
 
   .he-article__shop-link {
-    display: inline-block;
-    padding: 0.7rem 0.4rem;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+    min-width: 11rem;
+    padding: 1.1rem 1.4rem;
     font-family: var(--font-heading-family);
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     font-weight: 500;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     text-decoration: none;
     color: var(--he-ink);
+  }
+
+  .he-article__shop-link span {
     border-bottom: 1px solid var(--he-accent);
+    padding-bottom: 0.28rem;
   }
 
   .he-article__shop-link:hover {
     color: var(--he-accent);
+  }
+
+  .he-article__shop-link:hover span {
+    border-bottom-color: var(--he-accent);
+  }
+
+  .he-article__shop-link:focus-visible {
+    outline: 1px solid var(--he-accent);
+    outline-offset: 0.4rem;
   }
 
   .he-article__related {
@@ -824,12 +842,17 @@
 
   @media screen and (max-width: 749px) {
     .he-article__mark {
-      width: 3rem;
+      width: 3.2rem;
       margin-bottom: 1rem;
     }
 
     .he-article__shop {
-      margin-bottom: 2.25rem;
+      margin-bottom: 2.4rem;
+    }
+
+    .he-article__shop-link {
+      padding: 1.25rem 1.6rem;
+      font-size: 1.3rem;
     }
 
     .he-article__nav {

@@ -42,7 +42,8 @@
           "settings": {
             "title": "Moon Ridge Travel",
             "excerpt": "Places the Wakefields have gone — and the hats that went with them.",
-            "link": "shopify://blogs/moon-ridge-travel"
+            "link": "shopify://blogs/moon-ridge-travel",
+            "image": "shopify://shop_images/IMG_5617.jpg"
           }
         },
         "design": {

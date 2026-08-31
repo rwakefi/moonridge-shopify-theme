@@ -143,17 +143,6 @@
               {%- if shown < 3 -%}
                 <li>
                   <a class="he-article__related-card" href="{{ related.url }}">
-                    {%- if related.image -%}
-                      <div class="he-article__related-media">
-                        <img
-                          src="{{ related.image | image_url: width: 600 }}"
-                          alt="{{ related.image.alt | default: related.title | escape }}"
-                          loading="lazy"
-                          width="300"
-                          height="200"
-                        >
-                      </div>
-                    {%- endif -%}
                     <span class="he-article__related-title">{{ related.title | escape }}</span>
                   </a>
                 </li>
@@ -810,19 +799,6 @@
   .he-article__related-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 24px rgba(49, 33, 16, 0.1);
-  }
-
-  .he-article__related-media {
-    aspect-ratio: 3 / 2;
-    overflow: hidden;
-    background: var(--he-cream);
-  }
-
-  .he-article__related-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
   }
 
   .he-article__related-title {

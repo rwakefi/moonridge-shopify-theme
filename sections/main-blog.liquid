@@ -69,16 +69,25 @@
           {% for article in selected_blog.articles %}
             <article class="travel-blog-menu__card">
               <a href="{{ article.url }}" class="travel-blog-menu__image-link">
-                {% if article.image %}
-                  <div class="travel-blog-menu__image-wrapper">
+                <div class="travel-blog-menu__image-wrapper{% unless article.image %} travel-blog-menu__image-wrapper--mark{% endunless %}">
+                  {% if article.image %}
                     <img
-                      src="{{ article.image | img_url: '600x400_crop_center' }}
-"
+                      src="{{ article.image | img_url: '600x400_crop_center' }}"
                       alt="{{ article.image.alt | default: article.title | escape }}"
                       loading="lazy"
+                      width="600"
+                      height="400"
                     >
-                  </div>
-                {% endif %}
+                  {% else %}
+                    <img
+                      src="{{ 'hat-education-m-placeholder.png' | asset_url }}"
+                      alt=""
+                      width="2400"
+                      height="1600"
+                      loading="lazy"
+                    >
+                  {% endif %}
+                </div>
               </a>
 
               <div class="travel-blog-menu__content">
@@ -181,7 +190,7 @@
     transition: transform 0.25s ease-out;
   }
 
-  .travel-blog-menu__card:hover .travel-blog-menu__image-wrapper img {
+  .travel-blog-menu__card:hover .travel-blog-menu__image-wrapper:not(.travel-blog-menu__image-wrapper--mark) img {
     transform: scale(1.04);
   }
 

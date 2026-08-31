@@ -87,11 +87,11 @@
     </header>
 
     {%- if article.image -%}
-      <figure class="he-article__figure">
+      <figure class="he-article__figure he-article__figure--featured">
         <img
           src="{{ article.image | image_url: width: 2000 }}"
           srcset="{{ article.image | image_url: width: 800 }} 800w, {{ article.image | image_url: width: 1400 }} 1400w, {{ article.image | image_url: width: 2000 }} 2000w"
-          sizes="(min-width: 990px) min(1100px, 100vw), 100vw"
+          sizes="(min-width: 990px) min(880px, 100vw), 100vw"
           alt="{{ article.image.alt | default: article.title | escape }}"
           width="{{ article.image.width }}"
           height="{{ article.image.height }}"
@@ -279,6 +279,14 @@
     overflow: hidden;
     background: var(--he-cream);
     border: 1px solid #000;
+  }
+
+  @media screen and (min-width: 990px) {
+    .he-article__figure--featured {
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   .he-article__figure img {

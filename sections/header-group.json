@@ -119,7 +119,7 @@
         "enable_hats_hub": true,
         "hats_hub_page": "",
         "menu_type_desktop": "dropdown",
-        "sticky_header_type": "on-scroll-up",
+        "sticky_header_type": "always",
         "show_line_separator": false,
         "color_scheme": "accent-2",
         "menu_color_scheme": "accent-2",

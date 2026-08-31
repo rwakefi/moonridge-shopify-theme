@@ -557,7 +557,9 @@
 
     {% render 'transition-cover' %}
     <div class="transition-body">
-    {% sections 'header-group' %}
+    <div class="site-header-lock">
+      {% sections 'header-group' %}
+    </div>
     {% section 'breadcrumbs' %}
     {% sections 'popup-group' %}
 

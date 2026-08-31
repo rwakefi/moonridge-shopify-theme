@@ -5,9 +5,11 @@ class StickyHeader extends HTMLElement {
 
   connectedCallback() {
     this.header = document.querySelector('.section-header');
+    this.headerLock = document.querySelector('.site-header-lock');
     this.headerIsAlwaysSticky =
       this.getAttribute('data-sticky-type') === 'always' ||
-      this.getAttribute('data-sticky-type') === 'reduce-logo-size';
+      this.getAttribute('data-sticky-type') === 'reduce-logo-size' ||
+      Boolean(this.headerLock);
     this.headerBounds = {};
 
     this.setHeaderHeight();
@@ -35,9 +37,10 @@ class StickyHeader extends HTMLElement {
   }
 
   setHeaderHeight() {
+    const lock = this.headerLock || this.header;
     document.documentElement.style.setProperty(
       '--header-height',
-      `${this.header.offsetHeight}px`
+      `${lock.offsetHeight}px`
     );
   }
 
@@ -52,7 +55,7 @@ class StickyHeader extends HTMLElement {
       obs.disconnect();
     });
 
-    observer.observe(this.header);
+    observer.observe(this.headerLock || this.header);
   }
 
   onScroll() {

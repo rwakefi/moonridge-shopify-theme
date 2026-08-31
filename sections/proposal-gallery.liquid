@@ -34,7 +34,11 @@
 
   Layout order: photo gallery → title/status header → expires →
   event details → description → what's included → pricing →
-  deposit & payment → videos → terms & conditions.
+  deposit & payment → videos → terms & conditions →
+  client / Moon Ridge signature lines.
+
+  Print: a Print button sits at the top right of each proposal.
+  Print styles target US Letter (8.5 × 11) and hide store chrome.
 
   To create/edit a proposal: Shopify Admin → Content →
   Metaobjects → Proposal → Add entry.
@@ -79,6 +83,21 @@
         {%- assign p_terms_conditions = proposal.terms_conditions.value -%}
 
         <article class="mr-proposal__card">
+          <div class="mr-proposal__toolbar">
+            <button type="button" class="mr-proposal__print" data-mr-print>
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+              </svg>
+              Print
+            </button>
+          </div>
+          <div class="mr-proposal__print-masthead" aria-hidden="true">
+            <p class="mr-proposal__print-brand">Moon Ridge Hats and Heritage</p>
+            <p class="mr-proposal__print-kicker">Event Proposal</p>
+          </div>
+
           {%- if p_images.size > 0 -%}
             <div class="mr-proposal__gallery mr-proposal__gallery--photos">
               {%- for file in p_images -%}
@@ -190,6 +209,7 @@
                   {%- else -%}
                     <p class="mr-proposal__video-fallback"><a href="{{ video_url_string }}" target="_blank" rel="noopener">Watch video</a></p>
                   {%- endif -%}
+                  <p class="mr-proposal__video-print">Video: {{ video_url_string }}</p>
                 </div>
               {%- endif -%}
 
@@ -226,17 +246,45 @@
                   {%- else -%}
                     <p class="mr-proposal__video-fallback"><a href="{{ video_url_string }}" target="_blank" rel="noopener">Watch video</a></p>
                   {%- endif -%}
+                  <p class="mr-proposal__video-print">Video: {{ video_url_string }}</p>
                 </div>
               {%- endif -%}
             </div>
           {%- endif -%}
 
+          <div class="mr-proposal__close">
           {%- if p_terms_conditions != blank -%}
             <div class="mr-proposal__section mr-proposal__section--terms">
               <h3>Terms &amp; conditions</h3>
               <div class="mr-proposal__section-body">{{ p_terms_conditions | newline_to_br }}</div>
             </div>
           {%- endif -%}
+
+          <div class="mr-proposal__signatures">
+            <div class="mr-proposal__sign-row">
+              <div class="mr-proposal__sign-field mr-proposal__sign-field--name">
+                <span class="mr-proposal__sign-line"></span>
+                <span class="mr-proposal__sign-label">Client signature</span>
+              </div>
+              <div class="mr-proposal__sign-field mr-proposal__sign-field--date">
+                <span class="mr-proposal__sign-line"></span>
+                <span class="mr-proposal__sign-label">Date</span>
+              </div>
+            </div>
+            <div class="mr-proposal__sign-row">
+              <div class="mr-proposal__sign-field mr-proposal__sign-field--name">
+                <span class="mr-proposal__sign-line"></span>
+                <span class="mr-proposal__sign-label">Moon Ridge Hats and Heritage</span>
+              </div>
+              <div class="mr-proposal__sign-field mr-proposal__sign-field--date">
+                <span class="mr-proposal__sign-line"></span>
+                <span class="mr-proposal__sign-label">Date</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="mr-proposal__print-footer">2218 N College Ave, Fayetteville, AR 72703 · (479) 430-2667 · moonridgecompany.com</p>
+          </div>
         </article>
       {%- endif -%}
     {%- endfor -%}
@@ -274,6 +322,12 @@
 <style>
   .mr-proposal { max-width: 1000px; margin: 0 auto; padding: 40px 20px 60px; }
   .mr-proposal__card { margin-bottom: 56px; }
+  .mr-proposal__toolbar { display: flex; justify-content: flex-end; margin: 0 0 16px; }
+  .mr-proposal__print { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid #312110; background: #fff; color: #312110; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-radius: 4px; line-height: 1; }
+  .mr-proposal__print:hover { background: #312110; color: #faf8f5; }
+  .mr-proposal__print-masthead,
+  .mr-proposal__print-footer,
+  .mr-proposal__video-print { display: none; }
   .mr-proposal__header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
   .mr-proposal__title { margin: 0; font-size: 28px; }
   .mr-proposal__status { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; padding: 4px 10px; border-radius: 999px; background: #eee; }
@@ -290,6 +344,11 @@
   .mr-proposal__section--notes { padding: 16px 20px; background: #fbf8f3; border-left: 3px solid #c9a15a; border-radius: 4px; }
   .mr-proposal__section--terms { margin-top: 40px; padding-top: 24px; border-top: 1px solid #e2ddd3; }
   .mr-proposal__section--terms .mr-proposal__section-body { font-size: 13px; color: #6b6459; line-height: 1.7; }
+  .mr-proposal__signatures { margin-top: 36px; padding-top: 8px; }
+  .mr-proposal__sign-row { display: grid; grid-template-columns: minmax(0, 1fr) 140px; gap: 28px; margin-top: 28px; }
+  .mr-proposal__sign-field { display: flex; flex-direction: column; min-width: 0; }
+  .mr-proposal__sign-line { display: block; border-bottom: 1px solid #312110; height: 32px; }
+  .mr-proposal__sign-label { margin-top: 6px; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: #6b6459; }
   .mr-proposal__gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-top: 24px; }
   .mr-proposal__gallery--photos { margin-bottom: 32px; }
   .mr-proposal__thumb { border: 1px solid #e2ddd3; box-sizing: border-box; padding: 0; background: none; cursor: zoom-in; border-radius: 8px; overflow: hidden; aspect-ratio: 4 / 3; display: block; width: 100%; }
@@ -306,15 +365,238 @@
   .mr-proposal__lightbox[hidden] { display: none; }
   .mr-proposal__lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; }
   .mr-proposal__lightbox-close { position: absolute; top: 20px; right: 24px; background: none; border: 0; color: #fff; font-size: 32px; cursor: pointer; line-height: 1; }
+
+  @media (max-width: 600px) {
+    .mr-proposal__sign-row { grid-template-columns: 1fr; gap: 20px; }
+  }
+
+  @media print {
+    @page {
+      size: letter portrait;
+      margin: 0.5in 0.55in 0.55in;
+    }
+
+    html, body {
+      background: #fff !important;
+      color: #312110 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .site-header-lock,
+    .shopify-section-group-header-group,
+    .shopify-section-group-footer-group,
+    .shopify-section-group-popup-group,
+    #shopify-section-breadcrumbs,
+    .footer,
+    cart-drawer,
+    .cart-drawer,
+    .cart-notification,
+    .skip-to-content-link,
+    .transition-cover,
+    .sticky-booking-cta,
+    #shopify-chat,
+    .mr-proposal__toolbar,
+    .mr-proposal__lightbox,
+    .mr-proposal__video-frame,
+    .mr-proposal__status {
+      display: none !important;
+    }
+
+    body.mr-proposal-printing .mr-proposal__card:not(.mr-proposal__card--printing) {
+      display: none !important;
+    }
+
+    .transition-body,
+    #MainContent,
+    .content-for-layout,
+    .shopify-section {
+      padding: 0 !important;
+      margin: 0 !important;
+      background: #fff !important;
+    }
+
+    .mr-proposal {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      color: #312110;
+    }
+
+    .mr-proposal,
+    .mr-proposal p,
+    .mr-proposal dd,
+    .mr-proposal .mr-proposal__section-body,
+    .mr-proposal .mr-proposal__description {
+      font-family: Georgia, 'Palatino Linotype', Palatino, serif;
+      font-size: 11pt;
+      line-height: 1.45;
+    }
+
+    .mr-proposal__card {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+    }
+
+    .mr-proposal__print-masthead { display: block; order: 1; }
+    .mr-proposal__header { order: 2; }
+    .mr-proposal__expires { order: 3; }
+    .mr-proposal__event-details { order: 4; }
+    .mr-proposal__description { order: 5; }
+    .mr-proposal__section { margin: 12px 0; }
+    .mr-proposal__section:not(.mr-proposal__section--terms) { order: 6; }
+    .mr-proposal__section--notes { order: 7; }
+    .mr-proposal__gallery--photos { order: 8; }
+    .mr-proposal__gallery--videos { order: 9; }
+    .mr-proposal__close { order: 10; }
+    .mr-proposal__section--terms { margin-top: 14px; padding-top: 10px; break-after: avoid; }
+    .mr-proposal__signatures { margin-top: 16px; padding-top: 0; break-inside: avoid; page-break-inside: avoid; break-before: avoid; }
+    .mr-proposal__print-footer { display: block; }
+
+    .mr-proposal__print-brand {
+      margin: 0;
+      font-size: 11pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-family: Georgia, serif;
+    }
+
+    .mr-proposal__print-kicker {
+      margin: 2px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #c9a15a;
+      font-size: 9pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9c7a52;
+    }
+
+    .mr-proposal__title {
+      font-size: 18pt;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .mr-proposal__expires {
+      font-size: 9pt;
+      margin: 2px 0 0;
+    }
+
+    .mr-proposal__event-details {
+      margin: 10px 0;
+      padding: 8px 12px;
+      gap: 8px 16px;
+      border: 1px solid #e2ddd3;
+      border-radius: 0;
+      background: #f7f5f2;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      break-inside: avoid;
+    }
+
+    .mr-proposal__event-row dt { font-size: 8pt; }
+    .mr-proposal__event-row dd { font-size: 10pt; }
+
+    .mr-proposal__description { margin: 10px 0; }
+
+    .mr-proposal__section h3 {
+      font-size: 9pt;
+      margin: 0 0 4px;
+    }
+
+    .mr-proposal__section--notes {
+      padding: 8px 12px;
+      border-left: 2px solid #c9a15a;
+      break-inside: avoid;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .mr-proposal__section--terms .mr-proposal__section-body {
+      font-size: 9pt;
+      line-height: 1.45;
+    }
+
+    .mr-proposal__gallery--photos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0 0;
+    }
+
+    .mr-proposal__thumb {
+      width: 1.65in;
+      height: 1.2in;
+      aspect-ratio: auto;
+      border-radius: 2px;
+      break-inside: avoid;
+      cursor: default;
+    }
+
+    .mr-proposal__thumb img { transform: none !important; }
+
+    .mr-proposal__gallery--videos {
+      display: block;
+      margin: 8px 0 0;
+    }
+
+    .mr-proposal__video-print {
+      display: block;
+      font-size: 9pt;
+      margin: 4px 0;
+      word-break: break-all;
+    }
+
+    .mr-proposal__sign-row {
+      grid-template-columns: minmax(0, 1fr) 1.6in;
+      gap: 24px;
+      margin-top: 16px;
+      break-inside: avoid;
+    }
+
+    .mr-proposal__sign-line { height: 26px; }
+    .mr-proposal__sign-label { font-size: 8pt; }
+
+    .mr-proposal__print-footer {
+      margin: 18px 0 0;
+      padding-top: 8px;
+      border-top: 1px solid #e2ddd3;
+      font-size: 8pt;
+      letter-spacing: 0.02em;
+      color: #6b6459;
+      text-align: center;
+    }
+
+    a { color: inherit; text-decoration: none; }
+  }
 </style>
 
 <script>
   (function () {
-    var section = document.currentScript.closest('.mr-proposal');
+    var section = document.currentScript.parentElement
+      ? document.currentScript.parentElement.querySelector('.mr-proposal')
+      : document.querySelector('.mr-proposal');
     if (!section) return;
     var lightbox = section.querySelector('[data-mr-lightbox]');
     var lightboxImg = section.querySelector('[data-mr-lightbox-img]');
+    function clearPrintState() {
+      document.body.classList.remove('mr-proposal-printing');
+      section.querySelectorAll('.mr-proposal__card--printing').forEach(function (card) {
+        card.classList.remove('mr-proposal__card--printing');
+      });
+    }
+
     section.addEventListener('click', function (e) {
+      var printBtn = e.target.closest('[data-mr-print]');
+      if (printBtn) {
+        var card = printBtn.closest('.mr-proposal__card');
+        document.body.classList.add('mr-proposal-printing');
+        if (card) card.classList.add('mr-proposal__card--printing');
+        window.print();
+        setTimeout(clearPrintState, 500);
+        return;
+      }
       var opener = e.target.closest('[data-mr-lightbox-open]');
       if (opener) {
         lightboxImg.src = opener.getAttribute('data-full');
@@ -326,6 +608,7 @@
         lightboxImg.src = '';
       }
     });
+    window.addEventListener('afterprint', clearPrintState);
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && !lightbox.hidden) {
         lightbox.hidden = true;

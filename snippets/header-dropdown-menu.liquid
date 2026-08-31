@@ -26,6 +26,14 @@
           assign hat_education_menu_match = true
           assign menu_parent_url = hat_education_blog_url
         endif
+        assign roots_blog = blogs['roots']
+        assign roots_blog_url = '/blogs/roots'
+        if roots_blog != blank
+          assign roots_blog_url = roots_blog.url
+        endif
+        if link.handle == 'roots' or link_title_lc == 'roots'
+          assign menu_parent_url = roots_blog_url
+        endif
       -%}
       <li>
         {%- if hats_hub_match -%}

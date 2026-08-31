@@ -1,0 +1,84 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-roots",
+      "blocks": {
+        "hat_bar": {
+          "type": "story",
+          "settings": {
+            "title": "Arkansas's Original Hat Bar",
+            "excerpt": "Where a hat gets custom fitted, shaped, and finished by hand — in Fayetteville, walk-ins welcome.",
+            "link": "shopify://pages/custom-hat-bar"
+          }
+        },
+        "brands": {
+          "type": "story",
+          "settings": {
+            "title": "Our Legendary Brands",
+            "excerpt": "The makers we trust enough to put our name next to — Stetson, Resistol, Goorin Bros, Lucchese, Pendleton, and more.",
+            "link": "shopify://pages/legendary-hat-brands"
+          }
+        },
+        "podcast": {
+          "type": "story",
+          "settings": {
+            "title": "The Moon Ridge Podcast",
+            "excerpt": "Zack sits down with makers, friends, and the people behind the hats.",
+            "link": "shopify://pages/podcast",
+            "image": "shopify://shop_images/Podcast_Logo.png"
+          }
+        },
+        "travel": {
+          "type": "story",
+          "settings": {
+            "title": "Moon Ridge Travel",
+            "excerpt": "Places the Wakefields have gone — and the hats that went with them.",
+            "link": "shopify://blogs/moon-ridge-travel"
+          }
+        },
+        "design": {
+          "type": "story",
+          "settings": {
+            "title": "Moon Ridge Home & Design",
+            "excerpt": "Natalie Jo on interiors — the same eye for craft, in a room instead of a brim.",
+            "link": "shopify://pages/moonridge-home",
+            "image": "shopify://shop_images/IMG_1093.jpg"
+          }
+        },
+        "name_change": {
+          "type": "story",
+          "settings": {
+            "title": "Our Name Change",
+            "excerpt": "Rafter M is now Moon Ridge. Exact same people, exact same place. More brands, new name.",
+            "link": "shopify://blogs/rafter-m-hat-company-is-now-moon-ridge-company/rafter-m-hat-company-is-now-moon-ridge-company"
+          }
+        }
+      },
+      "block_order": [
+        "hat_bar",
+        "brands",
+        "podcast",
+        "travel",
+        "design",
+        "name_change"
+      ],
+      "settings": {
+        "eyebrow": "Moon Ridge Hats and Heritage",
+        "title": "Roots",
+        "photo": "shopify://shop_images/IMG_9242_ed62501f-673f-4930-a8ea-28fa6861f3f0.jpg"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

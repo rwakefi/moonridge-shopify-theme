@@ -252,6 +252,7 @@
             </div>
           {%- endif -%}
 
+          <div class="mr-proposal__close">
           {%- if p_terms_conditions != blank -%}
             <div class="mr-proposal__section mr-proposal__section--terms">
               <h3>Terms &amp; conditions</h3>
@@ -283,6 +284,7 @@
           </div>
 
           <p class="mr-proposal__print-footer">2218 N College Ave, Fayetteville, AR 72703 · (479) 430-2667 · moonridgecompany.com</p>
+          </div>
         </article>
       {%- endif -%}
     {%- endfor -%}
@@ -434,7 +436,6 @@
     .mr-proposal__card {
       display: flex;
       flex-direction: column;
-      min-height: 10in;
       margin: 0;
     }
 
@@ -443,13 +444,15 @@
     .mr-proposal__expires { order: 3; }
     .mr-proposal__event-details { order: 4; }
     .mr-proposal__description { order: 5; }
-    .mr-proposal__section { order: 6; margin: 12px 0; }
+    .mr-proposal__section { margin: 12px 0; }
+    .mr-proposal__section:not(.mr-proposal__section--terms) { order: 6; }
     .mr-proposal__section--notes { order: 7; }
     .mr-proposal__gallery--photos { order: 8; }
     .mr-proposal__gallery--videos { order: 9; }
-    .mr-proposal__section--terms { order: 10; margin-top: 16px; padding-top: 12px; }
-    .mr-proposal__signatures { order: 11; margin-top: auto; padding-top: 20px; break-inside: avoid; page-break-inside: avoid; }
-    .mr-proposal__print-footer { display: block; order: 12; }
+    .mr-proposal__close { order: 10; }
+    .mr-proposal__section--terms { margin-top: 14px; padding-top: 10px; break-after: avoid; }
+    .mr-proposal__signatures { margin-top: 16px; padding-top: 0; break-inside: avoid; page-break-inside: avoid; break-before: avoid; }
+    .mr-proposal__print-footer { display: block; }
 
     .mr-proposal__print-brand {
       margin: 0;
@@ -548,7 +551,7 @@
     .mr-proposal__sign-row {
       grid-template-columns: minmax(0, 1fr) 1.6in;
       gap: 24px;
-      margin-top: 22px;
+      margin-top: 16px;
       break-inside: avoid;
     }
 

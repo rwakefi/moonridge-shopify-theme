@@ -30,9 +30,18 @@
                   if hat_education_blog != blank
                     assign hat_education_blog_url = hat_education_blog.url
                   endif
+                  assign roots_blog = blogs['roots']
+                  assign roots_blog_url = '/blogs/roots'
+                  if roots_blog != blank
+                    assign roots_blog_url = roots_blog.url
+                  endif
                   assign link_title_lc = link.title | downcase | strip
                   if link.handle == 'hat-education' or link_title_lc contains 'hat education'
                     assign hat_education_menu_match = true
+                  endif
+                  assign roots_menu_match = false
+                  if link.handle == 'roots' or link_title_lc == 'roots'
+                    assign roots_menu_match = true
                   endif
                 -%}
                 <li>
@@ -51,6 +60,17 @@
                     <a
                       id="HeaderDrawer-{{ link.handle }}"
                       href="{{ hat_education_blog_url }}"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      {{ link.title | escape }}
+                    </a>
+                  {%- elsif roots_menu_match -%}
+                    <a
+                      id="HeaderDrawer-{{ link.handle }}"
+                      href="{{ roots_blog_url }}"
                       class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
                       {% if link.current %}
                         aria-current="page"

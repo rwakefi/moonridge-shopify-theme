@@ -1,0 +1,191 @@
+{% comment %}
+  Roots index: Visit Us team photo + About copy, then a Hat Education-style card grid.
+{% endcomment %}
+{{ 'roots-index.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign roots_blog = blogs['roots']
+  if roots_blog == blank
+    assign roots_blog = blog
+  endif
+-%}
+
+<section class="roots-index">
+  <div class="roots-index__intro page-width">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="roots-index__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    {%- endif -%}
+    <h1 class="roots-index__title">{{ section.settings.title | escape }}</h1>
+
+    {%- if section.settings.photo != blank -%}
+      <figure class="roots-index__photo">
+        <img
+          src="{{ section.settings.photo | image_url: width: 1600 }}"
+          alt="{{ section.settings.photo.alt | default: 'The Wakefield Family at Moon Ridge' | escape }}"
+          width="{{ section.settings.photo.width }}"
+          height="{{ section.settings.photo.height }}"
+          loading="eager"
+        >
+      </figure>
+    {%- endif -%}
+
+    {%- comment -%} Same About copy as Visit Us / Contact (`snippets/about-visit-page.liquid`). {%- endcomment -%}
+    <blockquote class="roots-index__quote">
+      “At Moon Ridge Company, we believe a good hat does more than complete your outfit — it tells your story. It's the way you carry yourself, the confidence in your step, the look in the mirror when you finally find the one.”
+    </blockquote>
+
+    <div class="roots-index__copy">
+      <p>Rafter M started on our back deck in Northwest Arkansas, born from a love for hats and helping people feel their best. Natalie Jo Wakefield — a hairstylist and designer — saw how the right hat could transform a look. Her husband, Zack, had spent years leading and growing businesses, but this one stood apart — it was a chance to support his wife and build something they both believed in. Together they created a place where quality hats meet genuine connection.</p>
+      <p>We proudly partner with legendary brands like Stetson, Resistol, Charlie 1 Horse, and Bigalli — doing things the right way, with honesty, authenticity, and craftsmanship you can feel.</p>
+      <p>Whether you shop in store or online, we make it personal — no rush, no gimmicks, just good people helping you find a hat that fits your life.</p>
+    </div>
+
+    <p class="roots-index__signoff">
+      — The Wakefield Family
+      <span>Moon Ridge Company</span>
+    </p>
+  </div>
+
+  <div class="travel-blog-menu page-width roots-index__grid-wrap">
+    <h2 class="roots-index__grid-title">Stories</h2>
+    <div class="travel-blog-menu__grid">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.link != blank and block.settings.title != blank -%}
+          <article class="travel-blog-menu__card" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.link }}" class="travel-blog-menu__image-link">
+              <div class="travel-blog-menu__image-wrapper{% unless block.settings.image %} travel-blog-menu__image-wrapper--mark{% endunless %}">
+                {%- if block.settings.image -%}
+                  <img
+                    src="{{ block.settings.image | image_url: width: 800, height: 533, crop: 'center' }}"
+                    alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
+                    loading="lazy"
+                    width="800"
+                    height="533"
+                  >
+                {%- else -%}
+                  <img
+                    src="{{ 'hat-education-m-placeholder.png' | asset_url }}"
+                    alt=""
+                    width="2400"
+                    height="1600"
+                    loading="lazy"
+                  >
+                {%- endif -%}
+              </div>
+            </a>
+            <div class="travel-blog-menu__content">
+              <h2 class="travel-blog-menu__card-title">
+                <a href="{{ block.settings.link }}">{{ block.settings.title | escape }}</a>
+              </h2>
+              {%- if block.settings.excerpt != blank -%}
+                <p class="travel-blog-menu__excerpt">{{ block.settings.excerpt | escape }}</p>
+              {%- endif -%}
+              <a href="{{ block.settings.link }}" class="travel-blog-menu__read-more">Read the Full Story</a>
+            </div>
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if roots_blog != blank -%}
+        {%- for article in roots_blog.articles -%}
+          <article class="travel-blog-menu__card">
+            <a href="{{ article.url }}" class="travel-blog-menu__image-link">
+              <div class="travel-blog-menu__image-wrapper{% unless article.image %} travel-blog-menu__image-wrapper--mark{% endunless %}">
+                {%- if article.image -%}
+                  <img
+                    src="{{ article.image | img_url: '600x400_crop_center' }}"
+                    alt="{{ article.image.alt | default: article.title | escape }}"
+                    loading="lazy"
+                    width="600"
+                    height="400"
+                  >
+                {%- else -%}
+                  <img
+                    src="{{ 'hat-education-m-placeholder.png' | asset_url }}"
+                    alt=""
+                    width="2400"
+                    height="1600"
+                    loading="lazy"
+                  >
+                {%- endif -%}
+              </div>
+            </a>
+            <div class="travel-blog-menu__content">
+              <h2 class="travel-blog-menu__card-title">
+                <a href="{{ article.url }}">{{ article.title }}</a>
+              </h2>
+              <p class="travel-blog-menu__excerpt">
+                {%- if article.excerpt != blank -%}
+                  {{ article.excerpt | strip_html | truncate: 140 }}
+                {%- else -%}
+                  {{ article.content | strip_html | truncate: 140 }}
+                {%- endif -%}
+              </p>
+              <a href="{{ article.url }}" class="travel-blog-menu__read-more">Read the Full Story</a>
+            </div>
+          </article>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Roots index",
+  "tag": "section",
+  "class": "section-main-roots",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Moon Ridge Hats and Heritage"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Roots"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo",
+      "label": "Team photo"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "story",
+      "name": "Story card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "excerpt",
+          "label": "Excerpt"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Roots index"
+    }
+  ]
+}
+{% endschema %}

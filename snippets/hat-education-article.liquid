@@ -60,7 +60,7 @@
 }
 </script>
 
-<section class="he-article">
+<section class="he-article he-article--{{ article.handle }}">
   <div class="he-article__inner page-width">
 
     <nav class="he-article__crumbs" aria-label="Breadcrumb">
@@ -519,36 +519,69 @@
     line-height: 1.65;
   }
 
-  /* Face shape guide blocks */
+  /* This post is a short face-shape list — keep the intro from floating away */
+  .he-article--finding-the-style-that-fits-your-face .he-article__body .he-article__see-also {
+    margin-bottom: 2.2rem;
+  }
+
+  /* Face shape guide — one running list, not a chapter break per shape */
+  .he-article__body .he-article__see-also + .he-face-shape {
+    margin-top: 0.4rem;
+  }
+
   .he-article__body .he-face-shape {
-    margin: 0 0 0.5rem;
+    margin: 0 0 2.2rem;
   }
 
-  .he-article__body .he-face-shape__desc {
-    margin: 0 0 1rem;
+  .he-article__body .he-face-shape:last-of-type {
+    margin-bottom: 0;
   }
 
-  .he-article__body .he-face-shape__styles {
-    margin: 0 0 0.25rem;
+  .he-article__body .he-face-shape h2,
+  .he-article__body.rte .he-face-shape h2 {
+    margin: 0 0 0.45rem;
+    font-size: 2.05rem;
+    letter-spacing: 0.01em;
+    line-height: 1.25;
+  }
+
+  @media screen and (min-width: 750px) {
+    .he-article__body .he-face-shape h2,
+    .he-article__body.rte .he-face-shape h2 {
+      font-size: 2.15rem;
+    }
+  }
+
+  .he-article__body p.he-face-shape__desc {
+    margin: 0 0 0.55rem;
+  }
+
+  .he-article__body p.he-face-shape__styles {
+    margin: 0;
   }
 
   .he-article__body .he-face-shape__styles strong {
-    display: block;
-    margin-bottom: 0.4rem;
-    font-family: var(--font-heading-family);
-    font-size: 1.3rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--he-accent);
+    color: var(--he-ink);
   }
 
   .he-article__body .he-article__closing {
-    margin-top: 0.5rem;
+    margin-top: 2.8rem;
+    padding-top: 2.4rem;
+    border-top: 1px solid rgba(49, 33, 16, 0.12);
   }
 
-  .he-article__body .he-article__closing h2 {
-    margin-top: 0;
+  .he-article__body .he-article__closing h2,
+  .he-article__body.rte .he-article__closing h2 {
+    margin: 0 0 0.9rem;
+  }
+
+  .he-article__body .he-article__closing p {
+    margin: 0 0 1.1rem;
+  }
+
+  .he-article__body .he-article__closing p:last-child {
+    margin-bottom: 0;
   }
 
   .he-article__body .he-article__see-also a {

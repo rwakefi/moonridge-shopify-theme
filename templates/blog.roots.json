@@ -34,7 +34,8 @@
             "title": "The Moon Ridge Podcast",
             "excerpt": "Zack sits down with makers, friends, and the people behind the hats.",
             "link": "shopify://pages/podcast",
-            "image": "shopify://shop_images/Podcast_Logo.png"
+            "image": "shopify://shop_images/Podcast_Logo.png",
+            "contain_image": true
           }
         },
         "travel": {

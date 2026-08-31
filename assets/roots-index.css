@@ -160,9 +160,10 @@
   object-fit: cover;
 }
 
-.roots-index .travel-blog-menu__image-wrapper--mark img {
+.roots-index .travel-blog-menu__image-wrapper--mark img,
+.roots-index .travel-blog-menu__image-wrapper--contain img {
   object-fit: contain;
-  padding: 12%;
+  padding: 8%;
 }
 
 .roots-index .travel-blog-menu__content {

@@ -51,17 +51,39 @@
     <div class="travel-blog-menu__grid">
       {%- for block in section.blocks -%}
         {%- if block.settings.link != blank and block.settings.title != blank -%}
+          {%- liquid
+            assign contain_image = false
+            if block.settings.contain_image
+              assign contain_image = true
+            endif
+            assign image_class = 'travel-blog-menu__image-wrapper'
+            if block.settings.image == blank
+              assign image_class = image_class | append: ' travel-blog-menu__image-wrapper--mark'
+            elsif contain_image
+              assign image_class = image_class | append: ' travel-blog-menu__image-wrapper--contain'
+            endif
+          -%}
           <article class="travel-blog-menu__card" {{ block.shopify_attributes }}>
             <a href="{{ block.settings.link }}" class="travel-blog-menu__image-link">
-              <div class="travel-blog-menu__image-wrapper{% unless block.settings.image %} travel-blog-menu__image-wrapper--mark{% endunless %}">
+              <div class="{{ image_class }}">
                 {%- if block.settings.image -%}
-                  <img
-                    src="{{ block.settings.image | image_url: width: 800, height: 533, crop: 'center' }}"
-                    alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
-                    loading="lazy"
-                    width="800"
-                    height="533"
-                  >
+                  {%- if contain_image -%}
+                    <img
+                      src="{{ block.settings.image | image_url: width: 800 }}"
+                      alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
+                      loading="lazy"
+                      width="800"
+                      height="800"
+                    >
+                  {%- else -%}
+                    <img
+                      src="{{ block.settings.image | image_url: width: 800, height: 533, crop: 'center' }}"
+                      alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
+                      loading="lazy"
+                      width="800"
+                      height="533"
+                    >
+                  {%- endif -%}
                 {%- else -%}
                   <img
                     src="{{ 'hat-education-m-placeholder.png' | asset_url }}"
@@ -178,6 +200,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "contain_image",
+          "label": "Fit whole image in the frame",
+          "default": false
         }
       ]
     }

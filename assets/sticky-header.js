@@ -14,10 +14,12 @@ class StickyHeader extends HTMLElement {
 
     this.setHeaderHeight();
 
+    this.onResizeHandler = this.setHeaderHeight.bind(this);
     window.matchMedia('(max-width: 990px)').addEventListener(
       'change',
-      this.setHeaderHeight.bind(this)
+      this.onResizeHandler
     );
+    window.addEventListener('resize', this.onResizeHandler);
 
     if (this.headerIsAlwaysSticky) {
       this.header.classList.add('shopify-section-header-sticky');
@@ -47,6 +49,9 @@ class StickyHeader extends HTMLElement {
   disconnectedCallback() {
     this.removeEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
     window.removeEventListener('scroll', this.onScrollHandler);
+    if (this.onResizeHandler) {
+      window.removeEventListener('resize', this.onResizeHandler);
+    }
   }
 
   createObserver() {

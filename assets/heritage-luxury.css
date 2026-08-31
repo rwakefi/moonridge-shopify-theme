@@ -450,12 +450,14 @@ body:not(.template-index) .header__icon .icon,
    Mobile layout: prevent horizontal overflow / right-edge white gap
    (common on iOS Safari when grids, marquees, or 100vw bleed past the viewport)
    ------------------------------------------------------------------ */
-html {
-  overflow-x: clip;
+/* Clip only the main column. overflow-x on html/body/.transition-body
+   turns into a scroll containment box and kills position:sticky on the
+   header lock (Safari especially). */
+html,
+body {
+  max-width: 100%;
 }
 
-body,
-.transition-body,
 #MainContent {
   overflow-x: clip;
   max-width: 100%;

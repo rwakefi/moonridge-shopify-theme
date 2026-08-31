@@ -2397,11 +2397,13 @@ product-info .loading__spinner:not(.hidden) ~ *,
 
 /* Keep announcement, logo row, nav, and the four buttons locked on scroll. */
 .site-header-lock {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 30;
   background: #fff;
   box-shadow: 0 1px 0 rgba(49, 33, 16, 0.1);
+  overflow: visible;
 }
 
 .site-header-lock .section-header,

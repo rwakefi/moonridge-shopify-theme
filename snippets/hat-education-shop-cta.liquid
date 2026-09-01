@@ -1,0 +1,124 @@
+{%- comment -%}
+  Moon Ridge — Hat Education "Shop" CTA
+
+  Renders directly beneath the article hero image. Most readers never reach
+  the bottom of a long guide, so the primary shop action lives here instead.
+
+  Destinations come from the article metafield `custom.shop_cta_collections`
+  (list.collection_reference, use one or two). Button labels are generated from
+  the collection titles — nothing to write per article. With the metafield
+  empty this falls back to a single "Shop Hats" button, so the block is never
+  blank and never broken.
+
+  Colour tokens (--he-ink, --he-accent) are inherited from .he-article in
+  snippets/hat-education-article.liquid. Root font is 10px (62.5%), so
+  1rem = 10px here.
+{%- endcomment -%}
+
+{%- liquid
+  assign cta_collections = article.metafields.custom.shop_cta_collections.value
+  assign hub_url = '/pages/shop-hats'
+  if pages['shop-hats'] != blank
+    assign hub_url = pages['shop-hats'].url
+  endif
+-%}
+
+<aside class="he-shopcta" aria-label="Shop hats">
+  <p class="he-shopcta__eyebrow">Find Yours</p>
+  <p class="he-shopcta__line">Fitted, shaped, and finished by hand in Fayetteville.</p>
+
+  <div class="he-shopcta__actions">
+    {%- if cta_collections != blank and cta_collections.size > 0 -%}
+      {%- for cta_collection in cta_collections limit: 2 -%}
+        <a class="he-shopcta__btn" href="{{ cta_collection.url }}?ref=hat-ed">
+          Shop {{ cta_collection.title | escape }}
+        </a>
+      {%- endfor -%}
+    {%- else -%}
+      <a class="he-shopcta__btn" href="{{ hub_url }}?ref=hat-ed">Shop Hats</a>
+    {%- endif -%}
+  </div>
+</aside>
+
+<style>
+  .he-shopcta {
+    max-width: 69rem; /* matches .he-article__body column */
+    margin: 0 auto 3.4rem;
+    padding: 2.4rem 0;
+    border-top: 1px solid rgba(49, 33, 16, 0.14);
+    border-bottom: 1px solid rgba(49, 33, 16, 0.14);
+    text-align: center;
+  }
+
+  .he-shopcta__eyebrow {
+    margin: 0 0 0.7rem;
+    font-family: var(--font-heading-family);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--he-accent, #c5a059);
+  }
+
+  .he-shopcta__line {
+    margin: 0 0 2rem;
+    font-family: var(--font-heading-family);
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+    color: var(--he-ink, #312110);
+  }
+
+  .he-shopcta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .he-shopcta__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 21rem;
+    padding: 1.2rem 2.2rem;
+    background: var(--he-ink, #312110);
+    border: 1px solid var(--he-ink, #312110);
+    border-radius: 4px;
+    color: #fff;
+    font-family: var(--font-heading-family);
+    font-size: 1.3rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .he-shopcta__btn:hover,
+  .he-shopcta__btn:focus-visible {
+    background: #4a3428;
+    border-color: #4a3428;
+    color: #fff;
+  }
+
+  @media screen and (max-width: 749px) {
+    .he-shopcta {
+      margin-bottom: 2.8rem;
+      padding: 2rem 0;
+    }
+
+    .he-shopcta__line {
+      font-size: 1.9rem;
+    }
+
+    .he-shopcta__actions {
+      flex-direction: column;
+    }
+
+    .he-shopcta__btn {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+</style>

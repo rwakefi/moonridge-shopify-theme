@@ -10,6 +10,9 @@
   empty this falls back to a single "Shop Hats" button, so the block is never
   blank and never broken.
 
+  Keep the line here distinct from the announcement bar copy — they appear
+  within a screen of each other on an article page.
+
   Colour tokens (--he-ink, --he-accent) are inherited from .he-article in
   snippets/hat-education-article.liquid. Root font is 10px (62.5%), so
   1rem = 10px here.
@@ -25,7 +28,7 @@
 
 <aside class="he-shopcta" aria-label="Shop hats">
   <p class="he-shopcta__eyebrow">Find Yours</p>
-  <p class="he-shopcta__line">Fitted, shaped, and finished by hand in Fayetteville.</p>
+  <p class="he-shopcta__line">The hats behind this guide.</p>
 
   <div class="he-shopcta__actions">
     {%- if cta_collections != blank and cta_collections.size > 0 -%}

@@ -1,0 +1,653 @@
+{%- comment -%}
+  Moon Ridge — Custom Hat Bar
+
+  Bespoke landing section for /pages/custom-hat-bar. Replaces the stock
+  main-page rich text so the fit → shape → finish sequence reads as a
+  sequence instead of eight identical paragraphs.
+
+  Content lives in section settings and blocks (see templates/page.custom-hat-bar.json),
+  so copy edits happen in the theme editor, not here.
+
+  Tokens and type scale intentionally match snippets/hat-education-article.liquid.
+  Root font is 10px (62.5%), so 1rem = 10px.
+
+  Two copy rules carried over from Custom_Hat_Bar_Page_Copy.md:
+  - Never shorten the name to "The Original Hat Bar" — that is Flea Style's brand.
+  - Shaping is complimentary IN STORE on hats bought from Moon Ridge, $35 otherwise.
+    Never word it so it reads as an online or shipping perk.
+{%- endcomment -%}
+
+<section class="hb">
+  <div class="hb__wrap">
+
+    {%- comment -%} HERO — split so the 720px source is never upscaled {%- endcomment -%}
+    <header class="hb__hero">
+      <div class="hb__hero-copy">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="hb__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        <h1 class="hb__title">{{ section.settings.title | escape }}</h1>
+        {%- if section.settings.deck != blank -%}
+          <p class="hb__deck">{{ section.settings.deck | escape }}</p>
+        {%- endif -%}
+        <div class="hb__hero-actions">
+          {%- if section.settings.primary_label != blank -%}
+            <a class="hb__btn hb__btn--primary" href="{{ section.settings.primary_url }}">{{ section.settings.primary_label | escape }}</a>
+          {%- endif -%}
+          {%- if section.settings.secondary_label != blank -%}
+            <a class="hb__btn hb__btn--ghost" href="{{ section.settings.secondary_url }}">{{ section.settings.secondary_label | escape }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- if section.settings.hero_image != blank -%}
+        <figure class="hb__hero-figure">
+          <img
+            src="{{ section.settings.hero_image | image_url: width: 720 }}"
+            srcset="{{ section.settings.hero_image | image_url: width: 480 }} 480w, {{ section.settings.hero_image | image_url: width: 720 }} 720w"
+            sizes="(min-width: 990px) 44vw, 100vw"
+            alt="{{ section.settings.hero_image.alt | default: section.settings.title | escape }}"
+            width="{{ section.settings.hero_image.width }}"
+            height="{{ section.settings.hero_image.height }}"
+            loading="eager"
+            fetchpriority="high"
+          >
+        </figure>
+      {%- endif -%}
+    </header>
+
+    {%- if section.settings.lede != blank -%}
+      <p class="hb__lede">{{ section.settings.lede }}</p>
+    {%- endif -%}
+
+    {%- comment -%} STEPS / FACTS / NOTES / BRANDS, in block order {%- endcomment -%}
+
+    {%- assign step_blocks = section.blocks | where: 'type', 'step' -%}
+    {%- if step_blocks.size > 0 -%}
+      <div class="hb__steps">
+        <h2 class="hb__section-title">{{ section.settings.steps_title | default: 'How it works' | escape }}</h2>
+        <ol class="hb__steps-grid" role="list">
+          {%- for block in step_blocks -%}
+            <li class="hb__step" {{ block.shopify_attributes }}>
+              <span class="hb__step-num">{{ forloop.index }}</span>
+              <h3 class="hb__step-title">{{ block.settings.title | escape }}</h3>
+              <p class="hb__step-text">{{ block.settings.text }}</p>
+            </li>
+          {%- endfor -%}
+        </ol>
+      </div>
+    {%- endif -%}
+
+    {%- assign fact_blocks = section.blocks | where: 'type', 'fact' -%}
+    {%- if fact_blocks.size > 0 -%}
+      <div class="hb__facts">
+        {%- for block in fact_blocks -%}
+          <div class="hb__fact" {{ block.shopify_attributes }}>
+            <p class="hb__fact-label">{{ block.settings.label | escape }}</p>
+            <p class="hb__fact-text">{{ block.settings.text }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- assign note_blocks = section.blocks | where: 'type', 'note' -%}
+    {%- if note_blocks.size > 0 -%}
+      <div class="hb__notes">
+        {%- for block in note_blocks -%}
+          <div class="hb__note" {{ block.shopify_attributes }}>
+            {%- if block.settings.heading != blank -%}
+              <h2 class="hb__note-heading">{{ block.settings.heading | escape }}</h2>
+            {%- endif -%}
+            <div class="hb__note-body rte">{{ block.settings.body }}</div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- assign brand_blocks = section.blocks | where: 'type', 'brand' -%}
+    {%- if brand_blocks.size > 0 -%}
+      <div class="hb__brands">
+        {%- if section.settings.brands_title != blank -%}
+          <h2 class="hb__section-title">{{ section.settings.brands_title | escape }}</h2>
+        {%- endif -%}
+        <ul class="hb__brands-row" role="list">
+          {%- for block in brand_blocks -%}
+            <li class="hb__brand" {{ block.shopify_attributes }}>{{ block.settings.name | escape }}</li>
+          {%- endfor -%}
+        </ul>
+        {%- if section.settings.brands_link_url != blank -%}
+          <p class="hb__brands-link">
+            <a href="{{ section.settings.brands_link_url }}">{{ section.settings.brands_link_label | default: 'See all the brands we carry' | escape }} &rarr;</a>
+          </p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} CLOSING CTA {%- endcomment -%}
+    <aside class="hb__close" aria-label="Visit the hat bar">
+      {%- if section.settings.close_title != blank -%}
+        <h2 class="hb__close-title">{{ section.settings.close_title | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.close_text != blank -%}
+        <p class="hb__close-text">{{ section.settings.close_text | escape }}</p>
+      {%- endif -%}
+      <div class="hb__close-actions">
+        {%- if section.settings.primary_label != blank -%}
+          <a class="hb__btn hb__btn--light" href="{{ section.settings.primary_url }}">{{ section.settings.primary_label | escape }}</a>
+        {%- endif -%}
+        {%- if section.settings.secondary_label != blank -%}
+          <a class="hb__btn hb__btn--outline-light" href="{{ section.settings.secondary_url }}">{{ section.settings.secondary_label | escape }}</a>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.address != blank -%}
+        <p class="hb__close-meta">
+          {{ section.settings.address | escape }}
+          {%- if section.settings.phone != blank -%}
+            &nbsp;&middot;&nbsp;<a href="tel:{{ section.settings.phone | remove: ' ' | remove: '(' | remove: ')' | remove: '-' }}">{{ section.settings.phone | escape }}</a>
+          {%- endif -%}
+        </p>
+      {%- endif -%}
+      {%- if section.settings.signoff != blank -%}
+        <p class="hb__close-signoff">{{ section.settings.signoff | escape }}</p>
+      {%- endif -%}
+    </aside>
+
+  </div>
+</section>
+
+<style>
+  .hb {
+    --hb-ink: #312110;
+    --hb-accent: #c5a059;
+    --hb-cream: #f6f2ec;
+    --hb-rule: rgba(49, 33, 16, 0.14);
+    color: var(--hb-ink);
+  }
+
+  .hb__wrap {
+    max-width: 118rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .hb__wrap {
+      padding: 4rem 5rem 6rem;
+    }
+  }
+
+  /* HERO */
+  .hb__hero {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 3.5rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .hb__hero {
+      grid-template-columns: 1fr minmax(0, 48rem);
+      gap: 5rem;
+    }
+  }
+
+  .hb__eyebrow {
+    margin: 0 0 1.3rem;
+    font-family: var(--font-heading-family);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--hb-accent);
+  }
+
+  .hb__title {
+    margin: 0 0 1.4rem;
+    font-family: var(--font-heading-family);
+    font-size: clamp(3.2rem, 4.4vw, 4.6rem);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    line-height: 1.12;
+    color: var(--hb-ink);
+  }
+
+  .hb__deck {
+    margin: 0 0 2.4rem;
+    font-size: 2rem;
+    line-height: 1.55;
+    color: rgba(49, 33, 16, 0.82);
+  }
+
+  .hb__hero-actions,
+  .hb__close-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .hb__hero-figure {
+    margin: 0;
+    overflow: hidden;
+    background: var(--hb-cream);
+    border: 1px solid var(--hb-rule);
+  }
+
+  .hb__hero-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* BUTTONS */
+  .hb__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 2.2rem;
+    border-radius: 4px;
+    font-family: var(--font-heading-family);
+    font-size: 1.3rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .hb__btn--primary {
+    background: var(--hb-ink);
+    border-color: var(--hb-ink);
+    color: #fff;
+  }
+
+  .hb__btn--primary:hover {
+    background: #4a3428;
+    border-color: #4a3428;
+    color: #fff;
+  }
+
+  .hb__btn--ghost {
+    background: transparent;
+    border-color: rgba(49, 33, 16, 0.35);
+    color: var(--hb-ink);
+  }
+
+  .hb__btn--ghost:hover {
+    border-color: var(--hb-accent);
+    color: var(--hb-accent);
+  }
+
+  .hb__btn--light {
+    background: var(--hb-cream);
+    border-color: var(--hb-cream);
+    color: var(--hb-ink);
+  }
+
+  .hb__btn--light:hover {
+    background: #fff;
+    border-color: #fff;
+  }
+
+  .hb__btn--outline-light {
+    background: transparent;
+    border-color: rgba(246, 242, 236, 0.5);
+    color: var(--hb-cream);
+  }
+
+  .hb__btn--outline-light:hover {
+    border-color: var(--hb-cream);
+    color: #fff;
+  }
+
+  /* LEDE */
+  .hb__lede {
+    max-width: 72rem;
+    margin: 0 auto 4.5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--hb-rule);
+    font-size: 2.2rem;
+    line-height: 1.55;
+    color: rgba(43, 36, 30, 0.95);
+    text-align: center;
+  }
+
+  /* SHARED SECTION TITLE */
+  .hb__section-title {
+    margin: 0 0 2.4rem;
+    text-align: center;
+    font-family: var(--font-heading-family);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--hb-accent);
+  }
+
+  /* STEPS */
+  .hb__steps {
+    margin-bottom: 5rem;
+  }
+
+  .hb__steps-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media screen and (min-width: 750px) {
+    .hb__steps-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+  }
+
+  .hb__step {
+    padding: 2.4rem 2rem;
+    background: var(--hb-cream);
+    border: 1px solid var(--hb-rule);
+    border-radius: 6px;
+  }
+
+  .hb__step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.4rem;
+    height: 3.4rem;
+    margin-bottom: 1.4rem;
+    border: 1px solid var(--hb-accent);
+    border-radius: 50%;
+    font-family: var(--font-heading-family);
+    font-size: 1.5rem;
+    color: var(--hb-accent);
+  }
+
+  .hb__step-title {
+    margin: 0 0 0.8rem;
+    font-family: var(--font-heading-family);
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--hb-ink);
+  }
+
+  .hb__step-text {
+    margin: 0;
+    font-size: 1.7rem;
+    line-height: 1.6;
+    color: #2b241e;
+  }
+
+  /* FACTS */
+  .hb__facts {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 5rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media screen and (min-width: 750px) {
+    .hb__facts {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 1100px) {
+    .hb__facts {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .hb__fact {
+    padding: 1.8rem 1.6rem;
+    background: #fff;
+    border: 1px solid var(--hb-rule);
+    border-radius: 6px;
+  }
+
+  .hb__fact-label {
+    margin: 0 0 0.6rem;
+    font-family: var(--font-heading-family);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--hb-accent);
+  }
+
+  .hb__fact-text {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    color: #2b241e;
+  }
+
+  /* NOTES */
+  .hb__notes {
+    max-width: 72rem;
+    margin: 0 auto 5rem;
+  }
+
+  .hb__note + .hb__note {
+    margin-top: 3.5rem;
+    padding-top: 3.5rem;
+    border-top: 1px solid var(--hb-rule);
+  }
+
+  .hb__note-heading {
+    margin: 0 0 1.4rem;
+    font-family: var(--font-heading-family);
+    font-size: 2.6rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--hb-ink);
+  }
+
+  .hb__note-body,
+  .hb__note-body p {
+    font-size: 1.9rem;
+    line-height: 1.68;
+    color: #2b241e;
+  }
+
+  .hb__note-body p {
+    margin: 0 0 1.8rem;
+  }
+
+  .hb__note-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .hb__note-body a {
+    color: var(--hb-ink);
+    text-decoration: underline;
+    text-decoration-color: rgba(49, 33, 16, 0.35);
+    text-underline-offset: 0.2em;
+  }
+
+  .hb__note-body a:hover {
+    color: var(--hb-accent);
+  }
+
+  /* BRANDS */
+  .hb__brands {
+    margin-bottom: 5rem;
+    padding: 3rem 0;
+    border-top: 1px solid var(--hb-rule);
+    border-bottom: 1px solid var(--hb-rule);
+  }
+
+  .hb__brands-row {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem 3.2rem;
+  }
+
+  .hb__brand {
+    font-family: var(--font-heading-family);
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(49, 33, 16, 0.78);
+  }
+
+  .hb__brands-link {
+    margin: 2.4rem 0 0;
+    text-align: center;
+  }
+
+  .hb__brands-link a {
+    font-family: var(--font-heading-family);
+    font-size: 1.35rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--hb-accent);
+    text-decoration: none;
+  }
+
+  .hb__brands-link a:hover {
+    text-decoration: underline;
+  }
+
+  /* CLOSING CTA */
+  .hb__close {
+    padding: 4rem 2rem;
+    background: var(--hb-ink);
+    border-radius: 8px;
+    text-align: center;
+    color: var(--hb-cream);
+  }
+
+  .hb__close-title {
+    margin: 0 0 1rem;
+    font-family: var(--font-heading-family);
+    font-size: clamp(2.6rem, 3vw, 3.4rem);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: #fff;
+  }
+
+  .hb__close-text {
+    max-width: 56rem;
+    margin: 0 auto 2.6rem;
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: rgba(246, 242, 236, 0.85);
+  }
+
+  .hb__close-actions {
+    justify-content: center;
+  }
+
+  .hb__close-meta {
+    margin: 2.6rem 0 0;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    color: rgba(246, 242, 236, 0.8);
+  }
+
+  .hb__close-meta a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .hb__close-signoff {
+    margin: 1.4rem 0 0;
+    font-family: var(--font-heading-family);
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+    color: rgba(246, 242, 236, 0.7);
+  }
+
+  @media screen and (max-width: 749px) {
+    .hb__hero-actions,
+    .hb__close-actions {
+      flex-direction: column;
+    }
+
+    .hb__btn {
+      width: 100%;
+    }
+
+    .hb__lede {
+      font-size: 2rem;
+      text-align: left;
+    }
+
+    .hb__close {
+      padding: 3rem 1.6rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Hat Bar",
+  "tag": "section",
+  "class": "section-main-hat-bar",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Moon Ridge Hats and Heritage" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Arkansas's Original Custom Hat Bar" },
+    { "type": "textarea", "id": "deck", "label": "Deck", "default": "A hat gets custom fitted for you here, not handed to you off the shelf." },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image" },
+    { "type": "text", "id": "primary_label", "label": "Primary button label", "default": "Book a Free Hat Experience" },
+    { "type": "url", "id": "primary_url", "label": "Primary button link" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button label", "default": "Plan a Hat Party" },
+    { "type": "url", "id": "secondary_url", "label": "Secondary button link" },
+    { "type": "richtext", "id": "lede", "label": "Lede" },
+    { "type": "text", "id": "steps_title", "label": "Steps heading", "default": "How it works" },
+    { "type": "text", "id": "brands_title", "label": "Brands heading", "default": "The brands we start with" },
+    { "type": "text", "id": "brands_link_label", "label": "Brands link label", "default": "See all the brands we carry" },
+    { "type": "url", "id": "brands_link_url", "label": "Brands link" },
+    { "type": "text", "id": "close_title", "label": "Closing heading", "default": "Come sit down" },
+    { "type": "textarea", "id": "close_text", "label": "Closing text" },
+    { "type": "text", "id": "address", "label": "Address" },
+    { "type": "text", "id": "phone", "label": "Phone" },
+    { "type": "text", "id": "signoff", "label": "Sign-off", "default": "— The Wakefield Family" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "richtext", "id": "text", "label": "Text" }
+      ]
+    },
+    {
+      "type": "fact",
+      "name": "Fact",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "richtext", "id": "text", "label": "Text" }
+      ]
+    },
+    {
+      "type": "note",
+      "name": "Note",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "richtext", "id": "body", "label": "Body" }
+      ]
+    },
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Brand name" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Custom Hat Bar" }
+  ]
+}
+{% endschema %}

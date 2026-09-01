@@ -65,7 +65,7 @@
           "settings": {
             "title": "Stetson",
             "tagline": "An American legacy",
-            "blurb": "Boss of the Plains to Garland felt \u2014 the most iconic hat brand in the world, shaped at our bench.",
+            "blurb": "Boss of the Plains to Garland felt — the most iconic hat brand in the world, shaped at our bench.",
             "link": "/pages/stetson-hat-history",
             "cta_label": "Learn More About Stetson",
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Stetson-Logo-Final.webp",
@@ -77,7 +77,7 @@
           "settings": {
             "title": "Resistol",
             "tagline": "Best All Around",
-            "blurb": "Texas-made felt built to resist all \u2014 still under the same Garland roof, fitted here in Fayetteville.",
+            "blurb": "Texas-made felt built to resist all — still under the same Garland roof, fitted here in Fayetteville.",
             "link": "/pages/resistol-hat-heritage",
             "cta_label": "Learn More About Resistol",
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Resistol_911a3678-5dee-4a84-a061-3ac6b8fff945.webp",
@@ -89,7 +89,7 @@
           "settings": {
             "title": "Lucchese",
             "tagline": "Bootmaker",
-            "blurb": "Sicily to Fort Sam Houston in 1883. Twisted-cone last, El Paso hands \u2014 a smaller menu, better execution.",
+            "blurb": "Sicily to Fort Sam Houston in 1883. Twisted-cone last, El Paso hands — a smaller menu, better execution.",
             "link": "/pages/lucchese-boot-heritage",
             "cta_label": "Learn More About Lucchese",
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Lucchese.webp",
@@ -101,7 +101,7 @@
           "settings": {
             "title": "Pendleton",
             "tagline": "Woven in Oregon Since 1863",
-            "blurb": "Virgin wool, dyed and woven in the Northwest \u2014 blankets, shirts, and goods that break in instead of wearing out.",
+            "blurb": "Virgin wool, dyed and woven in the Northwest — blankets, shirts, and goods that break in instead of wearing out.",
             "link": "/pages/pendleton-wool-history",
             "cta_label": "Learn More About Pendleton",
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Pendleton.webp",
@@ -113,7 +113,7 @@
           "settings": {
             "title": "Goorin Bros.",
             "tagline": "Smooth Never Meant Subtle",
-            "blurb": "From a Pittsburgh cart in 1895 to Animal Farm truckers \u2014 family hats with a patch you can spot across a room.",
+            "blurb": "From a Pittsburgh cart in 1895 to Animal Farm truckers — family hats with a patch you can spot across a room.",
             "link": "/pages/goorin-bros-hat-history",
             "cta_label": "Learn More About Goorin Bros.",
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Goorin_10f766db-115d-4e2c-8c05-4781456b9d6d.webp",
@@ -125,7 +125,7 @@
           "settings": {
             "title": "Bigalli",
             "tagline": "Crafting Timeless Hats Since 1926",
-            "blurb": "Italian eye, Ecuadorian hands \u2014 paja toquilla Panama straw and wool felt from a four-generation workshop.",
+            "blurb": "Italian eye, Ecuadorian hands — paja toquilla Panama straw and wool felt from a four-generation workshop.",
             "link": "/pages/bigalli-hat-history",
             "cta_label": "Learn More About Bigalli",
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/Bigalli_2.webp",
@@ -164,8 +164,8 @@
       ],
       "settings": {
         "eyebrow": "Moon Ridge Hats and Heritage",
-        "heading": "Legendary Hat Brands We Carry",
-        "intro": "Stetson, Resistol, Lucchese, Pendleton, Goorin Bros., and Bigalli\u2014heritage makers Moon Ridge trusts. Read their stories, then shop fitted styles in Fayetteville or nationwide.",
+        "heading": "Legendary Brands We Carry",
+        "intro": "Stetson, Resistol, Lucchese, Pendleton, Goorin Bros., and Bigalli—heritage makers Moon Ridge trusts. Read their stories, then shop fitted styles in Fayetteville or nationwide.",
         "container_width": 1200,
         "background_color": "#faf7f2",
         "surface_color": "#ffffff",

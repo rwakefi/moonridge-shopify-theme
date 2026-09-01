@@ -17,7 +17,8 @@
           "settings": {
             "title": "Arkansas's Original Hat Bar",
             "excerpt": "Where a hat gets custom fitted, shaped, and finished by hand — in Fayetteville, walk-ins welcome.",
-            "link": "shopify://pages/custom-hat-bar"
+            "link": "shopify://pages/custom-hat-bar",
+            "image": "shopify://shop_images/moon-ridge-hat-bar-steam-3x2.jpg"
           }
         },
         "brands": {

@@ -25,7 +25,8 @@
           "settings": {
             "title": "Our Legendary Brands",
             "excerpt": "The makers we trust enough to put our name next to — Stetson, Resistol, Goorin Bros, Lucchese, Pendleton, and more.",
-            "link": "shopify://pages/legendary-hat-brands"
+            "link": "shopify://pages/legendary-hat-brands",
+            "image": "shopify://shop_images/moon-ridge-legendary-brands-collage.png"
           }
         },
         "podcast": {

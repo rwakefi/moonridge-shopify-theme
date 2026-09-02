@@ -3,8 +3,11 @@
   color: #312110;
 }
 
+/* Measure shared by the quote, body copy and sign-off so their left and
+   right edges line up. 68rem ≈ 680px, matching .he-article__body on the
+   Hat Education guides. Root font is 10px (62.5%), so 1rem = 10px. */
 .roots-index__intro {
-  max-width: 82rem;
+  max-width: 88rem;
   margin: 0 auto 4rem;
   text-align: center;
 }
@@ -45,14 +48,14 @@
 }
 
 .roots-index__quote {
-  margin: 0 auto 1.8rem;
-  max-width: 54rem;
+  margin: 0 auto 2.4rem;
+  max-width: 68rem;
   padding: 0.4rem 0 0.4rem clamp(1.4rem, 2vw, 2rem);
   border: 0;
   border-left: 3px solid #c5a059;
   text-align: left;
   font-family: var(--font-heading-italic, var(--font-heading-family));
-  font-size: clamp(1.65rem, 2.1vw, 2rem);
+  font-size: 2rem;
   font-weight: 400;
   font-style: italic;
   line-height: 1.6;
@@ -61,14 +64,24 @@
 
 .roots-index__copy {
   margin: 0 auto;
-  max-width: 54rem;
+  max-width: 68rem;
   text-align: left;
-  font-size: clamp(1.35rem, 1.6vw, 1.5rem);
-  line-height: 1.75;
+  font-size: 1.8rem;
+  line-height: 1.7;
+}
+
+@media screen and (min-width: 750px) {
+  .roots-index__copy {
+    font-size: 1.9rem;
+  }
+
+  .roots-index__quote {
+    font-size: 2.1rem;
+  }
 }
 
 .roots-index__copy p {
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.6rem;
   color: #2b241e;
 }
 
@@ -77,13 +90,13 @@
 }
 
 .roots-index__signoff {
-  margin: 1.8rem auto 0;
+  margin: 2.4rem auto 0;
   padding-top: clamp(1.6rem, 2.5vw, 2.4rem);
   border-top: 1px solid rgba(49, 33, 16, 0.1);
-  max-width: 54rem;
+  max-width: 68rem;
   text-align: right;
   font-family: var(--font-heading-italic, var(--font-heading-family));
-  font-size: clamp(1.6rem, 2vw, 1.85rem);
+  font-size: clamp(1.7rem, 2vw, 1.95rem);
   line-height: 1.4;
   color: #312110;
 }
@@ -113,12 +126,6 @@
 
 .roots-index__grid-wrap.travel-blog-menu {
   margin-top: 0;
-}
-
-@media screen and (max-width: 749px) {
-  .roots-index__quote {
-    font-size: 1.65rem;
-  }
 }
 
 /* Card grid — same language as Hat Education */
@@ -186,7 +193,7 @@
 }
 
 .roots-index .travel-blog-menu__excerpt {
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   line-height: 1.7;
   margin: 0.25rem 0 0.85rem;
   flex-grow: 1;
@@ -219,7 +226,7 @@
   }
 
   .roots-index .travel-blog-menu__excerpt {
-    font-size: 1.05rem;
+    font-size: 1.25rem;
   }
 
   .roots-index .travel-blog-menu__read-more {

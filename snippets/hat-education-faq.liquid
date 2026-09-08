@@ -5,18 +5,12 @@
 {%- endcomment -%}
 {%- liquid
   assign he_faq_handle = article.handle
-  assign he_faq_on = false
   assign he_howto_on = false
-  assign he_faq_list = 'felt-vs-straw-cowboy-hats|cowboy-hat-crown-shapes|cowboy-hat-brim-shapes|types-of-straw-in-straw-hats|understanding-the-x-rating-of-hats|how-to-clean-a-felt-hat|learn-your-head-shape|finding-the-style-that-fits-your-face|how-to-store-a-cowboy-hat|felt-season-vs-straw-season' | split: '|'
-  if he_faq_list contains he_faq_handle
-    assign he_faq_on = true
-  endif
   if he_faq_handle == 'how-to-clean-a-felt-hat' or he_faq_handle == 'how-to-store-a-cowboy-hat'
     assign he_howto_on = true
   endif
 -%}
 
-{%- if he_faq_on -%}
 <section class="he-article__faq" aria-labelledby="he-faq-heading">
   <h2 id="he-faq-heading">Common questions</h2>
   <dl class="he-article__faq-list">
@@ -381,7 +375,6 @@
   ]
 }
 </script>
-{%- endif -%}
 
 {%- if he_howto_on and he_faq_handle == 'how-to-clean-a-felt-hat' -%}
 <script type="application/ld+json">
@@ -419,7 +412,6 @@
 </script>
 {%- endif -%}
 
-{%- if he_faq_on -%}
 <style>
   .he-article__faq {
     max-width: 69rem;
@@ -469,4 +461,3 @@
     margin-top: 0.45rem;
   }
 </style>
-{%- endif -%}

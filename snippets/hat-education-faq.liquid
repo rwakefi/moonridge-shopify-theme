@@ -4,14 +4,14 @@
   HowTo JSON-LD is emitted only on the two care posts, using the same visible steps.
 {%- endcomment -%}
 {%- liquid
-  assign he_faq_handle = article.handle
+  assign he_faq_handle = article.url | split: '/' | last
   assign he_howto_on = false
   if he_faq_handle == 'how-to-clean-a-felt-hat' or he_faq_handle == 'how-to-store-a-cowboy-hat'
     assign he_howto_on = true
   endif
 -%}
 
-<section class="he-article__faq" aria-labelledby="he-faq-heading">
+<section class="he-article__faq" aria-labelledby="he-faq-heading" data-article-handle="{{ he_faq_handle | escape }}">
   <h2 id="he-faq-heading">Common questions</h2>
   <dl class="he-article__faq-list">
     {% case he_faq_handle %}

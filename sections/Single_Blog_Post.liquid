@@ -9,10 +9,10 @@
 {% endcomment %}
 
 {%- if template.suffix == 'hat-education' or blog.handle == 'hat-education' -%}
-  {% render 'hat-education-article' %}
+  {% render 'hat-education-article', article: article, blog: blog %}
 {%- else -%}
 
-{% render 'article-blogposting-schema' %}
+{% render 'article-blogposting-schema', article: article, blog: blog %}
 
 <section class="rm-article page-width">
 

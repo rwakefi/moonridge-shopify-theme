@@ -9,7 +9,7 @@
 
 -%}
 
-{% render 'article-blogposting-schema' %}
+{% render 'article-blogposting-schema', article: article, blog: blog %}
 
 <section class="he-article">
   <div class="he-article__inner page-width">
@@ -58,7 +58,7 @@
       {{ article.content }}
     </div>
 
-    {% render 'hat-education-faq', article: article %}
+    {% render 'hat-education-faq', article: article, blog: blog %}
   </div>
 
   <script src="{{ 'hat-education-article.js' | asset_url }}" defer="defer"></script>

@@ -58,7 +58,7 @@
       {{ article.content }}
     </div>
 
-    {% render 'hat-education-faq' %}
+    {% render 'hat-education-faq', article: article %}
   </div>
 
   <script src="{{ 'hat-education-article.js' | asset_url }}" defer="defer"></script>

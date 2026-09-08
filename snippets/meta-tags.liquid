@@ -33,7 +33,7 @@
   elsif request.page_type == 'article'
     assign seo_title = article.metafields.global.title_tag | default: article.title
     unless seo_title contains shop.name or seo_title contains "Moon Ridge"
-      assign seo_title = seo_title | append: " | Moon Ridge Hats and Heritage"
+      assign seo_title = seo_title | append: " | Moon Ridge"
     endunless
     assign seo_description = article.metafields.global.description_tag | default: page_description | default: shop.description
   elsif request.page_type == 'page' and page.handle == 'hat-sizing'

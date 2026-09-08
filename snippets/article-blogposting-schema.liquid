@@ -1,0 +1,98 @@
+{%- comment -%}
+  BlogPosting + BreadcrumbList for article templates (Hat Education, Travel, Origin).
+  Richer Person author helps AI engines attribute expertise to Zack/Natalie.
+{%- endcomment -%}
+{%- liquid
+  assign schema_blog = blog | default: article.blog
+  assign schema_description = article.metafields.global.description_tag | default: article.excerpt | default: article.content | strip_html | strip | truncate: 160
+  assign author_name = article.author | default: shop.name
+  assign author_name_down = author_name | downcase
+  assign author_job = 'Co-founder, Moon Ridge Hats and Heritage'
+  if author_name_down contains 'natalie'
+    assign author_job = 'Co-founder and designer, Moon Ridge Hats and Heritage'
+  elsif author_name_down contains 'zack'
+    assign author_job = 'Co-founder, Moon Ridge Hats and Heritage'
+  endif
+  assign parent_name = schema_blog.title | default: 'Blog'
+  if schema_blog.handle == 'hat-education'
+    assign parent_name = 'Hat Education'
+  endif
+  assign article_abs = request.origin | append: article.url
+  assign blog_abs = request.origin | append: schema_blog.url
+-%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ article.title | json }},
+  "description": {{ schema_description | json }},
+  "inLanguage": "en-US",
+  "datePublished": {{ article.published_at | date: '%Y-%m-%d' | json }},
+  "dateModified": {{ article.updated_at | date: '%Y-%m-%d' | json }},
+  "articleSection": {{ parent_name | json }},
+  "author": {
+    "@type": "Person",
+    "name": {{ author_name | json }},
+    "jobTitle": {{ author_job | json }},
+    "worksFor": {
+      "@type": "Organization",
+      "@id": {{ request.origin | append: "/#organization" | json }}
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": {{ request.origin | append: "/#organization" | json }},
+    "name": {{ shop.name | json }},
+    "url": {{ request.origin | json }}
+    {%- if settings.logo -%}
+    ,"logo": {
+      "@type": "ImageObject",
+      "url": {{ settings.logo | image_url: width: 600 | prepend: "https:" | json }}
+    }
+    {%- endif -%}
+  },
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": {{ blog_abs | json }},
+    "name": {{ parent_name | json }},
+    "url": {{ blog_abs | json }}
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ article_abs | json }}
+  },
+  "url": {{ article_abs | json }}
+  {%- if article.image -%}
+  ,"image": {
+    "@type": "ImageObject",
+    "url": {{ article.image | image_url: width: 1200 | prepend: "https:" | json }}
+  }
+  {%- endif -%}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": {{ request.origin | json }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ parent_name | json }},
+      "item": {{ blog_abs | json }}
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ article.title | json }},
+      "item": {{ article_abs | json }}
+    }
+  ]
+}
+</script>

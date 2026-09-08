@@ -1,0 +1,490 @@
+{%- comment -%}
+  Visible FAQ + FAQPage JSON-LD for Hat Education guides.
+  Answers must match the on-page FAQ (Google / AI Overview requirement).
+  HowTo JSON-LD is emitted only on the two care posts, using the same visible steps.
+{%- endcomment -%}
+{%- liquid
+  assign he_faq_handle = article.handle
+  assign he_faq_on = false
+  assign he_howto_on = false
+-%}
+
+{%- case he_faq_handle -%}
+  {%- when 'felt-vs-straw-cowboy-hats' -%}
+    {%- assign he_faq_on = true -%}
+  {%- when 'cowboy-hat-crown-shapes' -%}
+    {%- assign he_faq_on = true -%}
+  {%- when 'cowboy-hat-brim-shapes' -%}
+    {%- assign he_faq_on = true -%}
+  {%- when 'types-of-straw-in-straw-hats' -%}
+    {%- assign he_faq_on = true -%}
+  {%- when 'understanding-the-x-rating-of-hats' -%}
+    {%- assign he_faq_on = true -%}
+  {%- when 'how-to-clean-a-felt-hat' -%}
+    {%- assign he_faq_on = true -%}
+    {%- assign he_howto_on = true -%}
+  {%- when 'learn-your-head-shape' -%}
+    {%- assign he_faq_on = true -%}
+  {%- when 'finding-the-style-that-fits-your-face' -%}
+    {%- assign he_faq_on = true -%}
+  {%- when 'how-to-store-a-cowboy-hat' -%}
+    {%- assign he_faq_on = true -%}
+    {%- assign he_howto_on = true -%}
+  {%- when 'felt-season-vs-straw-season' -%}
+    {%- assign he_faq_on = true -%}
+{%- endcase -%}
+
+{%- if he_faq_on -%}
+<section class="he-article__faq" aria-labelledby="he-faq-heading">
+  <h2 id="he-faq-heading">Common questions</h2>
+  <dl class="he-article__faq-list">
+    {%- case he_faq_handle -%}
+      {%- when 'felt-vs-straw-cowboy-hats' -%}
+        <dt>Should I buy a felt or straw cowboy hat?</dt>
+        <dd>Choose felt for cooler months, dressier days, and a hat that holds shape for years. Choose straw for heat, sun, and summer work. Most people who wear a hat every day eventually own both. Complimentary custom shaping at Moon Ridge is in-store only, on hats purchased here.</dd>
+        <dt>Is the Labor Day felt-to-straw rule real?</dt>
+        <dd>It started as a city dress-code habit, not a ranch rule. Weather and the day in front of you are better guides than the calendar. If it is hot, wear straw. If it is cold or formal, wear felt.</dd>
+        <dt>Which lasts longer, felt or straw?</dt>
+        <dd>A well-made fur felt typically outlasts straw if you store it right and stay out of the washing machine. Straw is meant to work hard in the sun and will show that wear sooner — that is part of its job.</dd>
+
+      {%- when 'cowboy-hat-crown-shapes' -%}
+        <dt>What cowboy hat crown shapes are there?</dt>
+        <dd>The creases we use on Moon Ridge product pages are Cattleman’s, Brick/Rounded Brick/Minnick, Pinch Front/Teardrop/Diamond, Gus/Tom Mix, Texas Punch, Cutter, Gambler/Telescope, CHL (Cool Hand Luke), The Walker, Mule Kick/Horseshoe, and Open Crown. Same brim, different crease — different hat.</dd>
+        <dt>Can Moon Ridge reshape a cowboy hat crown?</dt>
+        <dd>Yes, on quality felt and many straws. We steam and set the crown in-store at Arkansas’s Original Hat Bar in Fayetteville. Shaping is complimentary on hats purchased at Moon Ridge, and $35 if you bring a hat from elsewhere.</dd>
+        <dt>Which crown shape is best for a round face?</dt>
+        <dd>Taller, cleaner creases — a high cattleman or pinch front — add vertical lines. Softer sloping creases like a Gus ease a strong jaw. Oval faces can wear almost anything. Face shape picks the style; head shape makes it fit.</dd>
+
+      {%- when 'cowboy-hat-brim-shapes' -%}
+        <dt>What cowboy hat brim shapes are there?</dt>
+        <dd>The brim names on our product pages are Flat/Pencil Curl, Snap Brim/Flanged, RD (Round), J (George Strait, medium curve), JB (Bullrider), CHL (Cool Hand Luke/Shovel/Reiner low sides), U (Reiner high sides), WTP (West Texas Punch/Rancher), and SC (Showmanship). Curl and width change shade, formality, and how the hat frames a face.</dd>
+        <dt>Can you change the brim on a hat I already own?</dt>
+        <dd>Often yes, within what the brim will take. Felt gives us more to work with than a stiff straw. We set brims in-store in Fayetteville; free shaping is for hats purchased at Moon Ridge.</dd>
+        <dt>How wide should a cowboy hat brim be?</dt>
+        <dd>Most western brims we sell land around 3.5 to 4.5 inches. Wider brims add shade and can shorten a long face. Narrower brims feel dressier and suit a smaller frame.</dd>
+
+      {%- when 'types-of-straw-in-straw-hats' -%}
+        <dt>What are the different types of straw in straw hats?</dt>
+        <dd>The main straws you will see here are Bangora (vented everyday western, typically about $40–$80), Shantung (smoother dress/western paper-fiber, typically about $70–$200+), palm leaf (hard outdoor wear, typically about $55–$120), true Panama/toquilla from Ecuador (typically about $130–$250+, higher for Montecristi), and European braids such as seagrass, wheat, and rye. Toyo, Milan, raffia, and parasisal show up too.</dd>
+        <dt>Is a Panama hat the same as a cowboy straw?</dt>
+        <dd>No. A true Panama is toquilla straw, hand-woven in Ecuador, usually in a fedora or similar brim — not a cattleman cowboy. Plenty of western straws are Bangora or Shantung. If the label just says “Panama” without Ecuador or toquilla, ask.</dd>
+        <dt>Which straw hat is best for hot weather?</dt>
+        <dd>Bangora and palm leaf breathe and work outside. Shantung is smoother and dressier. A fine Panama is the lightest dress straw if the weave is open enough. Fit still comes first — try it on, or use Hat Finder, then we can shape it in Fayetteville.</dd>
+
+      {%- when 'understanding-the-x-rating-of-hats' -%}
+        <dt>What does the X-rating on a felt hat mean?</dt>
+        <dd>X-rating is shorthand for felt quality. Higher X usually means a greater share of finer fur — especially beaver — which typically means a smoother hand, better weather resilience, cleaner shaping, and longer wear. Common ratings run 3X, 4X, 5X, 10X, 20X, 50X, and 100X.</dd>
+        <dt>Is a Stetson 6X the same as a Resistol 6X?</dt>
+        <dd>No. Stetson and Resistol each use their own scale, so the numbers are not interchangeable. Compare hats in person by feel, shape, and how they wear — not by matching the X on the leather.</dd>
+        <dt>What X-rating should I buy?</dt>
+        <dd>Everyday wear is well served in the mid range (about 4X–10X depending on the brand). Step up when you want an heirloom felt that will take a shape and keep it. X does not tell you fit, crease, or whether you like the hat on your head.</dd>
+
+      {%- when 'how-to-clean-a-felt-hat' -%}
+        <dt>How do you clean a felt cowboy hat at home?</dt>
+        <dd>Brush with the nap using a dedicated hat brush, lift lint, treat grease as soon as you see it, and spot-clean lightly if you must. Do not soak it, run it through a washer, or hold a steamer on one spot. When sweat has set in the band or the crown has collapsed, bring it to the hat bar.</dd>
+        <dt>Can you wash a felt hat with water?</dt>
+        <dd>No. Felt is water-resistant, not waterproof. Submerging or soaking it can warp the shape, collapse the crown, and shrink the sweatband so the hat no longer fits. That damage is often permanent.</dd>
+        <dt>Does Moon Ridge clean and restore felt hats?</dt>
+        <dd>Yes. In Fayetteville we deep-clean, steam, and reshape felt — complimentary on hats purchased at Moon Ridge, $35 for hats brought from elsewhere. Designers are in Thursday through Saturday; walk-ins are welcome.</dd>
+
+      {%- when 'learn-your-head-shape' -%}
+        <dt>How do I know my head shape for a hat?</dt>
+        <dd>Look at the head from above. Oval is longer front-to-back than side-to-side (most common). Round is about equal width and depth. Long/narrow has extra front-to-back length. Face shape is a different measurement — it picks style; head shape picks fit.</dd>
+        <dt>Why does a hat spin or sit high on my head?</dt>
+        <dd>Usually the oval of the hat does not match your head. A round head in a long oval leaves gaps front and back. A long head in a standard oval pinches at the temples. We read that in-store and shape the sweatband so the hat seals.</dd>
+        <dt>Can you fit a hat to a round or long head?</dt>
+        <dd>Yes. Natalie sizes the hat, then shapes crown, brim, and sweatband to the head in front of her. Book a free fitting in Fayetteville or start with the hat sizing guide if you are ordering from home.</dd>
+
+      {%- when 'finding-the-style-that-fits-your-face' -%}
+        <dt>What hat style is best for my face shape?</dt>
+        <dd>Oval faces can wear cattleman, Gus, gambler, and open crowns. Round faces need height — a high cattleman or pinch front, not a wide flat brim. Square faces like a softer crease such as a Gus. Long/oblong faces want wider brims and lower crowns. Heart, diamond, and triangle faces follow the same idea: add width or height where the face is narrower.</dd>
+        <dt>Is face shape the same as head shape?</dt>
+        <dd>No. Face shape is how the hat frames you in the mirror. Head shape is how it sits and seals. Use both. We fit and shape Stetson, Resistol, and the rest of the wall to both in Fayetteville.</dd>
+        <dt>Can you shape a hat to flatter my face in the store?</dt>
+        <dd>Yes. Crown height, crease, and brim curl are the levers. Complimentary shaping is for hats purchased at Moon Ridge; $35 if you bring one in. Walk-ins are welcome Thursday through Saturday when designers are on the bar.</dd>
+
+      {%- when 'how-to-store-a-cowboy-hat' -%}
+        <dt>How should I store a cowboy hat?</dt>
+        <dd>Set it on the crown, never brim-down. Keep it out of hot trucks and rear-window ledges. Dry a wet hat slowly at room temperature. Felt and straw want slightly different storage, and a hat can is the right call for long-term or travel.</dd>
+        <dt>Why can’t I set a hat brim-down?</dt>
+        <dd>The brim takes the hat’s whole weight and slowly rolls, flattens, or warps. The crown is built to hold that weight. A table or a hat rack that supports the crown keeps the brim you paid to have set.</dd>
+        <dt>What do I do if my cowboy hat gets wet?</dt>
+        <dd>Do not blast it with heat. Let it dry slowly, on its crown, away from a heater or dashboard. If the shape cooked in, bring it to Moon Ridge — we can usually steam it back.</dd>
+
+      {%- when 'felt-season-vs-straw-season' -%}
+        <dt>When is felt season vs straw season?</dt>
+        <dd>Switch to straw when the days are hot enough that felt feels like work. Switch back to felt when mornings have a bite or you need a dressier hat. Labor Day is a story people tell, not a thermometer.</dd>
+        <dt>What if I only own one cowboy hat?</dt>
+        <dd>If you live where summers run hot, start with a good straw and add felt when you can. If you need one hat for church, winter, and photos, start with felt and be honest about July. We can help you rotate a lineup in Fayetteville.</dd>
+        <dt>Do I need both felt and straw?</dt>
+        <dd>If you wear a hat most days, yes — they do different jobs. Felt holds shape and weather. Straw breathes. The changeover is about the week you are living, not a single date on the calendar.</dd>
+    {%- endcase -%}
+  </dl>
+  {%- if he_faq_handle == 'how-to-clean-a-felt-hat' -%}
+    <ol class="he-article__howto" aria-label="How to clean a felt hat at home">
+      <li>Brush with the nap using a hat brush — not a clothes brush.</li>
+      <li>Lift lint and surface dust; skip water if a brush will do it.</li>
+      <li>Treat grease immediately with a method meant for felt, not dish soap.</li>
+      <li>Spot-clean only when you have to, then let the hat dry on its crown.</li>
+      <li>Stop and book a cleaning if sweat, odor, or shape has set in.</li>
+    </ol>
+  {%- elsif he_faq_handle == 'how-to-store-a-cowboy-hat' -%}
+    <ol class="he-article__howto" aria-label="How to store a cowboy hat">
+      <li>Set the hat on its crown, never on the brim.</li>
+      <li>Keep it out of hot vehicles and rear windows.</li>
+      <li>If it gets wet, dry it slowly at room temperature on the crown.</li>
+      <li>Store felt and straw apart — straw hates being crushed, felt hates heat.</li>
+      <li>Use a hat can for travel and long-term storage.</li>
+    </ol>
+  {%- endif -%}
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- case he_faq_handle -%}
+      {%- when 'felt-vs-straw-cowboy-hats' -%}
+        {
+          "@type": "Question",
+          "name": "Should I buy a felt or straw cowboy hat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Choose felt for cooler months, dressier days, and a hat that holds shape for years. Choose straw for heat, sun, and summer work. Most people who wear a hat every day eventually own both. Complimentary custom shaping at Moon Ridge is in-store only, on hats purchased here."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the Labor Day felt-to-straw rule real?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It started as a city dress-code habit, not a ranch rule. Weather and the day in front of you are better guides than the calendar. If it is hot, wear straw. If it is cold or formal, wear felt."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which lasts longer, felt or straw?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A well-made fur felt typically outlasts straw if you store it right and stay out of the washing machine. Straw is meant to work hard in the sun and will show that wear sooner — that is part of its job."
+          }
+        }
+      {%- when 'cowboy-hat-crown-shapes' -%}
+        {
+          "@type": "Question",
+          "name": "What cowboy hat crown shapes are there?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The creases we use on Moon Ridge product pages are Cattleman’s, Brick/Rounded Brick/Minnick, Pinch Front/Teardrop/Diamond, Gus/Tom Mix, Texas Punch, Cutter, Gambler/Telescope, CHL (Cool Hand Luke), The Walker, Mule Kick/Horseshoe, and Open Crown. Same brim, different crease — different hat."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can Moon Ridge reshape a cowboy hat crown?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, on quality felt and many straws. We steam and set the crown in-store at Arkansas’s Original Hat Bar in Fayetteville. Shaping is complimentary on hats purchased at Moon Ridge, and $35 if you bring a hat from elsewhere."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which crown shape is best for a round face?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Taller, cleaner creases — a high cattleman or pinch front — add vertical lines. Softer sloping creases like a Gus ease a strong jaw. Oval faces can wear almost anything. Face shape picks the style; head shape makes it fit."
+          }
+        }
+      {%- when 'cowboy-hat-brim-shapes' -%}
+        {
+          "@type": "Question",
+          "name": "What cowboy hat brim shapes are there?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The brim names on our product pages are Flat/Pencil Curl, Snap Brim/Flanged, RD (Round), J (George Strait, medium curve), JB (Bullrider), CHL (Cool Hand Luke/Shovel/Reiner low sides), U (Reiner high sides), WTP (West Texas Punch/Rancher), and SC (Showmanship). Curl and width change shade, formality, and how the hat frames a face."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you change the brim on a hat I already own?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Often yes, within what the brim will take. Felt gives us more to work with than a stiff straw. We set brims in-store in Fayetteville; free shaping is for hats purchased at Moon Ridge."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How wide should a cowboy hat brim be?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most western brims we sell land around 3.5 to 4.5 inches. Wider brims add shade and can shorten a long face. Narrower brims feel dressier and suit a smaller frame."
+          }
+        }
+      {%- when 'types-of-straw-in-straw-hats' -%}
+        {
+          "@type": "Question",
+          "name": "What are the different types of straw in straw hats?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The main straws you will see here are Bangora (vented everyday western, typically about $40–$80), Shantung (smoother dress/western paper-fiber, typically about $70–$200+), palm leaf (hard outdoor wear, typically about $55–$120), true Panama/toquilla from Ecuador (typically about $130–$250+, higher for Montecristi), and European braids such as seagrass, wheat, and rye. Toyo, Milan, raffia, and parasisal show up too."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a Panama hat the same as a cowboy straw?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. A true Panama is toquilla straw, hand-woven in Ecuador, usually in a fedora or similar brim — not a cattleman cowboy. Plenty of western straws are Bangora or Shantung. If the label just says “Panama” without Ecuador or toquilla, ask."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which straw hat is best for hot weather?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bangora and palm leaf breathe and work outside. Shantung is smoother and dressier. A fine Panama is the lightest dress straw if the weave is open enough. Fit still comes first — try it on, or use Hat Finder, then we can shape it in Fayetteville."
+          }
+        }
+      {%- when 'understanding-the-x-rating-of-hats' -%}
+        {
+          "@type": "Question",
+          "name": "What does the X-rating on a felt hat mean?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "X-rating is shorthand for felt quality. Higher X usually means a greater share of finer fur — especially beaver — which typically means a smoother hand, better weather resilience, cleaner shaping, and longer wear. Common ratings run 3X, 4X, 5X, 10X, 20X, 50X, and 100X."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a Stetson 6X the same as a Resistol 6X?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Stetson and Resistol each use their own scale, so the numbers are not interchangeable. Compare hats in person by feel, shape, and how they wear — not by matching the X on the leather."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What X-rating should I buy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Everyday wear is well served in the mid range (about 4X–10X depending on the brand). Step up when you want an heirloom felt that will take a shape and keep it. X does not tell you fit, crease, or whether you like the hat on your head."
+          }
+        }
+      {%- when 'how-to-clean-a-felt-hat' -%}
+        {
+          "@type": "Question",
+          "name": "How do you clean a felt cowboy hat at home?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Brush with the nap using a dedicated hat brush, lift lint, treat grease as soon as you see it, and spot-clean lightly if you must. Do not soak it, run it through a washer, or hold a steamer on one spot. When sweat has set in the band or the crown has collapsed, bring it to the hat bar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you wash a felt hat with water?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Felt is water-resistant, not waterproof. Submerging or soaking it can warp the shape, collapse the crown, and shrink the sweatband so the hat no longer fits. That damage is often permanent."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Moon Ridge clean and restore felt hats?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. In Fayetteville we deep-clean, steam, and reshape felt — complimentary on hats purchased at Moon Ridge, $35 for hats brought from elsewhere. Designers are in Thursday through Saturday; walk-ins are welcome."
+          }
+        }
+      {%- when 'learn-your-head-shape' -%}
+        {
+          "@type": "Question",
+          "name": "How do I know my head shape for a hat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Look at the head from above. Oval is longer front-to-back than side-to-side (most common). Round is about equal width and depth. Long/narrow has extra front-to-back length. Face shape is a different measurement — it picks style; head shape picks fit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does a hat spin or sit high on my head?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Usually the oval of the hat does not match your head. A round head in a long oval leaves gaps front and back. A long head in a standard oval pinches at the temples. We read that in-store and shape the sweatband so the hat seals."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you fit a hat to a round or long head?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Natalie sizes the hat, then shapes crown, brim, and sweatband to the head in front of her. Book a free fitting in Fayetteville or start with the hat sizing guide if you are ordering from home."
+          }
+        }
+      {%- when 'finding-the-style-that-fits-your-face' -%}
+        {
+          "@type": "Question",
+          "name": "What hat style is best for my face shape?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oval faces can wear cattleman, Gus, gambler, and open crowns. Round faces need height — a high cattleman or pinch front, not a wide flat brim. Square faces like a softer crease such as a Gus. Long/oblong faces want wider brims and lower crowns. Heart, diamond, and triangle faces follow the same idea: add width or height where the face is narrower."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is face shape the same as head shape?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Face shape is how the hat frames you in the mirror. Head shape is how it sits and seals. Use both. We fit and shape Stetson, Resistol, and the rest of the wall to both in Fayetteville."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you shape a hat to flatter my face in the store?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Crown height, crease, and brim curl are the levers. Complimentary shaping is for hats purchased at Moon Ridge; $35 if you bring one in. Walk-ins are welcome Thursday through Saturday when designers are on the bar."
+          }
+        }
+      {%- when 'how-to-store-a-cowboy-hat' -%}
+        {
+          "@type": "Question",
+          "name": "How should I store a cowboy hat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Set it on the crown, never brim-down. Keep it out of hot trucks and rear-window ledges. Dry a wet hat slowly at room temperature. Felt and straw want slightly different storage, and a hat can is the right call for long-term or travel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why can’t I set a hat brim-down?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The brim takes the hat’s whole weight and slowly rolls, flattens, or warps. The crown is built to hold that weight. A table or a hat rack that supports the crown keeps the brim you paid to have set."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do I do if my cowboy hat gets wet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Do not blast it with heat. Let it dry slowly, on its crown, away from a heater or dashboard. If the shape cooked in, bring it to Moon Ridge — we can usually steam it back."
+          }
+        }
+      {%- when 'felt-season-vs-straw-season' -%}
+        {
+          "@type": "Question",
+          "name": "When is felt season vs straw season?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Switch to straw when the days are hot enough that felt feels like work. Switch back to felt when mornings have a bite or you need a dressier hat. Labor Day is a story people tell, not a thermometer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I only own one cowboy hat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If you live where summers run hot, start with a good straw and add felt when you can. If you need one hat for church, winter, and photos, start with felt and be honest about July. We can help you rotate a lineup in Fayetteville."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need both felt and straw?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If you wear a hat most days, yes — they do different jobs. Felt holds shape and weather. Straw breathes. The changeover is about the week you are living, not a single date on the calendar."
+          }
+        }
+    {%- endcase -%}
+  ]
+}
+</script>
+{%- endif -%}
+
+{%- if he_howto_on and he_faq_handle == 'how-to-clean-a-felt-hat' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to clean a felt hat at home",
+  "description": "Brush, spot-clean, and know when to stop. Felt hat care from Moon Ridge’s hat bar in Fayetteville.",
+  "url": {{ request.origin | append: article.url | json }},
+  "step": [
+    {"@type": "HowToStep", "position": 1, "name": "Brush with the nap", "text": "Brush with the nap using a hat brush — not a clothes brush."},
+    {"@type": "HowToStep", "position": 2, "name": "Lift lint and dust", "text": "Lift lint and surface dust; skip water if a brush will do it."},
+    {"@type": "HowToStep", "position": 3, "name": "Treat grease immediately", "text": "Treat grease immediately with a method meant for felt, not dish soap."},
+    {"@type": "HowToStep", "position": 4, "name": "Spot-clean only if needed", "text": "Spot-clean only when you have to, then let the hat dry on its crown."},
+    {"@type": "HowToStep", "position": 5, "name": "Stop when it needs the shop", "text": "Stop and book a cleaning if sweat, odor, or shape has set in."}
+  ]
+}
+</script>
+{%- elsif he_howto_on and he_faq_handle == 'how-to-store-a-cowboy-hat' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to store a cowboy hat",
+  "description": "Never set a hat brim-down, keep it out of hot trucks, and dry a wet hat slow. Storage from Moon Ridge’s hat bar.",
+  "url": {{ request.origin | append: article.url | json }},
+  "step": [
+    {"@type": "HowToStep", "position": 1, "name": "Set it on the crown", "text": "Set the hat on its crown, never on the brim."},
+    {"@type": "HowToStep", "position": 2, "name": "Skip the hot truck", "text": "Keep it out of hot vehicles and rear windows."},
+    {"@type": "HowToStep", "position": 3, "name": "Dry wet hats slowly", "text": "If it gets wet, dry it slowly at room temperature on the crown."},
+    {"@type": "HowToStep", "position": 4, "name": "Separate felt and straw", "text": "Store felt and straw apart — straw hates being crushed, felt hates heat."},
+    {"@type": "HowToStep", "position": 5, "name": "Use a hat can", "text": "Use a hat can for travel and long-term storage."}
+  ]
+}
+</script>
+{%- endif -%}
+
+{%- if he_faq_on -%}
+<style>
+  .he-article__faq {
+    max-width: 69rem;
+    margin: 0 auto 2.5rem;
+    padding: 0 0 0.5rem;
+  }
+  .he-article__faq h2 {
+    margin: 0 0 1.4rem;
+    font-family: var(--font-heading-family);
+    font-size: 2.6rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.22;
+    color: #312110;
+  }
+  .he-article__faq-list {
+    margin: 0;
+  }
+  .he-article__faq-list dt {
+    margin: 1.6rem 0 0.45rem;
+    font-family: var(--font-heading-family);
+    font-size: 1.85rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: #312110;
+  }
+  .he-article__faq-list dt:first-child {
+    margin-top: 0;
+  }
+  .he-article__faq-list dd {
+    margin: 0;
+    font-size: 1.75rem;
+    line-height: 1.65;
+    color: #2b241e;
+  }
+  .he-article__howto {
+    margin: 1.75rem 0 0;
+    padding: 1.25rem 1.25rem 1.25rem 2.4rem;
+    background: #f6f2ec;
+    border: 1px solid rgba(49, 33, 16, 0.1);
+    border-radius: 8px;
+    font-size: 1.7rem;
+    line-height: 1.55;
+    color: #312110;
+  }
+  .he-article__howto li + li {
+    margin-top: 0.45rem;
+  }
+</style>
+{%- endif -%}

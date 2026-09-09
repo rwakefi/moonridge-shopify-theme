@@ -1,6 +1,8 @@
 # Google Ads — A Better Hat Can
 
-Draft only. Nothing is live until Zack builds it in Google Ads and turns it on.
+Draft only. Import files are in `content/ads/google-ads-import/`. Campaigns stay **Paused** until Zack enables them in Google Ads.
+
+This Cloud Agent cannot sign into Google Ads (no saved Google session, and Zack should not paste a password into the VM). No Playwright needed.
 
 **Product:** [A Better Hat Can](https://moonridgecompany.com/products/a-better-hat-can)  
 **Price:** $149.99 (matches Teskeys; NRS is $169.99)  

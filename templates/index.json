@@ -904,11 +904,11 @@
             "max_width": 1100,
             "max_image_size": "small",
             "arrows_visibility": "always_hidden",
-            "transition_speed": 5,
+            "transition_speed": 12,
             "corner_styling": "inherit",
             "text_color": "",
             "card_color": "",
-            "stars_color": "",
+            "stars_color": "#D4AF37",
             "arrows_color": "",
             "arrows_background_color": ""
           }

@@ -894,7 +894,7 @@
             "max_width": 1200,
             "review_source": "all",
             "show_all_reviews_in_same_tab": false,
-            "show_first": "product",
+            "show_first": "store",
             "empty_state": "empty_widget"
           }
         }

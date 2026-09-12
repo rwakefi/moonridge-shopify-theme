@@ -882,7 +882,7 @@
         "review_pd_m": 20,
         "rw_margin": 0,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 44
       }
     },
     "1789178402ed1127d8": {
@@ -908,7 +908,7 @@
             "corner_styling": "inherit",
             "text_color": "",
             "card_color": "",
-            "stars_color": "#D4AF37",
+            "stars_color": "#d4af37",
             "arrows_color": "",
             "arrows_background_color": ""
           }

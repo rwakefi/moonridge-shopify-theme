@@ -72,6 +72,55 @@
     background-color: rgb(var(--color-foreground));
   }
 
+  /* ================================================================
+     CAROUSEL MATCH — makes this section's product cards look like
+     the Best Sellers (4_product_stacked_carosel) block above it on
+     the homepage.  Scoped to .collection-{{ section.id }} so it
+     never leaks to other featured-collection instances.
+
+     Overrides come from heritage-luxury.css + lumin.css (both loaded
+     globally with !important).  We out-specificity them by using a
+     two-class selector, which wins the cascade even when both sides
+     carry !important.
+     ================================================================ */
+
+  /* Title: body font, uppercase, tighter size — matches first carousel */
+  .collection-{{ section.id }} .card__heading,
+  .collection-{{ section.id }} .card__heading a {
+    font-family: var(--font-body-family) !important;
+    font-weight: 400 !important;
+    font-size: 1.6rem !important;        /* 16 px mobile */
+    text-transform: uppercase !important;
+    letter-spacing: 0 !important;
+    line-height: 1.25 !important;
+  }
+
+  @media screen and (min-width: 750px) {
+    .collection-{{ section.id }} .card__heading,
+    .collection-{{ section.id }} .card__heading a {
+      font-size: 1.4rem !important;      /* 14 px desktop — matches first carousel */
+    }
+  }
+
+  /* Price: bold weight to match first carousel's font-weight 600 */
+  .collection-{{ section.id }} .price-item {
+    font-weight: 600 !important;
+  }
+
+  /* Spacing: tighten the card info area to reduce vertical bulk */
+  .collection-{{ section.id }} .card__content {
+    padding-top: 0.8rem !important;
+  }
+
+  .collection-{{ section.id }} .card__information {
+    padding-top: 1rem !important;
+    padding-bottom: 1.2rem !important;
+  }
+
+  .collection-{{ section.id }} .card__heading {
+    margin-bottom: 0.8rem !important;
+  }
+
 {%- endstyle -%}
 
 {%- liquid

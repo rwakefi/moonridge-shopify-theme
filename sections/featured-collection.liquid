@@ -72,6 +72,52 @@
     background-color: rgb(var(--color-foreground));
   }
 
+  /* ================================================================
+     CAROUSEL MATCH — makes this section's product cards look like
+     the Best Sellers (4_product_stacked_carosel) block above it on
+     the homepage.  Scoped to .collection-{{ section.id }} so it
+     never leaks to other featured-collection instances.
+
+     Overrides come from heritage-luxury.css + lumin.css (both loaded
+     globally with !important).  We out-specificity them by using a
+     two-class selector, which wins the cascade even when both sides
+     carry !important.
+
+     Font-family, font-weight, and letter-spacing are intentionally
+     NOT overridden.  Both carousels already render via the global h3
+     rule in heritage-luxury.css (Canela → Playfair Display fallback,
+     weight 500, letter-spacing -0.01em) — keeping them the same is
+     what makes the two carousels match.
+     ================================================================ */
+
+  /* Title: uppercase, 16 px, 1.25 line-height (= 20 px) */
+  .collection-{{ section.id }} .card__heading,
+  .collection-{{ section.id }} .card__heading a {
+    text-transform: uppercase !important;
+    font-size: 1.6rem !important;    /* 16 px — matches carousel 1 measured value */
+    line-height: 1.25 !important;    /* 20 px computed; matches carousel 1 */
+  }
+
+  /* Price: weight 600 + 18 px to match carousel 1 */
+  .collection-{{ section.id }} .price-item {
+    font-weight: 600 !important;
+    font-size: 1.8rem !important;    /* 18 px — matches carousel 1 */
+  }
+
+  /* Spacing: tighten the card info area to reduce vertical bulk */
+  .collection-{{ section.id }} .card__content {
+    padding-top: 0.8rem !important;
+  }
+
+  .collection-{{ section.id }} .card__information {
+    padding-top: 1rem !important;
+    padding-bottom: 1.2rem !important;
+  }
+
+  .collection-{{ section.id }} .card__heading {
+    margin-bottom: 0.8rem !important;
+  }
+
 {%- endstyle -%}
 
 {%- liquid

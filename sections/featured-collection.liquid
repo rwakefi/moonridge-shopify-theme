@@ -82,29 +82,26 @@
      globally with !important).  We out-specificity them by using a
      two-class selector, which wins the cascade even when both sides
      carry !important.
+
+     Font-family, font-weight, and letter-spacing are intentionally
+     NOT overridden.  Both carousels already render via the global h3
+     rule in heritage-luxury.css (Canela → Playfair Display fallback,
+     weight 500, letter-spacing -0.01em) — keeping them the same is
+     what makes the two carousels match.
      ================================================================ */
 
-  /* Title: body font, uppercase, tighter size — matches first carousel */
+  /* Title: uppercase, 16 px, 1.25 line-height (= 20 px) */
   .collection-{{ section.id }} .card__heading,
   .collection-{{ section.id }} .card__heading a {
-    font-family: var(--font-body-family) !important;
-    font-weight: 400 !important;
-    font-size: 1.6rem !important;        /* 16 px mobile */
     text-transform: uppercase !important;
-    letter-spacing: 0 !important;
-    line-height: 1.25 !important;
+    font-size: 1.6rem !important;    /* 16 px — matches carousel 1 measured value */
+    line-height: 1.25 !important;    /* 20 px computed; matches carousel 1 */
   }
 
-  @media screen and (min-width: 750px) {
-    .collection-{{ section.id }} .card__heading,
-    .collection-{{ section.id }} .card__heading a {
-      font-size: 1.4rem !important;      /* 14 px desktop — matches first carousel */
-    }
-  }
-
-  /* Price: bold weight to match first carousel's font-weight 600 */
+  /* Price: weight 600 + 18 px to match carousel 1 */
   .collection-{{ section.id }} .price-item {
     font-weight: 600 !important;
+    font-size: 1.8rem !important;    /* 18 px — matches carousel 1 */
   }
 
   /* Spacing: tighten the card info area to reduce vertical bulk */

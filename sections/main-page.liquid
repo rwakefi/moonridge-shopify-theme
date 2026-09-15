@@ -13,6 +13,11 @@
   if page.handle == 'lucchese' or page.handle == 'lucchese-boot-history' or page.handle == 'lucchese-boot-heritage'
     assign show_lucchese_videos = true
   endif
+
+  assign show_pendleton_video = false
+  if page.handle == 'pendleton' or page.handle == 'pendleton-wool-history' or page.handle == 'pendleton-heritage'
+    assign show_pendleton_video = true
+  endif
 -%}
 
 {%- style -%}
@@ -72,6 +77,9 @@
   </div>
   {%- if show_lucchese_videos -%}
     {% render 'lucchese-brand-videos' %}
+  {%- endif -%}
+  {%- if show_pendleton_video -%}
+    {% render 'pendleton-brand-video' %}
   {%- endif -%}
 </div>
 <script type="application/ld+json">

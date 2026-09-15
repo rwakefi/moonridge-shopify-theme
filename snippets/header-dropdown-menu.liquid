@@ -18,8 +18,8 @@
           assign hat_education_blog_url = hat_education_blog.url
         endif
         assign link_title_lc = link.title | downcase | strip
-        assign menu_parent_url = ''
-        if link.handle == 'experiences' or link_title_lc == 'experiences'
+        assign menu_parent_url = link.url
+        if link.handle == 'experiences' or link_title_lc == 'experiences' or link.handle == 'events' or link_title_lc == 'events'
           assign menu_parent_url = '/pages/book-moonridge'
         endif
         if link.handle == 'hat-education' or link_title_lc contains 'hat education'

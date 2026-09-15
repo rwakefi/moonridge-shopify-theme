@@ -75,7 +75,6 @@
   <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     {{ page.content }}
   </div>
-  <!-- PENDLETON DEBUG: handle=[{{ page.handle }}] show=[{{ show_pendleton_video }}] video_metafield=[{{ page.metafields.custom.brand_video }}] -->
   {%- if show_lucchese_videos -%}
     {% render 'lucchese-brand-videos' %}
   {%- endif -%}

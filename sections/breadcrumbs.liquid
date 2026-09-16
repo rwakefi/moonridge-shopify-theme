@@ -104,7 +104,7 @@
         <li class="breadcrumbs__item">
           <a class="breadcrumbs__link" href="{{ product.url }}" aria-current="page">{{ product.title }}</a>
         </li>
-      {%- when 'collection' and collection.handle -%}
+      {%- when 'collection' -%}
         {%- if request.query_string contains 'from=hats-hub' -%}
           {%- assign hats_hub_breadcrumb_page = pages['shop-hats'] -%}
           <li class="breadcrumbs__item">
@@ -222,4 +222,13 @@
 {% endstylesheet %}
 
 {% javascript %}
-{% endjavascript %}
+{% endjavascript %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- when 'collection' and collection.handle -%}"
+  to: "{%- when 'collection' -%}"
+  position: 3204..3229
+{%- endcomment -%}

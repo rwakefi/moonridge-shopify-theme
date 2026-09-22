@@ -6,22 +6,43 @@ Landing page already live: [moonridgecompany.com/pages/book-moonridge](https://m
 
 ---
 
+## Who’s actually buying Google Ads (verified 2026-09-22)
+
+Ads Transparency Center + live SERPs. Full dump: `scratch/google-ads-research-cowboy-hat-bars.md`.
+
+| Advertiser | Active Google Ads? | What they’re pushing |
+|---|---|---|
+| **Rancher Hat Bar LLC** | Yes — ~25–36 ads | Custom cowboy/rancher hats; Dallas/Nashville location ads; mix of felt + trucker; product + shop intent |
+| **GIGI PIP LLC** | Yes — ~42–57 ads | “Traveling Hat Bar,” corporate/group events, we-come-to-you — strongest **event** ad competitor |
+| **The Cowboy Hat Bar, Cowgirl Charm, Flea Style, etc.** | No ads found | Organic/SEO only right now |
+
+**Live Search checks — zero sponsored ads** on:
+- `cowboy hat bar wedding`
+- `mobile cowboy hat bar`
+- `western hat party Arkansas`
+
+That’s the opening. Arkansas and wedding/event queries are basically unpaid. Don’t fight Rancher/Gigi Pip nationally — take the empty local/event slots.
+
+---
+
 ## What others are doing (cowboy lane)
 
 These are the real comps — live steam, wool/felt, branding, crown/brim work. Not patch bars.
 
 | Who | Model | Pricing signal | Ad/marketing notes |
 |---|---|---|---|
-| **Rancher Hat Bar** | Multi-city + national mobile; wool/felt cowboy packages on Zola | From ~$40/guest on Zola; full event quotes custom | Biggest brand in the category. Events page + WeddingWire/Zola. Do **not** bid against them nationally. |
-| **The Cowboy Hat Bar** | Explicit cowboy packages, branding/feathering | Cowboy pkg from **$3,750** / 50 hats; Ranch Owner **$7,500** / 50 premium | Clear package pricing on site — use as a reference for what serious bookings are worth. |
-| **Cowgirl Charm** (Jackson, TN) | Mobile cowboy branding bar for weddings | Quote-based; booking 2026 | SEO-heavy wedding page; similar geo play to ours (regional, not national). |
-| **LWx Custom Hats** (Houston) | Traveling bar with **live shaping**, measuring, crown/brim | Retainer to book | Closest craft match to Moon Ridge. Events page is the conversion surface. |
-| **Josie's Hats** (WA) | Private parties + live shaping at rodeos/festivals | Deposit-based customs | Shaping-first positioning — same lane as Arkansas's Original Hat Bar. |
-| **Hoyle Hat Co** (Seattle) | Premium mobile hat bar (steam, shape, brand) | Corporate/hospitality focus | LinkedIn/experiential marketing more than Search; high ticket. |
+| **Rancher Hat Bar** | Multi-city + national mobile; wool/felt cowboy packages on Zola | From ~$40/guest on Zola; full event quotes custom | Biggest **paid** player. Events page + Zola. Do **not** bid against them nationally. |
+| **Gigi Pip / Two Roads** | Traveling hat bar for corporate + parties | Quote / all-inclusive event | Second big **paid** player. Copy leans experiential (“not another photo booth”). Watch and differentiate with shaping/heritage. |
+| **The Cowboy Hat Bar** | Explicit cowboy packages, branding/feathering | Cowboy pkg from **$3,750** / 50 hats; Ranch Owner **$7,500** / 50 premium | No Google Ads found — organic only. Pricing = what serious bookings are worth. |
+| **Cowgirl Charm** (Jackson, TN) | Mobile cowboy branding bar for weddings | Quote-based; booking 2026 | No Google Ads found. Regional SEO play like ours. |
+| **LWx Custom Hats** (Houston) | Traveling bar with **live shaping**, measuring, crown/brim | Retainer to book | Closest craft match. Events page is the conversion surface. |
+| **Josie's Hats** (WA) | Private parties + live shaping at rodeos/festivals | Deposit-based customs | Shaping-first — same lane as Arkansas's Original Hat Bar. |
+| **Hoyle Hat Co** (Seattle) | Premium mobile hat bar (steam, shape, brand) | Corporate/hospitality focus | LinkedIn/experiential more than Search; high ticket. |
+| **themobilecowboy.com** | Event cowboy hat shaping | — | Shows organically on “mobile cowboy hat bar” — watch as organic/SEO rival. |
 
 **Trucker/patch bars to exclude from our ads and negatives:** Honky Tonk Hat Bar (trucker-led), Flea Style Original Hat Bar (patch/stylist model), generic “hat bar” results that mean trucker customization. Our own hat-bar page already draws that line — keep ads that sharp.
 
-Hat-shop Search CPCs in Southwest markets often land roughly **$5–$15+**. Event/wedding intent runs higher. One booked party pays for months of lean ads — so protect click quality, not volume.
+Hat-shop Search CPCs in Southwest markets often land roughly **$5–$15+**. Event/wedding intent runs higher. Low local competition may mean cheaper clicks than those averages — still protect quality over volume.
 
 ---
 

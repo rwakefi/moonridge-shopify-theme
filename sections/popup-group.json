@@ -23,7 +23,7 @@
         "exclude_checkout_flow": true,
         "show_once": true,
         "cooldown_days": 3,
-        "image": "shopify://shop_images/moon-ridge-expanding-popup-oct8.jpg",
+        "image": "shopify://shop_images/moon-ridge-expanding-popup-oct8-datesbadge.jpg",
         "eyebrow": "Online Store Still Shipping Orders as Fast as Usual!",
         "heading": "<p>We're Expanding!</p>",
         "offer_line": "New Store Opening — Friday, October 9",

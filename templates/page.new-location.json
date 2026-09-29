@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "visit_us_new": {
+      "type": "visit-us",
+      "settings": {
+        "show_hero": true,
+        "hero_padding_top": 48,
+        "eyebrow": "Fayetteville, Arkansas — We've Moved!",
+        "title": "Visit Our New Home",
+        "lead": "Moon Ridge is now just down the road at 2852 North College Avenue — right next door to Base Camp Coffee. Same great hats, boots, and western lifestyle goods, brand new space.",
+        "booking_label": "Book a Free Fitting",
+        "booking_url": "https://moonridgecompany.setmore.com",
+        "secondary_label": "Plan a Hat Party",
+        "secondary_url": "/pages/book-moonridge",
+        "google_maps_embed": "",
+        "map_link": "https://www.google.com/maps?q=2852+North+College+Ave,+Fayetteville,+AR+72703",
+        "hours_heading": "Store Hours",
+        "weekday_hours": "10:00 AM – 5:00 PM",
+        "saturday_hours": "10:00 AM – 2:00 PM",
+        "sunday_hours": "Closed",
+        "shapers_heading": "Hat Shapers In House",
+        "shaper_weekday_hours": "10:00 AM – 5:00 PM",
+        "shaper_saturday_hours": "10:00 AM – 2:00 PM",
+        "shaper_note": "Hours may vary based on private events.",
+        "location_heading": "Find Us",
+        "address": "2852 North College Avenue, Fayetteville, AR 72703",
+        "phone": "(479) 430-2667",
+        "email": "info@moonridgecompany.com",
+        "show_highlights": true,
+        "highlight_1_title": "Grand Opening",
+        "highlight_1_text": "Friday, October 9 — come celebrate our new home with us.",
+        "highlight_2_title": "Right next to Base Camp Coffee",
+        "highlight_2_text": "Grab a coffee, then come find your next hat or pair of boots.",
+        "highlight_3_title": "Walk-ins welcome",
+        "highlight_3_text": "Stop by during store hours — no appointment required."
+      }
+    }
+  },
+  "order": [
+    "visit_us_new"
+  ]
+}

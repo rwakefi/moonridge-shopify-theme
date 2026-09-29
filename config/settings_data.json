@@ -66,7 +66,6 @@
     "buttons_radius": 6,
     "buttons_shadow_opacity": 0,
     "buttons_shadow_horizontal_offset": 0,
-    "buttons_shadow_vertical_offset": 4,
     "buttons_shadow_blur": 10,
     "variant_pills_border_thickness": 1,
     "variant_pills_border_opacity": 0,
@@ -597,7 +596,8 @@
       ".text-box p span[style],.text-box p em[style],.text-box span[style] {font-size: inherit !important;}",
       ".block-blog-header__description {font-size: 1.125rem !important; line-height: 1.65 !important;}",
       "@media screen and (max-width: 749px) {.text-box p, .text-box li, .block-blog-header__description {font-size: 1.1875rem !important; }}",
-      ".text-box p img,.text-box h1 img,.text-box h2 img {display: block; margin: 24px auto; width: 100%; max-width: 100%; height: auto; border-radius: 14px;}"
+      ".text-box p img,.text-box h1 img,.text-box h2 img {display: block; margin: 24px auto; width: 100%; max-width: 100%; height: auto; border-radius: 14px;}",
+      "/* Shopify Inbox chat bubble: the theme editor's button_color setting isn't read by the storefront widget, so force the gold brand color via the exposed ::part() styling hook instead. Same subtle size as stock — only the color changes. */shopify-chat::part(activator){background:#c49c5c !important;}"
     ]
   }
 }

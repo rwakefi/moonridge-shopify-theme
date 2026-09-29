@@ -249,8 +249,8 @@
         "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
         "disabled": false,
         "settings": {
-          "greeting_message": "",
-          "button_color": "#49382b",
+          "greeting_message": "Questions about hats or boots? We're happy to help!",
+          "button_color": "#c49c5c",
           "button_icon": "chat_bubble",
           "button_text": "no_text",
           "button_horizontal_position": "bottom_right",

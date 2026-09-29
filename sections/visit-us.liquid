@@ -86,18 +86,24 @@
         <div class="visit-us__card">
           <h2 class="visit-us__card-title">{{ section.settings.hours_heading | escape }}</h2>
           <ul class="visit-us__hours">
+            {%- if section.settings.weekday_hours != blank -%}
             <li>
-              <span class="visit-us__hours-day">Monday – Friday</span>
+              <span class="visit-us__hours-day">{{ section.settings.weekday_label | default: 'Monday – Friday' | escape }}</span>
               <span class="visit-us__hours-time">{{ section.settings.weekday_hours | escape }}</span>
             </li>
+            {%- endif -%}
+            {%- if section.settings.saturday_hours != blank -%}
             <li>
-              <span class="visit-us__hours-day">Saturday</span>
+              <span class="visit-us__hours-day">{{ section.settings.saturday_label | default: 'Saturday' | escape }}</span>
               <span class="visit-us__hours-time">{{ section.settings.saturday_hours | escape }}</span>
             </li>
+            {%- endif -%}
+            {%- if section.settings.sunday_hours != blank -%}
             <li>
-              <span class="visit-us__hours-day">Sunday</span>
+              <span class="visit-us__hours-day">{{ section.settings.sunday_label | default: 'Sunday' | escape }}</span>
               <span class="visit-us__hours-time">{{ section.settings.sunday_hours | escape }}</span>
             </li>
+            {%- endif -%}
           </ul>
         </div>
 
@@ -266,20 +272,38 @@
     },
     {
       "type": "text",
+      "id": "weekday_label",
+      "label": "Row 1 day label",
+      "default": "Monday – Friday"
+    },
+    {
+      "type": "text",
       "id": "weekday_hours",
-      "label": "Monday – Friday",
+      "label": "Row 1 hours",
       "default": "10:00 AM – 5:00 PM"
     },
     {
       "type": "text",
+      "id": "saturday_label",
+      "label": "Row 2 day label",
+      "default": "Saturday"
+    },
+    {
+      "type": "text",
       "id": "saturday_hours",
-      "label": "Saturday",
+      "label": "Row 2 hours",
       "default": "10:00 AM – 2:00 PM"
     },
     {
       "type": "text",
+      "id": "sunday_label",
+      "label": "Row 3 day label",
+      "default": "Sunday"
+    },
+    {
+      "type": "text",
       "id": "sunday_hours",
-      "label": "Sunday",
+      "label": "Row 3 hours (leave blank to hide row)",
       "default": "Closed"
     },
     {

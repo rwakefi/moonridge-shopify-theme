@@ -209,6 +209,13 @@
     .rm-announcement-slide {
       white-space: normal;
       overflow: visible;
+      /* On mobile, messages wrap to multiple lines. A crossfade briefly
+         renders the outgoing and incoming slide on top of each other
+         (both above opacity 0 mid-transition), which reads as garbled,
+         double-printed text when the lines wrap differently. Swapping
+         instantly avoids the overlap; the fade is a desktop-only touch
+         where single-line nowrap text never visibly stacks. */
+      transition: none;
     }
 
     .rm-announcement-text {

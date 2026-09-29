@@ -1,1 +1,281 @@
-PLACEHOLDER
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "title_size": 31
+          }
+        },
+        "judge_me_reviews_preview_badge_PmyGjw": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "text_F8QjfR": {
+          "type": "text",
+          "settings": {
+            "text": "Price",
+            "text_style": "body"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "price_size": 24,
+            "sale_price_color": "#312110",
+            "price_bold": true,
+            "badge_hide": false,
+            "taxes_hide": false,
+            "shipping_hide": true
+          }
+        },
+        "buy_summary": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'product-buy-summary' %}"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "collapsible_tab_pendleton_fit_guide": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Fit & Sizing Guide",
+            "icon": "ruler",
+            "content": "<style>\n.pendleton-size-table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:13px;}\n.pendleton-size-table th,.pendleton-size-table td{border:1px solid #ddd;padding:6px 8px;text-align:center;}\n.pendleton-size-table th{background:#f5f5f0;font-weight:600;}\n.pendleton-size-table td:first-child,.pendleton-size-table th:first-child{text-align:left;font-weight:600;background:#f9f9f6;}\n.pendleton-size-note{font-size:13px;margin:4px 0 16px;}\n</style>\n<p><strong>Pendleton Men's Size Chart</strong></p>\n<table class=\"pendleton-size-table\">\n<tr><th>Shirts</th><th>XS</th><th>S</th><th>M</th><th>L</th><th>XL</th><th>2XL</th><th>3XL</th><th>4XL</th><th>5XL</th></tr>\n<tr><td>Neck</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td></tr>\n<tr><td>Chest</td><td>33-35</td><td>36-38</td><td>39-41</td><td>42-45</td><td>46-49</td><td>50-53</td><td>54-57</td><td>58-61</td><td>62-65</td></tr>\n<tr><td>Waist</td><td>27-29</td><td>30-32</td><td>33-35</td><td>36-39</td><td>40-43</td><td>44-47</td><td>48-51</td><td>52-55</td><td>56-59</td></tr>\n<tr><td>Sleeve</td><td>32-32&frac12;</td><td>33-33&frac12;</td><td>34-34&frac12;</td><td>35-35&frac12;</td><td>36-36&frac12;</td><td>37-37&frac12;</td><td>38-38&frac12;</td><td>39-39&frac12;</td><td>40-40&frac12;</td></tr>\n</table>\n<p class=\"pendleton-size-note\">Tall Shirts: add 1&frac12;&Prime; to body length and 2&Prime; to sleeve length.</p>\n<table class=\"pendleton-size-table\">\n<tr><th>Tall Shirts</th><th>M</th><th>L</th><th>XL</th><th>2XL</th><th>3XL</th></tr>\n<tr><td>Neck</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>\n<tr><td>Chest</td><td>39-41</td><td>42-45</td><td>46-49</td><td>50-53</td><td>54-57</td></tr>\n<tr><td>Waist</td><td>33-35</td><td>36-38</td><td>40-42</td><td>44-46</td><td>48-50</td></tr>\n<tr><td>Sleeve</td><td>35&frac12;-36</td><td>36&frac12;-37</td><td>37&frac12;-38</td><td>38&frac12;-39</td><td>39&frac12;-40</td></tr>\n</table>\n<table class=\"pendleton-size-table\">\n<tr><th>Bottoms</th><th>S</th><th>M</th><th>L</th><th>XL</th><th>2XL</th></tr>\n<tr><td>Waist</td><td>30-32</td><td>33-35</td><td>36-39</td><td>40-43</td><td>44-47</td></tr>\n<tr><td>Hip</td><td>34-36</td><td>38-40</td><td>42-44</td><td>46-48</td><td>50-52</td></tr>\n</table>\n<p class=\"pendleton-size-note\"><strong>How to measure:</strong><br>\nNeck: measure around the base of your neck.<br>\nChest: measure under your arms and at the fullest part of your chest.<br>\nWaist: measure around your waist at the narrowest point.<br>\nSleeve: measure from the center back of your neck, across your shoulder, and down to your wrist.<br>\nHip/Seat: measure around the fullest part of your hip and buttock.</p>\n<p class=\"pendleton-size-note\">Sizing chart courtesy of Pendleton. If you're between sizes, we recommend sizing up. Questions? <a href=\"/pages/contact\">Contact us</a> and we're happy to help you find the right fit.</p>",
+            "page": ""
+          }
+        },
+        "inventory_status_nPFgBc": {
+          "type": "inventory_status",
+          "settings": {
+            "text_style": "uppercase",
+            "inventory_threshold": 10,
+            "normal_color": "#1976d2",
+            "low_color": "#f9a825",
+            "background_bar": "#e9ecef",
+            "show_inventory_bar": true
+          }
+        },
+        "shipping_CBekAR": {
+          "type": "shipping",
+          "disabled": true,
+          "settings": {
+            "ship_days": 2,
+            "cut_off_time": 16,
+            "icon_size": 20,
+            "image_ani": "none",
+            "text_size": 16,
+            "text_style": "body",
+            "text": "Order in (timer) and Get delivery By (date)",
+            "date_locale": "en-US",
+            "ship_bg": "#f2f2f2",
+            "show_border": true,
+            "ship_border": "#f2f2f2",
+            "border_radius": 0,
+            "padding_top": 12,
+            "padding_bottom": 12,
+            "margin_top": 16,
+            "margin_bottom": 16
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_trust_copy": true,
+            "trust_copy": "In-store or shipping nationwide. Authorized heritage dealer in Fayetteville, AR.",
+            "enable_low_stock_notice": false,
+            "low_stock_threshold": 5,
+            "conversion_reassurance": "Need help choosing your size? Contact us for a guided fit recommendation.",
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'product-description-rest' %}"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "judge_me_reviews_preview_badge_PmyGjw",
+        "text_F8QjfR",
+        "price",
+        "buy_summary",
+        "variant_picker",
+        "collapsible_tab_pendleton_fit_guide",
+        "inventory_status_nPFgBc",
+        "shipping_CBekAR",
+        "quantity_selector",
+        "buy_buttons",
+        "description"
+      ],
+      "custom_css": [],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "background-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "mobile_thumbnails": "show",
+        "hide_variants": true,
+        "show_full_image": true,
+        "enable_video_looping": true,
+        "padding_top": 24,
+        "padding_bottom": 76
+      }
+    },
+    "founders_review": {
+      "type": "founders-review",
+      "settings": {
+        "heading": "What Natalie and Zack Think About it:",
+        "heading_size": 32,
+        "intro_text": "<p>This is honest feedback from founders Natalie and Zack about specific items that we have reviewed ourselves in our own words. If this section is visible, we describe what we think about this hat in our own words. This is not AI.</p>",
+        "show_signature": true,
+        "signature_text": "Natalie & Zack",
+        "signature_alignment": "left",
+        "background_color": "rgba(0,0,0,0)",
+        "heading_color": "#1f1d24",
+        "text_color": "#1f1d24",
+        "max_width": 1200,
+        "border_radius": 0,
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "177400781857d7ac00": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "featured_collection_xLGdKg": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "title": "Featured collection",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "hats-for-everyone",
+        "products_to_show": 4,
+        "hide_sold_out": true,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "navigation_on_desk": true,
+        "color_scheme": "",
+        "image_ratio": "square",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_desc": false,
+        "quick_desc_legth": 90,
+        "quick_desc_size": 14,
+        "enable_quick_add": false,
+        "show_secondary_add": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "navigation_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "176179595271248401": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_yR6N8b": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_yR6N8b"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "background-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_desc": false,
+        "quick_desc_legth": 90,
+        "quick_desc_size": 14,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "heritage_restoration_product_page": {
+      "type": "heritage-restoration",
+      "settings": {
+        "image": "shopify://shop_images/hat-steaming-restoration-moon-ridge.jpg",
+        "label": "The Service Ritual",
+        "title": "Your Hat, Restored.",
+        "text": "We don't just sell hats; we preserve them—any hat, regardless of brand or age. Drop your hat off and tell us what you're thinking, and we'll go to work. Most pickups within a week.",
+        "button_label": "",
+        "button_link": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "founders_review",
+    "177400781857d7ac00",
+    "featured_collection_xLGdKg",
+    "176179595271248401",
+    "related-products",
+    "heritage_restoration_product_page"
+  ]
+}

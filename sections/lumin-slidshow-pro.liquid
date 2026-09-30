@@ -278,10 +278,11 @@ If an image has a height of 200px and the other one of 800px, the slider adapts 
 
    
       
-      <img class="LuminSlideshow-image--lazy LuminSlideshow-image LuminSlideshow-image--desktop "
+      <img class="{% unless forloop.first %}LuminSlideshow-image--lazy {% endunless %}LuminSlideshow-image LuminSlideshow-image--desktop"
                  src="{{ image_desktop | img_url: '300x' }}"
+                 {%- if forloop.first %} fetchpriority="high" loading="eager"{% endif %}
       
-                  data-srcset="
+                  {% if forloop.first %}srcset{% else %}data-srcset{% endif %}="
                                {{ image_desktop | img_url: '900x' }} 900w
                                {{ image_desktop | img_url: '1080x' }} 1080w,
                                {{ image_desktop | img_url: '1296x' }} 1296w,
@@ -318,10 +319,8 @@ If an image has a height of 200px and the other one of 800px, the slider adapts 
     	<div class="LuminSlideshow-parallax LuminSlideshow-parallax--mobile LuminSlideshow-parallax--lazy" >
     {% endif %}
       
-      <img class="LuminSlideshow-image--lazy LuminSlideshow-image LuminSlideshow-image--mobile"
-           loading="lazy"
-           src="{{ image_mobile | img_url: '300x' }}"
-           data-src="{{ image_mobile | img_url: '800x' }}"
+      <img class="{% unless forloop.first %}LuminSlideshow-image--lazy {% endunless %}LuminSlideshow-image LuminSlideshow-image--mobile"
+           {% if forloop.first %}loading="eager" fetchpriority="high" src="{{ image_mobile | img_url: '800x' }}"{% else %}loading="lazy" src="{{ image_mobile | img_url: '300x' }}" data-src="{{ image_mobile | img_url: '800x' }}"{% endif %}
            data-aspectratio="{{ image_mobile.image.aspect_ratio }}"
            data-sizes="auto"
            alt="{{ image_mobile.image.alt | escape }}"

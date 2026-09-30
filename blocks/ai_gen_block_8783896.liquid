@@ -1,18 +1,4 @@
-{%- liquid
-  assign hat_spec_line_on = false
-  if settings.hat_spec_line_enable
-    assign hat_crown_shape = product.metafields.custom.crown_shape | metafield_text | strip
-    assign hat_crown_height = product.metafields.custom.crown_height | metafield_text | strip
-    assign hat_brim_shape = product.metafields.custom.brim_shape | metafield_text | strip
-    assign hat_brim_width = product.metafields.custom.brim_width | metafield_text | strip
-    if hat_crown_shape != blank and hat_crown_height != blank and hat_brim_shape != blank and hat_brim_width != blank
-      unless hat_crown_shape == '-' or hat_crown_height == '-' or hat_brim_shape == '-' or hat_brim_width == '-'
-        assign hat_spec_line_on = true
-      endunless
-    endif
-  endif
--%}
-{%- unless hat_spec_line_on -%}
+{%- unless settings.hat_spec_line_enable -%}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
 {% style %}

@@ -35,6 +35,12 @@
             "title_size": 31
           }
         },
+        "hat_spec_line": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'hat-spec-line' %}"
+          }
+        },
         "judge_me_reviews_preview_badge_KrbRxR": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
@@ -119,6 +125,7 @@
       "block_order": [
         "vendor",
         "title",
+        "hat_spec_line",
         "judge_me_reviews_preview_badge_KrbRxR",
         "price",
         "buy_summary",

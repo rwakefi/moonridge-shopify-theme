@@ -1,0 +1,63 @@
+{% doc %}
+  Quiet one-line hat spec for the buy column, directly under the title.
+  Renders only on pages that include this snippet, and only when crown shape,
+  crown height, brim shape, and brim width are all filled.
+  Turn settings.hat_spec_line_enable off to hide this line and restore the cards.
+{% enddoc %}
+
+{%- if settings.hat_spec_line_enable -%}
+  {%- liquid
+    assign hat_crown_shape = product.metafields.custom.crown_shape | metafield_text | strip
+    assign hat_crown_height = product.metafields.custom.crown_height | metafield_text | strip
+    assign hat_brim_shape = product.metafields.custom.brim_shape | metafield_text | strip
+    assign hat_brim_width = product.metafields.custom.brim_width | metafield_text | strip
+
+    assign hat_spec_ready = true
+    if hat_crown_shape == blank or hat_crown_height == blank or hat_brim_shape == blank or hat_brim_width == blank
+      assign hat_spec_ready = false
+    endif
+    if hat_crown_shape == '-' or hat_crown_height == '-' or hat_brim_shape == '-' or hat_brim_width == '-'
+      assign hat_spec_ready = false
+    endif
+  -%}
+  {%- if hat_spec_ready -%}
+    <div class="hat-spec-line">
+      <p class="hat-spec-line__text">
+        <span class="visually-hidden">Crown shape</span>
+        <span>{{ hat_crown_shape | escape }}</span>
+        <span class="hat-spec-line__sep" aria-hidden="true">·</span>
+        <span class="visually-hidden">Crown height</span>
+        <span>{{ hat_crown_height | escape }}</span>
+        <span class="hat-spec-line__sep" aria-hidden="true">·</span>
+        <span class="visually-hidden">Brim shape</span>
+        <span>{{ hat_brim_shape | escape }}</span>
+        <span class="hat-spec-line__sep" aria-hidden="true">·</span>
+        <span class="visually-hidden">Brim width</span>
+        <span>{{ hat_brim_width | escape }}</span>
+      </p>
+    </div>
+    <style>
+      .product__title:has(+ .hat-spec-line) {
+        margin-bottom: 0.55rem;
+      }
+
+      .product__info-container > .hat-spec-line {
+        margin: 0 0 0.8rem !important;
+      }
+
+      .hat-spec-line__text {
+        margin: 0;
+        max-width: 36rem;
+        color: rgba(49, 33, 16, 0.78);
+        font-size: 1.4rem;
+        line-height: 1.45;
+        letter-spacing: 0.01em;
+      }
+
+      .hat-spec-line__sep {
+        padding: 0 0.4rem;
+        color: #9c7a52;
+      }
+    </style>
+  {%- endif -%}
+{%- endif -%}

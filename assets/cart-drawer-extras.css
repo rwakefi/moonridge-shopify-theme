@@ -287,3 +287,15 @@ cart-drawer .cart__checkout-button.button {
 .cart-addons__add .product-form__error-message-wrapper {
   font-size: 1.1rem;
 }
+
+cart-cross-sell[hidden],
+[data-cross-sell-fallback][hidden] {
+  display: none !important;
+}
+
+.cart-cross-sell-slot--page .cart-addons {
+  margin-bottom: 1.6rem;
+  padding-right: 0;
+  padding-left: 0;
+  border-top: 0;
+}

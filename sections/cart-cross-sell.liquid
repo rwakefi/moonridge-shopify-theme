@@ -1,0 +1,47 @@
+{% comment %}
+  Rendered only through the product recommendations endpoint:
+
+  /recommendations/products?section_id=cart-cross-sell&product_id=ID&intent=complementary
+
+  Not placed on a template. cart-cross-sell.js pulls the tiles into the cart.
+{% endcomment %}
+
+{%- if recommendations.performed and recommendations.products_count > 0 -%}
+  <ul class="cart-addons__list" data-cross-sell-source>
+    {%- for product in recommendations.products -%}
+      {%- liquid
+        assign skip_product = false
+        assign suffix = product.template_suffix | default: '' | downcase
+
+        if product.available == false
+          assign skip_product = true
+        endif
+        if suffix == 'boots' or suffix contains 'boot' or suffix == 'services'
+          assign skip_product = true
+        endif
+        if product.handle == 'hat-branding-existing-hats'
+          assign skip_product = true
+        endif
+
+        for item in cart.items
+          if item.product_id == product.id
+            assign skip_product = true
+          endif
+        endfor
+      -%}
+      {%- unless skip_product -%}
+        {%- assign form_id = 'CartCrossSell-' | append: product.id -%}
+        <li class="cart-addons__item" data-cross-sell-item data-product-id="{{ product.id }}">
+          {%- render 'cart-addon-item', product: product, form_id: form_id -%}
+        </li>
+      {%- endunless -%}
+    {%- endfor -%}
+  </ul>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Cart cross-sell",
+  "settings": []
+}
+{% endschema %}

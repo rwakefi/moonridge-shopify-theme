@@ -42,69 +42,9 @@
         {%- assign variant = product.selected_or_first_available_variant -%}
         {%- if variant and variant.available -%}
           {%- assign rendered = rendered | plus: 1 -%}
-          {%- liquid
-            assign needs_options = false
-            if product.variants.size > 1 or variant.quantity_rule.min > 1 or variant.quantity_rule.max != null or variant.quantity_rule.increment > 1
-              assign needs_options = true
-            endif
-            assign form_id = 'CartAddon-' | append: product.id
-          -%}
+          {%- assign form_id = 'CartAddon-' | append: product.id -%}
           <li class="cart-addons__item">
-            <a href="{{ product.url }}" class="cart-addons__media" tabindex="-1" aria-hidden="true">
-              {%- if product.featured_media -%}
-                <img
-                  src="{{ product.featured_media | image_url: width: 260 }}"
-                  alt="{{ product.featured_media.alt | default: product.title | escape }}"
-                  loading="lazy"
-                  width="130"
-                  height="130"
-                >
-              {%- endif -%}
-            </a>
-            <a href="{{ product.url }}" class="cart-addons__title">{{ product.title | escape }}</a>
-            <span class="cart-addons__price">
-              {%- if product.price_varies -%}
-                {{ 'products.product.price.from_price_html' | t: price: product.price_min | money }}
-              {%- else -%}
-                {{ product.price | money }}
-              {%- endif -%}
-            </span>
-            <div class="cart-addons__add">
-              {%- if needs_options -%}
-                <a href="{{ product.url }}" class="button button--secondary cart-addons__choose">
-                  {{ 'products.product.choose_options' | t }}
-                </a>
-              {%- else -%}
-                <product-form data-section-id="cart-drawer">
-                  {%- form 'product',
-                    product,
-                    id: form_id,
-                    class: 'form',
-                    novalidate: 'novalidate',
-                    data-type: 'add-to-cart-form'
-                  -%}
-                    <input
-                      type="hidden"
-                      name="id"
-                      value="{{ variant.id }}"
-                      class="product-variant-id"
-                    >
-                    <button
-                      type="submit"
-                      name="add"
-                      class="button button--secondary cart-addons__add-button"
-                      aria-haspopup="dialog"
-                    >
-                      <span>{{ 'products.product.add_to_cart' | t }}</span>
-                      {%- render 'loading-spinner' -%}
-                    </button>
-                    <div class="product-form__error-message-wrapper" role="alert" hidden>
-                      <span class="product-form__error-message"></span>
-                    </div>
-                  {%- endform -%}
-                </product-form>
-              {%- endif -%}
-            </div>
+            {%- render 'cart-addon-item', product: product, form_id: form_id -%}
           </li>
         {%- endif -%}
       {%- endunless -%}

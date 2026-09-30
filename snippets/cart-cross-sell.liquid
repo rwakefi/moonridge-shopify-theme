@@ -1,0 +1,58 @@
+{% comment %}
+  Frequently bought together / cross-sell for the cart.
+
+  Asks Shopify for complementary products on what is already in the cart
+  (Search & Discovery "Frequently bought together"). If that list is empty,
+  the manual cart-add-ons collection stays in its place.
+
+  Accepts:
+  - context: {String} "page" on the cart page. Drawer is the default.
+
+  Usage:
+  {% render 'cart-cross-sell' %}
+  {% render 'cart-cross-sell', context: 'page' %}
+{% endcomment %}
+
+{%- liquid
+  assign addons_enabled = settings.cart_addons_enable
+  if addons_enabled == blank
+    assign addons_enabled = true
+  endif
+
+  assign source_ids = ','
+  for item in cart.items
+    assign suffix = item.product.template_suffix | default: '' | downcase
+    assign skip_source = false
+    if suffix == 'boots' or suffix contains 'boot' or suffix == 'services' or item.product.handle == 'hat-branding-existing-hats'
+      assign skip_source = true
+    endif
+    unless skip_source
+      assign id_marker = ',' | append: item.product_id | append: ','
+      unless source_ids contains id_marker
+        assign source_ids = source_ids | append: item.product_id | append: ','
+      endunless
+    endunless
+  endfor
+  assign product_ids = source_ids | remove_first: ','
+-%}
+
+{%- if addons_enabled and cart != empty -%}
+  <div class="cart-cross-sell-slot{% if context == 'page' %} cart-cross-sell-slot--page{% endif %}">
+    {%- if product_ids != blank -%}
+      <cart-cross-sell
+        class="cart-addons cart-cross-sell"
+        hidden
+        data-url="{{ routes.product_recommendations_url }}"
+        data-section-id="cart-cross-sell"
+        data-limit="4"
+        data-product-ids="{{ product_ids | escape }}"
+      >
+        <p class="cart-addons__heading">Often chosen together</p>
+        <ul class="cart-addons__list" role="list" data-cross-sell-list></ul>
+      </cart-cross-sell>
+    {%- endif -%}
+    <div data-cross-sell-fallback>
+      {%- render 'cart-drawer-addons' -%}
+    </div>
+  </div>
+{%- endif -%}

@@ -1,56 +1,33 @@
 {%- liquid
-  assign social_profiles = ''
-  if settings.social_facebook_link != blank
-    assign social_profiles = social_profiles | append: settings.social_facebook_link | json
+  assign social_urls = ''
+  if settings.social_facebook_link != blank and settings.social_facebook_link != '#'
+    assign social_urls = social_urls | append: settings.social_facebook_link | append: '|'
   endif
-  if settings.social_instagram_link != blank
-    if social_profiles != blank
-      assign social_profiles = social_profiles | append: ','
-    endif
-    assign social_profiles = social_profiles | append: settings.social_instagram_link | json
+  if settings.social_instagram_link != blank and settings.social_instagram_link != '#'
+    assign social_urls = social_urls | append: settings.social_instagram_link | append: '|'
   endif
-  if settings.social_youtube_link != blank
-    if social_profiles != blank
-      assign social_profiles = social_profiles | append: ','
-    endif
-    assign social_profiles = social_profiles | append: settings.social_youtube_link | json
+  if settings.social_youtube_link != blank and settings.social_youtube_link != '#'
+    assign social_urls = social_urls | append: settings.social_youtube_link | append: '|'
   endif
-  if settings.social_twitter_link != blank
-    if social_profiles != blank
-      assign social_profiles = social_profiles | append: ','
-    endif
-    assign social_profiles = social_profiles | append: settings.social_twitter_link | json
+  if settings.social_twitter_link != blank and settings.social_twitter_link != '#'
+    assign social_urls = social_urls | append: settings.social_twitter_link | append: '|'
   endif
-  if settings.social_pinterest_link != blank
-    if social_profiles != blank
-      assign social_profiles = social_profiles | append: ','
-    endif
-    assign social_profiles = social_profiles | append: settings.social_pinterest_link | json
+  if settings.social_pinterest_link != blank and settings.social_pinterest_link != '#'
+    assign social_urls = social_urls | append: settings.social_pinterest_link | append: '|'
   endif
-  if settings.social_tiktok_link != blank
-    if social_profiles != blank
-      assign social_profiles = social_profiles | append: ','
-    endif
-    assign social_profiles = social_profiles | append: settings.social_tiktok_link | json
+  if settings.social_tiktok_link != blank and settings.social_tiktok_link != '#'
+    assign social_urls = social_urls | append: settings.social_tiktok_link | append: '|'
   endif
-  if settings.social_snapchat_link != blank
-    if social_profiles != blank
-      assign social_profiles = social_profiles | append: ','
-    endif
-    assign social_profiles = social_profiles | append: settings.social_snapchat_link | json
+  if settings.social_snapchat_link != blank and settings.social_snapchat_link != '#'
+    assign social_urls = social_urls | append: settings.social_snapchat_link | append: '|'
   endif
-  if settings.social_tumblr_link != blank
-    if social_profiles != blank
-      assign social_profiles = social_profiles | append: ','
-    endif
-    assign social_profiles = social_profiles | append: settings.social_tumblr_link | json
+  if settings.social_tumblr_link != blank and settings.social_tumblr_link != '#'
+    assign social_urls = social_urls | append: settings.social_tumblr_link | append: '|'
   endif
-  if settings.social_vimeo_link != blank
-    if social_profiles != blank
-      assign social_profiles = social_profiles | append: ','
-    endif
-    assign social_profiles = social_profiles | append: settings.social_vimeo_link | json
+  if settings.social_vimeo_link != blank and settings.social_vimeo_link != '#'
+    assign social_urls = social_urls | append: settings.social_vimeo_link | append: '|'
   endif
+  assign social_profiles = social_urls | split: '|'
 -%}
 
 <script type="application/ld+json">
@@ -86,7 +63,11 @@
       {% endif %}
       "foundingDate": "2019",
       "sameAs": [
-        {%- if social_profiles != blank -%}{{ social_profiles }},{%- endif -%}
+        {%- for profile_url in social_profiles -%}
+          {%- unless profile_url == blank -%}
+            {{ profile_url | json }},
+          {%- endunless -%}
+        {%- endfor -%}
         "https://www.wikidata.org/wiki/Q139594213",
         "https://moonridgecompany.com",
         "https://raftermhatco.com",
@@ -139,7 +120,11 @@
         }
       ],
       "sameAs": [
-        {%- if social_profiles != blank -%}{{ social_profiles }},{%- endif -%}
+        {%- for profile_url in social_profiles -%}
+          {%- unless profile_url == blank -%}
+            {{ profile_url | json }},
+          {%- endunless -%}
+        {%- endfor -%}
         "https://www.wikidata.org/wiki/Q139594213",
         "https://moonridgecompany.com",
         "https://raftermhatco.com",

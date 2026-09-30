@@ -33,6 +33,7 @@
           @font-face {
             font-family: '{{ name }}';
             src: url({{ url }}) format('{{ font_type }}');
+            font-display: swap;
               {% if custom_font_style != 'none' %}
             font-style: {{ custom_font_style }};
               {% endif %}

@@ -525,7 +525,7 @@ window.addEventListener('DOMContentLoaded', () => {
               {%- if policy != blank -%}
                 <li>
                   <small class="copyright__content"
-                    ><a href="{{ policy.url }}">{{ policy.title }}</a></small
+                    ><a href="{{ policy.url }}">{% if policy.url contains 'refund-policy' %}Return policy{% else %}{{ policy.title }}{% endif %}</a></small
                   >
                 </li>
               {%- endif -%}

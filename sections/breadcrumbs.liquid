@@ -147,7 +147,13 @@
         </li>
       {%- else -%}
         <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" href="{{ request.path }}" aria-current="page">{{ page_title }}</a>
+          <a class="breadcrumbs__link" href="{{ request.path }}" aria-current="page">
+            {%- if request.path contains '/policies/refund-policy' -%}
+              Return policy
+            {%- else -%}
+              {{ page_title }}
+            {%- endif -%}
+          </a>
         </li>
     {%- endcase -%}
   </ol>

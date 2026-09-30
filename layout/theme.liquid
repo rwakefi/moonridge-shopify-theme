@@ -95,6 +95,8 @@
         assign full_title = "Your Cart" | append: brand_suffix
       elsif request.page_type == 'search'
         assign full_title = "Search Results" | append: brand_suffix
+      elsif request.page_type == 'policy' and request.path contains '/policies/refund-policy'
+        assign full_title = "Return policy" | append: brand_suffix
       elsif request.page_type == 'page'
         if page.handle == 'insiders-list'
           assign full_title = "Join the Moon Ridge Insider List | Moon Ridge Hats & Heritage"
@@ -149,6 +151,24 @@
     -%}
     <!-- seo-title-fix-2026-08 -->
     <title>{{ full_title }}</title>
+    {%- if request.page_type == 'policy' and request.path contains '/policies/refund-policy' -%}
+      <style>
+        .shopify-policy__title h1:not(.is-return-policy) {
+          font-size: 0 !important;
+        }
+        .shopify-policy__title h1:not(.is-return-policy)::after {
+          content: "Return policy";
+          display: block;
+          font-size: calc(var(--font-heading-scale) * 3rem);
+          line-height: var(--font-heading-height);
+        }
+        @media screen and (min-width: 750px) {
+          .shopify-policy__title h1:not(.is-return-policy)::after {
+            font-size: calc(var(--font-heading-scale) * 4rem);
+          }
+        }
+      </style>
+    {%- endif -%}
 
     {%- liquid
       assign meta_description = page_description | default: shop.description | default: shop.name
@@ -652,6 +672,16 @@
   {% render 'sticky-booking-cta' %}
 
   {% render 'ai-authority-facts' %}
+  {%- if request.page_type == 'policy' and request.path contains '/policies/refund-policy' -%}
+    <script>
+      (function () {
+        var heading = document.querySelector('.shopify-policy__title h1');
+        if (!heading) return;
+        heading.textContent = 'Return policy';
+        heading.classList.add('is-return-policy');
+      })();
+    </script>
+  {%- endif -%}
   </body>
 </html>
  

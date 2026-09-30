@@ -1,8 +1,12 @@
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- if settings.cart_type == 'notification' -%}
+  <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- endif -%}
+{%- if request.page_type == 'cart' -%}
+  <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- endif -%}
 
 {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -28,8 +32,12 @@
 <noscript>{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-search.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-menu-drawer.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}</noscript>
+{%- if settings.cart_type == 'notification' -%}
+  <noscript>{{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}</noscript>
+{%- endif -%}
+{%- if request.page_type == 'cart' -%}
+  <noscript>{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}</noscript>
+{%- endif -%}
 
 {%- style -%}
   header-drawer {
@@ -647,7 +655,9 @@
 
 <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+{%- if settings.cart_type == 'notification' -%}
+  <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
 <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
 {%- if settings.cart_type == "drawer" -%}
   <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>

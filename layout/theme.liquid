@@ -462,6 +462,10 @@
         font-size: {{ settings.card_price_size }}px !important;
       }
 
+      .card__heading {
+        min-height: auto !important;
+      }
+
       .card-wrapper .product-form__controls-group label.color-swatch {
         width: {{ settings.swatch_size_card }}px;
         height: {{ settings.swatch_size_card }}px;
@@ -491,8 +495,14 @@
     {%- unless settings.type_menu_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_menu_font | font_url }}" type="font/woff2" crossorigin>
     {%- endunless -%}
-     {%- unless settings.type_button_font.system? -%}
-      <link rel="preload" as="font" href="{{ settings.type_button_font | font_url }}" type="font/woff2" crossorigin>
+    {%- unless settings.type_button_font.system? -%}
+      {%- liquid
+        assign body_font_preload = settings.type_body_font | font_url
+        assign button_font_preload = settings.type_button_font | font_url
+      -%}
+      {%- unless button_font_preload == body_font_preload -%}
+        <link rel="preload" as="font" href="{{ button_font_preload }}" type="font/woff2" crossorigin>
+      {%- endunless -%}
     {%- endunless -%}
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
@@ -644,9 +654,4 @@
   {% render 'ai-authority-facts' %}
   </body>
 </html>
-
-<style>
-  .card__heading {
-    min-height: auto !important;
-}
-</style> 
+ 

@@ -3,9 +3,10 @@
   {{ 'home-collection.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'home-collection.js' | asset_url }}" defer="defer"></script>
 {% endif %}
-{% if template.suffix == 'hats' %}
-  {{ 'hats-collection.css' | asset_url | stylesheet_tag }}
-{% endif %}
+{%- comment -%}
+  hats-collection.css is already in the document head from layout/theme.liquid
+  on this template. Loading it again here only duplicates the request.
+{%- endcomment -%}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}

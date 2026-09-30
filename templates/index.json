@@ -767,6 +767,7 @@
       "block_order": [
         "image_BnRrL9"
       ],
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "section_height": "natural",

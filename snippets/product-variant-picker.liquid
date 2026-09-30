@@ -39,7 +39,7 @@
         {{ option.name }}: <legend class="form__label" id="form__label" style="margin:0;opacity: 0.5;"> 
         {% assign current_variant = product.selected_or_first_available_variant %} {{ current_variant.title }}</legend>
         {%- if hat_uses_size_guide and option_name_down contains 'size' -%}
-          <a class="product-form__size-guide" href="{{ pages['hat-sizing'].url | default: '/pages/hat-sizing' }}">Size guide</a>
+          <a class="product-form__size-guide" href="{{ pages['hat-sizing'].url | default: '/pages/hat-sizing' }}">Size guide</a> <span aria-hidden="true">·</span> <a class="product-form__size-guide" href="https://moonridgecompany.setmore.com" target="_blank" rel="noopener">Free virtual fitting</a>
         {%- endif -%}
         </span>
           {% render 'product-variant-options-swatches', product: product, option: option, block: block %}
@@ -68,7 +68,7 @@
               {{ option.name }}
             </label>
             {%- if hat_uses_size_guide and option_name_down contains 'size' -%}
-              <a class="product-form__size-guide" href="{{ pages['hat-sizing'].url | default: '/pages/hat-sizing' }}">Size guide</a>
+              <a class="product-form__size-guide" href="{{ pages['hat-sizing'].url | default: '/pages/hat-sizing' }}">Size guide</a> <span aria-hidden="true">·</span> <a class="product-form__size-guide" href="https://moonridgecompany.setmore.com" target="_blank" rel="noopener">Free virtual fitting</a>
             {%- endif -%}
           </div>
           <div class="select">

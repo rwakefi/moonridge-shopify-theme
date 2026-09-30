@@ -30,6 +30,11 @@
     assign lazy = 'lazy'
   endunless
 
+  assign fetch_priority = 'auto'
+  if lazy_load == false
+    assign fetch_priority = 'high'
+  endif
+
   assign desktop_columns = 1
   if desktop_layout == 'columns' and media_count > 1
     assign desktop_columns = 2
@@ -104,6 +109,7 @@
       {{ media.preview_image | image_url: width: product_image_max_width | image_tag:
         class: image_class,
         loading: lazy,
+        fetchpriority: fetch_priority,
         sizes: sizes,
         widths: product_image_widths,
         alt: media.preview_image.alt | default: product.title | escape

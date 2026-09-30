@@ -2199,17 +2199,5 @@
         "default": 6
       }
     ]
-  },
-  {
-    "name": "Hat product page",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "hat_spec_line_enable",
-        "label": "Show hat specs under the title",
-        "default": true,
-        "info": "One quiet line on hat pages: crown shape, crown height, brim shape, brim width. Turn this off to bring back the cards lower on the page."
-      }
-    ]
   }
 ]

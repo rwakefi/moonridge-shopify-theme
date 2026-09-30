@@ -1,4 +1,3 @@
-{%- unless settings.hat_spec_line_enable -%}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
 {% style %}
@@ -138,7 +137,6 @@
     customElements.define('category-metadata-{{ ai_gen_id }}', CategoryMetadata{{ ai_gen_id }});
   })();
 </script>
-{%- endunless -%}
 
 {% schema %}
 {

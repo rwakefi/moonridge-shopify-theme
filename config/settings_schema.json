@@ -2171,6 +2171,13 @@
         "default": true
       },
       {
+        "type": "checkbox",
+        "id": "cart_cross_sell_enable",
+        "label": "Show frequently bought together",
+        "default": true,
+        "info": "Turn this off to go back to the Add to your order collection only."
+      },
+      {
         "type": "collection",
         "id": "cart_addons_collection",
         "label": "Add-ons collection",

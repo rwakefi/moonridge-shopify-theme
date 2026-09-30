@@ -19,6 +19,11 @@
     assign addons_enabled = true
   endif
 
+  assign cross_sell_enabled = settings.cart_cross_sell_enable
+  if cross_sell_enabled == blank
+    assign cross_sell_enabled = true
+  endif
+
   assign source_ids = ','
   for item in cart.items
     assign suffix = item.product.template_suffix | default: '' | downcase
@@ -37,6 +42,9 @@
 -%}
 
 {%- if addons_enabled and cart != empty -%}
+  {%- if cross_sell_enabled == false -%}
+    {%- render 'cart-drawer-addons' -%}
+  {%- else -%}
   <div class="cart-cross-sell-slot{% if context == 'page' %} cart-cross-sell-slot--page{% endif %}">
     {%- if product_ids != blank -%}
       <cart-cross-sell
@@ -55,4 +63,5 @@
       {%- render 'cart-drawer-addons' -%}
     </div>
   </div>
+  {%- endif -%}
 {%- endif -%}

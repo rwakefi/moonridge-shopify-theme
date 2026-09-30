@@ -730,9 +730,9 @@
         "image_BnRrL9": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Rafter_M_Hat_Company-10.png",
+            "image": "shopify://shop_images/moonridge-hero-desktop.webp",
             "focal_point": "center center",
-            "image_mobile": "shopify://shop_images/Rafter_M_Hat_Company-19.png",
+            "image_mobile": "shopify://shop_images/moonridge-hero-mobile.webp",
             "focal_point_mobile": "center center",
             "title": "",
             "subtitle": "",

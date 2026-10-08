@@ -395,7 +395,7 @@
         "instagram_url": "https://instagram.com/moonridgeco",
         "facebook_url": "https://www.facebook.com/Moonridgecompany/",
         "tiktok_url": "https://tiktok.com/moonridgeco",
-        "store_hours": "Tue–Sat: 11am–5pm\nSun & Mon: Closed",
+        "store_hours": "Wed–Sat: 11am–5pm\nSun–Tue: Closed",
         "newsletter_heading": "STAY IN TOUCH",
         "newsletter_text": "Subscribe to receive updates, new arrivals, and exclusive Moon Ridge offers.",
         "newsletter_placeholder": "Enter your email address",
@@ -957,7 +957,7 @@
           "type": "faq",
           "settings": {
             "question": "When do you shape hats?",
-            "answer": "<p>We have staff in the store Tuesday through Saturday to help you, but our master hat shapers are in <strong>Thursday through Saturday</strong>. We also host special events that may occasionally affect our hours, so be sure to check our website for the latest updates.</p>",
+            "answer": "<p>We have staff in the store Wednesday through Saturday to help you, but our master hat shapers are in <strong>Thursday through Saturday</strong>. We also host special events that may occasionally affect our hours, so be sure to check our website for the latest updates.</p>",
             "place_in_more": false
           }
         },

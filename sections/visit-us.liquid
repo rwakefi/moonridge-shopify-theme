@@ -1,7 +1,7 @@
 {{ 'visit-us.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign maps_query = section.settings.address | default: '2218 N College Ave, Fayetteville, AR 72703' | url_encode
+  assign maps_query = section.settings.address | default: '2852 N College Ave, Fayetteville, AR 72703' | url_encode
   assign phone_href = section.settings.phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' | replace: '.', ''
   if phone_href != blank and phone_href contains '479'
     assign phone_href = phone_href | prepend: '+1'
@@ -127,7 +127,7 @@
         <div class="visit-us__card">
           <h2 class="visit-us__card-title">{{ section.settings.location_heading | escape }}</h2>
           <p class="visit-us__address">
-            <a href="{{ section.settings.map_link | default: 'https://www.google.com/maps?q=2218+N+College+Ave,+Fayetteville,+AR+72703' }}" rel="noopener noreferrer" target="_blank">
+            <a href="{{ section.settings.map_link | default: 'https://www.google.com/maps?q=2852+N+College+Ave,+Fayetteville,+AR+72703' }}" rel="noopener noreferrer" target="_blank">
               {{ section.settings.address | escape }}
             </a>
           </p>
@@ -344,7 +344,7 @@
       "type": "text",
       "id": "address",
       "label": "Address",
-      "default": "2218 N College Ave, Fayetteville, AR 72703"
+      "default": "2852 N. College Avenue, Fayetteville, AR 72703"
     },
     {
       "type": "text",

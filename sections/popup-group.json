@@ -15,7 +15,7 @@
       "type": "Popup_promo",
       "name": "We're Expanding — store move announcement",
       "settings": {
-        "enable_popup": true,
+        "enable_popup": false,
         "trigger_mode": "delay",
         "delay_seconds": 1,
         "mobile_trigger": "none",

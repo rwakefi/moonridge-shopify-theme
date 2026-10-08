@@ -59,11 +59,11 @@ Core positioning: honesty, authenticity, craftsmanship you can feel. No rush, no
 
 ## Physical store & customer experience
 
-- **Retail store:** 2218 N College Ave, Fayetteville, AR 72703 ("two doors south of the bowling alley on College Avenue"). Also listed in Shopify as location "Rafter M + Personally Yours."
-- **Headquarters/shipping:** 3242 E Lovers Ln, Fayetteville, AR 72701 (separate Shopify location — this is the returns address, likely warehouse/office rather than the storefront).
-- **Phone:** (479) 430-2667. **Email:** info@moonridgecompany.com.
-- **Hours:** Mon–Fri 10am–5pm, Sat 10am–2pm, closed Sunday. Hours can shift around private events.
-- **Master hat shapers in-store:** Thursday–Saturday (Thu/Fri 10am–5pm, Sat 10am–2pm). Regular staff cover Mon–Sat.
+- **Retail store (moved Oct 2026):** 2852 N. College Avenue, Fayetteville, AR 72703 — right next door to Base Camp Coffee. Grand opening Fri Oct 9, 2026. (Old shop at 2218 N College Ave closed Sept 30, 2026 — don't use it anywhere.) Shopify location "Moon Ridge Hats and Heritage" (gid://shopify/Location/101372789040).
+- **Returns address:** the store, 2852 N. College Avenue, Fayetteville, AR 72703 (changed Oct 2026; previously 3242 E Lovers Ln).
+- **Phone:** (479) 430-2667 only — (479) 283-6022 is retired, never use it. **Email:** info@moonridgecompany.com.
+- **Hours:** Tue–Sat 11am–5pm, closed Sunday and Monday. Hours can shift around private events.
+- **Master hat shapers in-store:** Thursday–Saturday, 11am–5pm. Regular staff cover Tue–Sat.
 - **Walk-ins welcome, no appointment required** — but booking a "Free Hat Experience" appointment is recommended for dedicated one-on-one fitting time.
 - **Shaping/cleaning pricing:** complimentary custom shaping is an **in-store service only** (walk-ins and appointments) on hats purchased at Moon Ridge; $35 to shape/clean a hat bought elsewhere. Free shaping does **not** apply to shipped/online orders — do not position it as a shipping or online-purchase perk in customer-facing content.
 - Also books hat-shaping parties/hat bars for weddings, corporate events, and private parties (8–250 guests).

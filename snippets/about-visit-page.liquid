@@ -1,7 +1,7 @@
 {{ 'about-visit-page.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign maps_query = section.settings.address | default: '2218 N College Ave, Fayetteville, AR 72703' | url_encode
+  assign maps_query = section.settings.address | default: '2852 N College Ave, Fayetteville, AR 72703' | url_encode
   assign phone_href = section.settings.phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' | replace: '.', ''
   if phone_href != blank and phone_href contains '479'
     assign phone_href = phone_href | prepend: '+1'
@@ -81,9 +81,15 @@
         <div class="about-visit-page__card">
           <h3>Store Hours</h3>
           <ul class="about-visit-page__hours">
-            <li><span>Mon – Fri</span><span>{{ section.settings.weekday_hours | escape }}</span></li>
-            <li><span>Saturday</span><span>{{ section.settings.saturday_hours | escape }}</span></li>
-            <li><span>Sunday</span><span>{{ section.settings.sunday_hours | escape }}</span></li>
+            {%- if section.settings.weekday_hours != blank -%}
+              <li><span>{{ section.settings.weekday_label | default: 'Mon – Fri' | escape }}</span><span>{{ section.settings.weekday_hours | escape }}</span></li>
+            {%- endif -%}
+            {%- if section.settings.saturday_hours != blank -%}
+              <li><span>{{ section.settings.saturday_label | default: 'Saturday' | escape }}</span><span>{{ section.settings.saturday_hours | escape }}</span></li>
+            {%- endif -%}
+            {%- if section.settings.sunday_hours != blank -%}
+              <li><span>{{ section.settings.sunday_label | default: 'Sunday' | escape }}</span><span>{{ section.settings.sunday_hours | escape }}</span></li>
+            {%- endif -%}
           </ul>
         </div>
 
@@ -101,7 +107,7 @@
         <div class="about-visit-page__card">
           <h3>Find Us</h3>
           <p class="about-visit-page__address">
-            <a href="{{ section.settings.map_link | default: 'https://www.google.com/maps?q=2218+N+College+Ave,+Fayetteville,+AR+72703' }}" rel="noopener noreferrer" target="_blank">
+            <a href="{{ section.settings.map_link | default: 'https://www.google.com/maps?q=2852+N+College+Ave,+Fayetteville,+AR+72703' }}" rel="noopener noreferrer" target="_blank">
               {{ section.settings.address | escape }}
             </a>
           </p>

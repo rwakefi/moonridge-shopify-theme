@@ -50,8 +50,8 @@
         "q_location_same": {
           "type": "item",
           "settings": {
-            "question": "Is your location the same?",
-            "answer": "<p>Yes. You can find us at the same Fayetteville showroom: 2218 N College Ave, Fayetteville, AR 72703.</p>"
+            "question": "Where is the store now?",
+            "answer": "<p>We moved just down the road. As of October 2026 you can find us at 2852 N. College Avenue, Fayetteville, AR 72703 — right next door to Base Camp Coffee.</p>"
           }
         },
         "cat_shopping": {

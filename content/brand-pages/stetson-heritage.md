@@ -134,8 +134,8 @@ fur felt mill in North America — same roof that turns out Resistol and
 Charlie 1 Horse. Most arrive already creased: cattleman, pinch front,
 whatever the line was built for. Good felt doesn't mind. It takes steam and
 it takes a new shape, so the crease a hat left the factory with isn't the
-one you're stuck with. We set it to your head at the bench, two doors south
-of the bowling alley.
+one you're stuck with. We set it to your head at the bench, right next door
+to Base Camp Coffee.
 ```
 
 ---

@@ -1,3 +1,5 @@
+{%- comment -%} Hidden on the event booking page (book-moonridge). {%- endcomment -%}
+{%- unless page.handle == 'book-moonridge' -%}
 <a href="https://moonridgecompany.setmore.com" class="sticky-booking-cta" id="sticky-setmore-booking-cta" rel="noopener noreferrer" target="_self">
   <div class="sticky-booking-cta__icon">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -11,3 +13,4 @@
     <span class="sticky-booking-cta__title">BOOK A FREE FITTING</span>
   </div>
 </a>
+{%- endunless -%}

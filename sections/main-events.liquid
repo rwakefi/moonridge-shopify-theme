@@ -1,322 +1,4 @@
-{% style %}
-  /* Hide breadcrumbs on events page (mobile + desktop) */
-  .breadcrumbs {
-    display: none !important;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  /* Three-way video swap: mobile / laptop / desktop */
-  video.events-video--mobile  { display: none !important; }
-  video.events-video--laptop  { display: none !important; }
-  /* Laptop (990px–1399px) */
-  @media screen and (min-width: 990px) and (max-width: 1399px) {
-    video.events-video--desktop { display: none !important; }
-    video.events-video--laptop  { display: block !important; }
-  }
-  /* Mobile (up to 989px) */
-  @media screen and (max-width: 989px) {
-    video.events-video--desktop { display: none !important; }
-    video.events-video--mobile  { display: block !important; }
-  }
-  .events-video-banner {
-    position: relative;
-    width: 100%;
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: #000;
-  }
-
-  @media screen and (min-width: 990px) {
-    .events-video-banner {
-      min-height: 600px;
-      aspect-ratio: 16 / 9;
-      max-height: 80vh;
-    }
-  }
-  .events-video-banner__bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
-  .events-video-banner__bg video {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: var(--video-alignment, center center);
-    display: block;
-  }
-  .events-video-banner__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 2;
-  }
-  .events-video-banner__content {
-    position: relative;
-    z-index: 3;
-    text-align: center;
-    color: #ffffff;
-    max-width: 800px;
-    padding: 0 20px;
-  }
-  .events-video-banner__title {
-    font-family: var(--font-heading-family);
-    font-size: 56px;
-    font-weight: 700;
-    margin: 0 0 16px 0;
-    color: #fff;
-    line-height: 1.05;
-    letter-spacing: 0.01em;
-  }
-  .events-video-banner__text {
-    font-size: 18px;
-    margin: 0 0 32px 0;
-    color: #fff;
-    line-height: 1.5;
-  }
-  .events-video-banner__buttons {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .banner-button {
-    display: inline-block;
-    padding: 14px 32px;
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-  .banner-button--primary { background: #ffffff; color: #111111; }
-  .banner-button--primary:hover { background: #e6e6e6; }
-  .banner-button--secondary { background: transparent; color: #ffffff; border: 1px solid #ffffff; }
-  .banner-button--secondary:hover { background: rgba(255,255,255,0.1); }
-
-  .events-video-control {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    z-index: 10;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    opacity: 0.6;
-    padding: 0;
-  }
-  .events-video-control:hover {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.6);
-    transform: scale(1.05);
-  }
-  .events-video-control svg {
-    width: 16px;
-    height: 16px;
-    fill: currentColor;
-  }
-  @media screen and (max-width: 749px) {
-    .events-video-control {
-      bottom: 20px;
-      right: 20px;
-      width: 38px;
-      height: 38px;
-    }
-  }
-
-  /* Events directory body */
-  .events-directory {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 20px;
-    font-family: var(--font-body-family);
-  }
-  .events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-  }
-  /* ── Cinematic Category Section ────────────────────── */
-  .event-category-section {
-    grid-column: 1 / -1;
-    margin-top: 0;
-  }
-  .event-category-hero {
-    position: relative;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    min-height: 500px;
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
-    background: #111;
-  }
-  .event-category-hero__media {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
-  }
-  .event-category-hero__media img,
-  .event-category-hero__media video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: brightness(0.55);
-  }
-  .event-category-hero__gradient {
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.1) 100%);
-    z-index: 1;
-  }
-  .event-category-hero__content {
-    position: relative;
-    z-index: 2;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 40px;
-    width: 100%;
-  }
-  .event-category-hero__label {
-    font-family: var(--font-body-family);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #C5A059;
-    margin-bottom: 16px;
-  }
-  .event-category-hero h2 {
-    font-family: var(--font-heading-family);
-    font-size: 52px;
-    font-weight: 700;
-    color: #fff;
-    margin: 0 0 20px 0;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    line-height: 1.1;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-  }
-  .event-category-hero__desc {
-    font-size: 17px;
-    color: rgba(255,255,255,0.92);
-    max-width: 650px;
-    line-height: 1.8;
-    text-shadow: 0 1px 6px rgba(0,0,0,0.5);
-    text-align: left;
-  }
-  .event-category-hero__desc p { margin: 0 0 12px 0; }
-  .event-category-hero__desc p:last-child { margin-bottom: 0; }
-  .event-category-hero__desc strong { color: #fff; }
-  /* Gallery row under the hero */
-  .event-category-gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-bottom: 60px;
-  }
-  .event-category-gallery__item {
-    overflow: hidden;
-    aspect-ratio: 16 / 10;
-    background: #f0f0f0;
-  }
-  .event-category-gallery__item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.6s ease;
-  }
-  .event-category-gallery__item:hover img {
-    transform: scale(1.03);
-  }
-  .event-card { border: 1px solid #eaeaea; border-radius: 8px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
-  .event-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
-  .event-card__image { width: 100%; height: 200px; object-fit: cover; background: #f5f5f5; }
-  .event-card__content { padding: 24px; }
-  .event-card__date { display: inline-block; font-size: 13px; font-weight: 600; text-transform: uppercase; color: #C5A059; margin-bottom: 8px; letter-spacing: 0.5px; }
-  .event-card__title { font-family: var(--font-heading-family); font-size: 22px; font-weight: 600; margin: 0 0 12px 0; color: #111; }
-  .event-card__desc { font-size: 15px; color: #555; line-height: 1.5; margin: 0 0 20px 0; }
-  .event-card__button { display: inline-block; padding: 10px 20px; background: #111; color: #fff; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: 500; transition: background 0.2s; }
-  .event-card__button:hover { background: #333; }
-  .events-form-wrapper {
-    grid-column: 1 / -1;
-    max-width: 800px;
-    margin: 40px auto 0;
-    width: 100%;
-    padding: 40px;
-    background: #fafafa;
-    border-radius: 8px;
-    border: 1px solid #eaeaea;
-  }
-  .events-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .events-form-grid .field--full-width { grid-column: 1 / -1; }
-  .events-form-grid .field--date .field__label {
-    font-size: 1rem;
-    top: calc(var(--inputs-border-width) + 0.5rem);
-    left: calc(var(--inputs-border-width) + 2rem);
-    letter-spacing: 0.04rem;
-    transform: none;
-  }
-  .events-form-grid .field--date .field__input {
-    padding: 2.2rem 1.5rem 0.8rem 2rem;
-    color-scheme: light;
-  }
-  .events-form-grid .field--date .field__input::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-    opacity: 0.75;
-  }
-
-  @media screen and (max-width: 768px) {
-    .events-video-banner__title { font-size: 36px; }
-    .event-category-hero {
-      min-height: 400px;
-    }
-    .event-category-hero h2 {
-      font-size: 32px;
-      letter-spacing: 2px;
-    }
-    .event-category-hero__content {
-      padding: 40px 24px;
-    }
-    .event-category-hero__desc {
-      font-size: 15px;
-    }
-    .event-category-gallery {
-      grid-template-columns: 1fr;
-      gap: 3px;
-    }
-    .events-form-wrapper { padding: 24px 20px; }
-    .events-form-grid { grid-template-columns: 1fr; }
-  }
-{% endstyle %}
-
+{% render 'events-page-styles' %}
 
 {% if section.settings.hero_video != blank %}
   <div class="events-video-banner" style="--video-alignment: {{ section.settings.video_alignment }};">
@@ -326,22 +8,16 @@
         assign laptop_video = section.settings.laptop_video | default: section.settings.hero_video
         assign mobile_video = section.settings.mobile_video | default: laptop_video
       -%}
-
-      <!-- Desktop video (1400px+) -->
       <video class="events-video--desktop" autoplay loop muted playsinline{% if poster != blank %} poster="{{ poster }}"{% endif %}>
         {%- for source in section.settings.hero_video.sources -%}
           <source src="{{ source.url }}" type="{{ source.mime_type }}">
         {%- endfor -%}
       </video>
-
-      <!-- Laptop video (990px-1399px): falls back to desktop if not set -->
       <video class="events-video--laptop" autoplay loop muted playsinline{% if poster != blank %} poster="{{ poster }}"{% endif %}>
         {%- for source in laptop_video.sources -%}
           <source src="{{ source.url }}" type="{{ source.mime_type }}">
         {%- endfor -%}
       </video>
-
-      <!-- Mobile video (under 990px): falls back to laptop then desktop if not set -->
       <video class="events-video--mobile" autoplay loop muted playsinline{% if poster != blank %} poster="{{ poster }}"{% endif %}>
         {%- for source in mobile_video.sources -%}
           <source src="{{ source.url }}" type="{{ source.mime_type }}">
@@ -349,16 +25,19 @@
       </video>
     </div>
     <div class="events-video-banner__overlay"></div>
-    <div class="events-video-banner__content">
-      {% if section.settings.banner_title != blank %}
-        <h1 class="events-video-banner__title">{{ section.settings.banner_title | newline_to_br }}</h1>
-      {% endif %}
-      {% if section.settings.banner_text != blank %}
-        <div class="events-video-banner__text">{{ section.settings.banner_text }}</div>
-      {% endif %}
-      <div class="events-video-banner__buttons">
-        <a href="#event-inquiry-form" class="banner-button banner-button--secondary">Event Form</a>
+    <div class="events-video-banner__inner">
+      <div class="events-video-banner__content">
+        {% if section.settings.banner_title != blank %}
+          <h1 class="events-video-banner__title">{{ section.settings.banner_title | newline_to_br }}</h1>
+        {% endif %}
+        {% if section.settings.banner_text != blank %}
+          <div class="events-video-banner__text">{{ section.settings.banner_text }}</div>
+        {% endif %}
+        <div class="events-video-banner__buttons">
+          <a href="#event-inquiry-form" class="banner-button banner-button--secondary">Event Form</a>
+        </div>
       </div>
+      {% render 'events-inquiry-form', overlay: true %}
     </div>
     <button type="button" class="events-video-control" id="EventsVideoToggle" aria-label="Pause Video">
       <span class="icon-pause">
@@ -415,18 +94,14 @@
           {% else %}
             {{ 'collection-1' | placeholder_svg_tag: 'event-card__image' }}
           {% endif %}
-          
           <div class="event-card__content">
             {% if block.settings.date != blank %}
               <div class="event-card__date">{{ block.settings.date }}</div>
             {% endif %}
-            
             <h3 class="event-card__title">{{ block.settings.title }}</h3>
-            
             {% if block.settings.description != blank %}
               <div class="event-card__desc">{{ block.settings.description }}</div>
             {% endif %}
-            
             {% if block.settings.link != blank %}
               <a href="{{ block.settings.link }}" class="event-card__button">{{ block.settings.button_text }}</a>
             {% endif %}
@@ -434,68 +109,17 @@
         </div>
       {% endif %}
     {% endfor %}
-    
+
     {% if section.blocks.size == 0 %}
       <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #777;">
         <p>No events currently scheduled. Add some blocks in the theme editor!</p>
       </div>
     {% endif %}
 
-    <div class="events-form-wrapper" id="event-inquiry-form">
-      <h2 style="text-align: center; margin-bottom: 24px; font-family: var(--font-heading-family); font-size: 28px;">Inquire about Booking us for your next event</h2>
-      {% form 'contact' %}
-        {% if form.posted_successfully? %}
-          <div class="form-status form-status-list form__message" tabindex="-1" autofocus style="color: green; text-align: center; margin-bottom: 16px;">
-            Thanks for reaching out! We will get back to you soon.
-          </div>
-        {% elsif form.errors %}
-          <div class="form__message" style="color: red; text-align: center; margin-bottom: 16px;">
-            <div class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
-              Please check your info and try again.
-            </div>
-          </div>
-        {% endif %}
-        <div class="events-form-grid">
-          <div class="field">
-            <input class="field__input" autocomplete="name" type="text" id="ContactForm-first_name" name="contact[First Name]" value="{% if form.first_name %}{{ form.first_name }}{% elsif customer %}{{ customer.first_name }}{% endif %}" placeholder="First name" required>
-            <label class="field__label" for="ContactForm-first_name">First name</label>
-          </div>
-          <div class="field">
-            <input class="field__input" type="text" id="ContactForm-last_name" name="contact[Last Name]" value="{% if form.last_name %}{{ form.last_name }}{% elsif customer %}{{ customer.last_name }}{% endif %}" placeholder="Last name" required>
-            <label class="field__label" for="ContactForm-last_name">Last name</label>
-          </div>
-          <div class="field">
-            <input type="tel" id="ContactForm-phone" class="field__input" autocomplete="tel" name="contact[Phone]" pattern="[0-9\-]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="Phone number" required>
-            <label class="field__label" for="ContactForm-phone">Phone</label>
-          </div>
-          <div class="field">
-            <input autocomplete="email" type="email" id="ContactForm-email" class="field__input" name="contact[email]" spellcheck="false" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" aria-required="true" placeholder="Email" required>
-            <label class="field__label" for="ContactForm-email">Email</label>
-          </div>
-          <div class="field">
-            <input type="text" id="ContactForm-event_type" class="field__input" name="contact[Event Name / Type of Event]" placeholder="Event Name/Type of Event" required>
-            <label class="field__label" for="ContactForm-event_type">Event Name/Type of Event</label>
-          </div>
-          <div class="field">
-            <input type="number" id="ContactForm-headcount" class="field__input" name="contact[Expected Headcount]" placeholder="Expected # of people" required>
-            <label class="field__label" for="ContactForm-headcount">Expected # of people</label>
-          </div>
-          <div class="field field--full-width field--date">
-            <input type="date" id="ContactForm-event_date" class="field__input" name="contact[Date of Event]" placeholder="Date of the event" autocomplete="off" required>
-            <label class="field__label" for="ContactForm-event_date">Date of the event</label>
-          </div>
-          <div class="field field--full-width">
-            <input type="text" id="ContactForm-location" class="field__input" name="contact[Location of Event]" placeholder="Location of The Event" required>
-            <label class="field__label" for="ContactForm-location">Location of The Event</label>
-          </div>
-        </div>
-        <div class="contact__button" style="text-align: center; margin-top: 24px;">
-          <button type="submit" class="button button--primary" style="min-width: 200px;">
-            Submit Request
-          </button>
-        </div>
-      {% endform %}
-    </div>
+    {% comment %} Form lives in the hero when a video is set; otherwise show it here. {% endcomment %}
+    {% if section.settings.hero_video == blank %}
+      {% render 'events-inquiry-form', overlay: false %}
+    {% endif %}
   </div>
 </div>
 
@@ -503,149 +127,47 @@
 {
   "name": "Events Directory",
   "settings": [
+    { "type": "video", "id": "hero_video", "label": "Desktop Video (1400px+)", "info": "Ideal size: 1920×1080px (16:9 landscape). Used on large desktop monitors. Required — all other slots fall back to this if left empty." },
+    { "type": "image_picker", "id": "poster_image", "label": "Video Poster Image", "info": "Displays while the video is loading. Highly recommended for speed." },
+    { "type": "video", "id": "laptop_video", "label": "Laptop Video (990px–1399px) (Optional)", "info": "Ideal size: 1440×810px (16:9 landscape). Optimized for laptop screens. If left empty, the Desktop video will be used." },
+    { "type": "video", "id": "mobile_video", "label": "Mobile Video (under 990px) (Optional)", "info": "Ideal size: 1080×1920px (9:16 vertical/portrait). Optimized for phones and tablets. If left empty, the Laptop video (or Desktop if none) will be used." },
     {
-      "type": "video",
-      "id": "hero_video",
-      "label": "Desktop Video (1400px+)",
-      "info": "Ideal size: 1920×1080px (16:9 landscape). Used on large desktop monitors. Required — all other slots fall back to this if left empty."
-    },
-    {
-      "type": "image_picker",
-      "id": "poster_image",
-      "label": "Video Poster Image",
-      "info": "Displays while the video is loading. Highly recommended for speed."
-    },
-    {
-      "type": "video",
-      "id": "laptop_video",
-      "label": "Laptop Video (990px–1399px) (Optional)",
-      "info": "Ideal size: 1440×810px (16:9 landscape). Optimized for laptop screens. If left empty, the Desktop video will be used."
-    },
-    {
-      "type": "video",
-      "id": "mobile_video",
-      "label": "Mobile Video (under 990px) (Optional)",
-      "info": "Ideal size: 1080×1920px (9:16 vertical/portrait). Optimized for phones and tablets. If left empty, the Laptop video (or Desktop if none) will be used."
-    },
-    {
-      "type": "select",
-      "id": "video_alignment",
-      "label": "Video Focal Point",
+      "type": "select", "id": "video_alignment", "label": "Video Focal Point",
       "info": "If the video is cropping, adjust this to focus on the top or bottom.",
       "options": [
-        {
-          "value": "center top",
-          "label": "Top (e.g., show heads)"
-        },
-        {
-          "value": "center center",
-          "label": "Center"
-        },
-        {
-          "value": "center bottom",
-          "label": "Bottom"
-        }
+        { "value": "center top", "label": "Top (e.g., show heads)" },
+        { "value": "center center", "label": "Center" },
+        { "value": "center bottom", "label": "Bottom" }
       ],
       "default": "center center"
     },
-    {
-      "type": "textarea",
-      "id": "banner_title",
-      "label": "Video Overlay Title",
-      "info": "Press Enter in this box to create a line break in the heading.",
-      "default": "Make Your Event Special"
-    },
-    {
-      "type": "richtext",
-      "id": "banner_text",
-      "label": "Video Overlay Text",
-      "default": "<p>Discover the Moon Ridge experience.</p>"
-    }
+    { "type": "textarea", "id": "banner_title", "label": "Video Overlay Title", "info": "Press Enter in this box to create a line break in the heading.", "default": "Make Your Event Special" },
+    { "type": "richtext", "id": "banner_text", "label": "Video Overlay Text", "default": "<p>Discover the Moon Ridge experience.</p>" }
   ],
   "blocks": [
     {
       "type": "category_header",
       "name": "Category Heading",
       "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Category Name",
-          "default": "Weddings"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Primary Category Image"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_2",
-          "label": "Secondary Image (Optional)"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_3",
-          "label": "Tertiary Image (Optional)"
-        },
-        {
-          "type": "video",
-          "id": "video",
-          "label": "Category Video (Optional)",
-          "info": "If added, this will replace the primary image with a looping video."
-        },
-        {
-          "type": "richtext",
-          "id": "description",
-          "label": "Category Description (Optional)"
-        },
-        {
-          "type": "text",
-          "id": "anchor_id",
-          "label": "Anchor ID",
-          "info": "Used for dropdown links. Example: 'weddings'. The link will be /pages/events#weddings",
-          "default": "weddings"
-        }
+        { "type": "text", "id": "title", "label": "Category Name", "default": "Weddings" },
+        { "type": "image_picker", "id": "image", "label": "Primary Category Image" },
+        { "type": "image_picker", "id": "image_2", "label": "Secondary Image (Optional)" },
+        { "type": "image_picker", "id": "image_3", "label": "Tertiary Image (Optional)" },
+        { "type": "video", "id": "video", "label": "Category Video (Optional)", "info": "If added, this will replace the primary image with a looping video." },
+        { "type": "richtext", "id": "description", "label": "Category Description (Optional)" },
+        { "type": "text", "id": "anchor_id", "label": "Anchor ID", "info": "Used for dropdown links. Example: 'weddings'. The link will be /pages/events#weddings", "default": "weddings" }
       ]
     },
     {
       "type": "event",
       "name": "Event",
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Event Image"
-        },
-        {
-          "type": "text",
-          "id": "date",
-          "label": "Date & Time",
-          "default": "Oct 15, 2026 | 6:00 PM"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Event Title",
-          "default": "Hat Shaping Workshop"
-        },
-        {
-          "type": "richtext",
-          "id": "description",
-          "label": "Description",
-          "default": "<p>Learn the art of custom hat shaping with our expert team.</p>"
-        },
-        {
-          "type": "text",
-          "id": "button_text",
-          "label": "Button Text",
-          "default": "RSVP Now"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Event Link"
-        }
+        { "type": "image_picker", "id": "image", "label": "Event Image" },
+        { "type": "text", "id": "date", "label": "Date & Time", "default": "Oct 15, 2026 | 6:00 PM" },
+        { "type": "text", "id": "title", "label": "Event Title", "default": "Hat Shaping Workshop" },
+        { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Learn the art of custom hat shaping with our expert team.</p>" },
+        { "type": "text", "id": "button_text", "label": "Button Text", "default": "RSVP Now" },
+        { "type": "url", "id": "link", "label": "Event Link" }
       ]
     }
   ],
@@ -653,26 +175,10 @@
     {
       "name": "Events Directory",
       "blocks": [
-        {
-          "type": "category_header",
-          "settings": {
-            "title": "Weddings",
-            "anchor_id": "weddings"
-          }
-        },
-        {
-          "type": "event"
-        },
-        {
-          "type": "category_header",
-          "settings": {
-            "title": "In Store",
-            "anchor_id": "in-store"
-          }
-        },
-        {
-          "type": "event"
-        }
+        { "type": "category_header", "settings": { "title": "Weddings", "anchor_id": "weddings" } },
+        { "type": "event" },
+        { "type": "category_header", "settings": { "title": "In Store", "anchor_id": "in-store" } },
+        { "type": "event" }
       ]
     }
   ]
@@ -683,29 +189,19 @@
   document.addEventListener('DOMContentLoaded', function() {
     const videoToggle = document.getElementById('EventsVideoToggle');
     if (!videoToggle) return;
-
     const videos = document.querySelectorAll('.events-video-banner__bg video');
     const pauseIcon = videoToggle.querySelector('.icon-pause');
     const playIcon = videoToggle.querySelector('.icon-play');
-
     videoToggle.addEventListener('click', function() {
-      // Check first visible video's state
       let isCurrentlyPaused = false;
       videos.forEach(v => {
         if (getComputedStyle(v).display !== 'none') {
           isCurrentlyPaused = v.paused;
         }
       });
-      
       videos.forEach(video => {
-        if (isCurrentlyPaused) {
-          video.play();
-        } else {
-          video.pause();
-        }
+        if (isCurrentlyPaused) { video.play(); } else { video.pause(); }
       });
-
-      // Update UI
       if (isCurrentlyPaused) {
         pauseIcon.style.display = 'block';
         playIcon.style.display = 'none';

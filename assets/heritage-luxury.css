@@ -116,6 +116,15 @@ h1, h2, h3, .h1, .h2, .h3, .card__heading, .banner__heading {
   box-shadow: 0 8px 25px rgba(49, 33, 16, 0.2);
 }
 
+/* Keep primary button labels white on hover/tap. lumin.css sets
+   .button:hover text to leather, which matched the leather hover
+   background above and made labels (e.g. "Submit Request") disappear. */
+.button:not(.button--secondary):hover,
+.button:not(.button--secondary):focus,
+.button:not(.button--secondary):active {
+  color: white !important;
+}
+
 .button--secondary {
   background-color: transparent !important;
   color: var(--rm-leather) !important;

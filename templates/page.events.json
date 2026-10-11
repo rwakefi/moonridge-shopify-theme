@@ -73,6 +73,26 @@
         "banner_text": ""
       }
     },
+    "photo_carousel": {
+      "type": "events-photo-carousel",
+      "blocks": {
+        "photo_1": { "type": "photo", "settings": { "image": "shopify://shop_images/752382BC-5181-4808-9C7B-D52AF55F9F6C_1_102_o.jpg" } },
+        "photo_2": { "type": "photo", "settings": { "image": "shopify://shop_images/70E739CF-2BC3-46CA-8CD1-6844126B44C6_1_102_o.jpg" } },
+        "photo_3": { "type": "photo", "settings": { "image": "shopify://shop_images/91100604-E385-4820-81AC-E419A46F54A8_1_105_c.jpg" } },
+        "photo_4": { "type": "photo", "settings": { "image": "shopify://shop_images/8E4AE37B-83CF-4426-A088-3D11F394B4D5_1_105_c.jpg" } },
+        "photo_5": { "type": "photo", "settings": { "image": "shopify://shop_images/5AF0BB6A-CF2D-4976-A1C9-0E3774346DC3_1_105_c.jpg" } },
+        "photo_6": { "type": "photo", "settings": { "image": "shopify://shop_images/C9FDC5CC-4D40-4093-8745-370307341088_1_105_c.jpg" } }
+      },
+      "block_order": ["photo_1", "photo_2", "photo_3", "photo_4", "photo_5", "photo_6"],
+      "settings": {
+        "eyebrow": "Moon Ridge Experience",
+        "title": "Moments From Our Events",
+        "height": 440,
+        "autoplay": true,
+        "button_label": "Get a Quote",
+        "button_link": ""
+      }
+    },
     "form_app": {
       "type": "apps",
       "settings": {
@@ -82,6 +102,7 @@
   },
   "order": [
     "main",
+    "photo_carousel",
     "form_app"
   ]
 }

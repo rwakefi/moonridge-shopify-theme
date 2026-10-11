@@ -1,0 +1,108 @@
+{%- comment -%}
+  Event photo carousel: a scrolling strip of photos from past events with a
+  "Get a Quote" button that jumps back up to the inquiry form.
+  Add/remove/reorder photos in the theme editor (Photo blocks).
+{%- endcomment -%}
+{% style %}
+  .ev-carousel { background: #1a1612; color: #fff; padding: 64px 0 72px; overflow: hidden; }
+  .ev-carousel__head { max-width: 1200px; margin: 0 auto 28px; padding: 0 24px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+  .ev-carousel__eyebrow { font-family: var(--font-body-family); font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #C5A059; margin: 0 0 10px; }
+  .ev-carousel__title { font-family: var(--font-heading-family); font-size: 40px; line-height: 1.1; margin: 0; color: #fff; }
+  .ev-carousel__arrows { display: flex; gap: 10px; flex-shrink: 0; }
+  .ev-carousel__arrow { width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.5); background: transparent; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s; padding: 0; }
+  .ev-carousel__arrow:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+  .ev-carousel__arrow svg { width: 18px; height: 18px; }
+  .ev-carousel__track { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 0 max(24px, calc((100vw - 1200px) / 2 + 24px)); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .ev-carousel__track::-webkit-scrollbar { display: none; }
+  .ev-carousel__slide { flex: 0 0 auto; height: var(--ev-h, 440px); scroll-snap-align: center; margin: 0; overflow: hidden; background: #2a241e; position: relative; }
+  .ev-carousel__slide img { height: 100%; width: auto; max-width: none; display: block; object-fit: cover; transition: transform 0.6s ease; }
+  .ev-carousel__slide:hover img { transform: scale(1.03); }
+  .ev-carousel__caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 16px 14px; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: #fff; }
+  .ev-carousel__cta { text-align: center; margin-top: 36px; padding: 0 24px; }
+  .ev-carousel__cta a { display: inline-block; padding: 15px 36px; border: 1px solid #fff; color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; transition: background 0.2s, color 0.2s; }
+  .ev-carousel__cta a:hover { background: #fff; color: #1a1612; }
+  @media screen and (max-width: 749px) {
+    .ev-carousel { padding: 44px 0 52px; }
+    .ev-carousel__title { font-size: 28px; }
+    .ev-carousel__arrows { display: none; }
+    .ev-carousel__track { gap: 10px; padding: 0 16px; scroll-padding: 0 16px; }
+    .ev-carousel__slide { width: 82vw; height: 104vw; max-height: 460px; scroll-snap-align: start; }
+    .ev-carousel__slide img { width: 100%; max-width: 100%; }
+    .ev-carousel__head { padding: 0 16px; }
+  }
+{% endstyle %}
+
+<section class="ev-carousel" id="ev-carousel-{{ section.id }}" style="--ev-h: {{ section.settings.height }}px;">
+  <div class="ev-carousel__head">
+    <div>
+      {% if section.settings.eyebrow != blank %}<p class="ev-carousel__eyebrow">{{ section.settings.eyebrow }}</p>{% endif %}
+      {% if section.settings.title != blank %}<h2 class="ev-carousel__title">{{ section.settings.title }}</h2>{% endif %}
+    </div>
+    <div class="ev-carousel__arrows">
+      <button type="button" class="ev-carousel__arrow" data-dir="-1" aria-label="Previous photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button type="button" class="ev-carousel__arrow" data-dir="1" aria-label="Next photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+  </div>
+  <div class="ev-carousel__track" tabindex="0" aria-label="Photos from past Moon Ridge events">
+    {% for block in section.blocks %}
+      {% if block.settings.image != blank %}
+        <figure class="ev-carousel__slide" {{ block.shopify_attributes }}>
+          {{ block.settings.image | image_url: height: 900 | image_tag: loading: 'lazy', alt: block.settings.caption | default: 'Moon Ridge hat experience at an event', sizes: '(max-width: 749px) 82vw, 40vw' }}
+          {% if block.settings.caption != blank %}<figcaption class="ev-carousel__caption">{{ block.settings.caption }}</figcaption>{% endif %}
+        </figure>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% if section.settings.button_label != blank %}
+    <div class="ev-carousel__cta"><a href="{{ section.settings.button_link | default: '#event-inquiry-form' }}">{{ section.settings.button_label }}</a></div>
+  {% endif %}
+</section>
+
+<script>
+  (function() {
+    var root = document.getElementById('ev-carousel-{{ section.id }}');
+    if (!root) return;
+    var track = root.querySelector('.ev-carousel__track');
+    function step(dir) {
+      var max = track.scrollWidth - track.clientWidth - 2;
+      if (dir > 0 && track.scrollLeft >= max) { track.scrollTo({ left: 0 }); return; }
+      if (dir < 0 && track.scrollLeft <= 2) { track.scrollTo({ left: max }); return; }
+      track.scrollBy({ left: dir * track.clientWidth * 0.6 });
+    }
+    root.querySelectorAll('.ev-carousel__arrow').forEach(function(b) {
+      b.addEventListener('click', function() { step(parseInt(b.dataset.dir, 10)); });
+    });
+    {% if section.settings.autoplay %}
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var paused = false;
+    ['mouseenter', 'touchstart', 'focusin'].forEach(function(e) { root.addEventListener(e, function() { paused = true; }, { passive: true }); });
+    ['mouseleave', 'focusout'].forEach(function(e) { root.addEventListener(e, function() { paused = false; }); });
+    setInterval(function() { if (!paused && !document.hidden) step(1); }, 4500);
+    {% endif %}
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Event Photo Carousel",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small label", "default": "Moon Ridge Experience" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Moments From Our Events" },
+    { "type": "range", "id": "height", "label": "Photo height (desktop)", "min": 300, "max": 600, "step": 20, "unit": "px", "default": 440 },
+    { "type": "checkbox", "id": "autoplay", "label": "Auto-scroll", "default": true },
+    { "type": "text", "id": "button_label", "label": "Button text", "default": "Get a Quote" },
+    { "type": "url", "id": "button_link", "label": "Button link", "info": "Leave empty to jump to the inquiry form at the top of the page." }
+  ],
+  "blocks": [
+    {
+      "type": "photo",
+      "name": "Photo",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "text", "id": "caption", "label": "Caption (optional)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Event Photo Carousel" }]
+}
+{% endschema %}

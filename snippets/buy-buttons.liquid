@@ -126,69 +126,7 @@
               rel="noopener"
             >Book a Lucchese Fitting</a>
           {%- else -%}
-            {%- liquid
-  # Fit Insurance is only offered on cowboy hats: product type Headwear,
-  # excluding caps (tagged ballcaps / flat caps) and the Fit Insurance product itself.
-  assign show_fit_insurance = false
-  assign product_type_down = product.type | downcase
-  if product_type_down == 'headwear' and product.handle != 'fit-insurance'
-    assign show_fit_insurance = true
-    for tag in product.tags
-      assign tag_down = tag | downcase | strip
-      if tag_down == 'ballcaps' or tag_down == 'flat caps'
-        assign show_fit_insurance = false
-        break
-      endif
-    endfor
-  endif
--%}
-{%- if show_fit_insurance -%}
-              <div class="fit-insurance-optin" style="margin: 0 0 1.2rem; padding: 1.2rem 1.4rem; border: 1px solid rgba(var(--color-foreground), 0.18); border-radius: 0.8rem; background: rgba(var(--color-foreground), 0.03);">
-                <label for="FitInsurance-{{ section_id }}" style="display: flex; gap: 1rem; align-items: flex-start; cursor: pointer; font-size: 1.4rem; line-height: 1.5; margin: 0;">
-                  <input type="checkbox" id="FitInsurance-{{ section_id }}" style="margin-top: 0.2rem; width: 1.8rem; height: 1.8rem; flex-shrink: 0; accent-color: #312110;">
-                  <span><strong>Add Fit Insurance &mdash; $10</strong><br><span style="opacity: 0.75;">Wrong size? We&rsquo;ll email you a prepaid return label for one size exchange. <a href="/products/fit-insurance" target="_blank" rel="noopener">Details</a></span></span>
-                </label>
-              </div>
-              <script>
-                (function () {
-                  var box = document.getElementById('FitInsurance-{{ section_id }}');
-                  if (!box) return;
-                  var form = box.closest('form');
-                  if (!form) return;
-                  var INSURANCE_VARIANT_ID = 67886744305968;
-                  var added = false;
-                  function headers() { return { 'Content-Type': 'application/json', 'Accept': 'application/javascript' }; }
-                  form.addEventListener('submit', function (e) {
-                    if (!box.checked || added) return;
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
-                    fetch('/cart/add.js', {
-                      method: 'POST',
-                      headers: headers(),
-                      body: JSON.stringify({ id: INSURANCE_VARIANT_ID, quantity: 1 })
-                    }).catch(function () {}).then(function () {
-                      added = true;
-                      if (form.requestSubmit) form.requestSubmit();
-                      else form.submit();
-                    });
-                  }, true);
-                  box.addEventListener('change', function () {
-                    if (box.checked || !added) return;
-                    added = false;
-                    fetch('/cart/change.js', {
-                      method: 'POST',
-                      headers: headers(),
-                      body: JSON.stringify({ id: String(INSURANCE_VARIANT_ID), quantity: 0 })
-                    }).catch(function () {}).then(function () {
-                      if (typeof publish === 'function' && typeof PUB_SUB_EVENTS !== 'undefined') {
-                        publish(PUB_SUB_EVENTS.cartUpdate, { source: 'fit-insurance' });
-                      }
-                    });
-                  });
-                })();
-              </script>
-            {%- endif -%}
-            <button
+                        <button
               id="ProductSubmitButton-{{ section_id }}"
 
               type="submit"

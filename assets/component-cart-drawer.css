@@ -449,3 +449,14 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
     margin-left: 0;
   }
 }
+
+.fit-insurance-cart-upsell { margin: 0 2rem 1.6rem; }
+.fit-insurance-cart-upsell__inner {
+  display: flex; gap: 1.2rem; align-items: center; justify-content: space-between;
+  padding: 1.4rem; border: 1px solid rgba(var(--color-foreground), 0.18);
+  border-radius: 0.8rem; background: rgba(var(--color-foreground), 0.03);
+}
+.fit-insurance-cart-upsell__text { font-size: 1.4rem; line-height: 1.5; }
+.fit-insurance-cart-upsell__text strong { display: block; font-size: 1.5rem; }
+.fit-insurance-cart-upsell__text span { opacity: 0.75; }
+.fit-insurance-cart-upsell .button { flex-shrink: 0; min-height: 4rem; }

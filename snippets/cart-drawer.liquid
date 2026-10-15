@@ -459,6 +459,70 @@
         </form>
       </cart-drawer-items>
       {% render 'cart-cross-sell' %}
+      {%- comment -%}Fit Insurance upsell: shown only when the cart contains a
+      cowboy hat (Headwear, excluding ballcaps/flat caps) and Fit Insurance
+      is not already in the cart.{%- endcomment -%}
+      {%- liquid
+        assign fit_insurance_variant_id = 67886744305968
+        assign show_fit_upsell = false
+        assign fit_in_cart = false
+        for item in cart.items
+          if item.variant_id == fit_insurance_variant_id
+            assign fit_in_cart = true
+          endif
+          assign ptype = item.product.type | downcase
+          if ptype == 'headwear'
+            assign is_cap = false
+            for tag in item.product.tags
+              assign t = tag | downcase | strip
+              if t == 'ballcaps' or t == 'flat caps'
+                assign is_cap = true
+                break
+              endif
+            endfor
+            unless is_cap
+              assign show_fit_upsell = true
+            endunless
+          endif
+        endfor
+        if fit_in_cart
+          assign show_fit_upsell = false
+        endif
+      -%}
+      {%- if show_fit_upsell -%}
+        <div class="fit-insurance-cart-upsell">
+          <div class="fit-insurance-cart-upsell__inner">
+            <div class="fit-insurance-cart-upsell__text">
+              <strong>Add Fit Insurance &mdash; $10</strong>
+              <span>Wrong size? We&rsquo;ll email you a prepaid return label for one size exchange.</span>
+            </div>
+            <button type="button" class="button button--secondary" data-fit-insurance-add>Add</button>
+          </div>
+        </div>
+      {%- endif -%}
+      <script>
+        (function () {
+          if (window.__fitInsuranceUpsellBound) return;
+          window.__fitInsuranceUpsellBound = true;
+          document.addEventListener('click', function (e) {
+            var btn = e.target.closest ? e.target.closest('[data-fit-insurance-add]') : null;
+            if (!btn || btn.disabled) return;
+            btn.disabled = true;
+            btn.textContent = 'Adding\u2026';
+            fetch('/cart/add.js', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/javascript' },
+              body: JSON.stringify({ id: 67886744305968, quantity: 1 })
+            }).catch(function () {}).then(function () {
+              if (typeof publish === 'function' && typeof PUB_SUB_EVENTS !== 'undefined') {
+                publish(PUB_SUB_EVENTS.cartUpdate, { source: 'fit-insurance-upsell' });
+              } else {
+                window.location.reload();
+              }
+            });
+          });
+        })();
+      </script>
       <div class="drawer__footer">
         {%- if settings.show_cart_note -%}
           <details id="Details-CartDrawer">

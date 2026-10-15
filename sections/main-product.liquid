@@ -1525,6 +1525,7 @@ function updateCountdown() {
     {
       "@context": "https://schema.org",
       "@type": "Product",
+      "@id": {{ request.origin | append: product.url | append: "#product" | json }},
       "name": {{ product.title | json }},
       "url": {{ request.origin | append: product.url | json }},
       {% if seo_media -%}

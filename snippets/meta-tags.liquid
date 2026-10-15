@@ -45,6 +45,18 @@
   elsif request.page_type == 'product' and product.metafields.global.title_tag != blank
     assign seo_title = product.metafields.global.title_tag
     assign seo_description = product.metafields.global.description_tag | default: page_description | default: shop.description
+  elsif request.page_type == 'page' and page.handle contains 'contact'
+    assign seo_title = primary_keyword
+    unless seo_title contains shop.name
+      assign seo_title = seo_title | append: " - " | append: shop.name
+    endunless
+    assign seo_description = "Book your hat shaping session or private hat party at Moon Ridge Hats and Heritage in Fayetteville, AR. We personalize premium hats from Stetson and Resistol."
+  elsif request.page_type == 'page' and page.handle contains 'book'
+    assign seo_title = primary_keyword
+    unless seo_title contains shop.name
+      assign seo_title = seo_title | append: " - " | append: shop.name
+    endunless
+    assign seo_description = "Book your hat shaping session or private hat party at Moon Ridge Hats and Heritage in Fayetteville, AR. We personalize premium hats from Stetson and Resistol."
   else
     assign seo_title = primary_keyword
     unless seo_title contains shop.name

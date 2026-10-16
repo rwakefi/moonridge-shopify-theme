@@ -1,0 +1,21 @@
+{
+  "layout": "video-only",
+  "sections": {
+    "video": {
+      "type": "video",
+      "settings": {
+        "heading": "Watch: Measure for the Perfect Fit",
+        "heading_size": "h2",
+        "enable_video_looping": false,
+        "video": "shopify://files/videos/My Movie_5159bbb4-6c16-4260-9745-b831ce0f449f.mp4",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "description": "How to measure your head for the perfect hat fit at Moon Ridge",
+        "full_width": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": ["video"]
+}

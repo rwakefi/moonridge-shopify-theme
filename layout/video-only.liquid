@@ -1,7 +1,7 @@
 <!doctype html>
 {%- comment -%}
   Bare layout for standalone video pages (e.g. /pages/hat-sizing-video).
-  Only a small branded header (logo + tagline, linked to homepage).
+  Only a small branded header (logo, linked to homepage).
   No menu, breadcrumbs, popups, footer, cart drawer or sticky booking CTA.
   Always noindex so it never competes with /pages/hat-sizing.
 {%- endcomment -%}
@@ -133,7 +133,6 @@
       .video-only-brand a {
         display: inline-block;
         text-decoration: none;
-        color: #312110;
       }
       .video-only-brand img {
         display: block;
@@ -142,17 +141,8 @@
         height: auto;
         margin: 0 auto;
       }
-      .video-only-brand__tagline {
-        margin: 10px 0 0;
-        font-family: var(--font-heading-family);
-        font-size: 1.3rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: #312110;
-      }
       @media screen and (min-width: 750px) {
         .video-only-brand img { width: 280px; }
-        .video-only-brand__tagline { font-size: 1.4rem; }
       }
 
       .video-only-main {
@@ -186,7 +176,6 @@
     <header class="video-only-brand">
       <a href="{{ routes.root_url }}" aria-label="Moon Ridge Hats and Heritage — home">
         <img src="{{ 'logo-horizontal.png' | asset_url }}" alt="Moon Ridge" width="280" height="auto">
-        <p class="video-only-brand__tagline">Hats &amp; Heritage · Fayetteville, AR</p>
       </a>
     </header>
 

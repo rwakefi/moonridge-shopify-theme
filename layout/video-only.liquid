@@ -1,7 +1,8 @@
 <!doctype html>
 {%- comment -%}
   Bare layout for standalone video pages (e.g. /pages/hat-sizing-video).
-  No header, breadcrumbs, popups, footer, cart drawer or sticky booking CTA.
+  Only a small branded header (logo + tagline, linked to homepage).
+  No menu, breadcrumbs, popups, footer, cart drawer or sticky booking CTA.
   Always noindex so it never competes with /pages/hat-sizing.
 {%- endcomment -%}
 <html class="no-js" lang="{{ request.locale.iso_code }}">
@@ -108,8 +109,9 @@
       }
 
       body {
-        display: block;
-        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
         margin: 0;
         font-size: 1.5rem;
         letter-spacing: var(--font-body-spacing);
@@ -124,8 +126,37 @@
         body { font-size: 1.6rem; }
       }
 
+      .video-only-brand {
+        text-align: center;
+        padding: 28px 16px 8px;
+      }
+      .video-only-brand a {
+        display: inline-block;
+        text-decoration: none;
+        color: #312110;
+      }
+      .video-only-brand img {
+        display: block;
+        width: 220px;
+        max-width: 60vw;
+        height: auto;
+        margin: 0 auto;
+      }
+      .video-only-brand__tagline {
+        margin: 10px 0 0;
+        font-family: var(--font-heading-family);
+        font-size: 1.3rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #312110;
+      }
+      @media screen and (min-width: 750px) {
+        .video-only-brand img { width: 280px; }
+        .video-only-brand__tagline { font-size: 1.4rem; }
+      }
+
       .video-only-main {
-        min-height: 100vh;
+        flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -152,6 +183,13 @@
   </head>
 
   <body class="gradient">
+    <header class="video-only-brand">
+      <a href="{{ routes.root_url }}" aria-label="Moon Ridge Hats and Heritage — home">
+        <img src="{{ 'logo-horizontal.png' | asset_url }}" alt="Moon Ridge" width="280" height="auto">
+        <p class="video-only-brand__tagline">Hats &amp; Heritage · Fayetteville, AR</p>
+      </a>
+    </header>
+
     <main id="MainContent" class="content-for-layout video-only-main focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>

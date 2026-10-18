@@ -63,6 +63,8 @@
       {% assign max_articles = selected_blog.articles_count %}
     {% endif %}
 
+    <h1 class="travel-blog-menu__title">{{ selected_blog.title | escape }}</h1>
+
     {% if selected_blog.articles_count > 0 and max_articles > 0 %}
       {% paginate selected_blog.articles by max_articles %}
         <div class="travel-blog-menu__grid">

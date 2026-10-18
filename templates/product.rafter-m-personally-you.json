@@ -28,7 +28,7 @@
           }
         },
         "judge_me_reviews_preview_badge_mE7fhJ": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
         },
         "text_FKhTbi": {
@@ -66,7 +66,7 @@
         "vendor": {
           "type": "text",
           "settings": {
-            "text": "The Moon Ridge + Personally Yours Monogram Collection is available for PICKUP ONLY at Personally Yours, located at 2218 N. College Ave, Fayetteville, AR 72703.  After purchasing an item, please visit the store to choose your monogram style; completion time will vary based on availability.",
+            "text": "The Moon Ridge + Personally Yours Monogram Collection is available for PICKUP ONLY at Personally Yours, located at 2852 N. College Ave, Fayetteville, AR 72703.  After purchasing an item, please visit the store to choose your monogram style; completion time will vary based on availability.",
             "text_style": "body"
           }
         },
@@ -129,7 +129,7 @@
       "type": "apps",
       "blocks": {
         "judge_me_reviews_review_widget_ULX6PH": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
             "review_data": "sample_data",
             "max_width": 1200,

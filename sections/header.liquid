@@ -711,19 +711,11 @@
     -%}
 
     {%- if section.settings.logo_position != 'middle-center' -%}
-      {%- if request.page_type == 'index' -%}
-        <h1 class="header__heading header__heading--with-cta">
-      {%- else -%}
-        <div class="header__heading header__heading--with-cta">
-      {%- endif -%}
+      <div class="header__heading header__heading--with-cta">
           {%- comment -%} Logo removed to match Free People layout where tabs act as the logo {%- endcomment -%}
 
 
-      {%- if request.page_type == 'index' -%}
-        </h1>
-      {%- else -%}
-        </div>
-      {%- endif -%}
+      </div>
     {%- endif -%}
 
     {%- liquid

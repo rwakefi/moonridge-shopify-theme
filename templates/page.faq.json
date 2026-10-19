@@ -187,6 +187,88 @@
             "question": "What is your return or exchange policy?",
             "answer": "<p>Returns and exchanges follow the rules on our official <a href=\"/policies/refund-policy\">Return policy</a> (timelines, eligible items, and how to start a request).</p><p><strong>All sales are final on customized or branded products</strong>, including hats personalized with branding, letters/initials, custom shaping, or other made-to-order alterations. Those items are not eligible for return, refund, or exchange.</p>"
           }
+        },
+        "q_store_location": {
+          "type": "item",
+          "settings": {
+            "question": "Where are you located?",
+            "answer": "<p>We're at 2852 N. College Avenue in Fayetteville, Arkansas — right next door to Base Camp Coffee — but we also ship anywhere in the country.</p>"
+          }
+        },
+        "q_shipping_cost": {
+          "type": "item",
+          "settings": {
+            "question": "How much is shipping, and is it free over a certain amount?",
+            "answer": "<p>We ship anywhere in the United States — and it's free on orders over $99. Under that, rates are calculated at checkout, and every hat ships in protective packaging so it arrives ready to wear.</p>"
+          }
+        },
+        "q_corporate_orders": {
+          "type": "item",
+          "settings": {
+            "question": "Do you do custom or corporate orders?",
+            "answer": "<p>We do — from wedding parties to company events. Email <a href=\"mailto:info@moonridgecompany.com\">info@moonridgecompany.com</a> with what you're thinking and we'll put together a quote.</p>"
+          }
+        },
+        "cat_sizing": {
+          "type": "category",
+          "settings": {
+            "title": "Sizing & fit"
+          }
+        },
+        "q_fit_exchange": {
+          "type": "item",
+          "settings": {
+            "question": "What if my hat doesn't fit when it arrives?",
+            "answer": "<p>No stress — you've got 30 days for a size exchange with no restocking fee. Just reach out and we'll get the right size headed your way.</p>"
+          }
+        },
+        "q_fit_insurance": {
+          "type": "item",
+          "settings": {
+            "question": "What is Fit Insurance?",
+            "answer": "<p>For $10 at checkout, we'll cover the return shipping label on a size exchange. It's our way of making sure the fit is right without it costing you extra.</p>"
+          }
+        },
+        "cat_hat_care": {
+          "type": "category",
+          "settings": {
+            "title": "Hat care"
+          }
+        },
+        "q_hat_care": {
+          "type": "item",
+          "settings": {
+            "question": "How do I clean and care for my felt hat? My straw hat?",
+            "answer": "<p>Keep felt dry and brush it counter-clockwise with a soft hat brush after wearing. Straw just needs a damp cloth wipe-down — never soak it. For a deep clean or a full reshape, bring it in: professional cleaning and reshaping is $35.</p>"
+          }
+        },
+        "q_hat_storage": {
+          "type": "item",
+          "settings": {
+            "question": "How should I store my hat?",
+            "answer": "<p>Upside down on its crown, or on a hat rack — never flat on its brim, which can warp it over time. Keep it out of direct heat and sunlight.</p>"
+          }
+        },
+        "q_hat_bar": {
+          "type": "item",
+          "settings": {
+            "question": "What is the Moon Ridge hat bar experience?",
+            "answer": "<p>It's Arkansas's original custom hat bar. You pick your hat body, crown shape, brim, color, and band — then we shape it, steam it, and finish it right in front of you. Most folks walk out wearing a one-of-a-kind hat in under an hour.</p>"
+          }
+        },
+        "q_hat_bar_appt": {
+          "type": "item",
+          "settings": {
+            "question": "Do I need an appointment for the hat bar?",
+            "answer": "<p>Walk-ins are always welcome, but <a href=\"/pages/book-moonridge\">booking ahead</a> guarantees we have the time and the hat bodies set aside for you — especially on Fridays and Saturdays.</p>"
+          }
+        },
+        "q_hat_bar_cost": {
+          "type": "item",
+          "settings": {
+            "question": "How long does a custom hat take, and what does it cost?",
+            "answer": "<p>Most custom hats are finished same-day, usually within the hour. Pricing depends on the hat body and materials you choose — reach out and we'll walk you through the options.</p>"
+          }
         }
       },
       "block_order": [
@@ -201,12 +283,24 @@
         "q_size",
         "q_stock",
         "q_payment",
+        "q_store_location",
+        "q_shipping_cost",
+        "q_corporate_orders",
+        "cat_sizing",
+        "q_fit_exchange",
+        "q_fit_insurance",
+        "cat_hat_care",
+        "q_hat_care",
+        "q_hat_storage",
         "cat_gift_cards",
         "q_gift_cards",
         "q_price_match",
         "q_military_discount",
         "cat_services",
         "q_hat_clean_shape",
+        "q_hat_bar",
+        "q_hat_bar_appt",
+        "q_hat_bar_cost",
         "cat_brands",
         "q_authentic",
         "cat_events",
@@ -216,5 +310,8 @@
       ]
     }
   },
-  "order": ["main", "faq_accordion"]
+  "order": [
+    "main",
+    "faq_accordion"
+  ]
 }

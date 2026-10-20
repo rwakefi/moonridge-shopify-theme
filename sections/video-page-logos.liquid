@@ -1,0 +1,36 @@
+{%- comment -%}
+  Two partner logos shown side by side below the video on /pages/hat-sizing-video.
+{%- endcomment -%}
+<div class="video-page-logos">
+  <img src="https://cdn.shopify.com/s/files/1/0885/7180/6000/files/battery-logo.png?v=1792526210" alt="Battery Ventures" width="800" height="279" loading="lazy">
+  <img src="https://cdn.shopify.com/s/files/1/0885/7180/6000/files/baseten-logo.png?v=1792526210" alt="Baseten" width="800" height="213" loading="lazy">
+</div>
+
+<style>
+  .video-page-logos {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 8px 16px 48px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .video-page-logos img {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 300px;
+    height: auto;
+    object-fit: contain;
+  }
+  @media screen and (max-width: 749px) {
+    .video-page-logos { gap: 12px; padding-bottom: 32px; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Video page logos"
+}
+{% endschema %}

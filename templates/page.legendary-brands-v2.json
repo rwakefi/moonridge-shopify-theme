@@ -132,6 +132,18 @@
             "logo_url_size": 85
           }
         },
+        "brand_seager_7": {
+          "type": "brand",
+          "settings": {
+            "title": "Seager",
+            "tagline": "Self-funded since 2015",
+            "blurb": "Old West grit, worn with surf-town ease — small-batch snapbacks, tees, and hoodies, including the Waylon Jennings collection.",
+            "link": "/pages/seager-brand-history",
+            "cta_label": "Learn More About Seager",
+            "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/seager-logo-black.png?v=1792817878",
+            "logo_url_size": 85
+          }
+        },
         "photo_1": {
           "type": "photo",
           "settings": {
@@ -158,14 +170,15 @@
         "brand_pendleton_4",
         "brand_goorin_5",
         "brand_bigalli_6",
+        "brand_seager_7",
         "photo_1",
         "photo_2",
         "photo_3"
       ],
       "settings": {
         "eyebrow": "Moon Ridge Hats and Heritage",
-        "heading": "Legendary Brands We Carry",
-        "intro": "Stetson, Resistol, Lucchese, Pendleton, Goorin Bros., and Bigalli—heritage makers Moon Ridge trusts. Read their stories, then shop fitted styles in Fayetteville or nationwide.",
+        "heading": "Heritage Brands We Carry",
+        "intro": "Stetson, Resistol, Lucchese, Pendleton, Goorin Bros., Bigalli, and Seager—heritage makers Moon Ridge trusts. Read their stories, then shop fitted styles in Fayetteville or nationwide.",
         "container_width": 1200,
         "background_color": "#faf7f2",
         "surface_color": "#ffffff",

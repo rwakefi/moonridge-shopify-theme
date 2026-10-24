@@ -18,8 +18,8 @@ Theme fixes in this PR do **not** write catalog data. Handles, descriptions, unp
 
 Ranked by impact.
 
-### 1. Reviews — parked for you
-No review app. Theme already reads `product.metafields.reviews.rating`. Judge.me Free is the cheap path. Plan: `scratch/finding-01-reviews-plan.md`.
+### 1. Reviews — Judge.me already live
+Installed and rendering (badge + widget on PDPs; Midtown had 1 real review as of 2026-08-25). Remaining work is cadence/copy, not a second install. Research: `scratch/judgeme-setup-research.md`. Draft plan: `scratch/finding-01-reviews-plan.md`. Do not turn request emails or Omnisend review flows on without Zack’s OK.
 
 ### 2. Empty descriptions — 31 pasted live 2026-08-16
 Catalog empty count is now **3 of 298** — only the no-photo bracelets.

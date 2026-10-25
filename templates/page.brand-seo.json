@@ -46,6 +46,29 @@
         "padding_bottom": 48
       }
     },
+    "brand_video_section": {
+      "type": "_blocks",
+      "blocks": {
+        "brand_video_block": {
+          "type": "brand-video",
+          "name": "Brand video",
+          "settings": {
+            "heading": "",
+            "autoplay": true,
+            "max_width": 900,
+            "padding_desktop": 30,
+            "padding_mobile": 15,
+            "border_radius": 8,
+            "background_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "brand_video_block"
+      ],
+      "settings": {}
+    },
     "brand_heritage_section": {
       "type": "_blocks",
       "blocks": {
@@ -76,6 +99,21 @@
       },
       "block_order": [
         "brand_heritage_block"
+      ],
+      "settings": {}
+    },
+    "brand_quote_section": {
+      "type": "_blocks",
+      "blocks": {
+        "brand_quote_block": {
+          "type": "brand-quote",
+          "name": "Brand quote",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "brand_quote_block"
       ],
       "settings": {}
     },
@@ -134,8 +172,10 @@
   },
   "order": [
     "17617663646392ef5c",
+    "brand_video_section",
     "main",
     "brand_heritage_section",
+    "brand_quote_section",
     "176306333526884c4b",
     "176176716340be886a"
   ]

@@ -1,0 +1,49 @@
+{%- liquid
+  assign quote_text = closest.page.metafields.custom.brand_quote.value
+-%}
+{%- if quote_text != blank -%}
+  <div class="brand-quote brand-quote-{{ block.id }}">
+    <p class="brand-quote__text">{{ quote_text | escape | newline_to_br }}</p>
+  </div>
+  <style>
+    .brand-quote-{{ block.id }} {
+      background: {{ block.settings.background_color }};
+      color: {{ block.settings.text_color }};
+      padding: {{ block.settings.padding_desktop }}px 24px;
+      text-align: center;
+      width: 100%;
+    }
+    .brand-quote-{{ block.id }} .brand-quote__text {
+      margin: 0 auto;
+      max-width: {{ block.settings.max_width }}px;
+      font-size: clamp(1.8rem, 4.6vw, {{ block.settings.font_size }}px);
+      line-height: 1.45;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+    @media (max-width: 749px) {
+      .brand-quote-{{ block.id }} {
+        padding: {{ block.settings.padding_mobile }}px 16px;
+      }
+      .brand-quote-{{ block.id }} .brand-quote__text {
+        letter-spacing: 0.08em;
+      }
+    }
+  </style>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Brand quote",
+  "settings": [
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#232323" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#ffffff" },
+    { "type": "range", "id": "font_size", "label": "Max font size (px)", "min": 18, "max": 40, "step": 1, "default": 28 },
+    { "type": "range", "id": "max_width", "label": "Max text width (px)", "min": 600, "max": 1400, "step": 50, "default": 1100 },
+    { "type": "range", "id": "padding_desktop", "label": "Vertical padding, desktop (px)", "min": 20, "max": 120, "step": 5, "default": 60 },
+    { "type": "range", "id": "padding_mobile", "label": "Vertical padding, mobile (px)", "min": 16, "max": 80, "step": 4, "default": 36 }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,133 @@
+{% doc %}
+  Brand video. Reads the page metafield custom.brand_video (a Shopify-hosted video file).
+  Renders nothing when the metafield is empty, so it is safe on every brand template.
+  Mobile: 16:9 box, plays inline, muted, loops, and swaps to the smaller file on small screens.
+{% enddoc %}
+{%- assign bv_video = closest.page.metafields.custom.brand_video.value -%}
+{%- if bv_video != blank and bv_video.media_type == 'video' -%}
+  {%- assign bv_id = block.id | replace: '_', '' | downcase -%}
+  {%- assign bv_small = nil -%}
+  {%- assign bv_large = nil -%}
+  {%- for src in bv_video.sources -%}
+    {%- if src.format == 'mp4' -%}
+      {%- if src.height <= 720 and bv_small == nil -%}
+        {%- assign bv_small = src -%}
+      {%- endif -%}
+      {%- if bv_large == nil or src.height > bv_large.height -%}
+        {%- assign bv_large = src -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if bv_small == nil -%}{%- assign bv_small = bv_large -%}{%- endif -%}
+
+  {% style %}
+    .brand-video-{{ bv_id }} {
+      padding: {{ block.settings.padding_desktop }}px 16px;
+      background: {{ block.settings.background_color }};
+    }
+    .brand-video-{{ bv_id }}__frame {
+      position: relative;
+      width: 100%;
+      max-width: {{ block.settings.max_width }}px;
+      margin: 0 auto;
+      aspect-ratio: 16 / 9;
+      border-radius: {{ block.settings.border_radius }}px;
+      overflow: hidden;
+      background: #1f1d24;
+    }
+    .brand-video-{{ bv_id }}__frame video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .brand-video-{{ bv_id }}__heading {
+      max-width: {{ block.settings.max_width }}px;
+      margin: 0 auto 16px;
+      text-align: center;
+      font-size: 24px;
+      color: #312110;
+    }
+    @media screen and (max-width: 749px) {
+      .brand-video-{{ bv_id }} {
+        padding: {{ block.settings.padding_mobile }}px 0;
+      }
+      .brand-video-{{ bv_id }}__frame {
+        border-radius: 0;
+      }
+      .brand-video-{{ bv_id }}__heading {
+        padding: 0 16px;
+        font-size: 20px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .brand-video-{{ bv_id }}__frame video { animation: none; }
+    }
+  {% endstyle %}
+
+  <div class="brand-video-{{ bv_id }}" {{ block.shopify_attributes }}>
+    {%- if block.settings.heading != blank -%}
+      <h2 class="brand-video-{{ bv_id }}__heading">{{ block.settings.heading }}</h2>
+    {%- endif -%}
+    <div class="brand-video-{{ bv_id }}__frame">
+      <video
+        id="brand-video-el-{{ bv_id }}"
+        poster="{{ bv_video.preview_image | image_url: width: 1400 }}"
+        preload="metadata"
+        muted
+        loop
+        playsinline
+        controls
+        {% if block.settings.autoplay %}autoplay{% endif %}
+        aria-label="{{ bv_video.alt | default: 'Brand video' | escape }}"
+        data-small="{{ bv_small.url }}"
+        data-large="{{ bv_large.url }}"
+      >
+        <source src="{{ bv_small.url }}" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var v = document.getElementById('brand-video-el-{{ bv_id }}');
+      if (!v) return;
+      var big = window.matchMedia('(min-width: 750px)').matches;
+      var want = big ? v.getAttribute('data-large') : v.getAttribute('data-small');
+      if (want && v.querySelector('source').getAttribute('src') !== want) {
+        v.querySelector('source').setAttribute('src', want);
+        v.load();
+      }
+      if ('IntersectionObserver' in window && v.hasAttribute('autoplay')) {
+        v.removeAttribute('autoplay');
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+            else { v.pause(); }
+          });
+        }, { threshold: 0.4 }).observe(v);
+      }
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Brand video",
+  "settings": [
+    { "type": "header", "content": "Video comes from the page's Brand video field" },
+    { "type": "text", "id": "heading", "label": "Heading (optional)" },
+    { "type": "checkbox", "id": "autoplay", "label": "Play automatically when scrolled into view (muted)", "default": true },
+    { "type": "range", "id": "max_width", "min": 400, "max": 1400, "step": 50, "unit": "px", "label": "Maximum width", "default": 900 },
+    { "type": "range", "id": "padding_desktop", "min": 0, "max": 100, "step": 5, "unit": "px", "label": "Padding on desktop", "default": 30 },
+    { "type": "range", "id": "padding_mobile", "min": 0, "max": 60, "step": 5, "unit": "px", "label": "Padding on mobile", "default": 15 },
+    { "type": "range", "id": "border_radius", "min": 0, "max": 40, "step": 2, "unit": "px", "label": "Corner radius", "default": 8 },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#ffffff" }
+  ],
+  "presets": [
+    { "name": "Brand video" }
+  ]
+}
+{% endschema %}

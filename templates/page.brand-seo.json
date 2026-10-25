@@ -102,6 +102,21 @@
       ],
       "settings": {}
     },
+    "brand_quote_section": {
+      "type": "_blocks",
+      "blocks": {
+        "brand_quote_block": {
+          "type": "brand-quote",
+          "name": "Brand quote",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "brand_quote_block"
+      ],
+      "settings": {}
+    },
     "176306333526884c4b": {
       "type": "_blocks",
       "blocks": {
@@ -160,6 +175,7 @@
     "brand_video_section",
     "main",
     "brand_heritage_section",
+    "brand_quote_section",
     "176306333526884c4b",
     "176176716340be886a"
   ]

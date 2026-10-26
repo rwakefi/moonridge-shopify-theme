@@ -74,7 +74,6 @@
     transition: transform 0.3s ease;
   }
 
-  /* Only rotate the direct summary of an open item (not nested children) */
   .faq-accordion-{{ section.id }} details[open] > summary::after {
     transform: rotate(45deg);
   }
@@ -102,73 +101,6 @@
     word-break: break-word;
   }
 
-  .faq-more-{{ section.id }} {
-    border-top: 1px solid rgba(49, 33, 16, 0.12);
-    margin-top: 0;
-  }
-
-  .faq-more-{{ section.id }} > summary {
-    padding: 24px 0;
-    font-size: 1.7rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    color: #312110;
-    min-height: 44px;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-  }
-
-  .faq-more-{{ section.id }} > summary::-webkit-details-marker,
-  .faq-more-{{ section.id }} > summary::marker {
-    display: none;
-  }
-
-  .faq-more-{{ section.id }} > summary::after {
-    content: '+';
-    flex: 0 0 auto;
-    width: 28px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 300;
-    line-height: 1;
-    transition: transform 0.3s ease;
-  }
-
-  .faq-more-{{ section.id }}[open] > summary::after {
-    transform: rotate(45deg);
-  }
-
-  .faq-more-{{ section.id }} > summary:hover {
-    color: #c5a059;
-  }
-
-  .faq-more-inner-{{ section.id }} {
-    padding: 0 0 12px;
-  }
-
-  .faq-more-inner-{{ section.id }} details {
-    border-top: 1px solid rgba(49, 33, 16, 0.1);
-  }
-
-  .faq-more-inner-{{ section.id }} details:first-child {
-    border-top: none;
-  }
-
-  .faq-more-inner-{{ section.id }} summary {
-    font-size: 1.6rem;
-    font-weight: 600;
-    text-transform: none;
-    letter-spacing: 0;
-    padding: 18px 0;
-  }
-
   .faq-footer-link-{{ section.id }} {
     text-align: center;
     margin-top: 28px;
@@ -179,6 +111,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     min-height: 44px;
     padding: 8px 12px;
     color: #312110;
@@ -187,10 +120,23 @@
     text-decoration: underline;
     text-underline-offset: 3px;
     -webkit-tap-highlight-color: transparent;
+    transition: color 0.2s ease;
+  }
+
+  .faq-footer-link-{{ section.id }} a::after {
+    content: '\2192';
+    font-size: 1.6rem;
+    line-height: 1;
+    text-decoration: none;
+    transition: transform 0.2s ease;
   }
 
   .faq-footer-link-{{ section.id }} a:hover {
     color: #c5a059;
+  }
+
+  .faq-footer-link-{{ section.id }} a:hover::after {
+    transform: translateX(3px);
   }
 
   @keyframes faq-fade-in {
@@ -201,6 +147,15 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-footer-link-{{ section.id }} a::after {
+      transition: none;
+    }
+    .faq-footer-link-{{ section.id }} a:hover::after {
+      transform: none;
     }
   }
 
@@ -218,28 +173,16 @@
       padding: 0 4px;
     }
 
-    .faq-accordion-{{ section.id }} summary,
-    .faq-more-{{ section.id }} > summary {
+    .faq-accordion-{{ section.id }} summary {
       font-size: 16px;
       padding: 18px 0;
       gap: 12px;
       min-height: 48px;
     }
 
-    .faq-accordion-{{ section.id }} summary::after,
-    .faq-more-{{ section.id }} > summary::after {
+    .faq-accordion-{{ section.id }} summary::after {
       width: 32px;
       font-size: 26px;
-    }
-
-    .faq-more-inner-{{ section.id }} {
-      padding: 0 0 8px 12px;
-    }
-
-    .faq-more-inner-{{ section.id }} summary {
-      font-size: 15px;
-      padding: 16px 0;
-      min-height: 48px;
     }
 
     .faq-content-{{ section.id }} {
@@ -261,14 +204,20 @@
 {% endstyle %}
 
 {%- liquid
-  assign primary_faqs = section.blocks | where: 'type', 'faq'
-  assign more_count = 0
+  comment
+    total_count = every FAQ block in the section, shown or not, so the
+    footer link can say how many questions the full FAQ page holds.
+    Blocks flagged place_in_more are kept out of the homepage list.
+  endcomment
+  assign total_count = 0
   for block in section.blocks
-    if block.type == 'faq' and block.settings.place_in_more
-      assign more_count = more_count | plus: 1
+    if block.type == 'faq' and block.settings.question != blank
+      assign total_count = total_count | plus: 1
     endif
   endfor
-  assign primary_count = section.blocks.size | minus: more_count
+
+  assign footer_label = section.settings.faq_page_label | default: 'See all {count} questions'
+  assign footer_label = footer_label | replace: '{count}', total_count
 -%}
 
 <div class="faq-section-{{ section.id }}" {{ section.shopify_attributes }}>
@@ -288,29 +237,11 @@
           </details>
         {% endif %}
       {% endfor %}
-
-      {% if more_count > 0 %}
-        <details class="faq-more-{{ section.id }}">
-          <summary><span class="faq-summary-text-{{ section.id }}">{{ section.settings.more_label | default: 'More FAQs' | escape }}</span></summary>
-          <div class="faq-more-inner-{{ section.id }}">
-            {% for block in section.blocks %}
-              {% if block.type == 'faq' and block.settings.place_in_more %}
-                <details {{ block.shopify_attributes }}>
-                  <summary><span class="faq-summary-text-{{ section.id }}">{{ block.settings.question | escape }}</span></summary>
-                  <div class="faq-content-{{ section.id }}">
-                    {{ block.settings.answer }}
-                  </div>
-                </details>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </details>
-      {% endif %}
     </div>
 
-    {% if section.settings.show_faq_page_link and section.settings.faq_page_label != blank %}
+    {% if section.settings.show_faq_page_link and footer_label != blank %}
       <div class="faq-footer-link-{{ section.id }}">
-        <a href="{{ section.settings.faq_page_url | default: '/pages/moonridge-faqs' }}">{{ section.settings.faq_page_label }}</a>
+        <a href="{{ section.settings.faq_page_url | default: '/pages/moonridge-faqs' }}">{{ footer_label | escape }}</a>
       </div>
     {% endif %}
   </div>
@@ -370,12 +301,6 @@
       "info": "Turn off when another FAQPage already exists on the page (homepage uses the AI knowledge graph). Always skipped on the homepage to avoid duplicate FAQPage."
     },
     {
-      "type": "text",
-      "id": "more_label",
-      "label": "More FAQs expander label",
-      "default": "More FAQs"
-    },
-    {
       "type": "checkbox",
       "id": "show_faq_page_link",
       "label": "Show link to full FAQ page",
@@ -385,7 +310,8 @@
       "type": "text",
       "id": "faq_page_label",
       "label": "FAQ page link label",
-      "default": "View all FAQs"
+      "default": "See all {count} questions",
+      "info": "{count} is replaced with the number of FAQ items in this section, including ones hidden from the list."
     },
     {
       "type": "url",
@@ -449,7 +375,7 @@
         {
           "type": "checkbox",
           "id": "place_in_more",
-          "label": "Place under “More FAQs” expander",
+          "label": "Hide from this list (still counted and shown on the full FAQ page)",
           "default": false
         }
       ]

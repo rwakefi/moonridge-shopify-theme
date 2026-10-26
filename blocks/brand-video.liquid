@@ -4,7 +4,13 @@
   Mobile: 16:9 box, plays inline, muted, loops, and swaps to the smaller file on small screens.
 {% enddoc %}
 {%- assign bv_video = closest.page.metafields.custom.brand_video.value -%}
-{%- if bv_video != blank and bv_video.media_type == 'video' -%}
+{%- if bv_video != blank and bv_video.media_type == 'video' and page.handle == 'pendleton-wool-history' -%}
+  {%- comment -%}
+    Pendleton page: show the click-to-play poster layout (poster image, play button,
+    "See the work" heading and caption) instead of the autoplay box below.
+  {%- endcomment -%}
+  {% render 'pendleton-brand-video' %}
+{%- elsif bv_video != blank and bv_video.media_type == 'video' -%}
   {%- assign bv_id = block.id | replace: '_', '' | downcase -%}
   {%- assign bv_small = nil -%}
   {%- assign bv_large = nil -%}

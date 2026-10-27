@@ -1754,3 +1754,26 @@ h5 {
   font-size: 1.3rem;
   color: #2a1318;
 }
+
+/* Product-page Judge.me preview stars — match a fashion PDP buy-box size
+   (Free People ~16px filled stars). Icon font reads smaller than its
+   font-size, so 1.8rem (~18px) lands around 17px visual. Collection
+   cards are left alone. Higher specificity + !important so this wins
+   after Judge.me's async widget CSS. */
+.product__info-container .jdgm-preview-badge,
+.product__info-container .jdgm-prev-badge {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.product__info-container .jdgm-preview-badge .jdgm-star,
+.product__info-container .jdgm-prev-badge .jdgm-star {
+  font-size: 1.8rem !important;
+  line-height: 1 !important;
+  padding: 0 0.2rem 0 0 !important;
+}
+
+.product__info-container .jdgm-preview-badge .jdgm-star:last-of-type,
+.product__info-container .jdgm-prev-badge .jdgm-star:last-of-type {
+  padding-right: 0 !important;
+}

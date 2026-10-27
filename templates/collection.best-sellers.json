@@ -1,0 +1,109 @@
+/*
+ * ------------------------------------------------------------
+ * Best Sellers page: three rows (Hats, Ball Caps, Other Items).
+ * Assign in Admin > Products > Collections > Best Sellers >
+ * Theme template > "best-sellers".
+ * Rows pull from: best-sellers-hats, best-sellers-ball-caps,
+ * best-sellers-other-items (all sorted best selling, in stock).
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "custom_css": [
+        "h1 {text-align: center;}",
+        ".collection-hero__description.rte {text-align: center; margin: 0 auto; max-width: 900px;}"
+      ],
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "background-1"
+      }
+    },
+    "row_hats": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Hats",
+        "collection": "best-sellers-hats",
+        "products_to_show": 24,
+        "hide_sold_out": true,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "background-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_desc": false,
+        "enable_quick_add": true,
+        "show_secondary_add": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "row_ball_caps": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Ball Caps",
+        "collection": "best-sellers-ball-caps",
+        "products_to_show": 12,
+        "hide_sold_out": true,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "background-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_desc": false,
+        "enable_quick_add": true,
+        "show_secondary_add": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "row_other": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Other Items",
+        "collection": "best-sellers-other-items",
+        "products_to_show": 12,
+        "hide_sold_out": true,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "background-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_desc": false,
+        "enable_quick_add": true,
+        "show_secondary_add": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "row_hats",
+    "row_ball_caps",
+    "row_other"
+  ]
+}

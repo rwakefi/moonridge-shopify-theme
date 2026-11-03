@@ -3,18 +3,23 @@
   Moon Ridge — Customer Proposal Gallery
   ------------------------------------------------------------
   Renders any "proposal" metaobject entries assigned to the
-  currently logged-in customer (via the entry's Customer
-  reference field). Logged-out visitors and customers with no
-  proposal assigned see nothing sensitive except the event name
-  in the sign-in heading (see "featured proposal" logic below).
+  currently logged-in customer. Logged-out visitors and customers
+  with no proposal assigned see nothing sensitive except the event
+  name in the sign-in heading (see "featured proposal" logic below).
+
+  MATCHING: a proposal is shown to the logged-in customer when the
+  entry's "Customer Email" matches the email the customer logged in
+  with (not case sensitive). Customers log in with a code sent to
+  that email, so it is verified and cannot be faked. (The "customer"
+  reference field is kept for admin reference only; it is NOT
+  readable from storefront Liquid due to Shopify's customer-privacy
+  restrictions, so it is not used for matching.)
 
   Data model: metaobject type "proposal", fields:
     title (single line text)
-    customer (customer reference — kept for admin reference only;
-      NOT readable from storefront Liquid due to Shopify's
-      customer-privacy restrictions, so it is not used for matching)
-    customer_id (single line text — the customer's numeric ID,
-      e.g. "31318527705392"; this is what actually gates the page)
+    customer (customer reference — admin reference only)
+    customer_email (single line text — the email the customer logs
+      in with; this is what actually gates the page)
     description (multi-line text)
     gallery_images (list of files)
     video_link_1 (url — YouTube or Vimeo)
@@ -56,11 +61,11 @@
 <div class="mr-proposal">
   {%- if customer -%}
     {%- assign found_any = false -%}
+    {%- assign current_customer_email = customer.email | strip | downcase -%}
     {%- for proposal in shop.metaobjects.proposal.values -%}
-      {%- assign p_customer_id = proposal.customer_id.value -%}
-      {%- assign current_customer_id = customer.id | append: "" -%}
+      {%- assign p_customer_email = proposal.customer_email.value | strip | downcase -%}
       {%- assign p_is_match = false -%}
-      {%- if p_customer_id != blank and p_customer_id == current_customer_id -%}
+      {%- if p_customer_email != blank and p_customer_email == current_customer_email -%}
         {%- assign p_is_match = true -%}
       {%- endif -%}
       {%- if p_is_match -%}

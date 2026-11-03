@@ -43,7 +43,15 @@
   Layout order: photo gallery → title/status header → expires →
   event details → description → what's included → pricing →
   deposit & payment → videos → terms & conditions →
-  client / Moon Ridge signature lines.
+  "Accept this proposal" block (on screen) / client + Moon Ridge
+  signature lines (print).
+
+  ACCEPT BLOCK: the customer types their full name, ticks the
+  agreement box and clicks "Accept proposal". This submits the
+  store's contact form, which emails the store's contact address
+  with the proposal title, ID, and the customer's login email.
+  It is a click-to-agree acceptance (no audit trail); update the
+  proposal Status manually after the email arrives.
 
   Print: a Print button sits at the top right of each proposal.
   Print styles target US Letter (8.5 × 11) and hide store chrome.
@@ -267,6 +275,35 @@
             </div>
           {%- endif -%}
 
+          <div class="mr-proposal__accept" data-mr-accept>
+            {%- form 'contact', id: 'mr-accept-form', class: 'mr-proposal__accept-form' -%}
+              {%- if form.posted_successfully? -%}
+                <div class="mr-proposal__accept-done" role="status">
+                  <h3>Thank you &mdash; your acceptance has been received.</h3>
+                  <p>Moon Ridge will be in touch shortly with next steps for your deposit.</p>
+                </div>
+              {%- else -%}
+                <h3>Accept this proposal</h3>
+                <p class="mr-proposal__accept-intro">By typing your full name and accepting below, you agree to the pricing and terms &amp; conditions in this proposal.</p>
+                {%- if form.errors -%}
+                  <p class="mr-proposal__accept-error" role="alert">Something went wrong. Please check the fields and try again.</p>
+                {%- endif -%}
+                <input type="hidden" name="contact[email]" value="{{ customer.email }}">
+                <input type="hidden" name="contact[subject]" value="PROPOSAL ACCEPTED: {{ p_title | escape }}">
+                <input type="hidden" name="contact[body]" value="PROPOSAL ACCEPTED&#10;Proposal: {{ p_title | escape }}&#10;Proposal ID: {{ proposal.system.handle }}&#10;Customer email: {{ customer.email }}&#10;Accepted via the online proposal page.">
+                <label class="mr-proposal__accept-field">
+                  <span>Full name (typed signature)</span>
+                  <input type="text" name="contact[name]" required autocomplete="name">
+                </label>
+                <label class="mr-proposal__accept-check">
+                  <input type="checkbox" required>
+                  <span>I have read and agree to this proposal and its terms &amp; conditions.</span>
+                </label>
+                <button type="submit" class="mr-proposal__accept-btn">Accept proposal</button>
+              {%- endif -%}
+            {%- endform -%}
+          </div>
+
           <div class="mr-proposal__signatures">
             <div class="mr-proposal__sign-row">
               <div class="mr-proposal__sign-field mr-proposal__sign-field--name">
@@ -352,6 +389,21 @@
   .mr-proposal__section--terms { margin-top: 40px; padding-top: 24px; border-top: 1px solid #e2ddd3; }
   .mr-proposal__section--terms .mr-proposal__section-body { font-size: 13px; color: #6b6459; line-height: 1.7; }
   .mr-proposal__signatures { margin-top: 36px; padding-top: 8px; }
+  .mr-proposal__accept { margin-top: 36px; padding: 24px; background: #f7f5f2; border: 1px solid #e2ddd3; border-radius: 8px; }
+  .mr-proposal__accept h3 { margin: 0 0 8px; font-size: 18px; }
+  .mr-proposal__accept-intro { margin: 0 0 16px; font-size: 14px; color: #6b6459; line-height: 1.6; }
+  .mr-proposal__accept-field { display: block; margin-bottom: 14px; }
+  .mr-proposal__accept-field span { display: block; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: #6b6459; margin-bottom: 6px; }
+  .mr-proposal__accept-field input { width: 100%; box-sizing: border-box; padding: 12px; border: 1px solid #312110; border-radius: 4px; background: #fff; font-size: 16px; }
+  .mr-proposal__accept-check { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 18px; font-size: 14px; line-height: 1.5; cursor: pointer; }
+  .mr-proposal__accept-check input { margin-top: 3px; }
+  .mr-proposal__accept-btn { padding: 14px 28px; border: 0; border-radius: 4px; background: #312110; color: #faf8f5; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
+  .mr-proposal__accept-btn:hover { background: #4a3319; }
+  .mr-proposal__accept-error { color: #a12a1c; font-size: 14px; }
+  .mr-proposal__accept-done h3 { color: #1c6b34; }
+  .mr-proposal__accept-done p { margin: 0; }
+  @media screen { .mr-proposal__signatures { display: none; } }
+  @media print { .mr-proposal__accept { display: none !important; } }
   .mr-proposal__sign-row { display: grid; grid-template-columns: minmax(0, 1fr) 140px; gap: 28px; margin-top: 28px; }
   .mr-proposal__sign-field { display: flex; flex-direction: column; min-width: 0; }
   .mr-proposal__sign-line { display: block; border-bottom: 1px solid #312110; height: 32px; }

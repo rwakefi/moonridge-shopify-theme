@@ -15,8 +15,12 @@
   readable from storefront Liquid due to Shopify's customer-privacy
   restrictions, so it is not used for matching.)
 
+  EVENT NAME: the entry's Title is used both as the page heading and
+  as the "Event" line in the event details. There is no separate
+  Event Name field.
+
   Data model: metaobject type "proposal", fields:
-    title (single line text)
+    title (single line text — also shown as the Event line)
     customer (customer reference — admin reference only)
     customer_email (single line text — the email the customer logs
       in with; this is what actually gates the page)
@@ -26,7 +30,6 @@
     video_link_2 (url — YouTube or Vimeo)
     status (single line text, e.g. "Draft", "Sent", "Approved")
     expires_on (date)
-    event_name (single line text)
     event_date (date)
     event_location (single line text)
     guest_count (integer — displayed as "Minimum guests")
@@ -77,7 +80,6 @@
         {%- assign p_images = proposal.gallery_images.value -%}
         {%- assign p_video_1 = proposal.video_link_1.value -%}
         {%- assign p_video_2 = proposal.video_link_2.value -%}
-        {%- assign p_event_name = proposal.event_name.value -%}
         {%- assign p_event_date = proposal.event_date.value -%}
         {%- assign p_event_location = proposal.event_location.value -%}
         {%- assign p_guest_count = proposal.guest_count.value -%}
@@ -134,10 +136,10 @@
             <p class="mr-proposal__expires">Valid through {{ p_expires | date: "%B %d, %Y" }}</p>
           {%- endif -%}
 
-          {%- if p_event_name != blank or p_event_date != blank or p_event_location != blank or p_guest_count != blank -%}
+          {%- if p_title != blank or p_event_date != blank or p_event_location != blank or p_guest_count != blank -%}
             <dl class="mr-proposal__event-details">
-              {%- if p_event_name != blank -%}
-                <div class="mr-proposal__event-row"><dt>Event</dt><dd>{{ p_event_name }}</dd></div>
+              {%- if p_title != blank -%}
+                <div class="mr-proposal__event-row"><dt>Event</dt><dd>{{ p_title }}</dd></div>
               {%- endif -%}
               {%- if p_event_date != blank -%}
                 <div class="mr-proposal__event-row"><dt>Date</dt><dd>{{ p_event_date | date: "%B %d, %Y" }}</dd></div>

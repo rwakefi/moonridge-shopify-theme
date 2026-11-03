@@ -51,7 +51,8 @@
   store's contact form, which emails the store's contact address
   with the proposal title, ID, and the customer's login email.
   It is a click-to-agree acceptance (no audit trail); update the
-  proposal Status manually after the email arrives.
+  proposal Status manually after the email arrives. After
+  accepting, the customer sees a button to print / save a PDF copy.
 
   Print: a Print button sits at the top right of each proposal.
   Print styles target US Letter (8.5 × 11) and hide store chrome.
@@ -281,6 +282,8 @@
                 <div class="mr-proposal__accept-done" role="status">
                   <h3>Thank you &mdash; your acceptance has been received.</h3>
                   <p>Moon Ridge will be in touch shortly with next steps for your deposit.</p>
+                  <p>Want a copy for your records? Use the button below and choose &ldquo;Save as PDF&rdquo; in the print window.</p>
+                  <button type="button" class="mr-proposal__print" data-mr-print>Print / save a copy</button>
                 </div>
               {%- else -%}
                 <h3>Accept this proposal</h3>
@@ -401,7 +404,8 @@
   .mr-proposal__accept-btn:hover { background: #4a3319; }
   .mr-proposal__accept-error { color: #a12a1c; font-size: 14px; }
   .mr-proposal__accept-done h3 { color: #1c6b34; }
-  .mr-proposal__accept-done p { margin: 0; }
+  .mr-proposal__accept-done p { margin: 0 0 8px; }
+  .mr-proposal__accept-done .mr-proposal__print { margin-top: 8px; }
   @media screen { .mr-proposal__signatures { display: none; } }
   @media print { .mr-proposal__accept { display: none !important; } }
   .mr-proposal__sign-row { display: grid; grid-template-columns: minmax(0, 1fr) 140px; gap: 28px; margin-top: 28px; }

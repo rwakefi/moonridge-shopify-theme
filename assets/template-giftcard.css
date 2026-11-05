@@ -329,3 +329,22 @@ h2,
   background: var(--gradient-background);
   background-attachment: fixed;
 }
+
+.gift-card__redeem-note {
+  font-size: 1.3rem;
+  max-width: 36rem;
+  margin: 0.5rem auto 1.5rem;
+}
+
+@media print {
+  body.gift-card {
+    background: #fff !important;
+  }
+  .gift-card__image-wrapper {
+    margin: 1rem auto;
+    max-width: 30rem;
+  }
+  .gift-card__qr-code {
+    page-break-inside: avoid;
+  }
+}

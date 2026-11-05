@@ -141,6 +141,7 @@
         <p class="gift-card__text">{{ 'gift_cards.issued.how_to_use_gift_card' | t }}</p>
       </div>
       <p id="gift-card-code" class="gift-card__number">{{ gift_card.code | format_code }}</p>
+      <p class="gift-card__text gift-card__redeem-note">Redeem online at moonridgecompany.com or in store at 2852 N. College Avenue, Fayetteville, AR. Never expires.</p>
       <div class="gift-card__qr-code" data-identifier="{{ gift_card.qr_identifier }}"></div>
       {%- if gift_card.pass_url -%}
         <a href="{{ gift_card.pass_url }}" class="gift_card__apple-wallet no-print">
@@ -160,6 +161,7 @@
           {{ 'gift_cards.issued.copy_code_success' | t }}
         </template>
         <button class="button gift-card__copy-button">{{ 'gift_cards.issued.copy_code' | t }}</button>
+        <button class="button button--secondary gift-card__print-button" onclick="window.print()">Print gift card</button>
         <a
           href="{{ shop.url }}"
           class="button button--secondary"

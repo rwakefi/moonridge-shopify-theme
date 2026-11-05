@@ -124,18 +124,17 @@
 
     <main>
       <div class="gift-card__image-wrapper">
-        {%- if settings.logo != blank -%}
-          {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-          {{ settings.logo | image_url: width: 570 | image_tag: class: 'gift-card__image', alt: logo_alt }}
-        {%- else %}
-          <img
-            class="gift-card__image"
-            src="{{ 'gift-card/card.svg' | shopify_asset_url }}"
-            alt=""
-            height="{{ 570 | divided_by: 1.5 }}"
-            width="570"
-          >
-        {%- endif %}
+        {%- comment -%}
+          Show the Moon Ridge gift card itself rather than settings.logo: the theme's logo
+          setting is an all-white file, which rendered invisibly on this white page.
+        {%- endcomment -%}
+        <img
+          class="gift-card__image"
+          src="{{ 'moon-ridge-gift-card.jpg' | asset_url }}"
+          alt="Moon Ridge Hats &amp; Heritage gift card"
+          width="1400"
+          height="984"
+        >
       </div>
       <h2>{{ shop.name }}</h2>
       <div class="gift-card__text-wrapper">

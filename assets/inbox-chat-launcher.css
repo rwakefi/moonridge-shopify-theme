@@ -6,19 +6,29 @@ body shopify-chat::part(activator) {
   --activator-fg: #ffffff;
   --private-activator-icon-size: 26px;
   border-radius: 10px;
-  width: 66px;
+  width: auto;
   height: 52px;
-  padding: 0;
+  padding: 0 14px 0 12px;
+  gap: 8px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
   position: relative;
+}
+/* Small label beside the icon; the button only grows sideways. */
+body shopify-chat::part(activator)::before {
+  content: "Ask me a question";
+  order: 2;
+  font: 400 11px/1 Poppins, sans-serif;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  white-space: nowrap;
 }
 body shopify-chat::part(activator)::after {
   content: "";
   position: absolute;
-  top: 7px;
-  right: 7px;
-  width: 10px;
-  height: 10px;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #2fa36b;
   box-shadow: 0 0 0 2px #111111;

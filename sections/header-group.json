@@ -149,8 +149,8 @@
       "name": "Button strip",
       "settings": {
         "layout": "three_column",
-        "button_1_text": "Authorized Dealer",
-        "button_1_link": "shopify://pages/legendary-brands",
+        "button_1_text": "Gift Cards",
+        "button_1_link": "shopify://products/moon-ridge-gift-card",
         "button_2_text": "Heritage Brands",
         "button_2_link": "shopify://pages/legendary-brands",
         "button_3_text": "Shop Hats Now",

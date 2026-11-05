@@ -598,8 +598,7 @@
       ".block-blog-header__description {font-size: 1.125rem !important; line-height: 1.65 !important;}",
       "@media screen and (max-width: 749px) {.text-box p, .text-box li, .block-blog-header__description {font-size: 1.1875rem !important; }}",
       ".text-box p img,.text-box h1 img,.text-box h2 img {display: block; margin: 24px auto; width: 100%; max-width: 100%; height: auto; border-radius: 14px;}",
-      "/* Shopify Inbox chat launcher: black rounded square, white bubble icon, green online dot. Styled via the exposed ::part() hook because the app block's button_color setting isn't read by the storefront widget. */shopify-chat::part(activator){background:#111111 !important; --activator-fg:#ffffff; --private-activator-icon-size:26px; border-radius:10px; width:66px; height:52px; padding:0; box-shadow:0 4px 14px rgba(0,0,0,.25); position:relative;}",
-      "shopify-chat::part(activator)::after{content:\"\"; position:absolute; top:7px; right:7px; width:10px; height:10px; border-radius:50%; background:#2fa36b; box-shadow:0 0 0 2px #111111;}"
+      "/* Shopify Inbox chat bubble: the theme editor's button_color setting isn't read by the storefront widget, so force the gold brand color via the exposed ::part() styling hook instead. Same subtle size as stock — only the color changes. */shopify-chat::part(activator){background:#c49c5c !important;}"
     ]
   }
 }

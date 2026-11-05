@@ -1,0 +1,25 @@
+/* Shopify Inbox chat launcher: black rounded square, white bubble icon, green online dot.
+   Styled through the widget's exposed ::part(activator) hook. The `body` prefix outranks the
+   older gold rule still stored in the theme editor's custom CSS. */
+body shopify-chat::part(activator) {
+  background: #111111 !important;
+  --activator-fg: #ffffff;
+  --private-activator-icon-size: 26px;
+  border-radius: 10px;
+  width: 66px;
+  height: 52px;
+  padding: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+body shopify-chat::part(activator)::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2fa36b;
+  box-shadow: 0 0 0 2px #111111;
+}

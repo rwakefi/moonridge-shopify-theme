@@ -101,31 +101,6 @@
           "disabled": true,
           "settings": {}
         },
-        "hat_branding_v3": {
-          "type": "hat_branding",
-          "settings": {
-            "button_label": "Add Hat Branding $25",
-            "note_heading": "NOTE:",
-            "note": "<p>This hat is offered with custom branding. Custom branded hats are not eligible for returns or exchanges.</p>",
-            "modal_heading": "Add Hat Branding",
-            "location_label": "Branding Location",
-            "branding_locations": "Side of Crown - Left,Back of Crown - Right,Under Edge of Brim - Right Side,Under Edge of Brim - Left Side",
-            "letters_label": "2 Letters",
-            "letters_placeholder": "2 letters (like NW)",
-            "max_letters": 2,
-            "faq_1_question": "Why only two letters?",
-            "faq_1_answer": "We just think it looks classier. We have branded hundreds if not thousands of hats, and we think two letters gives it a really classy look.",
-            "faq_2_question": "How do you arrange the letters?",
-            "faq_2_answer": "Under the brim, we brand them side by side. On the crown, we stack and stagger them.",
-            "policy_text": "Custom branded hats are not eligible for returns or exchanges. Please check the box below to agree to Moon Ridge Hats and Heritage's <a href=\"/policies/refund-policy\" target=\"_blank\" rel=\"noopener\">returns policy</a>.",
-            "agree_label": "I Agree",
-            "submit_label": "ADD TO CART",
-            "branding_product": "hat-branding-existing-hats",
-            "branding_variant_id": "49280805470512",
-            "image_side_of_crown_left": "shopify://shop_images/branding-side-of-crown-left_jpg.jpg",
-            "image_back_of_crown_right": "shopify://shop_images/branding-back-of-crown-right_jpg.jpg"
-          }
-        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -175,7 +150,6 @@
         "inventory_status_nPFgBc",
         "shipping_CBekAR",
         "quantity_selector",
-        "hat_branding_v3",
         "buy_buttons",
         "description",
         "image_mCjNUw",

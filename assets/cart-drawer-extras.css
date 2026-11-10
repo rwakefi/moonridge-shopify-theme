@@ -340,13 +340,15 @@ cart-cross-sell[hidden],
   }
 
   cart-drawer .cart__checkout-assurance {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 0.4rem;
   }
 
   cart-drawer .cart__checkout-assurance span {
-    font-size: 1.05rem;
+    padding: 0.3rem 0.7rem;
+    font-size: 1rem;
+    letter-spacing: 0;
     white-space: nowrap;
   }
 
@@ -382,6 +384,6 @@ cart-cross-sell[hidden],
   body:has(cart-drawer.active) shopify-chat,
   body:has(cart-drawer.active) inbox-online-store-chat,
   body:has(cart-drawer.active) #ShopifyChat {
-    visibility: hidden;
+    display: none !important;
   }
 }

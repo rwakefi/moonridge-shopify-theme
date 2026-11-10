@@ -299,3 +299,89 @@ cart-cross-sell[hidden],
   padding-left: 0;
   border-top: 0;
 }
+
+/*
+  Phone layout (under 750px).
+
+  The item list used to be the only scrolling area, and the add-ons, Fit
+  Insurance and footer all took fixed space beneath it, which squeezed the item
+  you just added down to a sliver. Here the whole drawer scrolls as one column
+  (items first, then add-ons) while the header and the total + Check out footer
+  stay pinned.
+*/
+@media screen and (max-width: 749px) {
+  cart-drawer .drawer__inner {
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  cart-drawer cart-drawer-items {
+    flex: 0 0 auto;
+    overflow: visible;
+  }
+
+  cart-drawer .drawer__header {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: rgb(var(--color-background));
+  }
+
+  cart-drawer .drawer__footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 3;
+    margin-top: auto;
+    padding: 1rem 0 calc(1rem + env(safe-area-inset-bottom, 0px));
+    background: rgb(var(--color-background));
+    box-shadow: 0 -0.6rem 1.4rem rgba(0, 0, 0, 0.07);
+  }
+
+  cart-drawer .cart__checkout-assurance {
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  cart-drawer .cart__checkout-assurance span {
+    font-size: 1.05rem;
+    white-space: nowrap;
+  }
+
+  /* Fit Insurance as one compact row instead of a tall box. */
+  cart-drawer .fit-insurance-cart-upsell {
+    margin: 0 0.5rem 1.4rem;
+  }
+
+  cart-drawer .fit-insurance-cart-upsell__inner {
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+  }
+
+  cart-drawer .fit-insurance-cart-upsell__text {
+    font-size: 1.2rem;
+    line-height: 1.35;
+  }
+
+  cart-drawer .fit-insurance-cart-upsell__text strong {
+    font-size: 1.35rem;
+  }
+
+  cart-drawer .fit-insurance-cart-upsell .button {
+    min-width: 0;
+    min-height: 3.6rem !important;
+    padding: 0.6rem 1.6rem !important;
+    font-size: 1.2rem !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  /* The chat bubble sat on top of the Check out area while the cart was open. */
+  body:has(cart-drawer.active) shopify-chat,
+  body:has(cart-drawer.active) inbox-online-store-chat,
+  body:has(cart-drawer.active) #ShopifyChat {
+    visibility: hidden;
+  }
+}

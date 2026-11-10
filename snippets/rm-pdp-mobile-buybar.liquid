@@ -258,7 +258,11 @@
     btn.addEventListener('click', function () {
       if (btn.disabled) return;
       if (!chosen && picker) {
-        picker.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // The swatch app hides the native picker and draws its own, so scroll to whichever is visible.
+        var info = document.getElementById('ProductInfo-' + sid);
+        var target = (info && info.querySelector('optis-variant-picker, .bss-se-variant')) || picker;
+        if (!target.offsetParent) target = picker.offsetParent ? picker : info || mainBtn;
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
       mainBtn.click();

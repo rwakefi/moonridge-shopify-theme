@@ -92,7 +92,15 @@
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="page-width">
-    <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+    <div class="product rm-pdp-has-head product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+    {%- comment -%} Mobile only: title and price above the gallery. See snippets/rm-pdp-mobile-buybar.liquid {%- endcomment -%}
+    <div class="grid__item rm-pdp-head" aria-hidden="true">
+      <p class="rm-pdp-head__title">{{ product.title | escape }}</p>
+      <p class="rm-pdp-head__price" data-rm-price>
+        {{- product.selected_or_first_available_variant.price | money -}}
+        {%- if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %} <s>{{ product.selected_or_first_available_variant.compare_at_price | money }}</s>{%- endif -%}
+      </p>
+    </div>
     <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
       {% render 'product-media-gallery', variant_images: variant_images %}
     </div>
@@ -1429,6 +1437,7 @@ function updateCountdown() {
     {%- if settings.show_sticky_cart_button -%}
      {% render 'lumin-sticky-cart', product: product %}
     {%- endif -%}
+    {% render 'rm-pdp-mobile-buybar', product: product, section: section %}
     
   {% render 'product-media-modal' variant_images: variant_images %}
 

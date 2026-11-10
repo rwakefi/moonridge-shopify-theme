@@ -64,7 +64,7 @@
             "enable_low_stock_notice": false,
             "low_stock_threshold": 5,
             "conversion_reassurance": "Need help choosing your size? Contact us for a guided fit recommendation.",
-            "show_dynamic_checkout": false,
+            "show_dynamic_checkout": true,
             "show_gift_card_recipient": false
           }
         },

@@ -1,0 +1,293 @@
+{%- comment -%}
+  Mobile product page helpers (under 750px only):
+  1. .rm-pdp-head (rendered from main-product.liquid) shows the title and price
+     above the gallery so they sit on the first screen.
+  2. #rm-buybar is a sticky bar with price, selected options and a button. It
+     appears once the main Add to Cart button has scrolled out of view. The
+     button drives the main product form, so the cart drawer, errors and
+     inventory rules all behave exactly as they do for the main button.
+
+  Accepts:
+  - product: {Object}
+  - section: {Object} main-product section
+{%- endcomment -%}
+{%- assign rm_variant = product.selected_or_first_available_variant -%}
+{%- assign rm_size_option = false -%}
+{%- for option in product.options -%}
+  {%- assign rm_opt = option | downcase -%}
+  {%- if rm_opt contains 'size' -%}{%- assign rm_size_option = true -%}{%- endif -%}
+{%- endfor -%}
+
+<style>
+  .rm-pdp-head { display: none; }
+  #rm-buybar { display: none; }
+
+  @media screen and (max-width: 749px) {
+    .rm-pdp-head {
+      display: block;
+      padding: 0.4rem 0 1.2rem;
+    }
+    .rm-pdp-head__title {
+      font-family: var(--font-heading-family);
+      font-style: var(--font-heading-style);
+      font-weight: var(--font-heading-weight);
+      font-size: 2.4rem;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      color: rgb(var(--color-foreground));
+      margin: 0;
+    }
+    .rm-pdp-head__price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      font-size: 1.9rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: rgb(var(--color-foreground));
+      margin: 0.6rem 0 0;
+    }
+    .rm-pdp-head__price s,
+    .rm-buybar__price s {
+      font-weight: 400;
+      font-size: 0.8em;
+      opacity: 0.6;
+    }
+    /* The h1 stays in the page for search engines and screen readers. */
+    .rm-pdp-has-head .product__info-container > .product__title {
+      position: absolute !important;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    #rm-buybar {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 30;
+      padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px));
+      background: rgb(var(--color-background));
+      border-top: 0.1rem solid rgba(var(--color-foreground), 0.12);
+      box-shadow: 0 -0.4rem 1.6rem rgba(0, 0, 0, 0.08);
+      transform: translateY(110%);
+      visibility: hidden;
+      transition: transform 0.25s ease, visibility 0s linear 0.25s;
+    }
+    #rm-buybar.is-on {
+      transform: none;
+      visibility: visible;
+      transition: transform 0.25s ease, visibility 0s;
+    }
+    .rm-buybar__info {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .rm-buybar__price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      font-size: 1.7rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: rgb(var(--color-foreground));
+      margin: 0;
+    }
+    .rm-buybar__variant {
+      font-size: 1.2rem;
+      line-height: 1.3;
+      color: rgba(var(--color-foreground), 0.7);
+      margin: 0.1rem 0 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #rm-buybar .rm-buybar__btn {
+      flex: 0 0 auto;
+      min-width: 15rem;
+      min-height: 4.6rem;
+      padding: 0 2rem;
+      font-size: 1.3rem;
+      white-space: nowrap;
+    }
+    #rm-buybar .rm-buybar__btn[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    /* Lift the chat bubble so it never sits on top of the bar. */
+    shopify-chat,
+    inbox-online-store-chat,
+    #ShopifyChat {
+      transition: transform 0.25s ease;
+    }
+    body.rm-buybar-on shopify-chat,
+    body.rm-buybar-on inbox-online-store-chat,
+    body.rm-buybar-on #ShopifyChat {
+      transform: translateY(-7.2rem);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #rm-buybar,
+    shopify-chat,
+    inbox-online-store-chat,
+    #ShopifyChat {
+      transition: none !important;
+    }
+  }
+</style>
+
+<div
+  id="rm-buybar"
+  class="color-{{ section.settings.color_scheme }} gradient"
+  data-section="{{ section.id }}"
+  data-has-size="{{ rm_size_option }}"
+  data-add-label="{{ 'products.product.add_to_cart' | t | escape }}"
+  aria-hidden="true"
+>
+  <div class="rm-buybar__info">
+    <p class="rm-buybar__price" data-rm-price>
+      {{- rm_variant.price | money -}}
+      {%- if rm_variant.compare_at_price > rm_variant.price %} <s>{{ rm_variant.compare_at_price | money }}</s>{%- endif -%}
+    </p>
+    <p class="rm-buybar__variant" data-rm-variant>
+      {%- unless product.has_only_default_variant -%}{{ rm_variant.title }}{%- endunless -%}
+    </p>
+  </div>
+  <button type="button" class="rm-buybar__btn button button--primary" tabindex="-1">
+    {{- 'products.product.add_to_cart' | t -}}
+  </button>
+</div>
+
+<script>
+  (function () {
+    var bar = document.getElementById('rm-buybar');
+    if (!bar) return;
+    var sid = bar.dataset.section;
+    var btn = bar.querySelector('.rm-buybar__btn');
+    var variantEl = bar.querySelector('[data-rm-variant]');
+    var mq = window.matchMedia('(max-width: 749px)');
+    var mainBtn = document.getElementById('ProductSubmitButton-' + sid);
+    var priceSrc = document.getElementById('price-' + sid);
+    var picker =
+      document.querySelector('variant-radios[data-section="' + sid + '"]') ||
+      document.querySelector('variant-selects[data-section="' + sid + '"]');
+    var drawer = document.querySelector('cart-drawer');
+    var hasSize = bar.dataset.hasSize === 'true';
+    var addLabel = bar.dataset.addLabel;
+    // Someone who landed on a specific variant (an ad or a shared link) has already chosen.
+    var chosen = !picker || /[?&]variant=\d+/.test(window.location.search);
+    var mainHidden = false;
+
+    // No buy button on this page (in-store only or fully sold out): no bar.
+    if (!mainBtn) {
+      bar.remove();
+      return;
+    }
+
+    function syncPrice() {
+      if (!priceSrc) return;
+      var price = priceSrc.querySelector('.price');
+      if (!price) return;
+      var onSale = price.classList.contains('price--on-sale');
+      var now = price.querySelector(onSale ? '.price__sale .price-item--sale' : '.price__regular .price-item--regular');
+      var was = onSale ? price.querySelector('.price__sale s.price-item--regular') : null;
+      if (!now) return;
+      var nowText = now.textContent.trim();
+      var wasText = was ? was.textContent.trim() : '';
+      document.querySelectorAll('[data-rm-price]').forEach(function (el) {
+        el.textContent = nowText;
+        if (wasText && wasText !== nowText) {
+          var s = document.createElement('s');
+          s.textContent = wasText;
+          el.appendChild(document.createTextNode(' '));
+          el.appendChild(s);
+        }
+      });
+    }
+
+    function syncVariant() {
+      if (!picker || !variantEl) return;
+      var parts = [];
+      picker.querySelectorAll('fieldset').forEach(function (fs) {
+        var c = fs.querySelector('input:checked');
+        if (c) parts.push(c.value);
+      });
+      picker.querySelectorAll('select').forEach(function (sel) {
+        if (sel.value) parts.push(sel.value);
+      });
+      if (parts.length) variantEl.textContent = parts.join(' / ');
+    }
+
+    function syncButton() {
+      var label;
+      if (mainBtn.disabled) {
+        label = (mainBtn.textContent || '').trim() || 'Sold out';
+        btn.disabled = true;
+      } else if (!chosen) {
+        label = hasSize ? 'Select size' : 'Select options';
+        btn.disabled = false;
+      } else {
+        label = addLabel;
+        btn.disabled = false;
+      }
+      btn.textContent = label;
+    }
+
+    function render() {
+      var on = mq.matches && mainHidden && !(drawer && drawer.classList.contains('active'));
+      bar.classList.toggle('is-on', on);
+      bar.setAttribute('aria-hidden', on ? 'false' : 'true');
+      btn.tabIndex = on ? 0 : -1;
+      document.body.classList.toggle('rm-buybar-on', on);
+    }
+
+    btn.addEventListener('click', function () {
+      if (btn.disabled) return;
+      if (!chosen && picker) {
+        picker.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      mainBtn.click();
+    });
+
+    if (picker) {
+      picker.addEventListener('change', function () {
+        chosen = true;
+        // Let the theme swap price and button state first.
+        window.setTimeout(function () {
+          syncVariant();
+          syncPrice();
+          syncButton();
+        }, 60);
+      });
+    }
+
+    if ('MutationObserver' in window) {
+      if (priceSrc) new MutationObserver(syncPrice).observe(priceSrc, { childList: true, subtree: true, characterData: true });
+      new MutationObserver(syncButton).observe(mainBtn, { attributes: true, childList: true, subtree: true, characterData: true });
+      if (drawer) new MutationObserver(render).observe(drawer, { attributes: true, attributeFilter: ['class'] });
+    }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        mainHidden = !entries[0].isIntersecting;
+        render();
+      }).observe(mainBtn);
+    }
+
+    if (mq.addEventListener) mq.addEventListener('change', render);
+    syncPrice();
+    syncVariant();
+    syncButton();
+    render();
+  })();
+</script>

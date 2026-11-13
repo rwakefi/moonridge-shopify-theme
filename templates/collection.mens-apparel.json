@@ -59,7 +59,7 @@
       },
       "block_order": ["shirts", "tees", "hoodies", "outerwear", "sweaters"],
       "settings": {
-        "show_count": true,
+        "show_count": false,
         "count_label": "pieces",
         "background_color": "#ffffff",
         "text_color": "#312110",

@@ -1,0 +1,265 @@
+{%- comment -%}
+  Apparel category tiles.
+  A row of image tiles that filter the current collection by product tag
+  (links to /collections/<handle>/<tag>). Used by collection.mens-apparel.json
+  and collection.womens-apparel.json.
+  Tile image: the block's image if set, otherwise the picked product's featured image.
+{%- endcomment -%}
+
+<style>
+  .apparel-tiles--{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+  }
+  .apparel-tiles--{{ section.id }} .apparel-tiles__count {
+    margin: 0 0 2.4rem;
+    text-align: center;
+    font-size: 1.3rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .apparel-tiles--{{ section.id }} .apparel-tiles__list {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 0 0 0.4rem;
+    list-style: none;
+  }
+  .apparel-tiles--{{ section.id }} .apparel-tiles__item {
+    flex: 0 1 200px;
+    min-width: 0;
+  }
+  .apparel-tiles--{{ section.id }} .apparel-tiles__link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+  .apparel-tiles--{{ section.id }} .apparel-tiles__media {
+    display: block;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 4px;
+    background: {{ section.settings.tile_background }};
+  }
+  .apparel-tiles--{{ section.id }} .apparel-tiles__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .apparel-tiles--{{ section.id }} .apparel-tiles__link:hover .apparel-tiles__media img {
+    transform: scale(1.04);
+  }
+  .apparel-tiles--{{ section.id }} .apparel-tiles__label {
+    display: block;
+    margin-top: 1.2rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    font-family: var(--font-heading-family);
+    font-size: 1.3rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent;
+  }
+  .apparel-tiles--{{ section.id }} .apparel-tiles__link:hover .apparel-tiles__label,
+  .apparel-tiles--{{ section.id }} .apparel-tiles__link.is-active .apparel-tiles__label {
+    border-bottom-color: {{ section.settings.accent_color }};
+  }
+  .apparel-tiles--{{ section.id }} .apparel-tiles__all {
+    margin: 2rem 0 0;
+    text-align: center;
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+  }
+  .apparel-tiles--{{ section.id }} .apparel-tiles__all a {
+    color: inherit;
+    text-underline-offset: 0.3rem;
+  }
+  @media screen and (max-width: 749px) {
+    .apparel-tiles--{{ section.id }} .apparel-tiles__list {
+      justify-content: flex-start;
+      gap: 1.2rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      margin: 0 -1.5rem;
+      padding: 0 1.5rem 0.4rem;
+    }
+    .apparel-tiles--{{ section.id }} .apparel-tiles__list::-webkit-scrollbar {
+      display: none;
+    }
+    .apparel-tiles--{{ section.id }} .apparel-tiles__item {
+      flex: 0 0 38%;
+      scroll-snap-align: start;
+    }
+    .apparel-tiles--{{ section.id }} .apparel-tiles__label {
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+    }
+  }
+</style>
+
+<div class="apparel-tiles apparel-tiles--{{ section.id }}">
+  <div class="page-width">
+    {%- if section.settings.show_count -%}
+      <p class="apparel-tiles__count">
+        {{ collection.products_count }} {{ section.settings.count_label | escape }}
+      </p>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="apparel-tiles__list" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign tile_tag = block.settings.tag | handleize
+            assign is_active = false
+            for current_tag in current_tags
+              assign current_handle = current_tag | handleize
+              if current_handle == tile_tag
+                assign is_active = true
+              endif
+            endfor
+            assign tile_image = block.settings.image
+            if tile_image == blank
+              assign tile_image = block.settings.product.featured_image
+            endif
+          -%}
+          {%- if tile_tag != blank -%}
+            <li class="apparel-tiles__item" {{ block.shopify_attributes }}>
+              <a
+                class="apparel-tiles__link{% if is_active %} is-active{% endif %}"
+                href="{{ collection.url }}/{{ tile_tag }}"
+                {% if is_active %}aria-current="true"{% endif %}
+              >
+                <span class="apparel-tiles__media">
+                  {%- if tile_image != blank -%}
+                    {{
+                      tile_image
+                      | image_url: width: 600
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '200, 300, 400, 600',
+                        sizes: '(min-width: 750px) 200px, 38vw',
+                        alt: block.settings.label
+                    }}
+                  {%- endif -%}
+                </span>
+                <span class="apparel-tiles__label">{{ block.settings.label | escape }}</span>
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if current_tags and current_tags.size > 0 -%}
+      <p class="apparel-tiles__all">
+        <a href="{{ collection.url }}">View all {{ collection.title | escape }}</a>
+      </p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Apparel category tiles",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_count",
+      "default": true,
+      "label": "Show product count"
+    },
+    {
+      "type": "text",
+      "id": "count_label",
+      "default": "pieces",
+      "label": "Count label"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "default": "#ffffff",
+      "label": "Background"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#312110",
+      "label": "Text"
+    },
+    {
+      "type": "color",
+      "id": "tile_background",
+      "default": "#e8d9c8",
+      "label": "Tile background"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "default": "#a88467",
+      "label": "Accent (active underline)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 8,
+      "label": "Top padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24,
+      "label": "Bottom padding"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Category tile",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Product tag to filter by",
+          "info": "For example: Outerwear, Sweaters, T-Shirt, Hoodies, Shirts, Dresses"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product photo to show"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom image (overrides product photo)"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

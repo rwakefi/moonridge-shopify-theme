@@ -1,0 +1,97 @@
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "custom_css": [
+        "h1 {text-align: center; font-size: clamp(2.4rem, 4vw, 3.2rem); letter-spacing: 0.08em;}",
+        ".collection-hero__inner {padding-top: 2rem; padding-bottom: 0.4rem;}"
+      ],
+      "settings": {
+        "show_collection_description": false,
+        "show_collection_image": false,
+        "show_collection_links": false,
+        "color_scheme": "background-1"
+      }
+    },
+    "category_tiles": {
+      "type": "apparel-category-tiles",
+      "blocks": {
+        "shirts": {
+          "type": "tile",
+          "settings": {
+            "label": "Shirts",
+            "tag": "Shirts",
+            "product": "stetson-mens-snap-shirt-cream-denim"
+          }
+        },
+        "tees": {
+          "type": "tile",
+          "settings": {
+            "label": "Tees",
+            "tag": "T-Shirt",
+            "product": "seager-smokey-tee-roasted-red"
+          }
+        },
+        "hoodies": {
+          "type": "tile",
+          "settings": {
+            "label": "Hoodies & Sweatshirts",
+            "tag": "Hoodies",
+            "product": "seager-herd-hoodie-bone"
+          }
+        },
+        "outerwear": {
+          "type": "tile",
+          "settings": {
+            "label": "Outerwear",
+            "tag": "Outerwear",
+            "product": "pendleton-tahoma-trucker-jacket-dark-olive"
+          }
+        },
+        "sweaters": {
+          "type": "tile",
+          "settings": {
+            "label": "Sweaters",
+            "tag": "Sweaters",
+            "product": "pendleton-sawtooth-buck-zip-sweater-sawtooth-oatmeal"
+          }
+        }
+      },
+      "block_order": ["shirts", "tees", "hoodies", "outerwear", "sweaters"],
+      "settings": {
+        "show_count": true,
+        "count_label": "pieces",
+        "background_color": "#ffffff",
+        "text_color": "#312110",
+        "tile_background": "#e8d9c8",
+        "accent_color": "#a88467",
+        "padding_top": 8,
+        "padding_bottom": 24
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 24,
+        "columns_desktop": 4,
+        "color_scheme": "background-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_desc": false,
+        "quick_desc_legth": 90,
+        "quick_desc_size": 14,
+        "enable_quick_add": false,
+        "show_secondary_add": false,
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 16,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": ["banner", "category_tiles", "product-grid"]
+}

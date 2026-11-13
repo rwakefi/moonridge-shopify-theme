@@ -15,6 +15,13 @@
   overflow-wrap: break-word;
 }
 
+/* A closed header dropdown must not stay painted. Browsers hide closed
+   <details> content without always dropping its animated layer, which left
+   ghost panels behind when moving quickly between menus. */
+header-menu > details:not([open]) > *:not(summary) {
+  display: none !important;
+}
+
 .list-menu--disclosure:focus {
   outline: none;
 }

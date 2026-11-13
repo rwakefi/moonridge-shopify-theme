@@ -79,6 +79,14 @@ class HeaderMenu extends DetailsDisclosure {
     this.mainDetailsToggle.querySelector('summary').setAttribute('aria-expanded', true);
   }
 
+  close() {
+    super.close();
+    // Drop the open animation's layer so a closed panel can't stay painted.
+    if (this.content && this.content.getAnimations) {
+      this.content.getAnimations().forEach((animation) => animation.cancel());
+    }
+  }
+
   blockClickToggle(event) {
     if (!this.desktopQuery.matches) return;
     if (event.pointerType === 'touch') return;

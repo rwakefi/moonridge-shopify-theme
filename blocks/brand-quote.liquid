@@ -1,9 +1,13 @@
 {%- liquid
   assign quote_text = closest.page.metafields.custom.brand_quote.value
+  assign quote_by = closest.page.metafields.custom.brand_quote_attribution.value
 -%}
 {%- if quote_text != blank -%}
   <div class="brand-quote brand-quote-{{ block.id }}">
-    <p class="brand-quote__text">{{ quote_text | escape | newline_to_br }}</p>
+    <p class="brand-quote__text">&ldquo;{{ quote_text | escape | newline_to_br }}&rdquo;</p>
+    {%- if quote_by != blank -%}
+      <p class="brand-quote__by">&mdash; {{ quote_by | escape }}</p>
+    {%- endif -%}
   </div>
   <style>
     .brand-quote-{{ block.id }} {
@@ -22,6 +26,13 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       text-wrap: balance;
+    }
+    .brand-quote-{{ block.id }} .brand-quote__by {
+      margin: 1.6rem auto 0;
+      font-size: clamp(1.3rem, 3.2vw, 1.8rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.85;
     }
     @media (max-width: 749px) {
       .brand-quote-{{ block.id }} {

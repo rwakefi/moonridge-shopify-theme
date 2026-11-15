@@ -57,14 +57,6 @@
             "link": "shopify://pages/moonridge-home",
             "image": "shopify://shop_images/CAAE1744-9056-4B99-8063-657080996400.jpg"
           }
-        },
-        "name_change": {
-          "type": "story",
-          "settings": {
-            "title": "Our Name Change",
-            "excerpt": "Rafter M is now Moon Ridge. Exact same people, exact same place. More brands, new name.",
-            "link": "shopify://blogs/rafter-m-hat-company-is-now-moon-ridge-company/rafter-m-hat-company-is-now-moon-ridge-company"
-          }
         }
       },
       "block_order": [
@@ -72,8 +64,7 @@
         "brands",
         "podcast",
         "travel",
-        "design",
-        "name_change"
+        "design"
       ],
       "settings": {
         "eyebrow": "Moon Ridge Hats and Heritage",

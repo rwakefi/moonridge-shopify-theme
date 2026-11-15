@@ -57,6 +57,14 @@
             "link": "shopify://pages/moonridge-home",
             "image": "shopify://shop_images/CAAE1744-9056-4B99-8063-657080996400.jpg"
           }
+        },
+        "music": {
+          "type": "story",
+          "settings": {
+            "title": "Music Promotion and Production",
+            "excerpt": "Before the hats, Zack was putting bands on stages. B-Side, Boom Kinetic, and Moon Ridge Productions.",
+            "link": "shopify://pages/music"
+          }
         }
       },
       "block_order": [
@@ -64,7 +72,8 @@
         "brands",
         "podcast",
         "travel",
-        "design"
+        "design",
+        "music"
       ],
       "settings": {
         "eyebrow": "Moon Ridge Hats and Heritage",

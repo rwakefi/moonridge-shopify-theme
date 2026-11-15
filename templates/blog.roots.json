@@ -63,7 +63,8 @@
           "settings": {
             "title": "Music Promotion and Production",
             "excerpt": "Before the hats, Zack was putting bands on stages. B-Side, Boom Kinetic, and Moon Ridge Productions.",
-            "link": "shopify://pages/music"
+            "link": "shopify://pages/music",
+            "image": "shopify://shop_images/moon-ridge-productions-boom-kinetic-sxsw-austin-night-stage.jpg"
           }
         }
       },

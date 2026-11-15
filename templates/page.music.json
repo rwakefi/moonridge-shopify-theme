@@ -7,7 +7,9 @@
         ".rte {font-size: 1.7rem; line-height: 1.7;}",
         ".rte figcaption {font-size: 1.5rem !important;}",
         ".rte h2 {font-size: 3rem; margin-top: 4rem;}",
-        ".rte h3 {font-family: var(--font-heading-family); font-size: 2.6rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #312110; margin: 4.4rem 0 1.4rem; padding-bottom: 0.8rem; border-bottom: 2px solid #a88467;}"
+        ".rte h3 {font-family: var(--font-heading-family); font-size: 2.6rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #312110; margin: 4.4rem 0 1.4rem; padding-bottom: 0.8rem; border-bottom: 2px solid #a88467;}",
+        ".rte .mr-photo-row {display: flex; gap: 2rem; align-items: flex-start; margin: 2.4rem 0 0;}",
+        "@media screen and (max-width: 749px) {.rte .mr-photo-row {display: block;}}"
       ],
       "settings": {
         "padding_top": 36,

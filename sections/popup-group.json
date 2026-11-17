@@ -19,7 +19,7 @@
         "success_image": "shopify://shop_images/moon-ridge-popup-steaming-hat.jpg",
         "show_preference": false,
         "success_text": "Your 10% code is on its way. It is yours alone and good for 7 days on your first order.",
-        "legal_text": "<p>By signing up you agree to our <a href=\"/policies/terms-of-service\">Terms &amp; Conditions</a>. More information in our <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p><p>10% off your first order, valid for 7 days, one use per customer. Must use code at checkout on qualified items. Cannot be combined with free shipping or any other offer, and you will get the most savings based on the discounts available to you. Excludes sale items, gift cards and prior purchases. Free shipping on orders over $99 to the contiguous United States. Moon Ridge Company reserves the right to modify or end this promotion at any time.</p>"
+        "legal_text": "<p>By signing up you agree to our <a href=\"/policies/terms-of-service\">Terms &amp; Conditions</a>. More information in our <a href=\"/policies/privacy-policy\">Privacy Policy</a>. Full offer terms are in your welcome email.</p>"
       }
     },
     "popup_promo_expanding": {

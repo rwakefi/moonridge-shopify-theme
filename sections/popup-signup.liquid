@@ -1,0 +1,330 @@
+{% comment %}
+  Moon Ridge mailing list sign-up popup.
+  Subscribers are saved to Shopify Customers with marketing consent and tagged with their shopping preference.
+  The welcome email (with the discount code) is sent by the email platform, not by this popup.
+{% endcomment %}
+
+{% liquid
+  assign blocked = false
+  if template.name == 'cart' or template.name == 'login' or template.name == 'register' or template.name == 'order' or template.name contains 'customers'
+    assign blocked = true
+  endif
+%}
+
+{% if section.settings.enable_popup and blocked == false %}
+  <div
+    class='rm-su{% if section.settings.image != blank %} rm-su--split{% endif %}'
+    id='rm-su-{{ section.id }}'
+    data-delay='{{ section.settings.delay_seconds }}'
+    data-views='{{ section.settings.page_views }}'
+    data-exit='{{ section.settings.exit_intent }}'
+    data-cooldown='{{ section.settings.cooldown_days }}'
+    role='dialog'
+    aria-modal='true'
+    aria-labelledby='rm-su-title-{{ section.id }}'
+    hidden
+  >
+    <div class='rm-su__overlay' data-rm-su-close></div>
+
+    <div class='rm-su__box' tabindex='-1'>
+      <button type='button' class='rm-su__close' aria-label='Close' data-rm-su-close>&times;</button>
+
+      {% if section.settings.image != blank %}
+        <div class='rm-su__media' aria-hidden='true'>
+          {{
+            section.settings.image
+            | image_url: width: 1200
+            | image_tag: loading: 'lazy', widths: '400, 600, 800, 1200', sizes: '(max-width: 749px) 100vw, 450px', alt: ''
+          }}
+          {% if section.settings.success_image != blank %}
+            {{
+              section.settings.success_image
+              | image_url: width: 1200
+              | image_tag: class: 'rm-su__img-done', loading: 'lazy', widths: '400, 600, 800, 1200', sizes: '(max-width: 749px) 100vw, 450px', alt: ''
+            }}
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class='rm-su__content'>
+        {% if section.settings.brand_name != blank %}
+          <div class='rm-su__brand'>
+            <span class='rm-su__brand-name'>{{ section.settings.brand_name }}</span>
+            {% if section.settings.brand_tagline != blank %}
+              <span class='rm-su__brand-rule'></span>
+              <span class='rm-su__brand-tag'>{{ section.settings.brand_tagline }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% form 'customer', id: 'rm-su-form', class: 'rm-su__form' %}
+          {% if form.posted_successfully? %}
+            <div class='rm-su__success' data-rm-su-success>
+              <p class='rm-su__title' id='rm-su-title-{{ section.id }}'>{{ section.settings.success_heading }}</p>
+              {% if section.settings.success_text != blank %}
+                <p class='rm-su__text'>{{ section.settings.success_text }}</p>
+              {% endif %}
+              {% if section.settings.success_note != blank %}
+                <p class='rm-su__note'>{{ section.settings.success_note }}</p>
+              {% endif %}
+            </div>
+            <button type='button' class='rm-su__button' data-rm-su-close>{{ section.settings.success_button }}</button>
+          {% else %}
+            <div class='rm-su__offer' id='rm-su-title-{{ section.id }}'>
+              {% if section.settings.eyebrow != blank %}
+                <span class='rm-su__line'>{{ section.settings.eyebrow }}</span>
+              {% endif %}
+              <span class='rm-su__heading'>{{ section.settings.heading }}</span>
+              {% if section.settings.offer_line != blank %}
+                <span class='rm-su__line'>{{ section.settings.offer_line }}</span>
+              {% endif %}
+            </div>
+
+            <input type='hidden' name='contact[tags]' value='newsletter,popup-signup,email-subscriber' data-rm-su-tags>
+            <input type='hidden' name='contact[accepts_marketing]' value='true'>
+
+            {% if section.settings.show_preference %}
+              <fieldset class='rm-su__pref'>
+                <legend>{{ section.settings.preference_label }}</legend>
+                <div class='rm-su__pref-row'>
+                  <label><input type='radio' name='rm_su_pref' value='mens' form='rm-su-none'>{{ section.settings.label_mens }}</label>
+                  <label><input type='radio' name='rm_su_pref' value='womens' form='rm-su-none'>{{ section.settings.label_womens }}</label>
+                  <label><input type='radio' name='rm_su_pref' value='both' form='rm-su-none'>{{ section.settings.label_both }}</label>
+                </div>
+              </fieldset>
+            {% endif %}
+
+            <label class='visually-hidden' for='rm-su-email-{{ section.id }}'>Email address</label>
+            <input
+              id='rm-su-email-{{ section.id }}'
+              class='rm-su__email'
+              type='email'
+              name='contact[email]'
+              value='{{ form.email }}'
+              placeholder='{{ section.settings.email_placeholder | escape }}'
+              autocomplete='email'
+              autocorrect='off'
+              autocapitalize='off'
+              required
+              {% if form.errors %}aria-invalid='true' aria-describedby='rm-su-error-{{ section.id }}'{% endif %}
+            >
+
+            {% if form.errors %}
+              <p class='rm-su__error' id='rm-su-error-{{ section.id }}' role='alert' data-rm-su-error>
+                {{ form.errors.messages.email | default: 'Please enter a valid email address.' }}
+              </p>
+            {% endif %}
+
+            <button type='submit' class='rm-su__button'>{{ section.settings.submit_label }}</button>
+
+            {% if section.settings.decline_label != blank %}
+              <button type='button' class='rm-su__decline' data-rm-su-close>{{ section.settings.decline_label }}</button>
+            {% endif %}
+
+            {% if section.settings.legal_text != blank %}
+              <div class='rm-su__legal'>{{ section.settings.legal_text }}</div>
+            {% endif %}
+          {% endif %}
+        {% endform %}
+      </div>
+    </div>
+  </div>
+
+  {% style %}
+    .rm-su { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; font-family: var(--font-body-family, inherit); }
+    .rm-su[hidden] { display: none; }
+    .rm-su__overlay { position: absolute; inset: 0; background: rgba(20, 14, 8, 0.55); }
+    .rm-su__box { position: relative; display: grid; grid-template-columns: 1fr; width: 100%; max-width: 460px; max-height: 92vh; overflow: auto; background: {{ section.settings.popup_background }}; color: {{ section.settings.popup_text_color }}; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35); }
+    .rm-su--split .rm-su__box { max-width: 900px; grid-template-columns: 1fr 1fr; }
+    .rm-su__media { position: relative; min-height: 580px; background: #2a1c10; }
+    .rm-su__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .rm-su__media .rm-su__img-done { display: none; }
+    .rm-su--done .rm-su__media .rm-su__img-done { display: block; }
+    .rm-su__close { position: absolute; top: 6px; right: 6px; z-index: 2; width: 44px; height: 44px; border: 0; background: transparent; color: inherit; font-size: 28px; line-height: 1; cursor: pointer; }
+    .rm-su__content { display: flex; flex-direction: column; justify-content: center; gap: 22px; padding: 44px 40px 32px; text-align: center; }
+    .rm-su__brand { display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'Tenor Sans', var(--font-heading-family, inherit); text-transform: uppercase; }
+    .rm-su__brand-name { font-size: 26px; letter-spacing: 0.28em; margin-right: -0.28em; }
+    .rm-su__brand-rule { width: 140px; height: 1px; background: currentColor; opacity: 0.45; }
+    .rm-su__brand-tag { font-size: 11px; letter-spacing: 0.42em; margin-right: -0.42em; }
+    .rm-su__form { display: flex; flex-direction: column; gap: 14px; margin: 0; }
+    .rm-su__offer { display: flex; flex-direction: column; gap: 2px; margin-bottom: 8px; font-family: var(--font-heading-family, inherit); text-transform: uppercase; }
+    .rm-su__line { font-size: 18px; letter-spacing: 0.08em; }
+    .rm-su__heading { font-size: 64px; line-height: 1.05; }
+    .rm-su__pref { border: 0; padding: 0; margin: 0; min-width: 0; }
+    .rm-su__pref legend { width: 100%; padding: 0; margin: 0 0 4px; font-size: 15px; }
+    .rm-su__pref-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 24px; }
+    .rm-su__pref label { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 15px; cursor: pointer; }
+    .rm-su__pref input { width: 20px; height: 20px; margin: 0; accent-color: {{ section.settings.button_background }}; }
+    .rm-su__email { width: 100%; box-sizing: border-box; height: 50px; padding: 0 16px; border: 1px solid {{ section.settings.popup_text_color }}; border-radius: 0; background: #ffffff; color: {{ section.settings.popup_text_color }}; font-family: inherit; font-size: 16px; }
+    .rm-su__button { width: 100%; min-height: 52px; padding: 14px 20px; border: 0; border-radius: 0; background: {{ section.settings.button_background }}; color: {{ section.settings.button_text_color }}; font-family: inherit; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; }
+    .rm-su__button:hover { opacity: 0.9; }
+    .rm-su__decline { align-self: center; min-height: 44px; padding: 8px 16px; border: 0; background: transparent; color: inherit; font-family: inherit; font-size: 14px; cursor: pointer; }
+    .rm-su__email:focus-visible, .rm-su__button:focus-visible, .rm-su__close:focus-visible, .rm-su__decline:focus-visible, .rm-su__pref input:focus-visible { outline: 2px solid {{ section.settings.button_background }}; outline-offset: 2px; }
+    .rm-su__legal { font-size: 12px; line-height: 1.5; }
+    .rm-su__legal p { margin: 0; }
+    .rm-su__legal a { color: inherit; text-decoration: underline; }
+    .rm-su__error { margin: 0; font-size: 13px; color: #9b1c1c; }
+    .rm-su__success { display: flex; flex-direction: column; gap: 14px; margin-bottom: 10px; }
+    .rm-su__title { margin: 0; font-family: var(--font-heading-family, inherit); font-size: 34px; line-height: 1.1; text-transform: uppercase; }
+    .rm-su__text { margin: 0; font-size: 16px; line-height: 1.6; }
+    .rm-su__note { margin: 0; font-size: 13px; line-height: 1.5; }
+    @media screen and (max-width: 749px) {
+      .rm-su { align-items: flex-end; padding: 0; }
+      .rm-su__box, .rm-su--split .rm-su__box { max-width: none; grid-template-columns: 1fr; }
+      .rm-su__media { display: none; }
+      .rm-su__content { padding: 48px 20px 24px; gap: 16px; }
+      .rm-su__heading { font-size: 48px; }
+      .rm-su__line { font-size: 16px; }
+    }
+  {% endstyle %}
+
+  <script>
+    (function () {
+      var el = document.getElementById('rm-su-{{ section.id }}');
+      if (!el || el.dataset.bound) return;
+      el.dataset.bound = '1';
+
+      var DISMISSED = 'rm_su_dismissed_at';
+      var DONE = 'rm_su_done';
+      var VIEWS = 'rm_su_views';
+      var shown = false;
+      var lastFocus = null;
+
+      function read(store, key) {
+        try { return store.getItem(key); } catch (e) { return null; }
+      }
+
+      function write(store, key, value) {
+        try { store.setItem(key, value); } catch (e) {}
+      }
+
+      function blocked() {
+        if (read(localStorage, DONE) === '1') return true;
+        var at = parseInt(read(localStorage, DISMISSED) || '0', 10);
+        var days = parseInt(el.dataset.cooldown || '14', 10);
+        return at > 0 && Date.now() - at < days * 86400000;
+      }
+
+      function open() {
+        if (shown) return;
+        shown = true;
+        lastFocus = document.activeElement;
+        el.hidden = false;
+        document.documentElement.style.overflow = 'hidden';
+        var box = el.querySelector('.rm-su__box');
+        if (box) box.focus({ preventScroll: true });
+      }
+
+      function close() {
+        el.hidden = true;
+        document.documentElement.style.overflow = '';
+        write(localStorage, DISMISSED, String(Date.now()));
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      function tryOpen() {
+        if (!blocked()) open();
+      }
+
+      el.querySelectorAll('[data-rm-su-close]').forEach(function (btn) {
+        btn.addEventListener('click', close);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !el.hidden) close();
+      });
+
+      var tags = el.querySelector('[data-rm-su-tags]');
+      if (tags) {
+        var baseTags = tags.value;
+        el.querySelectorAll('.rm-su__pref input').forEach(function (radio) {
+          radio.addEventListener('change', function () {
+            tags.value = baseTags + ',pref-' + radio.value;
+          });
+        });
+      }
+
+      if (window.Shopify && window.Shopify.designMode) {
+        document.addEventListener('shopify:section:select', function (e) {
+          if (e.target.contains(el)) { shown = false; open(); }
+        });
+        document.addEventListener('shopify:section:deselect', function (e) {
+          if (e.target.contains(el)) { el.hidden = true; document.documentElement.style.overflow = ''; }
+        });
+        return;
+      }
+
+      if (el.querySelector('[data-rm-su-success]')) {
+        write(localStorage, DONE, '1');
+        el.classList.add('rm-su--done');
+        open();
+        return;
+      }
+
+      if (el.querySelector('[data-rm-su-error]') || window.location.search.indexOf('rm_popup=1') > -1) {
+        open();
+        return;
+      }
+
+      if (blocked()) return;
+
+      var views = parseInt(read(sessionStorage, VIEWS) || '0', 10) + 1;
+      write(sessionStorage, VIEWS, String(views));
+
+      var needViews = parseInt(el.dataset.views || '2', 10);
+      var delayMs = parseInt(el.dataset.delay || '25', 10) * 1000;
+      setTimeout(tryOpen, views >= needViews ? 1500 : delayMs);
+
+      if (el.dataset.exit === 'true' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        document.addEventListener('mouseout', function (e) {
+          if (shown || e.clientY > 0 || e.relatedTarget) return;
+          tryOpen();
+        });
+      }
+    })();
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Sign-up popup",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "checkbox", "id": "enable_popup", "label": "Enable popup", "default": true },
+    { "type": "header", "content": "When to show" },
+    { "type": "range", "id": "page_views", "label": "Show on this page view", "min": 2, "max": 5, "step": 1, "default": 2, "info": "The popup opens when a visitor reaches this many pages in one visit." },
+    { "type": "range", "id": "delay_seconds", "label": "Or after this many seconds on a page", "min": 5, "max": 60, "step": 5, "default": 25 },
+    { "type": "checkbox", "id": "exit_intent", "label": "Also show when a desktop visitor moves to leave", "default": true },
+    { "type": "range", "id": "cooldown_days", "label": "Days before showing again after it is closed", "min": 1, "max": 30, "step": 1, "default": 14 },
+    { "type": "header", "content": "Content" },
+    { "type": "image_picker", "id": "image", "label": "Photo (left side)", "info": "Leave blank for a centered form with no photo." },
+    { "type": "text", "id": "brand_name", "label": "Brand name", "default": "Moon Ridge" },
+    { "type": "text", "id": "brand_tagline", "label": "Brand tagline", "default": "Hats and Heritage" },
+    { "type": "text", "id": "eyebrow", "label": "Line above the offer", "default": "Sign up and get" },
+    { "type": "text", "id": "heading", "label": "Offer", "default": "10% Off" },
+    { "type": "text", "id": "offer_line", "label": "Line below the offer", "default": "Your first order" },
+    { "type": "checkbox", "id": "show_preference", "label": "Ask for a shopping preference", "default": true, "info": "Adds a customer tag: pref-mens, pref-womens or pref-both." },
+    { "type": "text", "id": "preference_label", "label": "Preference question", "default": "I'm shopping for:" },
+    { "type": "text", "id": "label_mens", "label": "First choice label", "default": "Men's" },
+    { "type": "text", "id": "label_womens", "label": "Second choice label", "default": "Women's" },
+    { "type": "text", "id": "label_both", "label": "Third choice label", "default": "Both" },
+    { "type": "text", "id": "email_placeholder", "label": "Email placeholder", "default": "Email Address" },
+    { "type": "text", "id": "submit_label", "label": "Sign-up button label", "default": "Yes, sign me up" },
+    { "type": "text", "id": "decline_label", "label": "Decline label", "default": "No, thanks" },
+    { "type": "richtext", "id": "legal_text", "label": "Policy line", "default": "<p>By signing up you agree to our <a href=\"/policies/terms-of-service\">Terms &amp; Conditions</a>. More information in our <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p>" },
+    { "type": "header", "content": "After sign-up" },
+    { "type": "image_picker", "id": "success_image", "label": "Photo after sign-up", "info": "Leave blank to keep the same photo." },
+    { "type": "text", "id": "success_heading", "label": "Heading", "default": "Check your inbox" },
+    { "type": "textarea", "id": "success_text", "label": "Text", "default": "Your 10% code is on its way. It is yours alone and good for 30 days on your first order." },
+    { "type": "textarea", "id": "success_note", "label": "Small note", "default": "Nothing in a few minutes? Look in your promotions or junk folder." },
+    { "type": "text", "id": "success_button", "label": "Button label", "default": "Keep shopping" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "popup_background", "label": "Background", "default": "#f4efe6" },
+    { "type": "color", "id": "popup_text_color", "label": "Text", "default": "#312110" },
+    { "type": "color", "id": "button_background", "label": "Button background", "default": "#312110" },
+    { "type": "color", "id": "button_text_color", "label": "Button text", "default": "#ffffff" }
+  ],
+  "presets": [{ "name": "Sign-up popup" }]
+}
+{% endschema %}

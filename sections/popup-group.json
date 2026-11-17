@@ -11,6 +11,17 @@
   "type": "custom.popup",
   "name": "Popup Group",
   "sections": {
+    "popup_signup": {
+      "type": "popup-signup",
+      "name": "Mailing list sign-up",
+      "settings": {
+        "image": "shopify://shop_images/moon-ridge-popup-signup-felt-hat.jpg",
+        "success_image": "shopify://shop_images/moon-ridge-popup-steaming-hat.jpg",
+        "show_preference": false,
+        "success_text": "Your 10% code is on its way. It is yours alone and good for 7 days on your first order.",
+        "legal_text": "<p>By signing up you agree to our <a href=\"/policies/terms-of-service\">Terms &amp; Conditions</a>. More information in our <a href=\"/policies/privacy-policy\">Privacy Policy</a>.</p><p>10% off your first order, valid for 7 days, one use per customer. Must use code at checkout on qualified items. Cannot be combined with free shipping or any other offer, and you will get the most savings based on the discounts available to you. Excludes sale items, gift cards and prior purchases. Free shipping on orders over $99 to the contiguous United States. Moon Ridge Company reserves the right to modify or end this promotion at any time.</p>"
+      }
+    },
     "popup_promo_expanding": {
       "type": "Popup_promo",
       "name": "We're Expanding — store move announcement",
@@ -26,7 +37,7 @@
         "image": "shopify://shop_images/moon-ridge-expanding-popup-oct8-datesbadge.jpg",
         "eyebrow": "Online Store Still Shipping Orders as Fast as Usual!",
         "heading": "<p>We're Expanding!</p>",
-        "offer_line": "New Store Opening — Friday, October 9",
+        "offer_line": "New Store Opening — Friday, October 9",
         "body_text": "<p>Our current store closes September 30th as we move just down the road to 2852 North College Avenue — right next door to Base Camp Coffee. Same Moon Ridge hats, boots, and western lifestyle goods, brand new space.</p>",
         "show_email_form": false,
         "discount_code": "",
@@ -49,7 +60,7 @@
       "type": "Popup_promo",
       "name": "Exit intent — WELCOME10",
       "settings": {
-        "enable_popup": true,
+        "enable_popup": false,
         "trigger_mode": "exit",
         "delay_seconds": 30,
         "mobile_trigger": "scroll_up",
@@ -87,6 +98,7 @@
     }
   },
   "order": [
+    "popup_signup",
     "popup_promo_expanding",
     "popup_promo_xFyMya",
     "1724910121dbcfb207"

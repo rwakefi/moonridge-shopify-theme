@@ -18,6 +18,7 @@
         "image": "shopify://shop_images/moon-ridge-popup-signup-felt-hat.jpg",
         "success_image": "shopify://shop_images/moon-ridge-popup-steaming-hat.jpg",
         "show_preference": false,
+        "submit_label": "Send Me My 10% Off",
         "success_text": "Your 10% code is on its way. It is yours alone and good for 7 days on your first order.",
         "legal_text": "<p>By signing up you agree to our <a href=\"/policies/terms-of-service\">Terms &amp; Conditions</a>. More information in our <a href=\"/policies/privacy-policy\">Privacy Policy</a>. Full offer terms are in your welcome email.</p>"
       }

@@ -43,9 +43,9 @@
                   if link.handle == 'roots' or link_title_lc == 'roots'
                     assign roots_menu_match = true
                   endif
-                  assign home_gifts_menu_match = false
-                  if link.url contains '/collections/home-goods'
-                    assign home_gifts_menu_match = true
+                  assign drawer_parent_link = false
+                  if link.url != blank and link.url != '#'
+                    assign drawer_parent_link = true
                   endif
                 -%}
                 <li>
@@ -103,7 +103,7 @@
                             {{ link.title | escape }}
                           </button>
                           <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
-                            {%- if home_gifts_menu_match -%}
+                            {%- if drawer_parent_link -%}
                               <li>
                                 <a
                                   id="HeaderDrawer-{{ link.handle }}-shop-all"
@@ -113,7 +113,7 @@
                                     aria-current="page"
                                   {% endif %}
                                 >
-                                  SHOP ALL {{ link.title | escape }}
+                                  {% if link.type == 'collection_link' or link.type == 'catalog_link' %}SHOP ALL{% else %}VIEW ALL{% endif %} {{ link.title | escape }}
                                 </a>
                               </li>
                             {%- endif -%}

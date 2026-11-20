@@ -158,6 +158,19 @@
             "logo_url_size": 60
           }
         },
+        "brand_flamingo_estate_9": {
+          "type": "brand",
+          "settings": {
+            "title": "Flamingo Estate",
+            "group": "new_heritage",
+            "tagline": "From the garden since 2020",
+            "blurb": "Candles, soap and pantry goods from a seven-acre garden in the hills above Los Angeles.",
+            "link": "/pages/flamingo-estate-heritage",
+            "cta_label": "Learn More About Flamingo Estate",
+            "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/flamingo-estate-logo.png?v=1795146684",
+            "logo_url_size": 60
+          }
+        },
         "photo_1": {
           "type": "photo",
           "settings": {
@@ -186,6 +199,7 @@
         "brand_bigalli_6",
         "brand_seager_7",
         "brand_boston_scally_8",
+        "brand_flamingo_estate_9",
         "photo_1",
         "photo_2",
         "photo_3"
@@ -197,7 +211,7 @@
         "heritage_heading": "Heritage Brands",
         "heritage_text": "These are the names that built the trade. Stetson has made hats since 1865, Pendleton has woven wool in Oregon since 1863, and Lucchese has built boots in Texas since 1883. Resistol, Goorin Bros. and Bigalli each have close to a century or more behind them. They have outlasted every trend by making things the same careful way, year after year.",
         "new_heritage_heading": "New Heritage Brands",
-        "new_heritage_text": "Not every brand we trust is a hundred years old. Seager started in 2015 and Boston Scally in 2013, and each one builds on something older: the Old West for Seager, the Irish and British flat cap for Boston Scally. They are young companies making goods meant to be worn for years, which is the same standard we hold the old names to.",
+        "new_heritage_text": "Not every brand we trust is a hundred years old. Boston Scally started in 2013, Seager in 2015 and Flamingo Estate in 2020, and each one builds on something older: the Irish and British flat cap for Boston Scally, the Old West for Seager, a 1940s garden estate for Flamingo Estate. They are young companies making goods the slow, careful way, which is the same standard we hold the old names to.",
         "container_width": 1200,
         "background_color": "#faf7f2",
         "surface_color": "#ffffff",

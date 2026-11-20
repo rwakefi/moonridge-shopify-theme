@@ -1,5 +1,5 @@
 {% doc %}
-  Scrolling logo strip: up to seven brand logos (image_1..image_7), each linking to its brand page.
+  Scrolling logo strip: up to eight brand logos (image_1..image_8), each linking to its brand page.
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
@@ -104,6 +104,13 @@
     margin: 10%;
   }
 
+  /* Flamingo Estate (8th logo) is a tight-cropped wordmark too */
+  .ai-four-picture-grid__item-{{ ai_gen_id }}:nth-child(8) .ai-four-picture-grid__image-{{ ai_gen_id }} {
+    width: 80%;
+    height: 80%;
+    margin: 10%;
+  }
+
   .ai-four-picture-grid__link-{{ ai_gen_id }}:hover .ai-four-picture-grid__image-{{ ai_gen_id }} {
     transform: scale(1.05);
     opacity: 0.8;
@@ -179,7 +186,7 @@
   <div class="ai-four-picture-grid__container-{{ ai_gen_id }}">
     <!-- First Track -->
     <div class="ai-four-picture-grid__track-{{ ai_gen_id }}">
-      {% for i in (1..7) %}
+      {% for i in (1..8) %}
         {% liquid
           assign image_key = 'image_' | append: i
           assign link_key = 'link_' | append: i
@@ -220,7 +227,7 @@
     
     <!-- Duplicate Track for Seamless Scrolling -->
     <div class="ai-four-picture-grid__track-{{ ai_gen_id }}" aria-hidden="true">
-      {% for i in (1..7) %}
+      {% for i in (1..8) %}
         {% liquid
           assign image_key = 'image_' | append: i
           assign link_key = 'link_' | append: i
@@ -353,6 +360,8 @@
     { "type": "url", "id": "link_6", "label": "Link" },
     { "type": "image_picker", "id": "image_7", "label": "Image" },
     { "type": "url", "id": "link_7", "label": "Link" },
+    { "type": "image_picker", "id": "image_8", "label": "Image" },
+    { "type": "url", "id": "link_8", "label": "Link" },
 
     {
       "type": "header",

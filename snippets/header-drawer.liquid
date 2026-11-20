@@ -43,6 +43,10 @@
                   if link.handle == 'roots' or link_title_lc == 'roots'
                     assign roots_menu_match = true
                   endif
+                  assign home_gifts_menu_match = false
+                  if link.url contains '/collections/home-goods'
+                    assign home_gifts_menu_match = true
+                  endif
                 -%}
                 <li>
                   {%- if hats_hub_match -%}
@@ -71,6 +75,17 @@
                     <a
                       id="HeaderDrawer-{{ link.handle }}"
                       href="{{ roots_blog_url }}"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      {{ link.title | escape }}
+                    </a>
+                  {%- elsif home_gifts_menu_match -%}
+                    <a
+                      id="HeaderDrawer-{{ link.handle }}"
+                      href="{{ link.url }}"
                       class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
                       {% if link.current %}
                         aria-current="page"

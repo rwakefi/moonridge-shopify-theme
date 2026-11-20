@@ -82,17 +82,6 @@
                     >
                       {{ link.title | escape }}
                     </a>
-                  {%- elsif home_gifts_menu_match -%}
-                    <a
-                      id="HeaderDrawer-{{ link.handle }}"
-                      href="{{ link.url }}"
-                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
-                      {% if link.current %}
-                        aria-current="page"
-                      {% endif %}
-                    >
-                      {{ link.title | escape }}
-                    </a>
                   {%- elsif link.links != blank -%}
                     <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
                       <summary
@@ -114,6 +103,20 @@
                             {{ link.title | escape }}
                           </button>
                           <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                            {%- if home_gifts_menu_match -%}
+                              <li>
+                                <a
+                                  id="HeaderDrawer-{{ link.handle }}-shop-all"
+                                  href="{{ link.url }}"
+                                  class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                                  {% if link.current %}
+                                    aria-current="page"
+                                  {% endif %}
+                                >
+                                  SHOP ALL {{ link.title | escape }}
+                                </a>
+                              </li>
+                            {%- endif -%}
                             {%- for childlink in link.links -%}
                               <li>
                                 {%- if childlink.links == blank -%}

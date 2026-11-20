@@ -144,6 +144,18 @@
             "logo_url_size": 85
           }
         },
+        "brand_boston_scally_8": {
+          "type": "brand",
+          "settings": {
+            "title": "Boston Scally",
+            "tagline": "Scally caps since 2013",
+            "blurb": "Single, six and eight-panel scally caps out of Boston, cut close and sized by the centimeter.",
+            "link": "/pages/boston-scally-heritage",
+            "cta_label": "Learn More About Boston Scally",
+            "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/boston-scally-logo.png?v=1795144824",
+            "logo_url_size": 85
+          }
+        },
         "photo_1": {
           "type": "photo",
           "settings": {
@@ -171,6 +183,7 @@
         "brand_goorin_5",
         "brand_bigalli_6",
         "brand_seager_7",
+        "brand_boston_scally_8",
         "photo_1",
         "photo_2",
         "photo_3"

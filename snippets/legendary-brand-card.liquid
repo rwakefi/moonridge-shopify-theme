@@ -1,0 +1,55 @@
+{% doc %}
+  One brand tile on the Brands We Carry page (sections/legendary-brands-grid.liquid).
+  @param {object} block - the brand block
+  @param {string} sid - the section id, used for scoped class names
+{% enddoc %}
+{%- assign brand_url = block.settings.link | default: '#' -%}
+{%- assign has_feature = false -%}
+{%- if block.settings.feature_image != blank -%}
+  {%- assign has_feature = true -%}
+{%- endif -%}
+<a
+  class="lb-card-{{ sid }}"
+  href="{{ brand_url }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="lb-card-media-{{ sid }}{% unless has_feature %} lb-card-media-{{ sid }}--logo{% endunless %}">
+    {%- if has_feature -%}
+      {%- assign feature_alt = block.settings.feature_image.alt | default: block.settings.title -%}
+      {{
+        block.settings.feature_image
+        | image_url: width: 1200
+        | image_tag: loading: 'lazy', widths: '400, 700, 1000, 1200', sizes: '(min-width: 990px) 30vw, 50vw', alt: feature_alt
+      }}
+    {%- elsif block.settings.logo != blank -%}
+      {%- assign logo_alt = block.settings.logo.alt | default: block.settings.title -%}
+      {{
+        block.settings.logo
+        | image_url: width: 800
+        | image_tag: loading: 'lazy', widths: '300, 500, 800', sizes: '(min-width: 990px) 30vw, 50vw', alt: logo_alt
+      }}
+    {%- elsif block.settings.logo_url != blank -%}
+      {%- assign lb_logo_size = block.settings.logo_url_size | default: 85 -%}
+      <img
+        class="lb-logo-sized-{{ sid }}"
+        src="{{ block.settings.logo_url }}"
+        alt="{{ block.settings.title | escape }}"
+        loading="eager"
+        decoding="async"
+        width="400"
+        height="300"
+        style="--lb-logo-size: {{ lb_logo_size }}%;"
+      >
+    {%- endif -%}
+  </div>
+  {%- if block.settings.title != blank -%}
+    <h2 class="lb-card-name-{{ sid }}">{{ block.settings.title }}</h2>
+  {%- endif -%}
+  {%- if block.settings.tagline != blank -%}
+    <p class="lb-card-tagline-{{ sid }}">{{ block.settings.tagline }}</p>
+  {%- endif -%}
+  {%- if block.settings.blurb != blank -%}
+    <p class="lb-card-blurb-{{ sid }}">{{ block.settings.blurb }}</p>
+  {%- endif -%}
+  <span class="lb-card-cta-{{ sid }}">{{ block.settings.cta_label | default: 'Learn More' }}</span>
+</a>

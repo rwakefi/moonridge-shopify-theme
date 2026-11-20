@@ -3,6 +3,11 @@
     one image block with some padding around the edge but not too big on desktop, add a thin boarder, make the image a little maller
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{%- comment -%}
+  A brand page can set its own logo width with the page metafield custom.brand_logo_width (px).
+  Tight-cropped logos (Boston Scally) read much larger than padded ones at the same width.
+{%- endcomment -%}
+{%- assign ai_logo_max_width = closest.page.metafields.custom.brand_logo_width.value | default: block.settings.max_width -%}
 
 {% style %}
   .ai-image-block-{{ ai_gen_id }} {
@@ -11,7 +16,7 @@
   }
 
   .ai-image-wrapper-{{ ai_gen_id }} {
-    max-width: {{ block.settings.max_width }}px;
+    max-width: {{ ai_logo_max_width }}px;
     margin: 0 auto;
     border-radius: {{ block.settings.border_radius }}px;
     overflow: hidden;

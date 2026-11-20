@@ -136,6 +136,7 @@
           "type": "brand",
           "settings": {
             "title": "Seager",
+            "group": "new_heritage",
             "tagline": "Self-funded since 2015",
             "blurb": "Old West grit, worn with surf-town ease — small-batch snapbacks, tees, and hoodies, including the Waylon Jennings collection.",
             "link": "/pages/seager-brand-history",
@@ -148,12 +149,13 @@
           "type": "brand",
           "settings": {
             "title": "Boston Scally",
+            "group": "new_heritage",
             "tagline": "Scally caps since 2013",
             "blurb": "Single, six and eight-panel scally caps out of Boston, cut close and sized by the centimeter.",
             "link": "/pages/boston-scally-heritage",
             "cta_label": "Learn More About Boston Scally",
             "logo_url": "https://cdn.shopify.com/s/files/1/0885/7180/6000/files/boston-scally-logo.png?v=1795144824",
-            "logo_url_size": 85
+            "logo_url_size": 60
           }
         },
         "photo_1": {
@@ -191,7 +193,11 @@
       "settings": {
         "eyebrow": "Moon Ridge Hats and Heritage",
         "heading": "Heritage Brands We Carry",
-        "intro": "Stetson, Resistol, Lucchese, Pendleton, Goorin Bros., Bigalli, and Seager—heritage makers Moon Ridge trusts. Read their stories, then shop fitted styles in Fayetteville or nationwide.",
+        "intro": "Stetson, Resistol, Lucchese, Pendleton, Goorin Bros., Bigalli, Seager, and Boston Scally—heritage makers Moon Ridge trusts. Read their stories, then shop fitted styles in Fayetteville or nationwide.",
+        "heritage_heading": "Heritage Brands",
+        "heritage_text": "These are the names that built the trade. Stetson has made hats since 1865, Pendleton has woven wool in Oregon since 1863, and Lucchese has built boots in Texas since 1883. Resistol, Goorin Bros. and Bigalli each have close to a century or more behind them. They have outlasted every trend by making things the same careful way, year after year.",
+        "new_heritage_heading": "New Heritage Brands",
+        "new_heritage_text": "Not every brand we trust is a hundred years old. Seager started in 2015 and Boston Scally in 2013, and each one builds on something older: the Old West for Seager, the Irish and British flat cap for Boston Scally. They are young companies making goods meant to be worn for years, which is the same standard we hold the old names to.",
         "container_width": 1200,
         "background_color": "#faf7f2",
         "surface_color": "#ffffff",

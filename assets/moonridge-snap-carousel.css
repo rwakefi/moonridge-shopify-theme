@@ -1,0 +1,132 @@
+/* ==========================================================================
+   Moonridge snap carousel — native scroll + CSS scroll-snap.
+   Desktop/tablet: one row, N cards per view. Mobile: pages of four (2 x 2).
+   Wrapper vars: --mr-snap-gap, --mr-snap-per-view, --mr-snap-per-view-tablet
+   Behaviour (arrows, dots, mouse drag) lives in moonridge-snap-carousel.js
+   ========================================================================== */
+
+.mr-snap__viewport {
+  display: block;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.mr-snap__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.mr-snap__viewport.is-dragging {
+  scroll-snap-type: none;
+  cursor: grabbing;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.mr-snap__viewport.is-dragging a,
+.mr-snap__viewport.is-dragging img {
+  pointer-events: none;
+}
+
+.mr-snap__track {
+  display: flex;
+  width: 100%;
+  gap: var(--mr-snap-gap, 20px);
+  transform: none !important;
+  transition: none !important;
+}
+
+.mr-snap__page {
+  display: contents;
+}
+
+.mr-snap__slide {
+  --mr-snap-n: var(--mr-snap-per-view, 4);
+  flex: 0 0 calc((100% - (var(--mr-snap-n) - 1) * var(--mr-snap-gap, 20px)) / var(--mr-snap-n));
+  max-width: calc((100% - (var(--mr-snap-n) - 1) * var(--mr-snap-gap, 20px)) / var(--mr-snap-n));
+  min-width: 0;
+  display: flex;
+  scroll-snap-align: start;
+}
+
+.mr-snap__slide > * {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .mr-snap__slide {
+    --mr-snap-n: var(--mr-snap-per-view-tablet, 3);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .mr-snap__page {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--mr-snap-gap, 20px);
+    align-content: start;
+    flex: 0 0 100%;
+    min-width: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .mr-snap__slide {
+    flex: none;
+    max-width: none;
+    scroll-snap-align: none;
+  }
+}
+
+/* Nothing to scroll: no arrows, no dots */
+.moonridge-carousel-wrapper.mr-snap--static .moonridge-carousel-controls,
+.moonridge-carousel-wrapper.mr-snap--static [data-dots] {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mr-snap__viewport {
+    scroll-behavior: auto;
+  }
+}
+
+/* Arrows: comfortable click and tap targets (theme root font is 10px) */
+.moonridge-carousel-wrapper[data-mr-snap] .moonridge-carousel-controls .moonridge-carousel-btn {
+  width: 4rem !important;
+  height: 4rem !important;
+  min-width: 4rem !important;
+  min-height: 4rem !important;
+}
+
+.moonridge-carousel-wrapper[data-mr-snap] .moonridge-carousel-controls .moonridge-carousel-btn svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 750px) {
+  .moonridge-carousel-wrapper[data-mr-snap] .moonridge-carousel-controls {
+    margin-top: -2rem !important;
+  }
+}
+
+/* Mobile 2 x 2 pages: sit the arrows on the top-row images, and drop the one that has nowhere to go */
+@media screen and (max-width: 749px) {
+  .moonridge-carousel-wrapper[data-mr-snap] .moonridge-carousel-controls .moonridge-carousel-btn {
+    width: 3.6rem !important;
+    height: 3.6rem !important;
+    min-width: 3.6rem !important;
+    min-height: 3.6rem !important;
+    top: calc((100vw - 60px) / 4) !important;
+  }
+
+  .moonridge-carousel-wrapper[data-mr-snap] .moonridge-carousel-controls .moonridge-carousel-btn:disabled {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}

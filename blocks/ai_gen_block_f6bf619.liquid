@@ -90,6 +90,43 @@
     text-align: center;
   }
 
+  .ai-single-image-cta--music-{{ ai_gen_id }} {
+    position: relative;
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+  .ai-single-image-cta-art-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--mr-cta-rule);
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+  .ai-single-image-cta-art--left-{{ ai_gen_id }} {
+    left: max(28px, calc(50% - 600px));
+  }
+  .ai-single-image-cta-art--right-{{ ai_gen_id }} {
+    right: max(28px, calc(50% - 600px));
+    flex-direction: row-reverse;
+  }
+  .ai-single-image-cta-guitar-{{ ai_gen_id }} {
+    display: block;
+    width: auto;
+    height: 78px;
+    transform: rotate(-24deg);
+  }
+  .ai-single-image-cta-art--right-{{ ai_gen_id }} .ai-single-image-cta-guitar-{{ ai_gen_id }} {
+    transform: scaleX(-1) rotate(-24deg);
+  }
+  .ai-single-image-cta-notes-{{ ai_gen_id }} {
+    display: block;
+    width: auto;
+    height: 34px;
+    opacity: 0.85;
+  }
   .ai-single-image-cta-copy-{{ ai_gen_id }} {
     margin: 0;
     color: var(--mr-cta-ink);
@@ -207,6 +244,26 @@
       padding: 14px 16px 16px;
     }
 
+    .ai-single-image-cta--music-{{ ai_gen_id }} {
+      padding-left: 58px;
+      padding-right: 58px;
+    }
+    .ai-single-image-cta-art-{{ ai_gen_id }} {
+      top: 14px;
+      transform: none;
+    }
+    .ai-single-image-cta-art--left-{{ ai_gen_id }} {
+      left: 8px;
+    }
+    .ai-single-image-cta-art--right-{{ ai_gen_id }} {
+      right: 8px;
+    }
+    .ai-single-image-cta-guitar-{{ ai_gen_id }} {
+      height: 50px;
+    }
+    .ai-single-image-cta-notes-{{ ai_gen_id }} {
+      display: none;
+    }
     .ai-single-image-cta-actions-{{ ai_gen_id }} {
       flex-direction: column;
       gap: 8px;
@@ -303,7 +360,32 @@
   </div>
 
   {%- if block.settings.button_label != blank or block.settings.secondary_label != blank or block.settings.app_store_link != blank -%}
-    <div class="ai-single-image-cta-{{ ai_gen_id }}{% if block.settings.app_store_link != blank %} ai-single-image-cta--has-appstore-{{ ai_gen_id }}{% endif %}">
+    <div class="ai-single-image-cta-{{ ai_gen_id }}{% if block.settings.app_store_link != blank %} ai-single-image-cta--has-appstore-{{ ai_gen_id }}{% endif %}{% if block.settings.cta_music_art %} ai-single-image-cta--music-{{ ai_gen_id }}{% endif %}">
+      {%- if block.settings.cta_music_art -%}
+        {%- capture mr_guitar -%}
+          <svg class="ai-single-image-cta-guitar-{{ ai_gen_id }}" viewBox="0 0 40 104" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15.5" y="2" width="9" height="12" rx="2" fill="currentColor"/>
+            <circle cx="13.6" cy="5.5" r="1.7" fill="currentColor"/><circle cx="13.6" cy="10.5" r="1.7" fill="currentColor"/>
+            <circle cx="26.4" cy="5.5" r="1.7" fill="currentColor"/><circle cx="26.4" cy="10.5" r="1.7" fill="currentColor"/>
+            <rect x="17.6" y="12" width="4.8" height="40" fill="currentColor"/>
+            <circle cx="20" cy="56" r="12.5" fill="currentColor"/>
+            <circle cx="20" cy="81" r="17" fill="currentColor"/>
+            <circle cx="20" cy="64" r="5" fill="var(--mr-cta-band)"/>
+            <rect x="14" y="83" width="12" height="3" rx="1" fill="var(--mr-cta-band)"/>
+            <path d="M18.8 4v80M20 4v80M21.2 4v80" stroke="var(--mr-cta-band)" stroke-width=".45" opacity=".75"/>
+          </svg>
+        {%- endcapture -%}
+        {%- capture mr_notes -%}
+          <svg class="ai-single-image-cta-notes-{{ ai_gen_id }}" viewBox="0 0 30 34" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="6.5" cy="27" rx="4.6" ry="3.4" transform="rotate(-20 6.5 27)" fill="currentColor"/>
+            <ellipse cx="22.5" cy="23" rx="4.6" ry="3.4" transform="rotate(-20 22.5 23)" fill="currentColor"/>
+            <path d="M10.6 26V6l16-4v20" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M10.6 6l16-4v4l-16 4z" fill="currentColor"/>
+          </svg>
+        {%- endcapture -%}
+        <span class="ai-single-image-cta-art-{{ ai_gen_id }} ai-single-image-cta-art--left-{{ ai_gen_id }}">{{ mr_guitar }}{{ mr_notes }}</span>
+        <span class="ai-single-image-cta-art-{{ ai_gen_id }} ai-single-image-cta-art--right-{{ ai_gen_id }}">{{ mr_guitar }}{{ mr_notes }}</span>
+      {%- endif -%}
       {%- if block.settings.cta_support != blank -%}
         <p class="ai-single-image-cta-copy-{{ ai_gen_id }}">{{ block.settings.cta_support | escape }}</p>
       {%- endif -%}
@@ -423,6 +505,13 @@
       "id": "app_store_link",
       "label": "App Store link (mobile only)",
       "info": "Shows the official App Store badge on mobile in place of Try Hat Finder. Hidden on desktop."
+    },
+    {
+      "type": "checkbox",
+      "id": "cta_music_art",
+      "label": "Show guitar and music-note art on the sides",
+      "info": "For music events. Brass line art in the top rule color.",
+      "default": false
     },
     {
       "type": "color",

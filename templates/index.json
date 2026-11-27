@@ -17,18 +17,18 @@
           "settings": {
             "desktop_image": "shopify://shop_images/moon-ridge-black-friday-hero-desktop-1920x1080.jpg",
             "mobile_image": "shopify://shop_images/moon-ridge-black-friday-hero-mobile-1080x1350.jpg",
-            "cta_support": "Want an Interactive Experience",
-            "button_label": "",
-            "button_link": "shopify://pages/shop-hats",
-            "secondary_label": "Try Hat Finder",
+            "cta_support": "Cowboy Christmas After Dark · Songwriter Showcase Night · Sat, Dec 5 · 6–8:30 pm",
+            "button_label": "Get Tickets · $20",
+            "button_link": "shopify://products/cowboy-christmas-nwa-emerging-songwriter-showcase-ticket",
+            "secondary_label": "",
             "secondary_link": "https://hatfinder.moonridgecompany.com",
             "app_store_label": "Download Hat Finder on the App Store",
-            "app_store_link": "https://apps.apple.com/us/app/hat-finder/id6767718895?itscg=30200&itsct=apps_box_link&mttnsubad=6767718895",
-            "cta_background": "#ffffff",
-            "cta_text_color": "#312110",
-            "cta_accent_color": "#c4b49a",
-            "button_background": "#312110",
-            "button_text_color": "#ffffff"
+            "app_store_link": "",
+            "cta_background": "#1f3a2e",
+            "cta_text_color": "#f4efe6",
+            "cta_accent_color": "#c9a14c",
+            "button_background": "#c9a14c",
+            "button_text_color": "#2b1d0e"
           },
           "blocks": {}
         },

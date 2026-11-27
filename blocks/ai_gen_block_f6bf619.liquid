@@ -90,6 +90,19 @@
     text-align: center;
   }
 
+  .ai-single-image-cta--photo-{{ ai_gen_id }} {
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--mr-cta-band) 66%, transparent), color-mix(in srgb, var(--mr-cta-band) 66%, transparent)),
+      var(--mr-cta-photo);
+    background-size: cover;
+    background-position: center 62%;
+    padding-top: 26px;
+    padding-bottom: 28px;
+  }
+  .ai-single-image-cta--photo-{{ ai_gen_id }} .ai-single-image-cta-copy-{{ ai_gen_id }} {
+    opacity: 1;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+  }
   .ai-single-image-cta--music-{{ ai_gen_id }} {
     position: relative;
     padding-left: 150px;
@@ -360,7 +373,7 @@
   </div>
 
   {%- if block.settings.button_label != blank or block.settings.secondary_label != blank or block.settings.app_store_link != blank -%}
-    <div class="ai-single-image-cta-{{ ai_gen_id }}{% if block.settings.app_store_link != blank %} ai-single-image-cta--has-appstore-{{ ai_gen_id }}{% endif %}{% if block.settings.cta_music_art %} ai-single-image-cta--music-{{ ai_gen_id }}{% endif %}">
+    <div class="ai-single-image-cta-{{ ai_gen_id }}{% if block.settings.app_store_link != blank %} ai-single-image-cta--has-appstore-{{ ai_gen_id }}{% endif %}{% if block.settings.cta_music_art %} ai-single-image-cta--music-{{ ai_gen_id }}{% endif %}{% if block.settings.cta_background_image %} ai-single-image-cta--photo-{{ ai_gen_id }}{% endif %}"{% if block.settings.cta_background_image %} style="--mr-cta-photo: url('{{ block.settings.cta_background_image | image_url: width: 2400 }}');"{% endif %}>
       {%- if block.settings.cta_music_art -%}
         {%- capture mr_guitar -%}
           <svg class="ai-single-image-cta-guitar-{{ ai_gen_id }}" viewBox="0 0 40 104" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
@@ -505,6 +518,12 @@
       "id": "app_store_link",
       "label": "App Store link (mobile only)",
       "info": "Shows the official App Store badge on mobile in place of Try Hat Finder. Hidden on desktop."
+    },
+    {
+      "type": "image_picker",
+      "id": "cta_background_image",
+      "label": "CTA band background photo",
+      "info": "Optional. Shown behind the band under a tint of the band background color. Wide images work best (about 2400 x 500)."
     },
     {
       "type": "checkbox",

@@ -140,6 +140,18 @@
     height: 34px;
     opacity: 0.85;
   }
+  .ai-single-image-cta-eyebrow-{{ ai_gen_id }} {
+    margin: 0 0 -4px;
+    color: var(--mr-cta-rule);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+  .ai-single-image-cta--photo-{{ ai_gen_id }} .ai-single-image-cta-eyebrow-{{ ai_gen_id }} {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+  }
   .ai-single-image-cta-copy-{{ ai_gen_id }} {
     margin: 0;
     color: var(--mr-cta-ink);
@@ -399,6 +411,9 @@
         <span class="ai-single-image-cta-art-{{ ai_gen_id }} ai-single-image-cta-art--left-{{ ai_gen_id }}">{{ mr_guitar }}{{ mr_notes }}</span>
         <span class="ai-single-image-cta-art-{{ ai_gen_id }} ai-single-image-cta-art--right-{{ ai_gen_id }}">{{ mr_guitar }}{{ mr_notes }}</span>
       {%- endif -%}
+      {%- if block.settings.cta_eyebrow != blank -%}
+        <p class="ai-single-image-cta-eyebrow-{{ ai_gen_id }}">{{ block.settings.cta_eyebrow | escape }}</p>
+      {%- endif -%}
       {%- if block.settings.cta_support != blank -%}
         <p class="ai-single-image-cta-copy-{{ ai_gen_id }}">{{ block.settings.cta_support | escape }}</p>
       {%- endif -%}
@@ -475,6 +490,12 @@
     {
       "type": "header",
       "content": "Shop CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_eyebrow",
+      "label": "Top line",
+      "info": "Optional small line above the supporting line, in the top rule color."
     },
     {
       "type": "text",
